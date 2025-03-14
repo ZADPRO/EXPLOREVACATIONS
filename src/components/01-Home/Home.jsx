@@ -8,6 +8,14 @@ import { FloatLabel } from "primereact/floatlabel";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 
+import home1 from "../../assets/homeCards/1.jpg";
+import home2 from "../../assets/homeCards/2[1].jpg";
+import home3 from "../../assets/homeCards/3[1].jpg";
+import home4 from "../../assets/homeCards/4[1].jpg";
+
+import homeImg1 from "../../assets/homeCards/3.1[1].jpg";
+import homeImg2 from "../../assets/homeCards/3.2[1].jpg";
+
 import { Toast } from "primereact/toast";
 
 import "./Home.css";
@@ -429,6 +437,83 @@ export default function Home() {
             </div>
           </div>
         </section>
+      </div>
+      <div className="flex lg:flex-row flex-column justify-between items-center gap-4 w-9/12 mx-auto my-20">
+        <div className="flex flex-col justify-between h-full flex-1 gap-10">
+          <img
+            src={home1}
+            alt="Top Image"
+            className="mx-auto w-[300px] rounded-lg"
+          />
+          <img
+            src={home2}
+            alt="Bottom Image"
+            className="lg:self-end self-center w-[200px] rounded-lg"
+          />
+        </div>
+
+        <div className="flex-1 text-center">
+          <p className="testingFont text-4xl font-bold">Most Popular Tour</p>
+          <p className="text-3xl font-bold text-black pt-2">
+            Let’s Discover The World With Our Excellent Eyes
+          </p>
+          <p className="text-sm text-gray-600 pt-3">
+            Whether you're looking for a romantic getaway, family-friendly
+            vacation, or a solo journey to explore the world, a travel agency
+            can provide a tailored itinerary that exceeds your expectations.
+          </p>
+        </div>
+
+        <div className="flex flex-col justify-between h-full flex-1 gap-10">
+          <img
+            src={home3}
+            alt="Top Image"
+            className="mx-auto w-[300px] rounded-lg"
+          />
+          <img
+            src={home4}
+            alt="Bottom Image"
+            className="lg:self-start self-center w-[200px] rounded-lg"
+          />
+        </div>
+      </div>
+
+      <div className="flex lg:flex-row flex-col items-center h-full w-11/12 mx-auto">
+        {/* Left Text Content */}
+        <div className="flex-1 flex flex-col justify-center text-left lg:text-left p-6">
+          <p className="testingFont text-4xl font-bold">Dream Your Next Trip</p>
+          <p className="text-3xl font-bold pt-2 text-gray-700">
+            Discover whenever you want to go
+          </p>
+          <p className="text-lg pt-3 text-gray-600 mt-2">
+            Are you tired of the typical tourist destinations and looking to
+            step out of your comfort zone? Adventure travel may be the perfect
+            solution for you! Here are four.
+          </p>
+        </div>
+
+        {/* Right Image Content */}
+        <div className="flex-1 py-10 flex justify-center items-center ">
+          <div className="relative flex justify-center items-center">
+            {/* Main Image */}
+            <div className="relative w-[100%] left-[10%] lg:left-[0] lg:w-[60%]">
+              <img
+                src={homeImg2}
+                alt="Main"
+                className="lg:w-[500px] w-[240px] h-auto rounded-lg shadow-lg"
+              />
+            </div>
+
+            {/* Sub Image (Overlayed) */}
+            <div className="absolute top-[50%] lg:left-[30%] left-[25%] w-3/5 lg:w-[60%] transform -translate-x-1/2 -translate-y-1/2">
+              <img
+                src={homeImg1}
+                alt="Sub"
+                className="w-[250px] h-auto rounded-lg shadow-xl border-4 border-white object-cover"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

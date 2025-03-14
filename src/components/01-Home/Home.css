@@ -38,14 +38,28 @@
 }
 
 .tourBannerBg01 {
-  background: url("../../assets/cars/carsBanners.jpg") no-repeat center;
+  background: url("../../assets/cars/card_banner[2].jpg") no-repeat center;
   background-size: cover;
   background-position: center;
 }
 
 @media (max-width: 640px) {
   .tourBannerBg01 {
-    background: url("../../assets/cars/carBannerMob.jpg") no-repeat center;
+    background: url("../../assets/cars/mobile_card[1].jpg") no-repeat center;
+    background-size: cover;
+  }
+}
+
+.contactPage001 {
+  background: url("../../assets/contact/contact[1].jpg") no-repeat center;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 640px) {
+  .contactPage001 {
+    background: url("../../assets/contact/mobile_contact[1].jpg") no-repeat
+      center;
     background-size: cover;
   }
 }

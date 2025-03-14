@@ -71,7 +71,7 @@ export default function Header() {
               style={{ color: isActive("/contact") }}
               onClick={() => handleNavigation("/contact")}
             >
-              Customer Care
+              Contact
             </div>
           </div>
 
