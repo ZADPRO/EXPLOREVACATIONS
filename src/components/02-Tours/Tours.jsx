@@ -6,6 +6,8 @@ import { InputNumber } from "primereact/inputnumber";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 
+import image from "../../assets/home/home4.jpg";
+
 export default function Tours() {
   const location = useLocation();
   const toast = useRef(null);
@@ -64,6 +66,89 @@ export default function Tours() {
       detail: "Search submitted!",
     });
   };
+
+  const tourData = [
+    {
+      id: 1,
+      name: "Buddhist Cultural Trip To Sri Lanka",
+      duration: "8 days / 7 nights",
+      location: "Sri Lanka",
+      price: "$320 / Person",
+      image: image,
+    },
+    {
+      id: 2,
+      name: "Swiss Alps Adventure",
+      duration: "5 days / 4 nights",
+      location: "Switzerland",
+      price: "$500 / Person",
+      image: image,
+    },
+    {
+      id: 3,
+      name: "Misty Mountains of Ella",
+      duration: "6 days / 5 nights",
+      location: "Sri Lanka",
+      price: "$280 / Person",
+      image: image,
+    },
+    {
+      id: 4,
+      name: "Zurich City Exploration",
+      duration: "4 days / 3 nights",
+      location: "Switzerland",
+      price: "$450 / Person",
+      image: image,
+    },
+    {
+      id: 5,
+      name: "Sigiriya Rock Fortress Tour",
+      duration: "3 days / 2 nights",
+      location: "Sri Lanka",
+      price: "$200 / Person",
+      image: image,
+    },
+    {
+      id: 6,
+      name: "Lake Geneva Retreat",
+      duration: "7 days / 6 nights",
+      location: "Switzerland",
+      price: "$600 / Person",
+      image: image,
+    },
+    {
+      id: 7,
+      name: "Colombo City & Beach Escape",
+      duration: "5 days / 4 nights",
+      location: "Sri Lanka",
+      price: "$300 / Person",
+      image: image,
+    },
+    {
+      id: 8,
+      name: "Jungfraujoch: Top of Europe",
+      duration: "2 days / 1 night",
+      location: "Switzerland",
+      price: "$700 / Person",
+      image: image,
+    },
+    {
+      id: 9,
+      name: "Kandy Cultural Experience",
+      duration: "3 days / 2 nights",
+      location: "Sri Lanka",
+      price: "$250 / Person",
+      image: image,
+    },
+    {
+      id: 10,
+      name: "Matterhorn & Zermatt Excursion",
+      duration: "4 days / 3 nights",
+      location: "Switzerland",
+      price: "$550 / Person",
+      image: image,
+    },
+  ];
 
   return (
     <div>
@@ -139,18 +224,112 @@ export default function Tours() {
         </div>
       </div>
 
-      <div>
-        <h1>Tours Explore</h1>
-        <p>Destination: {tourDestination?.name}</p>
-        <p>
-          From:{" "}
-          {tourFromDate ? tourFromDate.toLocaleDateString() : "Not selected"}
-        </p>
-        <p>
-          To: {tourToDate ? tourToDate.toLocaleDateString() : "Not selected"}
-        </p>
-        <p>Guests: {tourGuest}</p>
+      <div className="container mx-auto px-6 mt-8 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-10/12 mx-auto justify-center">
+          {tourData.map((tour) => (
+            <div
+              key={tour.id}
+              className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
+            >
+              <img
+                src={tour.image}
+                alt={tour.title}
+                className="w-full object-cover aspect-[4/3]"
+              />
+              <div className="px-4 pt-4 flex-grow">
+                <h3 className="text-lg font-semibold text-black line-clamp-1">
+                  {tour.name}
+                </h3>
+                <div className="flex justify-content-between">
+                  <p className="text-gray-600 m-0">{tour.duration}</p>
+                  <p className="text-gray-700 m-0">{tour.location}</p>
+                </div>
+              </div>
+              <div className="flex justify-between items-center bg-gray-100">
+                <span className="text-md font-bold px-3 bg-[#ffcb27] mt-2 py-3 rounded-tr-xl">
+                  {tour.price}
+                </span>
+                <span className="text-md font-bold pe-3 py-3 mt-2">
+                  {tour.price}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
+
+      {/* <div className="container mx-auto px-6 mt-8 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full md:w-10/12 mx-auto justify-content-center">
+          {tourData.map((tour) => (
+            <div
+              key={tour.id}
+              className="bg-white shadow-md rounded-lg overflow-hidden h-full flex flex-col"
+            >
+              <img
+                src={tour.image}
+                alt={tour.title}
+                className="h-30 w-full object-cover"
+              />
+              <div className="p-4 flex-grow">
+                <h3 className="text-lg font-semibold text-black">
+                  {tour.name}
+                </h3>
+                <p className="text-gray-600 m-0">{tour.duration}</p>
+                <p className="text-gray-700 m-0">{tour.location}</p>
+              </div>
+              <div className="p-2 flex justify-between items-center bg-gray-100">
+                <span className="text-lg font-bold">{tour.price}</span>
+                <button className="bg-blue-600 text-black px-4 py-2 rounded-lg hover:bg-blue-700">
+                  Book Now
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div> */}
+
+      {/* <div className="container mx-auto px-6 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {tourData.map((tour) => (
+            <div
+              key={tour.id}
+              className="bg-white shadow-md rounded-lg overflow-hidden h-full flex flex-col"
+            >
+              <img
+                src={tour.image}
+                alt={tour.title}
+                className="h-56 w-full object-cover"
+              />
+              <div className="p-4 flex-grow">
+                <h3 className="text-lg font-semibold">{tour.title}</h3>
+                <p className="text-gray-600">{tour.duration}</p>
+                <p className="text-gray-700">{tour.location}</p>
+              </div>
+              <div className="p-4 border-t flex justify-between items-center bg-gray-100">
+                <span className="text-lg font-bold">{tour.price}</span>
+                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                  Book Now
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div> */}
     </div>
   );
+}
+
+{
+  /* <div>
+    <h1>Tours Explore</h1>
+    <p>Destination: {tourDestination?.name}</p>
+    <p>
+      From:{" "}
+      {tourFromDate ? tourFromDate.toLocaleDateString() : "Not selected"}
+    </p>
+    <p>
+      To: {tourToDate ? tourToDate.toLocaleDateString() : "Not selected"}
+    </p>
+    <p>Guests: {tourGuest}</p>
+  </div> */
 }

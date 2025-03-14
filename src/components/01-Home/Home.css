@@ -1,4 +1,11 @@
 .homePageContainer01 {
-  background: url("../../assets/home/home5.jpg") no-repeat center;
-  object-fit: cover;
+  background: url("../../assets/home/home7.png") no-repeat center;
+  background-size: cover;
+}
+
+@media (max-width: 640px) {
+  .homePageContainer01 {
+    background: url("../../assets/home/homeBg2.png") no-repeat center;
+    background-size: cover;
+  }
 }
