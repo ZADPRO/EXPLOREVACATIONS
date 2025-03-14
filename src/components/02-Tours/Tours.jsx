@@ -39,46 +39,46 @@ export default function Tours() {
   const [tourToDate, setTourToDate] = useState(initialTourToDate);
   const [tourGuest, setTourGuest] = useState(initialTourGuest);
 
-  const handleExplore = () => {
-    if (!tourDestination) {
-      toast.current.show({
-        severity: "error",
-        summary: "Error",
-        detail: "Destination is required",
-      });
-      return;
-    }
-    if (!tourFromDate) {
-      toast.current.show({
-        severity: "error",
-        summary: "Error",
-        detail: "From date is required",
-      });
-      return;
-    }
-    if (!tourToDate) {
-      toast.current.show({
-        severity: "error",
-        summary: "Error",
-        detail: "To date is required",
-      });
-      return;
-    }
-    if (!tourGuest) {
-      toast.current.show({
-        severity: "error",
-        summary: "Error",
-        detail: "Number of guests is required",
-      });
-      return;
-    }
+  // const handleExplore = () => {
+  //   if (!tourDestination) {
+  //     toast.current.show({
+  //       severity: "error",
+  //       summary: "Error",
+  //       detail: "Destination is required",
+  //     });
+  //     return;
+  //   }
+  //   if (!tourFromDate) {
+  //     toast.current.show({
+  //       severity: "error",
+  //       summary: "Error",
+  //       detail: "From date is required",
+  //     });
+  //     return;
+  //   }
+  //   if (!tourToDate) {
+  //     toast.current.show({
+  //       severity: "error",
+  //       summary: "Error",
+  //       detail: "To date is required",
+  //     });
+  //     return;
+  //   }
+  //   if (!tourGuest) {
+  //     toast.current.show({
+  //       severity: "error",
+  //       summary: "Error",
+  //       detail: "Number of guests is required",
+  //     });
+  //     return;
+  //   }
 
-    toast.current.show({
-      severity: "success",
-      summary: "Success",
-      detail: "Search submitted!",
-    });
-  };
+  //   toast.current.show({
+  //     severity: "success",
+  //     summary: "Success",
+  //     detail: "Search submitted!",
+  //   });
+  // };
 
   const navigate = useNavigate();
 
@@ -711,14 +711,35 @@ export default function Tours() {
     },
   ];
 
-  const filteredTours = tourData.filter((tour) => {
-    return (
-      (!tourFromDate ||
-        new Date(tour.tourFromDate) >= new Date(tourFromDate)) &&
-      (!tourToDate || new Date(tour.tourToDate) <= new Date(tourToDate)) &&
-      (!tourGuest || tour.guestCapacity >= tourGuest)
-    );
-  });
+  const [filterApplied, setFilterApplied] = useState(false);
+
+  const handleExplore = () => {
+    setFilterApplied(true);
+  };
+
+  const filteredTours = filterApplied
+    ? tourData.filter((tour) => {
+        const fromDate = tourFromDate ? new Date(tourFromDate) : null;
+        const toDate = tourToDate ? new Date(tourToDate) : null;
+
+        const tourStartDate = new Date(tour.tourFromDate);
+        console.log("tourStartDate", tourStartDate);
+        const tourEndDate = new Date(tour.tourToDate);
+        console.log("tourEndDate", tourEndDate);
+
+        const isWithinDateRange =
+          (!fromDate || fromDate >= tourStartDate) &&
+          (!toDate || toDate <= tourEndDate);
+
+        const isWithinDuration =
+          !fromDate ||
+          !toDate ||
+          (toDate - fromDate) / (1000 * 60 * 60 * 24) + 1 <= tour.dayDuration;
+
+        return isWithinDateRange && isWithinDuration;
+      })
+    : tourData;
+  console.log("filteredTours", filteredTours);
 
   return (
     <div>
@@ -792,39 +813,43 @@ export default function Tours() {
 
       <div className="container mx-auto px-6 mt-8 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-10/12 mx-auto justify-center">
-          {tourData.map((tour) => (
-            <div
-              key={tour.id}
-              className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
-              onClick={() => {
-                navigate("/tourDetails", { state: { tour } });
-                window.scrollTo(0, 0);
-              }}
-            >
-              <img
-                src={tour.image}
-                alt={tour.title}
-                className="w-full object-cover aspect-[4/3]"
-              />
-              <div className="px-4 pt-4 flex-grow">
-                <h3 className="text-lg font-semibold text-black line-clamp-1">
-                  {tour.name}
-                </h3>
-                <div className="flex justify-content-between">
-                  <p className="text-gray-600 m-0">{tour.duration}</p>
-                  <p className="text-gray-700 m-0">{tour.location}</p>
+          {filteredTours.length > 0 ? (
+            filteredTours.map((tour) => (
+              <div
+                key={tour.id}
+                className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
+                onClick={() => {
+                  navigate("/tourDetails", { state: { tour } });
+                  window.scrollTo(0, 0);
+                }}
+              >
+                <img
+                  src={tour.image}
+                  alt={tour.title}
+                  className="w-full object-cover aspect-[4/3]"
+                />
+                <div className="px-4 pt-4 flex-grow">
+                  <h3 className="text-lg font-semibold text-black line-clamp-1">
+                    {tour.name}
+                  </h3>
+                  <div className="flex justify-content-between">
+                    <p className="text-gray-600 m-0">{tour.duration}</p>
+                    <p className="text-gray-700 m-0">{tour.location}</p>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center bg-gray-100">
+                  <span className="text-md font-bold px-3 bg-[#ffcb27] mt-2 py-3 rounded-tr-xl">
+                    {tour.price}
+                  </span>
+                  <span className="text-md font-bold pe-3 py-3 mt-2">
+                    View Tour
+                  </span>
                 </div>
               </div>
-              <div className="flex justify-between items-center bg-gray-100">
-                <span className="text-md font-bold px-3 bg-[#ffcb27] mt-2 py-3 rounded-tr-xl">
-                  {tour.price}
-                </span>
-                <span className="text-md font-bold pe-3 py-3 mt-2">
-                  View Tour
-                </span>
-              </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>No tours available for the selected dates.</p>
+          )}
         </div>
       </div>
     </div>

@@ -32,7 +32,20 @@
 
 @media (max-width: 640px) {
   .carsPageCont01 {
-    background: url("../../assets/tours/mobile_tours[1].png") no-repeat center;
+    background: url("../../assets/cars/mobile_car[1].jpg") no-repeat center;
+    background-size: cover;
+  }
+}
+
+.tourBannerBg01 {
+  background: url("../../assets/cars/carsBanners.jpg") no-repeat center;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 640px) {
+  .tourBannerBg01 {
+    background: url("../../assets/cars/carBannerMob.jpg") no-repeat center;
     background-size: cover;
   }
 }
