@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import { Send, CarFront, TicketsPlane } from "lucide-react";
+import { Send, CarFront, CarTaxiFront } from "lucide-react";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
 import { FloatLabel } from "primereact/floatlabel";
 import { InputText } from "primereact/inputtext";
+
+import "./Home.css";
 
 export default function Home() {
   const [tabSelected, setTabSelected] = useState({
@@ -66,6 +68,9 @@ export default function Home() {
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
 
+  const [pickupTimeLocation, setPickupTimeLocation] = useState(null);
+  const [dropTimeLocation, setDropTimeLocation] = useState(null);
+
   const cities = [
     { name: "New York", code: "NY" },
     { name: "Rome", code: "RM" },
@@ -77,7 +82,7 @@ export default function Home() {
   return (
     <div className="">
       <div className="homePageContainer01">
-        <div className="h-[80vh] bg-black"></div>
+        <div className="h-[80vh]"></div>
       </div>
       <div className="homePageContainer02 relative">
         <section
@@ -159,9 +164,9 @@ export default function Home() {
                   setTabSelected({ ...tabSelected, currentTab: 3 })
                 }
               >
-                <span className="order-2 ">Flight</span>
+                <span className="order-2 ">Cab</span>
                 <span className="relative only:-mx-6">
-                  <TicketsPlane />
+                  <CarTaxiFront />{" "}
                 </span>
               </button>
             </li>
@@ -179,7 +184,7 @@ export default function Home() {
               aria-labelledby="tab-label-1ai"
               tabindex="-1"
             >
-              <div className="flex gap-3">
+              <div className="flex gap-3 lg:flex-row flex-column">
                 <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
                     <i className="pi pi-map-marker"></i>
@@ -217,6 +222,18 @@ export default function Home() {
                     onChange={(e) => setToDate(e.value)}
                   />
                 </div>
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    inputId="birth_date"
+                    className="flex-1"
+                    placeholder="Guest"
+                    value={toDate}
+                    onChange={(e) => setToDate(e.value)}
+                  />
+                </div>
 
                 <Button label="Explore" className="" />
               </div>
@@ -233,12 +250,62 @@ export default function Home() {
               aria-labelledby="tab-label-2ai"
               tabindex="-1"
             >
-              <p>
-                One must be entirely sensitive to the structure of the material
-                that one is handling. One must yield to it in tiny details of
-                execution, perhaps the handling of the surface or grain, and one
-                must master it as a whole.
-              </p>
+              <div className="flex gap-3 lg:flex-row flex-column">
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    id="calendar-12h"
+                    value={pickupTimeLocation}
+                    onChange={(e) => setPickupTimeLocation(e.value)}
+                    showTime
+                    placeholder="Pickup Location"
+                    hourFormat="12"
+                  />
+                </div>
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    id="calendar-12h"
+                    value={pickupTimeLocation}
+                    onChange={(e) => setPickupTimeLocation(e.value)}
+                    showTime
+                    placeholder="Pickup Date & Time"
+                    hourFormat="12"
+                  />
+                </div>
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    id="calendar-12h"
+                    value={pickupTimeLocation}
+                    onChange={(e) => setPickupTimeLocation(e.value)}
+                    showTime
+                    placeholder="Drop Off Location"
+                    hourFormat="12"
+                  />
+                </div>
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    id="calendar-12h"
+                    value={dropTimeLocation}
+                    onChange={(e) => setDropTimeLocation(e.value)}
+                    showTime
+                    placeholder="Drop Off Date & Time"
+                    hourFormat="12"
+                  />
+                </div>
+
+                <Button label="Explore" className="" />
+              </div>
             </div>
             <div
               className={`px-6 py-4 ${
@@ -252,12 +319,49 @@ export default function Home() {
               aria-labelledby="tab-label-3ai"
               tabindex="-1"
             >
-              <p>
-                Even though there is no certainty that the expected results of
-                our work will manifest, we have to remain committed to our work
-                and duties; because, even if the results are slated to arrive,
-                they cannot do so without the performance of work.
-              </p>
+              <div className="flex gap-3 lg:flex-row flex-column">
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-map-marker"></i>
+                  </span>
+                  <Dropdown
+                    value={selectedCity}
+                    onChange={(e) => setSelectedCity(e.value)}
+                    options={cities}
+                    optionLabel="name"
+                    placeholder="Pickup Location"
+                    className="flex-1"
+                  />{" "}
+                </div>
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    id="calendar-12h"
+                    value={pickupTimeLocation}
+                    onChange={(e) => setPickupTimeLocation(e.value)}
+                    showTime
+                    placeholder="Pickup Date & Time"
+                    hourFormat="12"
+                  />
+                </div>
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-map-marker"></i>
+                  </span>
+                  <Dropdown
+                    value={selectedCity}
+                    onChange={(e) => setSelectedCity(e.value)}
+                    options={cities}
+                    optionLabel="name"
+                    placeholder="Drop Off Location"
+                    className="flex-1"
+                  />{" "}
+                </div>
+
+                <Button label="Explore" className="" />
+              </div>
             </div>
           </div>
         </section>
