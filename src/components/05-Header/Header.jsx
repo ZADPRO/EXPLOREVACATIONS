@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/logoPng.png";
 import "./Header.css";
@@ -7,6 +7,7 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const [menuStatus, setMenuStatus] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const handleNavigation = (path) => {
     navigate(path);
@@ -14,28 +15,45 @@ export default function Header() {
     setMenuStatus(false);
   };
 
-  const isActive = (path) => (location.pathname === path ? "#000" : "#ffffff");
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const isActive = (path) =>
+    location.pathname === path ? "#0067b6" : "#0067b6";
 
   return (
-    <div className="w-full fixed top-0 left-0 z-50 bg-white">
+    <div
+      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-[#eef0ee]" : "bg-transparent"
+      }`}
+    >
       <div
-        className={`w-full flex justify-center items-center h-[70px] bg-[#2ea3f2] py-10`}
+        className={`w-full flex justify-center items-center h-[70px] py-10 lg:px-40`}
       >
-        {/* Navbar for Large Devices */}
         <div className="w-[85%] lg:w-full flex justify-between items-center px-6">
           <div
             className="hidden lg:flex flex-1 justify-end"
             style={{ justifyContent: "space-evenly" }}
           >
             <div
-              className="text-[20px] text-[#ffffff] cursor-pointer font-semibold underline-animation"
+              className="text-[16px] text-[#0067b6] cursor-pointer font-bold underline-animation"
               style={{ color: isActive("/") }}
               onClick={() => handleNavigation("/")}
             >
               Home
             </div>
             <div
-              className="text-[20px] text-[#ffffff] cursor-pointer font-semibold underline-animation"
+              className="text-[16px] text-[#0067b6] cursor-pointer font-bold underline-animation"
               style={{ color: isActive("/tours") }}
               onClick={() => handleNavigation("/tours")}
             >
@@ -43,9 +61,8 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Center Logo */}
-          <div className="flex justify-center lg:w-[13%] w-[50%]">
-            <img src={logo} alt="Reachon Express" />
+          <div className="flex justify-center lg:w-[20%] w-[50%]">
+            <img src={logo} alt="Explore Vacations" />
           </div>
 
           <div
@@ -53,14 +70,14 @@ export default function Header() {
             style={{ justifyContent: "space-evenly" }}
           >
             <div
-              className="text-[20px] text-[#ffffff] cursor-pointer font-semibold underline-animation"
+              className="text-[16px] text-[#0067b6] cursor-pointer font-bold underline-animation"
               style={{ color: isActive("/cars") }}
               onClick={() => handleNavigation("/cars")}
             >
               Cars
             </div>
             <div
-              className="text-[20px] text-[#ffffff] cursor-pointer font-semibold underline-animation"
+              className="text-[16px] text-[#0067b6] cursor-pointer font-bold underline-animation"
               style={{ color: isActive("/contact") }}
               onClick={() => handleNavigation("/contact")}
             >
@@ -68,7 +85,6 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="w-[0%] ml-14 flex lg:hidden justify-center items-center">
             <button
               className={`relative order-10 block self-center lg:hidden ${
@@ -99,7 +115,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div
         className={`w-full h-[90vh] overflow-y-auto z-50 mt-[70px] fixed top-0 left-0 transition-all duration-500 ease-in-out bg-[#2ea3f2] transform ${
           menuStatus
@@ -110,28 +125,28 @@ export default function Header() {
         <div className="flex flex-col items-center justify-start h-full">
           <div className="w-[80%] mt-10">
             <div
-              className="text-[20px] cursor-pointer py-3 font-semibold"
+              className="text-[16px] cursor-pointer py-3 font-semibold"
               style={{ color: isActive("/") }}
               onClick={() => handleNavigation("/")}
             >
               Home
             </div>
             <div
-              className="text-[20px] cursor-pointer py-3 font-semibold"
+              className="text-[16px] cursor-pointer py-3 font-semibold"
               style={{ color: isActive("/tours") }}
               onClick={() => handleNavigation("/tours")}
             >
               Tours
             </div>
             <div
-              className="text-[20px] cursor-pointer py-3 font-semibold"
+              className="text-[16px] cursor-pointer py-3 font-semibold"
               style={{ color: isActive("/cars") }}
               onClick={() => handleNavigation("/cars")}
             >
               Cars
             </div>
             <div
-              className="text-[20px] cursor-pointer py-3 font-semibold"
+              className="text-[16px] cursor-pointer py-3 font-semibold"
               style={{ color: isActive("/contact") }}
               onClick={() => handleNavigation("/contact")}
             >
