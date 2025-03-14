@@ -109,42 +109,60 @@ export default function ToursTemplate() {
           </TabPanel>
 
           <TabPanel header="Itinerary Map" key="tab3">
-            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full"></div>
+            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
+              <img src={tour.map} alt="" />
+            </div>
           </TabPanel>
 
           <TabPanel header="Travel Includes" key="tab4">
-            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full"></div>
+            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
+              <ul className="list-disc pl-5">
+                {tour?.inclusions?.map((item, index) => (
+                  <li key={index} className="mb-2">
+                    {item}
+                  </li>
+                )) || <p>Loading...</p>}
+              </ul>
+            </div>
           </TabPanel>
 
           <TabPanel header="Travel Ends" key="tab6">
-            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full"></div>
+            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
+              <ul className="list-disc pl-5">
+                {tour?.exclusions?.map((item, index) => (
+                  <li key={index} className="mb-2">
+                    {item}
+                  </li>
+                )) || <p>Loading...</p>}
+              </ul>
+            </div>
           </TabPanel>
 
-          <TabPanel header="Gallery" key="tab7">
+          {/* <TabPanel header="Gallery" key="tab7">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full"></div>
-          </TabPanel>
+          </TabPanel> */}
 
           <TabPanel header="Special Notes" key="tab8">
-            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full"></div>
+            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
+              {tour?.special_notes ? (
+                <ul className="list-none pl-0">
+                  <li className="mb-2">
+                    <strong>Validity:</strong> {tour.special_notes.validity}
+                  </li>
+                  <li className="mb-2">
+                    <strong>Visa Info:</strong> {tour.special_notes.visa_info}
+                  </li>
+                  <li className="mb-2">
+                    <strong>Room Category:</strong>{" "}
+                    {tour.special_notes.room_category}
+                  </li>
+                </ul>
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
           </TabPanel>
         </TabView>
-      </div>
-
-      <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
-        <h3 className="text-xl font-bold mt-6">Itinerary</h3>
-        <ul className="list-disc list-inside">
-          {tour.itinerary.map((item) => (
-            <li key={item.day} className="mt-2">
-              <strong>Day {item.day}:</strong> {item.title}
-              <p className="text-sm text-gray-600">Meals: {item.meals}</p>
-              <ul className="list-disc list-inside ml-4 text-sm">
-                {item.details.map((detail, index) => (
-                  <li key={index}>{detail}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );

@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+.p-tabview-nav li a[aria-selected="true"] {
+  background-color: #20c0bd;
+  color: white;
+}
+/* 
+.p-tabview-nav li a[aria-selected="false"] {
+  background-color: lightgray;
+  color: gray;
+} */
