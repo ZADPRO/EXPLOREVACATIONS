@@ -151,8 +151,46 @@ export default function Home() {
     window.scrollTo(0, 0);
   };
 
+  const handleCarExplore = () => {
+    if (!cabPickupLocation) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Pick Up is required",
+      });
+      return;
+    }
+    if (!cabPickupDateTime) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Date & Time is required",
+      });
+      return;
+    }
+    if (!cabDropLocation) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Location is required",
+      });
+      return;
+    }
+
+    navigate("/carRental", {
+      state: {
+        cabPickupLocation,
+        cabPickupDateTime,
+        cabDropLocation,
+      },
+    });
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="">
+      <Toast ref={toast} />
+
       <div className="homePageContainer01">
         <div className="h-[80vh]"></div>
       </div>
@@ -256,8 +294,6 @@ export default function Home() {
               aria-labelledby="tab-label-1ai"
               tabIndex="-1"
             >
-              <Toast ref={toast} />
-
               <div className="flex gap-3 lg:flex-row flex-column">
                 <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
@@ -436,7 +472,11 @@ export default function Home() {
                   />{" "}
                 </div>
 
-                <Button label="Explore" className="" />
+                <Button
+                  label="Explore"
+                  className=""
+                  onClick={handleCarExplore}
+                />
               </div>
             </div>
           </div>
