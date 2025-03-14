@@ -742,11 +742,7 @@ export default function Tours() {
             <Dropdown
               value={tourDestination}
               onChange={(e) => setTourDestination(e.value)}
-              options={[
-                { name: "New York", code: "NY" },
-                { name: "London", code: "LD" },
-                { name: "Paris", code: "PR" },
-              ]}
+              options={[{ name: "Sri Lanka", code: "SL" }]}
               optionLabel="name"
               placeholder="Select Destination"
               className="flex-1"
