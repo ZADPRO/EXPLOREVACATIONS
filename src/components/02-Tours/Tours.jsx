@@ -799,10 +799,10 @@ export default function Tours() {
             <div
               key={tour.id}
               className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
-              onClick={
-                (() => navigate("/tourDetails", { state: { tour } }),
-                window.scrollTo(0, 0))
-              }
+              onClick={() => {
+                navigate("/tourDetails", { state: { tour } });
+                window.scrollTo(0, 0);
+              }}
             >
               <img
                 src={tour.image}
