@@ -8,6 +8,12 @@ import { Toast } from "primereact/toast";
 
 import image from "../../assets/home/home4.jpg";
 
+import budha from "../../assets/tours/buddha[1].jpg";
+import glamour from "../../assets/tours/glamour[1].jpg";
+import highlight from "../../assets/tours/highlight[1].jpg";
+import photographic from "../../assets/tours/photographic[1].jpg";
+import amazing from "../../assets/tours/amazing[1].jpg";
+
 export default function Tours() {
   const location = useLocation();
   const toast = useRef(null);
@@ -74,79 +80,39 @@ export default function Tours() {
       duration: "8 days / 7 nights",
       location: "Sri Lanka",
       price: "$320 / Person",
-      image: image,
+      image: budha,
     },
     {
       id: 2,
-      name: "Swiss Alps Adventure",
-      duration: "5 days / 4 nights",
+      name: "Sri Lanka highlight tour",
+      duration: "8 days / 7 nights",
       location: "Switzerland",
       price: "$500 / Person",
-      image: image,
+      image: highlight,
     },
     {
       id: 3,
-      name: "Misty Mountains of Ella",
-      duration: "6 days / 5 nights",
+      name: "Photographic safari tour in Sri Lanka",
+      duration: "8 days / 7 nights",
       location: "Sri Lanka",
       price: "$280 / Person",
-      image: image,
+      image: photographic,
     },
     {
       id: 4,
-      name: "Zurich City Exploration",
-      duration: "4 days / 3 nights",
+      name: "Shine Sri Lanka",
+      duration: "8 days / 7 nights",
       location: "Switzerland",
       price: "$450 / Person",
-      image: image,
+      image: glamour,
     },
     {
       id: 5,
-      name: "Sigiriya Rock Fortress Tour",
-      duration: "3 days / 2 nights",
+      name: "Amazing Sri Lanka tour",
+      duration: "15 days / 14 nights",
       location: "Sri Lanka",
       price: "$200 / Person",
-      image: image,
-    },
-    {
-      id: 6,
-      name: "Lake Geneva Retreat",
-      duration: "7 days / 6 nights",
-      location: "Switzerland",
-      price: "$600 / Person",
-      image: image,
-    },
-    {
-      id: 7,
-      name: "Colombo City & Beach Escape",
-      duration: "5 days / 4 nights",
-      location: "Sri Lanka",
-      price: "$300 / Person",
-      image: image,
-    },
-    {
-      id: 8,
-      name: "Jungfraujoch: Top of Europe",
-      duration: "2 days / 1 night",
-      location: "Switzerland",
-      price: "$700 / Person",
-      image: image,
-    },
-    {
-      id: 9,
-      name: "Kandy Cultural Experience",
-      duration: "3 days / 2 nights",
-      location: "Sri Lanka",
-      price: "$250 / Person",
-      image: image,
-    },
-    {
-      id: 10,
-      name: "Matterhorn & Zermatt Excursion",
-      duration: "4 days / 3 nights",
-      location: "Switzerland",
-      price: "$550 / Person",
-      image: image,
+      image: amazing,
     },
   ];
 

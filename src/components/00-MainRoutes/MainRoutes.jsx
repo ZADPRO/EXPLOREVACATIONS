@@ -8,6 +8,7 @@ import Home from "../01-Home/Home";
 import Tours from "../02-Tours/Tours";
 import Cars from "../03-Cars/Cars";
 import Contact from "../04-Contact/Contact";
+import ToursTemplate from "../../pages/ToursTemplate/ToursTemplate";
 
 export default function MainRoutes() {
   return (
@@ -17,6 +18,7 @@ export default function MainRoutes() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/tours" element={<Tours />} />
+          <Route path="/tourDetails" element={<ToursTemplate />} />
           <Route path="/cars" element={<Cars />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

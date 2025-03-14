@@ -1,6 +1,7 @@
 .homePageContainer01 {
   background: url("../../assets/home/home8.png") no-repeat center;
   background-size: cover;
+  background-position: center;
 }
 
 @media (max-width: 640px) {
