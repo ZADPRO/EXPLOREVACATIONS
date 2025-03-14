@@ -14,6 +14,7 @@ export default function Header() {
 
   const handleNavigation = (path) => {
     navigate(path);
+    setVisibleRight(false);
     window.scrollTo(0, 0);
   };
 

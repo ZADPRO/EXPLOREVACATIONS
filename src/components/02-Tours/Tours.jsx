@@ -812,7 +812,7 @@ export default function Tours() {
       </div>
 
       <div className="container mx-auto px-6 mt-8 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-10/12 mx-auto justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:w-10/12 mx-auto justify-center">
           {filteredTours.length > 0 ? (
             filteredTours.map((tour) => (
               <div

@@ -447,16 +447,18 @@ export default function Home() {
           <img
             src={home1}
             alt="Top Image"
+            data-aos="fade-right"
             className="mx-auto w-[300px] rounded-lg"
           />
           <img
             src={home2}
+            data-aos="fade-right"
             alt="Bottom Image"
             className="lg:self-end self-center w-[200px] rounded-lg"
           />
         </div>
 
-        <div className="flex-1 text-center">
+        <div className="flex-1 text-center" data-aos="fade-up">
           <p className="testingFont text-4xl font-bold">Most Popular Tour</p>
           <p className="text-3xl font-bold text-black pt-2">
             Let’s Discover The World With Our Excellent Eyes
@@ -472,19 +474,24 @@ export default function Home() {
           <img
             src={home3}
             alt="Top Image"
+            data-aos="fade-left"
             className="mx-auto w-[300px] rounded-lg"
           />
           <img
             src={home4}
             alt="Bottom Image"
+            data-aos="fade-left"
             className="lg:self-start self-center w-[200px] rounded-lg"
           />
         </div>
       </div>
 
-      <div className="flex lg:flex-row flex-col items-center h-full w-11/12 mx-auto">
+      <div className="flex lg:flex-row flex-col items-center h-full w-11/12 mx-auto py-20">
         {/* Left Text Content */}
-        <div className="flex-1 flex flex-col justify-center text-left lg:text-left p-6">
+        <div
+          className="flex-1 flex flex-col justify-center text-left lg:text-left p-6"
+          data-aos="fade-right"
+        >
           <p className="testingFont text-4xl font-bold">Dream Your Next Trip</p>
           <p className="text-3xl font-bold pt-2 text-gray-700">
             Discover whenever you want to go
@@ -497,7 +504,10 @@ export default function Home() {
         </div>
 
         {/* Right Image Content */}
-        <div className="flex-1 py-10 flex justify-center items-center ">
+        <div
+          className="flex-1 py-10 flex justify-center items-center "
+          data-aos="fade-left"
+        >
           <div className="relative flex justify-center items-center">
             {/* Main Image */}
             <div className="relative w-[100%] left-[10%] lg:left-[0] lg:w-[60%]">
@@ -522,10 +532,16 @@ export default function Home() {
 
       <div className="bannerImage001">
         <div className="h-[100vh] flex flex-column items-center justify-center">
-          <p className="testingFont text-white text-4xl font-bold">
+          <p
+            className="testingFont text-white text-4xl font-bold"
+            data-aos="fade-down"
+          >
             Next Adventure Destination
           </p>
-          <p className="text-6xl text-center pt-3 font-bold text-white">
+          <p
+            className="text-6xl text-center pt-3 font-bold text-white"
+            data-aos="fade-up"
+          >
             Popular Travel Destinations Available Worldwide
           </p>
         </div>
