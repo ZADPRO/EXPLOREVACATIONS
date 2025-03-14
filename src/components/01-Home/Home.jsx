@@ -515,6 +515,28 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <div className="bannerImage001">
+        <div className="h-[100vh] flex flex-column items-center justify-center">
+          <p className="testingFont text-white text-4xl font-bold">
+            Next Adventure Destination
+          </p>
+          <p className="text-6xl text-center pt-3 font-bold text-white">
+            Popular Travel Destinations Available Worldwide
+          </p>
+        </div>
+      </div>
+
+      <div className="">
+        <div className="flex flex-column items-center justify-center">
+          <p className="testingFont text-black text-2xl font-bold">
+            Clients Feedback About Us
+          </p>
+          <p className="text-4xl text-center pt-3 font-bold text-black">
+            See Those Lovely Words From Clients
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

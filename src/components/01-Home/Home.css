@@ -63,3 +63,9 @@
     background-size: cover;
   }
 }
+
+.bannerImage001 {
+  background: url("../../assets/homeCards/bannerrs.png") no-repeat center;
+  background-size: cover;
+  background-position: center;
+}
