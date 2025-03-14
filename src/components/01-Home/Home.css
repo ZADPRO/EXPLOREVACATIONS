@@ -1,3 +1,4 @@
 .homePageContainer01 {
-  background: url("../../assets/home/home3.jpg") no-repeat center;
+  background: url("../../assets/home/home5.jpg") no-repeat center;
+  object-fit: cover;
 }

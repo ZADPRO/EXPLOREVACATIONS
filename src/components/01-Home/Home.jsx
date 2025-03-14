@@ -6,6 +6,7 @@ import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
 import { FloatLabel } from "primereact/floatlabel";
 import { InputText } from "primereact/inputtext";
+import { InputNumber } from "primereact/inputnumber";
 
 import "./Home.css";
 
@@ -70,6 +71,8 @@ export default function Home() {
 
   const [pickupTimeLocation, setPickupTimeLocation] = useState(null);
   const [dropTimeLocation, setDropTimeLocation] = useState(null);
+
+  const [value, setValue] = useState(0);
 
   const cities = [
     { name: "New York", code: "NY" },
@@ -224,14 +227,13 @@ export default function Home() {
                 </div>
                 <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
-                    <i className="pi pi-calendar-clock"></i>
+                    <i className="pi pi-user"></i>
                   </span>
-                  <Calendar
-                    inputId="birth_date"
+                  <InputNumber
+                    value={value}
                     className="flex-1"
                     placeholder="Guest"
-                    value={toDate}
-                    onChange={(e) => setToDate(e.value)}
+                    onValueChange={(e) => setValue(e.value)}
                   />
                 </div>
 
@@ -253,16 +255,16 @@ export default function Home() {
               <div className="flex gap-3 lg:flex-row flex-column">
                 <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
-                    <i className="pi pi-calendar-clock"></i>
+                    <i className="pi pi-map-marker"></i>
                   </span>
-                  <Calendar
-                    id="calendar-12h"
-                    value={pickupTimeLocation}
-                    onChange={(e) => setPickupTimeLocation(e.value)}
-                    showTime
+                  <Dropdown
+                    value={selectedCity}
+                    onChange={(e) => setSelectedCity(e.value)}
+                    options={cities}
+                    optionLabel="name"
                     placeholder="Pickup Location"
-                    hourFormat="12"
-                  />
+                    className="flex-1"
+                  />{" "}
                 </div>
                 <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
@@ -271,6 +273,7 @@ export default function Home() {
                   <Calendar
                     id="calendar-12h"
                     value={pickupTimeLocation}
+                    className="flex-1"
                     onChange={(e) => setPickupTimeLocation(e.value)}
                     showTime
                     placeholder="Pickup Date & Time"
@@ -279,16 +282,16 @@ export default function Home() {
                 </div>
                 <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
-                    <i className="pi pi-calendar-clock"></i>
+                    <i className="pi pi-map-marker"></i>
                   </span>
-                  <Calendar
-                    id="calendar-12h"
-                    value={pickupTimeLocation}
-                    onChange={(e) => setPickupTimeLocation(e.value)}
-                    showTime
+                  <Dropdown
+                    value={selectedCity}
+                    onChange={(e) => setSelectedCity(e.value)}
+                    options={cities}
+                    optionLabel="name"
                     placeholder="Drop Off Location"
-                    hourFormat="12"
-                  />
+                    className="flex-1"
+                  />{" "}
                 </div>
                 <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
@@ -298,6 +301,7 @@ export default function Home() {
                     id="calendar-12h"
                     value={dropTimeLocation}
                     onChange={(e) => setDropTimeLocation(e.value)}
+                    className="flex-1"
                     showTime
                     placeholder="Drop Off Date & Time"
                     hourFormat="12"
