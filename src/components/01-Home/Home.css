@@ -23,3 +23,16 @@
     background-size: cover;
   }
 }
+
+.carsPageCont01 {
+  background: url("../../assets/cars/cars.jpg") no-repeat center;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 640px) {
+  .carsPageCont01 {
+    background: url("../../assets/tours/mobile_tours[1].png") no-repeat center;
+    background-size: cover;
+  }
+}

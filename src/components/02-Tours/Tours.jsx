@@ -89,6 +89,7 @@ export default function Tours() {
       duration: "8 days / 7 nights",
       location: "Sri Lanka",
       price: "CHF 980 / Person",
+      dayDuration: 8,
       image: budha,
       group_size: "No Specific Size",
       activities: ["World heritage visits", "Trips through the countryside"],
