@@ -13,6 +13,10 @@ import home2 from "../../assets/homeCards/2[1].jpg";
 import home3 from "../../assets/homeCards/3[1].jpg";
 import home4 from "../../assets/homeCards/4[1].jpg";
 
+import Glide from "@glidejs/glide";
+
+import { Carousel } from "primereact/carousel";
+
 import homeImg1 from "../../assets/homeCards/3.1[1].jpg";
 import homeImg2 from "../../assets/homeCards/3.2[1].jpg";
 
@@ -527,7 +531,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="">
+      {/* <div className="">
         <div className="flex flex-column items-center justify-center">
           <p className="testingFont text-black text-2xl font-bold">
             Clients Feedback About Us
@@ -536,7 +540,7 @@ export default function Home() {
             See Those Lovely Words From Clients
           </p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
