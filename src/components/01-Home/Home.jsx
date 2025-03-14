@@ -416,7 +416,11 @@ export default function Home() {
                   />
                 </div>
 
-                <Button label="Explore" className="" />
+                <Button
+                  label="Explore"
+                  className=""
+                  onClick={() => navigate("/cars")}
+                />
               </div>
             </div>
             <div
