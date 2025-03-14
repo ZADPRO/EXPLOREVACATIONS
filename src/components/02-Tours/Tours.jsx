@@ -15,6 +15,12 @@ import photographic from "../../assets/tours/photographic[1].jpg";
 import amazing from "../../assets/tours/amazing[1].jpg";
 import { ShoppingCart } from "lucide-react";
 
+import tour1 from "../../assets/tours/tour1.png";
+import tour2 from "../../assets/tours/tour2.png";
+import tour3 from "../../assets/tours/tour3.png";
+import tour4 from "../../assets/tours/tour4.png";
+import tour5 from "../../assets/tours/tour5.jpg";
+
 export default function Tours() {
   const location = useLocation();
   const toast = useRef(null);
@@ -88,6 +94,11 @@ export default function Tours() {
       activities: ["World heritage visits", "Trips through the countryside"],
       categories: ["Cultural trip", "Vacation tour"],
       tour_code: "SW001",
+      map: tour1,
+      travel_overview: [
+        "Sri Lanka is an exotic island in the Indian Ocean that seduces travelers with its breathtaking, unspoiled wilderness, rich traditions, colorful history, tasty cuisine, beautiful beaches, and hospitable people. Due to the high level of compactness and the lack of crowds, it is possible to put a lot into a trip to Sri Lanka. ",
+        "On this 08-day tour, you can experience highlights such as a tour in the spiritual Anuradhapura, Polonnaruwa, and Kandy, and the exploration of the busy trading city and more. Discover it for yourself on this 08-day trip through impressive landscape sights.",
+      ],
       surcharges_in_high_season: true,
       itinerary: [
         {
@@ -211,6 +222,8 @@ export default function Tours() {
       activities: ["World heritage visits", "Trips through the countryside"],
       categories: ["Cultural trip", "Vacation tour"],
       tour_code: "SW001",
+      map: tour2,
+
       surcharges_in_high_season: true,
       itinerary: [
         {
@@ -330,6 +343,7 @@ export default function Tours() {
       location: "Sri Lanka",
       price: "$280 / Person",
       image: photographic,
+      map: tour3,
       group_size: "No Specific Size",
       activities: ["World heritage visits", "Trips through the countryside"],
       categories: ["Cultural trip", "Vacation tour"],
@@ -453,6 +467,7 @@ export default function Tours() {
       location: "Switzerland",
       price: "$450 / Person",
       image: glamour,
+      map: tour4,
       group_size: "No Specific Size",
       activities: ["World heritage visits", "Trips through the countryside"],
       categories: ["Cultural trip", "Vacation tour"],
@@ -576,6 +591,7 @@ export default function Tours() {
       location: "Sri Lanka",
       price: "$200 / Person",
       image: amazing,
+      map: tour5,
       group_size: "No Specific Size",
       activities: ["World heritage visits", "Trips through the countryside"],
       categories: ["Cultural trip", "Vacation tour"],
@@ -694,9 +710,18 @@ export default function Tours() {
     },
   ];
 
+  const filteredTours = tourData.filter((tour) => {
+    return (
+      (!tourFromDate ||
+        new Date(tour.tourFromDate) >= new Date(tourFromDate)) &&
+      (!tourToDate || new Date(tour.tourToDate) <= new Date(tourToDate)) &&
+      (!tourGuest || tour.guestCapacity >= tourGuest)
+    );
+  });
+
   return (
     <div>
-      <div className="homePageContainer01">
+      <div className="toursPageContents01">
         <div className="h-[80vh]"></div>
       </div>
 
