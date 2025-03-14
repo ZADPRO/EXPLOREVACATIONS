@@ -8,7 +8,10 @@ import { FloatLabel } from "primereact/floatlabel";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 
+import { Toast } from "primereact/toast";
+
 import "./Home.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [tabSelected, setTabSelected] = useState({
@@ -79,6 +82,8 @@ export default function Home() {
   const [cabPickupDateTime, setCabPickupDateTime] = useState(null);
   const [cabDropLocation, setCabDropLocation] = useState(null);
 
+  const toast = useRef(null);
+
   const cities = [
     { name: "New York", code: "NY" },
     { name: "Rome", code: "RM" },
@@ -87,6 +92,52 @@ export default function Home() {
     { name: "Paris", code: "PRS" },
   ];
 
+  const navigate = useNavigate();
+
+  const handleExplore = () => {
+    if (!tourDestination) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Destination is required",
+      });
+      return;
+    }
+    if (!tourFromDate) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: "From date is required",
+      });
+      return;
+    }
+    if (!tourToDate) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: "To date is required",
+      });
+      return;
+    }
+    if (!tourGuest) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Number of guests is required",
+      });
+      return;
+    }
+
+    navigate("/tours", {
+      state: {
+        tourDestination,
+        tourFromDate,
+        tourToDate,
+        tourGuest,
+      },
+    });
+  };
+
   return (
     <div className="">
       <div className="homePageContainer01">
@@ -94,7 +145,7 @@ export default function Home() {
       </div>
       <div className="homePageContainer02 relative">
         <section
-          className="w-11/12 md:w-8/12 mx-auto mt-[-40px] shadow-xl bg-white rounded-md"
+          className="w-11/12 md:w-9/12 mx-auto mt-[-40px] shadow-xl bg-white rounded-md"
           aria-multiselectable="false"
         >
           <ul
@@ -190,8 +241,10 @@ export default function Home() {
               }`}
               role="tabpanel"
               aria-labelledby="tab-label-1ai"
-              tabindex="-1"
+              tabIndex="-1"
             >
+              <Toast ref={toast} />
+
               <div className="flex gap-3 lg:flex-row flex-column">
                 <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
@@ -204,32 +257,33 @@ export default function Home() {
                     optionLabel="name"
                     placeholder="Select Destination"
                     className="flex-1"
-                  />{" "}
+                  />
                 </div>
+
                 <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
                     <i className="pi pi-calendar-clock"></i>
                   </span>
                   <Calendar
-                    inputId="birth_date"
                     value={tourFromDate}
                     placeholder="From"
                     className="flex-1"
                     onChange={(e) => setTourFromDate(e.value)}
                   />
                 </div>
+
                 <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
                     <i className="pi pi-calendar-clock"></i>
                   </span>
                   <Calendar
-                    inputId="birth_date"
                     className="flex-1"
                     placeholder="To"
                     value={tourToDate}
                     onChange={(e) => setTourToDate(e.value)}
                   />
                 </div>
+
                 <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
                     <i className="pi pi-user"></i>
@@ -242,7 +296,7 @@ export default function Home() {
                   />
                 </div>
 
-                <Button label="Explore" className="" />
+                <Button label="Explore" className="" onClick={handleExplore} />
               </div>
             </div>
             <div
