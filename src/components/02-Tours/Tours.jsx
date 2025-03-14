@@ -6,13 +6,14 @@ import { InputNumber } from "primereact/inputnumber";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 
-import image from "../../assets/home/home4.jpg";
+// import image from "../../assets/home/home4.jpg";
 
 import budha from "../../assets/tours/buddha[1].jpg";
 import glamour from "../../assets/tours/glamour[1].jpg";
 import highlight from "../../assets/tours/highlight[1].jpg";
 import photographic from "../../assets/tours/photographic[1].jpg";
 import amazing from "../../assets/tours/amazing[1].jpg";
+import { ShoppingCart } from "lucide-react";
 
 export default function Tours() {
   const location = useLocation();
@@ -79,8 +80,123 @@ export default function Tours() {
       name: "Buddhist Cultural Trip To Sri Lanka",
       duration: "8 days / 7 nights",
       location: "Sri Lanka",
-      price: "$320 / Person",
+      price: "CHF 980 / Person",
       image: budha,
+      group_size: "No Specific Size",
+      activities: ["World heritage visits", "Trips through the countryside"],
+      categories: ["Cultural trip", "Vacation tour"],
+      tour_code: "SW001",
+      surcharges_in_high_season: true,
+      itinerary: [
+        {
+          day: 1,
+          title: "Airport — Negombo",
+          meals: "Dinner",
+          details: [
+            "Arrival at Bandaranaike International Airport",
+            "Welcomed by Explore Vacations representative",
+            "Transfer to hotel in Negombo",
+            "Relax, refresh, and have dinner",
+          ],
+        },
+        {
+          day: 2,
+          title: "Negombo — Anuradhapura – Habarana",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Breakfast at the hotel",
+            "Travel to Anuradhapura via Maho",
+            "Explore the ancient city of Anuradhapura",
+            "Continue to Habarana for dinner and overnight",
+          ],
+        },
+        {
+          day: 3,
+          title: "Habarana – Polonnaruwa – Habarana",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit Polonnaruwa, the 2nd Capital of Sri Lanka",
+            "Explore UNESCO World Heritage Site",
+            "Return to the hotel for dinner and overnight",
+          ],
+        },
+        {
+          day: 4,
+          title: "Habarana – Sigiriya – Matale – Kandy",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Climb Sigiriya Rock Fortress (UNESCO World Heritage Site)",
+            "Continue to Kandy",
+            "Visit a spice garden on the way",
+            "Check into hotel in Kandy for dinner and overnight",
+          ],
+        },
+        {
+          day: 5,
+          title: "Kandy",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit Temple of the Tooth Relic",
+            "Free time at leisure",
+            "Evening visit to Royal Botanical Garden",
+            "Return to hotel for dinner and overnight",
+          ],
+        },
+        {
+          day: 6,
+          title: "Kandy – Beruwala",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Free time at leisure",
+            "Travel to Beruwala (Southwestern coast)",
+            "Check into beachside hotel for relaxation",
+            "Dinner and overnight at the hotel",
+          ],
+        },
+        {
+          day: 7,
+          title: "Beruwala – Kalutara – Colombo",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit the Buddhist Temple in Kalutara",
+            "Arrive in Colombo",
+            "Explore city and shopping centers (House of Fashion, ODEL, etc.)",
+            "Dinner and overnight at the hotel",
+          ],
+        },
+        {
+          day: 8,
+          title: "Colombo – Departure",
+          meals: "Breakfast",
+          details: [
+            "Enjoy breakfast at the hotel",
+            "Transfer to Bandaranaike International Airport for departure",
+          ],
+        },
+      ],
+      inclusions: [
+        "07 nights in 4-star hotels or comparable in a double/twin room",
+        "Half-board meals (Bed, Breakfast, and Dinner)",
+        "A/C vehicle for all transfers and visits",
+        "English-speaking chauffeur guide",
+        "Tickets, monument, and museum fees per itinerary",
+        "All applicable taxes",
+      ],
+      exclusions: [
+        "Lunch",
+        "Expenses due to accidents, strikes, political unrest, etc.",
+        "Personal expenses (laundry, soft drinks, bottled water, camera fees, postage, tipping, etc.)",
+        "Domestic or international airfare",
+        "Visa fees",
+        "Insurance and gratuities",
+      ],
+      special_notes: {
+        validity: "Valid until November 30, 2023",
+        visa_info:
+          "All foreign travelers must obtain a valid Sri Lanka visa before entry. Apply online at http://www.eta.gov.lk/",
+        room_category:
+          "Base category room included. Higher room categories available at an additional cost.",
+      },
     },
     {
       id: 2,
@@ -89,6 +205,121 @@ export default function Tours() {
       location: "Switzerland",
       price: "$500 / Person",
       image: highlight,
+      group_size: "No Specific Size",
+      activities: ["World heritage visits", "Trips through the countryside"],
+      categories: ["Cultural trip", "Vacation tour"],
+      tour_code: "SW001",
+      surcharges_in_high_season: true,
+      itinerary: [
+        {
+          day: 1,
+          title: "Airport — Negombo",
+          meals: "Dinner",
+          details: [
+            "Arrival at Bandaranaike International Airport",
+            "Welcomed by Explore Vacations representative",
+            "Transfer to hotel in Negombo",
+            "Relax, refresh, and have dinner",
+          ],
+        },
+        {
+          day: 2,
+          title: "Negombo — Anuradhapura – Habarana",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Breakfast at the hotel",
+            "Travel to Anuradhapura via Maho",
+            "Explore the ancient city of Anuradhapura",
+            "Continue to Habarana for dinner and overnight",
+          ],
+        },
+        {
+          day: 3,
+          title: "Habarana – Polonnaruwa – Habarana",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit Polonnaruwa, the 2nd Capital of Sri Lanka",
+            "Explore UNESCO World Heritage Site",
+            "Return to the hotel for dinner and overnight",
+          ],
+        },
+        {
+          day: 4,
+          title: "Habarana – Sigiriya – Matale – Kandy",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Climb Sigiriya Rock Fortress (UNESCO World Heritage Site)",
+            "Continue to Kandy",
+            "Visit a spice garden on the way",
+            "Check into hotel in Kandy for dinner and overnight",
+          ],
+        },
+        {
+          day: 5,
+          title: "Kandy",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit Temple of the Tooth Relic",
+            "Free time at leisure",
+            "Evening visit to Royal Botanical Garden",
+            "Return to hotel for dinner and overnight",
+          ],
+        },
+        {
+          day: 6,
+          title: "Kandy – Beruwala",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Free time at leisure",
+            "Travel to Beruwala (Southwestern coast)",
+            "Check into beachside hotel for relaxation",
+            "Dinner and overnight at the hotel",
+          ],
+        },
+        {
+          day: 7,
+          title: "Beruwala – Kalutara – Colombo",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit the Buddhist Temple in Kalutara",
+            "Arrive in Colombo",
+            "Explore city and shopping centers (House of Fashion, ODEL, etc.)",
+            "Dinner and overnight at the hotel",
+          ],
+        },
+        {
+          day: 8,
+          title: "Colombo – Departure",
+          meals: "Breakfast",
+          details: [
+            "Enjoy breakfast at the hotel",
+            "Transfer to Bandaranaike International Airport for departure",
+          ],
+        },
+      ],
+      inclusions: [
+        "07 nights in 4-star hotels or comparable in a double/twin room",
+        "Half-board meals (Bed, Breakfast, and Dinner)",
+        "A/C vehicle for all transfers and visits",
+        "English-speaking chauffeur guide",
+        "Tickets, monument, and museum fees per itinerary",
+        "All applicable taxes",
+      ],
+      exclusions: [
+        "Lunch",
+        "Expenses due to accidents, strikes, political unrest, etc.",
+        "Personal expenses (laundry, soft drinks, bottled water, camera fees, postage, tipping, etc.)",
+        "Domestic or international airfare",
+        "Visa fees",
+        "Insurance and gratuities",
+      ],
+      special_notes: {
+        validity: "Valid until November 30, 2023",
+        visa_info:
+          "All foreign travelers must obtain a valid Sri Lanka visa before entry. Apply online at http://www.eta.gov.lk/",
+        room_category:
+          "Base category room included. Higher room categories available at an additional cost.",
+      },
     },
     {
       id: 3,
@@ -97,6 +328,121 @@ export default function Tours() {
       location: "Sri Lanka",
       price: "$280 / Person",
       image: photographic,
+      group_size: "No Specific Size",
+      activities: ["World heritage visits", "Trips through the countryside"],
+      categories: ["Cultural trip", "Vacation tour"],
+      tour_code: "SW001",
+      surcharges_in_high_season: true,
+      itinerary: [
+        {
+          day: 1,
+          title: "Airport — Negombo",
+          meals: "Dinner",
+          details: [
+            "Arrival at Bandaranaike International Airport",
+            "Welcomed by Explore Vacations representative",
+            "Transfer to hotel in Negombo",
+            "Relax, refresh, and have dinner",
+          ],
+        },
+        {
+          day: 2,
+          title: "Negombo — Anuradhapura – Habarana",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Breakfast at the hotel",
+            "Travel to Anuradhapura via Maho",
+            "Explore the ancient city of Anuradhapura",
+            "Continue to Habarana for dinner and overnight",
+          ],
+        },
+        {
+          day: 3,
+          title: "Habarana – Polonnaruwa – Habarana",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit Polonnaruwa, the 2nd Capital of Sri Lanka",
+            "Explore UNESCO World Heritage Site",
+            "Return to the hotel for dinner and overnight",
+          ],
+        },
+        {
+          day: 4,
+          title: "Habarana – Sigiriya – Matale – Kandy",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Climb Sigiriya Rock Fortress (UNESCO World Heritage Site)",
+            "Continue to Kandy",
+            "Visit a spice garden on the way",
+            "Check into hotel in Kandy for dinner and overnight",
+          ],
+        },
+        {
+          day: 5,
+          title: "Kandy",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit Temple of the Tooth Relic",
+            "Free time at leisure",
+            "Evening visit to Royal Botanical Garden",
+            "Return to hotel for dinner and overnight",
+          ],
+        },
+        {
+          day: 6,
+          title: "Kandy – Beruwala",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Free time at leisure",
+            "Travel to Beruwala (Southwestern coast)",
+            "Check into beachside hotel for relaxation",
+            "Dinner and overnight at the hotel",
+          ],
+        },
+        {
+          day: 7,
+          title: "Beruwala – Kalutara – Colombo",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit the Buddhist Temple in Kalutara",
+            "Arrive in Colombo",
+            "Explore city and shopping centers (House of Fashion, ODEL, etc.)",
+            "Dinner and overnight at the hotel",
+          ],
+        },
+        {
+          day: 8,
+          title: "Colombo – Departure",
+          meals: "Breakfast",
+          details: [
+            "Enjoy breakfast at the hotel",
+            "Transfer to Bandaranaike International Airport for departure",
+          ],
+        },
+      ],
+      inclusions: [
+        "07 nights in 4-star hotels or comparable in a double/twin room",
+        "Half-board meals (Bed, Breakfast, and Dinner)",
+        "A/C vehicle for all transfers and visits",
+        "English-speaking chauffeur guide",
+        "Tickets, monument, and museum fees per itinerary",
+        "All applicable taxes",
+      ],
+      exclusions: [
+        "Lunch",
+        "Expenses due to accidents, strikes, political unrest, etc.",
+        "Personal expenses (laundry, soft drinks, bottled water, camera fees, postage, tipping, etc.)",
+        "Domestic or international airfare",
+        "Visa fees",
+        "Insurance and gratuities",
+      ],
+      special_notes: {
+        validity: "Valid until November 30, 2023",
+        visa_info:
+          "All foreign travelers must obtain a valid Sri Lanka visa before entry. Apply online at http://www.eta.gov.lk/",
+        room_category:
+          "Base category room included. Higher room categories available at an additional cost.",
+      },
     },
     {
       id: 4,
@@ -105,6 +451,121 @@ export default function Tours() {
       location: "Switzerland",
       price: "$450 / Person",
       image: glamour,
+      group_size: "No Specific Size",
+      activities: ["World heritage visits", "Trips through the countryside"],
+      categories: ["Cultural trip", "Vacation tour"],
+      tour_code: "SW001",
+      surcharges_in_high_season: true,
+      itinerary: [
+        {
+          day: 1,
+          title: "Airport — Negombo",
+          meals: "Dinner",
+          details: [
+            "Arrival at Bandaranaike International Airport",
+            "Welcomed by Explore Vacations representative",
+            "Transfer to hotel in Negombo",
+            "Relax, refresh, and have dinner",
+          ],
+        },
+        {
+          day: 2,
+          title: "Negombo — Anuradhapura – Habarana",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Breakfast at the hotel",
+            "Travel to Anuradhapura via Maho",
+            "Explore the ancient city of Anuradhapura",
+            "Continue to Habarana for dinner and overnight",
+          ],
+        },
+        {
+          day: 3,
+          title: "Habarana – Polonnaruwa – Habarana",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit Polonnaruwa, the 2nd Capital of Sri Lanka",
+            "Explore UNESCO World Heritage Site",
+            "Return to the hotel for dinner and overnight",
+          ],
+        },
+        {
+          day: 4,
+          title: "Habarana – Sigiriya – Matale – Kandy",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Climb Sigiriya Rock Fortress (UNESCO World Heritage Site)",
+            "Continue to Kandy",
+            "Visit a spice garden on the way",
+            "Check into hotel in Kandy for dinner and overnight",
+          ],
+        },
+        {
+          day: 5,
+          title: "Kandy",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit Temple of the Tooth Relic",
+            "Free time at leisure",
+            "Evening visit to Royal Botanical Garden",
+            "Return to hotel for dinner and overnight",
+          ],
+        },
+        {
+          day: 6,
+          title: "Kandy – Beruwala",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Free time at leisure",
+            "Travel to Beruwala (Southwestern coast)",
+            "Check into beachside hotel for relaxation",
+            "Dinner and overnight at the hotel",
+          ],
+        },
+        {
+          day: 7,
+          title: "Beruwala – Kalutara – Colombo",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit the Buddhist Temple in Kalutara",
+            "Arrive in Colombo",
+            "Explore city and shopping centers (House of Fashion, ODEL, etc.)",
+            "Dinner and overnight at the hotel",
+          ],
+        },
+        {
+          day: 8,
+          title: "Colombo – Departure",
+          meals: "Breakfast",
+          details: [
+            "Enjoy breakfast at the hotel",
+            "Transfer to Bandaranaike International Airport for departure",
+          ],
+        },
+      ],
+      inclusions: [
+        "07 nights in 4-star hotels or comparable in a double/twin room",
+        "Half-board meals (Bed, Breakfast, and Dinner)",
+        "A/C vehicle for all transfers and visits",
+        "English-speaking chauffeur guide",
+        "Tickets, monument, and museum fees per itinerary",
+        "All applicable taxes",
+      ],
+      exclusions: [
+        "Lunch",
+        "Expenses due to accidents, strikes, political unrest, etc.",
+        "Personal expenses (laundry, soft drinks, bottled water, camera fees, postage, tipping, etc.)",
+        "Domestic or international airfare",
+        "Visa fees",
+        "Insurance and gratuities",
+      ],
+      special_notes: {
+        validity: "Valid until November 30, 2023",
+        visa_info:
+          "All foreign travelers must obtain a valid Sri Lanka visa before entry. Apply online at http://www.eta.gov.lk/",
+        room_category:
+          "Base category room included. Higher room categories available at an additional cost.",
+      },
     },
     {
       id: 5,
@@ -113,6 +574,121 @@ export default function Tours() {
       location: "Sri Lanka",
       price: "$200 / Person",
       image: amazing,
+      group_size: "No Specific Size",
+      activities: ["World heritage visits", "Trips through the countryside"],
+      categories: ["Cultural trip", "Vacation tour"],
+      tour_code: "SW001",
+      surcharges_in_high_season: true,
+      itinerary: [
+        {
+          day: 1,
+          title: "Airport — Negombo",
+          meals: "Dinner",
+          details: [
+            "Arrival at Bandaranaike International Airport",
+            "Welcomed by Explore Vacations representative",
+            "Transfer to hotel in Negombo",
+            "Relax, refresh, and have dinner",
+          ],
+        },
+        {
+          day: 2,
+          title: "Negombo — Anuradhapura – Habarana",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Breakfast at the hotel",
+            "Travel to Anuradhapura via Maho",
+            "Explore the ancient city of Anuradhapura",
+            "Continue to Habarana for dinner and overnight",
+          ],
+        },
+        {
+          day: 3,
+          title: "Habarana – Polonnaruwa – Habarana",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit Polonnaruwa, the 2nd Capital of Sri Lanka",
+            "Explore UNESCO World Heritage Site",
+            "Return to the hotel for dinner and overnight",
+          ],
+        },
+        {
+          day: 4,
+          title: "Habarana – Sigiriya – Matale – Kandy",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Climb Sigiriya Rock Fortress (UNESCO World Heritage Site)",
+            "Continue to Kandy",
+            "Visit a spice garden on the way",
+            "Check into hotel in Kandy for dinner and overnight",
+          ],
+        },
+        {
+          day: 5,
+          title: "Kandy",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit Temple of the Tooth Relic",
+            "Free time at leisure",
+            "Evening visit to Royal Botanical Garden",
+            "Return to hotel for dinner and overnight",
+          ],
+        },
+        {
+          day: 6,
+          title: "Kandy – Beruwala",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Free time at leisure",
+            "Travel to Beruwala (Southwestern coast)",
+            "Check into beachside hotel for relaxation",
+            "Dinner and overnight at the hotel",
+          ],
+        },
+        {
+          day: 7,
+          title: "Beruwala – Kalutara – Colombo",
+          meals: "Breakfast, Dinner",
+          details: [
+            "Visit the Buddhist Temple in Kalutara",
+            "Arrive in Colombo",
+            "Explore city and shopping centers (House of Fashion, ODEL, etc.)",
+            "Dinner and overnight at the hotel",
+          ],
+        },
+        {
+          day: 8,
+          title: "Colombo – Departure",
+          meals: "Breakfast",
+          details: [
+            "Enjoy breakfast at the hotel",
+            "Transfer to Bandaranaike International Airport for departure",
+          ],
+        },
+      ],
+      inclusions: [
+        "07 nights in 4-star hotels or comparable in a double/twin room",
+        "Half-board meals (Bed, Breakfast, and Dinner)",
+        "A/C vehicle for all transfers and visits",
+        "English-speaking chauffeur guide",
+        "Tickets, monument, and museum fees per itinerary",
+        "All applicable taxes",
+      ],
+      exclusions: [
+        "Lunch",
+        "Expenses due to accidents, strikes, political unrest, etc.",
+        "Personal expenses (laundry, soft drinks, bottled water, camera fees, postage, tipping, etc.)",
+        "Domestic or international airfare",
+        "Visa fees",
+        "Insurance and gratuities",
+      ],
+      special_notes: {
+        validity: "Valid until November 30, 2023",
+        visa_info:
+          "All foreign travelers must obtain a valid Sri Lanka visa before entry. Apply online at http://www.eta.gov.lk/",
+        room_category:
+          "Base category room included. Higher room categories available at an additional cost.",
+      },
     },
   ];
 
@@ -216,7 +792,7 @@ export default function Tours() {
                   {tour.price}
                 </span>
                 <span className="text-md font-bold pe-3 py-3 mt-2">
-                  View Details
+                  View Tour
                 </span>
               </div>
             </div>
