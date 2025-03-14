@@ -136,6 +136,7 @@ export default function Home() {
         tourGuest,
       },
     });
+    window.scrollTo(0, 0);
   };
 
   return (
