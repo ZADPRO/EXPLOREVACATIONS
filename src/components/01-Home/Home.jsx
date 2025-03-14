@@ -65,14 +65,19 @@ export default function Home() {
     };
   });
 
-  const [selectedCity, setSelectedCity] = useState(null);
-  const [fromDate, setFromDate] = useState(null);
-  const [toDate, setToDate] = useState(null);
+  const [tourDestination, setTourDestination] = useState(null);
+  const [tourFromDate, setTourFromDate] = useState(null);
+  const [tourToDate, setTourToDate] = useState(null);
+  const [tourGuest, setTourGuest] = useState(0);
 
-  const [pickupTimeLocation, setPickupTimeLocation] = useState(null);
-  const [dropTimeLocation, setDropTimeLocation] = useState(null);
+  const [carPickupLocation, setCarPickupLocation] = useState(null);
+  const [carPickupDateTime, setCarPickupDateTime] = useState(null);
+  const [carDropLocation, setCarDropLocation] = useState(null);
+  const [carDropDateTime, setCarDropDateTime] = useState(null);
 
-  const [value, setValue] = useState(0);
+  const [cabPickupLocation, setCabPickupLocation] = useState(null);
+  const [cabPickupDateTime, setCabPickupDateTime] = useState(null);
+  const [cabDropLocation, setCabDropLocation] = useState(null);
 
   const cities = [
     { name: "New York", code: "NY" },
@@ -193,11 +198,11 @@ export default function Home() {
                     <i className="pi pi-map-marker"></i>
                   </span>
                   <Dropdown
-                    value={selectedCity}
-                    onChange={(e) => setSelectedCity(e.value)}
+                    value={tourDestination}
+                    onChange={(e) => setTourDestination(e.value)}
                     options={cities}
                     optionLabel="name"
-                    placeholder="Select a City"
+                    placeholder="Select Destination"
                     className="flex-1"
                   />{" "}
                 </div>
@@ -207,10 +212,10 @@ export default function Home() {
                   </span>
                   <Calendar
                     inputId="birth_date"
-                    value={fromDate}
+                    value={tourFromDate}
                     placeholder="From"
                     className="flex-1"
-                    onChange={(e) => setFromDate(e.value)}
+                    onChange={(e) => setTourFromDate(e.value)}
                   />
                 </div>
                 <div className="p-inputgroup flex-1">
@@ -221,8 +226,8 @@ export default function Home() {
                     inputId="birth_date"
                     className="flex-1"
                     placeholder="To"
-                    value={toDate}
-                    onChange={(e) => setToDate(e.value)}
+                    value={tourToDate}
+                    onChange={(e) => setTourToDate(e.value)}
                   />
                 </div>
                 <div className="p-inputgroup flex-1">
@@ -230,10 +235,10 @@ export default function Home() {
                     <i className="pi pi-user"></i>
                   </span>
                   <InputNumber
-                    value={value}
+                    value={tourGuest}
                     className="flex-1"
                     placeholder="Guest"
-                    onValueChange={(e) => setValue(e.value)}
+                    onValueChange={(e) => setTourGuest(e.value)}
                   />
                 </div>
 
@@ -258,8 +263,8 @@ export default function Home() {
                     <i className="pi pi-map-marker"></i>
                   </span>
                   <Dropdown
-                    value={selectedCity}
-                    onChange={(e) => setSelectedCity(e.value)}
+                    value={carPickupLocation}
+                    onChange={(e) => setCarPickupLocation(e.value)}
                     options={cities}
                     optionLabel="name"
                     placeholder="Pickup Location"
@@ -272,9 +277,9 @@ export default function Home() {
                   </span>
                   <Calendar
                     id="calendar-12h"
-                    value={pickupTimeLocation}
+                    value={carPickupDateTime}
                     className="flex-1"
-                    onChange={(e) => setPickupTimeLocation(e.value)}
+                    onChange={(e) => setCarPickupDateTime(e.value)}
                     showTime
                     placeholder="Pickup Date & Time"
                     hourFormat="12"
@@ -285,8 +290,8 @@ export default function Home() {
                     <i className="pi pi-map-marker"></i>
                   </span>
                   <Dropdown
-                    value={selectedCity}
-                    onChange={(e) => setSelectedCity(e.value)}
+                    value={carDropLocation}
+                    onChange={(e) => setCarDropLocation(e.value)}
                     options={cities}
                     optionLabel="name"
                     placeholder="Drop Off Location"
@@ -299,8 +304,8 @@ export default function Home() {
                   </span>
                   <Calendar
                     id="calendar-12h"
-                    value={dropTimeLocation}
-                    onChange={(e) => setDropTimeLocation(e.value)}
+                    value={carDropDateTime}
+                    onChange={(e) => setCarDropDateTime(e.value)}
                     className="flex-1"
                     showTime
                     placeholder="Drop Off Date & Time"
@@ -329,8 +334,8 @@ export default function Home() {
                     <i className="pi pi-map-marker"></i>
                   </span>
                   <Dropdown
-                    value={selectedCity}
-                    onChange={(e) => setSelectedCity(e.value)}
+                    value={cabPickupLocation}
+                    onChange={(e) => setCabPickupLocation(e.value)}
                     options={cities}
                     optionLabel="name"
                     placeholder="Pickup Location"
@@ -343,8 +348,8 @@ export default function Home() {
                   </span>
                   <Calendar
                     id="calendar-12h"
-                    value={pickupTimeLocation}
-                    onChange={(e) => setPickupTimeLocation(e.value)}
+                    value={cabPickupDateTime}
+                    onChange={(e) => setCabPickupDateTime(e.value)}
                     showTime
                     placeholder="Pickup Date & Time"
                     hourFormat="12"
@@ -355,8 +360,8 @@ export default function Home() {
                     <i className="pi pi-map-marker"></i>
                   </span>
                   <Dropdown
-                    value={selectedCity}
-                    onChange={(e) => setSelectedCity(e.value)}
+                    value={cabDropLocation}
+                    onChange={(e) => setCabDropLocation(e.value)}
                     options={cities}
                     optionLabel="name"
                     placeholder="Drop Off Location"
