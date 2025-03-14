@@ -250,86 +250,13 @@ export default function Tours() {
                   {tour.price}
                 </span>
                 <span className="text-md font-bold pe-3 py-3 mt-2">
-                  {tour.price}
+                  View Details
                 </span>
               </div>
             </div>
           ))}
         </div>
       </div>
-
-      {/* <div className="container mx-auto px-6 mt-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full md:w-10/12 mx-auto justify-content-center">
-          {tourData.map((tour) => (
-            <div
-              key={tour.id}
-              className="bg-white shadow-md rounded-lg overflow-hidden h-full flex flex-col"
-            >
-              <img
-                src={tour.image}
-                alt={tour.title}
-                className="h-30 w-full object-cover"
-              />
-              <div className="p-4 flex-grow">
-                <h3 className="text-lg font-semibold text-black">
-                  {tour.name}
-                </h3>
-                <p className="text-gray-600 m-0">{tour.duration}</p>
-                <p className="text-gray-700 m-0">{tour.location}</p>
-              </div>
-              <div className="p-2 flex justify-between items-center bg-gray-100">
-                <span className="text-lg font-bold">{tour.price}</span>
-                <button className="bg-blue-600 text-black px-4 py-2 rounded-lg hover:bg-blue-700">
-                  Book Now
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div> */}
-
-      {/* <div className="container mx-auto px-6 mt-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tourData.map((tour) => (
-            <div
-              key={tour.id}
-              className="bg-white shadow-md rounded-lg overflow-hidden h-full flex flex-col"
-            >
-              <img
-                src={tour.image}
-                alt={tour.title}
-                className="h-56 w-full object-cover"
-              />
-              <div className="p-4 flex-grow">
-                <h3 className="text-lg font-semibold">{tour.title}</h3>
-                <p className="text-gray-600">{tour.duration}</p>
-                <p className="text-gray-700">{tour.location}</p>
-              </div>
-              <div className="p-4 border-t flex justify-between items-center bg-gray-100">
-                <span className="text-lg font-bold">{tour.price}</span>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-                  Book Now
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div> */}
     </div>
   );
-}
-
-{
-  /* <div>
-    <h1>Tours Explore</h1>
-    <p>Destination: {tourDestination?.name}</p>
-    <p>
-      From:{" "}
-      {tourFromDate ? tourFromDate.toLocaleDateString() : "Not selected"}
-    </p>
-    <p>
-      To: {tourToDate ? tourToDate.toLocaleDateString() : "Not selected"}
-    </p>
-    <p>Guests: {tourGuest}</p>
-  </div> */
 }
