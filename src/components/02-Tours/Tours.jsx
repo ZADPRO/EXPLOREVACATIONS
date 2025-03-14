@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
 import { InputNumber } from "primereact/inputnumber";
@@ -73,6 +73,8 @@ export default function Tours() {
       detail: "Search submitted!",
     });
   };
+
+  const navigate = useNavigate();
 
   const tourData = [
     {
@@ -771,7 +773,8 @@ export default function Tours() {
           {tourData.map((tour) => (
             <div
               key={tour.id}
-              className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
+              className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
+              onClick={() => navigate("/tourDetails", { state: { tour } })}
             >
               <img
                 src={tour.image}
