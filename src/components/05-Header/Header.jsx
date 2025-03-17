@@ -33,7 +33,7 @@ export default function Header() {
   return (
     <div
       className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#eef0ee]" : "bg-transparent"
+        scrolled ? "bg-[#eef0eec2]" : "bg-transparent"
       }`}
     >
       <div className="w-full flex justify-center items-center h-[70px] py-10 lg:px-40">
