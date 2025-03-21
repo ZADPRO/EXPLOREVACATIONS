@@ -69,3 +69,9 @@
   background-size: cover;
   background-position: center;
 }
+
+.footerImg {
+  background: url("../../assets/footer/footer[1].jpg") no-repeat center;
+  background-size: cover;
+  background-position: center;
+}

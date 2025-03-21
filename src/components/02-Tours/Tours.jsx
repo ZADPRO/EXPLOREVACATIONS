@@ -1,10 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
 import { InputNumber } from "primereact/inputnumber";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
+
+import decrypt from "../../helper";
 
 // import image from "../../assets/home/home4.jpg";
 
@@ -20,6 +22,7 @@ import tour2 from "../../assets/tours/tour2.png";
 import tour3 from "../../assets/tours/tour3.png";
 import tour4 from "../../assets/tours/tour4.png";
 import tour5 from "../../assets/tours/tour5.jpg";
+import Axios from "axios";
 
 export default function Tours() {
   const location = useLocation();
@@ -38,6 +41,8 @@ export default function Tours() {
   const [tourFromDate, setTourFromDate] = useState(initialTourFromDate);
   const [tourToDate, setTourToDate] = useState(initialTourToDate);
   const [tourGuest, setTourGuest] = useState(initialTourGuest);
+
+  const [tourDetailsBackend, setTourDetailsBackend] = useState([]);
 
   // const handleExplore = () => {
   //   if (!tourDestination) {
@@ -711,6 +716,35 @@ export default function Tours() {
     },
   ];
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log("Verify Token Running --- ");
+
+        const listTourResponse = await Axios.get(
+          import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
+          {
+            headers: {
+              Authorization: localStorage.getItem("JWTtoken"),
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setTourDetailsBackend(listTourResponse);
+        const data = decrypt(
+          listTourResponse.data[1],
+          listTourResponse.data[0],
+          import.meta.env.VITE_ENCRYPTION_KEY
+        );
+        console.log("data list tour data ======= ?", data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const [filterApplied, setFilterApplied] = useState(false);
 
   const handleExplore = () => {
@@ -811,7 +845,7 @@ export default function Tours() {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 mt-8 w-full">
+      <div className="container mx-auto px-6 mt-8 w-full pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:w-10/12 mx-auto justify-center">
           {filteredTours.length > 0 ? (
             filteredTours.map((tour) => (

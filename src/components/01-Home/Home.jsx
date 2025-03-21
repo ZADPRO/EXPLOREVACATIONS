@@ -8,6 +8,8 @@ import { FloatLabel } from "primereact/floatlabel";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 
+import budha from "../../assets/tours/buddha[1].jpg";
+
 import home1 from "../../assets/homeCards/1.jpg";
 import home2 from "../../assets/homeCards/2[1].jpg";
 import home3 from "../../assets/homeCards/3[1].jpg";
@@ -17,10 +19,18 @@ import Glide from "@glidejs/glide";
 
 import { Carousel } from "primereact/carousel";
 
+import business from "../../assets/service/busines.jpg";
+import carRental from "../../assets/service/carRental.jpg";
+import tourists from "../../assets/service/tourists.jpg";
+import transfers from "../../assets/service/transfers.jpg";
+
 import homeImg1 from "../../assets/homeCards/3.1[1].jpg";
 import homeImg2 from "../../assets/homeCards/3.2[1].jpg";
 
 import { Toast } from "primereact/toast";
+
+import secure from "../../assets/home/secure.png";
+import travel from "../../assets/home/travel.png";
 
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
@@ -186,6 +196,62 @@ export default function Home() {
     });
     window.scrollTo(0, 0);
   };
+
+  const services = [
+    {
+      title: "Transfers",
+      image: transfers,
+      description:
+        "Enjoy a comfortable and safe journey with our professional drivers. Whether it’s an airport transfer, a city tour, or a long-distance trip, we ensure a premium travel experience tailored to your needs.",
+    },
+    {
+      title: "Business",
+      image: business,
+      description:
+        "Travel in style and comfort with our premium business class services. We understand your need for professionalism and luxury, making every journey seamless and sophisticated.",
+    },
+    {
+      title: "Tourist",
+      image: tourists,
+      description:
+        "Embark on an unforgettable journey with our well-planned vacation packages. Explore breathtaking destinations with ease and comfort, ensuring a memorable experience.",
+    },
+    {
+      title: "Car Rental",
+      image: carRental,
+      description:
+        "Choose from a wide range of well-maintained vehicles for your travel needs. Whether it's a short trip or an extended rental, we offer top-quality cars for a smooth ride.",
+    },
+  ];
+
+  const whyChooseUs = [
+    {
+      title: "Meet & Greet",
+      description: "Our driver is waiting for you in the arrival hall",
+    },
+    {
+      title: "24/7 support",
+      description: "Transfers around the clock all year round",
+    },
+    {
+      title: "No hidden costs",
+      description: "No additional costs for luggage and other equipment",
+    },
+    {
+      title: "Best value",
+      description:
+        "Enjoy a high quality transfer experience at surprisingly low prices",
+    },
+    {
+      title: "security",
+      description: "A safe customer experience is an important goal in",
+    },
+    {
+      title: "Service of the highest quality",
+      description:
+        "Our trust and professionalism are based on our many years of experience with highly qualified professional chauffeurs",
+    },
+  ];
 
   return (
     <div className="">
@@ -530,6 +596,66 @@ export default function Home() {
         </div>
       </div>
 
+      <div className="w-full md:w-10/12 mx-auto py-14">
+        <div className="flex items-center justify-center flex-col">
+          <p className="text-[28px] font-bold pb-4">Our Services</p>
+          <div className="flex gap-5 flex-wrap justify-center">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
+                data-aos={index % 2 === 0 ? "flip-right" : "flip-left"}
+              >
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full object-cover aspect-[4/3]"
+                />
+                <div className="px-4 pt-4 flex-grow pb-4">
+                  <h3 className="text-xl capitalize font-semibold text-center text-black line-clamp-1">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-700 m-0 text-justify indent-2">
+                    {service.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="w-full md:w-10/12 mx-auto py-14">
+        <div className="flex items-center justify-center flex-col">
+          <p className="text-[28px] font-bold pb-4">
+            Why Vacations AG for airport transfers?
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 justify-center">
+            {whyChooseUs.map((service, index) => (
+              <div
+                key={index}
+                className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
+                data-aos={index % 2 === 0 ? "flip-right" : "flip-left"}
+              >
+                <img
+                  src={budha}
+                  alt={service.title}
+                  className="w-full object-cover aspect-[4/3]"
+                />
+                <div className="px-4 pt-4 flex-grow pb-4">
+                  <h3 className="text-xl capitalize font-semibold text-center text-black line-clamp-1">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-700 m-0 text-justify indent-2">
+                    {service.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div> */}
+
       <div className="flex lg:flex-row flex-col items-center h-full w-11/12 mx-auto py-20">
         {/* Left Text Content */}
         <div
@@ -545,6 +671,26 @@ export default function Home() {
             step out of your comfort zone? Adventure travel may be the perfect
             solution for you! Here are four.
           </p>
+          <div className="flex mt-4">
+            <img src={travel} alt="" className="w-20" />
+            <div className="flex flex-col pl-4">
+              <p className="font-bold text-[22px]">Best Travel Agency</p>
+              <p>
+                Are you tired of the typical tourist destinatio and looking step
+                out of your comfort.
+              </p>
+            </div>
+          </div>
+          <div className="flex mt-4">
+            <img src={secure} alt="" className="w-20" />
+            <div className="flex flex-col pl-4">
+              <p className="font-bold text-[22px]">Secure Journey With Us</p>
+              <p>
+                Are you tired of the typical tourist destinatio and looking step
+                out of your comfort.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Right Image Content */}

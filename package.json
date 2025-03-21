@@ -13,6 +13,8 @@
     "@glidejs/glide": "^3.7.1",
     "@tailwindcss/vite": "^4.0.14",
     "aos": "^2.3.4",
+    "axios": "^1.8.4",
+    "crypto-js": "^4.2.0",
     "explore-vacations": "file:",
     "lucide-react": "^0.479.0",
     "primeflex": "^4.0.0",
