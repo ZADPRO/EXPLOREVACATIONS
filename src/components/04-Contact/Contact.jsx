@@ -43,11 +43,12 @@ export default function Contact() {
               info@explorevacations.com
             </p>
             <p className="text-lg">
-              📞 <span className="font-semibold">Phone:</span> +1 234 567 890
+              📞 <span className="font-semibold">Phone:</span> (+ 41) 44 442 30
+              35
             </p>
             <p className="text-lg">
-              📍 <span className="font-semibold">Address:</span> 123 Travel St,
-              Zurich, Switzerland
+              📍 <span className="font-semibold">Address:</span> Oberfeldstrasse
+              10, 8302 Kloten, Switzerland
             </p>
           </div>
         </div>

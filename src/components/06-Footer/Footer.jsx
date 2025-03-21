@@ -15,7 +15,9 @@ export default function Footer() {
           </p>
         </div>
         <div className="flex-1 pl-5">
-          <p className="text-white text-[22px] font-bold ">Our Services</p>
+          <p className="text-white text-[22px] font-bold underline">
+            Our Services
+          </p>
           <p className="text-white py-2 text-[17px] font-semibold">Tours</p>
           <p className="text-white py-2 text-[17px] font-semibold">Cars</p>
           <p className="text-white py-2 text-[17px] font-semibold">
@@ -23,7 +25,7 @@ export default function Footer() {
           </p>
         </div>
         <div className="flex-1">
-          <p className="text-white text-[22px] font-bold ">
+          <p className="text-white text-[22px] font-bold underline">
             Contact Information
           </p>
           <p className="text-white py-2 text-[17px] font-semibold">
@@ -35,12 +37,12 @@ export default function Footer() {
           <p className="text-white py-2 text-[17px] font-semibold">
             Oberfeldstrasse 10, 8302 Kloten, Switzerland
           </p>
-          <p className="text-white">
+          <p className="text-white py-2 text-[17px] font-semibold">
             371/5, Negombo Road, Seeduwa Sri Lanka Office
           </p>
         </div>
         <div className="flex-1">
-          <p className="text-white text-[22px] font-bold ">
+          <p className="text-white text-[22px] font-bold underline">
             Social Media Links
           </p>
           <p className="text-white py-2 text-[17px] font-semibold">Facebook</p>
