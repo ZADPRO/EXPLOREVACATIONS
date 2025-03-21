@@ -14,7 +14,7 @@ export default function Footer() {
             safaris and holiday expeditions to Sri Lanka.
           </p>
         </div>
-        <div className="flex-1 pl-5">
+        <div className="flex-1 lg:pl-5">
           <p className="text-white text-[22px] font-bold underline">
             Our Services
           </p>
