@@ -19,54 +19,97 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { useLocation } from "react-router-dom";
 
 import { TabView, TabPanel } from "primereact/tabview";
-import Axios from "axios";
+import axios from "axios";
 
 import decrypt from "../../helper";
 
-export default function ToursTemplate() {
+export default function CarsTemplate() {
   const location = useLocation();
-  const tour = location.state?.tour;
 
-  const [ismodelOpen, setIsModelOpen] = useState(false);
+  const [carState, setCarState] = useState();
 
-  const toast = useRef(null);
-
-  const [packageId, setPackageId] = useState();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
-  const [pickupDateTime, setPickupDateTime] = useState(null);
+  const [pickupAddress, setPickupAddress] = useState("");
+  const [submissionAddress, setSubmissionAddress] = useState("");
+  const [pickupDateTime, setPickupDateTime] = useState(null); // Renamed
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
 
   const [otherRequirements, setOtherRequirements] = useState("");
 
-  const handleSubmit = async () => {
-    if (!name || !email || !mobileNumber || !pickupDateTime) {
-      toast.current.show({
-        severity: "error",
-        summary: "Validation Error",
-        detail: "Please fill in all required fields.",
-        life: 3000,
-      });
-      return;
-    }
+  const [ismodelOpen, setIsModelOpen] = useState(false);
 
-    console.log("data.tourDetails[0].refPackageId", packageId);
+  const toast = useRef(null);
+
+  const [carListData, setCarLIstData] = useState([]);
+
+  useEffect(() => {
+    console.log("asdf===========asfd");
+    const car = location.state?.car;
+    console.log("car", car);
+    setCarState(car);
+
+    const fetchData = async () => {
+      try {
+        console.log("Verify Token Running --- ");
+
+        const listDestinations = await axios.post(
+          import.meta.env.VITE_API_URL + "/userRoutes/getCarById",
+          {
+            refCarsId: car.refCarsId,
+          },
+          {
+            headers: {
+              Authorization: localStorage.getItem("JWTtoken"),
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const destinationData = decrypt(
+          listDestinations.data[1],
+          listDestinations.data[0],
+          import.meta.env.VITE_ENCRYPTION_KEY
+        );
+        console.log("destinationData ========== line 118 >", destinationData);
+        setCarLIstData(destinationData.tourDetails[0]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleSubmit = async () => {
+    // if (!name || !email || !mobileNumber || !pickupDateTime) {
+    //   toast.current.show({
+    //     severity: "error",
+    //     summary: "Validation Error",
+    //     detail: "Please fill in all required fields.",
+    //     life: 3000,
+    //   });
+    //   return;
+    // }
+
     try {
-      const response = await Axios.post(
-        import.meta.env.VITE_API_URL + "/userRoutes/tourBooking",
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + "/userRoutes/userCarBooking",
         {
-          refPackageId: packageId,
+          refCarsId: carListData.refVehicleTypeId,
           refUserName: name,
           refUserMail: email,
           refUserMobile: mobileNumber,
+          refPickupAddress: pickupAddress,
+          refSubmissionAddress: submissionAddress,
           refPickupDate: pickupDateTime,
           refAdultCount: adults,
           refChildrenCount: children,
           refInfants: infants,
           refOtherRequirements: otherRequirements,
+          refFormDetails: [1, 2, 3],
         },
         {
           headers: {
@@ -92,116 +135,64 @@ export default function ToursTemplate() {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log("Verify Token Running --- ");
-
-        const listDestinations = await Axios.post(
-          import.meta.env.VITE_API_URL + "/userRoutes/listTour",
-          {
-            refPackageId: tour.refPackageId,
-          },
-          {
-            headers: {
-              Authorization: localStorage.getItem("JWTtoken"),
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const destinationData = decrypt(
-          listDestinations.data[1],
-          listDestinations.data[0],
-          import.meta.env.VITE_ENCRYPTION_KEY
-        );
-        console.log(
-          "data list tour data ======= line 121",
-          destinationData.tourDetails[0].refPackageId
-        );
-        setPackageId(destinationData.tourDetails[0].refPackageId);
-
-        const listTourResponse = await Axios.get(
-          import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
-          {
-            headers: {
-              Authorization: localStorage.getItem("JWTtoken"),
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = decrypt(
-          listTourResponse.data[1],
-          listTourResponse.data[0],
-          import.meta.env.VITE_ENCRYPTION_KEY
-        );
-        console.log("data list tour data ======= ?", data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (!tour) {
-    return <h2 className="text-center text-red-500">No Tour Data Found!</h2>;
-  }
   return (
     <div>
       <Toast ref={toast} />
 
-      <div className="tourBannerBg01 relative h-[60vh] flex items-center justify-center text-white text-3xl font-bold">
+      <div className="carsPageCont01 relative h-[40vh] flex items-center justify-center text-white text-3xl font-bold">
         {/* Centered Text Here */}
       </div>
 
       <div className="flex w-10/12 mx-auto">
         <div className="flex lg:flex-row flex-column gap-6 p-4">
           <div className="lg:w-2/4 flex-shrink-0">
-            <img
-              src={`data:${tour.refCoverImage.contentType};base64,${tour.refCoverImage.content}`}
-              alt="Tour Image"
-              className="w-full h-full object-cover rounded-lg"
-            />
+            {carListData?.refCarPath && (
+              <img
+                src={`data:${carListData?.refCarPath.contentType};base64,${carListData?.refCarPath.content}`}
+                alt="Car Image"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            )}
           </div>
 
           <div className="lg:w-2/4 flex flex-col justify-center gap-4">
             <p className="flex gap-2 items-center font-bold uppercase text-[22px]">
-              {tour.name}
+              {carListData.refVehicleTypeName}
             </p>
             <p className="flex gap-2 items-center">
               <History
                 className="bg-[#20c0bd] p-1 rounded-lg text-white"
                 size={30}
               />
-              <span className="font-semibold">Duration:</span>{" "}
-              {tour.refDurationIday} Days & {tour.refDurationINight} Nights
+              <span className="font-semibold">Bags:</span>{" "}
+              {carListData.refBagCount} (Count){" "}
             </p>
             <p className="flex gap-2 items-center">
               <BadgeSwissFranc
                 className="bg-[#20c0bd] p-1 rounded-lg text-white"
                 size={30}
               />
-              <span className="font-semibold">Price:</span> CHF{" "}
-              {tour.refTourPrice}
+              <span className="font-semibold">Fuel Type:</span>{" "}
+              {carListData.refFuelType}
             </p>
             <p className="flex gap-2 items-center">
               <Binoculars
                 className="bg-[#20c0bd] p-1 rounded-lg text-white"
                 size={30}
               />
-              <span className="font-semibold">Tour Code:</span>{" "}
-              {tour.refTourCode}
+              <span className="font-semibold">Fuel Limit:</span>{" "}
+              {carListData.refFuleLimit}
             </p>
             <p className="flex gap-2 items-center">
               <UsersRound
                 className="bg-[#20c0bd] p-1 rounded-lg text-white"
                 size={30}
               />
-              <span className="font-semibold">Group Size:</span>{" "}
+              <span className="font-semibold">Max Count:</span>{" "}
               <p>
-                {tour.refGroupSize === "0"
+                {carListData.refPersonCount === "0"
                   ? "Not Specified"
-                  : tour.refGroupSize}
+                  : carListData.refPersonCount}
               </p>
             </p>
             <p className="flex gap-2 items-center">
@@ -209,8 +200,17 @@ export default function ToursTemplate() {
                 className="bg-[#20c0bd] p-1 rounded-lg text-white"
                 size={30}
               />
-              <span className="font-semibold">Categories:</span>{" "}
-              {tour.refCategoryName}
+              <span className="font-semibold">Transmission Type:</span>{" "}
+              {carListData.refTrasmissionType}
+            </p>
+
+            <p className="flex gap-2 items-center">
+              <LayoutPanelLeft
+                className="bg-[#20c0bd] p-1 rounded-lg text-white"
+                size={30}
+              />
+              <span className="font-semibold">Manufacturing Year:</span>{" "}
+              {carListData.refcarManufactureYear}
             </p>
 
             <p className="flex gap-2 items-center">
@@ -229,33 +229,29 @@ export default function ToursTemplate() {
 
       <div className="card flex w-10/12 mx-auto overflow-hidden py-8">
         <TabView className="w-full overflow-x-auto">
-          <TabPanel header="Travel Overview" key="tab1">
+          <TabPanel header="Driver Details" key="tab1">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
-              <div
-                dangerouslySetInnerHTML={{ __html: tour?.refTravalOverView }}
-              />
+              <p>
+                <b>Driver Name:</b> {carListData.refDriverName}
+              </p>
+              <p>
+                <b>Mobile:</b> {carListData.refDriverMobile}
+              </p>
+              <p>
+                <b>Mail ID:</b> {carListData.refDriverMail}
+              </p>
+              <p>
+                <b>Location:</b> {carListData.refDriverLocation}
+              </p>
+              <p>
+                <b>Age:</b> {carListData.refDriverAge}
+              </p>
             </div>
           </TabPanel>
-
-          <TabPanel header="Itinerary" key="tab2">
-            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
-              <div dangerouslySetInnerHTML={{ __html: tour?.refItinary }} />
-            </div>
-          </TabPanel>
-
-          <TabPanel header="Itinerary Map" key="tab3">
-            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
-              <img
-                src={`data:${tour.refItinaryMapPath.contentType};base64,${tour.refCoverImage.content}`}
-                alt=""
-              />
-            </div>
-          </TabPanel>
-
-          <TabPanel header="Travel Includes" key="tab4">
+          <TabPanel header="Travel Include" key="tab1">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <ul className="list-disc pl-5">
-                {tour?.travalInclude?.map((item, index) => (
+                {carListData?.refIncludeName?.map((item, index) => (
                   <li key={index} className="mb-2">
                     {item}
                   </li>
@@ -263,11 +259,10 @@ export default function ToursTemplate() {
               </ul>
             </div>
           </TabPanel>
-
-          <TabPanel header="Travel Ends" key="tab6">
+          <TabPanel header="Travel Exclude" key="tab1">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <ul className="list-disc pl-5">
-                {tour?.travalExclude?.map((item, index) => (
+                {carListData?.refExcludeName?.map((item, index) => (
                   <li key={index} className="mb-2">
                     {item}
                   </li>
@@ -275,26 +270,35 @@ export default function ToursTemplate() {
               </ul>
             </div>
           </TabPanel>
-
-          {/* <TabPanel header="Gallery" key="tab7">
-            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full"></div>
-          </TabPanel> */}
-
-          <TabPanel header="Special Notes" key="tab8">
+          <TabPanel header="Travel Details" key="tab1">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
-              {tour?.refSpecialNotes ? (
-                <ul className="list-none pl-0">
-                  <li className="mb-2">{tour.refSpecialNotes}</li>
-                </ul>
-              ) : (
-                <p>Loading...</p>
-              )}
+              <ul className="list-disc pl-5">
+                {carListData?.refFormDetails?.map((item, index) => (
+                  <li key={index} className="mb-2">
+                    {item}
+                  </li>
+                )) || <p>Loading...</p>}
+              </ul>
+            </div>
+          </TabPanel>
+          <TabPanel header="Others" key="tab1">
+            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
+              <p>
+                <b>Payment Terms:</b> {carListData.refPaymentTerms}
+              </p>
+              <p>
+                <b>Rental Agreement:</b> {carListData.refRentalAgreement}
+              </p>
+              <p>
+                <b>Other Requirements:</b> {carListData.refOtherRequirements}
+              </p>
             </div>
           </TabPanel>
         </TabView>
       </div>
+
       <Dialog
-        header={tour.name}
+        header="Book your Car"
         visible={ismodelOpen}
         className="w-[90%] lg:w-[85%] h-[80vh] overflow-auto"
         onHide={() => {
@@ -342,11 +346,33 @@ export default function ToursTemplate() {
         <div className="pt-[2rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">
             <FloatLabel className="w-[100%]">
+              <InputText
+                id="pickupAddress"
+                className="w-[100%]"
+                value={pickupAddress}
+                onChange={(e) => setPickupAddress(e.target.value)}
+              />
+              <label htmlFor="pickupAddress">Pick Up Address</label>
+            </FloatLabel>
+          </div>
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <InputText
+                id="submissionAddress"
+                className="w-[100%]"
+                value={submissionAddress}
+                onChange={(e) => setSubmissionAddress(e.target.value)}
+              />
+              <label htmlFor="submissionAddress">Submission Address</label>
+            </FloatLabel>
+          </div>
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
               <Calendar
                 id="calendar-12h"
-                value={pickupDateTime}
+                value={pickupDateTime} // Updated variable name
                 className="flex-1 w-[100%]"
-                onChange={(e) => setPickupDateTime(e.value)}
+                onChange={(e) => setPickupDateTime(e.value)} // Updated variable name
                 showTime
                 placeholder="Pickup Date & Time"
                 hourFormat="12"
@@ -354,6 +380,20 @@ export default function ToursTemplate() {
               <label htmlFor="calendar-12h">Pick Up Date & Time</label>
             </FloatLabel>
           </div>
+          {/* <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <Dropdown
+                id="vehicle"
+                value={selectedVehicleType} // Updated variable name
+                onChange={(e) => setSelectedVehicleType(e.value)} // Updated variable name
+                // options={typescar}
+                optionLabel="name"
+                placeholder="Choose Vehicle Type"
+                className="flex-1 w-[100%]"
+              />
+              <label htmlFor="vehicle">Your Preferred Vehicle</label>
+            </FloatLabel>
+          </div> */}
         </div>
 
         <h6 className="pt-[1.5rem]">Number of passengers traveling</h6>
@@ -396,6 +436,25 @@ export default function ToursTemplate() {
             </FloatLabel>
           </div>
         </div>
+
+        <h6 className="pt-[1.5rem]">Extras (chargeable)</h6>
+
+        {/* <div className="flex flex-wrap justify-start pt-[1rem] gap-3">
+          {Object.keys(extras).map((key) => (
+            <div className="flex align-items-center" key={key}>
+              <Checkbox
+                inputId={key}
+                name={key}
+                checked={extras[key]}
+                onChange={handleCheckboxChange}
+              />
+              <label htmlFor={key} className="ml-2">
+                {key.charAt(0).toUpperCase() +
+                  key.slice(1).replace(/([A-Z])/g, " $1")}
+              </label>
+            </div>
+          ))}
+        </div> */}
 
         <div className="pt-[2.5rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">

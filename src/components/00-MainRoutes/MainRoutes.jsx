@@ -9,6 +9,7 @@ import Tours from "../02-Tours/Tours";
 import Cars from "../03-Cars/Cars";
 import Contact from "../04-Contact/Contact";
 import ToursTemplate from "../../pages/ToursTemplate/ToursTemplate";
+import CarsTemplate from "../../pages/CarsTemplate/CarsTemplate";
 import CarRental from "../03-Cars/CarRental";
 
 export default function MainRoutes() {
@@ -20,6 +21,7 @@ export default function MainRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/tours" element={<Tours />} />
           <Route path="/tourDetails" element={<ToursTemplate />} />
+          <Route path="/carDetails" element={<CarsTemplate />} />
           <Route path="/carRental" element={<CarRental />} />
           <Route path="/cars" element={<Cars />} />
           <Route path="/contact" element={<Contact />} />

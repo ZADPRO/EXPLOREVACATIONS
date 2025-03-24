@@ -187,13 +187,15 @@ export default function Home() {
       return;
     }
 
-    navigate("/carRental", {
-      state: {
-        cabPickupLocation,
-        cabPickupDateTime,
-        cabDropLocation,
-      },
-    });
+    const url = new URL("https://explorevacations.yelowtaxi.com/ride/add");
+
+    // Append query parameters
+    url.searchParams.append("cabPickupLocation", cabPickupLocation);
+    url.searchParams.append("cabPickupDateTime", cabPickupDateTime);
+    url.searchParams.append("cabDropLocation", cabDropLocation);
+
+    // Open in a new tab
+    window.open(url.toString(), "_blank");
     window.scrollTo(0, 0);
   };
 
