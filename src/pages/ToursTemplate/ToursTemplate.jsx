@@ -81,6 +81,9 @@ export default function ToursTemplate() {
         import.meta.env.VITE_ENCRYPTION_KEY
       );
       console.log("data list tour data ======= ?", data);
+      if (data.success) {
+        setIsModelOpen(false);
+      }
     } catch (error) {
       toast.current.show({
         severity: "error",
