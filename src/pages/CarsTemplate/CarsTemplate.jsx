@@ -164,7 +164,7 @@ export default function CarsTemplate() {
             </p>
             <p className="flex gap-2 items-center">
               <History
-                className="bg-[#20c0bd] p-1 rounded-lg text-white"
+                className="bg-[#009ad7] p-1 rounded-lg text-white"
                 size={30}
               />
               <span className="font-semibold">Bags:</span>{" "}
@@ -172,7 +172,7 @@ export default function CarsTemplate() {
             </p>
             <p className="flex gap-2 items-center">
               <BadgeSwissFranc
-                className="bg-[#20c0bd] p-1 rounded-lg text-white"
+                className="bg-[#009ad7] p-1 rounded-lg text-white"
                 size={30}
               />
               <span className="font-semibold">Fuel Type:</span>{" "}
@@ -180,7 +180,7 @@ export default function CarsTemplate() {
             </p>
             <p className="flex gap-2 items-center">
               <Binoculars
-                className="bg-[#20c0bd] p-1 rounded-lg text-white"
+                className="bg-[#009ad7] p-1 rounded-lg text-white"
                 size={30}
               />
               <span className="font-semibold">Fuel Limit:</span>{" "}
@@ -188,7 +188,7 @@ export default function CarsTemplate() {
             </p>
             <p className="flex gap-2 items-center">
               <UsersRound
-                className="bg-[#20c0bd] p-1 rounded-lg text-white"
+                className="bg-[#009ad7] p-1 rounded-lg text-white"
                 size={30}
               />
               <span className="font-semibold">Max Count:</span>{" "}
@@ -200,7 +200,7 @@ export default function CarsTemplate() {
             </p>
             <p className="flex gap-2 items-center">
               <LayoutPanelLeft
-                className="bg-[#20c0bd] p-1 rounded-lg text-white"
+                className="bg-[#009ad7] p-1 rounded-lg text-white"
                 size={30}
               />
               <span className="font-semibold">Transmission Type:</span>{" "}
@@ -209,7 +209,7 @@ export default function CarsTemplate() {
 
             <p className="flex gap-2 items-center">
               <LayoutPanelLeft
-                className="bg-[#20c0bd] p-1 rounded-lg text-white"
+                className="bg-[#009ad7] p-1 rounded-lg text-white"
                 size={30}
               />
               <span className="font-semibold">Manufacturing Year:</span>{" "}
@@ -218,7 +218,7 @@ export default function CarsTemplate() {
 
             <p className="flex gap-2 items-center">
               <button
-                className="border-1 px-4 py-2 rounded bg-[#20c0bd] text-white cursor-pointer"
+                className="border-1 px-4 py-2 rounded bg-[#009ad7] text-white cursor-pointer"
                 onClick={() => {
                   setIsModelOpen(true);
                 }}
