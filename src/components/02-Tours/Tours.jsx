@@ -48,6 +48,7 @@ export default function Tours() {
             },
           }
         );
+        console.log('listDestinations', listDestinations)
         const destinationData = decrypt(
           listDestinations.data[1],
           listDestinations.data[0],

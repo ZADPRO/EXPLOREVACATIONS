@@ -29,6 +29,7 @@ export default function Header() {
 
   const isActive = (path) =>
     location.pathname === path ? "#0067b6" : "#0067b6";
+ 
 
   return (
     <div

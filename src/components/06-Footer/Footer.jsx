@@ -1,8 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-import logoImg from "../../assets/logo/logo.jpg";
+import logoImg from "../../assets/logo/Explorelogo.png";
 
 export default function Footer() {
+  const navigate = useNavigate();
+
+
+  const handleNavigate = (path) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
   return (
     <div className="footerImg">
       <div className="flex w-10/12 mx-auto gap-5 py-10 px-4 lg:flex-row flex-col">
@@ -18,12 +26,24 @@ export default function Footer() {
           <p className="text-white text-[22px] font-bold underline">
             Our Services
           </p>
-          <p className="text-white py-2 text-[17px] font-semibold">Tours</p>
-          <p className="text-white py-2 text-[17px] font-semibold">Cars</p>
-          <p className="text-white py-2 text-[17px] font-semibold">
+          <p className="text-white py-2 text-[17px] font-semibold"   onClick={() => handleNavigate("/Tours")}>Tours</p>
+          <p className="text-white py-2 text-[17px] font-semibold"    onClick={() => handleNavigate("/Cars")}>Cars</p>
+          <p className="text-white py-2 text-[17px] font-semibold"    onClick={() => handleNavigate("/Contact")}>
             Contact Us
           </p>
         </div>
+        {/* <div className="flex-1">
+          <p className="text-white text-[22px] font-bold underline">
+            Quick Links
+          </p>
+          <p className="text-white py-2 text-[17px] font-semibold">
+           Terms and Condition
+          </p>
+          <p className="text-white py-2 text-[17px] font-semibold">
+           Privacy Policy
+          </p>
+     
+        </div> */}
         <div className="flex-1">
           <p className="text-white text-[22px] font-bold underline">
             Contact Information
