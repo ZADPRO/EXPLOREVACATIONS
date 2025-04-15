@@ -9,7 +9,7 @@ import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import budha from "../../assets/tours/buddha[1].jpg";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from "framer-motion";
 import home1 from "../../assets/homeCards/card3.jpg";
 import home2 from "../../assets/homeCards/card1.jpg";
 import home3 from "../../assets/homeCards/card2.jpg";
@@ -111,8 +111,6 @@ export default function Home() {
     setOpenIndex(-1); // Reset open FAQ on topic change
   };
 
-
-
   const toast = useRef(null);
 
   const cities = [
@@ -208,235 +206,279 @@ export default function Home() {
     window.scrollTo(0, 0);
   };
 
-
-
   const faqTopics = [
     {
       title: "General",
       items: [
         {
-          question: "Is there a minimum or maximum rental period for an Explore Vacations AG van?",
-          answer: "The minimum rental period is half a day. The maximum rental period is generally 30 days. If you need a vehicle for longer than 30 days, please contact our Sales Team. We will gladly prepare an offer for you."
+          question:
+            "Is there a minimum or maximum rental period for an Explore Vacations AG van?",
+          answer:
+            "The minimum rental period is half a day. The maximum rental period is generally 30 days. If you need a vehicle for longer than 30 days, please contact our Sales Team. We will gladly prepare an offer for you.",
         },
         {
           question: "Can I return the van at a different location?",
-          answer: "Yes, that is possible. Please contact us by phone at +41 44 442 30 35 for further information."
+          answer:
+            "Yes, that is possible. Please contact us by phone at +41 44 442 30 35 for further information.",
         },
         {
           question: "Can I return the van abroad?",
-          answer: "No. Please contact your station directly for all details. Phone: +41 44 442 30 35"
+          answer:
+            "No. Please contact your station directly for all details. Phone: +41 44 442 30 35",
         },
         {
-          question: "Who should I contact if I experience issues with the vehicle?",
-          answer: "For general inquiries regarding your rented vehicle or rental agreement, please contact us at +41 44 442 30 35. If your vehicle breaks down and is no longer drivable, please contact our roadside assistance at the same number."
+          question:
+            "Who should I contact if I experience issues with the vehicle?",
+          answer:
+            "For general inquiries regarding your rented vehicle or rental agreement, please contact us at +41 44 442 30 35. If your vehicle breaks down and is no longer drivable, please contact our roadside assistance at the same number.",
         },
         {
           question: "Can I return the vehicle outside business hours?",
-          answer: "Yes, that’s no problem. If you return the vehicle outside opening hours, please park it in one of the available parking spaces at the Explore Vacations AG station and drop the key in the key drop box. Please note that returning the key does not end your rental agreement. For more details, refer to your rental terms."
+          answer:
+            "Yes, that’s no problem. If you return the vehicle outside opening hours, please park it in one of the available parking spaces at the Explore Vacations AG station and drop the key in the key drop box. Please note that returning the key does not end your rental agreement. For more details, refer to your rental terms.",
         },
         {
-          question: "Can I drive an Explore Vacations AG van with a Category B driver's license?",
-          answer: "Yes, all vehicles are permitted for Category B license holders. The only requirement is that you’ve held your license for at least one year."
-        }
-      ]
+          question:
+            "Can I drive an Explore Vacations AG van with a Category B driver's license?",
+          answer:
+            "Yes, all vehicles are permitted for Category B license holders. The only requirement is that you’ve held your license for at least one year.",
+        },
+      ],
     },
     {
       title: "Rates & Fees",
       items: [
         {
           question: "I received a fine. What happens next?",
-          answer: "The fine is sent to Explore Vacations AG. We identify the driver responsible and forward their details to the police or relevant authority. You will receive the fine directly from them. Additionally, we charge an administrative fee of CHF 80.00 (incl. VAT)."
+          answer:
+            "The fine is sent to Explore Vacations AG. We identify the driver responsible and forward their details to the police or relevant authority. You will receive the fine directly from them. Additionally, we charge an administrative fee of CHF 80.00 (incl. VAT).",
         },
         {
           question: "What is included in the van rental rates?",
-          answer: "Our published rates include: service, liability insurance, comprehensive insurance (with deductible), theft protection (with deductible), vehicle tax, Swiss motorway vignette, winter tires (November–March), up to 150 free kilometers per day, and VAT. (Exceptions may apply for special corporate rates.)"
+          answer:
+            "Our published rates include: service, liability insurance, comprehensive insurance (with deductible), theft protection (with deductible), vehicle tax, Swiss motorway vignette, winter tires (November–March), up to 150 free kilometers per day, and VAT. (Exceptions may apply for special corporate rates.)",
         },
         {
           question: "How are rental costs calculated?",
-          answer: "The total rental cost consists of the base rate (depending on vehicle category) plus the kilometers driven."
+          answer:
+            "The total rental cost consists of the base rate (depending on vehicle category) plus the kilometers driven.",
         },
         {
           question: "I have a discount code – when can I use it?",
-          answer: "Please provide your discount code when making the reservation. It is not possible to apply a discount code after the rental has started."
+          answer:
+            "Please provide your discount code when making the reservation. It is not possible to apply a discount code after the rental has started.",
         },
         {
           question: "What currency are the rates in?",
-          answer: "All prices are listed in Swiss Francs (CHF) and include VAT."
+          answer:
+            "All prices are listed in Swiss Francs (CHF) and include VAT.",
         },
         {
           question: "Are there additional costs for driving abroad?",
-          answer: "Yes, a Cross Border Fee (CBF) of up to CHF 185.00 (incl. VAT) applies. Please refer to the travel restrictions for each country and vehicle category in your rental agreement."
-        }
-      ]
+          answer:
+            "Yes, a Cross Border Fee (CBF) of up to CHF 185.00 (incl. VAT) applies. Please refer to the travel restrictions for each country and vehicle category in your rental agreement.",
+        },
+      ],
     },
     {
       title: "Insurance",
       items: [
         {
           question: "Is there a liability reduction included?",
-          answer: "Yes, liability reduction is included in all rates (a deductible remains)."
+          answer:
+            "Yes, liability reduction is included in all rates (a deductible remains).",
         },
         {
           question: "What is the amount of the deductible?",
-          answer: "The deductible per damage case is CHF 3000 for categories O4, C4, and W4, and CHF 5000 for category H4. With the Premium Insurance add-on, you can reduce the deductible to CHF 500 per damage case."
+          answer:
+            "The deductible per damage case is CHF 3000 for categories O4, C4, and W4, and CHF 5000 for category H4. With the Premium Insurance add-on, you can reduce the deductible to CHF 500 per damage case.",
         },
         {
           question: "Is there a young driver surcharge?",
-          answer: "Yes, all drivers under the age of 25 must pay a young driver surcharge. Prices vary by category, with a maximum fee of CHF 199 per rental month."
+          answer:
+            "Yes, all drivers under the age of 25 must pay a young driver surcharge. Prices vary by category, with a maximum fee of CHF 199 per rental month.",
         },
         {
           question: "What is the SuperCover Insurance?",
-          answer: "With Premium Insurance (liability waiver), you can reduce your deductible to CHF 350 per damage case, protecting you from high costs in case of loss or damage."
-        }
-      ]
+          answer:
+            "With Premium Insurance (liability waiver), you can reduce your deductible to CHF 350 per damage case, protecting you from high costs in case of loss or damage.",
+        },
+      ],
     },
     {
       title: "Reservation",
       items: [
         {
           question: "How can I reserve a van from Explore Vacations AG?",
-          answer: "You can reserve a van online at explorevacations.ch, by phone, or directly at an Explore Vacations AG station."
+          answer:
+            "You can reserve a van online at explorevacations.ch, by phone, or directly at an Explore Vacations AG station.",
         },
         {
           question: "Are there additional costs for driving abroad?",
-          answer: "Yes, a Cross Border Fee (CBF) starting from CHF 185.00 (incl. VAT) applies. Please refer to travel restrictions in your rental terms for country-specific limitations."
+          answer:
+            "Yes, a Cross Border Fee (CBF) starting from CHF 185.00 (incl. VAT) applies. Please refer to travel restrictions in your rental terms for country-specific limitations.",
         },
         {
           question: "Can I rent a van for an extended period?",
-          answer: "Absolutely! If you need a vehicle for more than 30 days, please contact our Sales Team. We’ll be happy to prepare an offer for you."
+          answer:
+            "Absolutely! If you need a vehicle for more than 30 days, please contact our Sales Team. We’ll be happy to prepare an offer for you.",
         },
         {
           question: "How far in advance should I book?",
-          answer: "We recommend booking as early as possible to accommodate your preferences for vehicle models, etc. Reservations are generally possible anytime up to shortly before the desired rental start."
+          answer:
+            "We recommend booking as early as possible to accommodate your preferences for vehicle models, etc. Reservations are generally possible anytime up to shortly before the desired rental start.",
         },
         {
           question: "Can I reserve a specific vehicle model?",
-          answer: "You can reserve vehicle categories, but not specific models."
-        }
-      ]
+          answer:
+            "You can reserve vehicle categories, but not specific models.",
+        },
+      ],
     },
     {
       title: "Before the Trip",
       items: [
         {
-          question: "Can I park my private car at the Explore Vacations AG station during the rental period?",
-          answer: "Yes, this is generally possible at all our locations. However, please check availability with your specific station in advance. Explore Vacations AG assumes no liability for any damage to your private vehicle."
+          question:
+            "Can I park my private car at the Explore Vacations AG station during the rental period?",
+          answer:
+            "Yes, this is generally possible at all our locations. However, please check availability with your specific station in advance. Explore Vacations AG assumes no liability for any damage to your private vehicle.",
         },
         {
-          question: "I noticed damage on the van before departure – what should I do?",
-          answer: "You must report any damage immediately. Please speak directly with a staff member at your pickup station."
+          question:
+            "I noticed damage on the van before departure – what should I do?",
+          answer:
+            "You must report any damage immediately. Please speak directly with a staff member at your pickup station.",
         },
         {
           question: "What should I check before starting my trip?",
-          answer: "For your own safety, please inspect the vehicle for any existing damage, adjust seat and mirrors, buckle up, switch on headlights, and ensure visibility through all windows."
+          answer:
+            "For your own safety, please inspect the vehicle for any existing damage, adjust seat and mirrors, buckle up, switch on headlights, and ensure visibility through all windows.",
         },
         {
           question: "Can I request a test drive with assistance?",
-          answer: "Yes! With prior notice, an Explore Vacations AG staff member will gladly accompany you on a short drive to help you get familiar with the van. Please contact your station in advance."
-        }
-      ]
+          answer:
+            "Yes! With prior notice, an Explore Vacations AG staff member will gladly accompany you on a short drive to help you get familiar with the van. Please contact your station in advance.",
+        },
+      ],
     },
     {
       title: "During the Trip",
       items: [
         {
           question: "Can I smoke in the van?",
-          answer: "No, all Explore Vacations AG vehicles are non-smoking. Cleaning fees may apply in case of violation."
+          answer:
+            "No, all Explore Vacations AG vehicles are non-smoking. Cleaning fees may apply in case of violation.",
         },
         {
           question: "What should I do if I’m involved in an accident?",
-          answer: "You’ll find a detailed checklist and documents in the glove compartment. Stay calm, secure the site, help the injured, and call the police (117)."
-        }
-      ]
+          answer:
+            "You’ll find a detailed checklist and documents in the glove compartment. Stay calm, secure the site, help the injured, and call the police (117).",
+        },
+      ],
     },
     {
       title: "End of Trip / Vehicle Return",
       items: [
         {
           question: "What if I can’t return the vehicle on time?",
-          answer: "Please plan enough time and extend your reservation in advance by contacting your station or calling +41 44 442 30 35. Late returns may incur fees."
+          answer:
+            "Please plan enough time and extend your reservation in advance by contacting your station or calling +41 44 442 30 35. Late returns may incur fees.",
         },
         {
           question: "Can I return the vehicle earlier than planned?",
-          answer: "Early returns may result in rate adjustments and additional charges. Refunds are not possible."
+          answer:
+            "Early returns may result in rate adjustments and additional charges. Refunds are not possible.",
         },
         {
           question: "Can I return the vehicle later than planned?",
-          answer: "Unless you’ve received a confirmed extension, the vehicle must be returned at the end of your rental. Late returns will incur fees."
+          answer:
+            "Unless you’ve received a confirmed extension, the vehicle must be returned at the end of your rental. Late returns will incur fees.",
         },
         {
           question: "Do I need to clean the van before returning it?",
-          answer: "We take care of cleaning, but kindly dispose of any trash and leave the cargo area broom-clean. Excessive dirt may result in additional cleaning charges."
+          answer:
+            "We take care of cleaning, but kindly dispose of any trash and leave the cargo area broom-clean. Excessive dirt may result in additional cleaning charges.",
         },
         {
           question: "Do I need to refuel or recharge the van?",
-          answer: "Fuel and electricity are not included in the rental rate. You must return the vehicle with the same fuel level. We offer a refueling/recharging service for an extra fee, which will be listed on your invoice. Of course, you can also refuel/recharge the vehicle yourself at no extra cost."
-        }
-      ]
+          answer:
+            "Fuel and electricity are not included in the rental rate. You must return the vehicle with the same fuel level. We offer a refueling/recharging service for an extra fee, which will be listed on your invoice. Of course, you can also refuel/recharge the vehicle yourself at no extra cost.",
+        },
+      ],
     },
     {
       title: "Payment",
       items: [
         {
           question: "How do I receive my invoice?",
-          answer: "An invoice will be issued at the end of each rental. You will receive it directly at the station or by email. (Exceptions may apply for corporate clients.)"
+          answer:
+            "An invoice will be issued at the end of each rental. You will receive it directly at the station or by email. (Exceptions may apply for corporate clients.)",
         },
         {
           question: "What payment methods are accepted?",
-          answer: "You can pay using credit cards (American Express, MasterCard, Visa) or cash at the station during business hours. A deposit is required if no credit card is provided."
-        }
-      ]
+          answer:
+            "You can pay using credit cards (American Express, MasterCard, Visa) or cash at the station during business hours. A deposit is required if no credit card is provided.",
+        },
+      ],
     },
     {
       title: "Vehicles",
       items: [
         {
           question: "Do you have vehicles with a trailer hitch?",
-          answer: "Some vehicles are equipped with trailer hitches. Use is only permitted with prior approval. Always observe the maximum towing capacity."
+          answer:
+            "Some vehicles are equipped with trailer hitches. Use is only permitted with prior approval. Always observe the maximum towing capacity.",
         },
         {
           question: "Can your vans be equipped with child seats?",
-          answer: "Explore Vacations AG does not provide installed child seats and cannot take responsibility for their installation. Some vehicles do not allow deactivation of the front airbag."
+          answer:
+            "Explore Vacations AG does not provide installed child seats and cannot take responsibility for their installation. Some vehicles do not allow deactivation of the front airbag.",
         },
         {
           question: "Are Explore Vacations AG vans winter-ready?",
-          answer: "Yes, all vehicles undergo a winter check. We install winter or all-weather tires, add windshield antifreeze, and provide an ice scraper. Textile snow socks are also available."
-        }
-      ]
+          answer:
+            "Yes, all vehicles undergo a winter check. We install winter or all-weather tires, add windshield antifreeze, and provide an ice scraper. Textile snow socks are also available.",
+        },
+      ],
     },
     {
       title: "Private Customers",
       items: [
         {
           question: "What is the minimum age to rent a vehicle?",
-          answer: "You must be at least 19 years old and have held a valid driver’s license for at least one year."
-        }
-      ]
+          answer:
+            "You must be at least 19 years old and have held a valid driver’s license for at least one year.",
+        },
+      ],
     },
     {
       title: "Lost Items",
       items: [
         {
           question: "I found items in the vehicle – what should I do?",
-          answer: "Please report any found items to staff at your Explore Vacations AG station or call +41 44 442 30 35."
+          answer:
+            "Please report any found items to staff at your Explore Vacations AG station or call +41 44 442 30 35.",
         },
         {
           question: "I forgot something in the vehicle – what should I do?",
-          answer: "Please contact your Explore Vacations AG station or call us at +41 44 442 30 35 to request a search. This service costs CHF 80.– even if the item is not found."
-        }
-      ]
+          answer:
+            "Please contact your Explore Vacations AG station or call us at +41 44 442 30 35 to request a search. This service costs CHF 80.– even if the item is not found.",
+        },
+      ],
     },
     {
       title: "Abroad",
       items: [
         {
           question: "Can I drive the Explore Vacations AG van abroad?",
-          answer: "Yes, but a Cross Border Fee (CBF) starting from CHF 185.00 (incl. VAT) applies. Please refer to the travel restrictions for each country and vehicle category in your rental terms."
-        }
-      ]
-    }
+          answer:
+            "Yes, but a Cross Border Fee (CBF) starting from CHF 185.00 (incl. VAT) applies. Please refer to the travel restrictions for each country and vehicle category in your rental terms.",
+        },
+      ],
+    },
   ];
-  
+
   const selectedTopic = faqTopics[selectedTopicIndex];
   const services = [
     {
@@ -494,53 +536,52 @@ export default function Home() {
     },
   ];
 
-    const fetchData = async () => {
-      try {
-        console.log("Verify Token Running --- ");
-  
-        const listDestinations = await Axios.get(
-          import.meta.env.VITE_API_URL + "/userRoutes/listDestination",
-          {
-            headers: {
-              Authorization: localStorage.getItem("JWTtoken"),
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        console.log("listDestinations------------------>", listDestinations);
-        const destinationData = decrypt(
-          listDestinations.data[1],
-          listDestinations.data[0],
-          import.meta.env.VITE_ENCRYPTION_KEY
-        );
-        console.log("data list tour data ======= line 738", destinationData);
-        setDestinationData(destinationData.Details);
-        // setTourDetailsBackend(destinationData.tourDetails);
-  
-        const listTourResponse = await Axios.get(
-          import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
-          {
-            headers: {
-              Authorization: localStorage.getItem("JWTtoken"),
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = decrypt(
-          listTourResponse.data[1],
-          listTourResponse.data[0],
-          import.meta.env.VITE_ENCRYPTION_KEY
-        );
-        console.log("data list tour data ======= ?", data);
-        setTourDetailsBackend(data.tourDetails);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-      useEffect(() => {
-       
-        fetchData();
-      }, []);
+  const fetchData = async () => {
+    try {
+      console.log("Verify Token Running --- ");
+
+      const listDestinations = await Axios.get(
+        import.meta.env.VITE_API_URL + "/userRoutes/listDestination",
+        {
+          headers: {
+            Authorization: localStorage.getItem("JWTtoken"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("listDestinations------------------>", listDestinations);
+      const destinationData = decrypt(
+        listDestinations.data[1],
+        listDestinations.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+      console.log("data list tour data ======= line 738", destinationData);
+      setDestinationData(destinationData.Details);
+      // setTourDetailsBackend(destinationData.tourDetails);
+
+      const listTourResponse = await Axios.get(
+        import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
+        {
+          headers: {
+            Authorization: localStorage.getItem("JWTtoken"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = decrypt(
+        listTourResponse.data[1],
+        listTourResponse.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+      console.log("data list tour data ======= ?", data);
+      setTourDetailsBackend(data.tourDetails);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="">
@@ -702,65 +743,65 @@ export default function Home() {
 
                 <Button label="Explore" className="" onClick={handleExplore} />
               </div> */}
-               <div className="flex gap-3 lg:flex-row flex-column">
-                        <div className="p-inputgroup flex-1">
-                          <span className="p-inputgroup-addon">
-                            <i className="pi pi-map-marker"></i>
-                          </span>
-                          <Dropdown
-                            value={tourDestination}
-                            onChange={(e) => setTourDestination(e.value)}
-                            options={destinationData.map((item) => ({
-                              ...item,
-                              refDestinationName:
-                                item.refDestinationName.charAt(0).toUpperCase() +
-                                item.refDestinationName.slice(1).toLowerCase(),
-                            }))}
-                            optionLabel="refDestinationName"
-                            optionValue="refDestinationId"
-                            placeholder="Select Destination"
-                            className="flex-1 capitalize"
-                          />
-                        </div>
-              
-                        <div className="p-inputgroup flex-1">
-                          <span className="p-inputgroup-addon">
-                            <i className="pi pi-calendar-clock"></i>
-                          </span>
-                          <Calendar
-                            value={tourFromDate}
-                            placeholder="From"
-                            className="flex-1"
-                            onChange={(e) => setTourFromDate(e.value)}
-                          />
-                        </div>
-              
-                        <div className="p-inputgroup flex-1">
-                          <span className="p-inputgroup-addon">
-                            <i className="pi pi-calendar-clock"></i>
-                          </span>
-                          <Calendar
-                            className="flex-1"
-                            placeholder="To"
-                            value={tourToDate}
-                            onChange={(e) => setTourToDate(e.value)}
-                          />
-                        </div>
-              
-                        <div className="p-inputgroup flex-1">
-                          <span className="p-inputgroup-addon">
-                            <i className="pi pi-user"></i>
-                          </span>
-                          <InputNumber
-                            value={tourGuest}
-                            className="flex-1"
-                            placeholder="Guest"
-                            onValueChange={(e) => setTourGuest(e.value)}
-                          />
-                        </div>
-              
-                        <Button label="Explore" className="" onClick={handleExplore} />
-                      </div>
+              <div className="flex gap-3 lg:flex-row flex-column">
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-map-marker"></i>
+                  </span>
+                  <Dropdown
+                    value={tourDestination}
+                    onChange={(e) => setTourDestination(e.value)}
+                    options={destinationData.map((item) => ({
+                      ...item,
+                      refDestinationName:
+                        item.refDestinationName.charAt(0).toUpperCase() +
+                        item.refDestinationName.slice(1).toLowerCase(),
+                    }))}
+                    optionLabel="refDestinationName"
+                    optionValue="refDestinationId"
+                    placeholder="Select Destination"
+                    className="flex-1 capitalize"
+                  />
+                </div>
+
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    value={tourFromDate}
+                    placeholder="From"
+                    className="flex-1"
+                    onChange={(e) => setTourFromDate(e.value)}
+                  />
+                </div>
+
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    className="flex-1"
+                    placeholder="To"
+                    value={tourToDate}
+                    onChange={(e) => setTourToDate(e.value)}
+                  />
+                </div>
+
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-user"></i>
+                  </span>
+                  <InputNumber
+                    value={tourGuest}
+                    className="flex-1"
+                    placeholder="Guest"
+                    onValueChange={(e) => setTourGuest(e.value)}
+                  />
+                </div>
+
+                <Button label="Explore" className="" onClick={handleExplore} />
+              </div>
             </div>
             <div
               className={`px-6 py-4 ${
@@ -1083,78 +1124,79 @@ export default function Home() {
             Popular Travel Destinations Available Worldwide
           </p>
         </div>
-
-
-
       </div>
-
-
 
       <div className="">
         <div className="flex flex-column items-center justify-center">
           <p className="testingFont text-black text-2xl font-bold">
-          Frequently Asked Questions
+            Frequently Asked Questions
           </p>
           <p className="text-4xl text-center pt-3 font-bold text-black">
             See Those Lovely Words From Clients
           </p>
 
-
-
           <div className="mt-10 mb-5 w-[80%]">
-      {/* Dropdown */}
-      <div className="mb-6">
-        <label htmlFor="faq-topic" className="block mb-2 font-semibold testingFont text-black text-2xl">
-          Select a topic
-        </label>
-        <select
-          id="faq-topic"
-          value={selectedTopicIndex}
-          onChange={handleTopicChange}
-          className="p-2 border border-gray-300 rounded-md italic w-[100%] max-w-sm text-[#002E2C]"
-        >
-          {faqTopics.map((topic, index) => (
-            <option key={index} value={index}>
-              {topic.title}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* FAQ List */}
-      <div className="w-[100%]">
-        {selectedTopic.items.map((faq, index) => {
-          const isOpen = openIndex === index;
-          return (
-            <div key={index} className="pb-3">
-              <button
-                className="flex justify-between items-center italic w-[100%] text-[20px] md:text-[20px] font-light text-[#002E2C]"
-                onClick={() => setOpenIndex(isOpen ? -1 : index)}
+            {/* Dropdown */}
+            <div className="mb-6">
+              <label
+                htmlFor="faq-topic"
+                className="block mb-2 font-semibold testingFont text-black text-2xl"
               >
-                {faq.question}
-                {isOpen ? <FaMinus className="text-[#002E2C] " /> : <FaPlus className="text-[#002E2C]" />}
-              </button>
-
-              <AnimatePresence>
-                {isOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <p className="mt-2 text-[16px] text-gray-600">{faq.answer}</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                Select a topic
+              </label>
+              <select
+                id="faq-topic"
+                value={selectedTopicIndex}
+                onChange={handleTopicChange}
+                className="p-2 border border-gray-300 rounded-md italic w-[100%] max-w-sm text-[#002E2C]"
+              >
+                {faqTopics.map((topic, index) => (
+                  <option key={index} value={index}>
+                    {topic.title}
+                  </option>
+                ))}
+              </select>
             </div>
-          );
-        })}
-      </div>
-    </div>
 
+            {/* FAQ List */}
+            <div className="w-[100%]">
+              {selectedTopic.items.map((faq, index) => {
+                const isOpen = openIndex === index;
+                return (
+                  <div key={index} className="pb-3">
+                    <button
+                      className="flex justify-between items-center italic w-[100%] text-[20px] md:text-[20px] font-light text-[#002E2C]"
+                      onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                    >
+                      {faq.question}
+                      {isOpen ? (
+                        <FaMinus className="text-[#002E2C] " />
+                      ) : (
+                        <FaPlus className="text-[#002E2C]" />
+                      )}
+                    </button>
+
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <p className="mt-2 text-[16px] text-gray-600">
+                            {faq.answer}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
-      </div> 
+      </div>
     </div>
   );
 }
