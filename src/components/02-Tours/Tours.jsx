@@ -9,7 +9,7 @@ import { Toast } from "primereact/toast";
 import decrypt from "../../helper";
 
 import Axios from "axios";
-s
+
 import tourImg from "../../assets/tours/startAdventure.jpg";
 
 export default function Tours() {
