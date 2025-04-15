@@ -27,6 +27,8 @@ import bags from "../../assets/cars/bags.svg";
 import decrypt from "../../helper";
 import axios from "axios";
 
+import tourImg from "../../assets/cars/luxury.jpg";
+
 export default function Cars() {
   const toast = useRef(null);
   const navigate = useNavigate();
@@ -153,7 +155,7 @@ export default function Cars() {
         {
           refUserName: "John Doe",
           refUserMail: "johndoe@example.com",
-          refUserMobile: "+1234567890",
+          refUserMobile: "1234567890",
           refPickupAddress: "123 Main Street, NY",
           refSubmissionAddress: "456 Elm Street, NY",
           refPickupDate: "2025-04-01",
@@ -280,11 +282,21 @@ export default function Cars() {
               key={car.refCarsId}
               className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
             >
-              <img
-                src={`data:${car.refCarPath.contentType};base64,${car.refCarPath.content}`}
-                alt={car.refVehicleTypeName}
-                className="w-full object-cover aspect-[4/3]"
-              />
+              {car.refCarPath === null ? (
+                <>
+                  <img src={tourImg} alt="Alt Image for Tours" />
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <img
+                    src={`data:${car.refCarPath.contentType};base64,${car.refCarPath.content}`}
+                    alt={car.refVehicleTypeName}
+                    className="w-full object-cover aspect-[4/3]"
+                  />
+                </>
+              )}
+
               <div className="px-4 pt-4 flex-grow">
                 <h3 className="text-lg font-semibold text-black line-clamp-1">
                   {car.refVehicleTypeName}

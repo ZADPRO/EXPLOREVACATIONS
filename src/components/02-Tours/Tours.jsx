@@ -9,6 +9,8 @@ import { Toast } from "primereact/toast";
 import decrypt from "../../helper";
 
 import Axios from "axios";
+s
+import tourImg from "../../assets/tours/startAdventure.jpg";
 
 export default function Tours() {
   const location = useLocation();
@@ -33,52 +35,52 @@ export default function Tours() {
   const [destinationData, setDestinationData] = useState([]);
 
   const navigate = useNavigate();
+  const fetchData = async () => {
+    try {
+      console.log("Verify Token Running --- ");
+
+      const listDestinations = await Axios.get(
+        import.meta.env.VITE_API_URL + "/userRoutes/listDestination",
+        {
+          headers: {
+            Authorization: localStorage.getItem("JWTtoken"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("listDestinations------------------>", listDestinations);
+      const destinationData = decrypt(
+        listDestinations.data[1],
+        listDestinations.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+      console.log("data list tour data ======= line 738", destinationData);
+      setDestinationData(destinationData.Details);
+      // setTourDetailsBackend(destinationData.tourDetails);
+
+      const listTourResponse = await Axios.get(
+        import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
+        {
+          headers: {
+            Authorization: localStorage.getItem("JWTtoken"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = decrypt(
+        listTourResponse.data[1],
+        listTourResponse.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+      console.log("data list tour data ======= ?", data);
+      setTourDetailsBackend(data.tourDetails);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log("Verify Token Running --- ");
-
-        const listDestinations = await Axios.get(
-          import.meta.env.VITE_API_URL + "/userRoutes/listDestination",
-          {
-            headers: {
-              Authorization: localStorage.getItem("JWTtoken"),
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        console.log('listDestinations', listDestinations)
-        const destinationData = decrypt(
-          listDestinations.data[1],
-          listDestinations.data[0],
-          import.meta.env.VITE_ENCRYPTION_KEY
-        );
-        console.log("data list tour data ======= line 738", destinationData);
-        setDestinationData(destinationData.Details);
-        // setTourDetailsBackend(destinationData.tourDetails);
-
-        const listTourResponse = await Axios.get(
-          import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
-          {
-            headers: {
-              Authorization: localStorage.getItem("JWTtoken"),
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = decrypt(
-          listTourResponse.data[1],
-          listTourResponse.data[0],
-          import.meta.env.VITE_ENCRYPTION_KEY
-        );
-        console.log("data list tour data ======= ?", data);
-        setTourDetailsBackend(data.tourDetails);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
+    
     fetchData();
   }, []);
 
@@ -98,8 +100,10 @@ export default function Tours() {
     setFilterApplied(true);
   };
 
+  console.log("tourDetailsBackend", tourDetailsBackend);
   const filteredTours = filterApplied
     ? tourDetailsBackend.filter((tour) => {
+        console.log("tour", tour);
         const fromDate = tourFromDate ? new Date(tourFromDate) : null;
         const toDate = tourToDate ? new Date(tourToDate) : null;
 
@@ -208,7 +212,7 @@ export default function Tours() {
 
       <div className="container mx-auto px-6 mt-8 w-full pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:w-10/12 mx-auto justify-center">
-          {filteredTours.length > 0 ? (
+          {filteredTours && filteredTours.length > 0 ? (
             filteredTours.map((tour) => (
               <div
                 key={tour.id}
@@ -218,11 +222,21 @@ export default function Tours() {
                   window.scrollTo(0, 0);
                 }}
               >
-                <img
-                  src={`data:${tour.refCoverImage.contentType};base64,${tour.refCoverImage.content}`}
-                  alt={tour.title}
-                  className="w-full object-cover aspect-[4/3]"
-                />
+                {tour.refCoverImage === null ? (
+                  <>
+                    <img src={tourImg} alt="Alt Image for Tours" />
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <img
+                      src={`data:${tour.refCoverImage.contentType};base64,${tour.refCoverImage.content}`}
+                      alt={tour.title}
+                      className="w-full object-cover aspect-[4/3]"
+                    />
+                  </>
+                )}
+
                 <div className="px-4 pt-4 flex-grow">
                   <h3 className="text-lg font-semibold text-black line-clamp-1">
                     {tour.refPackageName}
