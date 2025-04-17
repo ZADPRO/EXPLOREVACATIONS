@@ -787,10 +787,11 @@ export default function Home() {
                     value={tourFromDate}
                     placeholder="From"
                     className="flex-1"
+                    minDate={new Date()} // Prevent past date selection
                     onChange={(e) => {
                       setTourFromDate(e.value);
                       if (tourToDate && e.value > tourToDate) {
-                        setTourToDate(null); // reset to date if it's earlier than from date
+                        setTourToDate(null);
                       }
                     }}
                   />

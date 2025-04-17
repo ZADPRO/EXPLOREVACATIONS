@@ -174,30 +174,45 @@ export default function Tours() {
               className="flex-1 capitalize"
             />
           </div>
+{/* From Date */}
+<div className="p-inputgroup flex-1">
+  <span className="p-inputgroup-addon">
+    <i className="pi pi-calendar-clock"></i>
+  </span>
+  <Calendar
+    value={tourFromDate}
+    placeholder="From"
+    className="flex-1"
+    minDate={new Date()}
+    onChange={(e) => {
+      setTourFromDate(e.value);
+      // Optional: reset To Date if it's before the next valid date
+      const nextDay = new Date(e.value);
+      nextDay.setDate(nextDay.getDate() + 1);
+      if (!tourToDate || tourToDate <= e.value) {
+        setTourToDate(null);
+      }
+    }}
+  />
+</div>
 
-          <div className="p-inputgroup flex-1">
-            <span className="p-inputgroup-addon">
-              <i className="pi pi-calendar-clock"></i>
-            </span>
-            <Calendar
-              value={tourFromDate}
-              placeholder="From"
-              className="flex-1"
-              onChange={(e) => setTourFromDate(e.value)}
-            />
-          </div>
-
-          <div className="p-inputgroup flex-1">
-            <span className="p-inputgroup-addon">
-              <i className="pi pi-calendar-clock"></i>
-            </span>
-            <Calendar
-              className="flex-1"
-              placeholder="To"
-              value={tourToDate}
-              onChange={(e) => setTourToDate(e.value)}
-            />
-          </div>
+{/* To Date */}
+<div className="p-inputgroup flex-1">
+  <span className="p-inputgroup-addon">
+    <i className="pi pi-calendar-clock"></i>
+  </span>
+  <Calendar
+    className="flex-1"
+    placeholder="To"
+    value={tourToDate}
+    onChange={(e) => setTourToDate(e.value)}
+    minDate={
+      tourFromDate
+        ? new Date(new Date(tourFromDate).setDate(new Date(tourFromDate).getDate() + 1))
+        : new Date()
+    }
+  />
+</div>
 
           <div className="p-inputgroup flex-1">
             <span className="p-inputgroup-addon">

@@ -255,6 +255,12 @@ export default function Cars() {
       );
       console.log("data list tour data ======= ?", data);
       if (data.success) {
+        toast.current?.show({
+          severity: "success",
+          summary: "Success",
+          detail: "Added successfully!",
+          life: 3000,
+        });
         // localStorage.setItem("token", "Bearer " + data.token);
       }
     } catch (error) {

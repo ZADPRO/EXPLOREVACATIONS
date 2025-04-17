@@ -13,11 +13,11 @@ import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { FloatLabel } from "primereact/floatlabel";
-import { Toast } from "primereact/toast";
+
 import { InputTextarea } from "primereact/inputtextarea";
 import { FileUpload } from "primereact/fileupload";
 import { useLocation } from "react-router-dom";
-
+import { Toast } from "primereact/toast";
 import { TabView, TabPanel } from "primereact/tabview";
 import Axios from "axios";
 
@@ -27,11 +27,11 @@ export default function ToursTemplate() {
   const location = useLocation();
   const tour = location.state?.tour;
   console.log("tour", tour);
-
+  const toast = useRef(null);
   const [ismodelOpen, setIsModelOpen] = useState(false);
   const [modelOpen, setModelOpen] = useState(false);
 
-  const toast = useRef(null);
+  // const toast = useRef(null);
 
   const [packageId, setPackageId] = useState();
   const [galleryImg, SetGalleryImg] = useState([]);
@@ -103,6 +103,12 @@ export default function ToursTemplate() {
       );
       console.log("data list tour data ======= ?", data);
       if (data.success) {
+        toast.current.show({
+          severity: "success",
+          summary: "Success",
+          detail: "Added successfully!",
+          life: 3000,
+        });
         // localStorage.setItem("token", "Bearer " + data.token);
         setIsModelOpen(false);
       }
@@ -151,6 +157,12 @@ export default function ToursTemplate() {
       );
       console.log("Customise Tour----------->", data);
       if (data.success) {
+        toast.current.show({
+          severity: "success",
+          summary: "Success",
+          detail: "Added successfully!",
+          life: 3000,
+        });
         // localStorage.setItem("token", "Bearer " + data.token);
         setModelOpen(false);
       }
@@ -387,8 +399,8 @@ export default function ToursTemplate() {
 
   return (
     <div>
-      <Toast ref={toast} />
-
+      
+     <Toast ref={toast} />
       <div className="tourBannerBg01 relative h-[60vh] flex items-center justify-center text-white text-3xl font-bold">
         {/* Centered Text Here */}
       </div>
@@ -563,6 +575,7 @@ export default function ToursTemplate() {
           setIsModelOpen(false);
         }}
       >
+       
         <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">
             <FloatLabel className="w-[100%]">
@@ -860,6 +873,7 @@ export default function ToursTemplate() {
               <InputText
                 className="w-[100%] lg:w-[50%] "
                 value={formData.refVaccinationType}
+                placeholder="Yes/No"
                 onChange={(e) => {
                   setFromDate({
                     ...formData,
