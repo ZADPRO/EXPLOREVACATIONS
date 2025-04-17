@@ -17,9 +17,9 @@ import home4 from "../../assets/homeCards/card4.jpg";
 import decrypt from "../../helper";
 import Axios from "axios";
 import Glide from "@glidejs/glide";
-import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 
 import { Carousel } from "primereact/carousel";
 
@@ -538,7 +538,6 @@ export default function Home() {
         "Our trust and professionalism are based on our many years of experience with highly qualified professional chauffeurs",
     },
   ];
-  
 
   const fetchData = async () => {
     try {
@@ -560,7 +559,8 @@ export default function Home() {
         import.meta.env.VITE_ENCRYPTION_KEY
       );
       console.log("data list tour data ======= line 738", destinationData);
-      if (data.success) {
+      console.log("destinationData.Details", destinationData.Details);
+      if (destinationData.success) {
         // localStorage.setItem("token", "Bearer " + data.token);
         // setIsModelOpen(false);
         setDestinationData(destinationData.Details);
@@ -756,98 +756,91 @@ export default function Home() {
 
                 <Button label="Explore" className="" onClick={handleExplore} />
               </div> */}
-            <div className="flex gap-3 lg:flex-row flex-column">
-  {/* Destination Dropdown */}
-  <div className="p-inputgroup flex-1">
-    <span className="p-inputgroup-addon">
-      <i className="pi pi-map-marker"></i>
-    </span>
-    <Dropdown
-      value={tourDestination}
-      onChange={(e) => setTourDestination(e.value)}
-      options={destinationData.map((item) => ({
-        ...item,
-        refDestinationName:
-          item.refDestinationName.charAt(0).toUpperCase() +
-          item.refDestinationName.slice(1).toLowerCase(),
-      }))}
-      optionLabel="refDestinationName"
-      optionValue="refDestinationId"
-      placeholder="Select Destination"
-      className="flex-1 capitalize"
-    />
-  </div>
+              <div className="flex gap-3 lg:flex-row flex-column">
+                {/* Destination Dropdown */}
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-map-marker"></i>
+                  </span>
+                  <Dropdown
+                    value={tourDestination}
+                    onChange={(e) => setTourDestination(e.value)}
+                    options={destinationData.map((item) => ({
+                      ...item,
+                      refDestinationName:
+                        item.refDestinationName.charAt(0).toUpperCase() +
+                        item.refDestinationName.slice(1).toLowerCase(),
+                    }))}
+                    optionLabel="refDestinationName"
+                    optionValue="refDestinationId"
+                    placeholder="Select Destination"
+                    className="flex-1 capitalize"
+                  />
+                </div>
 
-  {/* From Date */}
-  <div className="p-inputgroup flex-1">
-    <span className="p-inputgroup-addon">
-      <i className="pi pi-calendar-clock"></i>
-    </span>
-    <Calendar
-      value={tourFromDate}
-      placeholder="From"
-      className="flex-1"
-      onChange={(e) => {
-        setTourFromDate(e.value);
-        if (tourToDate && e.value > tourToDate) {
-          setTourToDate(null); // reset to date if it's earlier than from date
-        }
-      }}
-    />
-  </div>
+                {/* From Date */}
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    value={tourFromDate}
+                    placeholder="From"
+                    className="flex-1"
+                    onChange={(e) => {
+                      setTourFromDate(e.value);
+                      if (tourToDate && e.value > tourToDate) {
+                        setTourToDate(null); // reset to date if it's earlier than from date
+                      }
+                    }}
+                  />
+                </div>
 
-  {/* To Date (minDate is set to From Date) */}
-  <div className="p-inputgroup flex-1">
-    <span className="p-inputgroup-addon">
-      <i className="pi pi-calendar-clock"></i>
-    </span>
-    <Calendar
-      className="flex-1"
-      placeholder="To"
-      value={tourToDate}
-      onChange={(e) => setTourToDate(e.value)}
-      minDate={tourFromDate}
-    />
-  </div>
+                {/* To Date (minDate is set to From Date) */}
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    className="flex-1"
+                    placeholder="To"
+                    value={tourToDate}
+                    onChange={(e) => setTourToDate(e.value)}
+                    minDate={tourFromDate}
+                  />
+                </div>
 
-  {/* Guest Input */}
-  <div className="p-inputgroup flex-1">
-    <span className="p-inputgroup-addon">
-      <i className="pi pi-user"></i>
-    </span>
-    <InputNumber
-      value={tourGuest}
-      className="flex-1"
-      placeholder="Guest"
-      onValueChange={(e) => setTourGuest(e.value)}
-    />
-  </div>
+                {/* Guest Input */}
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-user"></i>
+                  </span>
+                  <InputNumber
+                    value={tourGuest}
+                    className="flex-1"
+                    placeholder="Guest"
+                    onValueChange={(e) => setTourGuest(e.value)}
+                  />
+                </div>
 
-  {/* Explore Button */}
-  <Button label="Explore" className="" onClick={handleExplore} />
-</div>
-
+                {/* Explore Button */}
+                <Button label="Explore" className="" onClick={handleExplore} />
+              </div>
             </div>
 
-
-
-
-
-
-            
             <div
-  className={`px-6 py-4 overflow-x-auto ${
-    tabSelected.currentTab === 2 ? "" : "hidden"
-  }`}
-  id="tab-panel-2ai"
-  aria-selected={tabSelected.currentTab === 2 ? "true" : "false"}
-  role="tabpanel"
-  aria-labelledby="tab-label-2ai"
-  tabIndex="-1"
->
-  <div className="flex gap-5 min-w-max">
-    {/* Pickup Location */}
-    {/* <div className="p-inputgroup flex-1 min-w-[250px]">
+              className={`px-6 py-4 overflow-x-auto ${
+                tabSelected.currentTab === 2 ? "" : "hidden"
+              }`}
+              id="tab-panel-2ai"
+              aria-selected={tabSelected.currentTab === 2 ? "true" : "false"}
+              role="tabpanel"
+              aria-labelledby="tab-label-2ai"
+              tabIndex="-1"
+            >
+              <div className="flex gap-5 min-w-max">
+                {/* Pickup Location */}
+                {/* <div className="p-inputgroup flex-1 min-w-[250px]">
       <span className="p-inputgroup-addon">
         <i className="pi pi-map-marker"></i>
       </span>
@@ -861,24 +854,24 @@ export default function Home() {
       />
     </div> */}
 
-    {/* Pickup Date & Time */}
-    <div className="p-inputgroup flex-1 min-w-[250px]">
-      <span className="p-inputgroup-addon">
-        <i className="pi pi-calendar-clock"></i>
-      </span>
-      <Calendar
-        id="pickup-calendar"
-        value={carPickupDateTime}
-        className="w-full"
-        onChange={(e) => setCarPickupDateTime(e.value)}
-        showTime
-        placeholder="Pickup Date & Time"
-        hourFormat="12"
-      />
-    </div>
+                {/* Pickup Date & Time */}
+                <div className="p-inputgroup flex-1 min-w-[250px]">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    id="pickup-calendar"
+                    value={carPickupDateTime}
+                    className="w-full"
+                    onChange={(e) => setCarPickupDateTime(e.value)}
+                    showTime
+                    placeholder="Pickup Date & Time"
+                    hourFormat="12"
+                  />
+                </div>
 
-    {/* Drop Off Location */}
-    {/* <div className="p-inputgroup flex-1 min-w-[250px]">
+                {/* Drop Off Location */}
+                {/* <div className="p-inputgroup flex-1 min-w-[250px]">
       <span className="p-inputgroup-addon">
         <i className="pi pi-map-marker"></i>
       </span>
@@ -892,36 +885,33 @@ export default function Home() {
       />
     </div> */}
 
-    {/* Drop Off Date & Time */}
-    <div className="p-inputgroup flex-1 min-w-[250px]">
-      <span className="p-inputgroup-addon">
-        <i className="pi pi-calendar-clock"></i>
-      </span>
-      <Calendar
-        id="drop-calendar"
-        value={carDropDateTime}
-        onChange={(e) => setCarDropDateTime(e.value)}
-        className="w-full"
-        showTime
-        placeholder="Drop Off Date & Time"
-        hourFormat="12"
-      />
-    </div>
+                {/* Drop Off Date & Time */}
+                <div className="p-inputgroup flex-1 min-w-[250px]">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    id="drop-calendar"
+                    value={carDropDateTime}
+                    onChange={(e) => setCarDropDateTime(e.value)}
+                    className="w-full"
+                    showTime
+                    placeholder="Drop Off Date & Time"
+                    hourFormat="12"
+                  />
+                </div>
 
-    {/* Explore Button */}
-    <div className="flex items-center min-w-[150px]">
-      <Button
-        label="Explore"
-        className="ml-2"
-        onClick={() => navigate("/cars")}
-      />
-    </div>
-  </div>
-</div>
+                {/* Explore Button */}
+                <div className="flex items-center min-w-[150px]">
+                  <Button
+                    label="Explore"
+                    className="ml-2"
+                    onClick={() => navigate("/cars")}
+                  />
+                </div>
+              </div>
+            </div>
 
-
-
-            
             <div
               className={`px-6 py-4 ${
                 tabSelected.currentTab === 3 ? "" : "hidden"
