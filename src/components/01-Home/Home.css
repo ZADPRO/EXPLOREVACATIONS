@@ -6,7 +6,7 @@
 
 @media (max-width: 640px) {
   .homePageContainer01 {
-    background: url("../../assets/home/homeBg2.png") no-repeat center;
+    background: url("../../assets/home/homebg2.jpg") no-repeat center;
     background-size: cover;
   }
 }
