@@ -17,6 +17,9 @@ import home4 from "../../assets/homeCards/card4.jpg";
 import decrypt from "../../helper";
 import Axios from "axios";
 import Glide from "@glidejs/glide";
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
 import { Carousel } from "primereact/carousel";
 
@@ -535,6 +538,7 @@ export default function Home() {
         "Our trust and professionalism are based on our many years of experience with highly qualified professional chauffeurs",
     },
   ];
+  
 
   const fetchData = async () => {
     try {
@@ -556,7 +560,12 @@ export default function Home() {
         import.meta.env.VITE_ENCRYPTION_KEY
       );
       console.log("data list tour data ======= line 738", destinationData);
-      setDestinationData(destinationData.Details);
+      if (data.success) {
+        localStorage.setItem("token", "Bearer " + data.token);
+        // setIsModelOpen(false);
+        setDestinationData(destinationData.Details);
+      }
+
       // setTourDetailsBackend(destinationData.tourDetails);
 
       const listTourResponse = await Axios.get(
@@ -574,7 +583,11 @@ export default function Home() {
         import.meta.env.VITE_ENCRYPTION_KEY
       );
       console.log("data list tour data ======= ?", data);
-      setTourDetailsBackend(data.tourDetails);
+      if (data.success) {
+        localStorage.setItem("token", "Bearer " + data.token);
+        // setIsModelOpen(false);
+        setTourDetailsBackend(data.tourDetails);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -650,7 +663,7 @@ export default function Home() {
                 <CarFront />
               </button>
             </li>
-            <li className="" role="presentation">
+            {/* <li className="" role="presentation">
               <button
                 className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-emerald-50 hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
                   tabSelected.currentTab === 3
@@ -675,7 +688,7 @@ export default function Home() {
                   <CarTaxiFront />{" "}
                 </span>
               </button>
-            </li>
+            </li> */}
           </ul>
           <div className="">
             <div
@@ -803,81 +816,100 @@ export default function Home() {
                 <Button label="Explore" className="" onClick={handleExplore} />
               </div>
             </div>
-            <div
-              className={`px-6 py-4 ${
-                tabSelected.currentTab === 2 ? "" : "hidden"
-              }`}
-              id="tab-panel-2ai"
-              aria-selected={`${
-                tabSelected.currentTab === 2 ? "true" : "false"
-              }`}
-              role="tabpanel"
-              aria-labelledby="tab-label-2ai"
-              tabindex="-1"
-            >
-              <div className="flex gap-3 lg:flex-row flex-column">
-                <div className="p-inputgroup flex-1">
-                  <span className="p-inputgroup-addon">
-                    <i className="pi pi-map-marker"></i>
-                  </span>
-                  <Dropdown
-                    value={carPickupLocation}
-                    onChange={(e) => setCarPickupLocation(e.value)}
-                    options={cities}
-                    optionLabel="name"
-                    placeholder="Pickup Location"
-                    className="flex-1"
-                  />{" "}
-                </div>
-                <div className="p-inputgroup flex-1">
-                  <span className="p-inputgroup-addon">
-                    <i className="pi pi-calendar-clock"></i>
-                  </span>
-                  <Calendar
-                    id="calendar-12h"
-                    value={carPickupDateTime}
-                    className="flex-1"
-                    onChange={(e) => setCarPickupDateTime(e.value)}
-                    showTime
-                    placeholder="Pickup Date & Time"
-                    hourFormat="12"
-                  />
-                </div>
-                <div className="p-inputgroup flex-1">
-                  <span className="p-inputgroup-addon">
-                    <i className="pi pi-map-marker"></i>
-                  </span>
-                  <Dropdown
-                    value={carDropLocation}
-                    onChange={(e) => setCarDropLocation(e.value)}
-                    options={cities}
-                    optionLabel="name"
-                    placeholder="Drop Off Location"
-                    className="flex-1"
-                  />{" "}
-                </div>
-                <div className="p-inputgroup flex-1">
-                  <span className="p-inputgroup-addon">
-                    <i className="pi pi-calendar-clock"></i>
-                  </span>
-                  <Calendar
-                    id="calendar-12h"
-                    value={carDropDateTime}
-                    onChange={(e) => setCarDropDateTime(e.value)}
-                    className="flex-1"
-                    showTime
-                    placeholder="Drop Off Date & Time"
-                    hourFormat="12"
-                  />
-                </div>
 
-                <Button
-                  label="Explore"
-                  className=""
-                  onClick={() => navigate("/cars")}
-                />
-              </div>
-            </div>
+
+
+
+
+
+            
+            <div
+  className={`px-6 py-4 overflow-x-auto ${
+    tabSelected.currentTab === 2 ? "" : "hidden"
+  }`}
+  id="tab-panel-2ai"
+  aria-selected={tabSelected.currentTab === 2 ? "true" : "false"}
+  role="tabpanel"
+  aria-labelledby="tab-label-2ai"
+  tabIndex="-1"
+>
+  <div className="flex gap-5 min-w-max">
+    {/* Pickup Location */}
+    {/* <div className="p-inputgroup flex-1 min-w-[250px]">
+      <span className="p-inputgroup-addon">
+        <i className="pi pi-map-marker"></i>
+      </span>
+      <Dropdown
+        value={carPickupLocation}
+        onChange={(e) => setCarPickupLocation(e.value)}
+        options={cities}
+        optionLabel="name"
+        placeholder="Pickup Location"
+        className="w-full"
+      />
+    </div> */}
+
+    {/* Pickup Date & Time */}
+    <div className="p-inputgroup flex-1 min-w-[250px]">
+      <span className="p-inputgroup-addon">
+        <i className="pi pi-calendar-clock"></i>
+      </span>
+      <Calendar
+        id="pickup-calendar"
+        value={carPickupDateTime}
+        className="w-full"
+        onChange={(e) => setCarPickupDateTime(e.value)}
+        showTime
+        placeholder="Pickup Date & Time"
+        hourFormat="12"
+      />
+    </div>
+
+    {/* Drop Off Location */}
+    {/* <div className="p-inputgroup flex-1 min-w-[250px]">
+      <span className="p-inputgroup-addon">
+        <i className="pi pi-map-marker"></i>
+      </span>
+      <Dropdown
+        value={carDropLocation}
+        onChange={(e) => setCarDropLocation(e.value)}
+        options={cities}
+        optionLabel="name"
+        placeholder="Drop Off Location"
+        className="w-full"
+      />
+    </div> */}
+
+    {/* Drop Off Date & Time */}
+    <div className="p-inputgroup flex-1 min-w-[250px]">
+      <span className="p-inputgroup-addon">
+        <i className="pi pi-calendar-clock"></i>
+      </span>
+      <Calendar
+        id="drop-calendar"
+        value={carDropDateTime}
+        onChange={(e) => setCarDropDateTime(e.value)}
+        className="w-full"
+        showTime
+        placeholder="Drop Off Date & Time"
+        hourFormat="12"
+      />
+    </div>
+
+    {/* Explore Button */}
+    <div className="flex items-center min-w-[150px]">
+      <Button
+        label="Explore"
+        className="ml-2"
+        onClick={() => navigate("/cars")}
+      />
+    </div>
+  </div>
+</div>
+
+
+
+            
             <div
               className={`px-6 py-4 ${
                 tabSelected.currentTab === 3 ? "" : "hidden"

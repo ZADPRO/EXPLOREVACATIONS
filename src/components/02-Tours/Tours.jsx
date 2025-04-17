@@ -73,7 +73,12 @@ export default function Tours() {
         import.meta.env.VITE_ENCRYPTION_KEY
       );
       console.log("data list tour data ======= ?", data);
-      setTourDetailsBackend(data.tourDetails);
+      if (data.success) {
+        localStorage.setItem("token", "Bearer " + data.token);
+        // setIsModelOpen(false);
+        setTourDetailsBackend(data.tourDetails);
+      }
+    
     } catch (error) {
       console.error("Error fetching data:", error);
     }

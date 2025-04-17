@@ -5,12 +5,23 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    mobile: "",
-    message: "",
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [description, setDescription] = useState("");
+
+  const handleClick = (e) => {
+    e.preventDefault(); 
+    const to = "gokulhk278@gmail.com";
+    const subject = encodeURIComponent("Tour Booking Feedback");
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nFeedback:\n${description}\n\nBest regards,\n${name}`
+    );
+  
+    const mailtoLink = `mailto:${to}?subject=${subject}&body=${body}`;
+    window.location.href = mailtoLink;
+  };
+  
 
   const [dialogVisible, setDialogVisible] = useState(false);
 
@@ -55,20 +66,21 @@ export default function Contact() {
 
         {/* Right Side: Contact Form */}
         <div
-          className="flex-1 p-8 bg-white rounded-lg ml-0 md:ml-10 mt-6 md:mt-0"
+          className="flex-1 md:p-1 lg:p-5 p-2 bg-white rounded-lg ml-0 md:ml-10 mt-6 md:mt-0"
           data-aos="fade-left"
         >
           <h2 className="text-2xl font-bold text-indigo-600 mb-4">
             Send a Message
           </h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name */}
-            <div className="p-float-label">
+        
+        <div   className="space-y-6">
+           {/* Name */}
+           <div className="p-float-label">
               <InputText
                 id="name"
                 name="name"
-                value={formData.name}
-                onChange={handleChange}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 className="w-full p-3 border rounded"
                 required
               />
@@ -81,8 +93,8 @@ export default function Contact() {
                 id="email"
                 name="email"
                 type="email"
-                value={formData.email}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-3 border rounded"
                 required
               />
@@ -95,8 +107,8 @@ export default function Contact() {
                 id="mobile"
                 name="mobile"
                 type="tel"
-                value={formData.mobile}
-                onChange={handleChange}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 className="w-full p-3 border rounded"
                 required
               />
@@ -109,8 +121,9 @@ export default function Contact() {
                 id="message"
                 name="message"
                 rows={4}
-                value={formData.message}
-                onChange={handleChange}
+                phone
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 className="w-full p-3 border rounded"
                 required
               />
@@ -120,10 +133,15 @@ export default function Contact() {
             {/* Submit Button */}
             <Button
               label="Submit"
+                onClick={handleClick}
+
               className="w-full p-3 font-bold rounded"
               type="submit"
             />
-          </form>
+        </div>
+           
+
+        
         </div>
 
         {/* Success Dialog */}

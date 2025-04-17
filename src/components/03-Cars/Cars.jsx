@@ -10,6 +10,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import React, { useEffect, useRef, useState } from "react";
 import { Toast } from "primereact/toast";
 import { useNavigate } from "react-router-dom";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 // cars Image
 // import minivan from "../../assets/cars/minivan.jpg";
@@ -60,7 +61,23 @@ export default function Cars() {
   const [carPickupDateTime, setCarPickupDateTime] = useState(null);
   const [carDropLocation, setCarDropLocation] = useState(null);
   const [carDropDateTime, setCarDropDateTime] = useState(null);
+  const [inputs, setInputs] = useState({ refCarTypeId: "" });
+  const [cartypeId, setcarTypeId] = useState("");
 
+  const [listCarData, setListCarData] = useState([]);
+  const [activeTab, setActiveTab] = useState("Standard");
+  const [loading, setLoading] = useState(true);
+
+  const getRefCarTypeId = (tab) => {
+    switch (tab) {
+      case "Premium":
+        return 1;
+      case "Standard":
+        return 2;
+      default:
+        return 1;
+    }
+  };
   const [ismodelOpen, setIsModelOpen] = useState(false);
 
   const [name, setName] = useState("");
@@ -91,10 +108,10 @@ export default function Cars() {
     setExtras({ ...extras, [e.target.name]: e.target.checked });
   };
 
-  const [listCarData, setListCarData] = useState([]);
-
   useEffect(() => {
+
     const fetchData = async () => {
+      setLoading(true);
       try {
         console.log("Verify Token Running --- ");
 
@@ -112,10 +129,11 @@ export default function Cars() {
           listDestinations.data[0],
           import.meta.env.VITE_ENCRYPTION_KEY
         );
-        console.log("data list tour data ======= line 738", destinationData);
-
-        const listTourResponse = await axios.get(
+        console.log("Tour Data ======= line 738", destinationData);
+        const refCarTypeId = getRefCarTypeId(activeTab);
+        const listCarResponse = await axios.post(
           import.meta.env.VITE_API_URL + "/userRoutes/getAllCar",
+          { refCarTypeId },
           {
             headers: {
               Authorization: localStorage.getItem("JWTtoken"),
@@ -123,20 +141,77 @@ export default function Cars() {
             },
           }
         );
+
         const data = decrypt(
-          listTourResponse.data[1],
-          listTourResponse.data[0],
+          listCarResponse.data[1],
+          listCarResponse.data[0],
           import.meta.env.VITE_ENCRYPTION_KEY
         );
-        console.log("data list car data ======= >>", data);
-        setListCarData(data.Details);
+        console.log("Car Data ======= line 738", data);
+        if (data.success) {
+          localStorage.setItem("token", "Bearer " + data.token);
+          setListCarData(data.Details);
+        }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching car data:", error);
       }
-    };
+    
+    finally {
+      setLoading(false); // End loading
+    }
+  };
 
     fetchData();
-  }, []);
+  }, [activeTab]);
+
+  // const Cartype = async () => {
+
+  //   setSubmitLoading(true);
+
+  //   try {
+  //     const response = await axios.post(
+  //       import.meta.env.VITE_API_URL + "/settingRoutes/addActivities",
+  //       { refCarTypeId: inputs.refActivity },
+  //       {
+  //         headers: {
+  //           Authorization: localStorage.getItem("token"),
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+
+  //     const data = decrypt(
+  //       response.data[1],
+  //       response.data[0],
+  //       import.meta.env.VITE_ENCRYPTION_KEY
+  //     );
+  //     console.log("Add activity response:", data);
+
+  //     setSubmitLoading(false);
+
+  //     if (data.success) {
+  //       localStorage.setItem("token", "Bearer " + data.token);
+
+  //       // setActivities([
+  //       //   ...activities,
+  //       //   {
+  //       //     refActivitiesName: inputs.refActivity,
+  //       //     refActivitiesId: data.insertedId,
+  //       //   },
+  //       // ]);
+
+  //       toast.success("Successfully Added!", {
+  //         position: "top-right",
+  //         autoClose: 3000,
+  //       });
+
+  //       setInputs({ refActivity: "" });
+  //     }
+  //   } catch (e) {
+  //     console.error("Error adding activity:", e);
+  //     setSubmitLoading(false);
+  //   }
+  // };
 
   const handleSubmit = async () => {
     if (!name || !email || !mobileNumber || !pickupDateTime) {
@@ -179,6 +254,9 @@ export default function Cars() {
         import.meta.env.VITE_ENCRYPTION_KEY
       );
       console.log("data list tour data ======= ?", data);
+      if (data.success) {
+        localStorage.setItem("token", "Bearer " + data.token);
+      }
     } catch (error) {
       toast.current.show({
         severity: "error",
@@ -195,79 +273,113 @@ export default function Cars() {
       <Toast ref={toast} />
 
       {/* Header Background Image - Start  */}
-      <div className="carsPageCont01">
-        <div className="h-[80vh]"></div>
-      </div>
-      {/* Header Background Image - End  */}
+      <div className="carsPageCont01 flex flex-col justify-end items-center min-h-[100vh] px-4 text-center">
+        {/* Centered Text */}
+        <h1 className="text-white text-4xl md:text-6xl lg:text-8xl font-bold">
+          Find Your <span className="text-[#8ecde6]">Perfect</span> Car
+        </h1>
 
-      {/* Input Finder - Start */}
-      <div
-        id="tab-panel-1ai"
-        role="tabpanel"
-        className="card w-10/12 mx-auto bg-white p-4 shadow-md rounded-lg mt-[-30px]"
-        aria-labelledby="tab-label-1ai"
-        tabIndex="-1"
-      >
-        <div className="flex gap-3 lg:flex-row flex-column">
-          <div className="p-inputgroup flex-1">
-            <span className="p-inputgroup-addon">
-              <i className="pi pi-map-marker"></i>
-            </span>
-            <InputText
-              value={carPickupLocation}
-              onChange={(e) => setCarPickupLocation(e.value)}
-              // options={pickuplocation}
-              optionLabel="location"
-              placeholder="Pickup Location"
-              className="flex-1"
-            />{" "}
-          </div>
-          <div className="p-inputgroup flex-1">
-            <span className="p-inputgroup-addon">
-              <i className="pi pi-calendar-clock"></i>
-            </span>
-            <Calendar
-              id="calendar-12h"
-              value={carPickupDateTime}
-              className="flex-1"
-              onChange={(e) => setCarPickupDateTime(e.value)}
-              showTime
-              placeholder="Pickup Date & Time"
-              hourFormat="12"
-            />
-          </div>
-          <div className="p-inputgroup flex-1">
-            <span className="p-inputgroup-addon">
-              <i className="pi pi-map-marker"></i>
-            </span>
-            <InputText
-              value={carDropLocation}
-              onChange={(e) => setCarDropLocation(e.value)}
-              // options={dropofflocation}
-              optionLabel="location"
-              placeholder="Drop Off Location"
-              className="flex-1"
-            />{" "}
-          </div>
-          <div className="p-inputgroup flex-1">
-            <span className="p-inputgroup-addon">
-              <i className="pi pi-calendar-clock"></i>
-            </span>
-            <Calendar
-              id="calendar-12h"
-              value={carDropDateTime}
-              onChange={(e) => setCarDropDateTime(e.value)}
-              className="flex-1"
-              showTime
-              placeholder="Drop Off Date & Time"
-              hourFormat="12"
-            />
-          </div>
+        {/* Input Finder */}
 
-          <Button label="Explore" className="" />
+        <div
+          id="tab-panel-1ai"
+          role="tabpanel"
+          className="card w-full max-w-6xl mt-10 bg-white p-4 rounded-t-[10px]"
+          aria-labelledby="tab-label-1ai"
+          tabIndex="-1"
+        >
+          <div className="flex flex-col lg:flex-row gap-3">
+            <div className="p-inputgroup flex-1">
+              <span className="p-inputgroup-addon">
+                <i className="pi pi-map-marker"></i>
+              </span>
+              <InputText
+                value={carPickupLocation}
+                onChange={(e) => setCarPickupLocation(e.value)}
+                placeholder="Pickup Location"
+                className="flex-1"
+              />
+            </div>
+
+            <div className="p-inputgroup flex-1">
+              <span className="p-inputgroup-addon">
+                <i className="pi pi-calendar-clock"></i>
+              </span>
+              <Calendar
+                id="calendar-12h"
+                value={carPickupDateTime}
+                onChange={(e) => setCarPickupDateTime(e.value)}
+                showTime
+                placeholder="Pickup Date & Time"
+                hourFormat="12"
+                className="flex-1"
+              />
+            </div>
+
+            <div className="p-inputgroup flex-1">
+              <span className="p-inputgroup-addon">
+                <i className="pi pi-map-marker"></i>
+              </span>
+              <InputText
+                value={carDropLocation}
+                onChange={(e) => setCarDropLocation(e.value)}
+                placeholder="Drop Off Location"
+                className="flex-1"
+              />
+            </div>
+
+            <div className="p-inputgroup flex-1">
+              <span className="p-inputgroup-addon">
+                <i className="pi pi-calendar-clock"></i>
+              </span>
+              <Calendar
+                id="calendar-12h"
+                value={carDropDateTime}
+                onChange={(e) => setCarDropDateTime(e.value)}
+                showTime
+                placeholder="Drop Off Date & Time"
+                hourFormat="12"
+                className="flex-1"
+              />
+            </div>
+            {/* <button className="bg-[#014986] text-white rounded-2xl w-[80%] h-[50px] mx-5 lg:mx-0 md:mx-8 md:h-[60px] lg:h-0 lg:w-[10%]" >Explore</button> */}
+
+            <Button label="Explore" className="bg-[#014986] text-white" />
+          </div>
         </div>
       </div>
-      {/* Input Finder - End */}
+
+
+{
+  loading ? (
+<div className="h-[30vh] w-full bg-[#fff] flex justify-center items-center">
+  {/* <h1>Loading</h1> */}
+  <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
+</div>
+  ) : (
+    <>
+    <h1 className="text-2xl font-bold mb-5 mt-2 text-center text-[#014986]">
+        Available Cars
+      </h1>
+
+      <div className="w-full max-w-4xl mx-auto mt-12">
+        <div className="flex justify-center gap-4 bg-gray-100 p-2">
+          {["Standard", "Premium"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-6 py-2  text-sm font-medium transition-all duration-200 
+          ${
+            activeTab === tab
+              ? "bg-[#014986] text-white shadow-md"
+              : "text-gray-600 hover:bg-white"
+          }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+      </div>
 
       {/* Car map List - Start */}
 
@@ -535,6 +647,14 @@ export default function Cars() {
       </Dialog>
 
       {/* Model Data - End */}
+    </>
+  )
+}
+
+
+
+      
+      
     </div>
   );
 }

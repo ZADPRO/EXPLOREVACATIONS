@@ -24,33 +24,37 @@ import axios from "axios";
 import decrypt from "../../helper";
 
 export default function CarsTemplate() {
+
+
   const location = useLocation();
-
   const [carState, setCarState] = useState();
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [pickupAddress, setPickupAddress] = useState("");
   const [submissionAddress, setSubmissionAddress] = useState("");
-  const [pickupDateTime, setPickupDateTime] = useState(null); // Renamed
+  const [pickupDateTime, setPickupDateTime] = useState(null);
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
-
   const [otherRequirements, setOtherRequirements] = useState("");
-
   const [ismodelOpen, setIsModelOpen] = useState(false);
+  const [carListData, setCarLIstData] = useState({});
+  const [refCarsId, setRefCarsId] = useState("");
+ 
+
+
 
   const toast = useRef(null);
 
-  const [carListData, setCarLIstData] = useState([]);
-
   useEffect(() => {
     console.log("asdf===========asfd");
+ 
+   
     const car = location.state?.car;
-    console.log("car", car);
     setCarState(car);
+    setRefCarsId(car.refCarsId);
+    
 
     const fetchData = async () => {
       try {
@@ -84,32 +88,31 @@ export default function CarsTemplate() {
   }, []);
 
   const handleSubmit = async () => {
-    // if (!name || !email || !mobileNumber || !pickupDateTime) {
-    //   toast.current.show({
-    //     severity: "error",
-    //     summary: "Validation Error",
-    //     detail: "Please fill in all required fields.",
-    //     life: 3000,
-    //   });
-    //   return;
-    // }
+    if (!name || !email || !mobileNumber || !pickupDateTime) {
+      toast.current.show({
+        severity: "error",
+        summary: "Validation Error",
+        detail: "Please fill in all required fields.",
+        life: 3000,
+      });
+      return;
+    }
 
     try {
       const response = await axios.post(
         import.meta.env.VITE_API_URL + "/userRoutes/userCarBooking",
         {
-          refCarsId: carListData.refVehicleTypeId,
+          refCarsId: refCarsId,
           refUserName: name,
           refUserMail: email,
-          refUserMobile: mobileNumber+"",
+          refUserMobile: mobileNumber + "",
           refPickupAddress: pickupAddress,
           refSubmissionAddress: submissionAddress,
           refPickupDate: pickupDateTime,
-          refAdultCount: adults+"",
-          refChildrenCount: children+"",
-          refInfants: infants+"",
+          refAdultCount: adults + "",
+          refChildrenCount: children + "",
+          refInfants: infants + "",
           refOtherRequirements: otherRequirements,
-          // refFormDetails: [1, 2, 3],
         },
         {
           headers: {
@@ -123,8 +126,8 @@ export default function CarsTemplate() {
         response.data[0],
         import.meta.env.VITE_ENCRYPTION_KEY
       );
-      console.log("data list tour data ======= ?", data);
       if (data.success) {
+        localStorage.setItem("token", "Bearer " + data.token);
         setIsModelOpen(false);
       }
     } catch (error) {
@@ -232,7 +235,7 @@ export default function CarsTemplate() {
 
       <div className="card flex w-10/12 mx-auto overflow-hidden py-8">
         <TabView className="w-full overflow-x-auto">
-          <TabPanel header="Driver Details" key="tab1">
+          {/* <TabPanel header="Driver Details" key="tab1">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <p>
                 <b>Driver Name:</b> {carListData.refDriverName}
@@ -250,7 +253,7 @@ export default function CarsTemplate() {
                 <b>Age:</b> {carListData.refDriverAge}
               </p>
             </div>
-          </TabPanel>
+          </TabPanel> */}
           <TabPanel header="Travel Include" key="tab1">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <ul className="list-disc pl-5">
@@ -316,9 +319,10 @@ export default function CarsTemplate() {
                 id="username"
                 className="w-[100%]"
                 value={name}
+                required
                 onChange={(e) => setName(e.target.value)}
               />
-              <label htmlFor="username">Your Name</label>
+              <label htmlFor="username">User Name</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -326,6 +330,7 @@ export default function CarsTemplate() {
               <InputText
                 id="email"
                 className="w-[100%]"
+                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -338,6 +343,7 @@ export default function CarsTemplate() {
                 id="mobileNumber"
                 className="w-[100%]"
                 useGrouping={false}
+                required
                 value={mobileNumber}
                 onValueChange={(e) => setMobileNumber(e.value)}
               />
@@ -352,6 +358,7 @@ export default function CarsTemplate() {
               <InputText
                 id="pickupAddress"
                 className="w-[100%]"
+                required
                 value={pickupAddress}
                 onChange={(e) => setPickupAddress(e.target.value)}
               />
@@ -363,6 +370,7 @@ export default function CarsTemplate() {
               <InputText
                 id="submissionAddress"
                 className="w-[100%]"
+                required
                 value={submissionAddress}
                 onChange={(e) => setSubmissionAddress(e.target.value)}
               />
@@ -377,6 +385,7 @@ export default function CarsTemplate() {
                 className="flex-1 w-[100%]"
                 onChange={(e) => setPickupDateTime(e.value)} // Updated variable name
                 showTime
+                required
                 placeholder="Pickup Date & Time"
                 hourFormat="12"
               />
@@ -409,6 +418,7 @@ export default function CarsTemplate() {
                 className="w-[100%]"
                 useGrouping={false}
                 value={adults}
+                required
                 onValueChange={(e) => setAdults(e.value)}
               />
               <label htmlFor="adults">Adults</label>
@@ -420,6 +430,7 @@ export default function CarsTemplate() {
                 id="children"
                 className="w-[100%]"
                 useGrouping={false}
+                required
                 value={children}
                 onValueChange={(e) => setChildren(e.value)}
               />
@@ -432,6 +443,7 @@ export default function CarsTemplate() {
                 id="infants"
                 className="w-[100%]"
                 useGrouping={false}
+                required
                 value={infants}
                 onValueChange={(e) => setInfants(e.value)}
               />
@@ -465,6 +477,7 @@ export default function CarsTemplate() {
               <InputTextarea
                 className="w-[100%]"
                 value={otherRequirements}
+                required
                 onChange={(e) => setOtherRequirements(e.target.value)}
                 rows={5}
                 cols={30}

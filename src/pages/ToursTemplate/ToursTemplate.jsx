@@ -33,8 +33,8 @@ export default function ToursTemplate() {
 
   const toast = useRef(null);
 
-
   const [packageId, setPackageId] = useState();
+  const [galleryImg, SetGalleryImg] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -43,6 +43,7 @@ export default function ToursTemplate() {
   const [children, setChildren] = useState("");
   const [infants, setInfants] = useState("");
   const [formDataImages, setFormdataImages] = useState([]);
+  const [passportImage, setPassportImage] = useState([]);
   const [formData, setFromDate] = useState({
     refPackageId: 0,
     refUserName: "",
@@ -57,6 +58,7 @@ export default function ToursTemplate() {
     refVaccinationType: "",
     refVaccinationCertificate: "",
     refOtherRequirements: "",
+    refPassPort: "",
   });
 
   const [otherRequirements, setOtherRequirements] = useState("");
@@ -101,6 +103,7 @@ export default function ToursTemplate() {
       );
       console.log("data list tour data ======= ?", data);
       if (data.success) {
+        localStorage.setItem("token", "Bearer " + data.token);
         setIsModelOpen(false);
       }
     } catch (error) {
@@ -130,7 +133,8 @@ export default function ToursTemplate() {
           refAdultCount: formData.refAdultCount + "",
           refChildrenCount: formData.refChildrenCount + "",
           refVaccinationType: formData.refVaccinationType + "",
-          refVaccinationCertificate:formDataImages,
+          refVaccinationCertificate: formDataImages,
+          refPassPort: passportImage,
           refOtherRequirements: formData.refOtherRequirements + "",
         },
         {
@@ -147,6 +151,7 @@ export default function ToursTemplate() {
       );
       console.log("Customise Tour----------->", data);
       if (data.success) {
+        localStorage.setItem("token", "Bearer " + data.token);
         setModelOpen(false);
       }
     } catch (error) {
@@ -182,11 +187,9 @@ export default function ToursTemplate() {
           listDestinations.data[0],
           import.meta.env.VITE_ENCRYPTION_KEY
         );
-        console.log(
-          "data list tour data ======= line 121",
-          destinationData.tourDetails[0].refPackageId
-        );
+        console.log("data list tour data ======= line 121", destinationData);
         setPackageId(destinationData.tourDetails[0].refPackageId);
+        SetGalleryImg(destinationData.tourDetails[0].refGallery)
 
         const listTourResponse = await Axios.get(
           import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
@@ -226,29 +229,35 @@ export default function ToursTemplate() {
       return;
     }
 
-    const form = new formData();
-    form.append("amount", tour.refTourPrice * 100); // Payrexx expects amount in cents
-    form.append("currency", "CHF");
-    form.append("purpose", `Tour Booking - ${tour.name}`);
-    form.append("success_url", window.location.href); // or any "Thank you" page
-    form.append("failed_url", window.location.href); // optional
-    form.append("customer_email", email);
-    form.append("customer_firstname", name.split(" ")[0]);
-    form.append("customer_lastname", name.split(" ")[1] || "");
+    const paymentForm = new FormData(); // ✅ this is the fix
+
+    paymentForm.append("amount", tour.refTourPrice); // Payrexx expects amount in cents
+    paymentForm.append("currency", "CHF");
+    paymentForm.append("purpose", `Tour Booking - ${tour.name}`);
+    paymentForm.append("success_url", window.location.href);
+    paymentForm.append("failed_url", window.location.href);
+    paymentForm.append("customer_email", email);
+    paymentForm.append("customer_firstname", name.split(" ")[0]);
+    paymentForm.append("customer_lastname", name.split(" ")[1] || "");
 
     try {
-      const response = await fetch(`https://explorevacationsag.payrexx.com`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_PAYREXX_API_SECRET}`,
-        },
-        body: form,
-      });
+      // https://explorevacationsag.payrexx.com/en/vpos
+      const response = await fetch(
+        `https://explorevacationsag.payrexx.com/en/vpos`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_PAYREXX_API_SECRET}`,
+          },
+          body: paymentForm,
+        }
+      );
 
       const result = await response.json();
       console.log("Payrexx response", result);
 
       if (result && result.data && result.data[0]?.link) {
+        await handleSubmit(); // ensure the booking is saved before payment
         window.payrexx.open({ link: result.data[0].link });
       } else {
         throw new Error("Invalid response from Payrexx");
@@ -298,6 +307,7 @@ export default function ToursTemplate() {
         console.log("data==============", data);
 
         if (data.success) {
+          localStorage.setItem("token", "Bearer " + data.token);
           handleUploadSuccess(data);
         } else {
           handleUploadFailure(data);
@@ -315,6 +325,62 @@ export default function ToursTemplate() {
   };
 
   const handleUploadFailure = (error) => {
+    console.error("Upload Failed:", error);
+    // Add your failure handling logic here
+  };
+
+  const passportUploader = async (event) => {
+    console.table("event", event);
+
+    // Create a FormData object
+
+    // Loop through the selected files and append each one to the FormData
+    for (let i = 0; i < event.files.length; i++) {
+      const formData = new FormData();
+      const file = event.files[i];
+      formData.append("PdfFile", file);
+
+      try {
+        const response = await Axios.post(
+          import.meta.env.VITE_API_URL + "/userRoutes/uploadPassport",
+
+          formData,
+
+          {
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+          }
+        );
+
+        const data = decrypt(
+          response.data[1],
+          response.data[0],
+          import.meta.env.VITE_ENCRYPTION_KEY
+        );
+
+        localStorage.setItem("token", "Bearer " + data.token);
+        console.log("data==============", data);
+
+        if (data.success) {
+          localStorage.setItem("token", "Bearer " + data.token);
+          handlepassportUploadSuccess(data);
+        } else {
+          handlepassportUploadFailure(data);
+        }
+      } catch (error) {
+        handlepassportUploadFailure(error);
+      }
+    }
+  };
+  const handlepassportUploadSuccess = (response) => {
+    let temp = [...passportImage]; // Create a new array to avoid mutation
+    temp.push(response.filePath); // Add the new file path
+    console.log("Upload Successful:", response);
+    setPassportImage(temp); // Update the state with the new array
+  };
+
+  const handlepassportUploadFailure = (error) => {
     console.error("Upload Failed:", error);
     // Add your failure handling logic here
   };
@@ -401,7 +467,7 @@ export default function ToursTemplate() {
                   setModelOpen(true);
                 }}
               >
-                <span className="font-semibold">customize Tour</span>{" "}
+                <span className="font-semibold">Customize Tour</span>{" "}
               </button>
             </p>
           </div>
@@ -427,9 +493,23 @@ export default function ToursTemplate() {
           <TabPanel header="Itinerary Map" key="tab3">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <img
-                src={`data:${tour.refItinaryMapPath.contentType};base64,${tour.refCoverImage.content}`}
+                src={`data:${tour.refItinaryMapPath.contentType};base64,${tour.refItinaryMapPath.content}`}
                 alt=""
               />
+            </div>
+          </TabPanel>
+          <TabPanel header="Gallery Image" key="tab3">
+            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
+              {galleryImg.map((img) => (
+                <img
+                  src={`data:${img.contentType};base64,${img.content}`}
+                  alt=""
+                />
+              ))}
+              {/* <img
+                src={`data:${tour.refGallery.contentType};base64,${tour.refGallery.content}`}
+                alt=""
+              /> */}
             </div>
           </TabPanel>
 
@@ -445,7 +525,7 @@ export default function ToursTemplate() {
             </div>
           </TabPanel>
 
-          <TabPanel header="Travel Ends" key="tab6">
+          <TabPanel header="Travel Excludes" key="tab6">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <ul className="list-disc pl-5">
                 {tour?.travalExclude?.map((item, index) => (
@@ -598,8 +678,12 @@ export default function ToursTemplate() {
             severity="success"
             className="w-[20%]"
             label="Submit"
-            // handlePayment();
-            onClick={handleSubmit}
+            onClick={(e) => {
+              e.preventDefault();
+              // handlePayment();
+              handleSubmit();
+
+            }}
           />
         </div>
       </Dialog>
@@ -766,13 +850,15 @@ export default function ToursTemplate() {
             </FloatLabel>
           </div>
         </div>
-        <h6 className="pt-[1.5rem]">Vaccination Details</h6>
+        <h6 className="pt-[1.5rem]">
+          Vaccination & Passport Details (Optional)
+        </h6>
 
-        <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
-          <div className="w-[100%]">
+        <div className="pt-[1.5rem] flex flex-col lg:flex-col gap-[1rem]">
+          <div className="w-[100%] ">
             <FloatLabel className="w-[100%]">
               <InputText
-                className="w-[100%]"
+                className="w-[100%] lg:w-[50%] "
                 value={formData.refVaccinationType}
                 onChange={(e) => {
                   setFromDate({
@@ -785,12 +871,27 @@ export default function ToursTemplate() {
             </FloatLabel>
           </div>
           <div className="w-[100%]">
-            <h2 className="mt-3">Upload Certificate</h2>
+            <h2 className="">Upload Certificate</h2>
             <FileUpload
               name="logo"
               customUpload
               className="mt-3"
               uploadHandler={customUploader}
+              accept="application/pdf"
+              maxFileSize={10000000}
+              emptyTemplate={
+                <p className="m-0">Drag and drop your Image here to upload.</p>
+              }
+              multiple
+            />
+          </div>
+          <div className="w-[100%]">
+            <h2 className="">Upload Passport</h2>
+            <FileUpload
+              name="passport"
+              customUpload
+              className="mt-3"
+              uploadHandler={passportUploader}
               accept="application/pdf"
               maxFileSize={10000000}
               emptyTemplate={

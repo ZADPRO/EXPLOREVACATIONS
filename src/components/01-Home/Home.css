@@ -1,5 +1,5 @@
 .homePageContainer01 {
-  background: url("../../assets/home/home8.png") no-repeat center;
+  background: url("../../assets/home/homebg.jpg") no-repeat center;
   background-size: cover;
   background-position: center;
 }
@@ -25,9 +25,10 @@
 }
 
 .carsPageCont01 {
-  background: url("../../assets/cars/cars.jpg") no-repeat center;
+  background: url("../../assets/cars/carbg.jpg") no-repeat center;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 @media (max-width: 640px) {
@@ -65,13 +66,14 @@
 }
 
 .bannerImage001 {
-  background: url("../../assets/homeCards/bannerrs.png") no-repeat center;
+  background: url("../../assets/homeCards/bottom.jpg") no-repeat center;
   background-size: cover;
   background-position: center;
 }
 
 .footerImg {
-  background: url("../../assets/footer/footer[1].jpg") no-repeat center;
+  background-image: url("../../assets/footer/footerbg.png");
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
