@@ -12,7 +12,7 @@ export default function Contact() {
 
   const handleClick = (e) => {
     e.preventDefault(); 
-    const to = "gokulhk278@gmail.com";
+    const to = "info@explorevacations.ch";
     const subject = encodeURIComponent("Tour Booking Feedback");
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nFeedback:\n${description}\n\nBest regards,\n${name}`
