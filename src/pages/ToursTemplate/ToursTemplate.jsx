@@ -103,7 +103,7 @@ export default function ToursTemplate() {
       );
       console.log("data list tour data ======= ?", data);
       if (data.success) {
-        localStorage.setItem("token", "Bearer " + data.token);
+        // localStorage.setItem("token", "Bearer " + data.token);
         setIsModelOpen(false);
       }
     } catch (error) {
@@ -151,7 +151,7 @@ export default function ToursTemplate() {
       );
       console.log("Customise Tour----------->", data);
       if (data.success) {
-        localStorage.setItem("token", "Bearer " + data.token);
+        // localStorage.setItem("token", "Bearer " + data.token);
         setModelOpen(false);
       }
     } catch (error) {
@@ -303,11 +303,11 @@ export default function ToursTemplate() {
           import.meta.env.VITE_ENCRYPTION_KEY
         );
 
-        localStorage.setItem("token", "Bearer " + data.token);
+        // localStorage.setItem("token", "Bearer " + data.token);
         console.log("data==============", data);
 
         if (data.success) {
-          localStorage.setItem("token", "Bearer " + data.token);
+          // localStorage.setItem("token", "Bearer " + data.token);
           handleUploadSuccess(data);
         } else {
           handleUploadFailure(data);
@@ -359,11 +359,11 @@ export default function ToursTemplate() {
           import.meta.env.VITE_ENCRYPTION_KEY
         );
 
-        localStorage.setItem("token", "Bearer " + data.token);
+        // localStorage.setItem("token", "Bearer " + data.token);
         console.log("data==============", data);
 
         if (data.success) {
-          localStorage.setItem("token", "Bearer " + data.token);
+          // localStorage.setItem("token", "Bearer " + data.token);
           handlepassportUploadSuccess(data);
         } else {
           handlepassportUploadFailure(data);

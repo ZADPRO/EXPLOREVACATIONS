@@ -149,7 +149,7 @@ export default function Cars() {
         );
         console.log("Car Data ======= line 738", data);
         if (data.success) {
-          localStorage.setItem("token", "Bearer " + data.token);
+          // localStorage.setItem("token", "Bearer " + data.token);
           setListCarData(data.Details);
         }
       } catch (error) {
@@ -255,7 +255,7 @@ export default function Cars() {
       );
       console.log("data list tour data ======= ?", data);
       if (data.success) {
-        localStorage.setItem("token", "Bearer " + data.token);
+        // localStorage.setItem("token", "Bearer " + data.token);
       }
     } catch (error) {
       toast.current.show({

@@ -74,7 +74,7 @@ export default function Tours() {
       );
       console.log("data list tour data ======= ?", data);
       if (data.success) {
-        localStorage.setItem("token", "Bearer " + data.token);
+        // localStorage.setItem("token", "Bearer " + data.token);
         // setIsModelOpen(false);
         setTourDetailsBackend(data.tourDetails);
       }

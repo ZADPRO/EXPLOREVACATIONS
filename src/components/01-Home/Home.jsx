@@ -561,7 +561,7 @@ export default function Home() {
       );
       console.log("data list tour data ======= line 738", destinationData);
       if (data.success) {
-        localStorage.setItem("token", "Bearer " + data.token);
+        // localStorage.setItem("token", "Bearer " + data.token);
         // setIsModelOpen(false);
         setDestinationData(destinationData.Details);
       }
@@ -584,7 +584,7 @@ export default function Home() {
       );
       console.log("data list tour data ======= ?", data);
       if (data.success) {
-        localStorage.setItem("token", "Bearer " + data.token);
+        // localStorage.setItem("token", "Bearer " + data.token);
         // setIsModelOpen(false);
         setTourDetailsBackend(data.tourDetails);
       }
@@ -756,65 +756,77 @@ export default function Home() {
 
                 <Button label="Explore" className="" onClick={handleExplore} />
               </div> */}
-              <div className="flex gap-3 lg:flex-row flex-column">
-                <div className="p-inputgroup flex-1">
-                  <span className="p-inputgroup-addon">
-                    <i className="pi pi-map-marker"></i>
-                  </span>
-                  <Dropdown
-                    value={tourDestination}
-                    onChange={(e) => setTourDestination(e.value)}
-                    options={destinationData.map((item) => ({
-                      ...item,
-                      refDestinationName:
-                        item.refDestinationName.charAt(0).toUpperCase() +
-                        item.refDestinationName.slice(1).toLowerCase(),
-                    }))}
-                    optionLabel="refDestinationName"
-                    optionValue="refDestinationId"
-                    placeholder="Select Destination"
-                    className="flex-1 capitalize"
-                  />
-                </div>
+            <div className="flex gap-3 lg:flex-row flex-column">
+  {/* Destination Dropdown */}
+  <div className="p-inputgroup flex-1">
+    <span className="p-inputgroup-addon">
+      <i className="pi pi-map-marker"></i>
+    </span>
+    <Dropdown
+      value={tourDestination}
+      onChange={(e) => setTourDestination(e.value)}
+      options={destinationData.map((item) => ({
+        ...item,
+        refDestinationName:
+          item.refDestinationName.charAt(0).toUpperCase() +
+          item.refDestinationName.slice(1).toLowerCase(),
+      }))}
+      optionLabel="refDestinationName"
+      optionValue="refDestinationId"
+      placeholder="Select Destination"
+      className="flex-1 capitalize"
+    />
+  </div>
 
-                <div className="p-inputgroup flex-1">
-                  <span className="p-inputgroup-addon">
-                    <i className="pi pi-calendar-clock"></i>
-                  </span>
-                  <Calendar
-                    value={tourFromDate}
-                    placeholder="From"
-                    className="flex-1"
-                    onChange={(e) => setTourFromDate(e.value)}
-                  />
-                </div>
+  {/* From Date */}
+  <div className="p-inputgroup flex-1">
+    <span className="p-inputgroup-addon">
+      <i className="pi pi-calendar-clock"></i>
+    </span>
+    <Calendar
+      value={tourFromDate}
+      placeholder="From"
+      className="flex-1"
+      onChange={(e) => {
+        setTourFromDate(e.value);
+        if (tourToDate && e.value > tourToDate) {
+          setTourToDate(null); // reset to date if it's earlier than from date
+        }
+      }}
+    />
+  </div>
 
-                <div className="p-inputgroup flex-1">
-                  <span className="p-inputgroup-addon">
-                    <i className="pi pi-calendar-clock"></i>
-                  </span>
-                  <Calendar
-                    className="flex-1"
-                    placeholder="To"
-                    value={tourToDate}
-                    onChange={(e) => setTourToDate(e.value)}
-                  />
-                </div>
+  {/* To Date (minDate is set to From Date) */}
+  <div className="p-inputgroup flex-1">
+    <span className="p-inputgroup-addon">
+      <i className="pi pi-calendar-clock"></i>
+    </span>
+    <Calendar
+      className="flex-1"
+      placeholder="To"
+      value={tourToDate}
+      onChange={(e) => setTourToDate(e.value)}
+      minDate={tourFromDate}
+    />
+  </div>
 
-                <div className="p-inputgroup flex-1">
-                  <span className="p-inputgroup-addon">
-                    <i className="pi pi-user"></i>
-                  </span>
-                  <InputNumber
-                    value={tourGuest}
-                    className="flex-1"
-                    placeholder="Guest"
-                    onValueChange={(e) => setTourGuest(e.value)}
-                  />
-                </div>
+  {/* Guest Input */}
+  <div className="p-inputgroup flex-1">
+    <span className="p-inputgroup-addon">
+      <i className="pi pi-user"></i>
+    </span>
+    <InputNumber
+      value={tourGuest}
+      className="flex-1"
+      placeholder="Guest"
+      onValueChange={(e) => setTourGuest(e.value)}
+    />
+  </div>
 
-                <Button label="Explore" className="" onClick={handleExplore} />
-              </div>
+  {/* Explore Button */}
+  <Button label="Explore" className="" onClick={handleExplore} />
+</div>
+
             </div>
 
 

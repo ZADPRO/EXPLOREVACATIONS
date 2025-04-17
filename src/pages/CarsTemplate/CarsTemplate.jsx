@@ -127,7 +127,7 @@ export default function CarsTemplate() {
         import.meta.env.VITE_ENCRYPTION_KEY
       );
       if (data.success) {
-        localStorage.setItem("token", "Bearer " + data.token);
+        // localStorage.setItem("token", "Bearer " + data.token);
         setIsModelOpen(false);
       }
     } catch (error) {
