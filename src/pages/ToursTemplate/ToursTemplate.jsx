@@ -520,7 +520,7 @@ export default function ToursTemplate() {
               {galleryImg.map((img) => (
                 <img
                   // src={`data:${img.contentType};base64,${img.content}`}
-                src={`https://explorevacations.max-idigital.ch/src/assets/gallery/${img.contentType}`}
+                src={`https://explorevacations.max-idigital.ch/src/assets/gallery/${img}`}
                   alt=""
                 />
               ))}
