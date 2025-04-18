@@ -31,11 +31,12 @@ export default function Tours() {
   const [tourGuest, setTourGuest] = useState(initialTourGuest);
 
   const [tourDetailsBackend, setTourDetailsBackend] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   const [destinationData, setDestinationData] = useState([]);
 
   const navigate = useNavigate();
   const fetchData = async () => {
+    setLoading(true);
     try {
       console.log("Verify Token Running --- ");
 
@@ -229,7 +230,14 @@ export default function Tours() {
           <Button label="Explore" className="" onClick={handleExplore} />
         </div>
       </div>
-
+      {
+  loading ? (
+<div className="h-[30vh] w-full bg-[#fff] flex justify-center items-center">
+  {/* <h1>Loading</h1> */}
+  <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
+</div>
+  ) : (
+    <>
       <div className="container mx-auto px-6 mt-8 w-full pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:w-10/12 mx-auto justify-center">
           {filteredTours && filteredTours.length > 0 ? (
@@ -285,6 +293,9 @@ export default function Tours() {
           )}
         </div>
       </div>
+      </>
+  )
+}
     </div>
   );
 }
