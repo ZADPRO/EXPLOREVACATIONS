@@ -201,7 +201,7 @@ export default function ToursTemplate() {
         );
         console.log("data list tour data ======= line 121", destinationData);
         setPackageId(destinationData.tourDetails[0].refPackageId);
-        SetGalleryImg(destinationData.tourDetails[0].refGallery)
+        SetGalleryImg(destinationData.tourDetails[0].refGallery);
 
         const listTourResponse = await Axios.get(
           import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
@@ -399,8 +399,7 @@ export default function ToursTemplate() {
 
   return (
     <div>
-      
-     <Toast ref={toast} />
+      <Toast ref={toast} />
       <div className="tourBannerBg01 relative h-[60vh] flex items-center justify-center text-white text-3xl font-bold">
         {/* Centered Text Here */}
       </div>
@@ -409,7 +408,8 @@ export default function ToursTemplate() {
         <div className="flex lg:flex-row flex-column gap-6 p-4">
           <div className="lg:w-2/4 flex-shrink-0">
             <img
-              src={`data:${tour.refCoverImage.contentType};base64,${tour.refCoverImage.content}`}
+              // src={`data:${tour.refCoverImage.contentType};base64,${tour.refCoverImage.content}`}
+              src={`https://explorevacations.max-idigital.ch/src/assets/coverImage/${tour.refCoverImage}`}
               alt="Tour Image"
               className="w-full h-full object-cover rounded-lg"
             />
@@ -504,9 +504,14 @@ export default function ToursTemplate() {
 
           <TabPanel header="Itinerary Map" key="tab3">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
-              <img
+              {/* <img
                 src={`data:${tour.refItinaryMapPath.contentType};base64,${tour.refItinaryMapPath.content}`}
                 alt=""
+              /> */}
+              <img
+                src={`https://explorevacations.max-idigital.ch/src/assets/map/${tour.refItinaryMapPath}`}
+                alt="Itinerary Map"
+                className="w-full object-contain"
               />
             </div>
           </TabPanel>
@@ -514,7 +519,8 @@ export default function ToursTemplate() {
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               {galleryImg.map((img) => (
                 <img
-                  src={`data:${img.contentType};base64,${img.content}`}
+                  // src={`data:${img.contentType};base64,${img.content}`}
+                src={`https://explorevacations.max-idigital.ch/src/assets/gallery/${img.contentType}`}
                   alt=""
                 />
               ))}
@@ -575,7 +581,6 @@ export default function ToursTemplate() {
           setIsModelOpen(false);
         }}
       >
-       
         <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">
             <FloatLabel className="w-[100%]">
@@ -695,7 +700,6 @@ export default function ToursTemplate() {
               e.preventDefault();
               // handlePayment();
               handleSubmit();
-
             }}
           />
         </div>

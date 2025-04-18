@@ -154,7 +154,8 @@ export default function CarsTemplate() {
           <div className="lg:w-2/4 flex-shrink-0">
             {carListData?.refCarPath && (
               <img
-                src={`data:${carListData?.refCarPath.contentType};base64,${carListData?.refCarPath.content}`}
+                // src={`data:${carListData?.refCarPath.contentType};base64,${carListData?.refCarPath.content}`}
+                src={`https://explorevacations.max-idigital.ch/src/assets/cars/${carListData?.refCarPath}`}
                 alt="Car Image"
                 className="w-full h-full object-cover rounded-lg"
               />

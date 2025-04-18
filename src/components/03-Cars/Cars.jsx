@@ -408,7 +408,8 @@ export default function Cars() {
                 <>
                   {" "}
                   <img
-                    src={`data:${car.refCarPath.contentType};base64,${car.refCarPath.content}`}
+                    // src={`data:${car.refCarPath.contentType};base64,${car.refCarPath.content}`}
+                    src={`https://explorevacations.max-idigital.ch/src/assets/cars/${car.refCarPath}`}
                     alt={car.refVehicleTypeName}
                     className="w-full object-cover aspect-[4/3]"
                   />

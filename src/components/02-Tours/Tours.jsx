@@ -79,14 +79,13 @@ export default function Tours() {
         // setIsModelOpen(false);
         setTourDetailsBackend(data.tourDetails);
       }
-    
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
   useEffect(() => {
-    
     fetchData();
   }, []);
 
@@ -175,45 +174,49 @@ export default function Tours() {
               className="flex-1 capitalize"
             />
           </div>
-{/* From Date */}
-<div className="p-inputgroup flex-1">
-  <span className="p-inputgroup-addon">
-    <i className="pi pi-calendar-clock"></i>
-  </span>
-  <Calendar
-    value={tourFromDate}
-    placeholder="From"
-    className="flex-1"
-    minDate={new Date()}
-    onChange={(e) => {
-      setTourFromDate(e.value);
-      // Optional: reset To Date if it's before the next valid date
-      const nextDay = new Date(e.value);
-      nextDay.setDate(nextDay.getDate() + 1);
-      if (!tourToDate || tourToDate <= e.value) {
-        setTourToDate(null);
-      }
-    }}
-  />
-</div>
+          {/* From Date */}
+          <div className="p-inputgroup flex-1">
+            <span className="p-inputgroup-addon">
+              <i className="pi pi-calendar-clock"></i>
+            </span>
+            <Calendar
+              value={tourFromDate}
+              placeholder="From"
+              className="flex-1"
+              minDate={new Date()}
+              onChange={(e) => {
+                setTourFromDate(e.value);
+                // Optional: reset To Date if it's before the next valid date
+                const nextDay = new Date(e.value);
+                nextDay.setDate(nextDay.getDate() + 1);
+                if (!tourToDate || tourToDate <= e.value) {
+                  setTourToDate(null);
+                }
+              }}
+            />
+          </div>
 
-{/* To Date */}
-<div className="p-inputgroup flex-1">
-  <span className="p-inputgroup-addon">
-    <i className="pi pi-calendar-clock"></i>
-  </span>
-  <Calendar
-    className="flex-1"
-    placeholder="To"
-    value={tourToDate}
-    onChange={(e) => setTourToDate(e.value)}
-    minDate={
-      tourFromDate
-        ? new Date(new Date(tourFromDate).setDate(new Date(tourFromDate).getDate() + 1))
-        : new Date()
-    }
-  />
-</div>
+          {/* To Date */}
+          <div className="p-inputgroup flex-1">
+            <span className="p-inputgroup-addon">
+              <i className="pi pi-calendar-clock"></i>
+            </span>
+            <Calendar
+              className="flex-1"
+              placeholder="To"
+              value={tourToDate}
+              onChange={(e) => setTourToDate(e.value)}
+              minDate={
+                tourFromDate
+                  ? new Date(
+                      new Date(tourFromDate).setDate(
+                        new Date(tourFromDate).getDate() + 1
+                      )
+                    )
+                  : new Date()
+              }
+            />
+          </div>
 
           <div className="p-inputgroup flex-1">
             <span className="p-inputgroup-addon">
@@ -230,72 +233,71 @@ export default function Tours() {
           <Button label="Explore" className="" onClick={handleExplore} />
         </div>
       </div>
-      {
-  loading ? (
-<div className="h-[30vh] w-full bg-[#fff] flex justify-center items-center">
-  {/* <h1>Loading</h1> */}
-  <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
-</div>
-  ) : (
-    <>
-      <div className="container mx-auto px-6 mt-8 w-full pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:w-10/12 mx-auto justify-center">
-          {filteredTours && filteredTours.length > 0 ? (
-            filteredTours.map((tour) => (
-              <div
-                key={tour.id}
-                className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
-                onClick={() => {
-                  navigate("/tourDetails", { state: { tour } });
-                  window.scrollTo(0, 0);
-                }}
-              >
-                {tour.refCoverImage === null ? (
-                  <>
-                    <img src={tourImg} alt="Alt Image for Tours" />
-                  </>
-                ) : (
-                  <>
-                    {" "}
-                    <img
-                      src={`data:${tour.refCoverImage.contentType};base64,${tour.refCoverImage.content}`}
-                      alt={tour.title}
-                      className="w-full object-cover aspect-[4/3]"
-                    />
-                  </>
-                )}
-
-                <div className="px-4 pt-4 flex-grow">
-                  <h3 className="text-lg font-semibold text-black line-clamp-1">
-                    {tour.refPackageName}
-                  </h3>
-                  <div className="flex justify-content-between">
-                    <p className="text-gray-600 m-0">
-                      {tour.refDurationIday} D & {tour.refDurationINight} N
-                    </p>
-                    <p className="text-gray-700 m-0">
-                      {tour.refDestinationName}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center bg-gray-100">
-                  <span className="text-md font-bold px-3 bg-[#ffcb27] mt-2 py-3 rounded-tr-xl">
-                    CHF {tour.refTourPrice} / Person
-                  </span>
-                  <span className="text-md font-bold pe-3 py-3 mt-2">
-                    View Tour
-                  </span>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p>No tours available for the selected dates.</p>
-          )}
+      {loading ? (
+        <div className="h-[30vh] w-full bg-[#fff] flex justify-center items-center">
+          {/* <h1>Loading</h1> */}
+          <i className="pi pi-spin pi-spinner" style={{ fontSize: "2rem" }}></i>
         </div>
-      </div>
-      </>
-  )
-}
+      ) : (
+        <>
+          <div className="container mx-auto px-6 mt-8 w-full pb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:w-10/12 mx-auto justify-center">
+              {filteredTours && filteredTours.length > 0 ? (
+                filteredTours.map((tour) => (
+                  <div
+                    key={tour.id}
+                    className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
+                    onClick={() => {
+                      navigate("/tourDetails", { state: { tour } });
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    {tour.refCoverImage === null ? (
+                      <>
+                        <img src={tourImg} alt="Alt Image for Tours" />
+                      </>
+                    ) : (
+                      <>
+                        {" "}
+                        <img
+                          src={`https://explorevacations.max-idigital.ch/src/assets/coverImage/${tour.refCoverImage}`}
+                          // src={`data:${tour.refCoverImage};base64,${tour.refCoverImage.content}`}
+                          alt={tour.title}
+                          className="w-full object-cover aspect-[4/3]"
+                        />
+                      </>
+                    )}
+
+                    <div className="px-4 pt-4 flex-grow">
+                      <h3 className="text-lg font-semibold text-black line-clamp-1">
+                        {tour.refPackageName}
+                      </h3>
+                      <div className="flex justify-content-between">
+                        <p className="text-gray-600 m-0">
+                          {tour.refDurationIday} D & {tour.refDurationINight} N
+                        </p>
+                        <p className="text-gray-700 m-0">
+                          {tour.refDestinationName}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center bg-gray-100">
+                      <span className="text-md font-bold px-3 bg-[#ffcb27] mt-2 py-3 rounded-tr-xl">
+                        CHF {tour.refTourPrice} / Person
+                      </span>
+                      <span className="text-md font-bold pe-3 py-3 mt-2">
+                        View Tour
+                      </span>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>No tours available for the selected dates.</p>
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
