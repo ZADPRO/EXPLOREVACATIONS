@@ -13,8 +13,8 @@ import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { FloatLabel } from "primereact/floatlabel";
-import { FaDownload } from "react-icons/fa6";
-import Pdf from "../../components/Pdf/index";
+// import { FaDownload } from "react-icons/fa6";
+// import Pdf from "../../components/Pdf/index";
 import { InputTextarea } from "primereact/inputtextarea";
 import { FileUpload } from "primereact/fileupload";
 
@@ -23,7 +23,7 @@ import { TabView, TabPanel } from "primereact/tabview";
 
 import { useNavigate } from "react-router-dom";
 
-import { pdf } from "@react-pdf/renderer";
+// import { pdf } from "@react-pdf/renderer";
 import Axios from "axios";
 
 import { useLocation } from "react-router-dom";
@@ -405,46 +405,46 @@ export default function ToursTemplate() {
     // Add your failure handling logic here
   };
 
-  const handleInvoiceDownload = async () => {
-    const doc = (
-      <Pdf
-        tourName={tour.refPackageName}
-        tourDay={tour.refDurationIday}
-        tourNight={tour.refDurationINight}
-        tourPrice={tour.refTourPrice}
-        tourCode={tour.refTourCode}
-        tourGroupSize={tour.refGroupSize}
-        tourCategory={tour.refCategoryName}
-        tourItenary={tour.refItinary}
-        tourIncludes={tour.travalInclude}
-        tourExcludes={tour.travalExclude}
-        specialNotes={tour.refSpecialNotes}
-      />
-    );
+  // const handleInvoiceDownload = async () => {
+  //   const doc = (
+  //     <Pdf
+  //       tourName={tour.refPackageName}
+  //       tourDay={tour.refDurationIday}
+  //       tourNight={tour.refDurationINight}
+  //       tourPrice={tour.refTourPrice}
+  //       tourCode={tour.refTourCode}
+  //       tourGroupSize={tour.refGroupSize}
+  //       tourCategory={tour.refCategoryName}
+  //       tourItenary={tour.refItinary}
+  //       tourIncludes={tour.travalInclude}
+  //       tourExcludes={tour.travalExclude}
+  //       specialNotes={tour.refSpecialNotes}
+  //     />
+  //   );
 
-    try {
-      // Generate PDF as Blob
-      const pdfBlob = await pdf(doc).toBlob();
+  //   try {
+  //     // Generate PDF as Blob
+  //     const pdfBlob = await pdf(doc).toBlob();
 
-      // Create a URL for the Blob
-      const url = URL.createObjectURL(pdfBlob);
+  //     // Create a URL for the Blob
+  //     const url = URL.createObjectURL(pdfBlob);
 
-      // Create an anchor element and trigger download
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `Tour_Package${tour.refPackageName}.pdf`;
-      document.body.appendChild(a);
-      a.click();
+  //     // Create an anchor element and trigger download
+  //     const a = document.createElement("a");
+  //     a.href = url;
+  //     a.download = `Tour_Package${tour.refPackageName}.pdf`;
+  //     document.body.appendChild(a);
+  //     a.click();
 
-      // Cleanup
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+  //     // Cleanup
+  //     document.body.removeChild(a);
+  //     URL.revokeObjectURL(url);
 
-      console.log("PDF downloaded successfully!");
-    } catch (error) {
-      console.error("Error generating or downloading PDF:", error);
-    }
-  };
+  //     console.log("PDF downloaded successfully!");
+  //   } catch (error) {
+  //     console.error("Error generating or downloading PDF:", error);
+  //   }
+  // };
 
   return (
     <div>
@@ -619,7 +619,7 @@ export default function ToursTemplate() {
               )}
             </div>
           </TabPanel>
-          <TabPanel header="Downloads" key="tab8">
+          {/* <TabPanel header="Downloads" key="tab8">
             <div className="max-h-[300px] flex flex-col w-[100%] gap-3 justify-center overflow-y-auto p-2 md:max-h-full">
               <p className="text-xl text-[#065784] ">
                 {" "}
@@ -634,7 +634,7 @@ export default function ToursTemplate() {
                 <FaDownload />
               </button>
             </div>
-          </TabPanel>
+          </TabPanel> */}
         </TabView>
       </div>
       <Dialog
