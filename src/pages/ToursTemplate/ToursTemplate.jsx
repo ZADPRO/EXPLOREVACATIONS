@@ -8,22 +8,33 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
-import { Dropdown } from "primereact/dropdown";
+
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { FloatLabel } from "primereact/floatlabel";
-
+import { FaDownload } from "react-icons/fa6";
+import Pdf from "../../components/Pdf/index";
 import { InputTextarea } from "primereact/inputtextarea";
 import { FileUpload } from "primereact/fileupload";
-import { useLocation } from "react-router-dom";
+
 import { Toast } from "primereact/toast";
 import { TabView, TabPanel } from "primereact/tabview";
+
+import { useNavigate } from "react-router-dom";
+
+import { pdf } from "@react-pdf/renderer";
 import Axios from "axios";
 
+import { useLocation } from "react-router-dom";
 import decrypt, { formatDate } from "../../helper";
+// import PayrexxModal from "../Payment/PayrexxModal";
 
 export default function ToursTemplate() {
+  const navigate = useNavigate();
+  const handleNext = () => {
+    navigate("/pdf", { state: { tourId: tour.refPackageId } });
+  };
   const location = useLocation();
   const tour = location.state?.tour;
   console.log("tour", tour);
@@ -91,7 +102,7 @@ export default function ToursTemplate() {
         },
         {
           headers: {
-            Authorization: localStorage.getItem("JWTtoken"),
+            Authorization: localStorage.getItem("token"),
             "Content-Type": "application/json",
           },
         }
@@ -109,7 +120,7 @@ export default function ToursTemplate() {
           detail: "Added successfully!",
           life: 3000,
         });
-        // localStorage.setItem("token", "Bearer " + data.token);
+        localStorage.setItem("token", "Bearer " + data.token);
         setIsModelOpen(false);
       }
     } catch (error) {
@@ -145,7 +156,7 @@ export default function ToursTemplate() {
         },
         {
           headers: {
-            Authorization: localStorage.getItem("JWTtoken"),
+            Authorization: localStorage.getItem("token"),
             "Content-Type": "application/json",
           },
         }
@@ -163,7 +174,7 @@ export default function ToursTemplate() {
           detail: "Added successfully!",
           life: 3000,
         });
-        // localStorage.setItem("token", "Bearer " + data.token);
+        localStorage.setItem("token", "Bearer " + data.token);
         setModelOpen(false);
       }
     } catch (error) {
@@ -189,7 +200,7 @@ export default function ToursTemplate() {
           },
           {
             headers: {
-              Authorization: localStorage.getItem("JWTtoken"),
+              Authorization: localStorage.getItem("token"),
               "Content-Type": "application/json",
             },
           }
@@ -207,7 +218,7 @@ export default function ToursTemplate() {
           import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
           {
             headers: {
-              Authorization: localStorage.getItem("JWTtoken"),
+              Authorization: localStorage.getItem("token"),
               "Content-Type": "application/json",
             },
           }
@@ -231,15 +242,15 @@ export default function ToursTemplate() {
   }
 
   const handlePayment = async () => {
-    if (!name || !email || !mobileNumber || !pickupDateTime) {
-      toast.current.show({
-        severity: "error",
-        summary: "Validation Error",
-        detail: "Please fill in all required fields before payment.",
-        life: 3000,
-      });
-      return;
-    }
+    // if (!name || !email || !mobileNumber || !pickupDateTime) {
+    //   toast.current.show({
+    //     severity: "error",
+    //     summary: "Validation Error",
+    //     detail: "Please fill in all required fields before payment.",
+    //     life: 3000,
+    //   });
+    //   return;
+    // }
 
     const paymentForm = new FormData(); // ✅ this is the fix
 
@@ -319,7 +330,7 @@ export default function ToursTemplate() {
         console.log("data==============", data);
 
         if (data.success) {
-          // localStorage.setItem("token", "Bearer " + data.token);
+          localStorage.setItem("token", "Bearer " + data.token);
           handleUploadSuccess(data);
         } else {
           handleUploadFailure(data);
@@ -371,11 +382,8 @@ export default function ToursTemplate() {
           import.meta.env.VITE_ENCRYPTION_KEY
         );
 
-        // localStorage.setItem("token", "Bearer " + data.token);
-        console.log("data==============", data);
-
         if (data.success) {
-          // localStorage.setItem("token", "Bearer " + data.token);
+          localStorage.setItem("token", "Bearer " + data.token);
           handlepassportUploadSuccess(data);
         } else {
           handlepassportUploadFailure(data);
@@ -395,6 +403,47 @@ export default function ToursTemplate() {
   const handlepassportUploadFailure = (error) => {
     console.error("Upload Failed:", error);
     // Add your failure handling logic here
+  };
+
+  const handleInvoiceDownload = async () => {
+    const doc = (
+      <Pdf
+        tourName={tour.refPackageName}
+        tourDay={tour.refDurationIday}
+        tourNight={tour.refDurationINight}
+        tourPrice={tour.refTourPrice}
+        tourCode={tour.refTourCode}
+        tourGroupSize={tour.refGroupSize}
+        tourCategory={tour.refCategoryName}
+        tourItenary={tour.refItinary}
+        tourIncludes={tour.travalInclude}
+        tourExcludes={tour.travalExclude}
+        specialNotes={tour.refSpecialNotes}
+      />
+    );
+
+    try {
+      // Generate PDF as Blob
+      const pdfBlob = await pdf(doc).toBlob();
+
+      // Create a URL for the Blob
+      const url = URL.createObjectURL(pdfBlob);
+
+      // Create an anchor element and trigger download
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Tour_Package${tour.refPackageName}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+
+      // Cleanup
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      console.log("PDF downloaded successfully!");
+    } catch (error) {
+      console.error("Error generating or downloading PDF:", error);
+    }
   };
 
   return (
@@ -517,10 +566,10 @@ export default function ToursTemplate() {
           </TabPanel>
           <TabPanel header="Gallery Image" key="tab3">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
-              {galleryImg.map((img) => (
+              {galleryImg?.map((img) => (
                 <img
                   // src={`data:${img.contentType};base64,${img.content}`}
-                src={`https://explorevacations.max-idigital.ch/src/assets/gallery/${img}`}
+                  src={`https://explorevacations.max-idigital.ch/src/assets/gallery/${img}`}
                   alt=""
                 />
               ))}
@@ -568,6 +617,22 @@ export default function ToursTemplate() {
               ) : (
                 <p>Loading...</p>
               )}
+            </div>
+          </TabPanel>
+          <TabPanel header="Downloads" key="tab8">
+            <div className="max-h-[300px] flex flex-col w-[100%] gap-3 justify-center overflow-y-auto p-2 md:max-h-full">
+              <p className="text-xl text-[#065784] ">
+                {" "}
+                Download the Tour Package Here......!
+              </p>
+              <button
+                onClick={() => {
+                  handleInvoiceDownload();
+                }}
+                className="text-3xl text-[#065784] cursor-pointer"
+              >
+                <FaDownload />
+              </button>
             </div>
           </TabPanel>
         </TabView>
@@ -698,10 +763,18 @@ export default function ToursTemplate() {
             label="Submit"
             onClick={(e) => {
               e.preventDefault();
-              // handlePayment();
               handleSubmit();
+              handlePayment();
             }}
           />
+          {/* <PayrexxModal/> */}
+          {/* <a
+            className="payrexx-modal-window"
+            href="#"
+            data-href="https://example.payrexx.com/?payment=GATEWAY-HASH"
+          >
+            Open modal window
+          </a> */}
         </div>
       </Dialog>
 
