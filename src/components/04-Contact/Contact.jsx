@@ -75,7 +75,7 @@ export default function Contact() {
           <Button
             icon="pi pi-whatsapp"
             className="p-button-rounded p-button-success p-button-lg"
-            onClick={() => window.open("https://wa.me/444423035", "_blank")}
+            onClick={() => window.open("https://wa.me/+41764959010", "_blank")}
             style={{ boxShadow: "0 4px 10px rgba(0,0,0,0.2)" }}
           />
         </div>
