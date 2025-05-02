@@ -13,9 +13,9 @@ export default function Footer() {
   };
   return (
     <div>
-      <div>
+     <div className="w-full ">
         {" "}
-        <img src={footer} alt="footer" className="mb-0 border-0" />
+        <img src={footer} style={{ objectFit: 'cover' }}  alt="footer" className="w-full h-auto mb-0 border-0" />
       </div>
       <div className="  bg-[#065784] -mt-2">
         {/* style={{   backgroundImage: `url(${bgimg})`,}} */}
@@ -107,9 +107,16 @@ export default function Footer() {
                 </p>
               </a>
 
-              <p className="text-white py-2 text-[15px] font-medium">
+              <a
+                href="https://www.instagram.com/evag.001111111/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <p className="text-white py-2 text-[15px] font-medium">
                 Instagram
-              </p>
+                </p>
+              </a>
+             
               <p className="text-white py-2 text-[15px] font-medium">Twitter</p>
             </div>
           </div>

@@ -8,13 +8,13 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
-
+import { Dropdown } from "primereact/dropdown";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { FloatLabel } from "primereact/floatlabel";
-// import { FaDownload } from "react-icons/fa6";
-// import Pdf from "../../components/Pdf/index";
+import { FaDownload } from "react-icons/fa6";
+import Pdf from "../../components/Pdf/index";
 import { InputTextarea } from "primereact/inputtextarea";
 import { FileUpload } from "primereact/fileupload";
 
@@ -23,12 +23,12 @@ import { TabView, TabPanel } from "primereact/tabview";
 
 import { useNavigate } from "react-router-dom";
 
-// import { pdf } from "@react-pdf/renderer";
+import { pdf } from "@react-pdf/renderer";
 import Axios from "axios";
 
 import { useLocation } from "react-router-dom";
 import decrypt, { formatDate } from "../../helper";
-// import PayrexxModal from "../Payment/PayrexxModal";
+import PayrexxModal from "../Payment/PayrexxModal";
 
 export default function ToursTemplate() {
   const navigate = useNavigate();
@@ -70,6 +70,13 @@ export default function ToursTemplate() {
     refVaccinationCertificate: "",
     refOtherRequirements: "",
     refPassPort: "",
+  });
+  const [input, setInout] = useState({
+    totalAmount: 0,
+    userEmail: "",
+    firstname: "",
+    lastname: "",
+    purpose: "",
   });
 
   const [otherRequirements, setOtherRequirements] = useState("");
@@ -332,6 +339,12 @@ export default function ToursTemplate() {
         if (data.success) {
           localStorage.setItem("token", "Bearer " + data.token);
           handleUploadSuccess(data);
+          toast.current?.show({
+            severity: "success",
+            summary: "Success",
+            detail: "Uploaded Successfully!",
+            life: 3000,
+          });
         } else {
           handleUploadFailure(data);
         }
@@ -405,44 +418,145 @@ export default function ToursTemplate() {
     // Add your failure handling logic here
   };
 
-  // const handleInvoiceDownload = async () => {
-  //   const doc = (
-  //     <Pdf
-  //       tourName={tour.refPackageName}
-  //       tourDay={tour.refDurationIday}
-  //       tourNight={tour.refDurationINight}
-  //       tourPrice={tour.refTourPrice}
-  //       tourCode={tour.refTourCode}
-  //       tourGroupSize={tour.refGroupSize}
-  //       tourCategory={tour.refCategoryName}
-  //       tourItenary={tour.refItinary}
-  //       tourIncludes={tour.travalInclude}
-  //       tourExcludes={tour.travalExclude}
-  //       specialNotes={tour.refSpecialNotes}
-  //     />
-  //   );
+  const handleInvoiceDownload = async () => {
+    const doc = (
+      <Pdf
+        tourName={tour.refPackageName}
+        tourDay={tour.refDurationIday}
+        tourNight={tour.refDurationINight}
+        tourPrice={tour.refTourPrice}
+        tourCode={tour.refTourCode}
+        tourGroupSize={tour.refGroupSize}
+        tourCategory={tour.refCategoryName}
+        tourItenary={tour.refItinary}
+        tourIncludes={tour.travalInclude}
+        tourExcludes={tour.travalExclude}
+        specialNotes={tour.refSpecialNotes}
+      />
+    );
 
+    try {
+      // Generate PDF as Blob
+      const pdfBlob = await pdf(doc).toBlob();
+
+      // Create a URL for the Blob
+      const url = URL.createObjectURL(pdfBlob);
+
+      // Create an anchor element and trigger download
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Tour_Package${tour.refPackageName}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+
+      // Cleanup
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      console.log("PDF downloaded successfully!");
+    } catch (error) {
+      console.error("Error generating or downloading PDF:", error);
+    }
+  };
+
+  // payment
+  const checkingApi = async () => {
+    try {
+      console.log("checkingApi running");
+      const response = await Axios.post(
+        import.meta.env.VITE_API_URL + "/paymentRoutes/payment",
+        {
+          successRedirectUrl: "https://explorevacations.max-idigital.ch",
+          failedRedirectUrl: "https://explorevacations.max-idigital.ch",
+          purpose: "Payment processing",
+          totalAmount: tour.refTourPrice,
+          userEmail: email,
+          firstname: name.split(" ")[0],
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Decrypt the response
+      const decryptedData = decrypt(
+        response.data[1],
+        response.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+
+      console.log("decryptedData:", decryptedData);
+
+      if (decryptedData?.success) {
+        const paymentLink = decryptedData?.data?.[0]?.link;
+        if (paymentLink) {
+          console.log("Redirecting to paymentLink:", paymentLink);
+          window.location.href = paymentLink;
+        } else {
+          console.warn("Payment link not found in success response.");
+          alert("Payment link not found. Please try again later.");
+        }
+      } else {
+        console.error(
+          "Payment creation failed:",
+          decryptedData?.message || "Unknown error"
+        );
+        alert(
+          "Payment creation failed: " +
+            (decryptedData?.message || "Unknown error")
+        );
+      }
+    } catch (error) {
+      console.error("Error while making API call:", error?.message || error);
+      alert("Error while making payment. Please try again later.");
+    }
+  };
+
+  // const checkingApi = async () => {
+  //   console.log("checkingApi running");
   //   try {
-  //     // Generate PDF as Blob
-  //     const pdfBlob = await pdf(doc).toBlob();
+  //     const response = await Axios.post(
+  //       import.meta.env.VITE_API_URL + "/paymentRoutes/payment",
+  //       {
+  //         totalAmount: 100,
+  //         userEmail:"soniya@gmail.com",
+  //         firstname: "soniya",
+  //         lastname: "G",
+  //         purpose: "payment",
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: localStorage.getItem("token"),
+  //           "Content-Type": "application/json",
+  //         },
+  //               }
+  //     );
 
-  //     // Create a URL for the Blob
-  //     const url = URL.createObjectURL(pdfBlob);
+  //     const decryptedData = decrypt(
+  //       response.data[1],
+  //       response.data[0],
+  //       import.meta.env.VITE_ENCRYPTION_KEY
+  //     );
+  //     console.log("decryptedData---------->", decryptedData);
 
-  //     // Create an anchor element and trigger download
-  //     const a = document.createElement("a");
-  //     a.href = url;
-  //     a.download = `Tour_Package${tour.refPackageName}.pdf`;
-  //     document.body.appendChild(a);
-  //     a.click();
-
-  //     // Cleanup
-  //     document.body.removeChild(a);
-  //     URL.revokeObjectURL(url);
-
-  //     console.log("PDF downloaded successfully!");
+  //     if (decryptedData.success) {
+  //       console.log("decryptedData---------->", decryptedData);
+  //       const paymentLink = decryptedData.data[0]?.link;
+  //       localStorage.setItem("token", "Bearer " + data.token);
+  //       if (paymentLink) {
+  //         window.location.href = paymentLink;
+  //       } else {
+  //         alert("Payment link not found.");
+  //       }
+  //     } else {
+  //       alert("Payment creation failed: " + decryptedData.message);
+  //     }
   //   } catch (error) {
-  //     console.error("Error generating or downloading PDF:", error);
+  //     console.error("Error while tracking:", error);
+  //     alert("Error while tracking. Please try again.");
   //   }
   // };
 
@@ -619,7 +733,7 @@ export default function ToursTemplate() {
               )}
             </div>
           </TabPanel>
-          {/* <TabPanel header="Downloads" key="tab8">
+          <TabPanel header="Downloads" key="tab8">
             <div className="max-h-[300px] flex flex-col w-[100%] gap-3 justify-center overflow-y-auto p-2 md:max-h-full">
               <p className="text-xl text-[#065784] ">
                 {" "}
@@ -634,7 +748,7 @@ export default function ToursTemplate() {
                 <FaDownload />
               </button>
             </div>
-          </TabPanel> */}
+          </TabPanel>
         </TabView>
       </div>
       <Dialog
@@ -688,13 +802,15 @@ export default function ToursTemplate() {
             <FloatLabel className="w-[100%]">
               <Calendar
                 id="calendar-12h"
-                value={pickupDateTime}
+                value={pickupDateTime || new Date()} // Default to current date and time
                 className="flex-1 w-[100%]"
                 onChange={(e) => setPickupDateTime(e.value)}
                 showTime
                 placeholder="Pickup Date & Time"
                 hourFormat="12"
+                minDate={new Date()} // Restrict selection to today and onwards
               />
+
               <label htmlFor="calendar-12h">Pick Up Date & Time</label>
             </FloatLabel>
           </div>
@@ -756,15 +872,15 @@ export default function ToursTemplate() {
           </div>
         </div>
 
-        <div className="pt-[1rem] flex justify-center">
+        <div className="pt-[1rem] bg-red flex justify-center">
           <Button
-            severity="success"
+            severity="danger"
             className="w-[20%]"
-            label="Submit"
+            label="Pay"
             onClick={(e) => {
               e.preventDefault();
               handleSubmit();
-              handlePayment();
+              checkingApi();
             }}
           />
           {/* <PayrexxModal/> */}

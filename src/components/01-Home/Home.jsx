@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import { Send, CarFront, CarTaxiFront } from "lucide-react";
+import { Send, CarFront, CircleParking, Car } from "lucide-react";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
@@ -38,13 +38,13 @@ import travel from "../../assets/home/travel.png";
 
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
+import Popup from "../../pages/Popup/Popup";
 
 export default function Home() {
   const [tabSelected, setTabSelected] = useState({
     currentTab: 1,
     noTabs: 3,
   });
-
   const wrapperRef = useRef(null);
 
   const handleKeyDown = (e) => {
@@ -97,8 +97,8 @@ export default function Home() {
   const [tourDestination, setTourDestination] = useState(null);
   const [tourFromDate, setTourFromDate] = useState(null);
   const [tourToDate, setTourToDate] = useState(null);
-  const [tourGuest, setTourGuest] = useState(0);
-
+  const [tourGuest, setTourGuest] = useState("");
+  const [vechilecount, setvechilecount] = useState("");
   const [carPickupLocation, setCarPickupLocation] = useState(null);
   const [carPickupDateTime, setCarPickupDateTime] = useState(null);
   const [carDropLocation, setCarDropLocation] = useState(null);
@@ -171,15 +171,43 @@ export default function Home() {
     window.scrollTo(0, 0);
   };
 
-  const handleCarExplore = () => {
-    if (!cabPickupLocation) {
+  const handleparking = () => {
+    if (!tourFromDate) {
       toast.current.show({
         severity: "error",
         summary: "Error",
-        detail: "Pick Up is required",
+        detail: "From date is required",
       });
       return;
     }
+    if (!tourToDate) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: "To date is required",
+      });
+      return;
+    }
+    if (!vechilecount) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Number of vechile is required",
+      });
+      return;
+    }
+
+    navigate("/parking", {
+      state: {
+        tourFromDate,
+        tourToDate,
+        vechilecount,
+      },
+    });
+    window.scrollTo(0, 0);
+  };
+
+  const handleCarExplore = () => {
     if (!cabPickupDateTime) {
       toast.current.show({
         severity: "error",
@@ -188,27 +216,16 @@ export default function Home() {
       });
       return;
     }
-    if (!cabDropLocation) {
-      toast.current.show({
-        severity: "error",
-        summary: "Error",
-        detail: "Location is required",
-      });
-      return;
-    }
 
-    const url = new URL("https://explorevacations.yelowtaxi.com/ride/add");
+    const queryParams = new URLSearchParams({
+      cabPickupLocation,
+      cabPickupDateTime,
+      cabDropLocation,
+    });
 
-    // Append query parameters
-    url.searchParams.append("cabPickupLocation", cabPickupLocation);
-    url.searchParams.append("cabPickupDateTime", cabPickupDateTime);
-    url.searchParams.append("cabDropLocation", cabDropLocation);
-
-    // Open in a new tab
-    window.open(url.toString(), "_blank");
+    navigate(`/travel?${queryParams.toString()}`);
     window.scrollTo(0, 0);
   };
-
   const faqTopics = [
     {
       title: "General",
@@ -547,7 +564,7 @@ export default function Home() {
         import.meta.env.VITE_API_URL + "/userRoutes/listDestination",
         {
           headers: {
-            Authorization: localStorage.getItem("JWTtoken"),
+            Authorization: localStorage.getItem("token"),
             "Content-Type": "application/json",
           },
         }
@@ -572,7 +589,7 @@ export default function Home() {
         import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
         {
           headers: {
-            Authorization: localStorage.getItem("JWTtoken"),
+            Authorization: localStorage.getItem("token"),
             "Content-Type": "application/json",
           },
         }
@@ -586,7 +603,7 @@ export default function Home() {
       if (data.success) {
         // localStorage.setItem("token", "Bearer " + data.token);
         // setIsModelOpen(false);
-        setTourDetailsBackend(data.tourDetails);
+        // setTourDetailsBackend(data.tourDetails);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -599,6 +616,7 @@ export default function Home() {
   return (
     <div className="">
       <Toast ref={toast} />
+      <Popup />
 
       <div className="homePageContainer01">
         <div className="h-[80vh]"></div>
@@ -609,11 +627,11 @@ export default function Home() {
           aria-multiselectable="false"
         >
           <ul
-            className="flex items-center border-b border-slate-200"
+            className="flex items-center border-b border-slate-200 flex-wrap"
             role="tablist"
             ref={wrapperRef}
           >
-            <li className="" role="presentation">
+            <li role="presentation" className="w-full sm:w-auto">
               <button
                 className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-emerald-50 hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
                   tabSelected.currentTab === 1
@@ -663,7 +681,7 @@ export default function Home() {
                 <CarFront />
               </button>
             </li>
-            {/* <li className="" role="presentation">
+            <li className="" role="presentation">
               <button
                 className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-emerald-50 hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
                   tabSelected.currentTab === 3
@@ -683,12 +701,38 @@ export default function Home() {
                   setTabSelected({ ...tabSelected, currentTab: 3 })
                 }
               >
-                <span className="order-2 ">Cab</span>
+                <span className="order-2 ">Parking</span>
                 <span className="relative only:-mx-6">
-                  <CarTaxiFront />{" "}
+                  <CircleParking />{" "}
                 </span>
               </button>
-            </li> */}
+            </li>
+            <li className="" role="presentation">
+              <button
+                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-emerald-50 hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
+                  tabSelected.currentTab === 4
+                    ? "border-[#02569c] stroke-[#02569c] text-[#02569c] hover:border-[#02569c]  hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:border-slate-500"
+                    : "justify-self-center border-transparent stroke-slate-700 text-slate-700 hover:border-[#02569c] hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:text-slate-500"
+                }`}
+                id="tab-label-1ai"
+                role="tab"
+                aria-setsize="3"
+                aria-posinset="1"
+                tabindex={`${tabSelected.currentTab === 4 ? "0" : "-1"}`}
+                aria-controls="tab-panel-1ai"
+                aria-selected={`${
+                  tabSelected.currentTab === 4 ? "true" : "false"
+                }`}
+                onClick={() =>
+                  setTabSelected({ ...tabSelected, currentTab: 4 })
+                }
+              >
+                <span className="order-2 ">Travel</span>
+                <span className="relative only:-mx-6">
+                  <Car />
+                </span>
+              </button>
+            </li>
           </ul>
           <div className="">
             <div
@@ -765,7 +809,7 @@ export default function Home() {
                   <Dropdown
                     value={tourDestination}
                     onChange={(e) => setTourDestination(e.value)}
-                    options={destinationData.map((item) => ({
+                    options={destinationData?.map((item) => ({
                       ...item,
                       refDestinationName:
                         item.refDestinationName.charAt(0).toUpperCase() +
@@ -839,7 +883,7 @@ export default function Home() {
               aria-labelledby="tab-label-2ai"
               tabIndex="-1"
             >
-              <div className="flex gap-5 min-w-max">
+              <div className="flex flex-col lg:flex-row gap-5 min-w-max">
                 {/* Pickup Location */}
                 {/* <div className="p-inputgroup flex-1 min-w-[250px]">
       <span className="p-inputgroup-addon">
@@ -926,7 +970,71 @@ export default function Home() {
               tabindex="-1"
             >
               <div className="flex gap-3 lg:flex-row flex-column">
+                {/* From Date */}
                 <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    value={tourFromDate}
+                    placeholder="From"
+                    className="flex-1"
+                    minDate={new Date()} // Prevent past date selection
+                    onChange={(e) => {
+                      setTourFromDate(e.value);
+                      if (tourToDate && e.value > tourToDate) {
+                        setTourToDate(null);
+                      }
+                    }}
+                  />
+                </div>
+
+                {/* To Date (minDate is set to From Date) */}
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-calendar-clock"></i>
+                  </span>
+                  <Calendar
+                    className="flex-1"
+                    placeholder="To"
+                    value={tourToDate}
+                    onChange={(e) => setTourToDate(e.value)}
+                    minDate={tourFromDate}
+                  />
+                </div>
+
+                {/* Guest Input */}
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-user"></i>
+                  </span>
+                  <InputNumber
+                    value={vechilecount}
+                    className="flex-1"
+                    placeholder="Vechile count"
+                    onValueChange={(e) => setvechilecount(e.value)}
+                  />
+                </div>
+
+                {/* Explore Button */}
+                <Button label="Explore" className="" onClick={handleparking} />
+              </div>
+            </div>
+
+            <div
+              className={`px-6 py-4 ${
+                tabSelected.currentTab === 4 ? "" : "hidden"
+              }`}
+              id="tab-panel-3ai"
+              aria-selected={`${
+                tabSelected.currentTab === 4 ? "true" : "false"
+              }`}
+              role="tabpanel"
+              aria-labelledby="tab-label-3ai"
+              tabindex="-1"
+            >
+              <div className="flex gap-3 lg:flex-row flex-column">
+                {/* <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
                     <i className="pi pi-map-marker"></i>
                   </span>
@@ -938,7 +1046,7 @@ export default function Home() {
                     placeholder="Pickup Location"
                     className="flex-1"
                   />{" "}
-                </div>
+                </div> */}
                 <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
                     <i className="pi pi-calendar-clock"></i>
@@ -952,7 +1060,7 @@ export default function Home() {
                     hourFormat="12"
                   />
                 </div>
-                <div className="p-inputgroup flex-1">
+                {/* <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
                     <i className="pi pi-map-marker"></i>
                   </span>
@@ -964,7 +1072,7 @@ export default function Home() {
                     placeholder="Drop Off Location"
                     className="flex-1"
                   />{" "}
-                </div>
+                </div> */}
 
                 <Button
                   label="Explore"
@@ -976,6 +1084,7 @@ export default function Home() {
           </div>
         </section>
       </div>
+
       <div className="flex lg:flex-row flex-column justify-between items-center gap-4 w-9/12 mx-auto my-20">
         <div className="flex flex-col justify-between h-full flex-1 gap-10">
           <img

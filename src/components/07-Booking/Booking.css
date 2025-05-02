@@ -1,0 +1,21 @@
+.contactPage001 {
+    background: url("../../assets/contact/contact[1].jpg") no-repeat center;
+    background-size: cover;
+    background-position: center;
+  }
+
+  @media (max-width: 640px) {
+    .contactPage001 {
+      background: url("../../assets/contact/mobile_contact[1].jpg") no-repeat
+        center;
+      background-size: cover;
+    }
+  }
+
+
+  .booking-hero {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+  }
+  

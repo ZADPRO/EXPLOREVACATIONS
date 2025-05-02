@@ -15,12 +15,15 @@ import Contact from "../04-Contact/Contact";
 import ToursTemplate from "../../pages/ToursTemplate/ToursTemplate";
 import CarsTemplate from "../../pages/CarsTemplate/CarsTemplate";
 import CarRental from "../03-Cars/CarRental";
-// import Booking from "../07-Booking/Booking";
+import Booking from "../07-Booking/Booking";
 import TermsCondition from "../../pages/Terms&Condition/TermsCondition";
 import Privacy from "../../pages/Privacy/Privacy";
-// import Login from "../../components/08-Login/Login";
-// import Signup from "../../components/09-Signup/Signup";
-// import Profile from "../10-Profile/Profile";
+import Login from "../../components/08-Login/Login";
+import Signup from "../../components/09-Signup/Signup";
+import Profile from "../10-Profile/Profile";
+import Parking from "../11-Parking/Parking";
+import ParkingTemplate from "../12-ParkingTemplate/ParkingTemplate";
+import Travel from "../13-Tarvel/Travel";
 
 function Layout() {
   const location = useLocation();
@@ -42,11 +45,14 @@ function Layout() {
         <Route path="/carDetails" element={<CarsTemplate />} />
         <Route path="/carRental" element={<CarRental />} />
         <Route path="/cars" element={<Cars />} />
-        {/* <Route path="/login" element={<Login />} /> */}
-        {/* <Route path="/signup" element={<Signup />} /> */}
+        <Route path="/travel" element={<Travel />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
-        {/* <Route path="/booking" element={<Booking />} /> */}
+        <Route path="/parking" element={<Parking />} />
+        <Route path="/parkingDetails" element={<ParkingTemplate />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/booking" element={<Booking />} />
         <Route path="/terms" element={<TermsCondition />} />
         <Route path="/privacy" element={<Privacy />} />
       </Routes>

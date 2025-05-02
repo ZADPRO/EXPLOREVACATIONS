@@ -12,20 +12,45 @@
 }
 
 .toursPageContents01 {
-  background: url("../../assets/tours/toursHeading.png") no-repeat center;
+  background: url("../../assets/tours/tourbg.jpg") no-repeat center;
   background-size: cover;
   background-position: center;
 }
 
 @media (max-width: 640px) {
   .toursPageContents01 {
-    background: url("../../assets/tours/mobile_tours[1].png") no-repeat center;
+    background: url("../../assets/tours/tourmb.jpg") no-repeat center;
+    background-size: cover;
+  }
+}
+.toursPageContents02 {
+  background: url("../../assets/Travel/Taxi.jpg") no-repeat center;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 640px) {
+  .toursPageContents02 {
+    background: url("../../assets/tours/tourmb.jpg") no-repeat center;
     background-size: cover;
   }
 }
 
+
+.parkingPageContents01 {
+  background: url("../../assets/Parking//Park.jpg") no-repeat center;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 640px) {
+  .parkingPageContents01 {
+    background: url("../../assets/tours/Parkingmb.jpg") no-repeat center;
+    background-size: cover;
+  }
+}
 .carsPageCont01 {
-  background: url("../../assets/cars/carbg.jpg") no-repeat center;
+  background: url("../../assets/cars/carsbgs.jpg") no-repeat center;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -76,4 +101,46 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+.bookingflight {
+  background-image: url('../../assets//Booking/flight8.jpg'); /* Desktop version */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Mobile view */
+@media (max-width: 640px) {
+  .bookingflight {
+    background-image: url('../../assets//Booking/flightmb.jpg'); /* Mobile version */
+  }
+}
+
+.bookinghotel{
+  background-image: url('../../assets/Booking/Hotel9.jpg'); /* Desktop version */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Mobile view */
+@media (max-width: 640px) {
+  .bookinghotel {
+    background-image: url('../../assets//Booking/hotelmb.jpg'); /* Mobile version */
+  }
+}
+
+.bookingship {
+  background-image: url('../../assets//Booking/ship9.jpg'); /* Desktop version */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Mobile view */
+@media (max-width: 640px) {
+  .bookingship {
+    background-image: url('../../assets//Booking/shipmb.jpg'); /* Mobile version */
+  }
 }

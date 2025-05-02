@@ -11,6 +11,7 @@ import decrypt from "../../helper";
 import Axios from "axios";
 
 import tourImg from "../../assets/tours/startAdventure.jpg";
+import Popup from "../../pages/Popup/Popup";
 
 export default function Tours() {
   const location = useLocation();
@@ -44,7 +45,7 @@ export default function Tours() {
         import.meta.env.VITE_API_URL + "/userRoutes/listDestination",
         {
           headers: {
-            Authorization: localStorage.getItem("JWTtoken"),
+            Authorization: localStorage.getItem("token"),
             "Content-Type": "application/json",
           },
         }
@@ -63,7 +64,7 @@ export default function Tours() {
         import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
         {
           headers: {
-            Authorization: localStorage.getItem("JWTtoken"),
+            Authorization: localStorage.getItem("token"),
             "Content-Type": "application/json",
           },
         }
@@ -76,7 +77,6 @@ export default function Tours() {
       console.log("data list tour data ======= ?", data);
       if (data.success) {
         // localStorage.setItem("token", "Bearer " + data.token);
-        // setIsModelOpen(false);
         setTourDetailsBackend(data.tourDetails);
       }
       setLoading(false);
@@ -140,6 +140,7 @@ export default function Tours() {
 
   return (
     <div>
+      <Popup/>
       <div className="toursPageContents01">
         <div className="h-[80vh]"></div>
       </div>
@@ -162,7 +163,7 @@ export default function Tours() {
             <Dropdown
               value={tourDestination}
               onChange={(e) => setTourDestination(e.value)}
-              options={destinationData.map((item) => ({
+              options={destinationData?.map((item) => ({
                 ...item,
                 refDestinationName:
                   item.refDestinationName.charAt(0).toUpperCase() +

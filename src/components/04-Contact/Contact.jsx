@@ -3,25 +3,32 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
+import "primereact/resources/themes/saga-blue/theme.css"; // or your theme
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [description, setDescription] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [messageType, setMessageType] = useState("tour");
+
+  const suggestionOptions = ["tour", "car", "parking", "travel"];
 
   const handleClick = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     const to = "info@explorevacations.ch";
     const subject = encodeURIComponent("Tour Booking Feedback");
     const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nFeedback:\n${description}\n\nBest regards,\n${name}`
+      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nSelected Type: ${messageType}\nMessage:\n${description}\n\nBest regards,\n${name}`
     );
-  
+
     const mailtoLink = `mailto:${to}?subject=${subject}&body=${body}`;
     window.location.href = mailtoLink;
   };
-  
 
   const [dialogVisible, setDialogVisible] = useState(false);
 
@@ -64,6 +71,23 @@ export default function Contact() {
           </div>
         </div>
 
+        <div className="fixed text-5xl bottom-6 right-6 z-50">
+          <Button
+            icon="pi pi-whatsapp"
+            className="p-button-rounded p-button-success p-button-lg"
+            onClick={() => window.open("https://wa.me/444423035", "_blank")}
+            style={{ boxShadow: "0 4px 10px rgba(0,0,0,0.2)" }}
+          />
+        </div>
+        <div className="fixed text-5xl bottom-20  right-6 z-50">
+          <Button
+            icon="pi pi-phone"
+            className="p-button-rounded p-button-warning p-button-lg text-white"
+            onClick={() => window.open("tel:+41 44 442 30 35")}
+            style={{ boxShadow: "0 4px 10px rgba(0,0,0,0.2)" }}
+          />
+        </div>
+
         {/* Right Side: Contact Form */}
         <div
           className="flex-1 md:p-1 lg:p-5 p-2 bg-white rounded-lg ml-0 md:ml-10 mt-6 md:mt-0"
@@ -72,10 +96,10 @@ export default function Contact() {
           <h2 className="text-2xl font-bold text-indigo-600 mb-4">
             Send a Message
           </h2>
-        
-        <div   className="space-y-6">
-           {/* Name */}
-           <div className="p-float-label">
+
+          <div className="space-y-6">
+            {/* Name */}
+            <div className="p-float-label">
               <InputText
                 id="name"
                 name="name"
@@ -116,7 +140,7 @@ export default function Contact() {
             </div>
 
             {/* Message */}
-            <div className="p-float-label">
+            {/* <div className="p-float-label">
               <InputTextarea
                 id="message"
                 name="message"
@@ -128,20 +152,49 @@ export default function Contact() {
                 required
               />
               <label htmlFor="message">Your Message</label>
+            </div> */}
+            {/* Message Type Selection */}
+            <div className="p-float-label mb-4">
+              <select
+                id="messageType"
+                name="messageType"
+                value={messageType}
+                onChange={(e) => setMessageType(e.target.value)}
+                className="w-full p-3 border rounded text-gray-700"
+              >
+                <option value="tour">Tour</option>
+                <option value="car">Car</option>
+                <option value="parking">Parking</option>
+                <option value="travel">Travel</option>
+              </select>
+
+              <p className="p-2 text-[#204887] italic font-semibold">
+                Selected Category: <strong>{messageType}</strong>
+              </p>
+            </div>
+
+            {/* User Message */}
+            <div className="p-float-label">
+              <InputTextarea
+                id="message"
+                name="message"
+                rows={4}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="w-full p-3 border rounded"
+                required
+              />
+              <label htmlFor="message">Your Message</label>
             </div>
 
             {/* Submit Button */}
             <Button
               label="Submit"
-                onClick={handleClick}
-
+              onClick={handleClick}
               className="w-full p-3 font-bold rounded"
               type="submit"
             />
-        </div>
-           
-
-        
+          </div>
         </div>
 
         {/* Success Dialog */}

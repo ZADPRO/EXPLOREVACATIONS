@@ -1,0 +1,183 @@
+/* From Uiverse.io by mahbowal */ 
+.containersigup {
+    
+    max-width: 350px;
+    background: #01bab8;
+
+    border-radius: 10px;
+    padding: 25px 35px;
+    border: 5px solid rgb(255, 255, 255);
+    box-shadow: rgba(22, 78, 113, 0.8) 0px 30px 30px -20px;
+
+    margin-top: 6%;
+    margin-bottom: 2%;
+  }
+  .containersigup1{
+  
+    
+    border-radius: 10px;
+    padding: 25px 35px;
+    border: 5px solid rgb(255, 255, 255);
+    box-shadow: rgba(110, 121, 156, 0.878) 0px 30px 30px -20px;
+    margin-top: 6%;
+    margin-bottom: 2%;
+  }
+  
+  .heading {
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+    color:#212828;
+    
+  }
+  
+  .form {
+    margin-top: 20px;
+  }
+  
+  .form .input {
+    width: 100%;
+    background: rgb(238, 232, 232);
+    border: none;
+    padding: 15px 20px;
+    border-radius: 20px;
+    margin-top: 15px;
+    
+    border-inline: 2px solid transparent;
+  }
+  
+  .form .input::-moz-placeholder {
+    color: rgb(18, 17, 17);
+  }
+
+ 
+  .custom-font {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+  }
+  .form .input::placeholder {
+    color: rgb(26, 23, 23);
+  }
+  
+  .form .input:focus {
+    outline: none;
+   
+  }
+  
+  .form .forgot-password {
+    display: block;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  
+  .form .forgot-password a {
+    font-size: 13px;
+    color: #0f171c;
+    text-decoration: none;
+  }
+  
+  .form .login-button {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    background: #574825;
+    color: white;
+    padding-block: 15px;
+    margin: 5px auto;
+    border-radius: 20px;
+    border: none;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .form .login-button:hover {
+    transform: scale(1.03);
+    
+  }
+  
+  .form .login-button:active {
+    transform: scale(0.95);
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
+  }
+  
+  .social-account-containersigup {
+    margin-top: 25px;
+  }
+  
+  .social-account-containersigup .title {
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    color: rgb(170, 170, 170);
+  }
+  
+  .social-account-containersigup .social-accounts {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 5px;
+  }
+  
+  .social-account-containersigup .social-accounts .social-button {
+    background: linear-gradient(45deg, rgb(0, 0, 0) 0%, rgb(112, 112, 112) 100%);
+    border: 5px solid white;
+    padding: 5px;
+    border-radius: 50%;
+    width: 40px;
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 12px 10px -8px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .social-account-containersigup .social-accounts .social-button .svg {
+    fill: white;
+    margin: auto;
+  }
+  
+  .social-account-containersigup .social-accounts .social-button:hover {
+    transform: scale(1.2);
+  }
+  
+  .social-account-containersigup .social-accounts .social-button:active {
+    transform: scale(0.9);
+  }
+  
+  .agreement {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .agreement a {
+    text-decoration: none;
+    color: #16191b;
+    font-size: 9px;
+  }
+  
+  /* Match your form's style */
+.custom-calendar .p-inputtext {
+  background-color: #fff4f4;  /* Same as other inputs */
+  border-radius: 25px;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: none;
+  width: 100%;
+  
+}
+
+/* Adjust icon area */
+.custom-calendar .p-button {
+  border-radius: 0 25px 25px 0;
+  background-color: #fff4f4;
+  border: none;
+  color: #000;
+}
+
+/* Remove focus border */
+.custom-calendar .p-inputtext:focus {
+  box-shadow: none;
+  outline: none;
+}

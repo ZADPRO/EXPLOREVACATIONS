@@ -22,10 +22,9 @@ import { TabView, TabPanel } from "primereact/tabview";
 import axios from "axios";
 
 import decrypt from "../../helper";
+import { Checkbox } from "primereact/checkbox";
 
 export default function CarsTemplate() {
-
-
   const location = useLocation();
   const [carState, setCarState] = useState();
   const [name, setName] = useState("");
@@ -37,24 +36,30 @@ export default function CarsTemplate() {
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
+  const [extras, setExtras] = useState([]);
   const [otherRequirements, setOtherRequirements] = useState("");
   const [ismodelOpen, setIsModelOpen] = useState(false);
   const [carListData, setCarLIstData] = useState({});
   const [refCarsId, setRefCarsId] = useState("");
- 
 
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setExtras((prevExtras) => ({
+      ...prevExtras,
+      [name]: checked,
+    }));
+  };
+  const selectedExtrasArray = Object.keys(extras).filter((key) => extras[key]);
 
 
   const toast = useRef(null);
 
   useEffect(() => {
     console.log("asdf===========asfd");
- 
-   
+
     const car = location.state?.car;
     setCarState(car);
     setRefCarsId(car.refCarsId);
-    
 
     const fetchData = async () => {
       try {
@@ -67,7 +72,7 @@ export default function CarsTemplate() {
           },
           {
             headers: {
-              Authorization: localStorage.getItem("JWTtoken"),
+              Authorization: localStorage.getItem("token"),
               "Content-Type": "application/json",
             },
           }
@@ -77,8 +82,20 @@ export default function CarsTemplate() {
           listDestinations.data[0],
           import.meta.env.VITE_ENCRYPTION_KEY
         );
-        console.log("destinationData ========== line 118 >", destinationData);
+        const formDetailsArray =
+          destinationData.tourDetails[0].refFormDetails || [];
+
+        // Convert array to { item: true }
+        const formattedExtras = {};
+        formDetailsArray.forEach((item) => {
+          formattedExtras[item] = false;
+        });
+
         setCarLIstData(destinationData.tourDetails[0]);
+        setExtras(formattedExtras);
+        // console.log("getCarById ========== line 118 >", destinationData);
+        // setCarLIstData(destinationData.tourDetails[0]);
+        // setExtras(destinationData.tourDetails[0].refFormDetails);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -113,10 +130,11 @@ export default function CarsTemplate() {
           refChildrenCount: children + "",
           refInfants: infants + "",
           refOtherRequirements: otherRequirements,
+          refFormDetails: selectedExtrasArray,
         },
         {
           headers: {
-            Authorization: localStorage.getItem("JWTtoken"),
+            Authorization: localStorage.getItem("token"),
             "Content-Type": "application/json",
           },
         }
@@ -126,8 +144,11 @@ export default function CarsTemplate() {
         response.data[0],
         import.meta.env.VITE_ENCRYPTION_KEY
       );
+
+      console.log(data);
+
       if (data.success) {
-        // localStorage.setItem("token", "Bearer " + data.token);
+        localStorage.setItem("token", "Bearer " + data.token);
         setIsModelOpen(false);
       }
     } catch (error) {
@@ -236,25 +257,6 @@ export default function CarsTemplate() {
 
       <div className="card flex w-10/12 mx-auto overflow-hidden py-8">
         <TabView className="w-full overflow-x-auto">
-          {/* <TabPanel header="Driver Details" key="tab1">
-            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
-              <p>
-                <b>Driver Name:</b> {carListData.refDriverName}
-              </p>
-              <p>
-                <b>Mobile:</b> {carListData.refDriverMobile}
-              </p>
-              <p>
-                <b>Mail ID:</b> {carListData.refDriverMail}
-              </p>
-              <p>
-                <b>Location:</b> {carListData.refDriverLocation}
-              </p>
-              <p>
-                <b>Age:</b> {carListData.refDriverAge}
-              </p>
-            </div>
-          </TabPanel> */}
           <TabPanel header="Travel Include" key="tab1">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <ul className="list-disc pl-5">
@@ -455,7 +457,7 @@ export default function CarsTemplate() {
 
         <h6 className="pt-[1.5rem]">Extras (chargeable)</h6>
 
-        {/* <div className="flex flex-wrap justify-start pt-[1rem] gap-3">
+        <div className="flex flex-wrap justify-start pt-[1rem] gap-3">
           {Object.keys(extras).map((key) => (
             <div className="flex align-items-center" key={key}>
               <Checkbox
@@ -470,7 +472,7 @@ export default function CarsTemplate() {
               </label>
             </div>
           ))}
-        </div> */}
+        </div>
 
         <div className="pt-[2.5rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">

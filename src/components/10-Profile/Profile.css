@@ -1,0 +1,7 @@
+/* Override the PrimeReact toast for info to show blue background */
+.p-toast .p-toast-message.p-toast-message-info {
+    background-color: #326fd1;
+    color: white;
+    border-left: 6px solid #1d4ed8;
+  }
+  

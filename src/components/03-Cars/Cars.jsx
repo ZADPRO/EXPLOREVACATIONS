@@ -29,6 +29,7 @@ import decrypt from "../../helper";
 import axios from "axios";
 
 import tourImg from "../../assets/cars/luxury.jpg";
+import Popup from "../../pages/Popup/Popup";
 
 export default function Cars() {
   const toast = useRef(null);
@@ -59,6 +60,7 @@ export default function Cars() {
 
   const [carPickupLocation, setCarPickupLocation] = useState(null);
   const [carPickupDateTime, setCarPickupDateTime] = useState(null);
+  const today=new Date();
   const [carDropLocation, setCarDropLocation] = useState(null);
   const [carDropDateTime, setCarDropDateTime] = useState(null);
   const [inputs, setInputs] = useState({ refCarTypeId: "" });
@@ -79,7 +81,7 @@ export default function Cars() {
     }
   };
   const [ismodelOpen, setIsModelOpen] = useState(false);
-
+ 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -103,7 +105,7 @@ export default function Cars() {
     gpsDevice: false,
   });
   const [otherRequirements, setOtherRequirements] = useState("");
-
+ 
   const handleCheckboxChange = (e) => {
     setExtras({ ...extras, [e.target.name]: e.target.checked });
   };
@@ -119,7 +121,7 @@ export default function Cars() {
           import.meta.env.VITE_API_URL + "/userRoutes/listDestination",
           {
             headers: {
-              Authorization: localStorage.getItem("JWTtoken"),
+              Authorization: localStorage.getItem("token"),
               "Content-Type": "application/json",
             },
           }
@@ -136,7 +138,7 @@ export default function Cars() {
           { refCarTypeId },
           {
             headers: {
-              Authorization: localStorage.getItem("JWTtoken"),
+              Authorization: localStorage.getItem("token"),
               "Content-Type": "application/json",
             },
           }
@@ -243,7 +245,7 @@ export default function Cars() {
         },
         {
           headers: {
-            Authorization: localStorage.getItem("JWTtoken"),
+            Authorization: localStorage.getItem("token"),
             "Content-Type": "application/json",
           },
         }
@@ -261,7 +263,7 @@ export default function Cars() {
           detail: "Added successfully!",
           life: 3000,
         });
-        // localStorage.setItem("token", "Bearer " + data.token);
+        localStorage.setItem("token", "Bearer " + data.token);
       }
     } catch (error) {
       toast.current.show({
@@ -277,12 +279,13 @@ export default function Cars() {
   return (
     <div>
       <Toast ref={toast} />
+         {/* <Popup/> */}
 
       {/* Header Background Image - Start  */}
       <div className="carsPageCont01 flex flex-col justify-end items-center min-h-[100vh] px-4 text-center">
         {/* Centered Text */}
-        <h1 className="text-white text-4xl md:text-6xl lg:text-8xl font-bold">
-          Find Your <span className="text-[#8ecde6]">Perfect</span> Car
+        <h1 className="text-[#c4c6ce] text-4xl md:text-6xl lg:text-7xl font-bold drop-shadow-[0_8px_8px_rgba(0,0,0,0.7)]">
+          Find Your <span className="text-[#ffdaa3]">Perfect</span> Car
         </h1>
 
         {/* Input Finder */}
@@ -319,6 +322,7 @@ export default function Cars() {
                 placeholder="Pickup Date & Time"
                 hourFormat="12"
                 className="flex-1"
+                minDate={today}
               />
             </div>
 
@@ -548,6 +552,7 @@ export default function Cars() {
                 showTime
                 placeholder="Pickup Date & Time"
                 hourFormat="12"
+                minDate={today}
               />
               <label htmlFor="calendar-12h">Pick Up Date & Time</label>
             </FloatLabel>
@@ -562,6 +567,7 @@ export default function Cars() {
                 optionLabel="name"
                 placeholder="Choose Vehicle Type"
                 className="flex-1 w-[100%]"
+              
               />
               <label htmlFor="vehicle">Your Preferred Vehicle</label>
             </FloatLabel>
