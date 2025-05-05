@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
-import { Dropdown } from "primereact/dropdown";
+// import { Dropdown } from "primereact/dropdown";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
@@ -622,7 +622,7 @@ export default function CarsTemplate() {
           <Button
             severity="success"
             className="w-[20%]"
-            label="Submit"
+            label="Pay"
             // onClick={handleSubmit}
             onClick={() => {
               handleSubmit();

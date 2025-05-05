@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
-import { Dropdown } from "primereact/dropdown";
+// import { Dropdown } from "primereact/dropdown";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
@@ -27,14 +27,14 @@ import { pdf } from "@react-pdf/renderer";
 import Axios from "axios";
 
 import { useLocation } from "react-router-dom";
-import decrypt, { formatDate } from "../../helper";
-import PayrexxModal from "../Payment/PayrexxModal";
+import decrypt from "../../helper";
+// import PayrexxModal from "../Payment/PayrexxModal";
 
 export default function ToursTemplate() {
   const navigate = useNavigate();
-  const handleNext = () => {
-    navigate("/pdf", { state: { tourId: tour.refPackageId } });
-  };
+  // const handleNext = () => {
+  //   navigate("/pdf", { state: { tourId: tour.refPackageId } });
+  // };
   const location = useLocation();
   const tour = location.state?.tour;
   console.log("tour", tour);
@@ -252,60 +252,60 @@ export default function ToursTemplate() {
     return <h2 className="text-center text-red-500">No Tour Data Found!</h2>;
   }
 
-  const handlePayment = async () => {
-    // if (!name || !email || !mobileNumber || !pickupDateTime) {
-    //   toast.current.show({
-    //     severity: "error",
-    //     summary: "Validation Error",
-    //     detail: "Please fill in all required fields before payment.",
-    //     life: 3000,
-    //   });
-    //   return;
-    // }
+  // const handlePayment = async () => {
+  //   // if (!name || !email || !mobileNumber || !pickupDateTime) {
+  //   //   toast.current.show({
+  //   //     severity: "error",
+  //   //     summary: "Validation Error",
+  //   //     detail: "Please fill in all required fields before payment.",
+  //   //     life: 3000,
+  //   //   });
+  //   //   return;
+  //   // }
 
-    const paymentForm = new FormData(); // ✅ this is the fix
+  //   const paymentForm = new FormData(); // ✅ this is the fix
 
-    paymentForm.append("amount", tour.refTourPrice); // Payrexx expects amount in cents
-    paymentForm.append("currency", "CHF");
-    paymentForm.append("purpose", `Tour Booking - ${tour.name}`);
-    paymentForm.append("success_url", window.location.href);
-    paymentForm.append("failed_url", window.location.href);
-    paymentForm.append("customer_email", email);
-    paymentForm.append("customer_firstname", name.split(" ")[0]);
-    paymentForm.append("customer_lastname", name.split(" ")[1] || "");
+  //   paymentForm.append("amount", tour.refTourPrice); // Payrexx expects amount in cents
+  //   paymentForm.append("currency", "CHF");
+  //   paymentForm.append("purpose", `Tour Booking - ${tour.name}`);
+  //   paymentForm.append("success_url", window.location.href);
+  //   paymentForm.append("failed_url", window.location.href);
+  //   paymentForm.append("customer_email", email);
+  //   paymentForm.append("customer_firstname", name.split(" ")[0]);
+  //   paymentForm.append("customer_lastname", name.split(" ")[1] || "");
 
-    try {
-      // https://explorevacationsag.payrexx.com/en/vpos
-      const response = await fetch(
-        `https://explorevacationsag.payrexx.com/en/vpos`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_PAYREXX_API_SECRET}`,
-          },
-          body: paymentForm,
-        }
-      );
+  //   try {
+  //     // https://explorevacationsag.payrexx.com/en/vpos
+  //     const response = await fetch(
+  //       `https://explorevacationsag.payrexx.com/en/vpos`,
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           Authorization: `Bearer ${import.meta.env.VITE_PAYREXX_API_SECRET}`,
+  //         },
+  //         body: paymentForm,
+  //       }
+  //     );
 
-      const result = await response.json();
-      console.log("Payrexx response", result);
+  //     const result = await response.json();
+  //     console.log("Payrexx response", result);
 
-      if (result && result.data && result.data[0]?.link) {
-        await handleSubmit(); // ensure the booking is saved before payment
-        window.payrexx.open({ link: result.data[0].link });
-      } else {
-        throw new Error("Invalid response from Payrexx");
-      }
-    } catch (error) {
-      console.error("Payment failed:", error);
-      toast.current.show({
-        severity: "error",
-        summary: "Payment Error",
-        detail: "Payment initiation failed. Please try again.",
-        life: 3000,
-      });
-    }
-  };
+  //     if (result && result.data && result.data[0]?.link) {
+  //       await handleSubmit(); // ensure the booking is saved before payment
+  //       window.payrexx.open({ link: result.data[0].link });
+  //     } else {
+  //       throw new Error("Invalid response from Payrexx");
+  //     }
+  //   } catch (error) {
+  //     console.error("Payment failed:", error);
+  //     toast.current.show({
+  //       severity: "error",
+  //       summary: "Payment Error",
+  //       detail: "Payment initiation failed. Please try again.",
+  //       life: 3000,
+  //     });
+  //   }
+  // };
 
   const customUploader = async (event) => {
     console.table("event", event);
@@ -1195,7 +1195,7 @@ export default function ToursTemplate() {
           <Button
             severity="success"
             className="w-[20%]"
-            label="Submit"
+            label="Pay"
             // handlePayment();
             // onClick={CutomizeSubmit}
             onClick={(e) => {

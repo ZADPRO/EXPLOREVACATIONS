@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 import image from "../../assets/Signup/Signup1.jpg";
 import "./Signup.css";
@@ -9,7 +9,7 @@ import { Toast } from "primereact/toast";
 import decrypt from "../../helper";
 
 export default function Signup() {
-  const location = useLocation();
+  // const location = useLocation();
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
