@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import {  useNavigate } from "react-router-dom";
 
-import image from "../../assets/Signup/Signup1.jpg";
+import image from "../../assets/Signup/signup1.jpg";
 import "./Signup.css";
 import Axios from "axios";
 import { Calendar } from "primereact/calendar";
