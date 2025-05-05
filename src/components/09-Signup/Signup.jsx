@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import image from "../../assets/Signup/Signup1.jpg";
@@ -17,9 +17,9 @@ export default function Signup() {
   const [lname, setLname] = useState("");
   const [mobile, setMobile] = useState("");
   const [dob, setDob] = useState(null);
-   const [showMessage, setShowMessage] = useState(false);
+  //  const [showMessage, setShowMessage] = useState(false);
 
-  const [ismodelOpen, setIsModelOpen] = useState(false);
+  const [_ismodelOpen, setIsModelOpen] = useState(false);
   const handleNavigation = (path) => {
     navigate(path);
   };
