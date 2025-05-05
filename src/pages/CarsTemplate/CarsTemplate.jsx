@@ -23,6 +23,7 @@ import axios from "axios";
 
 import decrypt from "../../helper";
 import { Checkbox } from "primereact/checkbox";
+import { FileUpload } from "primereact/fileupload";
 
 export default function CarsTemplate() {
   const location = useLocation();
@@ -41,6 +42,7 @@ export default function CarsTemplate() {
   const [ismodelOpen, setIsModelOpen] = useState(false);
   const [carListData, setCarLIstData] = useState({});
   const [refCarsId, setRefCarsId] = useState("");
+  const [carAgreement, setCarAgreement] = useState([]);
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
@@ -50,7 +52,6 @@ export default function CarsTemplate() {
     }));
   };
   const selectedExtrasArray = Object.keys(extras).filter((key) => extras[key]);
-
 
   const toast = useRef(null);
 
@@ -131,6 +132,7 @@ export default function CarsTemplate() {
           refInfants: infants + "",
           refOtherRequirements: otherRequirements,
           refFormDetails: selectedExtrasArray,
+          refCarAgreement: carAgreement,
         },
         {
           headers: {
@@ -159,6 +161,116 @@ export default function CarsTemplate() {
         life: 3000,
       });
       console.error("API Error:", error);
+    }
+  };
+
+  const agreementUploader = async (event) => {
+    console.table("event", event);
+
+    // Create a FormData object
+
+    // Loop through the selected files and append each one to the FormData
+    for (let i = 0; i < event.files.length; i++) {
+      const formData = new FormData();
+      const file = event.files[i];
+      formData.append("PdfFile", file);
+
+      try {
+        const response = await axios.post(
+          import.meta.env.VITE_API_URL + "/bookingRoutes/uploadCarAgreement",
+
+          formData,
+
+          {
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+          }
+        );
+
+        const data = decrypt(
+          response.data[1],
+          response.data[0],
+          import.meta.env.VITE_ENCRYPTION_KEY
+        );
+
+        if (data.success) {
+          localStorage.setItem("token", "Bearer " + data.token);
+          handleAgreementUploadSuccess(data);
+        } else {
+          handleAgreemtUploadFailure(data);
+        }
+      } catch (error) {
+        handleAgreemtUploadFailure(error);
+      }
+    }
+  };
+  const handleAgreementUploadSuccess = (response) => {
+    let temp = [...passportImage]; // Create a new array to avoid mutation
+    temp.push(response.filePath); // Add the new file path
+    console.log("Upload Successful:", response);
+    setCarAgreement(temp); // Update the state with the new array
+  };
+
+  const handleAgreemtUploadFailure = (error) => {
+    console.error("Upload Failed:", error);
+    // Add your failure handling logic here
+  };
+
+  // payment
+  const checkingApi = async () => {
+    try {
+      console.log("checkingApi running");
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + "/paymentRoutes/payment",
+        {
+          successRedirectUrl: "https://explorevacations.max-idigital.ch",
+          failedRedirectUrl: "https://explorevacations.max-idigital.ch",
+          purpose: "Payment processing",
+          userEmail: email,
+          firstname: name.split(" ")[0],
+          totalAmount: carListData.refCarPrice,
+         
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Decrypt the response
+      const decryptedData = decrypt(
+        response.data[1],
+        response.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+
+      console.log("decryptedData:", decryptedData);
+
+      if (decryptedData?.success) {
+        const paymentLink = decryptedData?.data?.[0]?.link;
+        if (paymentLink) {
+          console.log("Redirecting to paymentLink:", paymentLink);
+          window.location.href = paymentLink;
+        } else {
+          console.warn("Payment link not found in success response.");
+          alert("Payment link not found. Please try again later.");
+        }
+      } else {
+        console.error(
+          "Payment creation failed:",
+          decryptedData?.message || "Unknown error"
+        );
+        alert(
+          "Payment creation failed: " +
+            (decryptedData?.message || "Unknown error")
+        );
+      }
+    } catch (error) {
+      console.error("Error while making API call:", error?.message || error);
+      alert("Error while making payment. Please try again later.");
     }
   };
 
@@ -490,12 +602,32 @@ export default function CarsTemplate() {
           </div>
         </div>
 
+        <div className="w-[100%]">
+          <h2 className="">Upload Certificate</h2>
+          <FileUpload
+            name="logo"
+            customUpload
+            className="mt-3"
+            uploadHandler={agreementUploader}
+            accept="application/pdf"
+            maxFileSize={10000000}
+            emptyTemplate={
+              <p className="m-0">Drag and drop your Image here to upload.</p>
+            }
+            multiple
+          />
+        </div>
+
         <div className="pt-[1rem] flex justify-center">
           <Button
             severity="success"
             className="w-[20%]"
             label="Submit"
-            onClick={handleSubmit}
+            // onClick={handleSubmit}
+            onClick={() => {
+              handleSubmit();
+              checkingApi();
+            }}
           />
         </div>
       </Dialog>

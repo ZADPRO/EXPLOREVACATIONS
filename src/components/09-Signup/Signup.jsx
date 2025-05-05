@@ -81,7 +81,7 @@ export default function Signup() {
       className="min-h-screen flex  items-center justify-end px-10 p-10 "
       style={{
         backgroundImage: `url(${image})`,
-        backgroundSize: "contain",
+        // backgroundSize: "contain",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",

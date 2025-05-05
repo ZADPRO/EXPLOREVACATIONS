@@ -55,6 +55,7 @@ export default function ToursTemplate() {
   const [infants, setInfants] = useState("");
   const [formDataImages, setFormdataImages] = useState([]);
   const [passportImage, setPassportImage] = useState([]);
+  const [agreementImage, setAgreementImage] = useState([]);
   const [formData, setFromDate] = useState({
     refPackageId: 0,
     refUserName: "",
@@ -79,6 +80,7 @@ export default function ToursTemplate() {
     purpose: "",
   });
 
+  const roleId = localStorage.getItem("roleId");
   const [otherRequirements, setOtherRequirements] = useState("");
 
   const handleSubmit = async () => {
@@ -106,6 +108,7 @@ export default function ToursTemplate() {
           refChildrenCount: children + "",
           refInfants: infants + "",
           refOtherRequirements: otherRequirements,
+          refAgreement: agreementImage,
         },
         {
           headers: {
@@ -159,6 +162,7 @@ export default function ToursTemplate() {
           refVaccinationType: formData.refVaccinationType + "",
           refVaccinationCertificate: formDataImages,
           refPassPort: passportImage,
+          // refAgreement: agreementImage,
           refOtherRequirements: formData.refOtherRequirements + "",
         },
         {
@@ -235,7 +239,7 @@ export default function ToursTemplate() {
           listTourResponse.data[0],
           import.meta.env.VITE_ENCRYPTION_KEY
         );
-        console.log("data list tour data ======= ?", data);
+        console.log("data list tour data ---------------- ?", data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -414,6 +418,61 @@ export default function ToursTemplate() {
   };
 
   const handlepassportUploadFailure = (error) => {
+    console.error("Upload Failed:", error);
+    // Add your failure handling logic here
+  };
+
+  // aggreement
+
+  const AgreementUploader = async (event) => {
+    console.table("event", event);
+
+    // Create a FormData object
+
+    // Loop through the selected files and append each one to the FormData
+    for (let i = 0; i < event.files.length; i++) {
+      const formData = new FormData();
+      const file = event.files[i];
+      formData.append("PdfFile", file);
+
+      try {
+        const response = await Axios.post(
+          import.meta.env.VITE_API_URL + "/bookingRoutes/uploadTourAgreement",
+
+          formData,
+
+          {
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+          }
+        );
+
+        const data = decrypt(
+          response.data[1],
+          response.data[0],
+          import.meta.env.VITE_ENCRYPTION_KEY
+        );
+
+        if (data.success) {
+          localStorage.setItem("token", "Bearer " + data.token);
+          handleagreementtUploadSuccess(data);
+        } else {
+          handleagreementUploadFailure(data);
+        }
+      } catch (error) {
+        handleagreementUploadFailure(error);
+      }
+    }
+  };
+  const handleagreementtUploadSuccess = (response) => {
+    let temp = [...passportImage]; // Create a new array to avoid mutation
+    temp.push(response.filePath); // Add the new file path
+    console.log("Upload Successful:", response);
+    setAgreementImage(temp); // Update the state with the new array
+  };
+
+  const handleagreementUploadFailure = (error) => {
     console.error("Upload Failed:", error);
     // Add your failure handling logic here
   };
@@ -631,18 +690,26 @@ export default function ToursTemplate() {
               <button
                 className="border-1 px-4 py-2 rounded bg-[#009ad7] text-white cursor-pointer"
                 onClick={() => {
-                  setIsModelOpen(true);
+                  if (roleId === "3") {
+                    setIsModelOpen(true);
+                  } else {
+                    navigate("/login"); 
+                  }
                 }}
               >
-                <span className="font-semibold">Book Now</span>{" "}
+                <span className="font-semibold">Book Now</span>
               </button>
               <button
                 className="border-1 px-4 py-2 rounded bg-[#009ad7] text-white cursor-pointer"
                 onClick={() => {
-                  setModelOpen(true);
+                  if (roleId === "3") {
+                    setModelOpen(true);
+                  } else {
+                    navigate("/login");
+                  }
                 }}
               >
-                <span className="font-semibold">Customize Tour</span>{" "}
+                <span className="font-semibold">Customize Tour</span>
               </button>
             </p>
           </div>
@@ -871,6 +938,21 @@ export default function ToursTemplate() {
             </FloatLabel>
           </div>
         </div>
+        <div className="w-[100%]">
+          <h2 className="">Upload Aggrement</h2>
+          <FileUpload
+            name="logo"
+            customUpload
+            className="mt-3"
+            uploadHandler={AgreementUploader}
+            accept="application/pdf"
+            maxFileSize={10000000}
+            emptyTemplate={
+              <p className="m-0">Drag and drop your Image here to upload.</p>
+            }
+            multiple
+          />
+        </div>
 
         <div className="pt-[1rem] bg-red flex justify-center">
           <Button
@@ -1087,7 +1169,7 @@ export default function ToursTemplate() {
               accept="application/pdf"
               maxFileSize={10000000}
               emptyTemplate={
-                <p className="m-0">Drag and drop your Image here to upload.</p>
+                <p className="m-0">Drag and drop your pdf here to upload.</p>
               }
               multiple
             />
@@ -1115,7 +1197,14 @@ export default function ToursTemplate() {
             className="w-[20%]"
             label="Submit"
             // handlePayment();
-            onClick={CutomizeSubmit}
+            // onClick={CutomizeSubmit}
+            onClick={(e) => {
+              e.preventDefault();
+              CutomizeSubmit();
+              checkingApi();
+
+              
+            }}
           />
         </div>
       </Dialog>

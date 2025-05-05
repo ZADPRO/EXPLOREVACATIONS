@@ -1,11 +1,13 @@
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
 import { Dropdown } from "primereact/dropdown";
-import time from "../../assets/Parking/time.png";
-import brand from "../../assets/Parking/brand.png";
+// import time from "../../assets/Parking/time.png";
+// import brand from "../../assets/Parking/brand.png";
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+
+import { FileUpload } from "primereact/fileupload";
 import {
   MapPinCheck,
   ChartColumnIncreasing,
@@ -23,14 +25,19 @@ import { RadioButton } from "primereact/radiobutton";
 import { Toast } from "primereact/toast";
 
 export default function ParkingTemplate() {
-  const [parkinglist, setParkinglist] = useState({});
-  const location = useLocation();
-  const [parkingState, setParkingState] = useState();
+  // const [parkinglist, setParkinglist] = useState({});
+  const [_profile, setProfile] = useState("");
+  const [_parkingState, setParkingState] = useState();
   const [refParkingId, setRefParkingId] = useState("");
   const [parkingListData, setParkingLIstData] = useState({});
   const [ismodelOpen, setIsModelOpen] = useState(false);
-  const [ismodelOpen1, setIsModelOpen1] = useState(false);
+  const [_ismodelOpen1, setIsModelOpen1] = useState(false);
+  const [agreementparking, setAgreementparking] = useState([]);
   const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [amount, setAmount] = useState("");
+
   const [formdata, setFormdata] = useState({
     travelStartDate: new Date(),
     travelEndDate: null,
@@ -49,10 +56,69 @@ export default function ParkingTemplate() {
     price: "",
   });
 
+  const location = useLocation();
+  const tour = location.state?.tour;
+  console.log("tour-----------", tour);
 
+  // payment
+  const checkingApi = async () => {
+    try {
+      console.log("checkingApi running");
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + "/paymentRoutes/payment",
+        {
+          successRedirectUrl: "https://explorevacations.max-idigital.ch",
+          failedRedirectUrl: "https://explorevacations.max-idigital.ch",
+          purpose: "Payment processing",
+          userEmail: email,
+          firstname: name.split(" ")[0],
+          totalAmount: amount,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Decrypt the response
+      const decryptedData = decrypt(
+        response.data[1],
+        response.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+
+      console.log("decryptedData:", decryptedData);
+
+      if (decryptedData?.success) {
+        const paymentLink = decryptedData?.data?.[0]?.link;
+        if (paymentLink) {
+          console.log("Redirecting to paymentLink:", paymentLink);
+          window.location.href = paymentLink;
+        } else {
+          console.warn("Payment link not found in success response.");
+          alert("Payment link not found. Please try again later.");
+        }
+      } else {
+        console.error(
+          "Payment creation failed:",
+          decryptedData?.message || "Unknown error"
+        );
+        alert(
+          "Payment creation failed: " +
+            (decryptedData?.message || "Unknown error")
+        );
+      }
+    } catch (error) {
+      console.error("Error while making API call:", error?.message || error);
+      alert("Error while making payment. Please try again later.");
+    }
+  };
 
   const toast = useRef(null);
   useEffect(() => {
+    fetchProfileData();
     console.log("carParkingRoutes/getCarParking");
 
     const car = location.state?.car;
@@ -102,7 +168,7 @@ export default function ParkingTemplate() {
         {
           travelStartDate: formdata.travelStartDate,
           travelEndDate: formdata.travelEndDate,
-          refCarParkingId: formdata.refCarParkingId,
+          // refCarParkingId: formdata.refCarParkingId,
           refCarParkingId: refParkingId,
           returnFlightNumber: formdata.returnFlightNumber,
           returnFlightLocation: formdata.returnFlightLocation,
@@ -114,6 +180,7 @@ export default function ParkingTemplate() {
           HandoverPersonName: formdata.HandoverPersonName,
           HandoverPersonPhone: formdata.HandoverPersonPhone,
           HandoverPersonEmail: formdata.HandoverPersonEmail,
+          refAgreementPath: agreementparking,
         },
         {
           headers: {
@@ -136,7 +203,7 @@ export default function ParkingTemplate() {
           detail: "Successfully Booked !",
           life: 3000,
         });
-        
+
         setIsModelOpen(false);
       }
     } catch (error) {
@@ -149,18 +216,20 @@ export default function ParkingTemplate() {
       console.error("API Error:", error);
     }
   };
-
+  console.log("amount-------------->", amount);
   const handlePaycheck = async () => {
-    // const Details = parkingListData?.Details || []; 
-    console.log("parkingListData------------Details");
+    const Details = parkingListData?.Details || [];
+    console.log("parkingListData------------Details", Details);
     try {
       const response = await axios.post(
-        import.meta.env.VITE_API_URL + "/userRoutes/carParkingBooking",
+        import.meta.env.VITE_API_URL + "/paymentRoutes/calculation",
         {
           travelStartDate: formdata.travelStartDate,
           travelEndDate: formdata.travelEndDate,
-          pricePerDayorHour: parkingListData?.pricePerDayorHour,
-          price: parkingListData?.price,
+
+          pricePerDayorHour: parkingListData?.pricePerHourORday,
+
+          refCarParkingId: refParkingId,
         },
         {
           headers: {
@@ -180,7 +249,9 @@ export default function ParkingTemplate() {
         setIsModelOpen(false);
         // setPayment(data.result[0].travelStartDate);
         // setPayment(data.result[0].travelEndDate);
-      
+        setAmount(data.totalAmount);
+        console.log("data.totalAmount------------------", data.totalAmount);
+
         setIsModelOpen1(false);
         toast.current.show({
           severity: "success",
@@ -220,6 +291,110 @@ export default function ParkingTemplate() {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  //upload agreement
+
+  const agreementUploader = async (event) => {
+    console.table("event", event);
+
+    // Create a FormData object
+
+    // Loop through the selected files and append each one to the FormData
+    for (let i = 0; i < event.files.length; i++) {
+      const formData = new FormData();
+      const file = event.files[i];
+      formData.append("PdfFile ", file);
+
+      try {
+        const response = await axios.post(
+          import.meta.env.VITE_API_URL +
+            "/bookingRoutes/uploadParkingAgreement",
+
+          formData,
+
+          {
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+          }
+        );
+
+        const data = decrypt(
+          response.data[1],
+          response.data[0],
+          import.meta.env.VITE_ENCRYPTION_KEY
+        );
+
+        // localStorage.setItem("token", "Bearer " + data.token);
+        console.log("data==============", data);
+
+        if (data.success) {
+          localStorage.setItem("token", "Bearer " + data.token);
+          handleUploadSuccess(data);
+          toast.current?.show({
+            severity: "success",
+            summary: "Success",
+            detail: "Uploaded Successfully!",
+            life: 3000,
+          });
+        } else {
+          handleUploadFailure(data);
+        }
+      } catch (error) {
+        handleUploadFailure(error);
+      }
+    }
+  };
+  const handleUploadSuccess = (response) => {
+    let temp = [...agreementparking]; // Create a new array to avoid mutation
+    temp.push(response.filePath); // Add the new file path
+    console.log("Upload Successful:", response);
+    setAgreementparking(temp); // Update the state with the new array
+  };
+
+  const handleUploadFailure = (error) => {
+    console.error("Upload Failed:", error);
+    // Add your failure handling logic here
+  };
+
+  const fetchProfileData = async () => {
+    try {
+      const response = await axios.get(
+        import.meta.env.VITE_API_URL + "/userRoutes/profileData",
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = decrypt(
+        response.data[1],
+        response.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+
+      console.log("data ---------->list Profiledata", data);
+
+      if (data.success) {
+        localStorage.setItem("token", "Bearer " + data.token);
+        const profileInfo = data.profileData[0];
+
+        setProfile(profileInfo);
+        if (data.success) {
+          localStorage.setItem("token", "Bearer " + data.token);
+          const profileInfo = data.profileData[0];
+
+          setProfile(profileInfo);
+          setName(profileInfo.refFName || "");
+          setEmail(profileInfo.refUserEmail || "");
+        }
+      }
+    } catch (e) {
+      console.log("Error fetching profile data:", e);
+    }
   };
 
   return (
@@ -377,6 +552,7 @@ export default function ParkingTemplate() {
             e.preventDefault();
             handleSubmit();
             handlePaycheck();
+            checkingApi();
           }}
         >
           <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
@@ -582,11 +758,27 @@ export default function ParkingTemplate() {
             </div>
           </div>
 
+          <div className="w-[100%]">
+            <h2 className="">Upload Agreement</h2>
+            <FileUpload
+              name="logo"
+              customUpload
+              className="mt-3"
+              uploadHandler={agreementUploader}
+              accept="application/pdf"
+              maxFileSize={10000000}
+              emptyTemplate={
+                <p className="m-0">Drag and drop your pdf here to upload.</p>
+              }
+              multiple
+            />
+          </div>
+
           <div className="pt-[1rem] flex justify-center">
             <Button
-              severity="success"
+              severity="error"
               className="w-[20%]"
-              label="Submit"
+              label="Pay "
               type="submit"
             />
           </div>
