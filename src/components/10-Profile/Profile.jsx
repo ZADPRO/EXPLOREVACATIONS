@@ -192,7 +192,6 @@ export default function Profile() {
         localStorage.setItem("token", "Bearer " + data.token);
         const profileInfo = data.profileData[0];
 
-      
         setInput({
           refFName: profileInfo.refFName || "",
           refLName: profileInfo.refLName || "",
@@ -206,8 +205,15 @@ export default function Profile() {
           refUserCountry: profileInfo.refUserCountry || "",
           refUserZipCode: profileInfo.refUserZipCode || "",
         });
+        setAddress({
+          refUserAddress: profileInfo.refUserAddress || "",
+          refUserCity: profileInfo.refUserCity || "",
+          refUserState: profileInfo.refUserState || "",
+          refUserCountry: profileInfo.refUserCountry || "",
+          refUserZipCode: profileInfo.refUserZipCode || "",
+        });
 
-        setProfile(profileInfo); 
+        setProfile(profileInfo);
       }
     } catch (e) {
       console.log("Error fetching profile data:", e);
@@ -290,19 +296,21 @@ export default function Profile() {
     }
   };
 
-  useEffect(()=>{console.log(input)}, [input])
+  useEffect(() => {
+    console.log(input);
+  }, [input]);
 
   return (
-    <div className="min-h-screen flex flex-row bg-gray-100 font-sans">
+    <div className="min-h-screen flex flex-row lg:flex-col md:flex-col bg-gray-100 font-sans">
       {/* Left Sidebar */}
-      <div className="w-[15%] bg-[#065784] text-white flex flex-col">
+      <div className="w-[30%]  lg:w-[20%] md:w-[20%] bg-[#065784] text-white flex flex-col lg:flex-col md:flex-col">
         {/* Logo */}
-        <div className="p-6 border-b border-[#065784]"></div>
+        <div className="mt-13 border-b border-[#065784]"></div>
 
         {/* Navigation Items */}
         <div className="flex flex-col mt-10">
           <div
-            className={`p-6 text-xl font-bold ${
+            className={`p-3 text-xl font-bold ${
               selectedTab === "Personal Info"
                 ? "bg-[#daf1ff] text-[#065784]"
                 : ""
@@ -312,15 +320,17 @@ export default function Profile() {
             Personal Info
           </div>
           <div
-            className={`p-6 text-xl font-bold ${
-              selectedTab === "Tour Bookings" ? "bg-[#daf1ff] text-[#065784]" : ""
+            className={`p-3 text-xl font-bold ${
+              selectedTab === "Tour Bookings"
+                ? "bg-[#daf1ff] text-[#065784]"
+                : ""
             }`}
             onClick={() => setSelectedTab("Tour Bookings")}
           >
             Tour Bookings
           </div>
           <div
-            className={`p-6 text-xl  font-bold ${
+            className={`p-3 text-xl  font-bold ${
               selectedTab === "Car Booking" ? "bg-[#daf1ff] text-[#065784]" : ""
             }`}
             onClick={() => setSelectedTab("Car Booking")}
@@ -328,7 +338,7 @@ export default function Profile() {
             Car Booking
           </div>
           <div
-            className={`p-6 text-xl  font-bold ${
+            className={`p-3 text-xl  font-bold ${
               selectedTab === "Parking Booking"
                 ? "bg-[#daf1ff] text-[#065784]"
                 : ""
@@ -343,7 +353,7 @@ export default function Profile() {
       {/* Main Content */}
       <div className="flex-1">
         <Toast ref={toast} />
-        <div className="p-8">
+        <div className="lg:p-8 md:p-8 mt-6">
           {/* Profile Content */}
           {selectedTab === "Personal Info" && (
             <div className="bg-white p-4 rounded-lg shadow-sm">
@@ -551,7 +561,7 @@ export default function Profile() {
           {/* Booking History */}
 
           {selectedTab === "Tour Bookings" && (
-            <div className="bg-white p-4 flex flex-col gap-10 mt-3 rounded-lg shadow-sm">
+            <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-3 rounded-lg shadow-sm">
               {history?.length > 0 ? (
                 history.map((item, index) => (
                   <div
@@ -568,11 +578,11 @@ export default function Profile() {
                       alt="Trip"
                       className="w-40 h-32 object-cover rounded-lg"
                     />
-                    <div className="flex flex-col gap-2 justify-between w-full">
+                    <div className="flex flex-col  lg:flex-col md:flex-col gap-2 justify-between w-full">
                       <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">
                         {item.refPackageName}
                       </h2>
-                      <div className="flex flex-row">
+                      <div className="flex flex-col lg:flex-row md:flex-row">
                         <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
                             <p className="font-medium">Code:</p>
@@ -636,14 +646,15 @@ export default function Profile() {
           )}
 
           {/* Car Parking */}
+          {/* Car Parking */}
 
           {selectedTab === "Car Booking" && (
-            <div className="bg-white p-4 flex flex-col gap-10 mt-3 rounded-lg shadow-sm">
+          <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-3 rounded-lg shadow-sm">
               {carHistory?.length > 0 ? (
                 carHistory.map((item, index) => (
                   <div
                     key={index}
-                    className="flex  items-start gap-4  p-4 rounded-xl shadow-md"
+                    className="flex  items-start gap-4 p-4 rounded-xl shadow-md"
                     style={{
                       backgroundImage: `url(${box})`,
                       backgroundRepeat: "no-repeat",
@@ -662,11 +673,11 @@ export default function Profile() {
                       alt={car.refVehicleTypeName}
                       className="w-full object-cover aspect-[4/3]"
                     /> */}
-                    <div className="flex flex-col gap-2 justify-between w-full">
+                     <div className="flex flex-col  lg:flex-col md:flex-col gap-2 justify-between w-full">
                       <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">
                         {item.refVehicleTypeName}
                       </h2>
-                      <div className="flex flex-row">
+                      <div className="flex flex-col lg:flex-row md:flex-row">
                         <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
                             <p className="font-medium">CarType :</p>
@@ -732,7 +743,7 @@ export default function Profile() {
           {/* Parking Booking */}
 
           {selectedTab === "Parking Booking" && (
-            <div className="bg-white p-4 flex flex-col gap-10 mt-3 rounded-lg shadow-sm">
+            <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-3 rounded-lg shadow-sm">
               {parkingHistory?.length > 0 ? (
                 parkingHistory.map((item, index) => (
                   <div
@@ -756,12 +767,12 @@ export default function Profile() {
                       alt={car.refVehicleTypeName}
                       className="w-full object-cover aspect-[4/3]"
                     /> */}
-                    <div className="flex flex-col gap-2 justify-between w-full">
-                      <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">
+                  <div className="flex flex-col  lg:flex-col md:flex-col gap-2 justify-between w-full">
+                  <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">
                         {item.refParkingName}
                       </h2>
-                      <div className="flex flex-row">
-                        <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
+                      <div className="flex flex-col lg:flex-row md:flex-row">
+                      <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
                             <p className="font-medium">ParkingTypeName :</p>
                             <p className="text-[#327ada]">
@@ -771,7 +782,9 @@ export default function Profile() {
 
                           <div>
                             <p className="font-medium">Vehicle Model</p>
-                            <p className="text-[#327ada]">{item.VehicleModel}</p>
+                            <p className="text-[#327ada]">
+                              {item.VehicleModel}
+                            </p>
                           </div>
                         </div>
                         <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
@@ -802,9 +815,7 @@ export default function Profile() {
                         <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
                             <p className="font-medium">Location :</p>
-                            <p className="text-[#327ada]">
-                              {item.refLocation}
-                            </p>
+                            <p className="text-[#327ada]">{item.refLocation}</p>
                           </div>
                           <div>
                             <p className="font-medium">travel EndDate :</p>
