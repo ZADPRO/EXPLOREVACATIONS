@@ -12,6 +12,7 @@ import { Toast } from "primereact/toast";
 import { useNavigate } from "react-router-dom";
 import { ProgressSpinner } from "primereact/progressspinner";
 
+
 // cars Image
 // import minivan from "../../assets/cars/minivan.jpg";
 // import standard from "../../assets/cars/standard.jpg";
@@ -30,8 +31,27 @@ import axios from "axios";
 
 import tourImg from "../../assets/cars/luxury.jpg";
 import Popup from "../../pages/Popup/Popup";
-
+import BannerCarousel from "../01-Home/BannerCarousel ";
+import { useTranslation } from "react-i18next";
 export default function Cars() {
+
+
+        const getFlag = () => {
+          switch (language) {
+            case "en":
+              return flagEN;
+            case "de":
+              return flagDE;
+            default:
+              return flagEN;
+          }
+        };
+      
+        const { t, i18n } = useTranslation("global");
+      
+        const handleChangeLang = (lang) => {
+          i18n.changeLanguage(lang);
+        };
   const toast = useRef(null);
   const navigate = useNavigate();
 
@@ -279,14 +299,15 @@ export default function Cars() {
   return (
     <div>
       <Toast ref={toast} />
-         {/* <Popup/> */}
+         <Popup/>
 
       {/* Header Background Image - Start  */}
-      <div className="carsPageCont01 flex flex-col justify-end items-center min-h-[100vh] px-4 text-center">
+      <div className="lg:p-20 md:p-20 ">
+       <BannerCarousel moduleId={2}/>
         {/* Centered Text */}
-        <h1 className="text-[#c4c6ce] text-4xl md:text-6xl lg:text-7xl font-bold drop-shadow-[0_8px_8px_rgba(0,0,0,0.7)]">
+        {/* <h1 className="text-[#c4c6ce] text-4xl md:text-6xl lg:text-7xl font-bold drop-shadow-[0_8px_8px_rgba(0,0,0,0.7)]">
           Find Your <span className="text-[#ffdaa3]">Perfect</span> Car
-        </h1>
+        </h1> */}
 
         {/* Input Finder */}
 
@@ -369,7 +390,7 @@ export default function Cars() {
   ) : (
     <>
     <h1 className="text-2xl font-bold mb-5 mt-2 text-center text-[#014986]">
-        Available Cars
+    {t("car.Available Cars")}
       </h1>
 
       <div className="w-full max-w-4xl mx-auto mt-12">

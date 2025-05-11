@@ -10,8 +10,9 @@ import decrypt from "../../helper";
 
 import Axios from "axios";
 
-import tourImg from "../../assets/tours/startAdventure.jpg";
+import tourImg from "../../assets/tours/image.jpg";
 import Popup from "../../pages/Popup/Popup";
+import BannerCarousel from "../01-Home/BannerCarousel ";
 
 export default function Tours() {
   const location = useLocation();
@@ -141,14 +142,14 @@ export default function Tours() {
   return (
     <div>
       <Popup/>
-      <div className="toursPageContents01">
-        <div className="h-[80vh]"></div>
-      </div>
+      <div className="lg:p-20 md:p-20 ">
+      <BannerCarousel moduleId={3}/>
+    </div>
 
       <div
         id="tab-panel-1ai"
         role="tabpanel"
-        className="card w-10/12 mx-auto bg-white p-4 shadow-md rounded-lg mt-[-30px]"
+        className="card w-10/12 mx-auto bg-white p-4 shadow-md rounded-lg "
         aria-labelledby="tab-label-1ai"
         tabIndex="-1"
       >

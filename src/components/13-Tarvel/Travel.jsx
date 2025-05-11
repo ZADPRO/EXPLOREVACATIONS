@@ -4,7 +4,7 @@ import Popup from "../../pages/Popup/Popup";
 export default function Travel() {
   return (
     <div>
-         {/* <Popup /> */}
+         <Popup />
        <div className="toursPageContents02 flex flex-col justify-end items-center min-h-[80vh] px-4 text-center">
               {/* Centered Text */}
               <h1 className="text-4xl md:text-6xl mb-5 lg:text-7xl font-bold bg-gradient-to-r from-[#ff7e00] via-[#ffa94d] to-[#ffffff] text-transparent bg-clip-text testingFont">

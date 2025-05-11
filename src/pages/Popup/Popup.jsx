@@ -15,18 +15,36 @@ export default function Popup() {
     setShowPopup(false);
   };
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   const roleId = localStorage.getItem("roleId"); // Assuming roleId is stored in localStorage
+  
+  //   // If the user is logged in and roleId is 3, stop showing the popup
+  //   if (token && roleId === "3") return; // Role ID 3 means no popup
+  
+  //   const timer = setTimeout(() => {
+  //     setShowPopup(true);
+  //   }, 5000); // 5 seconds delay
+  
+  //   return () => clearTimeout(timer);
+  // }, []);
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const roleId = localStorage.getItem("roleId"); // Assuming roleId is stored in localStorage
+    const roleId = localStorage.getItem("roleId");
   
-    // If the user is logged in and roleId is 3, stop showing the popup
-    if (token && roleId === "3") return; // Role ID 3 means no popup
+    if (token && roleId === "3") return;
   
-    const timer = setTimeout(() => {
-      setShowPopup(true);
-    }, 5000); // 5 seconds delay
+    const popupCount = parseInt(localStorage.getItem("loginPopupCount")) || 0;
   
-    return () => clearTimeout(timer);
+    if (popupCount < 3) {
+      const timer = setTimeout(() => {
+        setShowPopup(true);
+        localStorage.setItem("loginPopupCount", popupCount + 1);
+      }, 5000);
+  
+      return () => clearTimeout(timer);
+    }
   }, []);
   
   
@@ -58,22 +76,19 @@ export default function Popup() {
             </button>
 
             <div className="flex flex-col justify-end h-full ">
-              {/* Message Text */}
-              {/* <div className="mt-100px">
-              <p className="text-[#01355a] text-lg backdrop-blur-md  font-bold ">
-                You need to sign in to continue.
-              </p>
-            </div> */}
+           
 
               {/* Login Button */}
               <div className="flex  justify-center items-end pb-3 h-full ">
                 <button
                   onClick={handleOkClick}
-                  className="bg-[#184759] h-[40px] hover:bg-[#4b7a8f] text-white font-bold w-[100px] pr-5 rounded-4xl text-base"
+                  className="bg-[#184759] h-[40px] hover:bg-[#4b7a8f] text-white font-bold w-[100px]  rounded-4xl text-base"
                 >
-                  Login <div className="absolute bottom-[22px] left-67 text-3xl">
+                  Login 
+
+                  {/* Login <div className="absolute lg:bottom-[22px] lg:left-67 md:bottom-[22px] md:left-67 bottom-[22px] left-45 text-3xl">
                   <FaCircleArrowRight />
-                  </div>
+                  </div> */}
                 </button>
               </div>
             </div>

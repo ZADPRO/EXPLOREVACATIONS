@@ -5,8 +5,25 @@ import frontbg from "../../assets/Login/frontbg.jpg";
 import Axios from "axios";
 import { Toast } from "primereact/toast";
 import decrypt from "../../helper";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
+  const getFlag = () => {
+    switch (language) {
+      case "en":
+        return flagEN;
+      case "de":
+        return flagDE;
+      default:
+        return flagEN;
+    }
+  };
+
+  const { t, i18n } = useTranslation("global");
+
+  const handleChangeLang = (lang) => {
+    i18n.changeLanguage(lang);
+  };
   const navigate = useNavigate();
   const toast = useRef(null);
 
@@ -45,7 +62,6 @@ const Login = () => {
         const roleIdno = data.roleId;
         console.log("roleIdno", roleIdno);
 
-        
         toast.current?.show({
           severity: "success",
           summary: "Success",
@@ -82,6 +98,7 @@ const Login = () => {
         response.data[0],
         import.meta.env.VITE_ENCRYPTION_KEY
       );
+
       if (data.success) {
         localStorage.setItem("token", "Bearer " + data.token);
         toast.current?.show({
@@ -91,6 +108,7 @@ const Login = () => {
           life: 3000,
         });
         setResetStage("password");
+        navigate("/login");
       }
     } catch (error) {
       toast.current?.show({
@@ -102,32 +120,6 @@ const Login = () => {
     }
   };
 
-  // const handleResetPassword = async () => {
-  //   try {
-  //     const res = await Axios.post(
-  //       import.meta.env.VITE_API_URL + "/adminRoutes/resetPassword",
-  //       { email: resetEmail, newPassword: newPassword }
-  //     );
-  //     toast.current?.show({
-  //       severity: "success",
-  //       summary: "Password Reset",
-  //       detail: "You can now log in with the new password",
-  //       life: 3000,
-  //     });
-  //     setShowForgot(false);
-  //     setResetStage("email");
-  //     setNewPassword("");
-  //     setResetEmail("");
-  //   } catch (error) {
-  //     toast.current?.show({
-  //       severity: "error",
-  //       summary: "Error",
-  //       detail: "Failed to reset password",
-  //       life: 3000,
-  //     });
-  //   }
-  // };
-
   return (
     <div
       className="min-h-screen flex items-center justify-center "
@@ -138,6 +130,27 @@ const Login = () => {
         backgroundPosition: "center",
       }}
     >
+      <div className="absolute top-4 left-4 z-10 ">
+        <button
+          onClick={() => navigate("/")}
+          className="flex items-center text-white w-[250px] testingFont font-semibold text-2xl md:text-base lg:text-2xl hover:underline"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 mr-1"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 18a1 1 0 01-.707-1.707L14.586 11H3a1 1 0 110-2h11.586l-5.293-5.293a1 1 0 111.414-1.414l7 7a1 1 0 010 1.414l-7 7A1 1 0 0110 18z"
+              clipRule="evenodd"
+            />
+          </svg>
+          {t("login.Back to Home")}
+        </button>
+      </div>
+
       <Toast ref={toast} />
       <div className="flex flex-col lg:flex-row lg:mt-0 md:mt-0 mt-20 gap-6  md:flex-row w-full  items-center justify-center">
         <div className="flex font-sans lg:w-[full] md:w-[full] pt-5">
@@ -145,9 +158,11 @@ const Login = () => {
 
           <div className=" w-3/2 lg:w-[40%] md:w-[100%]  bg-white flex flex-col justify-center items-center  lg:p-10 md:p-10 p-5 lg:m-0 md:m-0  m-4 rounded-2xl lg:rounded-l-4xl md:rounded-l-4xl ">
             <h1 className="text-4xl font-bold mb-2 text-center">
-              Start your perfect trip
+              {t("login.Start your perfect trip")}
             </h1>
-            <p className="text-blue-950 font-semibold text-lg mb-6">voyage</p>
+            <p className="text-blue-950 font-semibold text-lg mb-6">
+              {t("login.voyage")}
+            </p>
 
             {!showForgot ? (
               <form
@@ -159,7 +174,7 @@ const Login = () => {
               >
                 <input
                   type="email"
-                  placeholder="Email"
+                  placeholder={t("signin.Email")}
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -167,7 +182,7 @@ const Login = () => {
                 />
                 <input
                   type="password"
-                  placeholder="Password"
+                  placeholder={t("signin.Password")}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -175,26 +190,28 @@ const Login = () => {
                 />
                 <button
                   type="submit"
-                  className="w-full bg-[#065784] text-white py-2 rounded-4xl"
+                  className="w-full bg-[#065784] text-white py-2 rounded-4xl cursor-pointer"
                 >
-                  Start
+                  {t("login.Start")}
                 </button>
                 {warning && (
-                  <p className="text-center mt-3 text-red-600">{warning}</p>
+                  <p className="text-center text-xl mt-3 text-[#f00]">
+                    {warning}
+                  </p>
                 )}
                 <p
-                  className="text-sm text-center mt-3 text-blue-700 underline cursor-pointer"
+                  className="text-sm text-center mt-3 text-[#003192] underline cursor-pointer"
                   onClick={() => setShowForgot(true)}
                 >
-                  Forgot Password?
+                  {t("login.Forgot Password?")}
                 </p>
                 <p className="text-sm text-center mt-4">
-                  Don't have an account?{" "}
+                  {t("login.Don't have an account?")}{" "}
                   <span
-                    className="text-[#065784] underline cursor-pointer"
+                    className="text-[#065784] font-bold underline cursor-pointer"
                     onClick={() => handleNavigation("/signup")}
                   >
-                    Sign Up
+                    {t("login.Register Now")}
                   </span>
                 </p>
               </form>
@@ -211,15 +228,18 @@ const Login = () => {
                       className="w-full mb-4 px-4 py-2 border rounded-4xl"
                     />
                     <button
-                      onClick={handleSendResetEmail}
-                      className="w-full bg-[#065784] text-white py-2 rounded-4xl"
+                      onClick={() => {
+                        handleSendResetEmail();
+                        navigate("/login");
+                      }}
+                      className="w-full bg-[#065784] text-white py-2 rounded-4xl cursor-pointer"
                     >
-                      Send Reset Email
+                      {t("login.Send Reset Email")}
                     </button>
                   </>
                 ) : (
                   <>
-                    <input
+                    {/* <input
                       type="password"
                       placeholder="Enter new password"
                       required
@@ -228,11 +248,14 @@ const Login = () => {
                       className="w-full mb-4 px-4 py-2 border rounded-4xl"
                     />
                     <button
-                      onClick={handleResetPassword}
+                      onClick={handleSendResetEmail}
                       className="w-full bg-[#065784] text-white py-2 rounded-4xl"
                     >
-                      Reset Password
-                    </button>
+                      {t("login.Reset Password")}
+                    </button> */}
+                    <p className="text-xl text-center  text-[#000]  ">
+                      {t("login.Please check your email for your password.")} 
+                    </p>
                   </>
                 )}
                 <p
@@ -242,7 +265,7 @@ const Login = () => {
                     setResetStage("email");
                   }}
                 >
-                  Back to Login
+                  {t("login.Back to Login")}
                 </p>
               </div>
             )}

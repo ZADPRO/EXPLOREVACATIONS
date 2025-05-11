@@ -24,20 +24,26 @@ import Profile from "../10-Profile/Profile";
 import Parking from "../11-Parking/Parking";
 import ParkingTemplate from "../12-ParkingTemplate/ParkingTemplate";
 import Travel from "../13-Tarvel/Travel";
+import Pdf from "../Pdf/index2";
+import Success from "../14-Payment/Success";
+import Failure from "../14-Payment/Failure";
+import Caragreement from "../Pdf/Caragreement";
 
 function Layout() {
   const location = useLocation();
-  const hideHeaderFooterRoutes = ["/signup"];
-  const hideOnlyFooterRoutes = ["/login"];
 
-  const shouldHideHeaderFooter = hideHeaderFooterRoutes.includes(
-    location.pathname
-  );
-  const shouldHideFooter = hideOnlyFooterRoutes.includes(location.pathname);
+  // Define routes where Header should be hidden
+  const hideHeaderRoutes = ["/login", "/signup"];
+
+  // Define routes where Footer should be hidden
+  const hideFooterRoutes = ["/signup", "/login"];
+
+  const shouldHideHeader = hideHeaderRoutes.includes(location.pathname);
+  const shouldHideFooter = hideFooterRoutes.includes(location.pathname);
 
   return (
     <>
-      <Header />
+      {!shouldHideHeader && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tours" element={<Tours />} />
@@ -45,7 +51,7 @@ function Layout() {
         <Route path="/carDetails" element={<CarsTemplate />} />
         <Route path="/carRental" element={<CarRental />} />
         <Route path="/cars" element={<Cars />} />
-        <Route path="/travel" element={<Travel />} />
+        <Route path="/transfer" element={<Travel />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
@@ -55,8 +61,12 @@ function Layout() {
         <Route path="/booking" element={<Booking />} />
         <Route path="/terms" element={<TermsCondition />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route path="/pdf" element={<Pdf />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/failure" element={<Failure />} />
+        <Route path="/caragreement" element={<Caragreement />} />
       </Routes>
-      {!shouldHideHeaderFooter && !shouldHideFooter && <Footer />}
+      {!shouldHideFooter && <Footer />}
     </>
   );
 }

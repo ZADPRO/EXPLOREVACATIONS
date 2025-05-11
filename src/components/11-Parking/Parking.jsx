@@ -12,8 +12,30 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import decrypt from "../../helper";
 import Popup from "../../pages/Popup/Popup";
+import { useTranslation } from "react-i18next";
+import BannerCarousel from "../01-Home/BannerCarousel ";
+import tourImg from "../../assets/Parking/parkingin.jpg";
+
+
+
 
 export default function Parking() {
+  const getFlag = () => {
+    switch (language) {
+      case "en":
+        return flagEN;
+      case "de":
+        return flagDE;
+      default:
+        return flagEN;
+    }
+  };
+
+  const { t, i18n } = useTranslation("global");
+
+  const handleChangeLang = (lang) => {
+    i18n.changeLanguage(lang);
+  };
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [parking, setParking] = useState([]);
@@ -71,10 +93,13 @@ export default function Parking() {
       if (data.success) {
         // localStorage.setItem("token", "Bearer " + data.token);
         setListParking(data.carParkingDetails);
+      } else {
+        setListParking([]);
       }
     } catch (error) {
       console.error("API Error:", error);
       setLoading(false);
+      setListParking([]);
     } finally {
       setLoading(false);
     }
@@ -147,9 +172,9 @@ export default function Parking() {
 
   return (
     <div>
-      {/* <Popup /> */}
-      <div className="parkingPageContents01">
-        <div className="h-[80vh]"></div>
+      <Popup />
+      <div className="lg:p-20 md:p-20 ">
+        <BannerCarousel moduleId={1} />
       </div>
 
       <div
@@ -287,6 +312,12 @@ export default function Parking() {
 
           <div className="container mx-auto px-6 mt-8 w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-10/12 mx-auto justify-center">
+              {!loading && listParking.length === 0 && (
+                <div className="text-center mt-6 text-lg text-gray-600">
+                  No parking available for the selected criteria.
+                </div>
+              )}
+
               {listParking.map((car) => (
                 <div
                   onClick={() => {
@@ -354,34 +385,31 @@ export default function Parking() {
           data-aos="fade-right"
         >
           <p className="testingFont text-4xl font-bold mb-2">
-            Reserve your spot, then reserve your dream destination.{" "}
+            {t("parking.Reserve")}{" "}
           </p>
           <p className="text-3xl font-medium pt-2 text-gray-700">
-            Find the Best Parking Options for You
+            {t("parking.Find the Best Parking Options for You")}
           </p>
 
           <div className="flex mt-4">
             <img src={parkinglogo} alt="" className="w-30 h-30" />
             <div className="flex flex-col pl-4">
               <p className="font-bold text-[22px]">
-                Travel in Comfort with Our Sedan
+                {t("parking.Travel in Comfort with Our Sedan")}
               </p>
-              <p className=" text-xl ">
-                Whether you're looking to explore on a 2 ~ wheeler or a 4 ~
-                wheeler, step out of the ordinary and experience the journey
-                like never before.
-              </p>
+              <p className=" text-xl ">{t("parking.des1")}</p>
             </div>
           </div>
           <div className="flex mt-4">
             <img src={vechiletype} alt="" className="w-30 h-30" />
             <div className="flex flex-col pl-4">
               <p className="font-bold text-[22px]">
-                Flexible Parking Choices for Your Trip
+                {t("parking.Flexible Parking Choices for Your Trip")}
               </p>
               <p className=" text-xl ">
-                Secure and convenient parking options designed to fit your
-                travel needs.
+                {t(
+                  "parking.Secure and convenient parking options designed to fit your travel needs."
+                )}
               </p>
             </div>
           </div>

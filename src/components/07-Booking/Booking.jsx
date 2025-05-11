@@ -1,33 +1,62 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "./Booking.css";
+import { useTranslation } from "react-i18next";
+import Parking from "../11-Parking/Parking";
 
 export default function Booking() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const type = searchParams.get("type");
+  const getFlag = () => {
+    switch (language) {
+      case "en":
+        return flagEN;
+      case "de":
+        return flagDE;
+      default:
+        return flagEN;
+    }
+  };
+
+  const { t, i18n } = useTranslation("global");
+
+  const handleChangeLang = (lang) => {
+    i18n.changeLanguage(lang);
+  };
 
   // Set image based on booking type
   const backgroundClass =
-  type === "flight"
-    ? "bookingflight"
-    : type === "ship"
-    ? "bookingship"
-    : type === "hotel"
-    ? "bookinghotel"
-    : "";
+    type === t("header.flight")
+      ? "bookingflight"
+      : type === "ship"
+      ? "bookingship"
+      : type === "hotel"
+      ? "bookinghotel"
+      : type === "parking"
+      ? "bookingparking"
+      : "";
 
   return (
     <div>
-      <div
-         className={`booking-hero ${backgroundClass}`}
-        style={{
-                  backgroundSize: "cover",
-          backgroundPosition: "center",
+      <div>
+        {type === "parking" && (
+          <div className="flex flex-col md:flex-row justify-center items-center min-h-screen lg:p-6 md:p-6 p-0 bg-gray-100">
+            <Parking />
+          </div>
+        )}
+      </div>
 
+      <div
+        className={`booking-hero ${backgroundClass}`}
+        style={{
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
-        <div className="h-[80vh] w-full  bg-opacity-30 flex items-center justify-center"></div>
+        {type !== "parking" && (
+          <div className="h-[80vh] w-full  bg-opacity-30 flex items-center justify-center"></div>
+        )}
       </div>
 
       {type === "flight" && (
@@ -67,11 +96,10 @@ export default function Booking() {
             style={{ border: "none", borderRadius: "10px" }}
             allowFullScreen
             loading="lazy"
-            title="Hotel Booking"
+            title="Book a hotel"
           ></iframe>
         </div>
       )}
-    
     </div>
   );
 }

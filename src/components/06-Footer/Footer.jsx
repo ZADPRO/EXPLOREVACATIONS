@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import bgimg from "../../assets/footer/footerbg.png";
 import logoImg from "../../assets/logo/Explorelogo.png";
 import footer from "../../assets/footer/footer.png";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -11,6 +12,23 @@ export default function Footer() {
     navigate(path);
     window.scrollTo(0, 0);
   };
+
+      const getFlag = () => {
+        switch (language) {
+          case "en":
+            return flagEN;
+          case "de":
+            return flagDE;
+          default:
+            return flagEN;
+        }
+      };
+    
+      const { t, i18n } = useTranslation("global");
+    
+      const handleChangeLang = (lang) => {
+        i18n.changeLanguage(lang);
+      };
   return (
     <div>
      <div className="w-full ">
@@ -24,44 +42,45 @@ export default function Footer() {
             <div className="flex-1">
               <img src={logoImg} alt="" className="w-40 rounded-xl" />
               <p className="text-white mt-3 text-[15px] font-medium text-justify tracking-[-0.015em]">
-                We are a full travel and tourism company in Switzerland. We
-                offer a large selection of tailor-made FIT / group trips, beach
-                tours, safaris and holiday expeditions to Sri Lanka.
+              {t("footer.footer")}
               </p>
             </div>
             <div className="flex-1 lg:pl-5">
               <p className="text-white text-[22px] font-semibold  ">
-                Our Services
+              {t("footer.Our Services")}
               </p>
               <p
                 className="text-white py-2 text-[15px] font-medium cursor-pointer"
                 onClick={() => handleNavigate("/Tours")}
               >
-                Tours
+                {t("footer.Tours")}
               </p>
               <p
                 className="text-white py-2 text-[15px] font-medium cursor-pointer"
                 onClick={() => handleNavigate("/Cars")}
               >
-                Cars
+                                {t("footer.Cars")}
+                
               </p>
               <p
                 className="text-white py-2 text-[15px] font-medium cursor-pointer"
                 onClick={() => handleNavigate("/Contact")}
               >
-                Contact Us
+                                {t("footer.Contact Us")}
+                
               </p>
               <p
                 className="text-white py-2 text-[15px] font-medium cursor-pointer"
                 onClick={() => handleNavigate("/terms")}
               >
-                Terms and Condition
+                                {t("footer.Terms and Condition")}
+                
               </p>
               <p
                 className="text-white py-2 text-[15px] font-medium cursor-pointer"
                 onClick={() => handleNavigate("/privacy")}
-              >
-                Privacy Policy
+              >                {t("footer.Privacy Policy")}
+                
               </p>
             </div>
             {/* <div className="flex-1">
@@ -78,7 +97,7 @@ export default function Footer() {
         </div> */}
             <div className="flex-1">
               <p className="text-white text-[22px] font-bold ">
-                Contact Information
+                {t("footer.Contact Information")}
               </p>
               <p className="text-white py-2 text-[15px] font-medium">
                 info@explorevacations.ch
@@ -95,7 +114,7 @@ export default function Footer() {
             </div>
             <div className="flex-1">
               <p className="text-white text-[22px] font-bold ">
-                Social Media Links
+                {t("footer.Social Media Links")}
               </p>
               <a
                 href="https://www.facebook.com/share/1BeRaztYie/?mibextid=wwXIfr"

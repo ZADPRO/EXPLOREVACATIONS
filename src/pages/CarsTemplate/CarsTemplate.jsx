@@ -5,7 +5,7 @@ import {
   LayoutPanelLeft,
   UsersRound,
 } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import  { useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
 // import { Dropdown } from "primereact/dropdown";
@@ -27,7 +27,7 @@ import { FileUpload } from "primereact/fileupload";
 
 export default function CarsTemplate() {
   const location = useLocation();
-  const [carState, setCarState] = useState();
+  const [setCarState] = useState();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -105,64 +105,64 @@ export default function CarsTemplate() {
     fetchData();
   }, []);
 
-  const handleSubmit = async () => {
-    if (!name || !email || !mobileNumber || !pickupDateTime) {
-      toast.current.show({
-        severity: "error",
-        summary: "Validation Error",
-        detail: "Please fill in all required fields.",
-        life: 3000,
-      });
-      return;
-    }
+  // const handleSubmit = async () => {
+  //   if (!name || !email || !mobileNumber || !pickupDateTime) {
+  //     toast.current.show({
+  //       severity: "error",
+  //       summary: "Validation Error",
+  //       detail: "Please fill in all required fields.",
+  //       life: 3000,
+  //     });
+  //     return;
+  //   }
 
-    try {
-      const response = await axios.post(
-        import.meta.env.VITE_API_URL + "/userRoutes/userCarBooking",
-        {
-          refCarsId: refCarsId,
-          refUserName: name,
-          refUserMail: email,
-          refUserMobile: mobileNumber + "",
-          refPickupAddress: pickupAddress,
-          refSubmissionAddress: submissionAddress,
-          refPickupDate: pickupDateTime,
-          refAdultCount: adults + "",
-          refChildrenCount: children + "",
-          refInfants: infants + "",
-          refOtherRequirements: otherRequirements,
-          refFormDetails: selectedExtrasArray,
-          refCarAgreement: carAgreement,
-        },
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = decrypt(
-        response.data[1],
-        response.data[0],
-        import.meta.env.VITE_ENCRYPTION_KEY
-      );
+  //   try {
+  //     const response = await axios.post(
+  //       import.meta.env.VITE_API_URL + "/userRoutes/userCarBooking",
+  //       {
+  //         refCarsId: refCarsId,
+  //         refUserName: name,
+  //         refUserMail: email,
+  //         refUserMobile: mobileNumber + "",
+  //         refPickupAddress: pickupAddress,
+  //         refSubmissionAddress: submissionAddress,
+  //         refPickupDate: pickupDateTime,
+  //         refAdultCount: adults + "",
+  //         refChildrenCount: children + "",
+  //         refInfants: infants + "",
+  //         refOtherRequirements: otherRequirements,
+  //         refFormDetails: selectedExtrasArray,
+  //         refCarAgreement: carAgreement,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: localStorage.getItem("token"),
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     const data = decrypt(
+  //       response.data[1],
+  //       response.data[0],
+  //       import.meta.env.VITE_ENCRYPTION_KEY
+  //     );
 
-      console.log(data);
+  //     console.log(data);
 
-      if (data.success) {
-        localStorage.setItem("token", "Bearer " + data.token);
-        setIsModelOpen(false);
-      }
-    } catch (error) {
-      toast.current.show({
-        severity: "error",
-        summary: "Submission Failed",
-        detail: "Something went wrong. Please try again.",
-        life: 3000,
-      });
-      console.error("API Error:", error);
-    }
-  };
+  //     if (data.success) {
+  //       localStorage.setItem("token", "Bearer " + data.token);
+  //       setIsModelOpen(false);
+  //     }
+  //   } catch (error) {
+  //     toast.current.show({
+  //       severity: "error",
+  //       summary: "Submission Failed",
+  //       detail: "Something went wrong. Please try again.",
+  //       life: 3000,
+  //     });
+  //     console.error("API Error:", error);
+  //   }
+  // };
 
   const agreementUploader = async (event) => {
     console.table("event", event);
@@ -230,7 +230,6 @@ export default function CarsTemplate() {
           userEmail: email,
           firstname: name.split(" ")[0],
           totalAmount: carListData.refCarPrice,
-         
         },
         {
           headers: {
@@ -603,7 +602,7 @@ export default function CarsTemplate() {
         </div>
 
         <div className="w-[100%]">
-          <h2 className="">Upload Certificate</h2>
+          <h2 className="">Upload Agreement</h2>
           <FileUpload
             name="logo"
             customUpload
@@ -623,9 +622,30 @@ export default function CarsTemplate() {
             severity="success"
             className="w-[20%]"
             label="Pay"
-            // onClick={handleSubmit}
             onClick={() => {
-              handleSubmit();
+              localStorage.setItem(
+                "formData",
+                JSON.stringify({
+                  api:
+                    import.meta.env.VITE_API_URL + "/userRoutes/userCarBooking",
+                  payload: {
+                    refCarsId: refCarsId,
+                    refUserName: name,
+                    refUserMail: email,
+                    refUserMobile: mobileNumber + "",
+                    refPickupAddress: pickupAddress,
+                    refSubmissionAddress: submissionAddress,
+                    refPickupDate: pickupDateTime,
+                    refAdultCount: adults + "",
+                    refChildrenCount: children + "",
+                    refInfants: infants + "",
+                    refOtherRequirements: otherRequirements,
+                    refFormDetails: selectedExtrasArray,
+                    refCarAgreement: carAgreement,
+                  },
+                })
+              );
+              // handleSubmit();
               checkingApi();
             }}
           />

@@ -5,7 +5,7 @@ import {
   LayoutPanelLeft,
   UsersRound,
 } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
 // import { Dropdown } from "primereact/dropdown";
@@ -14,9 +14,10 @@ import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { FloatLabel } from "primereact/floatlabel";
 import { FaDownload } from "react-icons/fa6";
-import Pdf from "../../components/Pdf/index";
 import { InputTextarea } from "primereact/inputtextarea";
 import { FileUpload } from "primereact/fileupload";
+
+import PdfVieTour from "../../components/Pdf/index";
 
 import { Toast } from "primereact/toast";
 import { TabView, TabPanel } from "primereact/tabview";
@@ -72,132 +73,134 @@ export default function ToursTemplate() {
     refOtherRequirements: "",
     refPassPort: "",
   });
-  const [input, setInout] = useState({
-    totalAmount: 0,
-    userEmail: "",
-    firstname: "",
-    lastname: "",
-    purpose: "",
-  });
+  // const [input, setInout] = useState({
+  //   totalAmount: 0,
+  //   userEmail: "",
+  //   firstname: "",
+  //   lastname: "",
+  //   purpose: "",
+  // });
 
   const roleId = localStorage.getItem("roleId");
   const [otherRequirements, setOtherRequirements] = useState("");
 
-  const handleSubmit = async () => {
-    if (!name || !email || !mobileNumber || !pickupDateTime) {
-      toast.current.show({
-        severity: "error",
-        summary: "Validation Error",
-        detail: "Please fill in all required fields.",
-        life: 3000,
-      });
-      return;
-    }
+  // const transactionId = location.state?.transactionId;
 
-    console.log("data.tourDetails[0].refPackageId", packageId);
-    try {
-      const response = await Axios.post(
-        import.meta.env.VITE_API_URL + "/userRoutes/tourBooking",
-        {
-          refPackageId: packageId,
-          refUserName: name,
-          refUserMail: email,
-          refUserMobile: mobileNumber + "",
-          refPickupDate: pickupDateTime,
-          refAdultCount: adults + "",
-          refChildrenCount: children + "",
-          refInfants: infants + "",
-          refOtherRequirements: otherRequirements,
-          refAgreement: agreementImage,
-        },
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = decrypt(
-        response.data[1],
-        response.data[0],
-        import.meta.env.VITE_ENCRYPTION_KEY
-      );
-      console.log("data list tour data ======= ?", data);
-      if (data.success) {
-        toast.current.show({
-          severity: "success",
-          summary: "Success",
-          detail: "Added successfully!",
-          life: 3000,
-        });
-        localStorage.setItem("token", "Bearer " + data.token);
-        setIsModelOpen(false);
-      }
-    } catch (error) {
-      toast.current.show({
-        severity: "error",
-        summary: "Submission Failed",
-        detail: "Something went wrong. Please try again.",
-        life: 3000,
-      });
-      console.error("API Error:", error);
-    }
-  };
-  const CutomizeSubmit = async () => {
-    console.log("data.tourDetails[0].refPackageId", packageId);
-    try {
-      const response = await Axios.post(
-        import.meta.env.VITE_API_URL + "/userRoutes/customizeBooking",
-        {
-          refPackageId: tour.refPackageId,
-          refUserName: formData.refUserName + "",
-          refUserMail: formData.refUserMail + "",
-          refUserMobile: formData.refUserMobile + "",
-          refArrivalDate: formData.refArrivalDate + "",
-          refSingleRoom: formData.refSingleRoom + "",
-          refTwinRoom: formData.refTwinRoom + "",
-          refTripleRoom: formData.refTripleRoom + "",
-          refAdultCount: formData.refAdultCount + "",
-          refChildrenCount: formData.refChildrenCount + "",
-          refVaccinationType: formData.refVaccinationType + "",
-          refVaccinationCertificate: formDataImages,
-          refPassPort: passportImage,
-          // refAgreement: agreementImage,
-          refOtherRequirements: formData.refOtherRequirements + "",
-        },
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = decrypt(
-        response.data[1],
-        response.data[0],
-        import.meta.env.VITE_ENCRYPTION_KEY
-      );
-      console.log("Customise Tour----------->", data);
-      if (data.success) {
-        toast.current.show({
-          severity: "success",
-          summary: "Success",
-          detail: "Added successfully!",
-          life: 3000,
-        });
-        localStorage.setItem("token", "Bearer " + data.token);
-        setModelOpen(false);
-      }
-    } catch (error) {
-      toast.current.show({
-        severity: "error",
-        summary: "Submission Failed",
-        detail: "Something went wrong. Please try again.",
-        life: 3000,
-      });
-      console.error("API Error:", error);
-    }
-  };
+  // const handleSubmit = async (transactionId) => {
+  //   if (!name || !email || !mobileNumber || !pickupDateTime) {
+  //     toast.current.show({
+  //       severity: "error",
+  //       summary: "Validation Error",
+  //       detail: "Please fill in all required fields.",
+  //       life: 3000,
+  //     });
+  //     return;
+  //   }
+
+  //   console.log("data.tourDetails[0].refPackageId", packageId);
+  //   try {
+  //     const response = await Axios.post(
+  //       import.meta.env.VITE_API_URL + "/userRoutes/tourBooking",
+  //       {
+  //         refPackageId: packageId,
+  //         refUserName: name,
+  //         refUserMail: email,
+  //         refUserMobile: mobileNumber + "",
+  //         refPickupDate: pickupDateTime,
+  //         refAdultCount: adults + "",
+  //         refChildrenCount: children + "",
+  //         refInfants: infants + "",
+  //         refOtherRequirements: otherRequirements,
+  //         refAgreement: agreementImage,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: localStorage.getItem("token"),
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     const data = decrypt(
+  //       response.data[1],
+  //       response.data[0],
+  //       import.meta.env.VITE_ENCRYPTION_KEY
+  //     );
+  //     console.log("data list tour data ======= ?", data);
+  //     if (data.success) {
+  //       toast.current.show({
+  //         severity: "success",
+  //         summary: "Success",
+  //         detail: "Added successfully!",
+  //         life: 3000,
+  //       });
+  //       localStorage.setItem("token", "Bearer " + data.token);
+  //       setIsModelOpen(false);
+  //     }
+  //   } catch (error) {
+  //     toast.current.show({
+  //       severity: "error",
+  //       summary: "Submission Failed",
+  //       detail: "Something went wrong. Please try again.",
+  //       life: 3000,
+  //     });
+  //     console.error("API Error:", error);
+  //   }
+  // };
+  // const CutomizeSubmit = async () => {
+  //   console.log("data.tourDetails[0].refPackageId", packageId);
+  //   try {
+  //     const response = await Axios.post(
+  //       import.meta.env.VITE_API_URL + "/userRoutes/customizeBooking",
+  //       {
+  //         refPackageId: tour.refPackageId,
+  //         refUserName: formData.refUserName + "",
+  //         refUserMail: formData.refUserMail + "",
+  //         refUserMobile: formData.refUserMobile + "",
+  //         refArrivalDate: formData.refArrivalDate + "",
+  //         refSingleRoom: formData.refSingleRoom + "",
+  //         refTwinRoom: formData.refTwinRoom + "",
+  //         refTripleRoom: formData.refTripleRoom + "",
+  //         refAdultCount: formData.refAdultCount + "",
+  //         refChildrenCount: formData.refChildrenCount + "",
+  //         refVaccinationType: formData.refVaccinationType + "",
+  //         refVaccinationCertificate: formDataImages[0],
+  //         refPassPort: passportImage[0],
+  //         refOtherRequirements: formData.refOtherRequirements + "",
+  //       },
+  //       // refAgreement: agreementImage,
+  //       {
+  //         headers: {
+  //           Authorization: localStorage.getItem("token"),
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     const data = decrypt(
+  //       response.data[1],
+  //       response.data[0],
+  //       import.meta.env.VITE_ENCRYPTION_KEY
+  //     );
+  //     console.log("Customise Tour----------->", data);
+  //     if (data.success) {
+  //       toast.current.show({
+  //         severity: "success",
+  //         summary: "Success",
+  //         detail: "Added successfully!",
+  //         life: 3000,
+  //       });
+  //       localStorage.setItem("token", "Bearer " + data.token);
+  //       setModelOpen(false);
+  //     }
+  //   } catch (error) {
+  //     toast.current.show({
+  //       severity: "error",
+  //       summary: "Submission Failed",
+  //       detail: "Something went wrong. Please try again.",
+  //       life: 3000,
+  //     });
+  //     console.error("API Error:", error);
+  //   }
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -457,6 +460,12 @@ export default function ToursTemplate() {
         if (data.success) {
           localStorage.setItem("token", "Bearer " + data.token);
           handleagreementtUploadSuccess(data);
+          toast.current.show({
+            severity: "success",
+            summary: "Success",
+            detail: "Uploaded successfully!",
+            life: 3000,
+          });
         } else {
           handleagreementUploadFailure(data);
         }
@@ -479,23 +488,24 @@ export default function ToursTemplate() {
 
   const handleInvoiceDownload = async () => {
     const doc = (
-      <Pdf
+      <PdfVieTour
         tourName={tour.refPackageName}
         tourDay={tour.refDurationIday}
         tourNight={tour.refDurationINight}
         tourPrice={tour.refTourPrice}
         tourCode={tour.refTourCode}
         tourGroupSize={tour.refGroupSize}
-        tourCategory={tour.refCategoryName}
         tourItenary={tour.refItinary}
         tourIncludes={tour.travalInclude}
         tourExcludes={tour.travalExclude}
         specialNotes={tour.refSpecialNotes}
+        tourCategory={tour.refCategoryName}
       />
     );
 
     try {
       // Generate PDF as Blob
+      console.log("doc", doc);
       const pdfBlob = await pdf(doc).toBlob();
 
       // Create a URL for the Blob
@@ -520,13 +530,14 @@ export default function ToursTemplate() {
 
   // payment
   const checkingApi = async () => {
+    //sucesss
     try {
       console.log("checkingApi running");
       const response = await Axios.post(
         import.meta.env.VITE_API_URL + "/paymentRoutes/payment",
         {
-          successRedirectUrl: "https://explorevacations.max-idigital.ch",
-          failedRedirectUrl: "https://explorevacations.max-idigital.ch",
+          successRedirectUrl: "http://localhost:5174/success",
+          failedRedirectUrl: "http://localhost:5174/failure",
           purpose: "Payment processing",
           totalAmount: tour.refTourPrice,
           userEmail: email,
@@ -546,8 +557,6 @@ export default function ToursTemplate() {
         response.data[0],
         import.meta.env.VITE_ENCRYPTION_KEY
       );
-
-      console.log("decryptedData:", decryptedData);
 
       if (decryptedData?.success) {
         const paymentLink = decryptedData?.data?.[0]?.link;
@@ -574,51 +583,6 @@ export default function ToursTemplate() {
     }
   };
 
-  // const checkingApi = async () => {
-  //   console.log("checkingApi running");
-  //   try {
-  //     const response = await Axios.post(
-  //       import.meta.env.VITE_API_URL + "/paymentRoutes/payment",
-  //       {
-  //         totalAmount: 100,
-  //         userEmail:"soniya@gmail.com",
-  //         firstname: "soniya",
-  //         lastname: "G",
-  //         purpose: "payment",
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: localStorage.getItem("token"),
-  //           "Content-Type": "application/json",
-  //         },
-  //               }
-  //     );
-
-  //     const decryptedData = decrypt(
-  //       response.data[1],
-  //       response.data[0],
-  //       import.meta.env.VITE_ENCRYPTION_KEY
-  //     );
-  //     console.log("decryptedData---------->", decryptedData);
-
-  //     if (decryptedData.success) {
-  //       console.log("decryptedData---------->", decryptedData);
-  //       const paymentLink = decryptedData.data[0]?.link;
-  //       localStorage.setItem("token", "Bearer " + data.token);
-  //       if (paymentLink) {
-  //         window.location.href = paymentLink;
-  //       } else {
-  //         alert("Payment link not found.");
-  //       }
-  //     } else {
-  //       alert("Payment creation failed: " + decryptedData.message);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error while tracking:", error);
-  //     alert("Error while tracking. Please try again.");
-  //   }
-  // };
-
   return (
     <div>
       <Toast ref={toast} />
@@ -626,9 +590,10 @@ export default function ToursTemplate() {
         {/* Centered Text Here */}
       </div>
 
-      <div className="flex w-10/12 mx-auto">
-        <div className="flex lg:flex-row flex-column gap-6 p-4">
-          <div className="lg:w-2/4 flex-shrink-0">
+      <div className="flex w-full mx-auto">
+        <div className="flex flex-col lg:flex-row gap-6 lg:p-4 md:p-4 ">
+          {/* Image Section */}
+          <div className="lg:w-2/4  pt-3 flex-shrink-0">
             <img
               // src={`data:${tour.refCoverImage.contentType};base64,${tour.refCoverImage.content}`}
               src={`https://explorevacations.max-idigital.ch/src/assets/coverImage/${tour.refCoverImage}`}
@@ -637,7 +602,8 @@ export default function ToursTemplate() {
             />
           </div>
 
-          <div className="lg:w-2/4 flex flex-col justify-center gap-4">
+          {/* Information Section */}
+          <div className="lg:w-2/4   flex flex-col justify-center gap-4">
             <p className="flex gap-2 items-center font-bold uppercase text-[22px]">
               {tour.name}
             </p>
@@ -693,7 +659,7 @@ export default function ToursTemplate() {
                   if (roleId === "3") {
                     setIsModelOpen(true);
                   } else {
-                    navigate("/login"); 
+                    navigate("/login");
                   }
                 }}
               >
@@ -711,6 +677,20 @@ export default function ToursTemplate() {
               >
                 <span className="font-semibold">Customize Tour</span>
               </button>
+
+              {/* <button
+                className="border-1 px-4 py-2 rounded bg-[#009ad7] text-white cursor-pointer"
+                onClick={() => {
+                  if (roleId === "3") {
+                    setModelOpen(true);
+                  } else {
+                    navigate("/login");
+                  }
+                }}
+                title="Click to download tour agreement."
+              >
+                <span className="font-semibold">Download</span>
+              </button> */}
             </p>
           </div>
         </div>
@@ -834,6 +814,7 @@ export default function ToursTemplate() {
                 id="username"
                 className="w-[100%]"
                 value={name}
+                required
                 onChange={(e) => setName(e.target.value)}
               />
               <label htmlFor="username">Your Name</label>
@@ -845,6 +826,7 @@ export default function ToursTemplate() {
                 id="email"
                 className="w-[100%]"
                 value={email}
+                required
                 onChange={(e) => setEmail(e.target.value)}
               />
               <label htmlFor="email">Your Email</label>
@@ -856,6 +838,7 @@ export default function ToursTemplate() {
                 id="mobileNumber"
                 className="w-[100%]"
                 useGrouping={false}
+                required
                 value={mobileNumber}
                 onValueChange={(e) => setMobileNumber(e.value)}
               />
@@ -873,6 +856,7 @@ export default function ToursTemplate() {
                 className="flex-1 w-[100%]"
                 onChange={(e) => setPickupDateTime(e.value)}
                 showTime
+                required
                 placeholder="Pickup Date & Time"
                 hourFormat="12"
                 minDate={new Date()} // Restrict selection to today and onwards
@@ -893,6 +877,7 @@ export default function ToursTemplate() {
                 className="w-[100%]"
                 useGrouping={false}
                 value={adults}
+                required
                 onValueChange={(e) => setAdults(e.value)}
               />
               <label htmlFor="adults">Adults</label>
@@ -905,6 +890,7 @@ export default function ToursTemplate() {
                 className="w-[100%]"
                 useGrouping={false}
                 value={children}
+                required
                 onValueChange={(e) => setChildren(e.value)}
               />
               <label htmlFor="children">Children</label>
@@ -917,6 +903,7 @@ export default function ToursTemplate() {
                 className="w-[100%]"
                 useGrouping={false}
                 value={infants}
+                required
                 onValueChange={(e) => setInfants(e.value)}
               />
               <label htmlFor="infants">Infants</label>
@@ -939,7 +926,7 @@ export default function ToursTemplate() {
           </div>
         </div>
         <div className="w-[100%]">
-          <h2 className="">Upload Aggrement</h2>
+          <h2 className="">Upload Agreement</h2>
           <FileUpload
             name="logo"
             customUpload
@@ -960,8 +947,26 @@ export default function ToursTemplate() {
             className="w-[20%]"
             label="Pay"
             onClick={(e) => {
+              localStorage.setItem(
+                "formData",
+                JSON.stringify({
+                  api: import.meta.env.VITE_API_URL + "/userRoutes/tourBooking",
+                  payload: {
+                    refPackageId: packageId,
+                    refUserName: name,
+                    refUserMail: email,
+                    refUserMobile: mobileNumber + "",
+                    refPickupDate: pickupDateTime,
+                    refAdultCount: adults + "",
+                    refChildrenCount: children + "",
+                    refInfants: infants + "",
+                    refOtherRequirements: otherRequirements,
+                    refAgreement: agreementImage,
+                  },
+                })
+              );
               e.preventDefault();
-              handleSubmit();
+              // handleSubmit();
               checkingApi();
             }}
           />
@@ -991,6 +996,7 @@ export default function ToursTemplate() {
               <InputText
                 className="w-[100%]"
                 value={formData.refUserName}
+                required
                 onChange={(e) => {
                   setFromDate({ ...formData, refUserName: e.target.value });
                 }}
@@ -1003,6 +1009,7 @@ export default function ToursTemplate() {
               <InputText
                 className="w-[100%]"
                 value={formData.refUserMail}
+                required
                 onChange={(e) => {
                   setFromDate({ ...formData, refUserMail: e.target.value });
                 }}
@@ -1015,6 +1022,7 @@ export default function ToursTemplate() {
               <InputNumber
                 className="w-[100%]"
                 useGrouping={false}
+                required
                 value={formData.refUserMobile}
                 onChange={(e) => {
                   setFromDate({ ...formData, refUserMobile: e.value });
@@ -1031,6 +1039,7 @@ export default function ToursTemplate() {
               <Calendar
                 className="flex-1 w-[100%]"
                 value={formData.refArrivalDate}
+                required
                 onChange={(e) => {
                   setFromDate({ ...formData, refArrivalDate: e.value });
                 }}
@@ -1050,6 +1059,7 @@ export default function ToursTemplate() {
               <InputNumber
                 className="w-[100%]"
                 value={formData.refSingleRoom}
+                required
                 onChange={(e) => {
                   setFromDate({ ...formData, refSingleRoom: e.value });
                 }}
@@ -1062,6 +1072,7 @@ export default function ToursTemplate() {
               <InputNumber
                 className="w-[100%]"
                 value={formData.refTwinRoom}
+                required
                 onChange={(e) => {
                   setFromDate({ ...formData, refTwinRoom: e.value });
                 }}
@@ -1074,6 +1085,7 @@ export default function ToursTemplate() {
               <InputText
                 className="w-[100%]"
                 value={formData.refTripleRoom}
+                required
                 onChange={(e) => {
                   setFromDate({ ...formData, refTripleRoom: e.target.value });
                   console.log("refTripleRoom", e.target.value);
@@ -1092,6 +1104,7 @@ export default function ToursTemplate() {
               <InputNumber
                 className="w-[100%]"
                 value={formData.refAdultCount}
+                required
                 onChange={(e) => {
                   setFromDate({ ...formData, refAdultCount: e.value });
                   // console.log("Evalue--------->",e.value)
@@ -1106,6 +1119,7 @@ export default function ToursTemplate() {
               <InputNumber
                 className="w-[100%]"
                 value={formData.refChildrenCount}
+                required
                 onChange={(e) => {
                   setFromDate({
                     ...formData,
@@ -1125,6 +1139,7 @@ export default function ToursTemplate() {
               <InputTextarea
                 className="w-[100%]"
                 value={formData.refOtherRequirements}
+                required
                 onChange={(e) => {
                   setFromDate({
                     ...formData,
@@ -1196,14 +1211,34 @@ export default function ToursTemplate() {
             severity="success"
             className="w-[20%]"
             label="Pay"
-            // handlePayment();
-            // onClick={CutomizeSubmit}
             onClick={(e) => {
+              localStorage.setItem(
+                "formData",
+                JSON.stringify({
+                  api:
+                    import.meta.env.VITE_API_URL +
+                    "/userRoutes/customizeBooking",
+                  payload: {
+                    refPackageId: tour.refPackageId,
+                    refUserName: formData.refUserName + "",
+                    refUserMail: formData.refUserMail + "",
+                    refUserMobile: formData.refUserMobile + "",
+                    refArrivalDate: formData.refArrivalDate + "",
+                    refSingleRoom: formData.refSingleRoom + "",
+                    refTwinRoom: formData.refTwinRoom + "",
+                    refTripleRoom: formData.refTripleRoom + "",
+                    refAdultCount: formData.refAdultCount + "",
+                    refChildrenCount: formData.refChildrenCount + "",
+                    refVaccinationType: formData.refVaccinationType + "",
+                    refVaccinationCertificate: formDataImages[0],
+                    refPassPort: passportImage[0],
+                    refOtherRequirements: formData.refOtherRequirements + "",
+                  },
+                })
+              );
               e.preventDefault();
-              CutomizeSubmit();
+              // CutomizeSubmit();
               checkingApi();
-
-              
             }}
           />
         </div>

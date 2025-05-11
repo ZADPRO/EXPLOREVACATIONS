@@ -1,14 +1,35 @@
 import { RiPencilFill } from "react-icons/ri";
 import axios from "axios";
 import React, { useRef, useState, useEffect } from "react";
-import { Button } from "primereact/button";
+// import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
-import { color } from "framer-motion";
+// import { color } from "framer-motion";
 import decrypt from "../../helper";
-import { classNames } from "primereact/utils";
+// import { classNames } from "primereact/utils";
 import box from "../../assets/TouBooking/Box.png";
+import { useTranslation } from "react-i18next";
+import { BiWorld } from "react-icons/bi";
+import { FaUser } from "react-icons/fa";
+import { FaCar } from "react-icons/fa";
+import { MdOutlineLocalParking } from "react-icons/md";
 
 export default function Profile() {
+  // const getFlag = () => {
+  //   switch (language) {
+  //     case "en":
+  //       return flagEN;
+  //     case "de":
+  //       return flagDE;
+  //     default:
+  //       return flagEN;
+  //   }
+  // };
+
+  const { t, i18n } = useTranslation("global");
+
+  // const handleChangeLang = (lang) => {
+  //   i18n.changeLanguage(lang);
+  // };
   const toast = useRef(null);
   const [selectedTab, setSelectedTab] = useState("Personal Info");
   const [isEditable, setIsEditable] = useState(false);
@@ -45,7 +66,7 @@ export default function Profile() {
   const [history, setHistory] = useState("");
   const [carHistory, setCarHistory] = useState("");
   const [parkingHistory, setParkingHistory] = useState("");
-  const [profile, setProfile] = useState("");
+  const [setProfile] = useState("");
 
   // const [profileData, setProfileData] = useState(initialData);
 
@@ -303,7 +324,7 @@ export default function Profile() {
   return (
     <div className="min-h-screen flex flex-row lg:flex-col md:flex-col bg-gray-100 font-sans">
       {/* Left Sidebar */}
-      <div className="w-[30%]  lg:w-[20%] md:w-[20%] bg-[#065784] text-white flex flex-col lg:flex-col md:flex-col">
+      <div className="w-[30%]  lg:w-[20%] md:w-[20%] bg-[#065784] text-white hidden lg:flex flex-col lg:flex-col md:flex-col">
         {/* Logo */}
         <div className="mt-13 border-b border-[#065784]"></div>
 
@@ -317,7 +338,7 @@ export default function Profile() {
             }`}
             onClick={() => setSelectedTab("Personal Info")}
           >
-            Personal Info
+            {t("profile.Personal Information")}
           </div>
           <div
             className={`p-3 text-xl font-bold ${
@@ -327,7 +348,7 @@ export default function Profile() {
             }`}
             onClick={() => setSelectedTab("Tour Bookings")}
           >
-            Tour Bookings
+            {t("profile.Tour Bookings")}
           </div>
           <div
             className={`p-3 text-xl  font-bold ${
@@ -335,7 +356,7 @@ export default function Profile() {
             }`}
             onClick={() => setSelectedTab("Car Booking")}
           >
-            Car Booking
+            {t("profile.Car Booking")}
           </div>
           <div
             className={`p-3 text-xl  font-bold ${
@@ -345,213 +366,227 @@ export default function Profile() {
             }`}
             onClick={() => setSelectedTab("Parking Booking")}
           >
-            Parking Booking
+            {t("profile.Parking Booking")}
           </div>
         </div>
+      </div>
+
+      <div className="  lg:w-[20%] md:w-[20%]  text-white lg:hidden flex flex-col lg:flex-col md:flex-col">
+        
+        <div className="fixed bottom-0 left-0 right-0 bg-[#065784] p-3 border-t shadow-md flex justify-around items-center md:hidden z-50">
+          <div
+            className={`flex flex-col items-center p-2 ${
+              selectedTab === "Personal Info"
+                ? "text-[#ffff]"
+                :"text-[#000000]"
+            }`}
+            onClick={() => setSelectedTab("Personal Info")}
+          >
+            <FaUser size={24} />
+            {/* <span className="text-xs">{t("profile.Personal Information")}</span> */}
+          </div>
+          <div
+            className={`flex flex-col items-center p-2 ${
+              selectedTab === "Tour Bookings"
+                ? "text-[#ffff]"
+                :  "text-[#000000]"
+            }`}
+            onClick={() => setSelectedTab("Tour Bookings")}
+          >
+            <BiWorld size={24} />
+            {/* <span className="text-xs">{t("profile.Tour Bookings")}</span> */}
+          </div>
+          <div
+            className={`flex flex-col items-center p-2 ${
+              selectedTab === "Car Booking" ? "text-[#ffff]" : "text-[#000000]"
+            }`}
+            onClick={() => setSelectedTab("Car Booking")}
+          >
+            <FaCar  size={24} />
+            {/* <span className="text-xs">{t("profile.Car Booking")}</span> */}
+          </div>
+          <div
+            className={`flex flex-col items-center p-2 ${
+              selectedTab === "Parking Booking"
+                ? "text-[#ffff]"
+                :  "text-[#000000]"
+            }`}
+            onClick={() => setSelectedTab("Parking Booking")}
+          >
+            <MdOutlineLocalParking  size={24} />
+            {/* <span className="text-xs">{t("profile.Parking Booking")}</span> */}
+          </div>
+        </div>
+      {/* </div> */}
+
       </div>
 
       {/* Main Content */}
       <div className="flex-1">
         <Toast ref={toast} />
         <div className="lg:p-8 md:p-8 mt-6">
-          {/* Profile Content */}
+       
           {selectedTab === "Personal Info" && (
-            <div className="bg-white p-4 rounded-lg shadow-sm">
+            <div className="bg-white p-10  rounded-lg shadow-sm">
               <div className="flex justify-between items-center mb-6">
-                <h2
-                  className="text-xl font-semibold "
-                  style={{ textTransform: "uppercase" }}
-                >
-                  Personal Information
-                </h2>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-xl font-semibold uppercase">
+                    {t("profile.Personal Information")}
+                  </h2>
+                  {isEditable && (
+                    <span className="text-sm  font-semibold"></span>
+                  )}
+                </div>
                 <button
                   onClick={() => setIsEditable(!isEditable)}
                   className="text-gray-600 hover:text-black"
-                  title="Edit Profile"
+                  title={t("profile.Edit Profile")}
                 >
-                  <RiPencilFill className="w-20 h-7 text-[#065784]  cursor-pointer" />
+                  <RiPencilFill className="w-20 h-7 text-[#065784] cursor-pointer" />
                 </button>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block  text-xl text-[#065784] mb-1">
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    name="refFName"
-                    value={input.refFName}
-                    onChange={handleInput}
-                    disabled={!isEditable}
-                    className="border rounded-md p-3 w-full"
-                  />
-                </div>
-                <div>
-                  <label className="block  text-xl text-[#065784] mb-1">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    name="refLName"
-                    value={input.refLName}
-                    onChange={handleInput}
-                    disabled={!isEditable}
-                    className="border rounded-md p-3 w-full"
-                  />
-                </div>
-                <div>
-                  <label className="block  text-xl text-[#065784] mb-1">
-                    Email ID
-                  </label>
-                  <input
-                    type="text"
-                    name="refUserEmail"
-                    value={input.refUserEmail}
-                    onChange={handleInput}
-                    disabled={!isEditable}
-                    className="border rounded-md p-3 w-full"
-                  />
-                </div>
-                <div>
-                  <label className="block  text-xl text-[#065784] mb-1">
-                    Password
-                  </label>
-                  <input
-                    type="text"
-                    name="refUserPassword"
-                    value={input.refUserPassword}
-                    onChange={handleInput}
-                    disabled={!isEditable}
-                    className="border rounded-md p-3 w-full"
-                  />
-                </div>
-                <div>
-                  <label className="block  text-xl text-[#065784] mb-1">
-                    Mobile No:
-                  </label>
-                  <input
-                    type="text"
-                    name="refMoblile"
-                    value={input.refMoblile}
-                    onChange={handleInput}
-                    disabled={!isEditable}
-                    className="border rounded-md p-3 w-full"
-                  />
-                </div>
-                <div>
-                  <label className="block  text-xl text-[#065784] mb-1">
-                    Date of Birth:
-                  </label>
-                  <input
-                    type="text"
-                    name="refDOB"
-                    value={input.refDOB}
-                    onChange={handleInput}
-                    disabled={!isEditable}
-                    className="border rounded-md p-3 w-full"
-                  />
-                </div>
+              <div className="grid grid-cols-2 gap-5 px-3 mb-5">
+                {/* Personal Info Inputs */}
+                {[
+                  {
+                    label: t("profile.First Name"),
+                    name: "refFName",
+                    value: input.refFName,
+                  },
+                  {
+                    label: t("profile.Last Name"),
+                    name: "refLName",
+                    value: input.refLName,
+                  },
+                  {
+                    label: t("profile.Email ID"),
+                    name: "refUserEmail",
+                    value: input.refUserEmail,
+                  },
+                  {
+                    label: t("profile.Password"),
+                    name: "refUserPassword",
+                    value: input.refUserPassword,
+                  },
+                  {
+                    label: t("profile.Mobile No"),
+                    name: "refMoblile",
+                    value: input.refMoblile,
+                  },
+                  {
+                    label: t("profile.Date of Birth"),
+                    name: "refDOB",
+                    value: input.refDOB,
+                  },
+                ].map((field, index) => (
+                  <div key={index}>
+                    <label className="block text-xl text-[#065784] mb-1">
+                      {field.label}
+                    </label>
+                    <input
+                      type="text"
+                      name={field.name}
+                      value={field.value}
+                      onChange={handleInput}
+                      disabled={!isEditable}
+                      className={`border rounded-md p-3 w-[130%] lg:w-full ${
+                        !isEditable ? "bg-gray-100 cursor-not-allowed" : ""
+                      }`}
+                    />
+                  </div>
+                ))}
 
-                <form
+           
+              </div>
+                   {/* Address Form */}
+                   <form
                   onSubmit={(e) => {
                     e.preventDefault();
                     Addaddress();
                   }}
                   method="post"
+                  className="col-span-2"
                 >
-                  <div className="grid grid-cols-2 gap-4">
-                    {" "}
-                    <div>
-                      <label className="block  text-xl text-[#065784] mb-1">
-                        Address:
-                      </label>
-                      <input
-                        type="text"
-                        name="refUserAddress"
-                        value={address.refUserAddress}
-                        onChange={handleInput}
+                  <div className="grid grid-cols-2 gap-5 px-3">
+                    {[
+                      {
+                        label: t("profile.Address"),
+                        name: "refUserAddress",
+                        value: address.refUserAddress,
+                      },
+                      {
+                        label: t("profile.City"),
+                        name: "refUserCity",
+                        value: address.refUserCity,
+                      },
+                      {
+                        label: t("profile.State"),
+                        name: "refUserState",
+                        value: address.refUserState,
+                      },
+                      {
+                        label: t("profile.Country"),
+                        name: "refUserCountry",
+                        value: address.refUserCountry,
+                      },
+                      {
+                        label: t("profile.Zip code"),
+                        name: "refUserZipCode",
+                        value: address.refUserZipCode,
+                      },
+                    ].map((field, idx) => (
+                      <div key={idx}>
+                        <label className="block text-xl text-[#065784] mb-1">
+                          {field.label}
+                        </label>
+                        <input
+                          type="text"
+                          name={field.name}
+                          value={field.value}
+                          onChange={handleInput}
+                          disabled={!isEditable}
+                          className={`border rounded-md p-3 lg:w-full w-[130%] ${
+                            !isEditable ? "bg-gray-100 cursor-not-allowed" : ""
+                          }`}
+                        />
+                      </div>
+                    ))}
+
+                    <div className="col-span-2 flex justify-end">
+                      <button
                         disabled={!isEditable}
-                        className="border rounded-md p-3 w-full"
-                      />
+                        className={`${
+                          !isEditable
+                            ? "opacity-50 cursor-not-allowed"
+                            : "hover:bg-[#565656]"
+                        } bg-[#000000] text-white px-8 py-3 mt-4 rounded-md`}
+                        type="submit"
+                      >
+                        {t("profile.Add Address")}
+                      </button>
                     </div>
-                    <div>
-                      <label className="block  text-xl text-[#065784] mb-1">
-                        City:
-                      </label>
-                      <input
-                        type="text"
-                        name="refUserCity"
-                        value={address.refUserCity}
-                        onChange={handleInput}
-                        disabled={!isEditable}
-                        className="border rounded-md p-3 w-full"
-                      />
-                    </div>
-                    <div>
-                      <label className="block  text-xl text-[#065784] mb-1">
-                        State:
-                      </label>
-                      <input
-                        type="text"
-                        name="refUserState"
-                        value={address.refUserState}
-                        onChange={handleInput}
-                        disabled={!isEditable}
-                        className="border rounded-md p-3 w-full"
-                      />
-                    </div>
-                    <div>
-                      <label className="block  text-xl text-[#065784] mb-1">
-                        Country:
-                      </label>
-                      <input
-                        type="text"
-                        name="refUserCountry"
-                        value={address.refUserCountry}
-                        onChange={handleInput}
-                        disabled={!isEditable}
-                        className="border rounded-md p-3 w-full"
-                      />
-                    </div>
-                    <div>
-                      <label className="block  text-xl text-[#065784] mb-2">
-                        Zip code:
-                      </label>
-                      <input
-                        type="text"
-                        name="refUserZipCode"
-                        value={address.refUserZipCode}
-                        onChange={handleInput}
-                        disabled={!isEditable}
-                        className="border rounded-md p-3 w-full"
-                      />
-                    </div>
-                    <button
-                      label="Success"
-                      severity="success"
-                      className="bg-[#000000] text-white px-8 py-3 h-15 mt-5 rounded-md hover:bg-[#565656]"
-                      type="submit"
-                    >
-                      Add Address
-                    </button>
                   </div>
                 </form>
-              </div>
 
               {isEditable && (
-                <div className="mt-6 flex justify-end">
+                <div className="mt-6 flex justify-end gap-4">
                   <button
-                    label="Success"
-                    severity="success"
+                    className="bg-gray-500 text-white px-8 py-3 rounded-md hover:bg-gray-600"
+                    onClick={() => setIsEditable(false)}
+                  >
+                    {t("profile.Cancel")}
+                  </button>
+                  <button
                     className="bg-[#065784] text-white px-8 py-3 rounded-md hover:bg-[#265bb3]"
                     onClick={() => {
                       ProfileUpdate();
                       handleSave();
                       showSuccess();
+                      setIsEditable(false);
                     }}
                   >
-                    Save Changes
+                    {t("profile.Save Changes")}
                   </button>
                 </div>
               )}
@@ -585,27 +620,27 @@ export default function Profile() {
                       <div className="flex flex-col lg:flex-row md:flex-row">
                         <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
-                            <p className="font-medium">Code:</p>
+                            <p className="font-medium">{t("profile.Code")}:</p>
                             <p className="text-[#327ada]">{item.refTourCode}</p>
                           </div>
                           <div>
-                            <p className="font-medium">Days:</p>
+                            <p className="font-medium">{t("profile.Days")}:</p>
                             <p className="text-[#327ada]">
-                              {item.refDurationIday} Days &{" "}
-                              {item.refDurationINight} Nights
+                              {item.refDurationIday} {t("profile.Days")} &{" "}
+                              {item.refDurationINight} {t("profile.Nights")}
                             </p>
                           </div>
                         </div>
                         <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
-                            <p className="font-medium">Price:</p>
+                            <p className="font-medium">{t("profile.Price")}:</p>
                             <p className="text-[#327ada]">
                               CHF {item.refTourPrice}
                             </p>
                           </div>
 
                           <div>
-                            <p className="font-medium">Pickup:</p>
+                            <p className="font-medium">{t("profile.Pickup")}:</p>
                             <p className="text-[#327ada]">
                               {new Date(item.refPickupDate).toLocaleString(
                                 "en-GB",
@@ -623,13 +658,13 @@ export default function Profile() {
                         </div>
                         <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
-                            <p className="font-medium">AdultCount:</p>
+                            <p className="font-medium">{t("profile.AdultCount")}:</p>
                             <p className="text-[#327ada]">
                               {item.refAdultCount}
                             </p>
                           </div>
                           <div>
-                            <p className="font-medium">ChildrenCount:</p>
+                            <p className="font-medium">{t("profile.ChildrenCount")}:</p>
                             <p className="text-[#327ada]">
                               {item.refChildrenCount}
                             </p>
@@ -640,7 +675,7 @@ export default function Profile() {
                   </div>
                 ))
               ) : (
-                <p className="text-gray-600 text-center">No bookings found.</p>
+                <p className="text-gray-600 text-center">{t("profile.No bookings found")}</p>
               )}
             </div>
           )}
@@ -649,7 +684,7 @@ export default function Profile() {
           {/* Car Parking */}
 
           {selectedTab === "Car Booking" && (
-          <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-3 rounded-lg shadow-sm">
+            <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-3 rounded-lg shadow-sm">
               {carHistory?.length > 0 ? (
                 carHistory.map((item, index) => (
                   <div
@@ -673,34 +708,34 @@ export default function Profile() {
                       alt={car.refVehicleTypeName}
                       className="w-full object-cover aspect-[4/3]"
                     /> */}
-                     <div className="flex flex-col  lg:flex-col md:flex-col gap-2 justify-between w-full">
+                    <div className="flex flex-col  lg:flex-col md:flex-col gap-2 justify-between w-full">
                       <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">
                         {item.refVehicleTypeName}
                       </h2>
                       <div className="flex flex-col lg:flex-row md:flex-row">
                         <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
-                            <p className="font-medium">CarType :</p>
+                            <p className="font-medium">{t("profile.CarType")} :</p>
                             <p className="text-[#327ada]">
                               {item.refCarTypeName}
                             </p>
                           </div>
 
                           <div>
-                            <p className="font-medium">Bag Count :</p>
+                            <p className="font-medium">{t("profile.Bag Count")} :</p>
                             <p className="text-[#327ada]">{item.refBagCount}</p>
                           </div>
                         </div>
                         <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
-                            <p className="font-medium">Price :</p>
+                            <p className="font-medium">{t("profile.Price")} :</p>
                             <p className="text-[#327ada]">
                               CHF {item.refCarPrice}
                             </p>
                           </div>
 
                           <div>
-                            <p className="font-medium">Pickup :</p>
+                            <p className="font-medium">{t("profile.Pickup")} :</p>
                             <p className="text-[#327ada]">
                               {new Date(item.refPickupDate).toLocaleString(
                                 "en-GB",
@@ -718,13 +753,13 @@ export default function Profile() {
                         </div>
                         <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
-                            <p className="font-medium">AdultCount :</p>
+                            <p className="font-medium">{t("profile.AdultCount")} :</p>
                             <p className="text-[#327ada]">
                               {item.refAdultCount}
                             </p>
                           </div>
                           <div>
-                            <p className="font-medium">Person Count :</p>
+                            <p className="font-medium">{t("profile.Person Count")} :</p>
                             <p className="text-[#327ada]">
                               {item.refPersonCount}
                             </p>
@@ -735,7 +770,7 @@ export default function Profile() {
                   </div>
                 ))
               ) : (
-                <p className="text-gray-600 text-center">No bookings found.</p>
+                <p className="text-gray-600 text-center">{t("profile.No bookings found")}.</p>
               )}
             </div>
           )}
@@ -767,21 +802,21 @@ export default function Profile() {
                       alt={car.refVehicleTypeName}
                       className="w-full object-cover aspect-[4/3]"
                     /> */}
-                  <div className="flex flex-col  lg:flex-col md:flex-col gap-2 justify-between w-full">
-                  <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">
+                    <div className="flex flex-col  lg:flex-col md:flex-col gap-2 justify-between w-full">
+                      <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">
                         {item.refParkingName}
                       </h2>
                       <div className="flex flex-col lg:flex-row md:flex-row">
-                      <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
+                        <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
-                            <p className="font-medium">ParkingTypeName :</p>
+                            <p className="font-medium">{t("profile.ParkingTypeName")} :</p>
                             <p className="text-[#327ada]">
                               {item.refParkingTypeName}
                             </p>
                           </div>
 
                           <div>
-                            <p className="font-medium">Vehicle Model</p>
+                            <p className="font-medium">{t("profile.Vehicle Model")} :</p>
                             <p className="text-[#327ada]">
                               {item.VehicleModel}
                             </p>
@@ -789,14 +824,14 @@ export default function Profile() {
                         </div>
                         <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
-                            <p className="font-medium">Price :</p>
+                            <p className="font-medium">{t("profile.Price")} :</p>
                             <p className="text-[#327ada]">
                               CHF {item.refPrice}
                             </p>
                           </div>
 
                           <div>
-                            <p className="font-medium">travel StartDate :</p>
+                            <p className="font-medium">{t("profile.travel StartDate")} :</p>
                             <p className="text-[#327ada]">
                               {new Date(item.travelStartDate).toLocaleString(
                                 "en-GB",
@@ -814,11 +849,11 @@ export default function Profile() {
                         </div>
                         <div className="flex flex-col w-[100%] gap-2  text-sm font-bold text-[#1a1a1a]">
                           <div>
-                            <p className="font-medium">Location :</p>
+                            <p className="font-medium">{t("profile.Location")} :</p>
                             <p className="text-[#327ada]">{item.refLocation}</p>
                           </div>
                           <div>
-                            <p className="font-medium">travel EndDate :</p>
+                            <p className="font-medium">{t("profile.travel EndDate")} :</p>
                             <p className="text-[#327ada]">
                               {new Date(item.travelEndDate).toLocaleString(
                                 "en-GB",
@@ -839,7 +874,7 @@ export default function Profile() {
                   </div>
                 ))
               ) : (
-                <p className="text-gray-600 text-center">No bookings found.</p>
+                <p className="text-gray-600 text-center">{t("profile.No bookings found")}.</p>
               )}
             </div>
           )}

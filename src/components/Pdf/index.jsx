@@ -7,6 +7,7 @@ import {
   PDFViewer,
   Text,
   View,
+  StyleSheet,
 } from "@react-pdf/renderer";
 
 import page1 from "../../assets/Pdf/page1.jpg";
@@ -16,25 +17,25 @@ import page4 from "../../assets/Pdf/Page4.jpg";
 
 import Html from "react-pdf-html";
 
-export default function Pdf({
+export default function PdfVieTour({
   tourName,
   tourDay,
   tourNight,
   tourPrice,
   tourCode,
   tourGroupSize,
-  tourCategory,
   tourItenary,
   tourIncludes,
   tourExcludes,
   specialNotes,
+  tourCategory,
 }) {
   return (
     <Document>
       <Page size="A4">
         <View style={{ width: "100%", height: "100%", padding: "40px" }}>
           <View style={{ position: "relative", height: "100%", width: "100%" }}>
-            {/* Background Image */}
+         
             <Image
               src={page1}
               style={{

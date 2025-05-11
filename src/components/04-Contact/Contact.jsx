@@ -7,8 +7,26 @@ import "primereact/resources/themes/saga-blue/theme.css"; // or your theme
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
-
+import { useTranslation } from "react-i18next";
+import Popup from "../../pages/Popup/Popup";
 export default function Contact() {
+
+  const getFlag = () => {
+    switch (language) {
+      case "en":
+        return flagEN;
+      case "de":
+        return flagDE;
+      default:
+        return flagEN;
+    }
+  };
+
+  const { t, i18n } = useTranslation("global");
+
+  const handleChangeLang = (lang) => {
+    i18n.changeLanguage(lang);
+  };
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -43,6 +61,7 @@ export default function Contact() {
 
   return (
     <div>
+      <Popup/>
       <div className="contactPage001">
         <div className="h-[80vh]"></div>
       </div>
@@ -50,22 +69,21 @@ export default function Contact() {
         {/* Left Side: Contact Info */}
         <div className="flex-1 p-8 bg-white rounded-lg" data-aos="fade-right">
           <h2 className="text-3xl font-bold text-indigo-600 mb-4">
-            Get In Touch
+          {t("contact.Get In Touch")}
           </h2>
           <p className="text-gray-600">
-            We’d love to hear from you! Contact us today.
-          </p>
+          {t("contact.We’d love to hear from you! Contact us today.")}    </p>
           <div className="mt-6 space-y-3">
             <p className="text-lg">
-              📧 <span className="font-semibold">Email:</span>{" "}
+              📧 <span className="font-semibold">{t("contact.Email")}:</span>{" "}
               info@explorevacations.com
             </p>
             <p className="text-lg">
-              📞 <span className="font-semibold">Phone:</span> (+ 41) 44 442 30
+              📞 <span className="font-semibold">{t("contact.Phone")}:</span> (+ 41) 44 442 30
               35
             </p>
             <p className="text-lg">
-              📍 <span className="font-semibold">Address:</span> Oberfeldstrasse
+              📍 <span className="font-semibold">{t("contact.Address")}:</span> Oberfeldstrasse
               10, 8302 Kloten, Switzerland
             </p>
           </div>
@@ -91,10 +109,10 @@ export default function Contact() {
         {/* Right Side: Contact Form */}
         <div
           className="flex-1 md:p-1 lg:p-5 p-2 bg-white rounded-lg ml-0 md:ml-10 mt-6 md:mt-0"
-          data-aos="fade-left"
+          data-aos="fade-right"
         >
           <h2 className="text-2xl font-bold text-indigo-600 mb-4">
-            Send a Message
+          {t("contact.Send a Message")}
           </h2>
 
           <div className="space-y-6">
@@ -108,7 +126,7 @@ export default function Contact() {
                 className="w-full p-3 border rounded"
                 required
               />
-              <label htmlFor="name">Your Name</label>
+              <label htmlFor="name">{t("contact.Your Name")}</label>
             </div>
 
             {/* Email */}
@@ -122,7 +140,7 @@ export default function Contact() {
                 className="w-full p-3 border rounded"
                 required
               />
-              <label htmlFor="email">Email Address</label>
+              <label htmlFor="email">{t("contact.Email Address")}</label>
             </div>
 
             {/* Mobile */}
@@ -136,7 +154,7 @@ export default function Contact() {
                 className="w-full p-3 border rounded"
                 required
               />
-              <label htmlFor="mobile">Mobile Number</label>
+              <label htmlFor="mobile">{t("contact.Mobile Number")}</label>
             </div>
 
             {/* Message */}
@@ -162,14 +180,14 @@ export default function Contact() {
                 onChange={(e) => setMessageType(e.target.value)}
                 className="w-full p-3 border rounded text-gray-700"
               >
-                <option value="tour">Tour</option>
-                <option value="car">Car</option>
-                <option value="parking">Parking</option>
-                <option value="travel">Travel</option>
+                <option value="tour">{t("contact.Tour")}</option>
+                <option value="car">{t("contact.Car")}</option>
+                <option value="parking">{t("contact.Parking")}</option>
+                <option value="travel">{t("contact.Travel")}</option>
               </select>
 
               <p className="p-2 text-[#204887] italic font-semibold">
-                Selected Category: <strong>{messageType}</strong>
+              {t("contact.Selected Category")}: <strong>{messageType}</strong>
               </p>
             </div>
 
@@ -184,12 +202,12 @@ export default function Contact() {
                 className="w-full p-3 border rounded"
                 required
               />
-              <label htmlFor="message">Your Message</label>
+              <label htmlFor="message">{t("contact.Your Message")}</label>
             </div>
 
             {/* Submit Button */}
             <Button
-              label="Submit"
+              label={t("contact.Submit")}
               onClick={handleClick}
               className="w-full p-3 font-bold rounded"
               type="submit"
@@ -205,7 +223,7 @@ export default function Contact() {
           className="p-dialog-custom"
         >
           <p className="text-lg text-green-600 font-semibold">
-            Form submitted successfully!
+          {t("contact.Form submitted successfully!")}
           </p>
         </Dialog>
       </div>

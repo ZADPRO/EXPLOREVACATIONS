@@ -3,9 +3,10 @@ import { Calendar } from "primereact/calendar";
 // import { Dropdown } from "primereact/dropdown";
 // import time from "../../assets/Parking/time.png";
 // import brand from "../../assets/Parking/brand.png";
-import React, { useEffect, useRef, useState } from "react";
+import  { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { pdf } from "@react-pdf/renderer";
 
 import { FileUpload } from "primereact/fileupload";
 import {
@@ -23,6 +24,7 @@ import { FloatLabel } from "primereact/floatlabel";
 import { InputText } from "primereact/inputtext";
 import { RadioButton } from "primereact/radiobutton";
 import { Toast } from "primereact/toast";
+import Pdf from "../../components/Pdf/index2";
 
 export default function ParkingTemplate() {
   // const [parkinglist, setParkinglist] = useState({});
@@ -67,8 +69,9 @@ export default function ParkingTemplate() {
       const response = await axios.post(
         import.meta.env.VITE_API_URL + "/paymentRoutes/payment",
         {
-          successRedirectUrl: "https://explorevacations.max-idigital.ch",
-          failedRedirectUrl: "https://explorevacations.max-idigital.ch",
+          successRedirectUrl:
+            "https://karmacuisine.ch/orders?status=success&message=Payment+Successful",
+          failedRedirectUrl: "https:/karmacuisine.ch//orders?status=failure",
           purpose: "Payment processing",
           userEmail: email,
           firstname: name.split(" ")[0],
@@ -161,62 +164,63 @@ export default function ParkingTemplate() {
     fetchData();
   }, []);
 
-  const handleSubmit = async () => {
-    try {
-      const response = await axios.post(
-        import.meta.env.VITE_API_URL + "/userRoutes/carParkingBooking",
-        {
-          travelStartDate: formdata.travelStartDate,
-          travelEndDate: formdata.travelEndDate,
-          // refCarParkingId: formdata.refCarParkingId,
-          refCarParkingId: refParkingId,
-          returnFlightNumber: formdata.returnFlightNumber,
-          returnFlightLocation: formdata.returnFlightLocation,
-          VehicleModel: formdata.VehicleModel,
-          vehicleNumber: formdata.vehicleNumber,
-          refHandOverTime: formdata.refHandOverTime,
-          refReturnTime: formdata.refReturnTime,
-          WhoWillHandover: formdata.WhoWillHandover,
-          HandoverPersonName: formdata.HandoverPersonName,
-          HandoverPersonPhone: formdata.HandoverPersonPhone,
-          HandoverPersonEmail: formdata.HandoverPersonEmail,
-          refAgreementPath: agreementparking,
-        },
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = decrypt(
-        response.data[1],
-        response.data[0],
-        import.meta.env.VITE_ENCRYPTION_KEY
-      );
-      console.log(data);
-      if (data.success) {
-        localStorage.setItem("token", "Bearer " + data.token);
-        toast.current?.show({
-          severity: "success",
-          summary: "Success",
-          detail: "Successfully Booked !",
-          life: 3000,
-        });
+  // const handleSubmit = async () => {
+  //   try {
+  //     const response = await axios.post(
+  //       import.meta.env.VITE_API_URL + "/userRoutes/carParkingBooking",
+  //       {
+  //         travelStartDate: formdata.travelStartDate,
+  //         travelEndDate: formdata.travelEndDate,
+  //         // refCarParkingId: formdata.refCarParkingId,
+  //         refCarParkingId: refParkingId,
+  //         returnFlightNumber: formdata.returnFlightNumber,
+  //         returnFlightLocation: formdata.returnFlightLocation,
+  //         VehicleModel: formdata.VehicleModel,
+  //         vehicleNumber: formdata.vehicleNumber,
+  //         refHandOverTime: formdata.refHandOverTime,
+  //         refReturnTime: formdata.refReturnTime,
+  //         WhoWillHandover: formdata.WhoWillHandover,
+  //         HandoverPersonName: formdata.HandoverPersonName,
+  //         HandoverPersonPhone: formdata.HandoverPersonPhone,
+  //         HandoverPersonEmail: formdata.HandoverPersonEmail,
+  //         refAgreementPath: agreementparking,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: localStorage.getItem("token"),
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+  //     const data = decrypt(
+  //       response.data[1],
+  //       response.data[0],
+  //       import.meta.env.VITE_ENCRYPTION_KEY
+  //     );
+  //     console.log(data);
+  //     if (data.success) {
+  //       localStorage.setItem("token", "Bearer " + data.token);
+  //       toast.current?.show({
+  //         severity: "success",
+  //         summary: "Success",
+  //         detail: "Successfully Booked !",
+  //         life: 3000,
+  //       });
 
-        setIsModelOpen(false);
-      }
-    } catch (error) {
-      toast.current.show({
-        severity: "error",
-        summary: "Submission Failed",
-        detail: "Something went wrong. Please try again.",
-        life: 3000,
-      });
-      console.error("API Error:", error);
-    }
-  };
+  //       setIsModelOpen(false);
+  //     }
+  //   } catch (error) {
+  //     toast.current.show({
+  //       severity: "error",
+  //       summary: "Submission Failed",
+  //       detail: "Something went wrong. Please try again.",
+  //       life: 3000,
+  //     });
+  //     console.error("API Error:", error);
+  //   }
+  // };
   console.log("amount-------------->", amount);
+
   const handlePaycheck = async () => {
     const Details = parkingListData?.Details || [];
     console.log("parkingListData------------Details", Details);
@@ -226,9 +230,7 @@ export default function ParkingTemplate() {
         {
           travelStartDate: formdata.travelStartDate,
           travelEndDate: formdata.travelEndDate,
-
           pricePerDayorHour: parkingListData?.pricePerHourORday,
-
           refCarParkingId: refParkingId,
         },
         {
@@ -250,6 +252,11 @@ export default function ParkingTemplate() {
         // setPayment(data.result[0].travelStartDate);
         // setPayment(data.result[0].travelEndDate);
         setAmount(data.totalAmount);
+        console.log(
+          "data.totalAmount------------------",
+          setAmount(data.totalAmount)
+        );
+        console.log("data.totalAmount------------------", amount);
         console.log("data.totalAmount------------------", data.totalAmount);
 
         setIsModelOpen1(false);
@@ -397,6 +404,71 @@ export default function ParkingTemplate() {
     }
   };
 
+  // const downloadPdf = async () => {
+  //   const doc = (
+  //     <Pdf
+  //       // title={ parkingListData?.refParkingTypeName}
+  //       // firstName={parkingListData?.refParkingTypeName}
+  //       // lastName={parkingListData?.refParkingTypeName}
+  //       // bookingNumber={parkingListData?.refParkingCustId}
+  //       // customerName={parkingListData?.refParkingTypeName}
+  //       // vehicleMake={parkingListData?.refParkingTypeName}
+  //       // vehicleModel={parkingListData?.refParkingTypeName}
+  //       // vehicleLicensePlate={parkingListData?.refParkingTypeName}
+  //       // location={parkingListData?.refLocation}
+  //       // paymentStatus={parkingListData?.refStatus}
+  //       // checkInDate={parkingListData?.MaximumBookingDuration}
+  //       // checkInTime={parkingListData?.MaximumBookingDuration}
+  //       // checkOutDate={parkingListData?.MaximumBookingDuration}
+  //       // checkOutTime={parkingListData?.MaximumBookingDuration}
+  //       // nearbylocation={parkingListData?.refAssociatedAirport}
+  //       title="title"
+  //       firstName="John"
+  //       lastName="Doe"
+  //       bookingNumber="8782729"
+  //       customerName="John Doe"
+  //       vehicleMake="Tesla"
+  //       vehicleModel="Model 3"
+  //       vehicleLicensePlate="ZH-123456"
+  //       location="location"
+  //       paymentStatus="yes"
+  //       checkInDate="05/06/2025"
+  //       checkInTime="10:00"
+  //       checkOutDate="05/07/2025"
+  //       checkOutTime="10:00"
+  //       nearbylocation="nearbylocation"
+  //     />
+  //   );
+
+  //   try {
+  //     // Generate PDF as Blob
+  //     const pdfBlob = await pdf(doc).toBlob();
+
+  //     // Create a URL for the Blob
+  //     const a = document.createElement("a");
+  //     a.href = URL.createObjectURL(pdfBlob);
+  //     a.download = "Sample.pdf";
+  //     a.click();
+  //     URL.revokeObjectURL(a.href);
+
+  //     // const url = URL.createObjectURL(pdfBlob);
+
+  //     // // Create an anchor element and trigger download
+  //     // a.href = url;
+  //     // a.download = `Booking Confirmation.pdf`;
+  //     // document.body.appendChild(a);
+  //     // a.click();
+
+  //     // // Cleanup
+  //     // document.body.removeChild(a);
+  //     // URL.revokeObjectURL(url);
+
+  //     console.log("PDF downloaded successfully!");
+  //   } catch (error) {
+  //     console.error("Error generating or downloading PDF:", error);
+  //   }
+  // };
+
   return (
     <div>
       <div className="parkingPageContents01 relative h-[40vh] flex items-center justify-center text-white text-3xl font-bold">
@@ -468,24 +540,26 @@ export default function ParkingTemplate() {
               {parkingListData.isRescheduleAllowed ? "Yes" : "No"}
             </p>
 
-            <p className="flex gap-2 items-center">
-              <button
-                className="border-1 px-4 py-2 rounded bg-[#009ad7] text-white cursor-pointer"
-                onClick={() => {
-                  setIsModelOpen(true);
-                }}
-              >
-                <span className="font-semibold">Book Now</span>{" "}
-              </button>
-              {/* <button
-                className="border-1 px-4 py-2 rounded bg-[#009ad7] text-white cursor-pointer"
-                onClick={() => {
-                  setIsModelOpen1(true);
-                }}
-              >
-                <span className="font-semibold">Check Payment</span>{" "}
-              </button> */}
-            </p>
+            <div className="flex gap-2 items-center">
+              <p className="flex gap-2 items-center">
+                <button
+                  className="border-1 px-4 py-2 rounded bg-[#009ad7] text-white cursor-pointer"
+                  onClick={() => {
+                    setIsModelOpen(true);
+                  }}
+                >
+                  <span className="font-semibold">Book Now</span>{" "}
+                </button>
+              </p>
+              {/* <p className="flex gap-2 items-center">
+                <button
+                  onClick={downloadPdf}
+                  className="border-1 px-4 py-2 rounded bg-[#009ad7] text-white cursor-pointer"
+                >
+                  <span className="font-semibold">Download</span>{" "}
+                </button>
+              </p> */}
+            </div>
           </div>
         </div>
       </div>
@@ -524,7 +598,7 @@ export default function ParkingTemplate() {
             <div>
               Contact Explore Vacation :{" "}
               <button
-                className="bg-[#009ad7] p-2 rounded-2xl text-white cursor-pointer "
+                className=" p-2 rounded-2xl text-[#065784] underline cursor-pointer "
                 onClick={() => {
                   navigate("/contact");
                   window.scrollTo(0, 0);
@@ -550,7 +624,31 @@ export default function ParkingTemplate() {
           className="form"
           onSubmit={(e) => {
             e.preventDefault();
-            handleSubmit();
+            localStorage.setItem(
+              "formData",
+              JSON.stringify({
+                api:
+                  import.meta.env.VITE_API_URL +
+                  "/userRoutes/carParkingBooking",
+                payload: {
+                  travelStartDate: formdata.travelStartDate,
+                  travelEndDate: formdata.travelEndDate,
+                  refCarParkingId: refParkingId,
+                  returnFlightNumber: formdata.returnFlightNumber,
+                  returnFlightLocation: formdata.returnFlightLocation,
+                  VehicleModel: formdata.VehicleModel,
+                  vehicleNumber: formdata.vehicleNumber,
+                  refHandOverTime: formdata.refHandOverTime,
+                  refReturnTime: formdata.refReturnTime,
+                  WhoWillHandover: formdata.WhoWillHandover,
+                  HandoverPersonName: formdata.HandoverPersonName,
+                  HandoverPersonPhone: formdata.HandoverPersonPhone,
+                  HandoverPersonEmail: formdata.HandoverPersonEmail,
+                  refAgreementPath: agreementparking,
+                },
+              })
+            );
+            // handleSubmit();
             handlePaycheck();
             checkingApi();
           }}

@@ -51,10 +51,31 @@ import "primereact/resources/themes/lara-light-blue/theme.css";
 // import "primereact/resources/themes/arya-orange/theme.css";
 // import "primereact/resources/themes/arya-purple/theme.css";
 
+import global_english from "./lang/en/global.json";
+import global_german from "./lang/de/global.json";
+
+import i18next from "i18next";
+import { I18nextProvider } from "react-i18next";
+
+i18next.init({
+  interpolation: { escapeValue: false },
+  lng: localStorage.getItem("language") ? localStorage.getItem("language"): "en",
+  resources: {
+    de: {
+      global: global_german,
+    },
+    en: {
+      global: global_english,
+    },
+  },
+});
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <PrimeReactProvider>
-      <App />
-    </PrimeReactProvider>{" "}
+      <I18nextProvider i18n={i18next}>
+        <App />
+      </I18nextProvider>
+    </PrimeReactProvider>
   </StrictMode>
 );

@@ -20,6 +20,7 @@ import Glide from "@glidejs/glide";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { useTranslation } from "react-i18next";
 
 import { Carousel } from "primereact/carousel";
 
@@ -39,6 +40,7 @@ import travel from "../../assets/home/travel.png";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import Popup from "../../pages/Popup/Popup";
+import BannerCarousel from "./BannerCarousel ";
 
 export default function Home() {
   const [tabSelected, setTabSelected] = useState({
@@ -46,6 +48,23 @@ export default function Home() {
     noTabs: 3,
   });
   const wrapperRef = useRef(null);
+  
+    const getFlag = () => {
+      switch (language) {
+        case "en":
+          return flagEN;
+        case "de":
+          return flagDE;
+        default:
+          return flagEN;
+      }
+    };
+  
+    const { t, i18n } = useTranslation("global");
+  
+    const handleChangeLang = (lang) => {
+      i18n.changeLanguage(lang);
+    };
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 39) {
@@ -93,7 +112,7 @@ export default function Home() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   });
-
+  const [Banner, setBanner] = useState([]);
   const [tourDestination, setTourDestination] = useState(null);
   const [tourFromDate, setTourFromDate] = useState(null);
   const [tourToDate, setTourToDate] = useState(null);
@@ -223,309 +242,104 @@ export default function Home() {
       cabDropLocation,
     });
 
-    navigate(`/travel?${queryParams.toString()}`);
+    navigate(`/transfer?${queryParams.toString()}`);
     window.scrollTo(0, 0);
   };
   const faqTopics = [
     {
-      title: "General",
+      title: t("home.General"),
       items: [
-        {
-          question:
-            "Is there a minimum or maximum rental period for an Explore Vacations AG van?",
-          answer:
-            "The minimum rental period is half a day. The maximum rental period is generally 30 days. If you need a vehicle for longer than 30 days, please contact our Sales Team. We will gladly prepare an offer for you.",
-        },
-        {
-          question: "Can I return the van at a different location?",
-          answer:
-            "Yes, that is possible. Please contact us by phone at +41 44 442 30 35 for further information.",
-        },
-        {
-          question: "Can I return the van abroad?",
-          answer:
-            "No. Please contact your station directly for all details. Phone: +41 44 442 30 35",
-        },
-        {
-          question:
-            "Who should I contact if I experience issues with the vehicle?",
-          answer:
-            "For general inquiries regarding your rented vehicle or rental agreement, please contact us at +41 44 442 30 35. If your vehicle breaks down and is no longer drivable, please contact our roadside assistance at the same number.",
-        },
-        {
-          question: "Can I return the vehicle outside business hours?",
-          answer:
-            "Yes, that’s no problem. If you return the vehicle outside opening hours, please park it in one of the available parking spaces at the Explore Vacations AG station and drop the key in the key drop box. Please note that returning the key does not end your rental agreement. For more details, refer to your rental terms.",
-        },
-        {
-          question:
-            "Can I drive an Explore Vacations AG van with a Category B driver's license?",
-          answer:
-            "Yes, all vehicles are permitted for Category B license holders. The only requirement is that you’ve held your license for at least one year.",
-        },
+        { question: t("home.q1"), answer: t("home.a1") },
+        { question: t("home.q2"), answer: t("home.a2") },
+        { question: t("home.q3"), answer: t("home.a3") },
+        { question: t("home.q4"), answer: t("home.a4") },
+        { question: t("home.q5"), answer: t("home.a5") },
+        { question: t("home.q6"), answer: t("home.a6") },
       ],
     },
     {
-      title: "Rates & Fees",
+      title: t("home.Rates & Fees"),
       items: [
-        {
-          question: "I received a fine. What happens next?",
-          answer:
-            "The fine is sent to Explore Vacations AG. We identify the driver responsible and forward their details to the police or relevant authority. You will receive the fine directly from them. Additionally, we charge an administrative fee of CHF 80.00 (incl. VAT).",
-        },
-        {
-          question: "What is included in the van rental rates?",
-          answer:
-            "Our published rates include: service, liability insurance, comprehensive insurance (with deductible), theft protection (with deductible), vehicle tax, Swiss motorway vignette, winter tires (November–March), up to 150 free kilometers per day, and VAT. (Exceptions may apply for special corporate rates.)",
-        },
-        {
-          question: "How are rental costs calculated?",
-          answer:
-            "The total rental cost consists of the base rate (depending on vehicle category) plus the kilometers driven.",
-        },
-        {
-          question: "I have a discount code – when can I use it?",
-          answer:
-            "Please provide your discount code when making the reservation. It is not possible to apply a discount code after the rental has started.",
-        },
-        {
-          question: "What currency are the rates in?",
-          answer:
-            "All prices are listed in Swiss Francs (CHF) and include VAT.",
-        },
-        {
-          question: "Are there additional costs for driving abroad?",
-          answer:
-            "Yes, a Cross Border Fee (CBF) of up to CHF 185.00 (incl. VAT) applies. Please refer to the travel restrictions for each country and vehicle category in your rental agreement.",
-        },
+        { question: t("home.q7"), answer: t("home.a7") },
+        { question: t("home.q8"), answer: t("home.a8") },
+        { question: t("home.q9"), answer: t("home.a9") },
+        { question: t("home.q10"), answer: t("home.a10") },
+        { question: t("home.q11"), answer: t("home.a11") },
+        { question: t("home.q12"), answer: t("home.a12") },
       ],
     },
     {
-      title: "Insurance",
+      title: t("home.Insurance"),
       items: [
-        {
-          question: "Is there a liability reduction included?",
-          answer:
-            "Yes, liability reduction is included in all rates (a deductible remains).",
-        },
-        {
-          question: "What is the amount of the deductible?",
-          answer:
-            "The deductible per damage case is CHF 3000 for categories O4, C4, and W4, and CHF 5000 for category H4. With the Premium Insurance add-on, you can reduce the deductible to CHF 500 per damage case.",
-        },
-        {
-          question: "Is there a young driver surcharge?",
-          answer:
-            "Yes, all drivers under the age of 25 must pay a young driver surcharge. Prices vary by category, with a maximum fee of CHF 199 per rental month.",
-        },
-        {
-          question: "What is the SuperCover Insurance?",
-          answer:
-            "With Premium Insurance (liability waiver), you can reduce your deductible to CHF 350 per damage case, protecting you from high costs in case of loss or damage.",
-        },
+        { question: t("home.q13"), answer: t("home.a13") },
+        { question: t("home.q14"), answer: t("home.a14") },
+        { question: t("home.q15"), answer: t("home.a15") },
+        { question: t("home.q16"), answer: t("home.a16") },
       ],
     },
     {
-      title: "Reservation",
+      title: t("home.Reservation"),
       items: [
-        {
-          question: "How can I reserve a van from Explore Vacations AG?",
-          answer:
-            "You can reserve a van online at explorevacations.ch, by phone, or directly at an Explore Vacations AG station.",
-        },
-        {
-          question: "Are there additional costs for driving abroad?",
-          answer:
-            "Yes, a Cross Border Fee (CBF) starting from CHF 185.00 (incl. VAT) applies. Please refer to travel restrictions in your rental terms for country-specific limitations.",
-        },
-        {
-          question: "Can I rent a van for an extended period?",
-          answer:
-            "Absolutely! If you need a vehicle for more than 30 days, please contact our Sales Team. We’ll be happy to prepare an offer for you.",
-        },
-        {
-          question: "How far in advance should I book?",
-          answer:
-            "We recommend booking as early as possible to accommodate your preferences for vehicle models, etc. Reservations are generally possible anytime up to shortly before the desired rental start.",
-        },
-        {
-          question: "Can I reserve a specific vehicle model?",
-          answer:
-            "You can reserve vehicle categories, but not specific models.",
-        },
+        { question: t("home.q17"), answer: t("home.a17") },
+        { question: t("home.q18"), answer: t("home.a18") },
+        { question: t("home.q19"), answer: t("home.a19") },
+        { question: t("home.q20"), answer: t("home.a20") },
+        { question: t("home.q21"), answer: t("home.a21") },
       ],
     },
     {
-      title: "Before the Trip",
+      title: t("home.Before the Trip"),
       items: [
-        {
-          question:
-            "Can I park my private car at the Explore Vacations AG station during the rental period?",
-          answer:
-            "Yes, this is generally possible at all our locations. However, please check availability with your specific station in advance. Explore Vacations AG assumes no liability for any damage to your private vehicle.",
-        },
-        {
-          question:
-            "I noticed damage on the van before departure – what should I do?",
-          answer:
-            "You must report any damage immediately. Please speak directly with a staff member at your pickup station.",
-        },
-        {
-          question: "What should I check before starting my trip?",
-          answer:
-            "For your own safety, please inspect the vehicle for any existing damage, adjust seat and mirrors, buckle up, switch on headlights, and ensure visibility through all windows.",
-        },
-        {
-          question: "Can I request a test drive with assistance?",
-          answer:
-            "Yes! With prior notice, an Explore Vacations AG staff member will gladly accompany you on a short drive to help you get familiar with the van. Please contact your station in advance.",
-        },
+        { question: t("home.q22"), answer: t("home.a22") },
+        { question: t("home.q23"), answer: t("home.a23") },
+        { question: t("home.q24"), answer: t("home.a24") },
+        { question: t("home.q25"), answer: t("home.a25") },
       ],
     },
     {
-      title: "During the Trip",
+      title: t("home.During the Trip"),
       items: [
-        {
-          question: "Can I smoke in the van?",
-          answer:
-            "No, all Explore Vacations AG vehicles are non-smoking. Cleaning fees may apply in case of violation.",
-        },
-        {
-          question: "What should I do if I’m involved in an accident?",
-          answer:
-            "You’ll find a detailed checklist and documents in the glove compartment. Stay calm, secure the site, help the injured, and call the police (117).",
-        },
+        { question: t("home.q26"), answer: t("home.a26") },
+        { question: t("home.q27"), answer: t("home.a27") },
       ],
     },
     {
-      title: "End of Trip / Vehicle Return",
+      title: t("home.End of Trip / Vehicle Return"),
       items: [
-        {
-          question: "What if I can’t return the vehicle on time?",
-          answer:
-            "Please plan enough time and extend your reservation in advance by contacting your station or calling +41 44 442 30 35. Late returns may incur fees.",
-        },
-        {
-          question: "Can I return the vehicle earlier than planned?",
-          answer:
-            "Early returns may result in rate adjustments and additional charges. Refunds are not possible.",
-        },
-        {
-          question: "Can I return the vehicle later than planned?",
-          answer:
-            "Unless you’ve received a confirmed extension, the vehicle must be returned at the end of your rental. Late returns will incur fees.",
-        },
-        {
-          question: "Do I need to clean the van before returning it?",
-          answer:
-            "We take care of cleaning, but kindly dispose of any trash and leave the cargo area broom-clean. Excessive dirt may result in additional cleaning charges.",
-        },
-        {
-          question: "Do I need to refuel or recharge the van?",
-          answer:
-            "Fuel and electricity are not included in the rental rate. You must return the vehicle with the same fuel level. We offer a refueling/recharging service for an extra fee, which will be listed on your invoice. Of course, you can also refuel/recharge the vehicle yourself at no extra cost.",
-        },
-      ],
-    },
-    {
-      title: "Payment",
-      items: [
-        {
-          question: "How do I receive my invoice?",
-          answer:
-            "An invoice will be issued at the end of each rental. You will receive it directly at the station or by email. (Exceptions may apply for corporate clients.)",
-        },
-        {
-          question: "What payment methods are accepted?",
-          answer:
-            "You can pay using credit cards (American Express, MasterCard, Visa) or cash at the station during business hours. A deposit is required if no credit card is provided.",
-        },
-      ],
-    },
-    {
-      title: "Vehicles",
-      items: [
-        {
-          question: "Do you have vehicles with a trailer hitch?",
-          answer:
-            "Some vehicles are equipped with trailer hitches. Use is only permitted with prior approval. Always observe the maximum towing capacity.",
-        },
-        {
-          question: "Can your vans be equipped with child seats?",
-          answer:
-            "Explore Vacations AG does not provide installed child seats and cannot take responsibility for their installation. Some vehicles do not allow deactivation of the front airbag.",
-        },
-        {
-          question: "Are Explore Vacations AG vans winter-ready?",
-          answer:
-            "Yes, all vehicles undergo a winter check. We install winter or all-weather tires, add windshield antifreeze, and provide an ice scraper. Textile snow socks are also available.",
-        },
-      ],
-    },
-    {
-      title: "Private Customers",
-      items: [
-        {
-          question: "What is the minimum age to rent a vehicle?",
-          answer:
-            "You must be at least 19 years old and have held a valid driver’s license for at least one year.",
-        },
-      ],
-    },
-    {
-      title: "Lost Items",
-      items: [
-        {
-          question: "I found items in the vehicle – what should I do?",
-          answer:
-            "Please report any found items to staff at your Explore Vacations AG station or call +41 44 442 30 35.",
-        },
-        {
-          question: "I forgot something in the vehicle – what should I do?",
-          answer:
-            "Please contact your Explore Vacations AG station or call us at +41 44 442 30 35 to request a search. This service costs CHF 80.– even if the item is not found.",
-        },
-      ],
-    },
-    {
-      title: "Abroad",
-      items: [
-        {
-          question: "Can I drive the Explore Vacations AG van abroad?",
-          answer:
-            "Yes, but a Cross Border Fee (CBF) starting from CHF 185.00 (incl. VAT) applies. Please refer to the travel restrictions for each country and vehicle category in your rental terms.",
-        },
+        { question: t("home.q28"), answer: t("home.a28") },
+        { question: t("home.q29"), answer: t("home.a29") },
+        { question: t("home.q30"), answer: t("home.a30") },
+        { question: t("home.q31"), answer: t("home.a31") },
+        { question: t("home.q32"), answer: t("home.a32") },
       ],
     },
   ];
+  
 
   const selectedTopic = faqTopics[selectedTopicIndex];
   const services = [
     {
-      title: "Transfers",
+      title: t("home.Transfers"),
       image: transfers,
-      description:
-        "Enjoy a comfortable and safe journey with our professional drivers. Whether it’s an airport transfer, a city tour, or a long-distance trip, we ensure a premium travel experience tailored to your needs.",
+      description: t("home.d1"),
     },
     {
-      title: "Business",
+      title: t("home.Business"),
       image: business,
-      description:
-        "Travel in style and comfort with our premium business class services. We understand your need for professionalism and luxury, making every journey seamless and sophisticated.",
+      description: t("home.d2"),
     },
     {
-      title: "Tourist",
+      title: t("home.Tourist"),
       image: tourists,
-      description:
-        "Embark on an unforgettable journey with our well-planned vacation packages. Explore breathtaking destinations with ease and comfort, ensuring a memorable experience.",
+      description: t("home.d3"),
     },
     {
-      title: "Car Rental",
+      title: t("home.Car Rental"),
       image: carRental,
-      description:
-        "Choose from a wide range of well-maintained vehicles for your travel needs. Whether it's a short trip or an extended rental, we offer top-quality cars for a smooth ride.",
+      description: t("home.d4"),
     },
   ];
+  
 
   const whyChooseUs = [
     {
@@ -609,19 +423,51 @@ export default function Home() {
       console.error("Error fetching data:", error);
     }
   };
+
+  const fetchBanner = async () => {
+    try {
+      const response = await Axios.get(
+        import.meta.env.VITE_API_URL + "/bookingRoutes/listhomeImageUserSide",
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = decrypt(
+        response.data[1],
+        response.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+      console.log("fetchbanner", data);
+      if (data.success) {
+        // localStorage.setItem("token", "Bearer " + data.token);
+        console.log("fetchbanner--------->", data);
+        setBanner(data.result);
+      }
+    } catch (e) {
+      console.log("Error fetching Banner:", e);
+    }
+  };
+
   useEffect(() => {
     fetchData();
+    fetchBanner();
   }, []);
 
   return (
     <div className="">
+      
       <Toast ref={toast} />
       <Popup />
 
-      <div className="homePageContainer01">
-        <div className="h-[80vh]"></div>
+      <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
+
+        <BannerCarousel moduleId={4} />
       </div>
-      <div className="homePageContainer02 relative">
+      <div className="relative">
         <section
           className="w-11/12 md:w-9/12 mx-auto mt-[-40px] shadow-xl bg-white rounded-md"
           aria-multiselectable="false"
@@ -651,7 +497,7 @@ export default function Home() {
                   setTabSelected({ ...tabSelected, currentTab: 1 })
                 }
               >
-                <span className="order-2 ">Tour</span>
+                <span className="order-2 ">{t("home.Tour")}</span>
                 <span className="relative only:-mx-6">
                   <Send />
                 </span>
@@ -677,7 +523,7 @@ export default function Home() {
                   setTabSelected({ ...tabSelected, currentTab: 2 })
                 }
               >
-                <span className="order-2 ">Car</span>
+                <span className="order-2 ">{t("home.Car")}</span>
                 <CarFront />
               </button>
             </li>
@@ -701,7 +547,7 @@ export default function Home() {
                   setTabSelected({ ...tabSelected, currentTab: 3 })
                 }
               >
-                <span className="order-2 ">Parking</span>
+                <span className="order-2 ">{t("home.Parking")}</span>
                 <span className="relative only:-mx-6">
                   <CircleParking />{" "}
                 </span>
@@ -727,7 +573,7 @@ export default function Home() {
                   setTabSelected({ ...tabSelected, currentTab: 4 })
                 }
               >
-                <span className="order-2 ">Travel</span>
+                <span className="order-2 ">{t("home.Travel")}</span>
                 <span className="relative only:-mx-6">
                   <Car />
                 </span>
@@ -869,7 +715,7 @@ export default function Home() {
                 </div>
 
                 {/* Explore Button */}
-                <Button label="Explore" className="" onClick={handleExplore} />
+                <Button label={t("header.Explore")} className="" onClick={handleExplore} />
               </div>
             </div>
 
@@ -1102,14 +948,12 @@ export default function Home() {
         </div>
 
         <div className="flex-1 text-center" data-aos="fade-up">
-          <p className="testingFont text-4xl font-bold">Most Popular Tour</p>
+          <p className="testingFont text-4xl font-bold">  {t("home.Most Popular Tour")}</p>
           <p className="text-3xl font-bold text-black pt-2">
-            Let’s Discover The World With Our Excellent Eyes
+          {t("home.Let’s Discover The World With Our Excellent Eyes")}
           </p>
           <p className="text-sm text-gray-600 pt-3">
-            Whether you're looking for a romantic getaway, family-friendly
-            vacation, or a solo journey to explore the world, a travel agency
-            can provide a tailored itinerary that exceeds your expectations.
+          {t("home.Whether you're looking for a romantic getaway, family-friendly vacation, or a solo journey to explore the world, a travel agency can provide a tailored itinerary that exceeds your expectations.")}
           </p>
         </div>
 
@@ -1117,21 +961,21 @@ export default function Home() {
           <img
             src={home3}
             alt="Top Image"
-            data-aos="fade-left"
+            data-aos="fade-right"
             className="mx-auto w-[300px] rounded-lg"
           />
           <img
             src={home4}
             alt="Bottom Image"
-            data-aos="fade-left"
+            data-aos="fade-right"
             className="lg:self-start self-center w-[200px] rounded-lg"
           />
         </div>
       </div>
 
-      <div className="w-full md:w-10/12 mx-auto py-14">
+      <div className="w-full md:w-10/12 mx-auto lg:py-14 md:py-14 py-0">
         <div className="flex items-center justify-center flex-col">
-          <p className="text-[28px] font-bold pb-4">Our Services</p>
+          <p className="text-[28px] font-bold pb-4">{t("home.Our Services")}</p>
           <div className="flex gap-5 flex-wrap justify-center">
             {services.map((service, index) => (
               <div
@@ -1189,38 +1033,36 @@ export default function Home() {
         </div>
       </div> */}
 
-      <div className="flex lg:flex-row flex-col items-center h-full w-11/12 mx-auto py-20">
+      <div className="flex lg:flex-row flex-col items-center h-full w-11/12 mx-auto lg:py-20 md:py-20 py-0">
         {/* Left Text Content */}
         <div
           className="flex-1 flex flex-col justify-center text-left lg:text-left p-6"
           data-aos="fade-right"
         >
-          <p className="testingFont text-4xl font-bold">Dream Your Next Trip</p>
+          <p className="testingFont text-4xl font-bold">{t("home.Dream Your Next Trip")}</p>
           <p className="text-3xl font-medium pt-2 text-gray-700">
-            Discover whenever you want to go
+            
+            {t("home.Discover whenever you want to go")}
           </p>
           <p className="text-[15px] pt-3 text-gray-600 mt-2">
-            Are you tired of the typical tourist destinations and looking to
-            step out of your comfort zone? Adventure travel may be the perfect
-            solution for you! Here are four.
+          
+            {t("home.Are you tired of the typical tourist destinations and looking to step out of your comfort zone? Adventure travel may be the perfect solution for you! Here are four.")}
           </p>
           <div className="flex mt-4">
-            <img src={travel} alt="" className="w-20" />
+            <img src={travel} alt="" className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20" />
             <div className="flex flex-col pl-4">
-              <p className="font-bold text-[22px]">Best Travel Agency</p>
+              <p className="font-bold text-[22px]">{t("home.Best Travel Agency")}</p>
               <p>
-                Are you tired of the typical tourist destinatio and looking step
-                out of your comfort.
+                {t("home.Are you tired of the typical tourist destinatio and looking step out of your comfort.")}
               </p>
             </div>
           </div>
           <div className="flex mt-4">
-            <img src={secure} alt="" className="w-20" />
+            <img src={secure} alt=""  className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"/>
             <div className="flex flex-col pl-4">
-              <p className="font-bold text-[22px]">Secure Journey With Us</p>
+              <p className="font-bold text-[22px]">{t("home.Secure Journey With Us")}</p>
               <p>
-                Are you tired of the typical tourist destinatio and looking step
-                out of your comfort.
+              {t("home.Are you tired of the typical tourist destinatio and looking step out of your comfort.")}
               </p>
             </div>
           </div>
@@ -1229,7 +1071,7 @@ export default function Home() {
         {/* Right Image Content */}
         <div
           className="flex-1 py-10 flex justify-center items-center "
-          data-aos="fade-left"
+          data-aos="fade-right"
         >
           <div className="relative flex justify-center items-center">
             {/* Main Image */}
@@ -1259,13 +1101,13 @@ export default function Home() {
             className="testingFont text-white text-4xl font-bold"
             data-aos="fade-down"
           >
-            Next Adventure Destination
+            {t("home.Next Adventure Destination")}
           </p>
           <p
             className="text-6xl text-center pt-3 font-bold text-white"
             data-aos="fade-up"
           >
-            Popular Travel Destinations Available Worldwide
+            {t("home.Popular Travel Destinations Available Worldwide")}
           </p>
         </div>
       </div>
@@ -1273,10 +1115,10 @@ export default function Home() {
       <div className="">
         <div className="flex flex-column items-center justify-center">
           <p className="testingFont text-black text-2xl font-bold">
-            Frequently Asked Questions
+          {t("home.Frequently Asked Questions")}
           </p>
           <p className="text-4xl text-center pt-3 font-bold text-black">
-            See Those Lovely Words From Clients
+          {t("home.See Those Lovely Words From Clients")}
           </p>
 
           <div className="mt-10 mb-5 w-[80%]">
@@ -1286,7 +1128,7 @@ export default function Home() {
                 htmlFor="faq-topic"
                 className="block mb-2 font-semibold testingFont text-black text-2xl"
               >
-                Select a topic
+                {t("home.Select a topic")}
               </label>
               <select
                 id="faq-topic"

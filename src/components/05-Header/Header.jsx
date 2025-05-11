@@ -1,11 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/logoPng.png";
+import flagEN from "../../assets/flags/english.png";
+import flagDE from "../../assets/flags/german.png";
 import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
 import { FaChevronDown, FaUserCircle } from "react-icons/fa";
 
 import "./Header.css";
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -17,9 +20,12 @@ export default function Header() {
   const [showMobileBooking, setShowMobileBooking] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [showLangDropdown, setShowLangDropdown] = useState(false);
+  const [language, setLanguage] = useState("en");
 
   const bookingDropdownRef = useRef();
   const userDropdownRef = useRef();
+  const langDropdownRef = useRef();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -33,6 +39,31 @@ export default function Header() {
     };
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        bookingDropdownRef.current &&
+        !bookingDropdownRef.current.contains(event.target)
+      ) {
+        setShowDropdown(false);
+      }
+      if (
+        userDropdownRef.current &&
+        !userDropdownRef.current.contains(event.target)
+      ) {
+        setShowUserDropdown(false);
+      }
+      if (
+        langDropdownRef.current &&
+        !langDropdownRef.current.contains(event.target)
+      ) {
+        setShowLangDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleNavigation = (path) => {
@@ -50,45 +81,44 @@ export default function Header() {
     setShowUserDropdown(false);
   };
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 0);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        bookingDropdownRef.current &&
-        !bookingDropdownRef.current.contains(event.target)
-      ) {
-        setShowDropdown(false);
-      }
-
-      if (
-        userDropdownRef.current &&
-        !userDropdownRef.current.contains(event.target)
-      ) {
-        setShowUserDropdown(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   const isActive = (path) =>
     location.pathname === path ? "#3b82f6" : "#0067b6";
 
+  const handleLanguageChange = (lang) => {
+    setLanguage(lang);
+    setShowLangDropdown(false);
+    handleChangeLang(lang);
+    // Optionally: Save to localStorage and/or trigger i18n
+    localStorage.setItem("language", lang);
+  };
+
+  const getFlag = () => {
+    switch (language) {
+      case "en":
+        return flagEN;
+      case "de":
+        return flagDE;
+      default:
+        return flagEN;
+    }
+  };
+
+  const { t, i18n } = useTranslation("global");
+
+  const handleChangeLang = (lang) => {
+    i18n.changeLanguage(lang);
+  };
+
   return (
     <div
-      className={`w-[80%] lg:w-[100%] md:w-[100%] fixed top-0 left-0 z-50 transition-all duration-300 ${
+      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
         scrolled ? "bg-[#eef0eec2]" : "bg-transparent"
       }`}
     >
-      <div className="w-full flex justify-center items-center h-[70px] py-10 lg:px-40">
-        <div className="w-[90%] lg:w-full flex justify-between items-center px-6">
+      <div className="w-full flex justify-center items-center h-[70px] py-10 px-6 md:px-12 lg:px-40">
+        <div className="w-full flex justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center w-[20%] min-w-[100px]">
+          <div className="flex items-center w-[30%] min-w-[100px]">
             <img
               src={logo}
               alt="Explore Vacations"
@@ -100,12 +130,11 @@ export default function Header() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex flex-1 gap-10">
             {[
-              { path: "/", label: "Home" },
-              { path: "/tours", label: "Tours" },
-              { path: "/cars", label: "Cars" },
-              { path: "/parking", label: "Parking" },
-              { path: "/travel", label: "Travel" },
-              { path: "/contact", label: "Contact" },
+              { path: "/", label: t("header.home") },
+              { path: "/tours", label: t("header.tours") },
+              { path: "/cars", label: t("header.Cars") },
+              { path: "/transfer", label: t("header.Transfers") },
+              { path: "/contact", label: t("header.Contact") },
             ].map(({ path, label }) => (
               <div
                 key={path}
@@ -124,20 +153,19 @@ export default function Header() {
                 onClick={() => setShowDropdown((prev) => !prev)}
                 style={{ color: isActive("/booking") }}
               >
-                Booking <FaChevronDown className="ml-1 text-sm" />
+                {t("header.Booking")} <FaChevronDown className="ml-1 text-sm" />
               </div>
 
               {showDropdown && (
                 <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-40 z-50">
-                  {["flight", "ship", "hotel"].map((type) => (
+                  {["flight", "ship", "hotel", "parking"].map((type) => (
                     <div
                       key={type}
-                      className="px-4 py-2 hover:bg-[#ffffff] text-[#0067b6] cursor-pointer"
-                      onClick={() =>
-                        handleNavigation(`/booking?type=${type}`)
-                      }
+                      className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
+                      onClick={() => handleNavigation(`/booking?type=${type}`)}
                     >
-                      {type.charAt(0).toUpperCase() + type.slice(1)} Booking
+                      {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
+                      {t("header.Booking")}
                     </div>
                   ))}
                 </div>
@@ -145,7 +173,35 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Login or User Profile */}
+          {/* Language Dropdown */}
+          <div className="relative mr-4" ref={langDropdownRef}>
+            <img
+              src={getFlag()}
+              alt="Language"
+              className="h-6 w-6 rounded-full cursor-pointer"
+              onClick={() => setShowLangDropdown((prev) => !prev)}
+            />
+            {showLangDropdown && (
+              <div className="absolute right-0 mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-32 z-50">
+                <div
+                  className="flex items-center px-4 py-2 hover:bg-white cursor-pointer gap-2"
+                  onClick={() => handleLanguageChange("en")}
+                >
+                  <img src={flagEN} alt="English" className="w-5 h-5" />
+                  English
+                </div>
+                <div
+                  className="flex items-center px-4 py-2 hover:bg-white cursor-pointer gap-2"
+                  onClick={() => handleLanguageChange("de")}
+                >
+                  <img src={flagDE} alt="German" className="w-5 h-5" />
+                  German
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* User Profile */}
           {!isLoggedIn ? (
             <div
               className="text-[16px] cursor-pointer font-bold underline-animation"
@@ -167,23 +223,23 @@ export default function Header() {
               {showUserDropdown && (
                 <div className="absolute right-0 top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-32 z-50">
                   <div
-                    className="px-4 py-2 hover:bg-[#ffffff] text-[#0067b6] cursor-pointer"
+                    className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
                     onClick={() => handleNavigation("/profile")}
                   >
-                    Profile
+                    {t("header.Profile")}
                   </div>
                   <div
-                    className="px-4 py-2 hover:bg-[#ffffff] text-[#0067b6] cursor-pointer"
+                    className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
                     onClick={handleLogout}
                   >
-                    Logout
+                    {t("header.Logout")}
                   </div>
                 </div>
               )}
             </div>
           )}
 
-          {/* Hamburger for mobile */}
+          {/* Mobile Menu */}
           <div className="lg:hidden">
             <Button
               icon="pi pi-bars"
@@ -201,27 +257,28 @@ export default function Header() {
         onHide={() => setVisibleRight(false)}
       >
         <div className="flex flex-col">
-          {["/", "/tours", "/cars", "/travel", "/contact", "/parking"].map(
-            (path) => (
-              <div
-                key={path}
-                className="text-[16px] cursor-pointer py-3 font-semibold"
-                onClick={() => handleNavigation(path)}
-              >
-                {path === "/"
-                  ? "Home"
-                  : path.replace("/", "").charAt(0).toUpperCase() +
-                    path.replace("/", "").slice(1)}
-              </div>
-            )
-          )}
+          {[
+            { path: "/", label: t("header.home") },
+            { path: "/tours", label: t("header.tours") },
+            { path: "/cars", label: t("header.Cars") },
+            { path: "/transfer", label: t("header.Transfers") },
+            { path: "/contact", label: t("header.Contact") },
+          ].map((item) => (
+            <div
+              key={item.path}
+              className="text-[16px] cursor-pointer py-3 font-semibold"
+              onClick={() => handleNavigation(item.path)}
+            >
+              {item.label}
+            </div>
+          ))}
 
           {/* Mobile Booking Dropdown */}
           <div
             className="text-[16px] cursor-pointer py-3 font-semibold flex items-center justify-between"
             onClick={() => setShowMobileBooking(!showMobileBooking)}
           >
-            Booking{" "}
+            {t("header.Booking")}
             <FaChevronDown
               className={`ml-2 transform ${
                 showMobileBooking ? "rotate-180" : ""
@@ -231,13 +288,13 @@ export default function Header() {
 
           {showMobileBooking && (
             <div className="ml-4 flex flex-col">
-              {["flight", "ship", "hotel"].map((type) => (
+              {["flight", "ship", "hotel", "parking"].map((type) => (
                 <div
                   key={type}
                   className="py-2 cursor-pointer text-[#0067b6] text-sm"
                   onClick={() => handleNavigation(`/booking?type=${type}`)}
                 >
-                  {type.charAt(0).toUpperCase() + type.slice(1)} Booking
+                  {t(`header.${type}`)} {t("header.Booking")}
                 </div>
               ))}
             </div>
@@ -249,7 +306,7 @@ export default function Header() {
               style={{ color: isActive("/login") }}
               onClick={() => handleNavigation("/login")}
             >
-              Login
+              {t("header.Login")}
             </div>
           ) : (
             <div className="flex flex-col gap-2 mt-3 text-[#0067b6]">
@@ -257,13 +314,13 @@ export default function Header() {
                 className="text-[16px] cursor-pointer font-bold"
                 onClick={() => handleNavigation("/profile")}
               >
-                Profile
+                {t("header.Profile")}
               </div>
               <div
                 className="text-[16px] cursor-pointer font-bold"
                 onClick={handleLogout}
               >
-                Logout
+                {t("header.Logout")}
               </div>
             </div>
           )}
