@@ -5,7 +5,7 @@ import {
   LayoutPanelLeft,
   UsersRound,
 } from "lucide-react";
-import  { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
 // import { Dropdown } from "primereact/dropdown";
@@ -15,7 +15,7 @@ import { InputNumber } from "primereact/inputnumber";
 import { FloatLabel } from "primereact/floatlabel";
 import { Toast } from "primereact/toast";
 import { InputTextarea } from "primereact/inputtextarea";
-
+import defaultCarImage from "../../assets/cars/minivan.jpg";
 import { useLocation } from "react-router-dom";
 
 import { TabView, TabPanel } from "primereact/tabview";
@@ -287,7 +287,12 @@ export default function CarsTemplate() {
             {carListData?.refCarPath && (
               <img
                 // src={`data:${carListData?.refCarPath.contentType};base64,${carListData?.refCarPath.content}`}
-                src={`https://explorevacations.max-idigital.ch/src/assets/cars/${carListData?.refCarPath}`}
+                // src={`https://explorevacations.max-idigital.ch/src/assets/cars/${carListData?.refCarPath}`}
+                src={
+                  carListData?.refCarPath?.trim()
+                    ? `https://explorevacations.max-idigital.ch/src/assets/cars/${carListData.refCarPath}`
+                    : defaultCarImage
+                }
                 alt="Car Image"
                 className="w-full h-full object-cover rounded-lg"
               />
