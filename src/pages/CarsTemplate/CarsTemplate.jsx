@@ -5,7 +5,7 @@ import {
   LayoutPanelLeft,
   UsersRound,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
 // import { Dropdown } from "primereact/dropdown";
@@ -27,7 +27,7 @@ import { FileUpload } from "primereact/fileupload";
 
 export default function CarsTemplate() {
   const location = useLocation();
-  const [setCarState] = useState();
+  const [carState, setCarState] = useState();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
