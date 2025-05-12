@@ -324,9 +324,9 @@ export default function Profile() {
   return (
     <div className="min-h-screen flex flex-row lg:flex-col md:flex-col bg-gray-100 font-sans">
       {/* Left Sidebar */}
-      <div className="w-[30%]  lg:w-[20%] md:w-[20%] bg-[#065784] text-white hidden lg:flex flex-col lg:flex-col md:flex-col">
+      <div className="w-[30%]  lg:w-[20%] md:w-[35%]  bg-[#065784] text-white hidden lg:flex md:flex flex-col lg:flex-col md:flex-col">
         {/* Logo */}
-        <div className="mt-13 border-b border-[#065784]"></div>
+        <div className="mt-20 border-b border-[#065784]"></div>
 
         {/* Navigation Items */}
         <div className="flex flex-col mt-10">
@@ -371,7 +371,7 @@ export default function Profile() {
         </div>
       </div>
 
-      <div className="  lg:w-[20%] md:w-[20%]  text-white lg:hidden flex flex-col lg:flex-col md:flex-col">
+      <div className="  lg:w-[20%] md:w-[0%]   text-white lg:hidden flex flex-col lg:flex-col md:flex-col">
         
         <div className="fixed bottom-0 left-0 right-0 bg-[#065784] p-3 border-t shadow-md flex justify-around items-center md:hidden z-50">
           <div
@@ -427,7 +427,7 @@ export default function Profile() {
         <div className="lg:p-8 md:p-8 mt-6">
        
           {selectedTab === "Personal Info" && (
-            <div className="bg-white p-10  rounded-lg shadow-sm">
+            <div className="bg-white p-10 lg:p-10 md:p-20 rounded-lg shadow-sm">
               <div className="flex justify-between items-center mb-6">
                 <div className="flex items-center gap-2">
                   <h2 className="text-xl font-semibold uppercase">
@@ -596,7 +596,7 @@ export default function Profile() {
           {/* Booking History */}
 
           {selectedTab === "Tour Bookings" && (
-            <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-3 rounded-lg shadow-sm">
+            <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-20 rounded-lg shadow-sm">
               {history?.length > 0 ? (
                 history.map((item, index) => (
                   <div
@@ -684,7 +684,7 @@ export default function Profile() {
           {/* Car Parking */}
 
           {selectedTab === "Car Booking" && (
-            <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-3 rounded-lg shadow-sm">
+            <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-20 rounded-lg shadow-sm">
               {carHistory?.length > 0 ? (
                 carHistory.map((item, index) => (
                   <div
@@ -778,8 +778,9 @@ export default function Profile() {
           {/* Parking Booking */}
 
           {selectedTab === "Parking Booking" && (
-            <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-3 rounded-lg shadow-sm">
+            <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-20 rounded-lg shadow-sm">
               {parkingHistory?.length > 0 ? (
+                
                 parkingHistory.map((item, index) => (
                   <div
                     key={index}

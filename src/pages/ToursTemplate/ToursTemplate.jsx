@@ -536,8 +536,8 @@ export default function ToursTemplate() {
       const response = await Axios.post(
         import.meta.env.VITE_API_URL + "/paymentRoutes/payment",
         {
-          successRedirectUrl: "http://localhost:5174/success",
-          failedRedirectUrl: "http://localhost:5174/failure",
+          successRedirectUrl: "https://explorevacations.max-idigital.ch/success",
+          failedRedirectUrl: "http://https://dashboard.max-idigital.ch/failure",
           purpose: "Payment processing",
           totalAmount: tour.refTourPrice,
           userEmail: email,

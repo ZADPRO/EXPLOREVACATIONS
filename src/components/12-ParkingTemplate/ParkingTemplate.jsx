@@ -644,7 +644,7 @@ export default function ParkingTemplate() {
                   HandoverPersonName: formdata.HandoverPersonName,
                   HandoverPersonPhone: formdata.HandoverPersonPhone,
                   HandoverPersonEmail: formdata.HandoverPersonEmail,
-                  refAgreementPath: agreementparking,
+                  // refAgreementPath: agreementparking,
                 },
               })
             );
@@ -856,7 +856,7 @@ export default function ParkingTemplate() {
             </div>
           </div>
 
-          <div className="w-[100%]">
+          {/* <div className="w-[100%]">
             <h2 className="">Upload Agreement</h2>
             <FileUpload
               name="logo"
@@ -870,7 +870,7 @@ export default function ParkingTemplate() {
               }
               multiple
             />
-          </div>
+          </div> */}
 
           <div className="pt-[1rem] flex justify-center">
             <Button

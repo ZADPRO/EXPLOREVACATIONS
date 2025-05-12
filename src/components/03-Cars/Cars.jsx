@@ -11,7 +11,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Toast } from "primereact/toast";
 import { useNavigate } from "react-router-dom";
 import { ProgressSpinner } from "primereact/progressspinner";
-
+import defaultCarImage from "../../assets/cars/minivan.jpg";
 
 // cars Image
 // import minivan from "../../assets/cars/minivan.jpg";
