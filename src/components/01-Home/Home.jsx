@@ -48,23 +48,23 @@ export default function Home() {
     noTabs: 3,
   });
   const wrapperRef = useRef(null);
-  
-    const getFlag = () => {
-      switch (language) {
-        case "en":
-          return flagEN;
-        case "de":
-          return flagDE;
-        default:
-          return flagEN;
-      }
-    };
-  
-    const { t, i18n } = useTranslation("global");
-  
-    const handleChangeLang = (lang) => {
-      i18n.changeLanguage(lang);
-    };
+
+  const getFlag = () => {
+    switch (language) {
+      case "en":
+        return flagEN;
+      case "de":
+        return flagDE;
+      default:
+        return flagEN;
+    }
+  };
+
+  const { t, i18n } = useTranslation("global");
+
+  const handleChangeLang = (lang) => {
+    i18n.changeLanguage(lang);
+  };
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 39) {
@@ -314,7 +314,24 @@ export default function Home() {
       ],
     },
   ];
-  
+
+
+
+const getRouteFromTitle = (title) => {
+  switch (title.toLowerCase()) {
+    case "transfers":
+      return "/transfer";
+    case "business":
+      return "/contact";
+    case "tourist":
+      return "/tours";
+    case "car rental":
+      return "/cars";
+    default:
+      return "/";
+  }
+};
+
 
   const selectedTopic = faqTopics[selectedTopicIndex];
   const services = [
@@ -339,7 +356,6 @@ export default function Home() {
       description: t("home.d4"),
     },
   ];
-  
 
   const whyChooseUs = [
     {
@@ -459,12 +475,10 @@ export default function Home() {
 
   return (
     <div className="">
-      
       <Toast ref={toast} />
       <Popup />
 
       <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
-
         <BannerCarousel moduleId={4} />
       </div>
       <div className="relative">
@@ -715,7 +729,11 @@ export default function Home() {
                 </div>
 
                 {/* Explore Button */}
-                <Button label={t("header.Explore")} className="" onClick={handleExplore} />
+                <Button
+                  label={t("header.Explore")}
+                  className=""
+                  onClick={handleExplore}
+                />
               </div>
             </div>
 
@@ -948,12 +966,17 @@ export default function Home() {
         </div>
 
         <div className="flex-1 text-center" data-aos="fade-up">
-          <p className="testingFont text-4xl font-bold">  {t("home.Most Popular Tour")}</p>
-          <p className="text-3xl font-bold text-black pt-2">
-          {t("home.Let’s Discover The World With Our Excellent Eyes")}
+          <p className="testingFont text-4xl font-bold ">
+            {" "}
+            {t("home.Most Popular Tour")}
           </p>
-          <p className="text-sm text-gray-600 pt-3">
-          {t("home.Whether you're looking for a romantic getaway, family-friendly vacation, or a solo journey to explore the world, a travel agency can provide a tailored itinerary that exceeds your expectations.")}
+          <p className="text-3xl font-bold text-black pt-2">
+            {t("home.Let’s Discover The World With Our Excellent Eyes")}
+          </p>
+          <p className="text-sm text-gray-600 pt-3 ">
+            {t(
+              "home.Whether you're looking for a romantic getaway, family-friendly vacation, or a solo journey to explore the world, a travel agency can provide a tailored itinerary that exceeds your expectations."
+            )}
           </p>
         </div>
 
@@ -980,6 +1003,7 @@ export default function Home() {
             {services.map((service, index) => (
               <div
                 key={index}
+                 onClick={() => navigate(getRouteFromTitle(service.title))}
                 className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
                 data-aos={index % 2 === 0 ? "flip-right" : "flip-left"}
               >
@@ -992,7 +1016,10 @@ export default function Home() {
                   <h3 className="text-xl capitalize font-semibold text-center text-black line-clamp-1">
                     {service.title}
                   </h3>
-                  <p className="text-gray-700 text-[16px] m-0 text-justify indent-2">
+                  <p
+                    className="text-gray-700 text-[16px] m-0 text-justify"
+                    style={{ wordSpacing: "-1px" }}
+                  >
                     {service.description}
                   </p>
                 </div>
@@ -1039,30 +1066,48 @@ export default function Home() {
           className="flex-1 flex flex-col justify-center text-left lg:text-left p-6"
           data-aos="fade-right"
         >
-          <p className="testingFont text-4xl font-bold">{t("home.Dream Your Next Trip")}</p>
+          <p className="testingFont text-4xl font-bold">
+            {t("home.Dream Your Next Trip")}
+          </p>
           <p className="text-3xl font-medium pt-2 text-gray-700">
-            
             {t("home.Discover whenever you want to go")}
           </p>
           <p className="text-[15px] pt-3 text-gray-600 mt-2">
-          
-            {t("home.Are you tired of the typical tourist destinations and looking to step out of your comfort zone? Adventure travel may be the perfect solution for you! Here are four.")}
+            {t(
+              "home.Are you tired of the typical tourist destinations and looking to step out of your comfort zone? Adventure travel may be the perfect solution for you! Here are four."
+            )}
           </p>
           <div className="flex mt-4">
-            <img src={travel} alt="" className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20" />
+            <img
+              src={travel}
+              alt=""
+              className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"
+            />
             <div className="flex flex-col pl-4">
-              <p className="font-bold text-[22px]">{t("home.Best Travel Agency")}</p>
+              <p className="font-bold text-[22px]">
+                {t("home.Best Travel Agency")}
+              </p>
               <p>
-                {t("home.Are you tired of the typical tourist destinatio and looking step out of your comfort.")}
+                {t(
+                  "home.Are you tired of the typical tourist destinatio and looking step out of your comfort."
+                )}
               </p>
             </div>
           </div>
           <div className="flex mt-4">
-            <img src={secure} alt=""  className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"/>
+            <img
+              src={secure}
+              alt=""
+              className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"
+            />
             <div className="flex flex-col pl-4">
-              <p className="font-bold text-[22px]">{t("home.Secure Journey With Us")}</p>
+              <p className="font-bold text-[22px]">
+                {t("home.Secure Journey With Us")}
+              </p>
               <p>
-              {t("home.Are you tired of the typical tourist destinatio and looking step out of your comfort.")}
+                {t(
+                  "home.Are you tired of the typical tourist destinatio and looking step out of your comfort."
+                )}
               </p>
             </div>
           </div>
@@ -1115,10 +1160,10 @@ export default function Home() {
       <div className="">
         <div className="flex flex-column items-center justify-center">
           <p className="testingFont text-black text-2xl font-bold">
-          {t("home.Frequently Asked Questions")}
+            {t("home.Frequently Asked Questions")}
           </p>
           <p className="text-4xl text-center pt-3 font-bold text-black">
-          {t("home.See Those Lovely Words From Clients")}
+            {t("home.See Those Lovely Words From Clients")}
           </p>
 
           <div className="mt-10 mb-5 w-[80%]">

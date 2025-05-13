@@ -173,8 +173,8 @@ export default function Parking() {
   return (
     <div>
       <Popup />
-      <div className="lg:p-20 md:p-20 ">
-        <BannerCarousel moduleId={1} />
+    <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
+        <BannerCarousel moduleId={4} />
       </div>
 
       <div

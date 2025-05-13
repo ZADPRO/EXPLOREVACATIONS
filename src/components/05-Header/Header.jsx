@@ -110,12 +110,14 @@ export default function Header() {
   };
 
   return (
-    <div
-      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#eef0eec2]" : "bg-transparent"
-      }`}
-    >
-      <div className="w-full flex justify-center items-center h-[70px] py-10 px-6 md:px-12 lg:px-40">
+   <div
+  className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
+    scrolled
+      ? "bg-[#eef0eec2]"
+      : "bg-transparent md:bg-white/30 md:backdrop-blur-lg"
+  }`}
+>
+<div className="w-full flex justify-center items-center h-[70px] py-10 px-6 md:px-12 lg:px-40">
         <div className="w-full flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center w-[30%] min-w-[100px]">

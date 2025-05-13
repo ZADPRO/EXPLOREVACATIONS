@@ -23,7 +23,7 @@ export default function TermsCondition() {
           <h2 className="text-[15px] font-semibold mt-6">
             Conclusion and Subject Matter of the Contract
           </h2>
-          <ul className="list-disc pl-6 space-y-2 text-[10px]">
+          <ul className="list-disc pl-6 space-y-2 ">
             <li>
             The reservation/booking of the selected vehicle group made by the Hirer is a binding offer within the meaning of Art. 3 et seqq. of the Swiss Code of Obligations for the conclusion of a vehicle rental contract. The contract is concluded with the Rental Firm’s confirmation to the Hirer, which may also be done by digital means. (Conclusion of Contract).
             </li>

@@ -302,15 +302,17 @@ export default function Cars() {
          <Popup/>
 
       {/* Header Background Image - Start  */}
-      <div className="lg:p-20 md:p-20 ">
-       <BannerCarousel moduleId={2}/>
+     <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
+        <BannerCarousel moduleId={4} />
+      </div>
+       
         {/* Centered Text */}
         {/* <h1 className="text-[#c4c6ce] text-4xl md:text-6xl lg:text-7xl font-bold drop-shadow-[0_8px_8px_rgba(0,0,0,0.7)]">
           Find Your <span className="text-[#ffdaa3]">Perfect</span> Car
         </h1> */}
 
         {/* Input Finder */}
-
+<div>
         <div
           id="tab-panel-1ai"
           role="tabpanel"
