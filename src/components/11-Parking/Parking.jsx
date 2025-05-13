@@ -16,9 +16,6 @@ import { useTranslation } from "react-i18next";
 import BannerCarousel from "../01-Home/BannerCarousel ";
 import tourImg from "../../assets/Parking/parkingin.jpg";
 
-
-
-
 export default function Parking() {
   const getFlag = () => {
     switch (language) {
@@ -173,8 +170,8 @@ export default function Parking() {
   return (
     <div>
       <Popup />
-    <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
-        <BannerCarousel moduleId={4} />
+      <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
+        <BannerCarousel moduleId={1} />
       </div>
 
       <div

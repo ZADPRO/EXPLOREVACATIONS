@@ -34,24 +34,22 @@ import Popup from "../../pages/Popup/Popup";
 import BannerCarousel from "../01-Home/BannerCarousel ";
 import { useTranslation } from "react-i18next";
 export default function Cars() {
+  const getFlag = () => {
+    switch (language) {
+      case "en":
+        return flagEN;
+      case "de":
+        return flagDE;
+      default:
+        return flagEN;
+    }
+  };
 
+  const { t, i18n } = useTranslation("global");
 
-        const getFlag = () => {
-          switch (language) {
-            case "en":
-              return flagEN;
-            case "de":
-              return flagDE;
-            default:
-              return flagEN;
-          }
-        };
-      
-        const { t, i18n } = useTranslation("global");
-      
-        const handleChangeLang = (lang) => {
-          i18n.changeLanguage(lang);
-        };
+  const handleChangeLang = (lang) => {
+    i18n.changeLanguage(lang);
+  };
   const toast = useRef(null);
   const navigate = useNavigate();
 
@@ -80,7 +78,7 @@ export default function Cars() {
 
   const [carPickupLocation, setCarPickupLocation] = useState(null);
   const [carPickupDateTime, setCarPickupDateTime] = useState(null);
-  const today=new Date();
+  const today = new Date();
   const [carDropLocation, setCarDropLocation] = useState(null);
   const [carDropDateTime, setCarDropDateTime] = useState(null);
   const [inputs, setInputs] = useState({ refCarTypeId: "" });
@@ -101,7 +99,7 @@ export default function Cars() {
     }
   };
   const [ismodelOpen, setIsModelOpen] = useState(false);
- 
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -125,13 +123,12 @@ export default function Cars() {
     gpsDevice: false,
   });
   const [otherRequirements, setOtherRequirements] = useState("");
- 
+
   const handleCheckboxChange = (e) => {
     setExtras({ ...extras, [e.target.name]: e.target.checked });
   };
 
   useEffect(() => {
-
     const fetchData = async () => {
       setLoading(true);
       try {
@@ -176,12 +173,10 @@ export default function Cars() {
         }
       } catch (error) {
         console.error("Error fetching car data:", error);
+      } finally {
+        setLoading(false); // End loading
       }
-    
-    finally {
-      setLoading(false); // End loading
-    }
-  };
+    };
 
     fetchData();
   }, [activeTab]);
@@ -299,20 +294,20 @@ export default function Cars() {
   return (
     <div>
       <Toast ref={toast} />
-         <Popup/>
+      <Popup />
 
       {/* Header Background Image - Start  */}
-     <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
-        <BannerCarousel moduleId={4} />
+      <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
+        <BannerCarousel moduleId={2} />
       </div>
-       
-        {/* Centered Text */}
-        {/* <h1 className="text-[#c4c6ce] text-4xl md:text-6xl lg:text-7xl font-bold drop-shadow-[0_8px_8px_rgba(0,0,0,0.7)]">
+
+      {/* Centered Text */}
+      {/* <h1 className="text-[#c4c6ce] text-4xl md:text-6xl lg:text-7xl font-bold drop-shadow-[0_8px_8px_rgba(0,0,0,0.7)]">
           Find Your <span className="text-[#ffdaa3]">Perfect</span> Car
         </h1> */}
 
-        {/* Input Finder */}
-<div>
+      {/* Input Finder */}
+      <div>
         <div
           id="tab-panel-1ai"
           role="tabpanel"
@@ -382,315 +377,310 @@ export default function Cars() {
         </div>
       </div>
 
+      {loading ? (
+        <div className="h-[30vh] w-full bg-[#fff] flex justify-center items-center">
+          {/* <h1>Loading</h1> */}
+          <i className="pi pi-spin pi-spinner" style={{ fontSize: "2rem" }}></i>
+        </div>
+      ) : (
+        <>
+          <h1 className="text-2xl font-bold mb-5 mt-2 text-center text-[#014986]">
+            {t("car.Available Cars")}
+          </h1>
 
-{
-  loading ? (
-<div className="h-[30vh] w-full bg-[#fff] flex justify-center items-center">
-  {/* <h1>Loading</h1> */}
-  <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
-</div>
-  ) : (
-    <>
-    <h1 className="text-2xl font-bold mb-5 mt-2 text-center text-[#014986]">
-    {t("car.Available Cars")}
-      </h1>
-
-      <div className="w-full max-w-4xl mx-auto mt-12">
-        <div className="flex justify-center gap-4 bg-gray-100 p-2">
-          {["Standard", "Premium"].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-6 py-2  text-sm font-medium transition-all duration-200 
+          <div className="w-full max-w-4xl mx-auto mt-12">
+            <div className="flex justify-center gap-4 bg-gray-100 p-2">
+              {["Standard", "Premium"].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-6 py-2  text-sm font-medium transition-all duration-200 
           ${
             activeTab === tab
               ? "bg-[#014986] text-white shadow-md"
               : "text-gray-600 hover:bg-white"
           }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-      </div>
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          </div>
 
-      {/* Car map List - Start */}
+          {/* Car map List - Start */}
 
-      <div className="container mx-auto px-6 mt-8 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-10/12 mx-auto justify-center">
-          {listCarData.map((car) => (
-            <div
-              onClick={() => {
-                navigate("/carDetails", { state: { car } });
-                window.scrollTo(0, 0);
-              }}
-              key={car.refCarsId}
-              className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
-            >
-              {car.refCarPath === null ? (
-                <>
-                  <img src={tourImg} alt="Alt Image for Tours" />
-                </>
-              ) : (
-                <>
-                  {" "}
-                  <img
-                    // src={`data:${car.refCarPath.contentType};base64,${car.refCarPath.content}`}
-                    src={`https://explorevacations.max-idigital.ch/src/assets/cars/${car.refCarPath}`}
-                    alt={car.refVehicleTypeName}
-                    className="w-full object-cover aspect-[4/3]"
-                  />
-                </>
-              )}
+          <div className="container mx-auto px-6 mt-8 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-10/12 mx-auto justify-center">
+              {listCarData.map((car) => (
+                <div
+                  onClick={() => {
+                    navigate("/carDetails", { state: { car } });
+                    window.scrollTo(0, 0);
+                  }}
+                  key={car.refCarsId}
+                  className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
+                >
+                  {car.refCarPath === null ? (
+                    <>
+                      <img src={tourImg} alt="Alt Image for Tours" />
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      <img
+                        // src={`data:${car.refCarPath.contentType};base64,${car.refCarPath.content}`}
+                        src={`https://explorevacations.max-idigital.ch/src/assets/cars/${car.refCarPath}`}
+                        alt={car.refVehicleTypeName}
+                        className="w-full object-cover aspect-[4/3]"
+                      />
+                    </>
+                  )}
 
-              <div className="px-4 pt-4 flex-grow">
-                <h3 className="text-lg font-semibold text-black line-clamp-1">
-                  {car.refVehicleTypeName}
-                </h3>
-                <div className="flex w-[100%] pt-[1rem] text-[0.8rem]">
-                  <p className="text-gray-600 m-0 w-[50%] flex gap-1">
-                    <img src={speed} alt="speed" />
-                    {car.refMileage}
-                  </p>
-                  <p className="text-gray-700 m-0 w-[50%] flex gap-1">
-                    <img src={fueltype} alt="fueltype" />
-                    {car.refFuelType}
-                  </p>
-                </div>
-                <div className="flex w-[100%] text-[0.8rem] pt-[0.5rem] pb-[0.5rem]">
-                  <p className="text-gray-600 m-0 w-[50%] flex gap-1">
-                    <img src={carmodel} alt="carmodel" />
-                    {car.refcarManufactureYear}
-                  </p>
-                  <p className="text-gray-700 m-0 w-[50%] flex gap-1">
-                    <img src={geartype} alt="geartype" />
-                    {car.refTrasmissionType}
-                  </p>
-                </div>
-                <div className="flex w-[100%] pb-[1rem] text-[0.8rem]">
-                  <p className="text-gray-600 m-0 w-[50%] flex gap-1">
-                    <img src={person} alt="person" />
-                    {car.refPersonCount} Person
-                  </p>
-                  <p className="text-gray-700 m-0 w-[50%] flex gap-1">
-                    <img src={bags} alt="bags" />
-                    {car.refBagCount} Bag
-                  </p>
-                </div>
-              </div>
-              <div className="px-4 pb-3  flex flex-col lg:flex-row items-center">
-                <div className="w-[100%] lg:w-[60%] pb-[10px] lg:pb-0 flex gap-1">
-                  <div className="text-[1rem] font-bold">{car.refCarPrice}</div>
-                  <div className="text-[0.7rem] mt-[0.3rem]">/ Day</div>
-                </div>
-                <div className="w-[100%] lg:w-[40%]">
-                  <div className="w-[100%] bg-[#0166b3] hover:bg-[#fff] text-center h-[2rem] flex justify-center items-center rounded-sm font-bold text-[#fff] border-2 border-[#0166b3] hover:text-[#0166b3] transition-colors duration-300 ease-in-out">
-                    Book Now
+                  <div className="px-4 pt-4 flex-grow">
+                    <h3 className="text-lg font-semibold text-black line-clamp-1">
+                      {car.refVehicleTypeName}
+                    </h3>
+                    <div className="flex w-[100%] pt-[1rem] text-[0.8rem]">
+                      <p className="text-gray-600 m-0 w-[50%] flex gap-1">
+                        <img src={speed} alt="speed" />
+                        {car.refMileage}
+                      </p>
+                      <p className="text-gray-700 m-0 w-[50%] flex gap-1">
+                        <img src={fueltype} alt="fueltype" />
+                        {car.refFuelType}
+                      </p>
+                    </div>
+                    <div className="flex w-[100%] text-[0.8rem] pt-[0.5rem] pb-[0.5rem]">
+                      <p className="text-gray-600 m-0 w-[50%] flex gap-1">
+                        <img src={carmodel} alt="carmodel" />
+                        {car.refcarManufactureYear}
+                      </p>
+                      <p className="text-gray-700 m-0 w-[50%] flex gap-1">
+                        <img src={geartype} alt="geartype" />
+                        {car.refTrasmissionType}
+                      </p>
+                    </div>
+                    <div className="flex w-[100%] pb-[1rem] text-[0.8rem]">
+                      <p className="text-gray-600 m-0 w-[50%] flex gap-1">
+                        <img src={person} alt="person" />
+                        {car.refPersonCount} Person
+                      </p>
+                      <p className="text-gray-700 m-0 w-[50%] flex gap-1">
+                        <img src={bags} alt="bags" />
+                        {car.refBagCount} Bag
+                      </p>
+                    </div>
+                  </div>
+                  <div className="px-4 pb-3  flex flex-col lg:flex-row items-center">
+                    <div className="w-[100%] lg:w-[60%] pb-[10px] lg:pb-0 flex gap-1">
+                      <div className="text-[1rem] font-bold">
+                        {car.refCarPrice}
+                      </div>
+                      <div className="text-[0.7rem] mt-[0.3rem]">/ Day</div>
+                    </div>
+                    <div className="w-[100%] lg:w-[40%]">
+                      <div className="w-[100%] bg-[#0166b3] hover:bg-[#fff] text-center h-[2rem] flex justify-center items-center rounded-sm font-bold text-[#fff] border-2 border-[#0166b3] hover:text-[#0166b3] transition-colors duration-300 ease-in-out">
+                        Book Now
+                      </div>
+                    </div>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+          {/* Car map List - End */}
+
+          {/* Model Data - Start */}
+          <Dialog
+            header="Book your Car"
+            visible={ismodelOpen}
+            className="w-[90%] lg:w-[85%] h-[80vh] overflow-auto"
+            onHide={() => {
+              if (!ismodelOpen) return;
+              setIsModelOpen(false);
+            }}
+          >
+            <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
+              <div className="w-[100%]">
+                <FloatLabel className="w-[100%]">
+                  <InputText
+                    id="username"
+                    className="w-[100%]"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <label htmlFor="username">Your Name</label>
+                </FloatLabel>
+              </div>
+              <div className="w-[100%]">
+                <FloatLabel className="w-[100%]">
+                  <InputText
+                    id="email"
+                    className="w-[100%]"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <label htmlFor="email">Your Email</label>
+                </FloatLabel>
+              </div>
+              <div className="w-[100%]">
+                <FloatLabel className="w-[100%]">
+                  <InputNumber
+                    id="mobileNumber"
+                    className="w-[100%]"
+                    useGrouping={false}
+                    value={mobileNumber}
+                    onValueChange={(e) => setMobileNumber(e.value)}
+                  />
+                  <label htmlFor="mobileNumber">Your Mobile Number</label>
+                </FloatLabel>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-      {/* Car map List - End */}
 
-      {/* Model Data - Start */}
-      <Dialog
-        header="Book your Car"
-        visible={ismodelOpen}
-        className="w-[90%] lg:w-[85%] h-[80vh] overflow-auto"
-        onHide={() => {
-          if (!ismodelOpen) return;
-          setIsModelOpen(false);
-        }}
-      >
-        <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
-          <div className="w-[100%]">
-            <FloatLabel className="w-[100%]">
-              <InputText
-                id="username"
-                className="w-[100%]"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <label htmlFor="username">Your Name</label>
-            </FloatLabel>
-          </div>
-          <div className="w-[100%]">
-            <FloatLabel className="w-[100%]">
-              <InputText
-                id="email"
-                className="w-[100%]"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <label htmlFor="email">Your Email</label>
-            </FloatLabel>
-          </div>
-          <div className="w-[100%]">
-            <FloatLabel className="w-[100%]">
-              <InputNumber
-                id="mobileNumber"
-                className="w-[100%]"
-                useGrouping={false}
-                value={mobileNumber}
-                onValueChange={(e) => setMobileNumber(e.value)}
-              />
-              <label htmlFor="mobileNumber">Your Mobile Number</label>
-            </FloatLabel>
-          </div>
-        </div>
-
-        <div className="pt-[2rem] flex flex-col lg:flex-row gap-[1rem]">
-          <div className="w-[100%]">
-            <FloatLabel className="w-[100%]">
-              <InputText
-                id="pickupAddress"
-                className="w-[100%]"
-                value={pickupAddress}
-                onChange={(e) => setPickupAddress(e.target.value)}
-              />
-              <label htmlFor="pickupAddress">Pick Up Address</label>
-            </FloatLabel>
-          </div>
-          <div className="w-[100%]">
-            <FloatLabel className="w-[100%]">
-              <InputText
-                id="submissionAddress"
-                className="w-[100%]"
-                value={submissionAddress}
-                onChange={(e) => setSubmissionAddress(e.target.value)}
-              />
-              <label htmlFor="submissionAddress">Submission Address</label>
-            </FloatLabel>
-          </div>
-          <div className="w-[100%]">
-            <FloatLabel className="w-[100%]">
-              <Calendar
-                id="calendar-12h"
-                value={pickupDateTime} // Updated variable name
-                className="flex-1 w-[100%]"
-                onChange={(e) => setPickupDateTime(e.value)} // Updated variable name
-                showTime
-                placeholder="Pickup Date & Time"
-                hourFormat="12"
-                minDate={today}
-              />
-              <label htmlFor="calendar-12h">Pick Up Date & Time</label>
-            </FloatLabel>
-          </div>
-          <div className="w-[100%]">
-            <FloatLabel className="w-[100%]">
-              <Dropdown
-                id="vehicle"
-                value={selectedVehicleType} // Updated variable name
-                onChange={(e) => setSelectedVehicleType(e.value)} // Updated variable name
-                options={typescar}
-                optionLabel="name"
-                placeholder="Choose Vehicle Type"
-                className="flex-1 w-[100%]"
-              
-              />
-              <label htmlFor="vehicle">Your Preferred Vehicle</label>
-            </FloatLabel>
-          </div>
-        </div>
-
-        <h6 className="pt-[1.5rem]">Number of passengers traveling</h6>
-
-        <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
-          <div className="w-[100%]">
-            <FloatLabel className="w-[100%]">
-              <InputNumber
-                id="adults"
-                className="w-[100%]"
-                useGrouping={false}
-                value={adults}
-                onValueChange={(e) => setAdults(e.value)}
-              />
-              <label htmlFor="adults">Adults</label>
-            </FloatLabel>
-          </div>
-          <div className="w-[100%]">
-            <FloatLabel className="w-[100%]">
-              <InputNumber
-                id="children"
-                className="w-[100%]"
-                useGrouping={false}
-                value={children}
-                onValueChange={(e) => setChildren(e.value)}
-              />
-              <label htmlFor="children">Children</label>
-            </FloatLabel>
-          </div>
-          <div className="w-[100%]">
-            <FloatLabel className="w-[100%]">
-              <InputNumber
-                id="infants"
-                className="w-[100%]"
-                useGrouping={false}
-                value={infants}
-                onValueChange={(e) => setInfants(e.value)}
-              />
-              <label htmlFor="infants">Infants</label>
-            </FloatLabel>
-          </div>
-        </div>
-
-        <h6 className="pt-[1.5rem]">Extras (chargeable)</h6>
-
-        <div className="flex flex-wrap justify-start pt-[1rem] gap-3">
-          {Object.keys(extras).map((key) => (
-            <div className="flex align-items-center" key={key}>
-              <Checkbox
-                inputId={key}
-                name={key}
-                checked={extras[key]}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor={key} className="ml-2">
-                {key.charAt(0).toUpperCase() +
-                  key.slice(1).replace(/([A-Z])/g, " $1")}
-              </label>
+            <div className="pt-[2rem] flex flex-col lg:flex-row gap-[1rem]">
+              <div className="w-[100%]">
+                <FloatLabel className="w-[100%]">
+                  <InputText
+                    id="pickupAddress"
+                    className="w-[100%]"
+                    value={pickupAddress}
+                    onChange={(e) => setPickupAddress(e.target.value)}
+                  />
+                  <label htmlFor="pickupAddress">Pick Up Address</label>
+                </FloatLabel>
+              </div>
+              <div className="w-[100%]">
+                <FloatLabel className="w-[100%]">
+                  <InputText
+                    id="submissionAddress"
+                    className="w-[100%]"
+                    value={submissionAddress}
+                    onChange={(e) => setSubmissionAddress(e.target.value)}
+                  />
+                  <label htmlFor="submissionAddress">Submission Address</label>
+                </FloatLabel>
+              </div>
+              <div className="w-[100%]">
+                <FloatLabel className="w-[100%]">
+                  <Calendar
+                    id="calendar-12h"
+                    value={pickupDateTime} // Updated variable name
+                    className="flex-1 w-[100%]"
+                    onChange={(e) => setPickupDateTime(e.value)} // Updated variable name
+                    showTime
+                    placeholder="Pickup Date & Time"
+                    hourFormat="12"
+                    minDate={today}
+                  />
+                  <label htmlFor="calendar-12h">Pick Up Date & Time</label>
+                </FloatLabel>
+              </div>
+              <div className="w-[100%]">
+                <FloatLabel className="w-[100%]">
+                  <Dropdown
+                    id="vehicle"
+                    value={selectedVehicleType} // Updated variable name
+                    onChange={(e) => setSelectedVehicleType(e.value)} // Updated variable name
+                    options={typescar}
+                    optionLabel="name"
+                    placeholder="Choose Vehicle Type"
+                    className="flex-1 w-[100%]"
+                  />
+                  <label htmlFor="vehicle">Your Preferred Vehicle</label>
+                </FloatLabel>
+              </div>
             </div>
-          ))}
-        </div>
 
-        <div className="pt-[2.5rem] flex flex-col lg:flex-row gap-[1rem]">
-          <div className="w-[100%]">
-            <FloatLabel className="w-[100%]">
-              <InputTextarea
-                className="w-[100%]"
-                value={otherRequirements}
-                onChange={(e) => setOtherRequirements(e.target.value)}
-                rows={5}
-                cols={30}
+            <h6 className="pt-[1.5rem]">Number of passengers traveling</h6>
+
+            <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
+              <div className="w-[100%]">
+                <FloatLabel className="w-[100%]">
+                  <InputNumber
+                    id="adults"
+                    className="w-[100%]"
+                    useGrouping={false}
+                    value={adults}
+                    onValueChange={(e) => setAdults(e.value)}
+                  />
+                  <label htmlFor="adults">Adults</label>
+                </FloatLabel>
+              </div>
+              <div className="w-[100%]">
+                <FloatLabel className="w-[100%]">
+                  <InputNumber
+                    id="children"
+                    className="w-[100%]"
+                    useGrouping={false}
+                    value={children}
+                    onValueChange={(e) => setChildren(e.value)}
+                  />
+                  <label htmlFor="children">Children</label>
+                </FloatLabel>
+              </div>
+              <div className="w-[100%]">
+                <FloatLabel className="w-[100%]">
+                  <InputNumber
+                    id="infants"
+                    className="w-[100%]"
+                    useGrouping={false}
+                    value={infants}
+                    onValueChange={(e) => setInfants(e.value)}
+                  />
+                  <label htmlFor="infants">Infants</label>
+                </FloatLabel>
+              </div>
+            </div>
+
+            <h6 className="pt-[1.5rem]">Extras (chargeable)</h6>
+
+            <div className="flex flex-wrap justify-start pt-[1rem] gap-3">
+              {Object.keys(extras).map((key) => (
+                <div className="flex align-items-center" key={key}>
+                  <Checkbox
+                    inputId={key}
+                    name={key}
+                    checked={extras[key]}
+                    onChange={handleCheckboxChange}
+                  />
+                  <label htmlFor={key} className="ml-2">
+                    {key.charAt(0).toUpperCase() +
+                      key.slice(1).replace(/([A-Z])/g, " $1")}
+                  </label>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-[2.5rem] flex flex-col lg:flex-row gap-[1rem]">
+              <div className="w-[100%]">
+                <FloatLabel className="w-[100%]">
+                  <InputTextarea
+                    className="w-[100%]"
+                    value={otherRequirements}
+                    onChange={(e) => setOtherRequirements(e.target.value)}
+                    rows={5}
+                    cols={30}
+                  />
+                  <label htmlFor="otherRequirements">
+                    Your other requirements
+                  </label>
+                </FloatLabel>
+              </div>
+            </div>
+
+            <div className="pt-[1rem] flex justify-center">
+              <Button
+                severity="success"
+                className="w-[20%]"
+                label="Submit"
+                onClick={handleSubmit}
               />
-              <label htmlFor="otherRequirements">Your other requirements</label>
-            </FloatLabel>
-          </div>
-        </div>
+            </div>
+          </Dialog>
 
-        <div className="pt-[1rem] flex justify-center">
-          <Button
-            severity="success"
-            className="w-[20%]"
-            label="Submit"
-            onClick={handleSubmit}
-          />
-        </div>
-      </Dialog>
-
-      {/* Model Data - End */}
-    </>
-  )
-}
-
-
-
-      
-      
+          {/* Model Data - End */}
+        </>
+      )}
     </div>
   );
 }

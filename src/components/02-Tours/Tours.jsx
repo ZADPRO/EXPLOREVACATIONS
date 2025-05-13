@@ -85,7 +85,6 @@ export default function Tours() {
       console.error("Error fetching data:", error);
     }
   };
-  
 
   useEffect(() => {
     fetchData();
@@ -142,9 +141,9 @@ export default function Tours() {
 
   return (
     <div>
-      <Popup/>
-     <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
-        <BannerCarousel moduleId={4} />
+      <Popup />
+      <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
+        <BannerCarousel moduleId={3} />
       </div>
 
       <div

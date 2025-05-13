@@ -5,6 +5,7 @@
     "tours": "Touren",
     "Cars": "Autos",
     "Transfers": "Überweisungen",
+    "Flightform": "Flugformular",
     "Contact": "Kontakt",
     "Login": "Login",
     "Profile": "Profil",
@@ -13,7 +14,7 @@
     "ship": "Schiff",
     "hotel": "Hotel",
     "parking": "Parkplatz",
-    "Explore":"Erkunden" 
+    "Explore": "Erkunden"
   },
   "home": {
     "General": "Allgemein",
@@ -123,10 +124,8 @@
     "Frequently Asked Questions": "Häufig gestellte Fragen",
     "See Those Lovely Words From Clients": "Sehen Sie sich diese lieben Worte von Kunden an",
     "Select a topic": "Wählen Sie ein Thema"
-
-   
   },
-  "footer":{
+  "footer": {
     "footer": "Wir sind ein vollständiges Reise- und Tourismusunternehmen in der Schweiz. Wir bieten eine große Auswahl an maßgeschneiderten FIT-/Gruppenreisen, Strandtouren, Safaris und Urlaubsexpeditionen nach Sri Lanka.",
     "Our Services": "Unsere Dienstleistungen",
     "Tours": "Touren",
@@ -135,42 +134,41 @@
     "Terms and Condition": "Allgemeine Geschäftsbedingungen",
     "Privacy Policy": "Datenschutzrichtlinie",
     "Contact Information": "Kontaktinformationen",
-  "Social Media Links": "Soziale Medien Links"
-
+    "Social Media Links": "Soziale Medien Links"
   },
-  "car":{
+  "car": {
     "Available Cars": "Verfügbare Autos",
-    "Standard":"Standard",
-    "Premium":"Premium"
+    "Standard": "Standard",
+    "Premium": "Premium"
   },
   "contact": {
-  "Get In Touch": "Kontaktieren Sie uns",
-  "We’d love to hear from you! Contact us today.": "Wir würden uns freuen, von Ihnen zu hören! Kontaktieren Sie uns noch heute.",
-  "Email": "E-Mail",
-  "Phone": "Telefon",
-  "Address": "Adresse",
-  "Send a Message": "Nachricht senden",
-  "Your Name": "Ihr Name",
-  "Email Address": "E-Mail-Adresse",
-  "Mobile Number": "Handynummer",
-  "Tour": "Tour",
-  "Car": "Auto",
-  "Parking": "Parken",
-  "Travel": "Reise",
-  "Selected Category": "Ausgewählte Kategorie",
-  "Your Message": "Ihre Nachricht",
-  "Form submitted successfully!": "Formular erfolgreich übermittelt!",
-  "Submit":"Einreichen"
+    "Get In Touch": "Kontaktieren Sie uns",
+    "We’d love to hear from you! Contact us today.": "Wir würden uns freuen, von Ihnen zu hören! Kontaktieren Sie uns noch heute.",
+    "Email": "E-Mail",
+    "Phone": "Telefon",
+    "Address": "Adresse",
+    "Send a Message": "Nachricht senden",
+    "Your Name": "Ihr Name",
+    "Email Address": "E-Mail-Adresse",
+    "Mobile Number": "Handynummer",
+    "Tour": "Tour",
+    "Car": "Auto",
+    "Parking": "Parken",
+    "Travel": "Reise",
+    "Selected Category": "Ausgewählte Kategorie",
+    "Your Message": "Ihre Nachricht",
+    "Form submitted successfully!": "Formular erfolgreich übermittelt!",
+    "Submit": "Einreichen"
   },
   "parking": {
-  "Reserve": "Reservieren Sie Ihren Parkplatz, dann Ihr Traumziel.",
-  "Find the Best Parking Options for You": "Finden Sie die besten Parkmöglichkeiten für Sie",
-  "Travel in Comfort with Our Sedan": "Reisen Sie komfortabel mit unserer Limousine",
-  "des1": "Ob Sie mit einem Zwei- oder Vierrad unterwegs sind – verlassen Sie den Alltag und erleben Sie die Reise wie nie zuvor.",
-  "Flexible Parking Choices for Your Trip": "Flexible Parkmöglichkeiten für Ihre Reise",
-  "Secure and convenient parking options designed to fit your travel needs.": "Sichere und bequeme Parkmöglichkeiten, die auf Ihre Reisebedürfnisse zugeschnitten sind."
-},
-"profile":{
+    "Reserve": "Reservieren Sie Ihren Parkplatz, dann Ihr Traumziel.",
+    "Find the Best Parking Options for You": "Finden Sie die besten Parkmöglichkeiten für Sie",
+    "Travel in Comfort with Our Sedan": "Reisen Sie komfortabel mit unserer Limousine",
+    "des1": "Ob Sie mit einem Zwei- oder Vierrad unterwegs sind – verlassen Sie den Alltag und erleben Sie die Reise wie nie zuvor.",
+    "Flexible Parking Choices for Your Trip": "Flexible Parkmöglichkeiten für Ihre Reise",
+    "Secure and convenient parking options designed to fit your travel needs.": "Sichere und bequeme Parkmöglichkeiten, die auf Ihre Reisebedürfnisse zugeschnitten sind."
+  },
+  "profile": {
     "Tour Bookings": "Tourbuchungen",
     "Car Booking": "Autobuchung",
     "Parking Booking": "Parkplatzbuchung",
@@ -205,21 +203,20 @@
     "travel StartDate": "Reisebeginn",
     "Location": "Ort",
     "travel EndDate": "Reiseende"
-  }
-  ,
- "login": {
-  "Back to Home": "Zurück zur Startseite",
-  "Start your perfect trip": "Beginne deine perfekte Reise",
-  "Start": "Start",
-  "Forgot Password?": "Passwort vergessen?",
-  "Don't have an account?": "Haben Sie noch kein Konto?",
-  "Register Now": "Jetzt registrieren",
-  "Send Reset Email": "E-Mail zum Zurücksetzen senden",
-  "Reset Password": "Passwort zurücksetzen",
-  "Back to Login":"Zurück zur Anmeldung",
-  "voyage":"Reise",
-  "Please check your email for your password.":"Bitte überprüfen Sie Ihre E-Mails auf Ihr Passwort."
-},
+  },
+  "login": {
+    "Back to Home": "Zurück zur Startseite",
+    "Start your perfect trip": "Beginne deine perfekte Reise",
+    "Start": "Start",
+    "Forgot Password?": "Passwort vergessen?",
+    "Don't have an account?": "Haben Sie noch kein Konto?",
+    "Register Now": "Jetzt registrieren",
+    "Send Reset Email": "E-Mail zum Zurücksetzen senden",
+    "Reset Password": "Passwort zurücksetzen",
+    "Back to Login": "Zurück zur Anmeldung",
+    "voyage": "Reise",
+    "Please check your email for your password.": "Bitte überprüfen Sie Ihre E-Mails auf Ihr Passwort."
+  },
 
   "signin": {
     "Sign Up": "Registrieren",
@@ -231,8 +228,15 @@
     "Password": "Passwort",
     "Already have an account Just": "Du hast bereits ein Konto?",
     "Signin": "Anmelden"
+  },
+  "flight": {
+    "Details": "Formulardetails",
+    "quotes": "Klarer Himmel voraus – beginnen Sie mit der Eingabe Ihrer Flugdaten.",
+    "Fill": "Nur noch wenige Angaben fehlen",
+    "Destination": "Ihr Reiseziel",
+    "Requirements": "Ihre Anforderungen",
+    "Pickup": "Ihr Abholort",
+    "Email": "Ihre E-Mail"
+
   }
-  
-
-
 }

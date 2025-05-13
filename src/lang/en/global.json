@@ -5,6 +5,7 @@
     "tours": "Tours",
     "Cars": "Cars",
     "Transfers": "Transfers",
+    "Flightform": "Flight Form",
     "Contact": "Contact",
     "Login": "Login",
     "Profile": "Profile",
@@ -205,16 +206,16 @@
   },
   "login": {
     "Back to Home": "Back to Home",
-    "Start your perfect trip":"Start your perfect trip",
-    "Start":"Start",
-    "Forgot Password?":"Forgot Password?",
-    "Don't have an account?":"Don't have an account?",
-    "Register Now":"Register Now",
-    "Send Reset Email":"Send Reset Email",
-    "Reset Password":"Reset Password",
-    "Back to Login":"Back to Login",
-    "voyage":"voyage",
-    "Please check your email for your password.":"Please check your email for your password."
+    "Start your perfect trip": "Start your perfect trip",
+    "Start": "Start",
+    "Forgot Password?": "Forgot Password?",
+    "Don't have an account?": "Don't have an account?",
+    "Register Now": "Register Now",
+    "Send Reset Email": "Send Reset Email",
+    "Reset Password": "Reset Password",
+    "Back to Login": "Back to Login",
+    "voyage": "voyage",
+    "Please check your email for your password.": "Please check your email for your password."
   },
   "signin": {
     "Sign Up": "Sign Up",
@@ -226,5 +227,15 @@
     "Password": "Password",
     "Already have an account Just": "Already have an account Just",
     "Signin": "Signin"
+  },
+  "flight": {
+    "Details": "Form Details",
+    "quotes":"Smooth skies ahead — start by entering your flight info.",
+    "Fill":"Just a few details to go",
+    "Destination":"Your Destination",
+    "Requirements":"Your Requirements",
+    "Pickup":"Your Pickup Location",
+    "Email":"Your Email"
+
   }
 }
