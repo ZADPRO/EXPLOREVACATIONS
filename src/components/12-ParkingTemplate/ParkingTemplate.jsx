@@ -3,7 +3,7 @@ import { Calendar } from "primereact/calendar";
 // import { Dropdown } from "primereact/dropdown";
 // import time from "../../assets/Parking/time.png";
 // import brand from "../../assets/Parking/brand.png";
-import  { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { pdf } from "@react-pdf/renderer";

@@ -53,29 +53,6 @@ export default function Cars() {
   const toast = useRef(null);
   const navigate = useNavigate();
 
-  const pickuplocation = [
-    { location: "Abu Dhabi" },
-    { location: "Bangkok" },
-    { location: "Dhaka" },
-    { location: "Dubai" },
-    { location: "Jakarta" },
-  ];
-
-  const dropofflocation = [
-    { location: "Abu Dhabi" },
-    { location: "Bangkok" },
-    { location: "Dhaka" },
-    { location: "Dubai" },
-    { location: "Jakarta" },
-  ];
-
-  const typescar = [
-    { name: "Minivan" },
-    { name: "Standard" },
-    { name: "Suv's" },
-    { name: "Luxury" },
-  ];
-
   const [carPickupLocation, setCarPickupLocation] = useState(null);
   const [carPickupDateTime, setCarPickupDateTime] = useState(null);
   const today = new Date();
@@ -180,55 +157,6 @@ export default function Cars() {
 
     fetchData();
   }, [activeTab]);
-
-  // const Cartype = async () => {
-
-  //   setSubmitLoading(true);
-
-  //   try {
-  //     const response = await axios.post(
-  //       import.meta.env.VITE_API_URL + "/settingRoutes/addActivities",
-  //       { refCarTypeId: inputs.refActivity },
-  //       {
-  //         headers: {
-  //           Authorization: localStorage.getItem("token"),
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-
-  //     const data = decrypt(
-  //       response.data[1],
-  //       response.data[0],
-  //       import.meta.env.VITE_ENCRYPTION_KEY
-  //     );
-  //     console.log("Add activity response:", data);
-
-  //     setSubmitLoading(false);
-
-  //     if (data.success) {
-  //       localStorage.setItem("token", "Bearer " + data.token);
-
-  //       // setActivities([
-  //       //   ...activities,
-  //       //   {
-  //       //     refActivitiesName: inputs.refActivity,
-  //       //     refActivitiesId: data.insertedId,
-  //       //   },
-  //       // ]);
-
-  //       toast.success("Successfully Added!", {
-  //         position: "top-right",
-  //         autoClose: 3000,
-  //       });
-
-  //       setInputs({ refActivity: "" });
-  //     }
-  //   } catch (e) {
-  //     console.error("Error adding activity:", e);
-  //     setSubmitLoading(false);
-  //   }
-  // };
 
   const handleSubmit = async () => {
     if (!name || !email || !mobileNumber || !pickupDateTime) {
@@ -409,7 +337,7 @@ export default function Cars() {
 
           {/* Car map List - Start */}
 
-          <div className="container mx-auto px-6 mt-8 w-full">
+          <div className="container mx-auto px-6 mt-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-10/12 mx-auto justify-center">
               {listCarData.map((car) => (
                 <div
@@ -488,197 +416,7 @@ export default function Cars() {
               ))}
             </div>
           </div>
-          {/* Car map List - End */}
-
-          {/* Model Data - Start */}
-          <Dialog
-            header="Book your Car"
-            visible={ismodelOpen}
-            className="w-[90%] lg:w-[85%] h-[80vh] overflow-auto"
-            onHide={() => {
-              if (!ismodelOpen) return;
-              setIsModelOpen(false);
-            }}
-          >
-            <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
-              <div className="w-[100%]">
-                <FloatLabel className="w-[100%]">
-                  <InputText
-                    id="username"
-                    className="w-[100%]"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                  <label htmlFor="username">Your Name</label>
-                </FloatLabel>
-              </div>
-              <div className="w-[100%]">
-                <FloatLabel className="w-[100%]">
-                  <InputText
-                    id="email"
-                    className="w-[100%]"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <label htmlFor="email">Your Email</label>
-                </FloatLabel>
-              </div>
-              <div className="w-[100%]">
-                <FloatLabel className="w-[100%]">
-                  <InputNumber
-                    id="mobileNumber"
-                    className="w-[100%]"
-                    useGrouping={false}
-                    value={mobileNumber}
-                    onValueChange={(e) => setMobileNumber(e.value)}
-                  />
-                  <label htmlFor="mobileNumber">Your Mobile Number</label>
-                </FloatLabel>
-              </div>
-            </div>
-
-            <div className="pt-[2rem] flex flex-col lg:flex-row gap-[1rem]">
-              <div className="w-[100%]">
-                <FloatLabel className="w-[100%]">
-                  <InputText
-                    id="pickupAddress"
-                    className="w-[100%]"
-                    value={pickupAddress}
-                    onChange={(e) => setPickupAddress(e.target.value)}
-                  />
-                  <label htmlFor="pickupAddress">Pick Up Address</label>
-                </FloatLabel>
-              </div>
-              <div className="w-[100%]">
-                <FloatLabel className="w-[100%]">
-                  <InputText
-                    id="submissionAddress"
-                    className="w-[100%]"
-                    value={submissionAddress}
-                    onChange={(e) => setSubmissionAddress(e.target.value)}
-                  />
-                  <label htmlFor="submissionAddress">Submission Address</label>
-                </FloatLabel>
-              </div>
-              <div className="w-[100%]">
-                <FloatLabel className="w-[100%]">
-                  <Calendar
-                    id="calendar-12h"
-                    value={pickupDateTime} // Updated variable name
-                    className="flex-1 w-[100%]"
-                    onChange={(e) => setPickupDateTime(e.value)} // Updated variable name
-                    showTime
-                    placeholder="Pickup Date & Time"
-                    hourFormat="12"
-                    minDate={today}
-                  />
-                  <label htmlFor="calendar-12h">Pick Up Date & Time</label>
-                </FloatLabel>
-              </div>
-              <div className="w-[100%]">
-                <FloatLabel className="w-[100%]">
-                  <Dropdown
-                    id="vehicle"
-                    value={selectedVehicleType} // Updated variable name
-                    onChange={(e) => setSelectedVehicleType(e.value)} // Updated variable name
-                    options={typescar}
-                    optionLabel="name"
-                    placeholder="Choose Vehicle Type"
-                    className="flex-1 w-[100%]"
-                  />
-                  <label htmlFor="vehicle">Your Preferred Vehicle</label>
-                </FloatLabel>
-              </div>
-            </div>
-
-            <h6 className="pt-[1.5rem]">Number of passengers traveling</h6>
-
-            <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
-              <div className="w-[100%]">
-                <FloatLabel className="w-[100%]">
-                  <InputNumber
-                    id="adults"
-                    className="w-[100%]"
-                    useGrouping={false}
-                    value={adults}
-                    onValueChange={(e) => setAdults(e.value)}
-                  />
-                  <label htmlFor="adults">Adults</label>
-                </FloatLabel>
-              </div>
-              <div className="w-[100%]">
-                <FloatLabel className="w-[100%]">
-                  <InputNumber
-                    id="children"
-                    className="w-[100%]"
-                    useGrouping={false}
-                    value={children}
-                    onValueChange={(e) => setChildren(e.value)}
-                  />
-                  <label htmlFor="children">Children</label>
-                </FloatLabel>
-              </div>
-              <div className="w-[100%]">
-                <FloatLabel className="w-[100%]">
-                  <InputNumber
-                    id="infants"
-                    className="w-[100%]"
-                    useGrouping={false}
-                    value={infants}
-                    onValueChange={(e) => setInfants(e.value)}
-                  />
-                  <label htmlFor="infants">Infants</label>
-                </FloatLabel>
-              </div>
-            </div>
-
-            <h6 className="pt-[1.5rem]">Extras (chargeable)</h6>
-
-            <div className="flex flex-wrap justify-start pt-[1rem] gap-3">
-              {Object.keys(extras).map((key) => (
-                <div className="flex align-items-center" key={key}>
-                  <Checkbox
-                    inputId={key}
-                    name={key}
-                    checked={extras[key]}
-                    onChange={handleCheckboxChange}
-                  />
-                  <label htmlFor={key} className="ml-2">
-                    {key.charAt(0).toUpperCase() +
-                      key.slice(1).replace(/([A-Z])/g, " $1")}
-                  </label>
-                </div>
-              ))}
-            </div>
-
-            <div className="pt-[2.5rem] flex flex-col lg:flex-row gap-[1rem]">
-              <div className="w-[100%]">
-                <FloatLabel className="w-[100%]">
-                  <InputTextarea
-                    className="w-[100%]"
-                    value={otherRequirements}
-                    onChange={(e) => setOtherRequirements(e.target.value)}
-                    rows={5}
-                    cols={30}
-                  />
-                  <label htmlFor="otherRequirements">
-                    Your other requirements
-                  </label>
-                </FloatLabel>
-              </div>
-            </div>
-
-            <div className="pt-[1rem] flex justify-center">
-              <Button
-                severity="success"
-                className="w-[20%]"
-                label="Submit"
-                onClick={handleSubmit}
-              />
-            </div>
-          </Dialog>
-
-          {/* Model Data - End */}
+       
         </>
       )}
     </div>

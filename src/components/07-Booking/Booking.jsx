@@ -3,31 +3,18 @@ import { useLocation } from "react-router-dom";
 import "./Booking.css";
 import { useTranslation } from "react-i18next";
 import Parking from "../11-Parking/Parking";
+import Flight from "../15-FlightBooking/Flight";
 
 export default function Booking() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const type = searchParams.get("type");
-  const getFlag = () => {
-    switch (language) {
-      case "en":
-        return flagEN;
-      case "de":
-        return flagDE;
-      default:
-        return flagEN;
-    }
-  };
 
   const { t, i18n } = useTranslation("global");
 
-  const handleChangeLang = (lang) => {
-    i18n.changeLanguage(lang);
-  };
-
   // Set image based on booking type
   const backgroundClass =
-    type === t("header.flight")
+    type === "flight"
       ? "bookingflight"
       : type === "ship"
       ? "bookingship"
@@ -35,30 +22,41 @@ export default function Booking() {
       ? "bookinghotel"
       : type === "parking"
       ? "bookingparking"
+      : type === "Flightform"
+      ? "bookingflightform"
       : "";
 
   return (
     <div>
-      <div>
-        {type === "parking" && (
-          <div className="flex flex-col md:flex-row justify-center items-center min-h-screen lg:p-6 md:p-6 p-0 bg-gray-100">
-            <Parking />
-          </div>
-        )}
-      </div>
+      {/* Background Hero Section (for all types except flightform) */}
+      {type !== "Flightform" && type !== "parking" && (
+        <div
+          className={`booking-hero ${backgroundClass}`}
+          style={{
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <div className="h-[80vh] w-full bg-opacity-30 flex items-center justify-center"></div>
+        </div>
+      )}
 
-      <div
-        className={`booking-hero ${backgroundClass}`}
-        style={{
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        {type !== "parking" && (
-          <div className="h-[80vh] w-full  bg-opacity-30 flex items-center justify-center"></div>
-        )}
-      </div>
+      {/* Parking Form */}
+      {type === "parking" && (
+        <div className="flex flex-col md:flex-row justify-center items-center min-h-screen lg:p-6 md:p-6 p-0 bg-gray-100">
+          <Parking />
+        </div>
+      )}
 
+      {/* Flight Booking Form (custom React component) */}
+      {type === "Flightform" && (
+        <div className="flex flex-col md:flex-row justify-center items-center min-h-screen lg:p-6 md:p-6 p-0 bg-gray-100">
+          <Flight />
+        </div>
+      )}
+
+      {/* Embedded Flight Iframe */}
       {type === "flight" && (
         <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 bg-gray-100">
           <iframe
@@ -73,6 +71,7 @@ export default function Booking() {
         </div>
       )}
 
+      {/* Ship Iframe */}
       {type === "ship" && (
         <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 bg-gray-100">
           <iframe
@@ -87,8 +86,9 @@ export default function Booking() {
         </div>
       )}
 
+      {/* Hotel Iframe */}
       {type === "hotel" && (
-        <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 bg-gray-100">
+        <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 bg-gray-100 bg-no-repeat bg-cover bg-center">
           <iframe
             src="https://www.interhome.de/?partnerextra=A-29505-0&partnerid=DE0599010&iframe=true"
             width="100%"

@@ -36,7 +36,6 @@
   }
 }
 
-
 .parkingPageContents01 {
   background: url("../../assets/Parking//Park.jpg") no-repeat center;
   background-size: cover;
@@ -90,6 +89,18 @@
   }
 }
 
+.flightPage001 {
+  background: url("../../assets//Travel/flight.jpg") no-repeat center;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 640px) {
+  .flightPage001 {
+    background: url("../../assets/Travel//mflight.jpg") no-repeat center;
+    background-size: cover;
+  }
+}
 .bannerImage001 {
   background: url("../../assets/homeCards/bottom.jpg") no-repeat center;
   background-size: cover;
@@ -104,7 +115,7 @@
 }
 
 .bookingflight {
-  background-image: url('../../assets//Booking/flight8.jpg'); /* Desktop version */
+  background-image: url("../../assets//Booking/flight8.jpg"); /* Desktop version */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -113,12 +124,12 @@
 /* Mobile view */
 @media (max-width: 640px) {
   .bookingflight {
-    background-image: url('../../assets//Booking/flightmb.jpg'); /* Mobile version */
+    background-image: url("../../assets//Booking/flightmb.jpg"); /* Mobile version */
   }
 }
 
-.bookinghotel{
-  background-image: url('../../assets/Booking/Hotel9.jpg'); /* Desktop version */
+.bookinghotel {
+  background-image: url("../../assets/Booking/Hotel9.jpg"); /* Desktop version */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -127,12 +138,12 @@
 /* Mobile view */
 @media (max-width: 640px) {
   .bookinghotel {
-    background-image: url('../../assets//Booking/hotelmb.jpg'); /* Mobile version */
+    background-image: url("../../assets//Booking/hotelmb.jpg"); /* Mobile version */
   }
 }
 
 .bookingship {
-  background-image: url('../../assets//Booking/ship9.jpg'); /* Desktop version */
+  background-image: url("../../assets//Booking/ship9.jpg"); /* Desktop version */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -141,6 +152,6 @@
 /* Mobile view */
 @media (max-width: 640px) {
   .bookingship {
-    background-image: url('../../assets//Booking/shipmb.jpg'); /* Mobile version */
+    background-image: url("../../assets//Booking/shipmb.jpg"); /* Mobile version */
   }
 }

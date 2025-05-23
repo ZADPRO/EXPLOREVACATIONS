@@ -170,7 +170,7 @@ export default function Parking() {
   return (
     <div>
       <Popup />
-      <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
+     <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
         <BannerCarousel moduleId={1} />
       </div>
 
@@ -307,7 +307,7 @@ export default function Parking() {
         <>
           {/* Car map List - Start */}
 
-          <div className="container mx-auto px-6 mt-8 w-full">
+          <div className=" mx-auto px-6 mt-8 w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-10/12 mx-auto justify-center">
               {!loading && listParking.length === 0 && (
                 <div className="text-center mt-6 text-lg text-gray-600">

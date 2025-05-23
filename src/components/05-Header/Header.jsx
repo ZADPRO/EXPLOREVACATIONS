@@ -110,14 +110,14 @@ export default function Header() {
   };
 
   return (
-   <div
-  className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
-    scrolled
-      ? "bg-[#eef0eec2]"
-      : "bg-transparent md:bg-white/30 md:backdrop-blur-lg"
-  }`}
->
-<div className="w-full flex justify-center items-center h-[70px] py-10 px-6 md:px-12 lg:px-40">
+    <div
+      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#eef0eec2]"
+          : "bg-transparent md:bg-white/30 md:backdrop-blur-lg"
+      }`}
+    >
+      <div className="w-full flex justify-center items-center h-[70px] py-10 px-6 md:px-12 lg:px-40">
         <div className="w-full flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center w-[30%] min-w-[100px]">
@@ -136,7 +136,7 @@ export default function Header() {
               { path: "/tours", label: t("header.tours") },
               { path: "/cars", label: t("header.Cars") },
               { path: "/transfer", label: t("header.Transfers") },
-              { path: "/contact", label: t("header.Contact") },
+            { path: "/contact", label: t("header.Contact") },
             ].map(({ path, label }) => (
               <div
                 key={path}
@@ -160,7 +160,7 @@ export default function Header() {
 
               {showDropdown && (
                 <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-40 z-50">
-                  {["flight", "ship", "hotel", "parking"].map((type) => (
+                  {["flight", "ship", "hotel", "parking","Flightform"].map((type) => (
                     <div
                       key={type}
                       className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
@@ -290,7 +290,7 @@ export default function Header() {
 
           {showMobileBooking && (
             <div className="ml-4 flex flex-col">
-              {["flight", "ship", "hotel", "parking"].map((type) => (
+              {["flight", "ship", "hotel", "parking","Flightform"].map((type) => (
                 <div
                   key={type}
                   className="py-2 cursor-pointer text-[#0067b6] text-sm"

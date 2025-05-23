@@ -70,7 +70,7 @@ export default function Signup() {
           refMoblile: mobile,
           refDOB: dob,
           refUserEmail: email,
-          temp_password: password,
+          // temp_password: password,
         },
         {
           headers: {
@@ -207,7 +207,7 @@ export default function Signup() {
             required
           />
 
-          <input
+          {/* <input
            placeholder={t("signin.Password")}
              id="password"
             value={password}
@@ -216,7 +216,7 @@ export default function Signup() {
             type="password"
             className="input"
             required
-          />
+          /> */}
           <span className="forgot-password ">
             {/* <a href="#">Forgot Password ?</a> */}
           </span>

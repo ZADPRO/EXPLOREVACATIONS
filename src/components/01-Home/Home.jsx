@@ -315,23 +315,20 @@ export default function Home() {
     },
   ];
 
-
-
-const getRouteFromTitle = (title) => {
-  switch (title.toLowerCase()) {
-    case "transfers":
-      return "/transfer";
-    case "business":
-      return "/contact";
-    case "tourist":
-      return "/tours";
-    case "car rental":
-      return "/cars";
-    default:
-      return "/";
-  }
-};
-
+  const getRouteFromTitle = (title) => {
+    switch (title.toLowerCase()) {
+      case "transfers":
+        return "/transfer";
+      case "business":
+        return "/contact";
+      case "tourist":
+        return "/tours";
+      case "car rental":
+        return "/cars";
+      default:
+        return "/";
+    }
+  };
 
   const selectedTopic = faqTopics[selectedTopicIndex];
   const services = [
@@ -478,7 +475,7 @@ const getRouteFromTitle = (title) => {
       <Toast ref={toast} />
       <Popup />
 
-      <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
+      <div className="">
         <BannerCarousel moduleId={4} />
       </div>
       <div className="relative">
@@ -587,7 +584,7 @@ const getRouteFromTitle = (title) => {
                   setTabSelected({ ...tabSelected, currentTab: 4 })
                 }
               >
-                <span className="order-2 ">{t("home.Travel")}</span>
+                <span className="order-2 ">{t("header.Transfers")}</span>
                 <span className="relative only:-mx-6">
                   <Car />
                 </span>
@@ -1003,7 +1000,7 @@ const getRouteFromTitle = (title) => {
             {services.map((service, index) => (
               <div
                 key={index}
-                 onClick={() => navigate(getRouteFromTitle(service.title))}
+                onClick={() => navigate(getRouteFromTitle(service.title))}
                 className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
                 data-aos={index % 2 === 0 ? "flip-right" : "flip-left"}
               >
@@ -1017,8 +1014,8 @@ const getRouteFromTitle = (title) => {
                     {service.title}
                   </h3>
                   <p
-                    className="text-gray-700 text-[16px] m-0 text-justify"
-                    style={{ wordSpacing: "-1px" }}
+                    className="text-gray-700 text-[16px] m-0 flex text-center"
+                    style={{ wordSpacing: "normal" }}
                   >
                     {service.description}
                   </p>

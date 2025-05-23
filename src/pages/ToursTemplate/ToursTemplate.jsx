@@ -5,7 +5,7 @@ import {
   LayoutPanelLeft,
   UsersRound,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
 // import { Dropdown } from "primereact/dropdown";
@@ -80,9 +80,12 @@ export default function ToursTemplate() {
   //   lastname: "",
   //   purpose: "",
   // });
+  const [discountedAmount, setDiscountedAmount] = useState(null);
 
   const roleId = localStorage.getItem("roleId");
   const [otherRequirements, setOtherRequirements] = useState("");
+  const [tourcode, setTourCode] = useState("");
+  const [isCouponVerified, setIsCouponVerified] = useState(false);
 
   // const transactionId = location.state?.transactionId;
 
@@ -250,6 +253,45 @@ export default function ToursTemplate() {
 
     fetchData();
   }, []);
+
+  const Tourcode = async () => {
+    try {
+      const listDestinations = await Axios.post(
+        import.meta.env.VITE_API_URL + "/userRoutes/checkoffer",
+        {
+          refPackageId: tour.refPackageId,
+          refCouponCode: tourcode,
+        },
+
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = decrypt(
+        listDestinations.data[1],
+        listDestinations.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+      console.log("Verify Token Running --- ", data);
+      if (data.success) {
+        setIsCouponVerified(true);
+        setDiscountedAmount(data.result);
+        localStorage.setItem("token", "Bearer " + data.token);
+        toast.current?.show({
+          severity: "success",
+          summary: "Success",
+          detail: "Applicable Successfully!",
+          life: 3000,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   if (!tour) {
     return <h2 className="text-center text-red-500">No Tour Data Found!</h2>;
@@ -527,7 +569,7 @@ export default function ToursTemplate() {
       console.error("Error generating or downloading PDF:", error);
     }
   };
-
+  console.log("discountedAmount", discountedAmount);
   // payment
   const checkingApi = async () => {
     //sucesss
@@ -536,10 +578,10 @@ export default function ToursTemplate() {
       const response = await Axios.post(
         import.meta.env.VITE_API_URL + "/paymentRoutes/payment",
         {
-          successRedirectUrl: "https://explorevacations.max-idigital.ch/success",
-          failedRedirectUrl: "http://https://dashboard.max-idigital.ch/failure",
+          successRedirectUrl: "https://explorevacations.max-idigital.ch",
+          failedRedirectUrl: "https://explorevacations.max-idigital.ch",
           purpose: "Payment processing",
-          totalAmount: tour.refTourPrice,
+          totalAmount: discountedAmount,
           userEmail: email,
           firstname: name.split(" ")[0],
         },
@@ -656,7 +698,7 @@ export default function ToursTemplate() {
               <button
                 className="border-1 px-4 py-2 rounded bg-[#009ad7] text-white cursor-pointer"
                 onClick={() => {
-                  if (roleId === "3") {
+                  if (roleId === "3" || roleId === "6") {
                     setIsModelOpen(true);
                   } else {
                     navigate("/login");
@@ -668,7 +710,7 @@ export default function ToursTemplate() {
               <button
                 className="border-1 px-4 py-2 rounded bg-[#009ad7] text-white cursor-pointer"
                 onClick={() => {
-                  if (roleId === "3") {
+                  if (roleId === "3" || roleId === "6") {
                     setModelOpen(true);
                   } else {
                     navigate("/login");
@@ -677,21 +719,22 @@ export default function ToursTemplate() {
               >
                 <span className="font-semibold">Customize Tour</span>
               </button>
-
-              {/* <button
-                className="border-1 px-4 py-2 rounded bg-[#009ad7] text-white cursor-pointer"
-                onClick={() => {
-                  if (roleId === "3") {
-                    setModelOpen(true);
-                  } else {
-                    navigate("/login");
-                  }
-                }}
-                title="Click to download tour agreement."
-              >
-                <span className="font-semibold">Download</span>
-              </button> */}
             </p>
+            <div className="flex items-center gap-3">
+              <input
+                type="text"
+                placeholder="Enter Coupon Code"
+                value={tourcode}
+                onChange={(e) => setTourCode(e.target.value)}
+                className="border rounded px-4 py-2 w-60"
+              />
+              <button
+                className="bg-[#1e811f] text-white px-4 py-2 rounded"
+                onClick={Tourcode}
+              >
+                Apply Coupon
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -925,7 +968,7 @@ export default function ToursTemplate() {
             </FloatLabel>
           </div>
         </div>
-        <div className="w-[100%]">
+        {/* <div className="w-[100%]">
           <h2 className="">Upload Agreement</h2>
           <FileUpload
             name="logo"
@@ -939,6 +982,22 @@ export default function ToursTemplate() {
             }
             multiple
           />
+        </div> */}
+
+        <div className="flex lg:flex-row md:flex-row flex-col items-center mt-5 gap-3">
+          <input
+            type="text"
+            placeholder="Enter Coupon Code"
+            value={tourcode}
+            onChange={(e) => setTourCode(e.target.value)}
+            className="border rounded px-4 py-2 w-60"
+          />
+          <button
+            className="bg-[#1e811f] text-white lg:px-4 lg:py-2 p-1 rounded"
+            onClick={Tourcode}
+          >
+            Apply Coupon
+          </button>
         </div>
 
         <div className="pt-[1rem] bg-red flex justify-center">
@@ -961,7 +1020,9 @@ export default function ToursTemplate() {
                     refChildrenCount: children + "",
                     refInfants: infants + "",
                     refOtherRequirements: otherRequirements,
-                    refAgreement: agreementImage,
+                    // refAgreement: agreementImage,
+                    refApplyOffers: isCouponVerified,
+                    refCouponCode: tourcode,
                   },
                 })
               );
@@ -1204,6 +1265,22 @@ export default function ToursTemplate() {
               multiple
             />
           </div>
+
+             <div className="flex items-center gap-3">
+          <input
+            type="text"
+            placeholder="Enter Coupon Code"
+            value={tourcode}
+            onChange={(e) => setTourCode(e.target.value)}
+            className="border rounded px-4 py-2 w-60"
+          />
+          <button
+            className="bg-[#1e811f] text-white px-4 py-2 rounded"
+            onClick={Tourcode}
+          >
+            Apply Coupon
+          </button>
+        </div>
         </div>
 
         <div className="pt-[1rem] flex justify-center">
@@ -1233,6 +1310,8 @@ export default function ToursTemplate() {
                     refVaccinationCertificate: formDataImages[0],
                     refPassPort: passportImage[0],
                     refOtherRequirements: formData.refOtherRequirements + "",
+                    refApplyOffers: isCouponVerified,
+                    refCouponCode: tourcode,
                   },
                 })
               );

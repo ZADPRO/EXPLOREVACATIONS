@@ -17,7 +17,7 @@
     "axios": "^1.8.4",
     "crypto-js": "^4.2.0",
     "explore-vacations": "file:",
-    "framer-motion": "^12.6.3",
+    "framer-motion": "^12.12.1",
     "html-to-text": "^9.0.5",
     "i18next": "^25.1.2",
     "leaflet": "^1.9.4",

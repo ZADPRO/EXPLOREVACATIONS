@@ -179,7 +179,7 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full mb-4 px-4 py-2 border rounded-4xl"
-                />
+                 />
                 <input
                   type="password"
                   placeholder={t("signin.Password")}

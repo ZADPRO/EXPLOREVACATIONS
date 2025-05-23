@@ -28,6 +28,9 @@ import Pdf from "../Pdf/index2";
 import Success from "../14-Payment/Success";
 import Failure from "../14-Payment/Failure";
 import Caragreement from "../Pdf/Caragreement";
+import Flight from "../15-FlightBooking/Flight";
+import GeneralTandC from "../../pages/General/GeneralTandC";
+import FormDetails from "../../pages/FormDetails/FormDetails";
 
 function Layout() {
   const location = useLocation();
@@ -55,6 +58,7 @@ function Layout() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/flightform" element={<Flight/> } />
         <Route path="/parking" element={<Parking />} />
         <Route path="/parkingDetails" element={<ParkingTemplate />} />
         <Route path="/profile" element={<Profile />} />
@@ -64,6 +68,8 @@ function Layout() {
         <Route path="/pdf" element={<Pdf />} />
         <Route path="/success" element={<Success />} />
         <Route path="/failure" element={<Failure />} />
+        <Route path="/formdetails" element={<FormDetails/>} />
+        <Route path="/generalpdf" element={<GeneralTandC />} />
         <Route path="/caragreement" element={<Caragreement />} />
       </Routes>
       {!shouldHideFooter && <Footer />}

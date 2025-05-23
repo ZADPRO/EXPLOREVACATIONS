@@ -48,7 +48,7 @@ export default function PdfVieTour({
                   <Image
                     src={logo}
                     style={{
-                      width: "50%", // Adjust as needed
+                      width: "80%", // Adjust as needed
                       marginLeft: 15,
                       marginTop: 10,
                     }}
