@@ -14,6 +14,11 @@ import decrypt from "../../helper";
 import { FileUpload } from "primereact/fileupload";
 
 export default function formdetails() {
+  const [UserDetails, setUserDetails] = useState([]);
+  useEffect(() => {
+    fetchUserDetails();
+  }, []);
+
   const [inputs, setInputs] = useState({
     refUserName: "",
     refUserMail: "",
@@ -28,10 +33,10 @@ export default function formdetails() {
   });
   const toast = useRef(null);
   const [licence, setLicence] = useState([]);
-  const [passport, setPassport] = useState([]);
+  const [profileImage, setProfileImage] = useState("");
   const handleSubmit = async () => {
     console.log("Form submitted");
-  
+
     try {
       const response = await axios.post(
         import.meta.env.VITE_API_URL + "/newCarsRoutes/userOfflineCarBooking",
@@ -44,7 +49,7 @@ export default function formdetails() {
           refStreet: inputs.refStreet,
           refArea: inputs.refArea,
           refcountry: inputs.refcountry,
-          refPassport: passport,
+          refPassport: profileImage,
           refLicense: licence,
         },
         {
@@ -64,7 +69,8 @@ export default function formdetails() {
 
       if (data.success) {
         // localStorage.setItem("token", "Bearer " + data.token);
-          console.log(data);
+        fetchUserDetails();
+        console.log(data);
       }
     } catch (error) {
       //   toast.current.show({
@@ -186,6 +192,74 @@ export default function formdetails() {
     console.error("Upload Failed:", error);
   };
 
+  const profile = async (event) => {
+    console.table("event", event);
+    const file = event.files[0]; // Assuming single file upload
+    const formData = new FormData();
+    formData.append("images", file);
+    console.log("formData", formData);
+
+    for (let pair of formData.entries()) {
+      console.log("-------->______________", pair[0] + ":", pair[1]);
+    }
+
+    console.log("formData------------>", formData);
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + "/newCarsRoutes/uploadPassport",
+
+        formData,
+
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+
+      const data = decrypt(
+        response.data[1],
+        response.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+
+      // localStorage.setItem("token", "Bearer " + data.token);
+      console.log("data==============", data);
+
+      if (data.success) {
+        console.log("data+", data);
+        handleUploadSuccessMap(data);
+        toast.current?.show({
+          severity: "success",
+          summary: "Success",
+          detail: "Successfully Added",
+          life: 3000,
+        });
+      } else {
+        console.log("data-", data);
+        handleUploadFailure(data);
+        toast.current?.show({
+          severity: "error",
+          summary: data.error,
+          detail: "Error While Profile",
+          life: 3000,
+        });
+      }
+    } catch (error) {
+      handleUploadFailure(error);
+    }
+  };
+  const handleUploadSuccessMap = (response) => {
+    console.log("Upload Successful:", response);
+    setProfileImage(response.filePath);
+  };
+
+  const handleUploadFailure = (error) => {
+    console.error("Upload Failed:", error);
+
+    // Add your failure handling logic here
+  };
+
   const handleNumberInput = (name, value) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -193,17 +267,43 @@ export default function formdetails() {
     }));
   };
 
+  const fetchUserDetails = async () => {
+    try {
+      const response = await axios.get(
+        import.meta.env.VITE_API_URL + "/newCarsRoutes/listOfflineCarBooking",
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = decrypt(
+        response.data[1],
+        response.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+      console.log("data-------------->fetchUserDetails", data);
+      if (data.success) {
+        localStorage.setItem("token", "Bearer " + data.token);
+
+        setUserDetails(data.result);
+      }
+    } catch (e) {
+      console.log("Error fetching customise:", e);
+    }
+  };
   return (
     <div className="mt-20 px-4 md:px-10 md:p-5">
       <Toast ref={toast} />
-<form
-  onSubmit={(e) => {
-    e.preventDefault();
-    console.log("Submitting..."); // check if this prints
-    handleSubmit();               // check if this runs
-  }}
->
-
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log("Submitting..."); // check if this prints
+          handleSubmit(); // check if this runs
+        }}
+      >
         {/* First Row */}
         <div className="pt-3 flex flex-col md:flex-col lg:flex-row gap-4">
           <div className="w-full">
@@ -332,11 +432,11 @@ export default function formdetails() {
             name="logo"
             customUpload
             className="mt-3"
-            uploadHandler={PassportUploader}
-            accept="application/pdf"
+            uploadHandler={profile}
+            accept="image/*"
             maxFileSize={10000000}
             emptyTemplate={
-              <p className="m-0">Drag and drop your Pdf here to upload.</p>
+              <p className="m-0">Drag and drop your image here to upload.</p>
             }
             multiple
           />

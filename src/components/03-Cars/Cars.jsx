@@ -225,7 +225,8 @@ export default function Cars() {
       <Popup />
 
       {/* Header Background Image - Start  */}
-      <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
+      {/* <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0"> */}
+      <div>
         <BannerCarousel moduleId={2} />
       </div>
 

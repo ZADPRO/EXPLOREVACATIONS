@@ -116,7 +116,7 @@ export default function CarsTemplate() {
           destinationData.tourDetails[0].refFormDetails || [];
 
         const carDetails = destinationData.tourDetails[0];
-
+        console.log("carDetails----------------------", carDetails);
         setCarLIstData(carDetails);
         setExtras(formDetailsArray);
         console.log("formDetailsArray--------------------->", formDetailsArray);
@@ -228,11 +228,11 @@ export default function CarsTemplate() {
           localStorage.setItem("token", "Bearer " + data.token);
           handleAgreementUploadSuccess(data);
           toast.current?.show({
-          severity: "success",
-          summary: "Success",
-          detail: "Added Successfully!",
-          life: 3000,
-        });
+            severity: "success",
+            summary: "Success",
+            detail: "Added Successfully!",
+            life: 3000,
+          });
         } else {
           handleAgreemtUploadFailure(data);
         }
@@ -256,7 +256,7 @@ export default function CarsTemplate() {
   // payment
   const checkingApi = async () => {
     try {
-      console.log("checkingApi running--->",totalPrice);
+      console.log("checkingApi running--->", totalPrice);
       const response = await axios.post(
         import.meta.env.VITE_API_URL + "/paymentRoutes/payment",
         {
@@ -265,7 +265,7 @@ export default function CarsTemplate() {
           purpose: "Payment processing",
           userEmail: email,
           firstname: name.split(" ")[0],
-          totalAmount:totalPrice,
+          totalAmount: totalPrice,
         },
         {
           headers: {
@@ -394,7 +394,7 @@ export default function CarsTemplate() {
   };
 
   async function handlePriceCalculation() {
-    console.log("extrakm.value",extrakm.value)
+    console.log("extrakm.value", extrakm.value);
     const basePayload = {
       refCarsId: refCarsId,
     };
@@ -593,7 +593,12 @@ export default function CarsTemplate() {
             {/* Car Info */}
             <div className="flex flex-col justify-center gap-3 lg:w-1/2 w-full">
               <p className="flex gap-2 items-center font-bold uppercase text-sm">
-                {carListData.refVehicleTypeName}
+                {carListData.refVehicleTypeName} 
+              </p>
+
+              <p className="text-sm">
+                Extra KM Charges:{" "}
+                {carListData.refExtraKMcharges ?? "No Extra KM Charges"}
               </p>
               <p className="flex gap-2 items-center text-sm">
                 <History className="bg-[#009ad7] p-1 w-[20px] h-[20px] rounded-xl text-white" />

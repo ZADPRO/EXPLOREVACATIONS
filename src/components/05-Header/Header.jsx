@@ -160,7 +160,7 @@ export default function Header() {
 
               {showDropdown && (
                 <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-40 z-50">
-                  {["flight", "ship", "hotel", "parking","Flightform"].map((type) => (
+                  {["flight", "ship", "hotel", "parking","Flightform","event"].map((type) => (
                     <div
                       key={type}
                       className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
@@ -290,7 +290,7 @@ export default function Header() {
 
           {showMobileBooking && (
             <div className="ml-4 flex flex-col">
-              {["flight", "ship", "hotel", "parking","Flightform"].map((type) => (
+              {["flight", "ship", "hotel", "parking","Flightform","event"].map((type) => (
                 <div
                   key={type}
                   className="py-2 cursor-pointer text-[#0067b6] text-sm"

@@ -15,6 +15,7 @@
     "hotel": "Hotel",
     "parking": "Parking",
     "Explore": "Explore",
+    "event": "Event",
     "flightbooking": "Flight Form Booking"
   },
   "home": {
@@ -651,5 +652,29 @@
     "p19": "Swiss law shall apply exclusively. The application of the Vienna Convention on Contracts for the International Sale of Goods (UN Sales Law) is excluded.",
     "p19.1": "For all disputes arising from or in connection with the mediation relationship between the customer and Explore Vacations AG, the exclusive place of jurisdiction Kloten (ZH), Switzerland, is agreed, to the extent permitted by law. Mandatory places of jurisdiction for consumers pursuant to Articles 32 and 35 of the Code of Civil Procedure remain unaffected.",
     "p19.2": "Explore Vacations AG Managing Director: Diestale Ambros Oberfeldstrasse 10 CH-8302 Kloten Phone: +41 44 442 30 35 E-mail: info@explorevacations.ch Website: www.explorevacations.ch VAT No.: CHE-205.399.294 Commercial Register No.: CHE-205.399.294 Registration Court: Commercial Registry Office of the Canton of Zurich"
+  },
+  "event": {
+    "line1": "Exclusive Chauffeur Services for the  in Davos World Economic Forum 2026 – January 19 to 23",
+    "line2": "We offer premium transfers to Davos from all major airports frequently used by WEF participants, including:",
+    "line3": "Geneva Airport",
+    "line4": "Zurich Airport",
+    "line5": "Dübendorf Airport",
+    "line6": "Friedrichshafen Airport",
+    "line7": "St. Gallen-Altenrhein Airport",
+    "line8": "Munich Airport",
+    "line9": "The World Economic Forum 2026, taking place from January 19 to 23 in Davos, demands a meticulously planned luxury transportation solution for high-level participants. With heavy traffic, strict security zones, limited access points, and challenging winter conditions, Davos presents significant logistical demand.",
+    "line10": "Our WEF Limousine Service delivers world-class, tailored chauffeur services for CEOs, diplomats, and top-level delegations. Whether you need an exclusive one-way transfer from Zurich Airport to Davos or a full-service chauffeur for multiple days, we ensure you arrive at your destinations on time, in comfort, and without stress.",
+    "line11": "Why Choose Our WEF Limousine Service?",
+    "line12": "Expertise & Excellence – Our highly trained in-house chauffeurs specialize in business and VIP transportation and understand the unique requirements of the WEF.",
+    "line13": "Security & Reliability – Discreet, local drivers with proven experience in high-security and VIP zones.",
+    "line14": "Luxury Fleet – Premium vehicles including Mercedes-Benz S-Class, Maybach, V-Class, and luxury SUVs to meet the highest expectations.",
+    "line15": "Flexible Booking Options – From single airport transfers (e.g., Zurich – Davos) to full-day chauffeur services in Davos.",
+    "line16": "24/7 On-Site Coordination – Dedicated coordination teams available at the airport and on-site in Davos to ensure seamless operations.",
+    "line17": "Our experienced chauffeurs and coordination team are ready to assist you in booking your exclusive limousine for the World Economic Forum. Contact us now to reserve your WEF chauffeur service and enjoy a comfortable, discreet, and efficient arrival in Davos.",
+    "line18": "Premium Concierge Services – Tailored for the WEF",
+    "line19": "Our bespoke Concierge Service for the World Economic Forum ensures your stay in Davos is seamless and efficient. We handle the planning and coordination of your daily agenda, including hotel and meeting room bookings and high-end restaurant reservations.",
+    "line20": "We also provide professional security services, interpreters, and personal assistants to guarantee maximum comfort and discretion. For added flexibility, we arrange helicopter transfers and private jet services to ensure you reach your appointments without delays.",
+    "line21": "With our premium concierge services in Davos, you benefit from a personalized, efficient, and exclusive experience throughout the World Economic Forum 2026.",
+    "line22": "Our bespoke Concierge Service ensures a seamless Davos stay, handling your daily agenda including:"
   }
 }

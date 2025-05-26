@@ -4,6 +4,7 @@ import "./Booking.css";
 import { useTranslation } from "react-i18next";
 import Parking from "../11-Parking/Parking";
 import Flight from "../15-FlightBooking/Flight";
+import Event from "./Event";
 
 export default function Booking() {
   const location = useLocation();
@@ -23,13 +24,15 @@ export default function Booking() {
       : type === "parking"
       ? "bookingparking"
       : type === "Flightform"
-      ? "bookingflightform"
+      ? "eventcontent"
+        : type === "event"
+      ? "event"
       : "";
 
   return (
     <div>
       {/* Background Hero Section (for all types except flightform) */}
-      {type !== "Flightform" && type !== "parking" && (
+      {type !== "Flightform" && type !== "parking" && type !== "event" && (
         <div
           className={`booking-hero ${backgroundClass}`}
           style={{
@@ -53,6 +56,11 @@ export default function Booking() {
       {type === "Flightform" && (
         <div className="flex flex-col md:flex-row justify-center items-center min-h-screen lg:p-6 md:p-6 p-0 bg-gray-100">
           <Flight />
+        </div>
+      )}
+        {type === "event" && (
+        <div className="flex flex-col md:flex-row justify-center items-center min-h-screen lg:p-6 md:p-6 p-0 bg-gray-100">
+          <Event />
         </div>
       )}
 

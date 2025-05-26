@@ -31,6 +31,7 @@ import Caragreement from "../Pdf/Caragreement";
 import Flight from "../15-FlightBooking/Flight";
 import GeneralTandC from "../../pages/General/GeneralTandC";
 import FormDetails from "../../pages/FormDetails/FormDetails";
+import Event from "../07-Booking/Event";
 
 function Layout() {
   const location = useLocation();
@@ -68,6 +69,7 @@ function Layout() {
         <Route path="/pdf" element={<Pdf />} />
         <Route path="/success" element={<Success />} />
         <Route path="/failure" element={<Failure />} />
+        <Route path="/event" element={<Event />} />
         <Route path="/formdetails" element={<FormDetails/>} />
         <Route path="/generalpdf" element={<GeneralTandC />} />
         <Route path="/caragreement" element={<Caragreement />} />
