@@ -4,7 +4,7 @@ import logo from "../../assets/logo/logoPng.png";
 import flagEN from "../../assets/flags/english.png";
 import flagDE from "../../assets/flags/german.png";
 import flagFR from "../../assets/flags/french.png";
-import flagIT from "../../assets/flags/italia.png";
+import flagIT from "../../assets/flags/Italia.png";
 
 import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
