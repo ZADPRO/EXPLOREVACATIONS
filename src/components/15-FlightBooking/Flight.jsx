@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import Popup from "../../pages/Popup/Popup";
 import Axios from "axios";
 import decrypt from "../../helper";
-import "./flight.css";
+import "./Flight.css";
 
 
 import { Toast } from "primereact/toast";
