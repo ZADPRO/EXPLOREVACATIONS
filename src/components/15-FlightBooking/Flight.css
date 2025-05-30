@@ -1,0 +1,88 @@
+/* Solution 1: Reset margins and padding globally */
+* {
+  /* margin: 0;
+  padding: 0; */
+  /* box-sizing: border-box; */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Solution 2: Update your flightPage001 class */
+.flightPage001 {
+  background: url("../../assets/Travel/flight.jpg") no-repeat center;
+  background-size: cover;
+  background-position: center;
+  /* Add these properties */
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 80vh;
+  /* Remove any potential margins from parent */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* Alternative Solution 2: Simpler approach */
+.flightPage001-alternative {
+  background: url("../../assets/Travel/flight.jpg") no-repeat center;
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 80vh;
+  /* Compensate for any container padding */
+  margin-left: calc(-1 * var(--container-padding, 0px));
+  margin-right: calc(-1 * var(--container-padding, 0px));
+}
+
+/* Solution 3: If the parent container has padding/margins */
+.flight-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.flight-container .flightPage001 {
+  background: url("../../assets/Travel/flight.jpg") no-repeat center;
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 80vh;
+  /* Break out of parent container */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Mobile responsive update */
+@media (max-width: 640px) {
+  .flightPage001 {
+    background: url("../../assets/Travel/mflight.jpg") no-repeat center;
+    background-size: cover;
+    background-position: center;
+    /* Ensure mobile also has full width */
+    width: 100vw;
+    height: 80vh;
+  }
+}
+
+/* Solution 4: If you're using a CSS framework like Tailwind */
+.no-container-constraints {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  max-width: none;
+  width: 100vw;
+}
+
+/* Apply this class to your flightPage001 div */

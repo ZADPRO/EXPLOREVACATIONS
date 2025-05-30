@@ -23,6 +23,10 @@ export default function Parking() {
         return flagEN;
       case "de":
         return flagDE;
+      case "fr":
+        return flagFR;
+      case "it":
+        return flagIT;
       default:
         return flagEN;
     }
@@ -170,7 +174,7 @@ export default function Parking() {
   return (
     <div>
       <Popup />
-     <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
+      <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
         <BannerCarousel moduleId={1} />
       </div>
 

@@ -11,6 +11,8 @@ import { Calendar } from "primereact/calendar";
 // import { Dropdown } from "primereact/dropdown";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
+
+import { FaRegCircleLeft } from "react-icons/fa6";
 import { InputNumber } from "primereact/inputnumber";
 import { FloatLabel } from "primereact/floatlabel";
 import { FaDownload } from "react-icons/fa6";
@@ -86,6 +88,11 @@ export default function ToursTemplate() {
   const [otherRequirements, setOtherRequirements] = useState("");
   const [tourcode, setTourCode] = useState("");
   const [isCouponVerified, setIsCouponVerified] = useState(false);
+
+  const handleNavigate = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   // const transactionId = location.state?.transactionId;
 
@@ -631,9 +638,19 @@ export default function ToursTemplate() {
       <div className="tourBannerBg01 relative h-[60vh] flex items-center justify-center text-white text-3xl font-bold">
         {/* Centered Text Here */}
       </div>
+      <div>
+        {" "}
+        <button
+          onClick={() => navigate("/tours")}
+          className="flex items-center w-[250px]  cursor-pointer testingFont font-semibold text-2xl md:text-base lg:text-2xl px-5 mt-3 hover:underline hover:text-[#009ad7] transition-all duration-300"
+        >
+          {/* <FaRegCircleLeft /> */}
+          Back to Tours
+        </button>
+      </div>
 
-      <div className="flex w-full mx-auto">
-        <div className="flex flex-col lg:flex-row gap-6 lg:p-4 md:p-4 ">
+      <div className="flex w-[100%] lg:px-20 mx-auto">
+        <div className="flex flex-col lg:flex-row gap-6 lg:p-4  md:p-4 ">
           {/* Image Section */}
           <div className="lg:w-2/4  pt-3 flex-shrink-0">
             <img
@@ -737,6 +754,29 @@ export default function ToursTemplate() {
             </div>
           </div>
         </div>
+        <div></div>
+      </div>
+
+      <div className=" py-3 sm:px-8 max-w-1xl body mx-auto text-sm sm:text-base text-gray-600 leading-relaxed text-center ">
+        <p>
+          By continuing to use our services, you acknowledge that your personal
+          data will be processed in accordance with{" "}
+          <span
+            onClick={() => handleNavigate("/privacy")}
+            className="text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
+          >
+            Privacy Policy
+          </span>
+          . <br className="hidden sm:block" />
+          By creating an account, you agree to{" "}
+          <span
+            onClick={() => handleNavigate("/generalpdf")}
+            className="text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
+          >
+            Terms of Use
+          </span>
+          .
+        </p>
       </div>
 
       <div className="card flex w-10/12 mx-auto overflow-hidden py-8">
@@ -1266,21 +1306,21 @@ export default function ToursTemplate() {
             />
           </div>
 
-             <div className="flex items-center gap-3">
-          <input
-            type="text"
-            placeholder="Enter Coupon Code"
-            value={tourcode}
-            onChange={(e) => setTourCode(e.target.value)}
-            className="border rounded px-4 py-2 w-60"
-          />
-          <button
-            className="bg-[#1e811f] text-white px-4 py-2 rounded"
-            onClick={Tourcode}
-          >
-            Apply Coupon
-          </button>
-        </div>
+          <div className="flex items-center gap-3">
+            <input
+              type="text"
+              placeholder="Enter Coupon Code"
+              value={tourcode}
+              onChange={(e) => setTourCode(e.target.value)}
+              className="border rounded px-4 py-2 w-60"
+            />
+            <button
+              className="bg-[#1e811f] text-white px-4 py-2 rounded"
+              onClick={Tourcode}
+            >
+              Apply Coupon
+            </button>
+          </div>
         </div>
 
         <div className="pt-[1rem] flex justify-center">

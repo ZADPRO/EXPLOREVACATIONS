@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import image from "../../assets/Signup/sign.jpg";
 import "./Signup.css";
@@ -10,24 +10,26 @@ import decrypt from "../../helper";
 import { useTranslation } from "react-i18next";
 
 export default function Signup() {
+  const getFlag = () => {
+    switch (language) {
+      case "en":
+        return flagEN;
+      case "de":
+        return flagDE;
+      case "fr":
+        return flagFR;
+      case "it":
+        return flagIT;
+      default:
+        return flagEN;
+    }
+  };
 
+  const { t, i18n } = useTranslation("global");
 
-      const getFlag = () => {
-        switch (language) {
-          case "en":
-            return flagEN;
-          case "de":
-            return flagDE;
-          default:
-            return flagEN;
-        }
-      };
-    
-      const { t, i18n } = useTranslation("global");
-    
-      const handleChangeLang = (lang) => {
-        i18n.changeLanguage(lang);
-      };
+  const handleChangeLang = (lang) => {
+    i18n.changeLanguage(lang);
+  };
   // const location = useLocation();
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
@@ -95,11 +97,11 @@ export default function Signup() {
           detail: "Created Account Successfully ",
           life: 3000,
         });
-       showSuccess();
-       setTimeout(() => {
-        navigate("/login");
-      }, 10000);
-      }else{
+        showSuccess();
+        setTimeout(() => {
+          navigate("/login");
+        }, 10000);
+      } else {
         toast.current.show({
           severity: "error",
           summary: "error",
@@ -123,8 +125,7 @@ export default function Signup() {
         backgroundPosition: "center",
       }}
     >
-     
-       <div className="absolute top-4 left-4 z-10 ">
+      <div className="absolute top-4 left-4 z-10 ">
         <button
           onClick={() => navigate("/")}
           className="flex items-center text-[#ffffff] w-[250px] testingFont font-semibold cursor-pointer text-3xl md:text-base lg:text-2xl hover:underline"
@@ -147,7 +148,7 @@ export default function Signup() {
       <Toast ref={toast} />
       <div className="flex flex-col sm:w-[90%] md:w-[70%] lg:w-[35%] xl:w-[30%] justify-end  p-0 lg:p-10 md:p-0  ">
         <p className="flex justify-center text-[#cdd69a] testingFont  text-3xl font-extrabold">
-        {t("signin.Sign Up")}
+          {t("signin.Sign Up")}
         </p>
         <form
           className="form"
@@ -158,7 +159,7 @@ export default function Signup() {
           action=""
         >
           <input
-             placeholder={t("signin.First Name")}
+            placeholder={t("signin.First Name")}
             id="fname"
             name="fname"
             value={fname}
@@ -178,8 +179,7 @@ export default function Signup() {
             required
           />
           <input
-           placeholder={t("signin.Mobile Number")}
-            
+            placeholder={t("signin.Mobile Number")}
             id="mobile"
             name="mobile"
             value={mobile}
@@ -197,7 +197,7 @@ export default function Signup() {
             className="custom-calendar w-full h-[55px] rounded-3xl py-3 px-4 mt-3 bg-[#fff4f4] text-black"
           />
           <input
-             placeholder={t("signin.Email")}
+            placeholder={t("signin.Email")}
             id="email"
             name="email"
             value={email}
@@ -220,10 +220,14 @@ export default function Signup() {
           <span className="forgot-password ">
             {/* <a href="#">Forgot Password ?</a> */}
           </span>
-          <input value="Sign Up" type="submit" className="login-button cursor-pointer" />
+          <input
+            value="Sign Up"
+            type="submit"
+            className="login-button cursor-pointer"
+          />
         </form>
         <p className="flex justify-center text-[#cdd69a] testingFont  text-3xl font-extrabold">
-        {t("signin.Already have an account Just")}
+          {t("signin.Already have an account Just")}
         </p>
         <div className="flex justify-center">
           <button
@@ -233,7 +237,7 @@ export default function Signup() {
             }}
             className="flex justify-center  underline  text-[#cdd69a] testingFont  text-3xl font-extrabold cursor-pointer"
           >
-           {t("signin.Signin")}..!
+            {t("signin.Signin")}..!
           </button>
         </div>
       </div>

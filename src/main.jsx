@@ -53,6 +53,8 @@ import "primereact/resources/themes/lara-light-blue/theme.css";
 
 import global_english from "./lang/en/global.json";
 import global_german from "./lang/de/global.json";
+import global_french from "./lang/fr/global.json";
+import global_italian from "./lang/it/global.json";
 
 import i18next from "i18next";
 import { I18nextProvider } from "react-i18next";
@@ -66,6 +68,12 @@ i18next.init({
     },
     en: {
       global: global_english,
+    },
+    fr: {
+      global: global_french,
+    },
+    it: {
+      global: global_italian,
     },
   },
 });

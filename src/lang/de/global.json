@@ -238,7 +238,14 @@
     "Destination": "Ihr Reiseziel",
     "Requirements": "Ihre Anforderungen",
     "Pickup": "Ihr Abholort",
-    "Email": "Ihre E-Mail"
+    "Email": "Ihre E-Mail",
+    "flightORtour": "Flug oder Tour",
+    "AdultCount": "Erwachsenenanzahl",
+    "ChildrenCount": "Kinderanzahl",
+    "KidsCount": "Anzahl der Kleinkinder",
+    "InfantsCount": "Anzahl der Säuglinge",
+    "Kids (Below 12 yrs)": "Kinder (unter 12 Jahre)",
+    "Babies (Below 2 yrs)": "Babys (unter 2 Jahre)"
   },
   "privacy": {
     "privacy": "DATENSCHUTZERKLÄRUNG",
@@ -648,29 +655,28 @@
     "p19.1": "Für alle Streitigkeiten, die sich aus oder im Zusammenhang mit dem Vermittlungsverhältnis zwischen dem Kunden und der Explore Vacations AG ergeben, wird, soweit gesetzlich zulässig, der ausschließliche Gerichtsstand Kloten (ZH), Schweiz, vereinbart. Obligatorische Gerichtsstände für Verbraucher gemäß den Artikeln 32 und 35 der Schweizerischen Zivilprozessordnung bleiben unberührt.",
     "p19.2": "Explore Vacations AG Geschäftsleitung: Diestale Ambros Oberfeldstrasse 10 CH-8302 Kloten Telefon: +41 44 442 30 35 E-Mail: info@explorevacations.ch Website: www.explorevacations.ch Umsatzsteuer-Nummer: CHE-205.399.294 Handelsregister-Nr.: CHE-205.399.294 Registergericht: Handelsregisteramt des Kantons Zürich"
   },
-  "event":{
-  "line1": "Exklusive Chauffeurdienste für das Weltwirtschaftsforum 2026 in Davos – 19. bis 23. Januar",
-  "line2": "Wir bieten Premium-Transfers nach Davos von allen wichtigen Flughäfen, die häufig von WEF-Teilnehmern genutzt werden, darunter:",
-  "line3": "Flughafen Genf",
-  "line4": "Flughafen Zürich",
-  "line5": "Flughafen Dübendorf",
-  "line6": "Flughafen Friedrichshafen",
-  "line7": "Flughafen St. Gallen-Altenrhein",
-  "line8": "Flughafen München",
-  "line9": "Das Weltwirtschaftsforum 2026, das vom 19. bis 23. Januar in Davos stattfindet, erfordert eine sorgfältig geplante Luxus-Transportlösung für hochrangige Teilnehmer. Mit starkem Verkehr, strengen Sicherheitszonen, begrenzten Zugangspunkten und herausfordernden Winterbedingungen stellt Davos erhebliche logistische Anforderungen.",
-  "line10": "Unser WEF-Limousinenservice bietet erstklassige, maßgeschneiderte Chauffeurdienste für CEOs, Diplomaten und hochrangige Delegationen. Ob Sie einen exklusiven Einwegtransfer vom Flughafen Zürich nach Davos oder einen Chauffeurdienst für mehrere Tage benötigen – wir sorgen dafür, dass Sie pünktlich, komfortabel und stressfrei ankommen.",
-  "line11": "Warum unseren WEF-Limousinenservice wählen?",
-  "line12": "Kompetenz & Exzellenz – Unsere bestens ausgebildeten internen Chauffeure sind auf Geschäfts- und VIP-Transporte spezialisiert und kennen die besonderen Anforderungen des WEF.",
-  "line13": "Sicherheit & Zuverlässigkeit – Diskrete, ortskundige Fahrer mit nachgewiesener Erfahrung in Hochsicherheits- und VIP-Zonen.",
-  "line14": "Luxus-Flotte – Premiumfahrzeuge wie Mercedes-Benz S-Klasse, Maybach, V-Klasse und luxuriöse SUVs, die höchsten Ansprüchen gerecht werden.",
-  "line15": "Flexible Buchungsoptionen – Vom einfachen Flughafentransfer (z. B. Zürich – Davos) bis zum ganztägigen Chauffeurdienst in Davos.",
-  "line16": "24/7 Koordination vor Ort – Dedizierte Koordinationsteams am Flughafen und in Davos sorgen für reibungslose Abläufe.",
-  "line17": "Unsere erfahrenen Chauffeure und Koordinationsteams stehen bereit, um Ihnen bei der Buchung Ihrer exklusiven Limousine für das Weltwirtschaftsforum zu helfen. Kontaktieren Sie uns jetzt, um Ihren WEF-Chauffeurservice zu reservieren und eine komfortable, diskrete und effiziente Ankunft in Davos zu genießen.",
-  "line18": "Premium-Concierge-Services – Maßgeschneidert für das WEF",
-  "line19": "Unser maßgeschneiderter Concierge-Service für das Weltwirtschaftsforum sorgt dafür, dass Ihr Aufenthalt in Davos reibungslos und effizient verläuft. Wir übernehmen die Planung und Koordination Ihrer täglichen Agenda, einschließlich Hotel- und Konferenzraumbuchungen sowie Reservierungen in gehobenen Restaurants.",
-  "line20": "Wir bieten auch professionelle Sicherheitsdienste, Dolmetscher und persönliche Assistenten, um maximalen Komfort und Diskretion zu gewährleisten. Für noch mehr Flexibilität organisieren wir Hubschraubertransfers und Privatjet-Services, damit Sie Ihre Termine ohne Verzögerungen erreichen.",
-  "line21": "Mit unseren Premium-Concierge-Services in Davos profitieren Sie während des gesamten Weltwirtschaftsforums 2026 von einer persönlichen, effizienten und exklusiven Betreuung.",
-  "line22": "Unser maßgeschneiderter Concierge-Service sorgt für einen reibungslosen Aufenthalt in Davos und übernimmt die Planung Ihrer täglichen Agenda, einschließlich:"
-}
-
+  "event": {
+    "line1": "Exklusive Chauffeurdienste für das Weltwirtschaftsforum 2026 in Davos – 19. bis 23. Januar",
+    "line2": "Wir bieten Premium-Transfers nach Davos von allen wichtigen Flughäfen, die häufig von WEF-Teilnehmern genutzt werden, darunter:",
+    "line3": "Flughafen Genf",
+    "line4": "Flughafen Zürich",
+    "line5": "Flughafen Dübendorf",
+    "line6": "Flughafen Friedrichshafen",
+    "line7": "Flughafen St. Gallen-Altenrhein",
+    "line8": "Flughafen München",
+    "line9": "Das Weltwirtschaftsforum 2026, das vom 19. bis 23. Januar in Davos stattfindet, erfordert eine sorgfältig geplante Luxus-Transportlösung für hochrangige Teilnehmer. Mit starkem Verkehr, strengen Sicherheitszonen, begrenzten Zugangspunkten und herausfordernden Winterbedingungen stellt Davos erhebliche logistische Anforderungen.",
+    "line10": "Unser WEF-Limousinenservice bietet erstklassige, maßgeschneiderte Chauffeurdienste für CEOs, Diplomaten und hochrangige Delegationen. Ob Sie einen exklusiven Einwegtransfer vom Flughafen Zürich nach Davos oder einen Chauffeurdienst für mehrere Tage benötigen – wir sorgen dafür, dass Sie pünktlich, komfortabel und stressfrei ankommen.",
+    "line11": "Warum unseren WEF-Limousinenservice wählen?",
+    "line12": "Kompetenz & Exzellenz – Unsere bestens ausgebildeten internen Chauffeure sind auf Geschäfts- und VIP-Transporte spezialisiert und kennen die besonderen Anforderungen des WEF.",
+    "line13": "Sicherheit & Zuverlässigkeit – Diskrete, ortskundige Fahrer mit nachgewiesener Erfahrung in Hochsicherheits- und VIP-Zonen.",
+    "line14": "Luxus-Flotte – Premiumfahrzeuge wie Mercedes-Benz S-Klasse, Maybach, V-Klasse und luxuriöse SUVs, die höchsten Ansprüchen gerecht werden.",
+    "line15": "Flexible Buchungsoptionen – Vom einfachen Flughafentransfer (z. B. Zürich – Davos) bis zum ganztägigen Chauffeurdienst in Davos.",
+    "line16": "24/7 Koordination vor Ort – Dedizierte Koordinationsteams am Flughafen und in Davos sorgen für reibungslose Abläufe.",
+    "line17": "Unsere erfahrenen Chauffeure und Koordinationsteams stehen bereit, um Ihnen bei der Buchung Ihrer exklusiven Limousine für das Weltwirtschaftsforum zu helfen. Kontaktieren Sie uns jetzt, um Ihren WEF-Chauffeurservice zu reservieren und eine komfortable, diskrete und effiziente Ankunft in Davos zu genießen.",
+    "line18": "Premium-Concierge-Services – Maßgeschneidert für das WEF",
+    "line19": "Unser maßgeschneiderter Concierge-Service für das Weltwirtschaftsforum sorgt dafür, dass Ihr Aufenthalt in Davos reibungslos und effizient verläuft. Wir übernehmen die Planung und Koordination Ihrer täglichen Agenda, einschließlich Hotel- und Konferenzraumbuchungen sowie Reservierungen in gehobenen Restaurants.",
+    "line20": "Wir bieten auch professionelle Sicherheitsdienste, Dolmetscher und persönliche Assistenten, um maximalen Komfort und Diskretion zu gewährleisten. Für noch mehr Flexibilität organisieren wir Hubschraubertransfers und Privatjet-Services, damit Sie Ihre Termine ohne Verzögerungen erreichen.",
+    "line21": "Mit unseren Premium-Concierge-Services in Davos profitieren Sie während des gesamten Weltwirtschaftsforums 2026 von einer persönlichen, effizienten und exklusiven Betreuung.",
+    "line22": "Unser maßgeschneiderter Concierge-Service sorgt für einen reibungslosen Aufenthalt in Davos und übernimmt die Planung Ihrer täglichen Agenda, einschließlich:"
+  }
 }

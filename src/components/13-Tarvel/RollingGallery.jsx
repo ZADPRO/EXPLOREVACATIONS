@@ -1,63 +1,105 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   motion,
   useMotionValue,
   useAnimation,
   useTransform,
 } from "framer-motion";
-import img1 from "../../assets/Banner/img1.jpg";
-import img2 from "../../assets/Banner/img2.jpg";
-import img3 from "../../assets/Banner/img3.jpg";
-import img4 from "../../assets/Banner/img4.jpg";
-import img5 from "../../assets/Banner/img5.jpg";
-import img6 from "../../assets/Banner/img6.jpg";
-import img7 from "../../assets/Banner/img7.jpg";
-import img8 from "../../assets/Banner/img8.jpg";
-import img9 from "../../assets/Banner/img9.jpg";
-import img10 from "../../assets/Banner/img10.jpg";
-
-
-
-
-// const IMGS = [
-//   "https://images.unsplash.com/photo-1528181304800-259b08848526?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   "https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   "https://images.unsplash.com/photo-1495103033382-fe343886b671?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   "https://images.unsplash.com/photo-1506781961370-37a89d6b3095?q=80&w=3264&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   "https://images.unsplash.com/photo-1599576838688-8a6c11263108?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   "https://images.unsplash.com/photo-1494094892896-7f14a4433b7a?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   "https://plus.unsplash.com/premium_photo-1664910706524-e783eed89e71?q=80&w=3869&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   "https://images.unsplash.com/photo-1503788311183-fa3bf9c4bc32?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   "https://images.unsplash.com/photo-1585970480901-90d6bb2a48b5?q=80&w=3774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-// ];
+import img1 from "../../assets/Banner/one.jpg";
+import img2 from "../../assets/Banner/two.jpg";
+import img3 from "../../assets/Banner/three.jpg";
+import img4 from "../../assets/Banner/four.jpg";
+import img5 from "../../assets/Banner/five.jpg";
+import img6 from "../../assets/Banner/six.jpg";
+import img7 from "../../assets/Banner/seven.jpg";
+import img8 from "../../assets/Banner/eight.jpg";
+import img9 from "../../assets/Banner/nine.jpg";
+import img10 from "../../assets/Banner/ten.jpg";
+import img11 from "../../assets/Banner/eleven.jpg";
 
 const IMGS = [
-  img1,
-  img2,
-  img3,
-  img4,
-  img5,
-  img6,
-  img7,
-  img8,
-  img9,
-img10,];
-
-
-
+  {
+    url: img1,
+    description:
+      "Renowned for its elegance, pristine slopes, St. Moritz is a destination that defines alpine luxury",
+  },
+  {
+    url: img2,
+    description:
+      "A hub for freestyle skiing and snowboarding enthusiasts and thrilling terrain. ",
+  },
+  {
+    url: img3,
+    description:
+      "Known for hosting the World Economic Forum and a vibrant alpine atmosphere.",
+  },
+  {
+    url: img4,
+    description:
+      "Perfect for families, this resort offers stunning trails, cozy lodges and Lenzerheide via the Urdenbahn cable car. ",
+  },
+  {
+    url: img4,
+    description:
+      "Famous for its glacier skiing and breathtaking vistas, the world's first rotating cable car. ",
+  },
+  {
+    url: img5,
+    description:
+      "A hidden gem offering tranquil slopes and exclusivity, Andermatt is part of the largest ski area in Central Switzerland.",
+  },
+  {
+    url: img6,
+    description:
+      "Reach Täsch for car-free access to Zermatt and impeccable ski terrain.",
+  },
+  {
+    url: img7,
+    description:
+      "Accessed via Lauterbrunnen, these picturesque car-free villages offer unforgettable alpine experiences and world-class skiing. ",
+  },
+  {
+    url: img8,
+    description:
+      "A picturesque village with dramatic views and thrilling ski runs, Grindelwald is a favorite for its charm and accessibility to the Jungfrau region. ",
+  },
+  {
+    url: img9,
+    description: "Synonymous with upscale sophistication and scenic trails. ",
+  },
+  {
+    url: img10,
+    description:
+      "Welcoming and diverse, surrounded by a warm alpine village atmosphere. ",
+  },
+  {
+    url: img11,
+    description:
+      "A unique blend of wellness and skiing, Bad Ragaz is ideal for those seeking relaxation alongside excellent slopes",
+  },
+];
 
 const RollingGallery = ({
-  autoplay = false,
-  pauseOnHover = false,
+  autoplay = true,
+  pauseOnHover = true,
   images = [],
 }) => {
   images = images.length > 0 ? images : IMGS;
 
   const [isScreenSizeSm, setIsScreenSizeSm] = useState(
-    window.innerWidth <= 640
+    typeof window !== "undefined" ? window.innerWidth <= 640 : false
   );
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
+
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const handleResize = () => setIsScreenSizeSm(window.innerWidth <= 640);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -66,7 +108,7 @@ const RollingGallery = ({
   // 3D geometry
   const cylinderWidth = isScreenSizeSm ? 1100 : 1800;
   const faceCount = images.length;
-  const faceWidth = (cylinderWidth / faceCount) * 1.8;
+  const faceWidth = (cylinderWidth / faceCount) * 2.0;
   const radius = cylinderWidth / (2 * Math.PI);
 
   // Framer Motion
@@ -98,8 +140,7 @@ const RollingGallery = ({
     } else {
       controls.stop();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoplay]);
+  }, [autoplay, controls, rotation]);
 
   const handleUpdate = (latest) => {
     if (typeof latest.rotateY === "number") {
@@ -126,6 +167,7 @@ const RollingGallery = ({
       controls.stop();
     }
   };
+
   const handleMouseLeave = () => {
     if (autoplay && pauseOnHover) {
       const currentAngle = rotation.get();
@@ -134,22 +176,7 @@ const RollingGallery = ({
   };
 
   return (
-    <div className="relative h-[50vh] w-full overflow-hidden">
-      <div
-        className="absolute top-0 left-0 h-full w-[20%] z-10"
-        style={{
-          background:
-            "linear-gradient(to left, rgba(135,206,235,0.3) 0%, #87CEEB 100%)",
-        }}
-      />
-      <div
-        className="absolute top-0 right-0 h-full w-[20%] z-10"
-        style={{
-          background:
-            "linear-gradient(to left, rgba(135,206,235,0.3) 0%, #87CEEB 100%)",
-        }}
-      />
-
+    <div className="relative h-[90vh] w-[100%] overflow-hidden bg-gradient-to-b ">
       <div className="flex h-full items-center justify-center [perspective:1000px] [transform-style:preserve-3d]">
         <motion.div
           drag="x"
@@ -168,27 +195,60 @@ const RollingGallery = ({
           }}
           className="flex min-h-[200px] cursor-grab items-center justify-center [transform-style:preserve-3d]"
         >
-          {images.map((url, i) => (
-            <div
-              key={i}
-              className="group absolute flex h-fit items-center justify-center p-[8%] [backface-visibility:hidden] md:p-[6%]"
-              style={{
-                width: `${faceWidth}px`,
-                transform: `rotateY(${
-                  (360 / faceCount) * i
-                }deg) translateZ(${radius}px)`,
-              }}
-            >
-              <img
-                src={url}
-                alt="gallery"
-                className="pointer-events-none h-[180px] w-[400px] rounded-[15px] border-[3px] border-white object-cover
-             transition-transform duration-300 ease-out group-hover:scale-105
-             sm:h-[140px] sm:w-[280px]"
-              />
-            </div>
-          ))}
+          {images.map((item, i) => {
+            const imageUrl = typeof item === "string" ? item : item.url;
+            const description =
+              typeof item === "string" ? `Image ${i + 1}` : item.description;
+
+            return (
+              <div
+                key={i}
+                className="group absolute flex h-fit items-center justify-center p-[8%] [backface-visibility:hidden] md:p-[6%]"
+                style={{
+                  width: `${faceWidth}px`,
+                  transform: `rotateY(${
+                    (360 / faceCount) * i
+                  }deg) translateZ(${radius}px)`,
+                }}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <div
+                  className="relative"
+                  onClick={() => handleNavigation("/tours")}
+                >
+                  <img
+                    src={imageUrl}
+                    alt={description}
+                    className="pointer-events-none lg:h-[200px] h-[100px] lg:w-[full] w-[700px] rounded-[8px]  border-[3px] border-white object-cover
+                     transition-all duration-300 ease-out group-hover:scale-105 group-hover:shadow-2xl"
+                  />
+
+                  {/* Description overlay */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{
+                      opacity: hoveredIndex === i ? 1 : 0,
+                      y: hoveredIndex === i ? 0 : 10,
+                    }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent
+                             rounded-b-[12px] p-3 text-white"
+                  >
+                    <p className="text-sm font-medium leading-tight sm:text-xs">
+                      {description}
+                    </p>
+                  </motion.div>
+                </div>
+              </div>
+            );
+          })}
         </motion.div>
+      </div>
+
+      {/* Instructions */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm">
+        Drag to rotate • Hover for descriptions
       </div>
     </div>
   );

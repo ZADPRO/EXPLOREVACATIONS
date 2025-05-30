@@ -237,7 +237,14 @@
     "Destination": "Your Destination",
     "Requirements": "Your Requirements",
     "Pickup": "Your Pickup Location",
-    "Email": "Your Email"
+    "Email": "Your Email",
+    "flightORtour": "Flight or Tour",
+    "AdultCount": "Adult Count",
+    "ChildrenCount": "Children Count",
+    "KidsCount": "Kids Count",
+    "InfantsCount": "Infants Count",
+    "Kids (Below 12 yrs)": "Kids (Below 12 yrs)",
+    "Babies (Below 2 yrs)": "Babies (Below 2 yrs)"
   },
   "privacy": {
     "privacy": "PRIVACY POLICY",

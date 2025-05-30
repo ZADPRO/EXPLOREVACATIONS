@@ -11,6 +11,8 @@ import { useTranslation } from "react-i18next";
 import Popup from "../../pages/Popup/Popup";
 import Axios from "axios";
 import decrypt from "../../helper";
+import "./flight.css";
+
 
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
@@ -22,6 +24,10 @@ export default function Flight() {
         return flagEN;
       case "de":
         return flagDE;
+      case "fr":
+        return flagFR;
+      case "it":
+        return flagIT;
       default:
         return flagEN;
     }
@@ -33,13 +39,18 @@ export default function Flight() {
     i18n.changeLanguage(lang);
   };
 
-  const [pickup, setPickup] = useState("");
-  const [email, setEmail] = useState("");
-  const [fname, setFname] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [destination, setDestination] = useState("");
-  const [requirements, setRequirements] = useState("");
-  const [dialogVisible, setDialogVisible] = useState(false);
+  const [inputs, setInputs] = useState({
+    refUserName: "",
+    refMoblile: "",
+    refEmail: "",
+    refPickup: "",
+    refDestination: "",
+    flightORtour: "",
+    refAdultCount: "",
+    refKidsCount: "",
+    refInfantsCount: "",
+    refRequirements: "",
+  });
   const toast = useRef(null);
 
   const handleSubmit = async () => {
@@ -47,13 +58,18 @@ export default function Flight() {
       const response = await Axios.post(
         import.meta.env.VITE_API_URL + "/flightRoutes/flightBooking",
         {
-          refUserName: fname,
-          refMoblile: mobile,
-          refEmail: email,
-          refPickup: pickup,
-          refDestination: destination,
-          refRequirements: requirements,
+          refUserName: inputs.refUserName,
+          refMoblile: inputs.refMoblile,
+          refEmail: inputs.refEmail,
+          refPickup: inputs.refPickup,
+          refDestination: inputs.refDestination,
+          flightORtour: inputs.flightORtour,
+          refAdultCount: inputs.refAdultCount,
+          refKidsCount: inputs.refKidsCount,
+          refInfantsCount: inputs.refInfantsCount,
+          refRequirements: inputs.refRequirements,
         },
+
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -75,12 +91,19 @@ export default function Flight() {
           detail: "Submitted Successfully ",
           life: 3000,
         });
-        setFname("");
-        setMobile("");
-        setEmail("");
-        setPickup("");
-        setDestination("");
-        setRequirements("");
+        setInputs({
+          refUserName: "",
+          refMoblile: "",
+          refEmail: "",
+          refPickup: "",
+          refDestination: "",
+          flightORtour: "",
+          refAdultCount: "",
+          refKidsCount: "",
+          refInfantsCount: "",
+          refRequirements: "",
+        });
+
         showSuccess();
       } else {
         toast.current.show({
@@ -94,15 +117,19 @@ export default function Flight() {
       console.error("API Error:", error);
     }
   };
+  const handleInput = (e) => {
+    const { id, value } = e.target;
+    setInputs((prev) => ({ ...prev, [id]: value }));
+  };
 
   return (
-    <div>
+    <div >
       <Popup />
       <Toast ref={toast} />
       <div className="flightPage001">
-        <div className="h-[80vh]"></div>
+        <div className="h-[80vh] "></div>
       </div>
-      <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 bg-gray-100">
+      <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 ">
         {/* Left Side: Contact Info */}
         <div className="flex-1 p-8 bg-white rounded-lg" data-aos="fade-right">
           <h2 className="text-3xl font-bold text-[#326fd1] mb-4">
@@ -147,7 +174,7 @@ export default function Flight() {
           className="flex-1 md:p-1 lg:p-5 p-2 bg-white rounded-lg ml-0 md:ml-10 mt-6 md:mt-0"
           data-aos="fade-right"
         >
-          <h2 className="text-2xl font-bold text-indigo-600 mb-4">
+          <h2 className="text-2xl font-bold text-[#326fd1] mb-4">
             {t("flight.Fill")}
           </h2>
 
@@ -161,23 +188,21 @@ export default function Flight() {
               {/* Name */}
               <div className="p-float-label">
                 <InputText
-                  id="fname"
-                  name="fname"
-                  value={fname}
-                  onChange={(e) => setFname(e.target.value)}
-                  className="w-full p-3 border rounded"
+                  id="refUserName"
+                  value={inputs.refUserName}
                   required
+                  className="w-full p-3 border rounded"
+                  onChange={handleInput}
                 />
                 <label htmlFor="name">{t("contact.Your Name")}</label>
               </div>
               {/* Mobile */}
               <div className="p-float-label">
                 <InputText
-                  id="mobile"
-                  name="mobile"
+                  id="refMoblile"
+                  value={inputs.refMoblile}
+                  onChange={handleInput}
                   type="tel"
-                  value={mobile}
-                  onChange={(e) => setMobile(e.target.value)}
                   className="w-full p-3 border rounded"
                   required
                 />
@@ -187,11 +212,11 @@ export default function Flight() {
               {/* Email */}
               <div className="p-float-label">
                 <InputText
-                  id="email"
-                  name="email"
+                  id="refEmail"
+                  value={inputs.refEmail}
+                  onChange={handleInput}
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
                   className="w-full p-3 border rounded"
                   required
                 />
@@ -201,11 +226,11 @@ export default function Flight() {
               {/* Pickup Address */}
               <div className="p-float-label">
                 <InputTextarea
-                  id="pickup"
+                  id="refPickup"
                   name="pickup"
-                  rows={4}
-                  value={pickup}
-                  onChange={(e) => setPickup(e.target.value)}
+                  rows={2}
+                  value={inputs.refPickup}
+                  onChange={handleInput}
                   className="w-full p-3 border rounded"
                   required
                 />
@@ -214,25 +239,84 @@ export default function Flight() {
               {/* Destination */}
               <div className="p-float-label">
                 <InputTextarea
-                  id="destination"
+                  id="refDestination"
                   name="destination"
                   rows={2}
-                  value={destination}
-                  onChange={(e) => setDestination(e.target.value)}
+                  value={inputs.refDestination}
+                  onChange={handleInput}
                   className="w-full p-3 border rounded"
                   required
                 />
                 <label htmlFor="message">{t("flight.Destination")}</label>
               </div>
 
+              {/* flightORtour */}
+
+              <div className="p-float-label">
+                <select
+                  id="flightORtour"
+                  name="flightORtour"
+                  value={inputs.flightORtour}
+                  required
+                  className="w-full p-3 border rounded"
+                  onChange={handleInput}
+                >
+                  <option value="" disabled>
+                    {t("flight.flightORtour")} {/* placeholder */}
+                  </option>
+                  <option value="Flight">{t("header.flight")}</option>
+                  <option value="Tour">{t("header.tours")}</option>
+                </select>
+                {/* <label htmlFor="flightORtour">{t("flight.flightORtour")}</label> */}
+              </div>
+
+              {/* refAdultCount */}
+              <div className="p-float-label">
+                <InputText
+                  id="refAdultCount"
+                  name="refAdultCount"
+                  value={inputs.refAdultCount}
+                  required
+                  className="w-full p-3 border rounded"
+                  onChange={handleInput}
+                />
+                <label htmlFor="name">{t("flight.AdultCount")}</label>
+              </div>
+              {/* refKidsCount */}
+
+              <div>{t("flight.Kids (Below 12 yrs)")} </div>
+              <div className="p-float-label">
+                <InputText
+                  id="refKidsCount"
+                  name="refKidsCount"
+                  value={inputs.refKidsCount}
+                  required
+                  className="w-full p-3 border rounded"
+                  onChange={handleInput}
+                />
+                <label htmlFor="name">{t("flight.KidsCount")}</label>
+              </div>
+              {/* refInfantsCount */}
+              <div>{t("flight.Babies (Below 2 yrs)")}</div>
+              <div className="p-float-label">
+                <InputText
+                  id="refInfantsCount"
+                  value={inputs.refInfantsCount}
+                  required
+                  className="w-full p-3 border rounded"
+                  onChange={handleInput}
+                />
+                <label htmlFor="name">{t("flight.InfantsCount")}</label>
+              </div>
+
               {/* User Message */}
               <div className="p-float-label">
                 <InputTextarea
-                  id="requirements"
-                  name="requirements"
-                  rows={3}
-                  value={requirements}
-                  onChange={(e) => setRequirements(e.target.value)}
+                  id="refRequirements"
+                  name="refRequirements"
+                  rows={2}
+                  value={inputs.refRequirements}
+                  onChange={handleInput}
                   className="w-full p-3 border rounded"
                   required
                 />
@@ -251,7 +335,6 @@ export default function Flight() {
 
         {/* Success Dialog */}
         <Dialog
-          visible={dialogVisible}
           onHide={() => setDialogVisible(false)}
           header="Success"
           className="p-dialog-custom"

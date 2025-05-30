@@ -13,16 +13,21 @@ export default function Footer() {
     window.scrollTo(0, 0);
   };
 
-  const getFlag = () => {
-    switch (language) {
-      case "en":
-        return flagEN;
-      case "de":
-        return flagDE;
-      default:
-        return flagEN;
-    }
-  };
+   const getFlag = () => {
+     switch (language) {
+       case "en":
+         return flagEN;
+       case "de":
+         return flagDE;
+       case "fr":
+         return flagFR;
+       case "it":
+         return flagIT;
+       default:
+         return flagEN;
+     }
+   };
+ 
 
   const { t, i18n } = useTranslation("global");
 

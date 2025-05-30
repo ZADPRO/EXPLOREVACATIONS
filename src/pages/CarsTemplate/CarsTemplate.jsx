@@ -452,9 +452,9 @@ export default function CarsTemplate() {
     <div>
       <Toast ref={toast} />
 
-      <div className="relative mt-10 min-h-[60vh] bg-[#dbeefa] flex items-center justify-center text-2xl sm:text-3xl font-bold ">
+      <div className="relative mt-10 min-h-[60vh] w-[100%] bg-[#dbeefa] flex lg:flex-row md:flex-row flex-col items-center justify-center text-2xl sm:text-3xl font-bold ">
         {loading ? (
-          <div className="h-[10vh] w-full flex justify-center items-center">
+          <div className="h-[10vh] w-[100%] flex justify-center items-center">
             <i
               className="pi pi-spin pi-spinner"
               style={{ fontSize: "2rem" }}
@@ -462,8 +462,8 @@ export default function CarsTemplate() {
           </div>
         ) : (
           <>
-            <div className="w-[100%] sm:w-[40%] md:w-[30%] lg:w-[20%] mx-auto mb-4">
-              <div className="flex flex-col   justify-center gap-2 sm:gap-4 bg-gray-100 p-2 rounded-xl">
+            <div className="w-[50%] md:w-[30%] lg:w-[20%]  mb-4">
+              <div className="flex lg:flex-col flex-row   justify-center gap-2 sm:gap-4 bg-gray-100 p-2 rounded-xl">
                 {["Standard", "Premium"].map((tab) => (
                   <button
                     key={tab}
@@ -480,7 +480,7 @@ export default function CarsTemplate() {
               </div>
             </div>
 
-            <div className="w-full px-2 sm:px-4">
+            <div className="w-[85%] px-2 md:px-16 lg:px-24">
               <div className="max-w-7xl mx-auto">
                 {listCarData.length > 0 ? (
                   <Carousel
@@ -593,7 +593,7 @@ export default function CarsTemplate() {
             {/* Car Info */}
             <div className="flex flex-col justify-center gap-3 lg:w-1/2 w-full">
               <p className="flex gap-2 items-center font-bold uppercase text-sm">
-                {carListData.refVehicleTypeName} 
+                {carListData.refVehicleTypeName}
               </p>
 
               <p className="text-sm">

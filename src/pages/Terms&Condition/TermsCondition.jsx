@@ -13,6 +13,10 @@ export default function TermsCondition() {
         return flagEN;
       case "de":
         return flagDE;
+      case "fr":
+        return flagFR;
+      case "it":
+        return flagIT;
       default:
         return flagEN;
     }

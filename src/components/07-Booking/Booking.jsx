@@ -25,7 +25,7 @@ export default function Booking() {
       ? "bookingparking"
       : type === "Flightform"
       ? "eventcontent"
-        : type === "event"
+      : type === "event"
       ? "event"
       : "";
 
@@ -54,11 +54,11 @@ export default function Booking() {
 
       {/* Flight Booking Form (custom React component) */}
       {type === "Flightform" && (
-        <div className="flex flex-col md:flex-row justify-center items-center min-h-screen lg:p-6 md:p-6 p-0 bg-gray-100">
+        <div className="flex flex-col md:flex-row justify-center items-center min-h-screen lg:p-6 md:p-6 p-0 ">
           <Flight />
         </div>
       )}
-        {type === "event" && (
+      {type === "event" && (
         <div className="flex flex-col md:flex-row justify-center items-center min-h-screen lg:p-6 md:p-6 p-0 bg-gray-100">
           <Event />
         </div>
@@ -66,7 +66,7 @@ export default function Booking() {
 
       {/* Embedded Flight Iframe */}
       {type === "flight" && (
-        <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 bg-gray-100">
+        <div style={{margin:0}} className="flex flex-col md:flex-row justify-center items-center min-h-[100vh] bg-[#e6e6e6] m-0  ">
           <iframe
             src="https://partner-app.tbe2.io/index.html#/region?ngn=flight&pid=A-29505-0&cntry=&rgn=&cty=&giata=&iff=&ddate=2025-04-10&rdate=2025-04-24&dur=&attr=&trvlr=2&room=&meal=&prtr=&dep=&cat=0&rtng=0&rtnga=0&rcmnd=0&htl=&htln="
             width="100%"
@@ -81,7 +81,7 @@ export default function Booking() {
 
       {/* Ship Iframe */}
       {type === "ship" && (
-        <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 bg-gray-100">
+      <div className="flex flex-col md:flex-row justify-center items-center min-h-[100vh] bg-[#e6e6e6]  ">
           <iframe
             src="https://kreuzfahrten.travelsystem.de/de/suche?subid=A-29505-0"
             width="100%"
@@ -96,7 +96,7 @@ export default function Booking() {
 
       {/* Hotel Iframe */}
       {type === "hotel" && (
-        <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 bg-gray-100 bg-no-repeat bg-cover bg-center">
+        <div className="flex flex-col md:flex-row justify-center items-center min-h-[100vh] bg-[#e6e6e6]  ">
           <iframe
             src="https://www.interhome.de/?partnerextra=A-29505-0&partnerid=DE0599010&iframe=true"
             width="100%"

@@ -91,6 +91,7 @@
 
 .flightPage001 {
   background: url("../../assets//Travel/flight.jpg") no-repeat center;
+
   background-size: cover;
   background-position: center;
 }

@@ -3,6 +3,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/logoPng.png";
 import flagEN from "../../assets/flags/english.png";
 import flagDE from "../../assets/flags/german.png";
+import flagFR from "../../assets/flags/french.png";
+import flagIT from "../../assets/flags/italia.png";
+
 import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
 import { FaChevronDown, FaUserCircle } from "react-icons/fa";
@@ -16,14 +19,20 @@ export default function Header() {
 
   const [scrolled, setScrolled] = useState(false);
   const [visibleRight, setVisibleRight] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
+
+  // Dropdown states
+  const [showBookingDropdown, setShowBookingDropdown] = useState(false);
+  const [showTransferDropdown, setShowTransferDropdown] = useState(false);
   const [showMobileBooking, setShowMobileBooking] = useState(false);
+  const [showMobileTransfer, setShowMobileTransfer] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const [language, setLanguage] = useState("en");
 
+  // Refs for detecting outside clicks
   const bookingDropdownRef = useRef();
+  const transferDropdownRef = useRef();
   const userDropdownRef = useRef();
   const langDropdownRef = useRef();
 
@@ -47,7 +56,13 @@ export default function Header() {
         bookingDropdownRef.current &&
         !bookingDropdownRef.current.contains(event.target)
       ) {
-        setShowDropdown(false);
+        setShowBookingDropdown(false);
+      }
+      if (
+        transferDropdownRef.current &&
+        !transferDropdownRef.current.contains(event.target)
+      ) {
+        setShowTransferDropdown(false);
       }
       if (
         userDropdownRef.current &&
@@ -69,7 +84,8 @@ export default function Header() {
   const handleNavigation = (path) => {
     navigate(path);
     setVisibleRight(false);
-    setShowDropdown(false);
+    setShowBookingDropdown(false);
+    setShowTransferDropdown(false);
     setShowUserDropdown(false);
     window.scrollTo(0, 0);
   };
@@ -88,7 +104,6 @@ export default function Header() {
     setLanguage(lang);
     setShowLangDropdown(false);
     handleChangeLang(lang);
-    // Optionally: Save to localStorage and/or trigger i18n
     localStorage.setItem("language", lang);
   };
 
@@ -98,6 +113,10 @@ export default function Header() {
         return flagEN;
       case "de":
         return flagDE;
+      case "fr":
+        return flagFR;
+      case "it":
+        return flagIT;
       default:
         return flagEN;
     }
@@ -131,12 +150,13 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex flex-1 gap-10">
+            {/* Normal Links */}
             {[
               { path: "/", label: t("header.home") },
               { path: "/tours", label: t("header.tours") },
               { path: "/cars", label: t("header.Cars") },
-              { path: "/transfer", label: t("header.Transfers") },
-            { path: "/contact", label: t("header.Contact") },
+              // We remove transfer here because we'll add dropdown below
+              { path: "/contact", label: t("header.Contact") },
             ].map(({ path, label }) => (
               <div
                 key={path}
@@ -152,22 +172,57 @@ export default function Header() {
             <div className="relative" ref={bookingDropdownRef}>
               <div
                 className="text-[16px] cursor-pointer font-bold underline-animation flex items-center"
-                onClick={() => setShowDropdown((prev) => !prev)}
+                onClick={() => setShowBookingDropdown((prev) => !prev)}
                 style={{ color: isActive("/booking") }}
               >
                 {t("header.Booking")} <FaChevronDown className="ml-1 text-sm" />
               </div>
 
-              {showDropdown && (
+              {showBookingDropdown && (
                 <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-40 z-50">
-                  {["flight", "ship", "hotel", "parking","Flightform","event"].map((type) => (
+                  {["flight", "ship", "hotel", "parking", "Flightform"].map(
+                    (type) => (
+                      <div
+                        key={type}
+                        className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
+                        onClick={() =>
+                          handleNavigation(`/booking?type=${type}`)
+                        }
+                      >
+                        {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
+                        {t("header.Booking")}
+                      </div>
+                    )
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Transfer Dropdown */}
+            <div className="relative" ref={transferDropdownRef}>
+              <div
+                className="text-[16px] cursor-pointer font-bold underline-animation flex items-center"
+                onClick={() => setShowTransferDropdown((prev) => !prev)}
+                style={{ color: isActive("/transfer") }}
+              >
+                {t("header.Transfers")}{" "}
+                <FaChevronDown className="ml-1 text-sm " />
+              </div>
+
+              {showTransferDropdown && (
+                <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-40 z-50">
+                  {/* Add your transfer options here */}
+                  {["Transfer", "event"].map((type) => (
                     <div
                       key={type}
                       className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
-                      onClick={() => handleNavigation(`/booking?type=${type}`)}
+                      onClick={() =>
+                        type === "event"
+                          ? handleNavigation("/event")
+                          : handleNavigation(`/transfer?type=${type}`)
+                      }
                     >
                       {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
-                      {t("header.Booking")}
                     </div>
                   ))}
                 </div>
@@ -199,135 +254,180 @@ export default function Header() {
                   <img src={flagDE} alt="German" className="w-5 h-5" />
                   German
                 </div>
+                <div
+                  className="flex items-center px-4 py-2 hover:bg-white cursor-pointer gap-2"
+                  onClick={() => handleLanguageChange("fr")}
+                >
+                  <img src={flagFR} alt="French" className="w-5 h-5" />
+                  French
+                </div>
+                <div
+                  className="flex items-center px-4 py-2 hover:bg-white cursor-pointer gap-2"
+                  onClick={() => handleLanguageChange("it")}
+                >
+                  <img src={flagIT} alt="Italian" className="w-5 h-5" />
+                  Italian
+                </div>
               </div>
             )}
           </div>
 
-          {/* User Profile */}
-          {!isLoggedIn ? (
-            <div
-              className="text-[16px] cursor-pointer font-bold underline-animation"
-              style={{ color: isActive("/login") }}
-              onClick={() => handleNavigation("/login")}
-            >
-              Login
-            </div>
-          ) : (
-            <div className="relative" ref={userDropdownRef}>
-              <div
-                className="cursor-pointer text-[20px]"
-                title="User Profile"
-                onClick={() => setShowUserDropdown((prev) => !prev)}
-              >
-                <FaUserCircle className="text-[#0067b6]" />
+          {/* User Dropdown */}
+          <div className="relative" ref={userDropdownRef}>
+            {isLoggedIn ? (
+              <>
+                <FaUserCircle
+                  className="text-3xl cursor-pointer text-[#0067b6]"
+                  onClick={() => setShowUserDropdown((prev) => !prev)}
+                />
+                {showUserDropdown && (
+                  <div className="absolute right-0 mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-40 z-50">
+                    <div
+                      className="px-4 py-2 hover:bg-white cursor-pointer"
+                      onClick={() => handleNavigation("/profile")}
+                    >
+                      {t("header.Profile")}
+                    </div>
+                    <div
+                      className="px-4 py-2 hover:bg-white cursor-pointer"
+                      onClick={handleLogout}
+                    >
+                      {t("header.Logout")}
+                    </div>
+                  </div>
+                )}
+              </>
+            ) : (
+              <Button
+                label={t("header.Login")}
+                className="p-button-text"
+                onClick={() => navigate("/login")}
+              />
+            )}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <Button
+            icon="pi pi-bars"
+            className="lg:hidden"
+            onClick={() => setVisibleRight(true)}
+            aria-label="Menu"
+          />
+
+          {/* Mobile Sidebar */}
+          <Sidebar
+            visible={visibleRight}
+            position="right"
+            onHide={() => setVisibleRight(false)}
+          >
+            {/* Mobile Menu Items */}
+            <div className="flex flex-col mx-5  gap-4 mt-4">
+              {[
+                { path: "/", label: t("header.home") },
+                { path: "/tours", label: t("header.tours") },
+                { path: "/cars", label: t("header.Cars") },
+                { path: "/contact", label: t("header.Contact") },
+              ].map(({ path, label }) => (
+                <div
+                  key={path}
+                  className="text-lg cursor-pointer font-bold"
+                  onClick={() => handleNavigation(path)}
+                >
+                  {label}
+                </div>
+              ))}
+
+              {/* Mobile Booking Dropdown */}
+              <div>
+                <div
+                  className="text-lg cursor-pointer font-bold flex items-center"
+                  onClick={() => setShowMobileBooking((prev) => !prev)}
+                >
+                  {t("header.Booking")} <FaChevronDown className="ml-2" />
+                </div>
+                {showMobileBooking && (
+                  <div className="ml-4 mt-2 flex flex-col gap-2">
+                    {["flight", "ship", "hotel", "parking", "Flightform"].map(
+                      (type) => (
+                        <div
+                          key={type}
+                          className="text-md cursor-pointer text-[#0067b6]"
+                          onClick={() =>
+                            handleNavigation(`/booking?type=${type}`)
+                          }
+                        >
+                          {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
+                          {t("header.Booking")}
+                        </div>
+                      )
+                    )}
+                  </div>
+                )}
               </div>
 
-              {showUserDropdown && (
-                <div className="absolute right-0 top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-32 z-50">
+              {/* Mobile Transfers Dropdown */}
+              <div>
+                <div
+                  className="text-lg cursor-pointer font-bold flex items-center"
+                  onClick={() => setShowMobileTransfer((prev) => !prev)}
+                >
+                  {t("header.Transfers")} <FaChevronDown className="ml-2" />
+                </div>
+                {showMobileTransfer && (
+                  <div className="ml-4 mt-2 flex flex-col gap-2">
+                    {["airport", "event"].map((type) => (
+                      <div
+                        key={type}
+                        className="text-md cursor-pointer text-[#0067b6]"
+                        onClick={() =>
+                          handleNavigation(`/transfer?type=${type}`)
+                        }
+                      >
+                        {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
+                       
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* User Login or Profile */}
+              {isLoggedIn ? (
+                <>
                   <div
-                    className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
-                    onClick={() => handleNavigation("/profile")}
+                    className="text-lg cursor-pointer font-bold"
+                    onClick={() => {
+                      setVisibleRight(false);
+                      navigate("/profile");
+                    }}
                   >
                     {t("header.Profile")}
                   </div>
                   <div
-                    className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
-                    onClick={handleLogout}
+                    className="text-lg cursor-pointer font-bold"
+                    onClick={() => {
+                      handleLogout();
+                      setVisibleRight(false);
+                    }}
                   >
                     {t("header.Logout")}
                   </div>
+                </>
+              ) : (
+                <div
+                  className="text-lg cursor-pointer font-bold"
+                  onClick={() => {
+                    navigate("/login");
+                    setVisibleRight(false);
+                  }}
+                >
+                  {t("header.Login")}
                 </div>
               )}
             </div>
-          )}
-
-          {/* Mobile Menu */}
-          <div className="lg:hidden">
-            <Button
-              icon="pi pi-bars"
-              onClick={() => setVisibleRight(true)}
-              className="p-button-text"
-            />
-          </div>
+          </Sidebar>
         </div>
       </div>
-
-      {/* Sidebar for mobile */}
-      <Sidebar
-        visible={visibleRight}
-        position="right"
-        onHide={() => setVisibleRight(false)}
-      >
-        <div className="flex flex-col">
-          {[
-            { path: "/", label: t("header.home") },
-            { path: "/tours", label: t("header.tours") },
-            { path: "/cars", label: t("header.Cars") },
-            { path: "/transfer", label: t("header.Transfers") },
-            { path: "/contact", label: t("header.Contact") },
-          ].map((item) => (
-            <div
-              key={item.path}
-              className="text-[16px] cursor-pointer py-3 font-semibold"
-              onClick={() => handleNavigation(item.path)}
-            >
-              {item.label}
-            </div>
-          ))}
-
-          {/* Mobile Booking Dropdown */}
-          <div
-            className="text-[16px] cursor-pointer py-3 font-semibold flex items-center justify-between"
-            onClick={() => setShowMobileBooking(!showMobileBooking)}
-          >
-            {t("header.Booking")}
-            <FaChevronDown
-              className={`ml-2 transform ${
-                showMobileBooking ? "rotate-180" : ""
-              }`}
-            />
-          </div>
-
-          {showMobileBooking && (
-            <div className="ml-4 flex flex-col">
-              {["flight", "ship", "hotel", "parking","Flightform","event"].map((type) => (
-                <div
-                  key={type}
-                  className="py-2 cursor-pointer text-[#0067b6] text-sm"
-                  onClick={() => handleNavigation(`/booking?type=${type}`)}
-                >
-                  {t(`header.${type}`)} {t("header.Booking")}
-                </div>
-              ))}
-            </div>
-          )}
-
-          {!isLoggedIn ? (
-            <div
-              className="text-[16px] cursor-pointer font-bold mt-3 underline-animation"
-              style={{ color: isActive("/login") }}
-              onClick={() => handleNavigation("/login")}
-            >
-              {t("header.Login")}
-            </div>
-          ) : (
-            <div className="flex flex-col gap-2 mt-3 text-[#0067b6]">
-              <div
-                className="text-[16px] cursor-pointer font-bold"
-                onClick={() => handleNavigation("/profile")}
-              >
-                {t("header.Profile")}
-              </div>
-              <div
-                className="text-[16px] cursor-pointer font-bold"
-                onClick={handleLogout}
-              >
-                {t("header.Logout")}
-              </div>
-            </div>
-          )}
-        </div>
-      </Sidebar>
     </div>
   );
 }

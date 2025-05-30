@@ -32,6 +32,9 @@ export default function Travel() {
       <div>
         <RollingGallery autoplay pauseOnHover />
       </div>
+
+
+      
     </div>
   );
 }
