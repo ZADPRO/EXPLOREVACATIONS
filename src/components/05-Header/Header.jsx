@@ -133,7 +133,7 @@ export default function Header() {
       className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-[#eef0eec2]"
-          : "bg-transparent md:bg-white/30 md:backdrop-blur-lg"
+          : "bg-[#fff] md:bg-white/20 md:backdrop-blur-lg"
       }`}
     >
       <div className="w-full flex justify-center items-center h-[70px] py-10 px-6 md:px-12 lg:px-40">
@@ -179,7 +179,7 @@ export default function Header() {
               </div>
 
               {showBookingDropdown && (
-                <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-40 z-50">
+                <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-50 z-50">
                   {["flight", "ship", "hotel", "parking", "Flightform"].map(
                     (type) => (
                       <div
@@ -210,7 +210,7 @@ export default function Header() {
               </div>
 
               {showTransferDropdown && (
-                <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-40 z-50">
+                <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-50 z-50">
                   {/* Add your transfer options here */}
                   {["Transfer", "event"].map((type) => (
                     <div

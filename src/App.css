@@ -1,6 +1,17 @@
-.p-fileupload-file-badge.p-badge.p-component.p-badge-warning{
-    display:none !important;
+.p-fileupload-file-badge.p-badge.p-component.p-badge-warning {
+  display: none !important;
 }
-.p-button{
-background-color: #014986;
+.p-button {
+  background-color: #014986;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.carousel .slide {
+  margin: 0 !important;
+  padding: 0 !important;
 }

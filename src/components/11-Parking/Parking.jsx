@@ -174,14 +174,14 @@ export default function Parking() {
   return (
     <div>
       <Popup />
-      <div className="p-4 md:p-20 lg:p-8 mt-10 md:mt-0 lg:mt-0">
+      <div className="mt-20">
         <BannerCarousel moduleId={1} />
       </div>
 
       <div
         id="tab-panel-1ai"
         role="tabpanel"
-        className="card w-10/12 mx-auto bg-white p-4 shadow-md rounded-lg mt-[-30px]"
+        className="card w-10/12 mx-auto bg-white p-4 shadow-md rounded-lg"
         aria-labelledby="tab-label-1ai"
         tabIndex="-1"
       >

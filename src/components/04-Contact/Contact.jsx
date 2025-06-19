@@ -10,7 +10,6 @@ import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import { useTranslation } from "react-i18next";
 import Popup from "../../pages/Popup/Popup";
 export default function Contact() {
-
   const getFlag = () => {
     switch (language) {
       case "en":
@@ -61,30 +60,34 @@ export default function Contact() {
 
   return (
     <div>
-      <Popup/>
+      <Popup />
       <div className="contactPage001">
         <div className="h-[80vh]"></div>
       </div>
       <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 bg-gray-100">
         {/* Left Side: Contact Info */}
         <div className="flex-1 p-8 bg-white rounded-lg" data-aos="fade-right">
-          <h2 className="text-3xl font-bold text-indigo-600 mb-4">
-          {t("contact.Get In Touch")}
+          <h2 className="testingFont text-3xl text-[#016093] mb-4">
+            {t("contact.quotes")}
+          </h2>
+          <h2 className="text-3xl font-bold text-[#016093] mb-4">
+            {t("contact.Get In Touch")}
           </h2>
           <p className="text-gray-600">
-          {t("contact.We’d love to hear from you! Contact us today.")}    </p>
+            {t("contact.We’d love to hear from you! Contact us today.")}{" "}
+          </p>
           <div className="mt-6 space-y-3">
             <p className="text-lg">
               📧 <span className="font-semibold">{t("contact.Email")}:</span>{" "}
               info@explorevacations.com
             </p>
             <p className="text-lg">
-              📞 <span className="font-semibold">{t("contact.Phone")}:</span> (+ 41) 44 442 30
-              35
+              📞 <span className="font-semibold">{t("contact.Phone")}:</span> (+
+              41) 44 442 30 35
             </p>
             <p className="text-lg">
-              📍 <span className="font-semibold">{t("contact.Address")}:</span> Oberfeldstrasse
-              10, 8302 Kloten, Switzerland
+              📍 <span className="font-semibold">{t("contact.Address")}:</span>{" "}
+              Oberfeldstrasse 10, 8302 Kloten, Switzerland
             </p>
           </div>
         </div>
@@ -112,7 +115,7 @@ export default function Contact() {
           data-aos="fade-right"
         >
           <h2 className="text-2xl font-bold text-indigo-600 mb-4">
-          {t("contact.Send a Message")}
+            {t("contact.Send a Message")}
           </h2>
 
           <div className="space-y-6">
@@ -187,7 +190,7 @@ export default function Contact() {
               </select>
 
               <p className="p-2 text-[#204887] italic font-semibold">
-              {t("contact.Selected Category")}: <strong>{messageType}</strong>
+                {t("contact.Selected Category")}: <strong>{messageType}</strong>
               </p>
             </div>
 
@@ -223,7 +226,7 @@ export default function Contact() {
           className="p-dialog-custom"
         >
           <p className="text-lg text-green-600 font-semibold">
-          {t("contact.Form submitted successfully!")}
+            {t("contact.Form submitted successfully!")}
           </p>
         </Dialog>
       </div>

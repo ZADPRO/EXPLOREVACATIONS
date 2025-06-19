@@ -112,17 +112,21 @@ export default function Home() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   });
+
   const [Banner, setBanner] = useState([]);
   const [tourDestination, setTourDestination] = useState(null);
   const [tourFromDate, setTourFromDate] = useState(null);
   const [tourToDate, setTourToDate] = useState(null);
   const [tourGuest, setTourGuest] = useState("");
+  const [carGuest, setCarGuest] = useState("");
   const [vechilecount, setvechilecount] = useState("");
   const [carPickupLocation, setCarPickupLocation] = useState(null);
   const [carPickupDateTime, setCarPickupDateTime] = useState(null);
   const [carDropLocation, setCarDropLocation] = useState(null);
   const [carDropDateTime, setCarDropDateTime] = useState(null);
   const [destinationData, setDestinationData] = useState([]);
+  const [carData, setCarData] = useState([]);
+  const [carTypeData, setCarTypeData] = useState([]);
   const [cabPickupLocation, setCabPickupLocation] = useState(null);
   const [cabPickupDateTime, setCabPickupDateTime] = useState(null);
   const [cabDropLocation, setCabDropLocation] = useState(null);
@@ -132,16 +136,18 @@ export default function Home() {
     setSelectedTopicIndex(parseInt(e.target.value));
     setOpenIndex(-1); // Reset open FAQ on topic change
   };
+  const [carName, setCarName] = useState(null);
+  const [carType, setCarType] = useState(null);
 
   const toast = useRef(null);
 
-  const cities = [
-    { name: "New York", code: "NY" },
-    { name: "Rome", code: "RM" },
-    { name: "London", code: "LDN" },
-    { name: "Istanbul", code: "IST" },
-    { name: "Paris", code: "PRS" },
-  ];
+  // const cities = [
+  //   { name: "New York", code: "NY" },
+  //   { name: "Rome", code: "RM" },
+  //   { name: "London", code: "LDN" },
+  //   { name: "Istanbul", code: "IST" },
+  //   { name: "Paris", code: "PRS" },
+  // ];
 
   const navigate = useNavigate();
 
@@ -408,12 +414,17 @@ export default function Home() {
         // localStorage.setItem("token", "Bearer " + data.token);
         // setIsModelOpen(false);
         setDestinationData(destinationData.Details);
+        setCarData(destinationData.VehicleType);
+        setCarTypeData(destinationData.carType);
       }
 
       // setTourDetailsBackend(destinationData.tourDetails);
 
-      const listTourResponse = await Axios.get(
+      const listTourResponse = await Axios.post(
         import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
+        {
+          refPackageId: tour.refPackageId,
+        },
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -475,7 +486,7 @@ export default function Home() {
       <Toast ref={toast} />
       <Popup />
 
-      <div className="">
+      <div className="mt-20">
         <BannerCarousel moduleId={4} />
       </div>
       <div className="relative">
@@ -488,9 +499,13 @@ export default function Home() {
             role="tablist"
             ref={wrapperRef}
           >
-            <li role="presentation" className="w-full sm:w-auto">
+            <li
+              role="presentation"
+              className="w-full sm:w-auto cursor-pointer "
+              onClick={() => setTabSelected({ ...tabSelected, currentTab: 1 })}
+            >
               <button
-                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-emerald-50 hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
+                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-[#c6f0d5] hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
                   tabSelected.currentTab === 1
                     ? "border-[#02569c] stroke-[#02569c] text-[#02569c] hover:border-[#02569c]  hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:border-slate-500"
                     : "justify-self-center border-transparent stroke-slate-700 text-slate-700 hover:border-[#02569c] hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:text-slate-500"
@@ -508,15 +523,31 @@ export default function Home() {
                   setTabSelected({ ...tabSelected, currentTab: 1 })
                 }
               >
-                <span className="order-2 ">{t("home.Tour")}</span>
-                <span className="relative only:-mx-6">
+                <span
+                  onClick={() =>
+                    setTabSelected({ ...tabSelected, currentTab: 1 })
+                  }
+                  className="order-2 hover:bg-[#c6f0d5] cursor-pointer"
+                >
+                  {t("home.Tour")}
+                </span>
+                <span
+                  onClick={() =>
+                    setTabSelected({ ...tabSelected, currentTab: 1 })
+                  }
+                  className="relative only:-mx-6"
+                >
                   <Send />
                 </span>
               </button>
             </li>
-            <li className="" role="presentation">
+            <li
+              className=""
+              role="presentation"
+              onClick={() => setTabSelected({ ...tabSelected, currentTab: 2 })}
+            >
               <button
-                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-emerald-50 hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
+                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-[#c6f0d5] hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
                   tabSelected.currentTab === 2
                     ? "border-[#02569c] stroke-[#02569c] text-[#02569c] hover:border-[#02569c]  hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:border-slate-500"
                     : "justify-self-center border-transparent stroke-slate-700 text-slate-700 hover:border-[#02569c] hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:text-slate-500"
@@ -534,13 +565,28 @@ export default function Home() {
                   setTabSelected({ ...tabSelected, currentTab: 2 })
                 }
               >
-                <span className="order-2 ">{t("home.Car")}</span>
-                <CarFront />
+                <span
+                  onClick={() =>
+                    setTabSelected({ ...tabSelected, currentTab: 2 })
+                  }
+                  className="order-2 hover:bg-[#c6f0d5] cursor-pointer "
+                >
+                  {t("home.Car")}
+                </span>
+                <CarFront
+                  onClick={() =>
+                    setTabSelected({ ...tabSelected, currentTab: 2 })
+                  }
+                />
               </button>
             </li>
-            <li className="" role="presentation">
+            <li
+              className=""
+              role="presentation"
+              onClick={() => setTabSelected({ ...tabSelected, currentTab: 3 })}
+            >
               <button
-                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-emerald-50 hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
+                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-[#c6f0d5] hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
                   tabSelected.currentTab === 3
                     ? "border-[#02569c] stroke-[#02569c] text-[#02569c] hover:border-[#02569c]  hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:border-slate-500"
                     : "justify-self-center border-transparent stroke-slate-700 text-slate-700 hover:border-[#02569c] hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:text-slate-500"
@@ -558,15 +604,30 @@ export default function Home() {
                   setTabSelected({ ...tabSelected, currentTab: 3 })
                 }
               >
-                <span className="order-2 ">{t("home.Parking")}</span>
+                <span
+                  onClick={() =>
+                    setTabSelected({ ...tabSelected, currentTab: 3 })
+                  }
+                  className="order-2 hover:bg-[#c6f0d5] cursor-pointer "
+                >
+                  {t("home.Parking")}
+                </span>
                 <span className="relative only:-mx-6">
-                  <CircleParking />{" "}
+                  <CircleParking
+                    onClick={() =>
+                      setTabSelected({ ...tabSelected, currentTab: 3 })
+                    }
+                  />{" "}
                 </span>
               </button>
             </li>
-            <li className="" role="presentation">
+            <li
+              className=""
+              role="presentation"
+              onClick={() => setTabSelected({ ...tabSelected, currentTab: 4 })}
+            >
               <button
-                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-emerald-50 hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
+                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-[#c6f0d5] hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
                   tabSelected.currentTab === 4
                     ? "border-[#02569c] stroke-[#02569c] text-[#02569c] hover:border-[#02569c]  hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:border-slate-500"
                     : "justify-self-center border-transparent stroke-slate-700 text-slate-700 hover:border-[#02569c] hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:text-slate-500"
@@ -584,9 +645,25 @@ export default function Home() {
                   setTabSelected({ ...tabSelected, currentTab: 4 })
                 }
               >
-                <span className="order-2 ">{t("header.Transfers")}</span>
-                <span className="relative only:-mx-6">
-                  <Car />
+                <span
+                  onClick={() =>
+                    setTabSelected({ ...tabSelected, currentTab: 4 })
+                  }
+                  className="order-2 hover:bg-[#c6f0d5] cursor-pointer "
+                >
+                  {t("header.Transfers")}
+                </span>
+                <span
+                  onClick={() =>
+                    setTabSelected({ ...tabSelected, currentTab: 4 })
+                  }
+                  className="relative only:-mx-6"
+                >
+                  <Car
+                    onClick={() =>
+                      setTabSelected({ ...tabSelected, currentTab: 4 })
+                    }
+                  />
                 </span>
               </button>
             </li>
@@ -734,6 +811,8 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Car Filter */}
+
             <div
               className={`px-6 py-4 overflow-x-auto ${
                 tabSelected.currentTab === 2 ? "" : "hidden"
@@ -744,69 +823,58 @@ export default function Home() {
               aria-labelledby="tab-label-2ai"
               tabIndex="-1"
             >
-              <div className="flex flex-col lg:flex-row gap-5 min-w-max">
-                {/* Pickup Location */}
-                {/* <div className="p-inputgroup flex-1 min-w-[250px]">
-      <span className="p-inputgroup-addon">
-        <i className="pi pi-map-marker"></i>
-      </span>
-      <Dropdown
-        value={carPickupLocation}
-        onChange={(e) => setCarPickupLocation(e.value)}
-        options={cities}
-        optionLabel="name"
-        placeholder="Pickup Location"
-        className="w-full"
-      />
-    </div> */}
-
-                {/* Pickup Date & Time */}
-                <div className="p-inputgroup flex-1 min-w-[250px]">
+              <div className="flex gap-3 lg:flex-row flex-column">
+                <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
-                    <i className="pi pi-calendar-clock"></i>
+                    <i className="pi pi-map-marker"></i>
                   </span>
-                  <Calendar
-                    id="pickup-calendar"
-                    value={carPickupDateTime}
-                    className="w-full"
-                    onChange={(e) => setCarPickupDateTime(e.value)}
-                    showTime
-                    placeholder="Pickup Date & Time"
-                    hourFormat="12"
+                  {/* Pickup Location */}
+                  <Dropdown
+                    value={carType}
+                    onChange={(e) => setCarType(e.value)}
+                    options={carTypeData?.map((item) => ({
+                      ...item,
+                      refCarTypeName:
+                        item.refCarTypeName.charAt(0).toUpperCase() +
+                        item.refCarTypeName.slice(1).toLowerCase(),
+                    }))}
+                    optionLabel="refCarTypeName"
+                    optionValue="refCarTypeId"
+                    placeholder="Select Car Type"
+                    className="flex-1 capitalize"
+                  />
+                </div>
+                <div className="p-inputgroup flex-1">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-map-marker"></i>
+                  </span>
+                  <Dropdown
+                    value={carName}
+                    onChange={(e) => setCarName(e.value)}
+                    options={carData?.map((item) => ({
+                      ...item,
+                      refVehicleTypeName:
+                        item.refVehicleTypeName.charAt(0).toUpperCase() +
+                        item.refVehicleTypeName.slice(1).toLowerCase(),
+                    }))}
+                    optionLabel="refVehicleTypeName"
+                    optionValue="refVehicleTypeId"
+                    placeholder="Select Car Category"
+                    className="flex-1 capitalize"
                   />
                 </div>
 
-                {/* Drop Off Location */}
-                {/* <div className="p-inputgroup flex-1 min-w-[250px]">
-      <span className="p-inputgroup-addon">
-        <i className="pi pi-map-marker"></i>
-      </span>
-      <Dropdown
-        value={carDropLocation}
-        onChange={(e) => setCarDropLocation(e.value)}
-        options={cities}
-        optionLabel="name"
-        placeholder="Drop Off Location"
-        className="w-full"
-      />
-    </div> */}
-
-                {/* Drop Off Date & Time */}
-                <div className="p-inputgroup flex-1 min-w-[250px]">
+                <div className="p-inputgroup flex-1">
                   <span className="p-inputgroup-addon">
-                    <i className="pi pi-calendar-clock"></i>
+                    <i className="pi pi-user"></i>
                   </span>
-                  <Calendar
-                    id="drop-calendar"
-                    value={carDropDateTime}
-                    onChange={(e) => setCarDropDateTime(e.value)}
-                    className="w-full"
-                    showTime
-                    placeholder="Drop Off Date & Time"
-                    hourFormat="12"
+                  <InputNumber
+                    value={carGuest}
+                    className="flex-1"
+                    placeholder="Guest"
+                    onValueChange={(e) => setCarGuest(e.value)}
                   />
                 </div>
-
                 {/* Explore Button */}
                 <div className="flex items-center min-w-[150px]">
                   <Button

@@ -116,7 +116,7 @@
 }
 
 .bookingflight {
-  background-image: url("../../assets//Booking/flight8.jpg"); /* Desktop version */
+  background-image: url("../../assets//Booking/LogoFlight.jpg"); /* Desktop version */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -130,7 +130,7 @@
 }
 
 .bookinghotel {
-  background-image: url("../../assets/Booking/Hotel9.jpg"); /* Desktop version */
+  background-image: url("../../assets/Booking/Logohotel.jpg"); /* Desktop version */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -144,7 +144,7 @@
 }
 
 .bookingship {
-  background-image: url("../../assets//Booking/ship9.jpg"); /* Desktop version */
+  background-image: url("../../assets//Booking/LogoShip.jpg"); /* Desktop version */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

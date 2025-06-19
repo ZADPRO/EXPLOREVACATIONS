@@ -13,7 +13,6 @@ import Axios from "axios";
 import decrypt from "../../helper";
 import "./Flight.css";
 
-
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
 
@@ -123,7 +122,7 @@ export default function Flight() {
   };
 
   return (
-    <div >
+    <div>
       <Popup />
       <Toast ref={toast} />
       <div className="flightPage001">
@@ -258,7 +257,7 @@ export default function Flight() {
                   name="flightORtour"
                   value={inputs.flightORtour}
                   required
-                  className="w-full p-3 border rounded"
+                  className="w-full p-3 border rounded text-[#6b7280]"
                   onChange={handleInput}
                 >
                   <option value="" disabled>
@@ -284,7 +283,9 @@ export default function Flight() {
               </div>
               {/* refKidsCount */}
 
-              <div>{t("flight.Kids (Below 12 yrs)")} </div>
+              <div className="text-[#6b7280]">
+                {t("flight.Kids (Below 12 yrs)")}{" "}
+              </div>
               <div className="p-float-label">
                 <InputText
                   id="refKidsCount"
@@ -297,7 +298,9 @@ export default function Flight() {
                 <label htmlFor="name">{t("flight.KidsCount")}</label>
               </div>
               {/* refInfantsCount */}
-              <div>{t("flight.Babies (Below 2 yrs)")}</div>
+              <div className="text-[#6b7280]">
+                {t("flight.Babies (Below 2 yrs)")}
+              </div>
               <div className="p-float-label">
                 <InputText
                   id="refInfantsCount"

@@ -43,11 +43,17 @@ export default function CarsTemplate() {
   const location = useLocation();
   const [carState, setCarState] = useState();
   const [name, setName] = useState("");
+  const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [driverName, setdriverName] = useState("");
+  const [driverAge, setdriverAge] = useState("");
+  const [driverMail, setdriverMail] = useState("");
+  const [driverMobile, setdriverMobile] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
-  const [pickupAddress, setPickupAddress] = useState("");
+  // const [pickupAddress, setPickupAddress] = useState("");
   const [submissionAddress, setSubmissionAddress] = useState("");
-  const [pickupDateTime, setPickupDateTime] = useState(null);
+  const [pickupDateTime, setPickupDateTime] = useState("");
+  const [dropDate, setDropDate] = useState("");
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
@@ -56,14 +62,16 @@ export default function CarsTemplate() {
   const [ismodelOpen, setIsModelOpen] = useState(false);
   const [carListData, setCarLIstData] = useState({});
   const [refCarsId, setRefCarsId] = useState("");
-  const [carAgreement, setCarAgreement] = useState([]);
+  const [carAgreement, setCarAgreement] = useState("");
   const [listCarData, setListCarData] = useState([]);
   const [activeTab, setActiveTab] = useState("Standard");
   const [extrakm, setExtrakm] = useState({ isChecked: false, value: 0 });
   const [shouldCalculate, setShouldCalculate] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isExtraKMneeded, setIsExtraKMneeded] = useState(false);
 
   const [selectedExtra, setSelectedExtra] = useState([]);
+  const selectedExtrasData = extras.filter(extra => selectedExtra.includes(extra.refFormDetailsId));
 
   const selectedExtrasArray = Object.keys(extras).filter((key) => extras[key]);
   const [loading, setLoading] = useState(true);
@@ -242,10 +250,10 @@ export default function CarsTemplate() {
     }
   };
   const handleAgreementUploadSuccess = (response) => {
-    let temp = [...passportImage]; // Create a new array to avoid mutation
-    temp.push(response.filePath); // Add the new file path
-    console.log("Upload Successful:", response);
-    setCarAgreement(temp); // Update the state with the new array
+    // let temp = [...carAgreement]; // Create a new array to avoid mutation
+    // temp.push(response.filePath); // Add the new file path
+    // console.log("Upload Successful:", response);
+    setCarAgreement(response.filePath); // Update the state with the new array
   };
 
   const handleAgreemtUploadFailure = (error) => {
@@ -300,7 +308,7 @@ export default function CarsTemplate() {
         );
         alert(
           "Payment creation failed: " +
-            (decryptedData?.message || "Unknown error")
+          (decryptedData?.message || "Unknown error")
         );
       }
     } catch (error) {
@@ -308,6 +316,22 @@ export default function CarsTemplate() {
       alert("Error while making payment. Please try again later.");
     }
   };
+
+  // const handleCheckboxChange = (e) => {
+  //   setExtras({ ...extras, [e.target.name]: e.target.checked });
+
+  // };
+
+
+  const handleCheckboxChange = (e, item) => {
+    const id = String(item.refFormDetailsId); // convert to string
+    if (e.checked) {
+      setSelectedExtra((prev) => [...prev, id]);
+    } else {
+      setSelectedExtra((prev) => prev.filter((existingId) => existingId !== id));
+    }
+  };
+
 
   const getRefCarTypeId = (tab) => {
     switch (tab) {
@@ -401,6 +425,9 @@ export default function CarsTemplate() {
     if (extrakm.isChecked && extrakm.value > 0) {
       basePayload.refExtraKm = extrakm.value + "";
       basePayload.isExtraKMneeded = true;
+      setIsExtraKMneeded(true);
+    } else {
+      setIsExtraKMneeded(false);
     }
     if (selectedExtra.length > 0) {
       basePayload.refFormDetails = selectedExtra;
@@ -468,11 +495,10 @@ export default function CarsTemplate() {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`px-2 py-2 text-sm sm:text-base font-medium rounded-2xl transition-all duration-200 ${
-                      activeTab === tab
-                        ? "bg-[#014986] text-white shadow-md"
-                        : "text-gray-600 hover:bg-white"
-                    }`}
+                    className={`px-2 py-2 text-sm sm:text-base font-medium rounded-2xl transition-all duration-200 ${activeTab === tab
+                      ? "bg-[#014986] text-white shadow-md"
+                      : "text-gray-600 hover:bg-white"
+                      }`}
                   >
                     {tab}
                   </button>
@@ -493,7 +519,7 @@ export default function CarsTemplate() {
                             setRefCarsId(car.refCarsId);
                             const response = await axios.post(
                               import.meta.env.VITE_API_URL +
-                                "/userRoutes/getCarById",
+                              "/userRoutes/getCarById",
                               { refCarsId: car.refCarsId },
                               {
                                 headers: {
@@ -595,10 +621,12 @@ export default function CarsTemplate() {
               <p className="flex gap-2 items-center font-bold uppercase text-sm">
                 {carListData.refVehicleTypeName}
               </p>
-
               <p className="text-sm">
                 Extra KM Charges:{" "}
-                {carListData.refExtraKMcharges ?? "No Extra KM Charges"}
+                {carListData.refExtraKMcharges &&
+                  carListData.refExtraKMcharges !== 0
+                  ? carListData.refExtraKMcharges
+                  : "No Extra KM Charges"}
               </p>
               <p className="flex gap-2 items-center text-sm">
                 <History className="bg-[#009ad7] p-1 w-[20px] h-[20px] rounded-xl text-white" />
@@ -752,7 +780,7 @@ export default function CarsTemplate() {
             </h2>
 
             <div className="flex flex-col gap-3">
-              {extras?.map((item) => (
+              {(extras || []).map((item) => (
                 <div
                   key={item.refFormDetailsId}
                   className="flex items-center justify-between border rounded-lg px-4 py-3"
@@ -800,38 +828,41 @@ export default function CarsTemplate() {
                 </div>
               ))}
             </div>
-            <div className=" flex flex-col lg:flex-row md:flex-row lg:items-center md:items-center  gap-3 items-start  mt-4">
-              <div>
-                {" "}
-                <Checkbox
-                  onChange={(e) =>
-                    setExtrakm((prev) => ({
-                      value: 0,
-                      isChecked: e.checked,
-                    }))
-                  }
-                  checked={extrakm.isChecked}
-                ></Checkbox>
-              </div>
-              <div>
-                {" "}
-                <h3 className="">Extra Km</h3>
-              </div>
 
-              <div className=" ">
-                <InputNumber
-                  placeholder="Enter Km"
-                  disabled={!extrakm.isChecked}
-                  value={extrakm.value}
-                  onChange={(e) =>
-                    setExtrakm((prev) => ({
-                      ...prev,
-                      value: e.value,
-                    }))
-                  }
-                />
-              </div>
-            </div>
+            {carListData.refExtraKMcharges > 0 && (
+              <>
+                <div className=" flex flex-col lg:flex-row md:flex-row lg:items-center md:items-center  gap-3 items-start  mt-4"></div>
+                <div>
+                  {" "}
+                  <Checkbox
+                    onChange={(e) =>
+                      setExtrakm((prev) => ({
+                        value: 0,
+                        isChecked: e.checked,
+                      }))
+                    }
+                    checked={extrakm.isChecked}
+                  ></Checkbox>
+                </div>
+                <div>
+                  <h3 className="">Extra Km</h3>
+                </div>
+
+                <div className="">
+                  <InputNumber
+                    placeholder="Enter Km"
+                    disabled={!extrakm.isChecked}
+                    value={extrakm.value}
+                    onChange={(e) =>
+                      setExtrakm((prev) => ({
+                        ...prev,
+                        value: e.value,
+                      }))
+                    }
+                  />
+                </div>
+              </>
+            )}
           </div>
         </div>
 
@@ -946,17 +977,6 @@ export default function CarsTemplate() {
               </ul>
             </div>
           </TabPanel>
-          <TabPanel header="Travel Details" key="tab1">
-            <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
-              <ul className="list-disc pl-5">
-                {carListData?.refFormDetails?.map((item, index) => (
-                  <li key={index} className="mb-2">
-                    {item}
-                  </li>
-                )) || <p>Loading...</p>}
-              </ul>
-            </div>
-          </TabPanel>
           <TabPanel header="Others" key="tab1">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <p>
@@ -992,7 +1012,19 @@ export default function CarsTemplate() {
                 required
                 onChange={(e) => setName(e.target.value)}
               />
-              <label htmlFor="username">User Name</label>
+              <label htmlFor="username">User First Name</label>
+            </FloatLabel>
+          </div>
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <InputText
+                id="lastname"
+                className="w-[100%]"
+                value={lastname}
+                required
+                onChange={(e) => setLastName(e.target.value)}
+              />
+              <label htmlFor="lastname">User Last Name</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1021,9 +1053,10 @@ export default function CarsTemplate() {
             </FloatLabel>
           </div>
         </div>
-
+        <h6 className="pt-[1.5rem] text-[#295bac]">Your pickup & Drop Address -371/5, Negombo Road, Seeduwa Sri Lanka Office,Oberfeldstrasse 10, 8302 Kloten, Switzerland
+        </h6>
         <div className="pt-[2rem] flex flex-col lg:flex-row gap-[1rem]">
-          <div className="w-[100%]">
+          {/* <div className="w-[100%]">
             <FloatLabel className="w-[100%]">
               <InputText
                 id="pickupAddress"
@@ -1034,7 +1067,9 @@ export default function CarsTemplate() {
               />
               <label htmlFor="pickupAddress">Pick Up Address</label>
             </FloatLabel>
-          </div>
+          </div> */}
+
+
           <div className="w-[100%]">
             <FloatLabel className="w-[100%]">
               <InputText
@@ -1044,22 +1079,47 @@ export default function CarsTemplate() {
                 value={submissionAddress}
                 onChange={(e) => setSubmissionAddress(e.target.value)}
               />
-              <label htmlFor="submissionAddress">Submission Address</label>
+              <label htmlFor="submissionAddress">Enter your Address</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
             <FloatLabel className="w-[100%]">
               <Calendar
-                id="calendar-12h"
-                value={pickupDateTime} // Updated variable name
+                id="pickup-date"
+                value={pickupDateTime ? new Date(pickupDateTime) : null}
                 className="flex-1 w-[100%]"
-                onChange={(e) => setPickupDateTime(e.value)} // Updated variable name
-                showTime
+                onChange={(e) => {
+                  if (e.value) {
+                    const formatted = e.value.toISOString().split("T")[0]; // "yyyy-mm-dd"
+                    setPickupDateTime(formatted);
+                  }
+                }}
+                dateFormat="yy-mm-dd"
                 required
-                placeholder="Pickup Date & Time"
-                hourFormat="12"
+                placeholder="Pickup Date"
               />
-              <label htmlFor="calendar-12h">Pick Up Date & Time</label>
+
+              <label htmlFor="calendar-12h">Pick Up Date </label>
+            </FloatLabel>
+          </div>
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <Calendar
+                id="drop-date"
+                value={dropDate ? new Date(dropDate) : null}
+                className="flex-1 w-[100%]"
+                onChange={(e) => {
+                  if (e.value) {
+                    const formatted = e.value.toISOString().split("T")[0]; // "yyyy-mm-dd"
+                    setDropDate(formatted);
+                  }
+                }}
+                dateFormat="yy-mm-dd"
+                required
+                placeholder="Drop Date"
+              />
+
+              <label htmlFor="calendar-12h">Drop Date </label>
             </FloatLabel>
           </div>
           {/* <div className="w-[100%]">
@@ -1078,7 +1138,7 @@ export default function CarsTemplate() {
           </div> */}
         </div>
 
-        <h6 className="pt-[1.5rem]">Number of passengers traveling</h6>
+        {/* <h6 className="pt-[1.5rem]">Number of passengers traveling</h6>
 
         <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">
@@ -1120,26 +1180,23 @@ export default function CarsTemplate() {
               <label htmlFor="infants">Infants</label>
             </FloatLabel>
           </div>
-        </div>
-        {/* 
-        <h6 className="pt-[1.5rem]">Extras (chargeable)</h6>
+        </div> */}
 
+        <h6 className="pt-[1.5rem]">Extras (chargeable)</h6>
         <div className="flex flex-wrap justify-start pt-[1rem] gap-3">
-          {Object.keys(extras).map((key) => (
-            <div className="flex align-items-center" key={key}>
+          {extras.map((item) => (
+            <div key={item.refFormDetailsId}>
               <Checkbox
-                inputId={key}
-                name={key}
-                checked={extras[key]}
-                onChange={handleCheckboxChange}
+                inputId={item.refFormDetailsId}
+                checked={selectedExtra.includes(String(item.refFormDetailsId))}
+
+                onChange={(e) => handleCheckboxChange(e, item)}
               />
-              <label htmlFor={key} className="ml-2">
-                {key.charAt(0).toUpperCase() +
-                  key.slice(1).replace(/([A-Z])/g, " $1")}
-              </label>
+              <label htmlFor={item.refFormDetailsId}>{item.refFormDetails}</label>
             </div>
           ))}
-        </div> */}
+        </div>
+
 
         <div className="pt-[2.5rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">
@@ -1157,7 +1214,60 @@ export default function CarsTemplate() {
           </div>
         </div>
 
-        <div className="w-[100%]">
+        <h6 className="pt-[1.5rem]">Driver Details</h6>
+
+        <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <InputText
+                id="driverName"
+                className="w-[100%]"
+                required
+                value={driverName}
+                onChange={(e) => setdriverName(e.target.value)}
+              />
+              <label htmlFor="dname">Driver name</label>
+            </FloatLabel>
+          </div>
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <InputText
+                id="driverAge"
+                className="w-[100%]"
+                required
+                value={driverAge}
+                onChange={(e) => setdriverAge(e.value)}
+              />
+              <label htmlFor="dAge">Driver Age</label>
+            </FloatLabel>
+          </div>
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <InputText
+                id="driverMobile"
+                className="w-[100%]"
+                required
+                value={driverMobile}
+                onChange={(e) => setdriverMobile(e.value)}
+              />
+              <label htmlFor="infants">Driver Mobile</label>
+            </FloatLabel>
+          </div>
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <InputText
+                id="driverMail"
+                className="w-[100%]"
+                required
+                value={driverMail}
+                onChange={(e) => setdriverMail(e.value)}
+              />
+              <label htmlFor="infants">Driver Mail</label>
+            </FloatLabel>
+          </div>
+        </div>
+
+        <div className="w-[100%] mt-3">
           <h2 className="">Upload Agreement</h2>
           <FileUpload
             name="logo"
@@ -1167,11 +1277,14 @@ export default function CarsTemplate() {
             accept="application/pdf"
             maxFileSize={10000000}
             emptyTemplate={
-              <p className="m-0">Drag and drop your Image here to upload.</p>
+              <p className="m-0">Drag and drop your Pdf here to upload.</p>
             }
             multiple
           />
         </div>
+        <p className="text-sm text-gray-600 mt-2 italic">
+          Your uploaded document will be stored securely and kept confidential.
+        </p>
 
         <div className="pt-[1rem] flex justify-center">
           <Button
@@ -1186,18 +1299,25 @@ export default function CarsTemplate() {
                     import.meta.env.VITE_API_URL + "/userRoutes/userCarBooking",
                   payload: {
                     refCarsId: refCarsId,
-                    refUserName: name,
+                    refUserFname: name,
+                    refUserLname: lastname,
                     refUserMail: email,
                     refUserMobile: mobileNumber + "",
-                    refPickupAddress: pickupAddress,
-                    refSubmissionAddress: submissionAddress,
+                    refUserAddress: submissionAddress,
+                    refDropDate: dropDate,
                     refPickupDate: pickupDateTime,
-                    refAdultCount: adults + "",
-                    refChildrenCount: children + "",
-                    refInfants: infants + "",
+                    // refAdultCount: adults + "",
+                    // refChildrenCount: children + "",
+                    // refInfants: infants + "",
                     refOtherRequirements: otherRequirements,
-                    refFormDetails: selectedExtrasArray,
+                    refFormDetails: selectedExtra,
                     refCarAgreement: carAgreement,
+                    refDriverName: driverName,
+                    refDriverAge: driverAge,
+                    refDriverMobile: driverMobile,
+                    refDriverMail: driverMail,
+                    isExtraKMneeded: isExtraKMneeded,
+                    refExtraKm: extrakm.value,
                   },
                 })
               );

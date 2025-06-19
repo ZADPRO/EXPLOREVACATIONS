@@ -11,6 +11,7 @@ import { Calendar } from "primereact/calendar";
 // import { Dropdown } from "primereact/dropdown";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
+import tourimg from "../../assets/Default/tour.jpg";
 
 import { FaRegCircleLeft } from "react-icons/fa6";
 import { InputNumber } from "primereact/inputnumber";
@@ -18,6 +19,7 @@ import { FloatLabel } from "primereact/floatlabel";
 import { FaDownload } from "react-icons/fa6";
 import { InputTextarea } from "primereact/inputtextarea";
 import { FileUpload } from "primereact/fileupload";
+import arch from "../../assets/homeCards/card4.jpg"
 
 import PdfVieTour from "../../components/Pdf/index";
 
@@ -49,19 +51,14 @@ export default function ToursTemplate() {
 
   const [packageId, setPackageId] = useState();
   const [galleryImg, SetGalleryImg] = useState([]);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [pickupDateTime, setPickupDateTime] = useState(null);
-  const [adults, setAdults] = useState("");
-  const [children, setChildren] = useState("");
-  const [infants, setInfants] = useState("");
+
   const [formDataImages, setFormdataImages] = useState([]);
   const [passportImage, setPassportImage] = useState([]);
   const [agreementImage, setAgreementImage] = useState([]);
   const [formData, setFromDate] = useState({
     refPackageId: 0,
     refUserName: "",
+    refUserLname: "",
     refUserMail: "",
     refUserMobile: "",
     refArrivalDate: "",
@@ -74,7 +71,14 @@ export default function ToursTemplate() {
     refVaccinationCertificate: "",
     refOtherRequirements: "",
     refPassPort: "",
+    refPickupDate: "",
+    refInfants: "",
+    refAgreementPath: "",
+    refApplyOffers: "",
+    refCouponCode: "",
+    transactionId: "",
   });
+
   // const [input, setInout] = useState({
   //   totalAmount: 0,
   //   userEmail: "",
@@ -292,6 +296,46 @@ export default function ToursTemplate() {
           severity: "success",
           summary: "Success",
           detail: "Applicable Successfully!",
+          life: 3000,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const Tourprice = async () => {
+    try {
+      const listDestinations = await Axios.post(
+        import.meta.env.VITE_API_URL + "/userRoutes/checkTourPrice",
+        {
+          refPackageId: tour.refPackageId,
+          refAdultCount: formData.refAdultCount,
+          refChildrenCount: formData.refChildrenCount,
+        },
+
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = decrypt(
+        listDestinations.data[1],
+        listDestinations.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+      console.log("Verify Token Running --- ", data);
+      if (data.success) {
+        setIsCouponVerified(true);
+        setDiscountedAmount(data.totalAmount);
+        localStorage.setItem("token", "Bearer " + data.token);
+        toast.current?.show({
+          severity: "success",
+          summary: "Success",
+          detail: "Applied Successfully!",
           life: 3000,
         });
       }
@@ -587,10 +631,12 @@ export default function ToursTemplate() {
         {
           successRedirectUrl: "https://explorevacations.max-idigital.ch",
           failedRedirectUrl: "https://explorevacations.max-idigital.ch",
+          // successRedirectUrl: "http://localhost:5174",
+          // failedRedirectUrl: "http://localhost:51734",
           purpose: "Payment processing",
           totalAmount: discountedAmount,
-          userEmail: email,
-          firstname: name.split(" ")[0],
+          userEmail: formData.refUserMail,
+          firstname: formData.refUserName.split(" ")[0],
         },
         {
           headers: {
@@ -623,7 +669,7 @@ export default function ToursTemplate() {
         );
         alert(
           "Payment creation failed: " +
-            (decryptedData?.message || "Unknown error")
+          (decryptedData?.message || "Unknown error")
         );
       }
     } catch (error) {
@@ -638,27 +684,31 @@ export default function ToursTemplate() {
       <div className="tourBannerBg01 relative h-[60vh] flex items-center justify-center text-white text-3xl font-bold">
         {/* Centered Text Here */}
       </div>
-      <div>
-        {" "}
-        <button
-          onClick={() => navigate("/tours")}
-          className="flex items-center w-[250px]  cursor-pointer testingFont font-semibold text-2xl md:text-base lg:text-2xl px-5 mt-3 hover:underline hover:text-[#009ad7] transition-all duration-300"
-        >
-          {/* <FaRegCircleLeft /> */}
-          Back to Tours
-        </button>
-      </div>
 
       <div className="flex w-[100%] lg:px-20 mx-auto">
         <div className="flex flex-col lg:flex-row gap-6 lg:p-4  md:p-4 ">
           {/* Image Section */}
-          <div className="lg:w-2/4  pt-3 flex-shrink-0">
+          <div className="lg:w-2/4 pt-3 flex-shrink-0">
+            {/* <img
+              src={
+                // src={data:${tour.refCoverImage.contentType};base64,${tour.refCoverImage.content}}
+                tour?.refCoverImage
+                  ? `https://explorevacations.max-idigital.ch/src/assets/coverImage/${tour.refCoverImage}`
+                  : {tourimg} // Replace with your actual default image path
+              }
+              alt="Tour Image"
+              className="w-full h-full object-cover rounded-lg"
+            /> */}
             <img
-              // src={`data:${tour.refCoverImage.contentType};base64,${tour.refCoverImage.content}`}
-              src={`https://explorevacations.max-idigital.ch/src/assets/coverImage/${tour.refCoverImage}`}
+              src={
+                tour?.refCoverImage
+                  ? `https://explorevacations.max-idigital.ch/src/assets/coverImage/${tour.refCoverImage}`
+                  : arch
+              }
               alt="Tour Image"
               className="w-full h-full object-cover rounded-lg"
             />
+
           </div>
 
           {/* Information Section */}
@@ -680,7 +730,7 @@ export default function ToursTemplate() {
                 size={30}
               />
               <span className="font-semibold">Price:</span> CHF{" "}
-              {tour.refTourPrice}
+              {tour.refTourPrice} <span>/ Person</span>
             </p>
             <p className="flex gap-2 items-center">
               <Binoculars
@@ -723,8 +773,25 @@ export default function ToursTemplate() {
                 }}
               >
                 <span className="font-semibold">Book Now</span>
+
+
               </button>
-              <button
+              {/* <div className="max-h-[300px] flex flex-col w-[50%] gap-3 justify-center overflow-y-auto p-2 md:max-h-full">
+                <p className="text-xl text-[#065784] ">
+                  {" "}
+                  Click here to Download the Tour Agreement.....!
+                </p>
+                <button
+                  onClick={() => {
+                    handleInvoiceDownload();
+                  }}
+                  className="text-3xl text-[#065784] cursor-pointer"
+                >
+                  <FaDownload />
+                </button>
+              </div> */}
+
+              {/* <button
                 className="border-1 px-4 py-2 rounded bg-[#009ad7] text-white cursor-pointer"
                 onClick={() => {
                   if (roleId === "3" || roleId === "6") {
@@ -735,8 +802,19 @@ export default function ToursTemplate() {
                 }}
               >
                 <span className="font-semibold">Customize Tour</span>
-              </button>
+              </button> */}
             </p>
+
+            <div>
+              {" "}
+              <button
+                onClick={() => navigate("/tours")}
+                className="flex items-center w-[250px]  cursor-pointer testingFont font-semibold text-2xl md:text-base lg:text-2xl px-5 mt-3 hover:underline hover:text-[#009ad7] transition-all duration-300"
+              >
+                {/* <FaRegCircleLeft /> */}
+                Back to Tours
+              </button>
+            </div>
             <div className="flex items-center gap-3">
               <input
                 type="text"
@@ -757,28 +835,6 @@ export default function ToursTemplate() {
         <div></div>
       </div>
 
-      <div className=" py-3 sm:px-8 max-w-1xl body mx-auto text-sm sm:text-base text-gray-600 leading-relaxed text-center ">
-        <p>
-          By continuing to use our services, you acknowledge that your personal
-          data will be processed in accordance with{" "}
-          <span
-            onClick={() => handleNavigate("/privacy")}
-            className="text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
-          >
-            Privacy Policy
-          </span>
-          . <br className="hidden sm:block" />
-          By creating an account, you agree to{" "}
-          <span
-            onClick={() => handleNavigate("/generalpdf")}
-            className="text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
-          >
-            Terms of Use
-          </span>
-          .
-        </p>
-      </div>
-
       <div className="card flex w-10/12 mx-auto overflow-hidden py-8">
         <TabView className="w-full overflow-x-auto">
           <TabPanel header="Travel Overview" key="tab1">
@@ -792,6 +848,27 @@ export default function ToursTemplate() {
           <TabPanel header="Itinerary" key="tab2">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <div dangerouslySetInnerHTML={{ __html: tour?.refItinary }} />
+            </div>
+            <div className=" py-3 sm:px-8 max-w-1xl body mx-auto text-sm sm:text-base text-gray-600 leading-relaxed text-center ">
+              <p>
+                By continuing to use our services, you acknowledge that your
+                personal data will be processed in accordance with{" "}
+                <span
+                  onClick={() => handleNavigate("/privacy")}
+                  className="text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
+                >
+                  Privacy Policy
+                </span>
+                . <br className="hidden sm:block" />
+                By creating an account, you agree to{" "}
+                <span
+                  onClick={() => handleNavigate("/generalpdf")}
+                  className="text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
+                >
+                  Terms of Use
+                </span>
+                .
+              </p>
             </div>
           </TabPanel>
 
@@ -890,17 +967,35 @@ export default function ToursTemplate() {
           setIsModelOpen(false);
         }}
       >
+        <h6 className="pt-[1.5rem]">Personal Details</h6>
+
         <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">
             <FloatLabel className="w-[100%]">
               <InputText
                 id="username"
                 className="w-[100%]"
-                value={name}
+                value={formData.refUserName}
                 required
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {
+                  setFromDate({ ...formData, refUserName: e.target.value });
+                }}
               />
-              <label htmlFor="username">Your Name</label>
+              <label htmlFor="username">Your First Name</label>
+            </FloatLabel>
+          </div>
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <InputText
+                id="lastname"
+                className="w-[100%]"
+                value={formData.refUserLname}
+                required
+                onChange={(e) => {
+                  setFromDate({ ...formData, refUserLname: e.target.value });
+                }}
+              />
+              <label htmlFor="lastname">Your Last Name</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -908,24 +1003,13 @@ export default function ToursTemplate() {
               <InputText
                 id="email"
                 className="w-[100%]"
-                value={email}
+                value={formData.refUserMail}
                 required
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setFromDate({ ...formData, refUserMail: e.target.value });
+                }}
               />
               <label htmlFor="email">Your Email</label>
-            </FloatLabel>
-          </div>
-          <div className="w-[100%]">
-            <FloatLabel className="w-[100%]">
-              <InputNumber
-                id="mobileNumber"
-                className="w-[100%]"
-                useGrouping={false}
-                required
-                value={mobileNumber}
-                onValueChange={(e) => setMobileNumber(e.value)}
-              />
-              <label htmlFor="mobileNumber">Your Mobile Number</label>
             </FloatLabel>
           </div>
         </div>
@@ -933,11 +1017,27 @@ export default function ToursTemplate() {
         <div className="pt-[2rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">
             <FloatLabel className="w-[100%]">
+              <InputText
+                id="mobileNumber"
+                className="w-[100%]"
+                required
+                value={formData.refUserMobile}
+                onChange={(e) => {
+                  setFromDate({ ...formData, refUserMobile: e.target.value });
+                }}
+              />
+              <label htmlFor="mobileNumber">Your Mobile Number</label>
+            </FloatLabel>
+          </div>
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
               <Calendar
                 id="calendar-12h"
-                value={pickupDateTime || new Date()} // Default to current date and time
+                value={formData.refPickupDate || new Date()} // Default to current date and time
                 className="flex-1 w-[100%]"
-                onChange={(e) => setPickupDateTime(e.value)}
+                onChange={(e) => {
+                  setFromDate({ ...formData, refPickupDate: e.target.value });
+                }}
                 showTime
                 required
                 placeholder="Pickup Date & Time"
@@ -948,6 +1048,25 @@ export default function ToursTemplate() {
               <label htmlFor="calendar-12h">Pick Up Date & Time</label>
             </FloatLabel>
           </div>
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <Calendar
+                id="calendar-12h"
+                value={formData.refArrivalDate || new Date()} // Default to current date and time
+                className="flex-1 w-[100%]"
+                onChange={(e) => {
+                  setFromDate({ ...formData, refArrivalDate: e.target.value });
+                }}
+                showTime
+                required
+                placeholder="Arrival Date & Time"
+                hourFormat="12"
+                minDate={new Date()} // Restrict selection to today and onwards
+              />
+
+              <label htmlFor="calendar-12h">Arrival Up Date & Time</label>
+            </FloatLabel>
+          </div>
         </div>
 
         <h6 className="pt-[1.5rem]">Number of passengers traveling</h6>
@@ -955,41 +1074,108 @@ export default function ToursTemplate() {
         <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">
             <FloatLabel className="w-[100%]">
-              <InputNumber
+              <InputText
                 id="adults"
                 className="w-[100%]"
-                useGrouping={false}
-                value={adults}
+                // useGrouping={false}
+                value={formData.refAdultCount}
                 required
-                onValueChange={(e) => setAdults(e.value)}
+                onChange={(e) => {
+                  setFromDate({ ...formData, refAdultCount: e.target.value });
+                }}
               />
               <label htmlFor="adults">Adults</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
             <FloatLabel className="w-[100%]">
-              <InputNumber
+              <InputText
                 id="children"
                 className="w-[100%]"
-                useGrouping={false}
-                value={children}
+                // useGrouping={false}
+                value={formData.refChildrenCount}
                 required
-                onValueChange={(e) => setChildren(e.value)}
+                onChange={(e) => {
+                  setFromDate({
+                    ...formData,
+                    refChildrenCount: e.target.value,
+                  });
+                }}
               />
               <label htmlFor="children">Children</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
             <FloatLabel className="w-[100%]">
-              <InputNumber
+              <InputText
                 id="infants"
                 className="w-[100%]"
-                useGrouping={false}
-                value={infants}
+                // useGrouping={false}
+                value={formData.refInfants}
                 required
-                onValueChange={(e) => setInfants(e.value)}
+                onChange={(e) => {
+                  setFromDate({ ...formData, refInfants: e.target.value });
+                }}
               />
               <label htmlFor="infants">Infants</label>
+            </FloatLabel>
+          </div>
+        </div>
+
+        <h6 className="pt-[1.5rem] text-[#ba0707]">Enter the person count to calculate the amount *</h6>
+        <div className="flex flex-row gap-4">
+          <Button
+            label="Check Price"
+            className="px-4 mt-5"
+            onClick={() => {
+              console.log("Explore clicked");
+              Tourprice();
+            }}
+          />
+          <div className="mt-6"> Total Amount : {discountedAmount}</div>
+        </div>
+
+        <h6 className="pt-[1.5rem]">Number of Rooms</h6>
+
+        <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <InputText
+                className="w-[100%]"
+                value={formData.refSingleRoom}
+                required
+                onChange={(e) => {
+                  setFromDate({ ...formData, refSingleRoom: e.value });
+                }}
+              />
+              <label htmlFor="refSingleRoom">Single Room</label>
+            </FloatLabel>
+          </div>
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <InputText
+                className="w-[100%]"
+                value={formData.refTwinRoom}
+                required
+                onChange={(e) => {
+                  setFromDate({ ...formData, refTwinRoom: e.value });
+                }}
+              />
+              <label htmlFor="refTwinRoom">Twin Room</label>
+            </FloatLabel>
+          </div>
+          <div className="w-[100%]">
+            <FloatLabel className="w-[100%]">
+              <InputText
+                className="w-[100%]"
+                value={formData.refTripleRoom}
+                required
+                onChange={(e) => {
+                  setFromDate({ ...formData, refTripleRoom: e.target.value });
+                  console.log("refTripleRoom", e.target.value);
+                }}
+              />
+              <label htmlFor="refTripleRoom">Triple Room</label>
             </FloatLabel>
           </div>
         </div>
@@ -999,16 +1185,27 @@ export default function ToursTemplate() {
             <FloatLabel className="w-[100%]">
               <InputTextarea
                 className="w-[100%]"
-                value={otherRequirements}
-                onChange={(e) => setOtherRequirements(e.target.value)}
+                value={formData.refOtherRequirements}
+                required
+                onChange={(e) => {
+                  setFromDate({
+                    ...formData,
+                    refOtherRequirements: e.target.value,
+                  });
+                }}
                 rows={5}
                 cols={30}
               />
+
               <label htmlFor="otherRequirements">Your other requirements</label>
             </FloatLabel>
           </div>
         </div>
-        {/* <div className="w-[100%]">
+
+        <p className="text-sm text-gray-600 mt-2 italic">
+          Your uploaded document will be stored securely and kept confidential.*
+        </p>
+        <div className="w-[100%]">
           <h2 className="">Upload Agreement</h2>
           <FileUpload
             name="logo"
@@ -1018,11 +1215,42 @@ export default function ToursTemplate() {
             accept="application/pdf"
             maxFileSize={10000000}
             emptyTemplate={
-              <p className="m-0">Drag and drop your Image here to upload.</p>
+              <p className="m-0">Drag and drop your pdf here to upload.</p>
             }
             multiple
           />
-        </div> */}
+        </div>
+
+        <div className="w-[100%]">
+          <h2 className="">Upload PassPort</h2>
+          <FileUpload
+            name="logo"
+            customUpload
+            className="mt-3"
+            uploadHandler={passportUploader}
+            accept="application/pdf"
+            maxFileSize={10000000}
+            emptyTemplate={
+              <p className="m-0">Drag and drop your pdf here to upload.</p>
+            }
+            multiple
+          />
+        </div>
+        <div className="w-[100%]">
+          <h2 className="">Upload Vaccination Certificate</h2>
+          <FileUpload
+            name="logo"
+            customUpload
+            className="mt-3"
+            uploadHandler={customUploader}
+            accept="application/pdf"
+            maxFileSize={10000000}
+            emptyTemplate={
+              <p className="m-0">Drag and drop your pdf here to upload.</p>
+            }
+            multiple
+          />
+        </div>
 
         <div className="flex lg:flex-row md:flex-row flex-col items-center mt-5 gap-3">
           <input
@@ -1051,16 +1279,24 @@ export default function ToursTemplate() {
                 JSON.stringify({
                   api: import.meta.env.VITE_API_URL + "/userRoutes/tourBooking",
                   payload: {
-                    refPackageId: packageId,
-                    refUserName: name,
-                    refUserMail: email,
-                    refUserMobile: mobileNumber + "",
-                    refPickupDate: pickupDateTime,
-                    refAdultCount: adults + "",
-                    refChildrenCount: children + "",
-                    refInfants: infants + "",
-                    refOtherRequirements: otherRequirements,
-                    // refAgreement: agreementImage,
+                    refPackageId: tour.refPackageId,
+                    refUserName: formData.refUserName + "",
+                    refUserLname: formData.refUserLname + "",
+                    refUserMail: formData.refUserMail + "",
+                    refUserMobile: formData.refUserMobile + "",
+                    refArrivalDate: formData.refArrivalDate + "",
+                    refPickupDate: formData.refArrivalDate + "",
+                    refSingleRoom: formData.refSingleRoom + "",
+                    refTwinRoom: formData.refTwinRoom + "",
+                    refTripleRoom: formData.refTripleRoom + "",
+                    refAdultCount: formData.refAdultCount + "",
+                    refInfants: formData.refInfants + "",
+                    refChildrenCount: formData.refChildrenCount + "",
+                    // refVaccinationType: formData.refVaccinationType + "",
+                    refAgreementPath: agreementImage[0],
+                    refVaccinationCertificate: formDataImages[0],
+                    refPassPort: passportImage[0],
+                    refOtherRequirements: formData.refOtherRequirements + "",
                     refApplyOffers: isCouponVerified,
                     refCouponCode: tourcode,
                   },
@@ -1082,7 +1318,7 @@ export default function ToursTemplate() {
         </div>
       </Dialog>
 
-      <Dialog
+      {/* <Dialog
         header={tour.name}
         visible={modelOpen}
         className="w-[90%] lg:w-[85%] h-[80vh] overflow-auto"
@@ -1361,7 +1597,7 @@ export default function ToursTemplate() {
             }}
           />
         </div>
-      </Dialog>
+      </Dialog> */}
     </div>
   );
 }

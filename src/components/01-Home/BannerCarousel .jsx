@@ -43,7 +43,7 @@ const BannerCarousel = ({ moduleId }) => {
   }, [moduleId]);
 
   return (
-    <div className="w-full max-w-screen-2xl mx-auto relative overflow-hidden">
+    <div className="w-full m-0 p-0 mx-auto relative overflow-hidden">
       <Carousel
         autoPlay
         infiniteLoop
@@ -63,6 +63,7 @@ const BannerCarousel = ({ moduleId }) => {
             <div
               key={index}
               className="relative w-full h-[60vh] md:h-[80vh] lg:h-[90vh] flex items-center justify-center text-white"
+              style={{ margin: 0, padding: 0, width: "100%" }}
             >
               {/* Background */}
               <img
@@ -70,7 +71,10 @@ const BannerCarousel = ({ moduleId }) => {
                 alt={`Slide ${index}`}
                 className="absolute inset-0 w-full h-full object-cover brightness-75"
               />
-              <div className="absolute inset-0 bg-black/0 backdrop-blur-[2px]"></div>
+              <div
+                className="absolute inset-0 bg-black/0 backdrop-blur-[2px]"
+                style={{ margin: 0, padding: 0, width: "100%" }}
+              ></div>
 
               {/* Content */}
               <div className="relative z-10 px-6 text-center max-w-5xl mx-auto">
@@ -95,59 +99,55 @@ const BannerCarousel = ({ moduleId }) => {
       </Carousel>
 
       {/* Gradient Text Animation */}
-  <style jsx>{`
-  @keyframes textGradientAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+      <style jsx>{`
+        @keyframes textGradientAnimation {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
 
-  @keyframes floatAnimation {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
+        @keyframes floatAnimation {
+          0% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
 
-  .gradient-text {
-    background: linear-gradient(
-      45deg,
-     #e47083,
-     #ffb876,
-     #f49aa3,
-     #6c4572,
-     #a8bf89,
-      #75D1C5,
-      #A9FFE0,
-      #FFAD9E,
-      #9a5371,
-      #FF726B
-    );
-    background-size: 400% 400%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: textGradientAnimation 10s ease infinite;
-  }
+        .gradient-text {
+          background: linear-gradient(
+            45deg,
+            #e47083,
+            #ffb876,
+            #f49aa3,
+            #6c4572,
+            #a8bf89,
+            #75d1c5,
+            #a9ffe0,
+            #ffad9e,
+            #9a5371,
+            #ff726b
+          );
+          background-size: 400% 400%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: textGradientAnimation 10s ease infinite;
+        }
 
-  .float-animation {
-    animation: floatAnimation 4s ease-in-out infinite;
-  }
-`}</style>
-
-
-
-
+        .float-animation {
+          animation: floatAnimation 4s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 };

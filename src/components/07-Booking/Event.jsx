@@ -1,6 +1,7 @@
 import React from "react";
 import event from "../../assets/Booking/event.png";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 export default function Event() {
   const getFlag = () => {
     switch (language) {
@@ -18,10 +19,16 @@ export default function Event() {
   };
 
   const { t, i18n } = useTranslation("global");
+  const navigate = useNavigate();
 
   const handleChangeLang = (lang) => {
     i18n.changeLanguage(lang);
   };
+  const handleNavigate = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="bg-gray-100 min-h-screen py-10 px-4">
       <div className="max-w-5xl mx-auto bg-white p-6 space-y-6">
@@ -71,6 +78,13 @@ export default function Event() {
         </p>
 
         <p className="text-gray-700 leading-relaxed">{t("event.line21")}</p>
+      </div>
+
+      <div
+        onClick={() => handleNavigate("/contact")}
+        className=" py-3 sm:px-8 max-w-1xl body mx-auto text-sm sm:text-base  leading-relaxed text-center text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
+      >
+        <p>Click here to Contact..!</p>
       </div>
     </div>
   );

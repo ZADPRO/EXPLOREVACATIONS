@@ -255,3 +255,5 @@ const RollingGallery = ({
 };
 
 export default RollingGallery;
+
+ {/* <RollingGallery autoplay pauseOnHover /> */}
