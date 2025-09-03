@@ -138,7 +138,7 @@ export default function Flight() {
           <div className="mt-6 space-y-3">
             <p className="text-lg">
               📧 <span className="font-semibold">{t("contact.Email")}:</span>{" "}
-              info@explorevacations.com
+            info@züricar.ch
             </p>
             <p className="text-lg">
               📞 <span className="font-semibold">{t("contact.Phone")}:</span> (+
@@ -146,7 +146,9 @@ export default function Flight() {
             </p>
             <p className="text-lg">
               📍 <span className="font-semibold">{t("contact.Address")}:</span>{" "}
-              Oberfeldstrasse 10, 8302 Kloten, Switzerland
+             Oberfeldstrasse 6
+CH-8306 Kloten
+Switzerland
             </p>
           </div>
         </div>

@@ -54,17 +54,17 @@ export default function TermsCondition() {
                 <li>{t("terms.l3")}</li>
                 <li>
                   {t("terms.l3.1")} email to: <br />
-                  EXPLORE VACATIONS AG, Wallisellerstrasse 147, 8152 Glattbrugg,
+                  ZüriCar GmbH, Wallisellerstrasse 147, 8152 Glattbrugg,
                   Zürich, Schweiz
                   <br />
                   Call: +41 76 495 90 10
                   <br />
                   {t("terms.l3.2")}:{" "}
                   <a
-                    href="mailto:info@explorevacations.ch"
+                    href="mailto:info@züricar.ch"
                     className="text-[#0062c4] underline"
                   >
-                    info@explorevacations.ch
+                    info@züricar.ch
                   </a>
                 </li>
                 <li> {t("terms.l3.3")}.</li>
@@ -104,10 +104,10 @@ export default function TermsCondition() {
                 <li>
                   Email:{" "}
                   <a
-                    href="mailto:info@explorevacations.ch"
+                    href="mailto:info@züricar.ch"
                     className="text-blue-600 underline"
                   >
-                    info@explorevacations.ch
+                    info@züricar.ch
                   </a>
                 </li>
               </ul>

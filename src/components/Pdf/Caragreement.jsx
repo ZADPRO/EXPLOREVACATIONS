@@ -202,7 +202,7 @@ export default function PdfVieTour({
                   <Text style={{ fontSize: 9, marginBottom: 8, color: "#000" }}>
                     Kind regards,
                     <br />
-                    Explorevacations.ch
+                   ZüriCar GmbH.ch
                   </Text>
                 </View>
 
@@ -298,7 +298,7 @@ export default function PdfVieTour({
                     Sunday, 09/03/2025 12:30 EVAG - Zurich airport, Switzerland
                   </Text>
                   <Text style={{ fontSize: 9, marginBottom: 8, color: "#000" }}>
-                    Explore Vacations AG Shuttle bus *
+                 ZüriCar GmbH Shuttle bus *
                   </Text>
                   <Text style={{ fontSize: 9, marginBottom: 8, color: "#000" }}>
                     Opening hours: 06:00 - 20:00
@@ -330,7 +330,7 @@ export default function PdfVieTour({
                     Sunday, 16/03/2025 12:30 EVAG - Zurich airport, Switzerland
                   </Text>
                   <Text style={{ fontSize: 9, marginBottom: 8, color: "#000" }}>
-                    Explore Vacations AG Shuttle bus *
+                    ZüriCar GmbH Shuttle bus *
                   </Text>
                   <Text style={{ fontSize: 9, marginBottom: 8, color: "#000" }}>
                     Opening hours: 06:00 - 20:00
@@ -895,7 +895,7 @@ export default function PdfVieTour({
                 condition to the correct location and at the agreed time. Please
                 make sure you return the vehicle to the same location which you
                 collected it.In the event the car is dropped off unreasonably
-                dirty, as determined solely by Explore Vacations AG and may
+                dirty, as determined solely by ZüriCar GmbH and may
                 charge you for special cleaning fees.No-Show A "no-show" is when
                 youwish to cancel your booking but do not tell us until your
                 rental is due to start;fail to pick up the car at the arranged
@@ -1374,7 +1374,7 @@ export default function PdfVieTour({
                 currency.
               </Text>
               <Text style={{ fontSize: 9, marginBottom: 4,marginTop:300 }}>
-              For more information, please visit www.explorevacations.ch 
+              For more information, please visit www.züricar.ch 
               </Text>
             </View>
           </Page>

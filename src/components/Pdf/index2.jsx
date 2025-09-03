@@ -59,11 +59,13 @@ export default function Pdf({
     <Document>
       <Page size="A4" style={styles.page}>
         <View>
-          <Text style={styles.header}>Explore Vacations AG</Text>
+          <Text style={styles.header}>ZüriCar GmbH </Text>
           <Text style={styles.paragraph}>
-            Oberfeldstrasse 10, 8302 Kloten, Switzerland{"\n"}
-            +41 44 442 30 35 | ✉️ info@explorevacations.ch{"\n"}
-            www.explorevacations.ch
+          Oberfeldstrasse 6
+CH-8306 Kloten
+Switzerland{"\n"}
+            +41 44 442 30 35 | ✉️ info@züricar.ch{"\n"}
+            www.züricar.ch
           </Text>
 
           <Text style={styles.subHeader}>
@@ -72,7 +74,7 @@ export default function Pdf({
 
           <Text style={styles.paragraph}>
             Dear Mr./Ms. [{customerName}],{"\n"}
-            Thank you for your online booking with Explore Vacations AG. We
+            Thank you for your online booking with ZüriCar GmbH. We
             hereby confirm your parking reservation at {nearbylocation} Airport.
           </Text>
 
@@ -126,7 +128,7 @@ export default function Pdf({
           </View>
           <Text style={styles.paragraph}>
             If you have any questions or need to make changes, please contact us
-            at +41 44 442 30 35 or info@explorevacations.ch.
+            at +41 44 442 30 35 or info@züricar.ch.
           </Text>
 
           <Text style={styles.paragraph}>
@@ -135,7 +137,7 @@ export default function Pdf({
 
           <Text style={{ marginTop: 20 }}>
             Best regards,{"\n"}
-            Your Explore Vacations AG Team
+            Your ZüriCar GmbH Team
           </Text>
         </View>
       </Page>
