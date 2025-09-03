@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo/logoPng.png";
+import logo from "../../assets/logo/logoheader.png";
 import flagEN from "../../assets/flags/english.png";
 import flagDE from "../../assets/flags/german.png";
 import flagFR from "../../assets/flags/french.png";
@@ -143,7 +143,7 @@ export default function Header() {
             <img
               src={logo}
               alt="Explore Vacations"
-              className="h-15 lg:h-23 md:h-23 cursor-pointer"
+              className="h-10 lg:h-15 md:h-15 cursor-pointer"
               onClick={() => handleNavigation("/")}
             />
           </div>

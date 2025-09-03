@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import bgimg from "../../assets/footer/footerbg.png";
-import logoImg from "../../assets/logo/Explorelogo.png";
+import logoImg from "../../assets/logo/logofooter.png";
 import footer from "../../assets/footer/footer.png";
 import { useTranslation } from "react-i18next";
 
@@ -13,21 +13,21 @@ export default function Footer() {
     window.scrollTo(0, 0);
   };
 
-   const getFlag = () => {
-     switch (language) {
-       case "en":
-         return flagEN;
-       case "de":
-         return flagDE;
-       case "fr":
-         return flagFR;
-       case "it":
-         return flagIT;
-       default:
-         return flagEN;
-     }
-   };
- 
+  const getFlag = () => {
+    switch (language) {
+      case "en":
+        return flagEN;
+      case "de":
+        return flagDE;
+      case "fr":
+        return flagFR;
+      case "it":
+        return flagIT;
+      default:
+        return flagEN;
+    }
+  };
+
 
   const { t, i18n } = useTranslation("global");
 
@@ -50,7 +50,7 @@ export default function Footer() {
         <div className="">
           <div className="flex  w-10/12 mx-auto gap-5 py-10 px-4 h-[full]   lg:flex-row md:flex-row  flex-col ">
             <div className="flex-1">
-              <img src={logoImg} alt="" className="w-40 rounded-xl" />
+              <img src={logoImg} alt="" className="w-[180px] rounded-xl" />
               <p className="text-white mt-3 text-[15px] font-medium text-left tracking-[-0.015em]">
                 {t("footer.footer")}
               </p>
@@ -108,16 +108,19 @@ export default function Footer() {
                 {t("footer.Contact Information")}
               </p>
               <p className="text-white py-2 text-[15px] font-medium">
-                info@explorevacations.ch
+                info@züricar.ch
               </p>
               <p className="text-white py-2 text-[15px] font-medium">
                 (+ 41) 44 442 30 35
               </p>
               <p className="text-white py-2 text-[15px] font-medium">
-                Oberfeldstrasse 10, 8302 Kloten, Switzerland
+                ZüriCar GmbH
+
               </p>
               <p className="text-white py-2 text-[15px] font-medium">
-                371/5, Negombo Road, Seeduwa Sri Lanka Office
+                Oberfeldstrasse 6
+                CH-8306 Kloten
+                Switzerland
               </p>
             </div>
             <div className="flex-1">
