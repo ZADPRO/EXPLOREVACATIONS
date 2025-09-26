@@ -79,17 +79,16 @@ export default function Contact() {
           <div className="mt-6 space-y-3">
             <p className="text-lg">
               📧 <span className="font-semibold">{t("contact.Email")}:</span>{" "}
-             info@züricar.ch
+              info@züricar.ch
             </p>
             <p className="text-lg">
-              📞 <span className="font-semibold">{t("contact.Phone")}:</span> (+
-              41) 44 442 30 35
+              📞 <span className="font-semibold">{t("contact.Phone")}:</span> +41 79 766 99 60
             </p>
             <p className="text-lg">
               📍 <span className="font-semibold">{t("contact.Address")}:</span>{" "}
-            Oberfeldstrasse 6
-CH-8306 Kloten
-Switzerland
+              Oberfeldstrasse 6
+              CH-8306 Kloten
+              Switzerland
             </p>
           </div>
         </div>
@@ -106,7 +105,7 @@ Switzerland
           <Button
             icon="pi pi-phone"
             className="p-button-rounded p-button-warning p-button-lg text-white"
-            onClick={() => window.open("tel:+41 44 442 30 35")}
+            onClick={() => window.open("tel:+41 79 766 99 60")}
             style={{ boxShadow: "0 4px 10px rgba(0,0,0,0.2)" }}
           />
         </div>

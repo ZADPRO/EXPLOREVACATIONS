@@ -111,7 +111,7 @@ export default function Footer() {
                 info@züricar.ch
               </p>
               <p className="text-white py-2 text-[15px] font-medium">
-                (+ 41) 44 442 30 35
+                +41 79 766 99 60
               </p>
               <p className="text-white py-2 text-[15px] font-medium">
                 ZüriCar GmbH
@@ -123,7 +123,7 @@ export default function Footer() {
                 Switzerland
               </p>
             </div>
-            <div className="flex-1">
+            {/* <div className="flex-1">
               <p className="text-white text-[22px] font-bold ">
                 {t("footer.Social Media Links")}
               </p>
@@ -148,7 +148,7 @@ export default function Footer() {
               </a>
 
               <p className="text-white py-2 text-[15px] font-medium">Twitter</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

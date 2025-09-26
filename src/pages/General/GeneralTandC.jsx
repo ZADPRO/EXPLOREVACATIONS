@@ -230,7 +230,7 @@ export default function GeneralTandC() {
               </li>
             </ul>
             <h3> {t("general.h14")} </h3>
-            <p>P.O. Box 1818024 ZurichPhone: +41 44 211 30 90 </p>
+            <p>P.O. Box 1818024 ZurichPhone: +41 79 766 99 60 </p>
           </p>
           <h2 className="text-2xl font-semibold mt-10 mb-4">
           {t("general.h15")}

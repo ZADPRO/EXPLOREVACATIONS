@@ -64,7 +64,7 @@ export default function Pdf({
           Oberfeldstrasse 6
 CH-8306 Kloten
 Switzerland{"\n"}
-            +41 44 442 30 35 | ✉️ info@züricar.ch{"\n"}
+          +41 79 766 99 60 | ✉️ info@züricar.ch{"\n"}
             www.züricar.ch
           </Text>
 
@@ -128,7 +128,7 @@ Switzerland{"\n"}
           </View>
           <Text style={styles.paragraph}>
             If you have any questions or need to make changes, please contact us
-            at +41 44 442 30 35 or info@züricar.ch.
+            at +41 79 766 99 60 or info@züricar.ch.
           </Text>
 
           <Text style={styles.paragraph}>

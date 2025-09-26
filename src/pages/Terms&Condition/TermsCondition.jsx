@@ -91,12 +91,12 @@ export default function TermsCondition() {
             <li>
               {t("terms.l4.7")}{" "}
               <a
-                href="https://explorevacations.max-idigital.ch/"
+                href="https://zuericar.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 underline"
               >
-                https://explorevacations.max-idigital.ch/
+                https://zuericar.com/
               </a>
               {t("terms.a5")}
               <ul className="list-disc pl-6">
@@ -154,12 +154,12 @@ export default function TermsCondition() {
           <br />
           {t("terms.h9.1")}
           <a
-            href="https://explorevacations.max-idigital.ch/"
+            href="https://zuericar.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 underline"
           >
-            https://explorevacations.max-idigital.ch/
+            https://zuericar.com/
           </a>{" "}
           {t("terms.h9.2")}
           <li>{t("terms.l9")}</li>
@@ -170,12 +170,12 @@ export default function TermsCondition() {
           <li>
             {t("terms.l10.2")}{" "}
             <a
-              href="https://explorevacations.max-idigital.ch/"
+              href="https://zuericar.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 underline"
             >
-              https://explorevacations.max-idigital.ch/
+              https://zuericar.com/
             </a>{" "}
             {t("terms.l10.3")}
           </li>

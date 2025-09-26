@@ -221,7 +221,7 @@ export default function PdfVieTour({
 
                   {/* Row-wise spacing between label and value */}
                   {[
-                    ["Pricessless reservation", "Explore Vacations"],
+                    ["Pricessless reservation", " ZüriCar GmbH"],
                     ["Number", "297909"],
                     ["Reservation date", "297909"],
                     ["Driver name", "297909"],
@@ -903,7 +903,7 @@ export default function PdfVieTour({
                 to pick up the car;fail to provide a credit card in the main
                 driver's name with enough funds to cover the deposit;fail to
                 meet supplier terms or requirements;In all these cases, you will
-                receive no refund of the money you have paid.Explore Vacations
+                receive no refund of the money you have paid. ZüriCar GmbH
                 AG Car Rental reserves the right to refuse to rent a car to any
                 customer who fails to arrive on time and does not have the
                 necessary documentation and a credit card with enough funds. In

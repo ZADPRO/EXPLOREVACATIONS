@@ -261,7 +261,7 @@ export default function Privacy() {
           <li>Company Name: Explore Vacation AG</li>
           <li>Support Email: diestale@explorevacations.ch</li>
           <li>Phone Number: +41 763109960</li>
-          <li>Developed By: https://explorevacations.max-idigital.ch/</li>
+          <li>Developed By: https://zuericar.com/</li>
         </ul>
       </div>
     </div>

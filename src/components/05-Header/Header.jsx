@@ -142,7 +142,7 @@ export default function Header() {
           <div className="flex items-center w-[30%] min-w-[100px]">
             <img
               src={logo}
-              alt="Explore Vacations"
+              alt=" ZüriCar GmbH"
               className="h-10 lg:h-15 md:h-15 cursor-pointer"
               onClick={() => handleNavigation("/")}
             />
