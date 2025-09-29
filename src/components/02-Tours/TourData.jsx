@@ -262,7 +262,7 @@ export default function TourData() {
                       <>
                         {" "}
                         <img
-                          src={`https://explorevacations.max-idigital.ch/src/assets/coverImage/${tour.refCoverImage}`}
+                          src={`https://zuericar.com/src/assets/coverImage/${tour.refCoverImage}`}
                           // src={`data:${tour.refCoverImage};base64,${tour.refCoverImage.content}`}
                           alt={tour.title}
                           className="w-full object-cover aspect-[4/3]"

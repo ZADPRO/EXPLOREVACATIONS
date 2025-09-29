@@ -80,7 +80,7 @@ export default function CarsTemplate() {
 
   const [imgSrc, setImgSrc] = useState(
     carListData?.refCarPath?.trim()
-      ? `https://explorevacations.max-idigital.ch/src/assets/cars/${carListData.refCarPath}`
+      ? `https://zuericar.com/src/assets/cars/${carListData.refCarPath}`
       : tourImg
   );
 
@@ -555,7 +555,7 @@ export default function CarsTemplate() {
                           src={
                             car.refCarPath === null
                               ? tourImg
-                              : `https://explorevacations.max-idigital.ch/src/assets/cars/${car.refCarPath}`
+                              : `https://zuericar.com/src/assets/cars/${car.refCarPath}`
                           }
                           alt={car.refVehicleTypeName}
                           className="w-full h-40 sm:h-48 object-cover"

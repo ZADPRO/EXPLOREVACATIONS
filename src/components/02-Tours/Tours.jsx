@@ -254,7 +254,7 @@ export default function Tours() {
                     <img src={tourImg} alt="Alt Image for Tours" />
                   ) : (
                     <img
-                      src={`https://explorevacations.max-idigital.ch/src/assets/coverImage/${tour.refCoverImage}`}
+                      src={`https://zuericar.com/src/assets/coverImage/${tour.refCoverImage}`}
                       alt={tour.refPackageName}
                       className="w-full object-cover aspect-[4/3]"
                     />

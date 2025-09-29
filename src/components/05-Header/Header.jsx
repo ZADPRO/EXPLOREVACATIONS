@@ -180,7 +180,7 @@ export default function Header() {
 
               {showBookingDropdown && (
                 <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-50 z-50">
-                  {["flight", "ship", "hotel", "parking", "Flightform"].map(
+                  {["parking", "Flightform"].map(
                     (type) => (
                       <div
                         key={type}
@@ -347,7 +347,7 @@ export default function Header() {
                 </div>
                 {showMobileBooking && (
                   <div className="ml-4 mt-2 flex flex-col gap-2">
-                    {["flight", "ship", "hotel", "parking", "Flightform"].map(
+                    {["parking", "Flightform"].map(
                       (type) => (
                         <div
                           key={type}

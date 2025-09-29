@@ -702,7 +702,7 @@ export default function ToursTemplate() {
             <img
               src={
                 tour?.refCoverImage
-                  ? `https://explorevacations.max-idigital.ch/src/assets/coverImage/${tour.refCoverImage}`
+                  ? `https://zuericar.com/src/assets/coverImage/${tour.refCoverImage}`
                   : arch
               }
               alt="Tour Image"
@@ -879,7 +879,7 @@ export default function ToursTemplate() {
                 alt=""
               /> */}
               <img
-                src={`https://explorevacations.max-idigital.ch/src/assets/map/${tour.refItinaryMapPath}`}
+                src={`https://zuericar.com/src/assets/map/${tour.refItinaryMapPath}`}
                 alt="Itinerary Map"
                 className="w-full object-contain"
               />
@@ -890,7 +890,7 @@ export default function ToursTemplate() {
               {galleryImg?.map((img) => (
                 <img
                   // src={`data:${img.contentType};base64,${img.content}`}
-                  src={`https://explorevacations.max-idigital.ch/src/assets/gallery/${img}`}
+                  src={`https://zuericar.com/src/assets/gallery/${img}`}
                   alt=""
                 />
               ))}

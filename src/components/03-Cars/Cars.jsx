@@ -427,7 +427,7 @@ export default function Cars() {
                 <img src={tourImg} alt="Alt Image for Tours" />
               ) : (
                 <img
-                  src={`https://explorevacations.max-idigital.ch/src/assets/cars/${car.refCarPath}`}
+                  src={`https://zuericar.com/src/assets/cars/${car.refCarPath}`}
                   alt={car.refVehicleTypeName}
                   className="w-full object-cover aspect-[4/3]"
                 />
