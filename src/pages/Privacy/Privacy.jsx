@@ -258,9 +258,10 @@ export default function Privacy() {
         <h3 className="text-lg font-semibold mt-4">– Contact Information</h3>
         <p className="mt-2">For privacy-related inquiries, contact us at:</p>
         <ul className="list-disc pl-6 space-y-2 mt-2">
-          <li>Company Name: Explore Vacation AG</li>
-          <li>Support Email: diestale@explorevacations.ch</li>
-          <li>Phone Number: +41 763109960</li>
+          <li>Company Name: ZüriCar GO GmbH</li>
+          <li>Support Email: support@zuricar.ch
+</li>
+          <li>Phone Number: +41 79 766 99 60</li>
           <li>Developed By: https://zuericar.com/</li>
         </ul>
       </div>

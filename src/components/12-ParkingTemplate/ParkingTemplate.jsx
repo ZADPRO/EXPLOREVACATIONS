@@ -596,7 +596,7 @@ export default function ParkingTemplate() {
           </TabPanel>
           <TabPanel header="Cancellation & Reschedule" key="tab1">
             <div>
-              Contact Explore Vacation :{" "}
+              Contact ZüriCar GO GmbH :{" "}
               <button
                 className=" p-2 rounded-2xl text-[#065784] underline cursor-pointer "
                 onClick={() => {
