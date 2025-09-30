@@ -10,10 +10,13 @@
   color: gray;
 } */
 
+/* Apply Onest first, fallback to Century Gothic, then sans-serif */
 .testingFont {
-  font-family: "Caveat", cursive;
+  font-family: "Onest", "Century Gothic", sans-serif;
 }
 
-.body {
-  font-family: 'Century Gothic', sans-serif;
+/* For body text */
+body {
+  font-family: "Century Gothic", "Onest", sans-serif;
 }
+

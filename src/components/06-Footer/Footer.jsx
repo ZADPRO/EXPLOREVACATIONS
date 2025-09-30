@@ -38,12 +38,12 @@ export default function Footer() {
     <div>
       <div className="w-full ">
         {" "}
-        <img
+        {/* <img
           src={footer}
           style={{ objectFit: "cover" }}
           alt="footer"
           className="w-full h-auto mb-0 border-0"
-        />
+        /> */}
       </div>
       <div className="  bg-[#065784] -mt-2">
         {/* style={{   backgroundImage: `url(${bgimg})`,}} */}

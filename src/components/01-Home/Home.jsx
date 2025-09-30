@@ -21,7 +21,10 @@ import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useTranslation } from "react-i18next";
-
+import car1 from '../../assets/cars/carsbgs.jpg';
+import car2 from '../../assets/cars/cars.jpg';
+import car4 from '../../assets/cars/suv.jpg';
+import car3 from '../../assets/cars/luxury.jpg';
 import { Carousel } from "primereact/carousel";
 
 import business from "../../assets/service/busines.jpg";
@@ -33,15 +36,18 @@ import homeImg1 from "../../assets/homeCards/front.jpg";
 import homeImg2 from "../../assets/homeCards/back.jpg";
 
 import { Toast } from "primereact/toast";
-
+import minivan from '../../assets/cars/minivan.jpg'
 import secure from "../../assets/home/secure.png";
 import travel from "../../assets/home/travel.png";
-
+import car5 from '../../assets/Parking/parking1.jpg'
+import car6 from '../../assets/cars/car3.jpg';
+import car7 from '../../assets/cars/ca2.webp'
+import car from '../../assets/cars/car1.webp'
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import Popup from "../../pages/Popup/Popup";
 import BannerCarousel from "./BannerCarousel ";
-
+import carr1 from '../../assets/cars/carr1.jpg'
 export default function Home() {
   const [tabSelected, setTabSelected] = useState({
     currentTab: 1,
@@ -1017,13 +1023,13 @@ export default function Home() {
       <div className="flex lg:flex-row flex-column justify-between items-center gap-4 w-9/12 mx-auto my-20">
         <div className="flex flex-col justify-between h-full flex-1 gap-10">
           <img
-            src={home1}
+            src={car1}
             alt="Top Image"
             data-aos="fade-right"
             className="mx-auto w-[300px] rounded-lg"
           />
           <img
-            src={home2}
+            src={minivan}
             data-aos="fade-right"
             alt="Bottom Image"
             className="lg:self-end self-center w-[200px] rounded-lg"
@@ -1047,13 +1053,13 @@ export default function Home() {
 
         <div className="flex flex-col justify-between h-full flex-1 gap-10">
           <img
-            src={home3}
+            src={carr1}
             alt="Top Image"
             data-aos="fade-right"
             className="mx-auto w-[300px] rounded-lg"
           />
           <img
-            src={home4}
+            src={car2}
             alt="Bottom Image"
             data-aos="fade-right"
             className="lg:self-start self-center w-[200px] rounded-lg"
@@ -1144,7 +1150,7 @@ export default function Home() {
           </p>
           <div className="flex mt-4">
             <img
-              src={travel}
+              src={car5}
               alt=""
               className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"
             />
@@ -1187,7 +1193,7 @@ export default function Home() {
             {/* Main Image */}
             <div className="relative w-[100%] left-[10%] lg:left-[5] lg:w-[60%]">
               <img
-                src={homeImg2}
+                src={car}
                 alt="Main"
                 className="lg:w-[500px] w-[240px] h-auto rounded-lg shadow-lg"
               />
@@ -1196,7 +1202,7 @@ export default function Home() {
             {/* Sub Image (Overlayed) */}
             <div className="absolute top-[50%] lg:left-[30%] left-[25%] w-3/5 lg:w-[60%] transform -translate-x-1/2 -translate-y-1/2">
               <img
-                src={homeImg1}
+                src={car6}
                 alt="Sub"
                 className="w-[250px] h-auto rounded-lg shadow-xl border-4 border-white object-cover"
               />
@@ -1205,7 +1211,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="bannerImage001">
+      {/* <div className="bannerImage001">
         <div className="h-[100vh] flex flex-column items-center justify-center">
           <p
             className="testingFont text-white text-4xl font-bold"
@@ -1220,7 +1226,7 @@ export default function Home() {
             {t("home.Popular Travel Destinations Available Worldwide")}
           </p>
         </div>
-      </div>
+      </div> */}
 
       <div className="">
         <div className="flex flex-column items-center justify-center">
