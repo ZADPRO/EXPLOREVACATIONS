@@ -107,8 +107,37 @@
     "q36": "Posso trasportare animali domestici nel veicolo?",
     "a36": "Gli animali sono ammessi purché siano in gabbia o con trasportino. Il veicolo deve essere pulito dopo l'uso."
   },
+
+  
+  "imprint": {
+    "title": "Informazioni legali / Note legali",
+    "address1": "Kirchrainstrasse 3",
+    "address2": "8172 Niederglatt AG",
+    "address3": "Svizzera",
+    "contactTitle": "Informazioni di contatto",
+    "phone": "Telefono: +41 79 766 99 60",
+    "email": "E-mail: info@zuricar.ch",
+    "registerTitle": "Iscrizione al registro di commercio",
+    "registeredName": "Nome registrato della società: ZüriCar GO GmbH",
+    "companyId": "Numero di identificazione aziendale (UID): CHE-[inserire numero]",
+    "vat": "Numero IVA: CHE-[inserire numero] MWST",
+    "authorizedTitle": "Rappresentanti autorizzati",
+    "authorized1": "• Veemarajan Pragash, Direttore generale",
+    "authorized2": "• Ambrose Jebapratheepan, Fondatore e CEO",
+    "disclaimerTitle": "Dichiarazione di non responsabilità",
+    "disclaimerText1": "ZüriCar GO GmbH non si assume alcuna responsabilità per la correttezza, completezza, attualità o affidabilità delle informazioni fornite.",
+    "disclaimerText2": "Sono escluse le richieste di risarcimento per danni materiali o immateriali derivanti dall'accesso, dall'uso o dal mancato utilizzo delle informazioni pubblicate, dall'abuso della connessione o da guasti tecnici.",
+    "disclaimerText3": "Tutte le offerte sono senza impegno. ZüriCar GO GmbH si riserva espressamente il diritto di modificare, integrare, cancellare o sospendere temporaneamente o definitivamente la pubblicazione di parti del sito web o dell’intera offerta senza preavviso.",
+    "linksTitle": "Dichiarazione di non responsabilità per i collegamenti",
+    "linksText": "Riferimenti e link a siti web di terzi sono al di fuori della nostra area di responsabilità. Qualsiasi responsabilità per tali siti web è esclusa. L'accesso e l'uso di tali siti web avvengono a rischio e pericolo dell'utente.",
+    "copyrightTitle": "Diritto d'autore",
+    "copyrightText1": "Il diritto d’autore e tutti gli altri diritti sui contenuti, immagini, foto o altri file di questo sito web sono di esclusiva proprietà di ZüriCar GO GmbH o dei titolari dei diritti espressamente nominati.",
+    "copyrightText2": "Qualsiasi riproduzione, modifica, distribuzione o altro utilizzo degli elementi di questo sito richiede il consenso scritto preventivo del titolare dei diritti interessato."
+  },
+
+
   "footer": {
-    "footer": "Siamo una compagnia di viaggi e turismo completa in Svizzera. Offriamo una vasta selezione di viaggi su misura FIT / di gruppo, tour in spiaggia, safari ed esplorazioni di vacanza in Sri Lanka.",
+    "footer": "Siamo una società premium di noleggio auto e un’agenzia di viaggi a servizio completo con sede in Svizzera. Con una flotta moderna e soluzioni di transfer affidabili, garantiamo la massima flessibilità e comfort per ogni viaggio. Oltre al noleggio auto, siamo specializzati in viaggi su misura FIT e di gruppo, vacanze al mare, safari ed esclusive spedizioni in Sri Lanka – creando esperienze di viaggio indimenticabili dalla Svizzera verso il mondo.",
     "Tours": "Tour",
     "Our Services": "I Nostri Servizi",
     "Cars": "Auto",

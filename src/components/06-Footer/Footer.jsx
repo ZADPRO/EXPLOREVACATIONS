@@ -59,6 +59,12 @@ export default function Footer() {
               <p className="text-white text-[22px] font-semibold  ">
                 {t("footer.Our Services")}
               </p>
+               <p
+                className="text-white py-2 text-[15px] font-medium cursor-pointer"
+                onClick={() => handleNavigate("/impressum")}
+              >
+                {t("Impressum")}
+              </p>
               <p
                 className="text-white py-2 text-[15px] font-medium cursor-pointer"
                 onClick={() => handleNavigate("/Tours")}
@@ -108,7 +114,7 @@ export default function Footer() {
                 {t("footer.Contact Information")}
               </p>
               <p className="text-white py-2 text-[15px] font-medium">
-                info@züricar.ch
+                 info@zuricar.ch
               </p>
               <p className="text-white py-2 text-[15px] font-medium">
                 +41 79 766 99 60

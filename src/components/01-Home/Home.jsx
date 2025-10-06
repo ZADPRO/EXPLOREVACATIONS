@@ -16,17 +16,21 @@ import home3 from "../../assets/homeCards/card2.jpg";
 import home4 from "../../assets/homeCards/card4.jpg";
 import decrypt from "../../helper";
 import Axios from "axios";
+import img1 from '../../assets/Home1/img1.png'
+import img2 from '../../assets/Home1/img2.png'
 import Glide from "@glidejs/glide";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useTranslation } from "react-i18next";
-import car1 from '../../assets/cars/carsbgs.jpg';
-import car2 from '../../assets/cars/cars.jpg';
-import car4 from '../../assets/cars/suv.jpg';
-import car3 from '../../assets/cars/luxury.jpg';
+import car1 from '../../assets/Home1/car1.jpeg';
+import car2 from '../../assets/Home1/car2.jpeg';
+import car5 from '../../assets/Home1/car5.jpeg';
+import car6 from '../../assets/cars/luxury.jpg';
 import { Carousel } from "primereact/carousel";
 
+import car3 from '../../assets/Home1/car3.jpeg'
+import car4 from '../../assets/Home1/car4.jpeg';
 import business from "../../assets/service/busines.jpg";
 import carRental from "../../assets/service/carRental.jpg";
 import tourists from "../../assets/service/tourists.jpg";
@@ -39,8 +43,6 @@ import { Toast } from "primereact/toast";
 import minivan from '../../assets/cars/minivan.jpg'
 import secure from "../../assets/home/secure.png";
 import travel from "../../assets/home/travel.png";
-import car5 from '../../assets/Parking/parking1.jpg'
-import car6 from '../../assets/cars/car3.jpg';
 import car7 from '../../assets/cars/ca2.webp'
 import car from '../../assets/cars/car1.webp'
 import "./Home.css";
@@ -1029,7 +1031,7 @@ export default function Home() {
             className="mx-auto w-[300px] rounded-lg"
           />
           <img
-            src={minivan}
+            src={car2}
             data-aos="fade-right"
             alt="Bottom Image"
             className="lg:self-end self-center w-[200px] rounded-lg"
@@ -1046,20 +1048,20 @@ export default function Home() {
           </p>
           <p className="text-sm text-gray-600 pt-3 ">
             {t(
-              "home.Whether you're looking for a romantic getaway, family-friendly vacation, or a solo journey to explore the world, a travel agency can provide a tailored itinerary that exceeds your expectations."
+              "home.Whether you are planning a romantic escape, a family holiday, or a solo adventure, our travel agency designs bespoke itineraries tailored to your needs. Alongside carefully crafted tours and exclusive holiday packages, we also offer flexible car rental solutions to ensure your journey is seamless, comfortable, and unforgettable."
             )}
           </p>
         </div>
 
         <div className="flex flex-col justify-between h-full flex-1 gap-10">
           <img
-            src={carr1}
+            src={car3}
             alt="Top Image"
             data-aos="fade-right"
             className="mx-auto w-[300px] rounded-lg"
           />
           <img
-            src={car2}
+            src={car4}
             alt="Bottom Image"
             data-aos="fade-right"
             className="lg:self-start self-center w-[200px] rounded-lg"
@@ -1150,7 +1152,7 @@ export default function Home() {
           </p>
           <div className="flex mt-4">
             <img
-              src={car5}
+              src={img1}
               alt=""
               className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"
             />
@@ -1167,7 +1169,7 @@ export default function Home() {
           </div>
           <div className="flex mt-4">
             <img
-              src={secure}
+              src={img2}
               alt=""
               className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"
             />
@@ -1202,7 +1204,7 @@ export default function Home() {
             {/* Sub Image (Overlayed) */}
             <div className="absolute top-[50%] lg:left-[30%] left-[25%] w-3/5 lg:w-[60%] transform -translate-x-1/2 -translate-y-1/2">
               <img
-                src={car6}
+                src={car5}
                 alt="Sub"
                 className="w-[250px] h-auto rounded-lg shadow-xl border-4 border-white object-cover"
               />

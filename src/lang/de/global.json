@@ -113,7 +113,7 @@
 
     "Most Popular Tour": "Beliebteste Tour",
     "Let’s Discover The World With Our Excellent Eyes": "Entdecken wir die Welt mit unseren ausgezeichneten Augen",
-    "Whether you're looking for a romantic getaway, family-friendly vacation, or a solo journey to explore the world, a travel agency can provide a tailored itinerary that exceeds your expectations.": "Ob Sie einen romantischen Kurzurlaub, einen familienfreundlichen Urlaub oder eine Solo-Reise zur Erkundung der Welt suchen – ein Reisebüro kann eine maßgeschneiderte Reiseroute bieten, die Ihre Erwartungen übertrifft.",
+    "Whether you are planning a romantic escape, a family holiday, or a solo adventure, our travel agency designs bespoke itineraries tailored to your needs. Alongside carefully crafted tours and exclusive holiday packages, we also offer flexible car rental solutions to ensure your journey is seamless, comfortable, and unforgettable." : "Ob Sie einen romantischen Ausflug, einen Familienurlaub oder ein Solo-Abenteuer planen – unser Reisebüro erstellt maßgeschneiderte Reisepläne, die auf Ihre Bedürfnisse zugeschnitten sind. Neben sorgfältig zusammengestellten Touren und exklusiven Urlaubspaketen bieten wir auch flexible Mietwagenlösungen an, um sicherzustellen, dass Ihre Reise nahtlos, komfortabel und unvergesslich wird.",
     "Our Services": "Unsere Dienstleistungen",
     "Dream Your Next Trip": "Träumen Sie von Ihrer nächsten Reise",
     "Discover whenever you want to go": "Entdecken Sie, wohin Sie auch immer reisen möchten",
@@ -127,9 +127,36 @@
     "See Those Lovely Words From Clients": "Sehen Sie sich diese lieben Worte von Kunden an",
     "Select a topic": "Wählen Sie ein Thema"
   },
+
+  "imprint": {
+    "title": "Impressum / Rechtliche Hinweise",
+    "address1": "Kirchrainstrasse 3",
+    "address2": "8172 Niederglatt AG",
+    "address3": "Schweiz",
+    "contactTitle": "Kontaktinformationen",
+    "phone": "Telefon: +41 79 766 99 60",
+    "email": "E-Mail: info@zuricar.ch",
+    "registerTitle": "Handelsregistereintrag",
+    "registeredName": "Eingetragener Firmenname: ZüriCar GO GmbH",
+    "companyId": "Unternehmens-Identifikationsnummer (UID): CHE-[Nummer einfügen]",
+    "vat": "Mehrwertsteuernummer: CHE-[Nummer einfügen] MWST",
+    "authorizedTitle": "Vertretungsberechtigte Personen",
+    "authorized1": "• Veemarajan Pragash, Geschäftsführer",
+    "authorized2": "• Ambrose Jebapratheepan, Gründer & CEO",
+    "disclaimerTitle": "Haftungsausschluss",
+    "disclaimerText1": "ZüriCar GO GmbH übernimmt keine Haftung für die Richtigkeit, Vollständigkeit, Aktualität oder Zuverlässigkeit der bereitgestellten Informationen.",
+    "disclaimerText2": "Haftungsansprüche gegen ZüriCar GO GmbH wegen materieller oder immaterieller Schäden, die aus dem Zugriff, der Nutzung oder Nichtnutzung der veröffentlichten Informationen, durch Missbrauch der Verbindung oder durch technische Störungen entstehen, sind ausgeschlossen.",
+    "disclaimerText3": "Alle Angebote sind unverbindlich. ZüriCar GO GmbH behält sich ausdrücklich das Recht vor, Teile der Seiten oder das gesamte Angebot ohne besondere Ankündigung zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.",
+    "linksTitle": "Haftung für Links",
+    "linksText": "Verweise und Links auf Webseiten Dritter liegen außerhalb unseres Verantwortungsbereichs. Eine Haftung für solche Webseiten wird abgelehnt. Der Zugriff und die Nutzung solcher Webseiten erfolgen auf eigenes Risiko der Nutzer.",
+    "copyrightTitle": "Urheberrecht",
+    "copyrightText1": "Das Urheberrecht und alle anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien auf dieser Website gehören ausschließlich der ZüriCar GO GmbH oder den ausdrücklich genannten Rechteinhabern.",
+    "copyrightText2": "Für die Reproduktion, Bearbeitung, Verbreitung oder sonstige Verwendung von Elementen dieser Website ist die vorherige schriftliche Zustimmung des jeweiligen Rechteinhabers erforderlich."
+  },
+
   "footer": {
-    "footer": "Wir sind ein vollständiges Reise- und Tourismusunternehmen in der Schweiz. Wir bieten eine große Auswahl an maßgeschneiderten FIT-/Gruppenreisen, Strandtouren, Safaris und Urlaubsexpeditionen nach Sri Lanka.",
-    "Our Services": "Unsere Dienstleistungen",
+    "footer": "Wir sind ein Premium-Autovermietungs- und Full-Service-Reiseunternehmen mit Sitz in der Schweiz. Mit einer modernen Fahrzeugflotte und zuverlässigen Transferlösungen gewährleisten wir maximale Flexibilität und Komfort auf jeder Reise. Neben der Autovermietung sind wir auf maßgeschneiderte FIT- und Gruppenreisen, Strandurlaube, Safaris und exklusive Expeditionen nach Sri Lanka spezialisiert – und schaffen unvergessliche Reiseerlebnisse von der Schweiz in die ganze Welt.",
+     "Our Services": "Unsere Dienstleistungen",
     "Tours": "Touren",
     "Cars": "Autos",
     "Contact Us": "Kontaktieren Sie uns",

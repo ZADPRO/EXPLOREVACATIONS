@@ -115,7 +115,7 @@
     "Travel": "Voyage",
     "Most Popular Tour": "Tour le plus populaire",
     "Let’s Discover The World With Our Excellent Eyes": "Découvrons le monde avec notre regard d’exception",
-    "Whether you're looking for a romantic getaway, family-friendly vacation, or a solo journey to explore the world, a travel agency can provide a tailored itinerary that exceeds your expectations.": "Que vous recherchiez une escapade romantique, des vacances en famille ou un voyage en solo pour explorer le monde, une agence de voyages peut vous proposer un itinéraire personnalisé au-delà de vos attentes.",
+    "Whether you are planning a romantic escape, a family holiday, or a solo adventure, our travel agency designs bespoke itineraries tailored to your needs. Alongside carefully crafted tours and exclusive holiday packages, we also offer flexible car rental solutions to ensure your journey is seamless, comfortable, and unforgettable.": "Que vous planifiiez une escapade romantique, des vacances en famille ou une aventure en solo, notre agence de voyages conçoit des itinéraires sur mesure adaptés à vos besoins. En plus de circuits soigneusement élaborés et de forfaits exclusifs, nous proposons également des solutions de location de voiture flexibles afin de rendre votre voyage fluide, confortable et inoubliable.",
     "Our Services": "Nos services",
     "Dream Your Next Trip": "Rêvez votre prochain voyage",
     "Discover whenever you want to go": "Découvrez où vous voulez aller, quand vous le souhaitez",
@@ -128,9 +128,34 @@
     "Frequently Asked Questions": "Questions fréquemment posées"
   },
 
+  "imprint": {
+    "address1": "Kirchrainstrasse 3",
+    "address2": "8172 Niederglatt AG",
+    "address3": "Suisse",
+    "contactTitle": "Informations de contact",
+    "phone": "Téléphone : +41 79 766 99 60",
+    "email": "E-mail : info@zuricar.ch",
+    "registerTitle": "Inscription au registre du commerce",
+    "registeredName": "Raison sociale enregistrée : ZüriCar GO GmbH",
+    "companyId": "Numéro d'identification de l’entreprise (UID) : CHE-[insérer le numéro]",
+    "vat": "Numéro de TVA : CHE-[insérer le numéro] MWST",
+    "authorizedTitle": "Représentants autorisés",
+    "authorized1": "• Veemarajan Pragash, Directeur général",
+    "authorized2": "• Ambrose Jebapratheepan, Fondateur & PDG",
+    "disclaimerTitle": "Clause de non-responsabilité",
+    "disclaimerText1": "ZüriCar GO GmbH n’assume aucune responsabilité quant à l’exactitude, l’exhaustivité, l’actualité ou la fiabilité des informations fournies.",
+    "disclaimerText2": "Toute responsabilité pour des dommages matériels ou immatériels résultant de l’accès, de l’utilisation ou de la non-utilisation des informations publiées, de l’utilisation abusive de la connexion ou de défaillances techniques est exclue.",
+    "disclaimerText3": "Toutes les offres sont sans engagement. ZüriCar GO GmbH se réserve expressément le droit de modifier, compléter, supprimer ou suspendre temporairement ou définitivement la publication de parties du site Web ou de l’ensemble de l’offre sans préavis.",
+    "linksTitle": "Clause de non-responsabilité concernant les liens",
+    "linksText": "Les références et liens vers des sites Web tiers sont en dehors de notre domaine de responsabilité. Toute responsabilité pour ces sites Web est rejetée. L’accès et l’utilisation de ces sites Web se font aux risques et périls de l’utilisateur.",
+    "copyrightTitle": "Droits d'auteur",
+    "copyrightText1": "Les droits d’auteur et tous les autres droits sur le contenu, les images, les photos ou autres fichiers de ce site Web appartiennent exclusivement à ZüriCar GO GmbH ou aux titulaires de droits spécifiquement nommés.",
+    "copyrightText2": "Toute reproduction, modification, distribution ou autre utilisation des éléments de ce site Web nécessite l’accord écrit préalable du titulaire des droits concerné."
+  },
+
+
   "footer": {
-    "footer": "Nous sommes une entreprise de voyage et de tourisme complète basée en Suisse. Nous proposons un large choix de voyages sur mesure pour individuels ou groupes, des circuits balnéaires, des safaris et des expéditions de vacances au Sri Lanka.",
-    "Tours": "Circuits",
+    "footer": "Nous sommes une société haut de gamme de location de voitures et de services de voyages complets basée en Suisse. Avec une flotte moderne et des solutions de transfert fiables, nous garantissons une flexibilité et un confort maximum pour chaque voyage. Au-delà de la location de voitures, nous sommes spécialisés dans les voyages FIT et de groupe sur mesure, les vacances balnéaires, les safaris et les expéditions exclusives au Sri Lanka – créant ainsi des expériences de voyage inoubliables de la Suisse vers le monde entier.",   "Tours": "Circuits",
     "Our Services": "Nos Services",
     "Cars": "Voitures",
     "Contact Us": "Contactez-nous",

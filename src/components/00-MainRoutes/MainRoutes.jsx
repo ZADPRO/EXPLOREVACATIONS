@@ -32,7 +32,7 @@ import Flight from "../15-FlightBooking/Flight";
 import GeneralTandC from "../../pages/General/GeneralTandC";
 import FormDetails from "../../pages/FormDetails/FormDetails";
 import Event from "../07-Booking/Event";
-
+import Impressum from "../../pages/Impressum/Impressum";
 function Layout() {
   const location = useLocation();
 
@@ -66,6 +66,7 @@ function Layout() {
         <Route path="/booking" element={<Booking />} />
         <Route path="/terms" element={<TermsCondition />} />
         <Route path="/privacy" element={<Privacy />} />
+          <Route path="/impressum" element={<Impressum />} />
         <Route path="/pdf" element={<Pdf />} />
         <Route path="/success" element={<Success />} />
         <Route path="/failure" element={<Failure />} />
