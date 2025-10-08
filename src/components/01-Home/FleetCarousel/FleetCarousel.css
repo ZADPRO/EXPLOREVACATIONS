@@ -1,0 +1,51 @@
+.fleet-carousel-container {
+  background: #fff;
+  border-radius: 20px;
+  padding: 3rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fleet-slide {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  transition: all 0.4s ease;
+}
+
+.fleet-slide:hover {
+  transform: translateY(-4px);
+}
+
+.fleet-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0c2d57;
+  margin-bottom: 0.5rem;
+}
+
+.fleet-subtitle {
+  font-size: 1.2rem;
+  color: #0d6efd;
+  margin-bottom: 1rem;
+}
+
+.fleet-description {
+  color: #444;
+  line-height: 1.6;
+  font-size: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.p-carousel .p-carousel-indicators .p-carousel-indicator button {
+  background-color: #ccc;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+  background-color: #0d6efd;
+}

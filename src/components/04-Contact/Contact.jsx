@@ -79,7 +79,7 @@ export default function Contact() {
           <div className="mt-6 space-y-3">
             <p className="text-lg">
               📧 <span className="font-semibold">{t("contact.Email")}:</span>{" "}
-              info@züricar.ch
+               info@zuricar.ch
             </p>
             <p className="text-lg">
               📞 <span className="font-semibold">{t("contact.Phone")}:</span> +41 79 766 99 60

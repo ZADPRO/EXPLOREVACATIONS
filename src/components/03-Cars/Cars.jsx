@@ -477,6 +477,7 @@ export default function Cars() {
                   <div className="w-[100%] bg-[#0166b3] hover:bg-[#fff] text-center h-[2rem] flex justify-center items-center rounded-sm font-bold text-[#fff] border-2 border-[#0166b3] hover:text-[#0166b3] transition-colors duration-300 ease-in-out">
                     Book Now
                   </div>
+                  
                 </div>
               </div>
             </div>

@@ -153,10 +153,10 @@ export default function Header() {
             {/* Normal Links */}
             {[
               { path: "/", label: t("header.home") },
+               { path: "/cars", label: t("header.Cars") },
               { path: "/tours", label: t("header.tours") },
-              { path: "/cars", label: t("header.Cars") },
+             
               // We remove transfer here because we'll add dropdown below
-              { path: "/contact", label: t("header.Contact") },
             ].map(({ path, label }) => (
               <div
                 key={path}
@@ -228,6 +228,18 @@ export default function Header() {
                 </div>
               )}
             </div>
+              {[
+             { path: "/contact", label: t("header.Contact") },
+            ].map(({ path, label }) => (
+              <div
+                key={path}
+                className="text-[16px] cursor-pointer font-bold underline-animation"
+                style={{ color: isActive(path) }}
+                onClick={() => handleNavigation(path)}
+              >
+                {label}
+              </div>
+            ))}
           </div>
 
           {/* Language Dropdown */}

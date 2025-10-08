@@ -23,14 +23,15 @@ import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useTranslation } from "react-i18next";
-import car1 from '../../assets/Home1/car1.jpeg';
-import car2 from '../../assets/Home1/car2.jpeg';
+import car1 from '../../assets/Home1/1 (1).png';
+import car2 from '../../assets/Home1/2.png';
 import car5 from '../../assets/Home1/car5.jpeg';
 import car6 from '../../assets/cars/luxury.jpg';
 import { Carousel } from "primereact/carousel";
+// import t1 from "../../assets/Home1/image.png";
 
-import car3 from '../../assets/Home1/car3.jpeg'
-import car4 from '../../assets/Home1/car4.jpeg';
+import car3 from '../../assets/Home1/3.png'
+import car4 from '../../assets/Home1/4.png';
 import business from "../../assets/service/busines.jpg";
 import carRental from "../../assets/service/carRental.jpg";
 import tourists from "../../assets/service/tourists.jpg";
@@ -45,6 +46,7 @@ import secure from "../../assets/home/secure.png";
 import travel from "../../assets/home/travel.png";
 import car7 from '../../assets/cars/ca2.webp'
 import car from '../../assets/cars/car1.webp'
+import FleetCarousel from "./FleetCarousel/FleetCarousel";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import Popup from "../../pages/Popup/Popup";
@@ -1023,20 +1025,21 @@ export default function Home() {
       </div>
 
       <div className="flex lg:flex-row flex-column justify-between items-center gap-4 w-9/12 mx-auto my-20">
-        <div className="flex flex-col justify-between h-full flex-1 gap-10">
-          <img
-            src={car1}
-            alt="Top Image"
-            data-aos="fade-right"
-            className="mx-auto w-[300px] rounded-lg"
-          />
-          <img
-            src={car2}
-            data-aos="fade-right"
-            alt="Bottom Image"
-            className="lg:self-end self-center w-[200px] rounded-lg"
-          />
-        </div>
+      <div className="flex flex-col justify-between h-full flex-1 gap-10">
+  <img
+    src={car1}
+    alt="Top Image"
+    data-aos="fade-right"
+    className="mx-auto bg-transparent w-[300px] rounded-lg"
+  />
+  <img
+    src={car2}
+    data-aos="fade-right"
+    alt="Bottom Image"
+    className="lg:self-end self-center bg-transparent w-[200px] rounded-lg"
+  />
+</div>
+
 
         <div className="flex-1 text-center" data-aos="fade-up">
           <p className="testingFont text-4xl font-bold ">
@@ -1133,85 +1136,101 @@ export default function Home() {
         </div>
       </div> */}
 
-      <div className="flex lg:flex-row flex-col items-center h-full w-11/12 mx-auto lg:py-20 md:py-20 py-0">
-        {/* Left Text Content */}
-        <div
-          className="flex-1 flex flex-col justify-center text-left lg:text-left p-6"
-          data-aos="fade-right"
-        >
-          <p className="testingFont text-4xl font-bold">
-            {t("home.Dream Your Next Trip")}
+  <div className="flex flex-col items-center w-11/12 mx-auto lg:py-20 md:py-16 py-10">
+  {/* Top Title + Carousel */}
+  <div
+    className="flex flex-col justify-center text-left w-full lg:w-10/12 p-6"
+    data-aos="fade-right"
+  >
+    <p className="testingFont text-4xl font-bold mb-6">
+      {t("home.Dream Your Next Trip")}
+    </p>
+
+    {/* Fleet Carousel */}
+    <div className="mt-4 mb-10">
+      <FleetCarousel />
+    </div>
+  </div>
+
+  {/* Middle Section: Text + Right Image Side-by-Side */}
+  <div className="flex flex-col lg:flex-row items-center justify-between w-full lg:w-10/12">
+    {/* LEFT SIDE TEXT */}
+    <div className="flex-1 flex flex-col text-left p-6" data-aos="fade-right">
+      <p className="text-3xl font-medium text-gray-700">
+        {t("home.Discover whenever you want to go")}
+      </p>
+
+      <p className="text-[15px] pt-3 text-gray-600 mt-2">
+        {t(
+          "home.Are you tired of the typical tourist destinations and looking to step out of your comfort zone? Adventure travel may be the perfect solution for you! Here are four."
+        )}
+      </p>
+
+      <div className="flex mt-6">
+        <img
+          src={img1}
+          alt="Agency"
+          className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"
+        />
+        <div className="flex flex-col pl-4">
+          <p className="font-bold text-[22px]">
+            {t("home.Best Travel Agency")}
           </p>
-          <p className="text-3xl font-medium pt-2 text-gray-700">
-            {t("home.Discover whenever you want to go")}
-          </p>
-          <p className="text-[15px] pt-3 text-gray-600 mt-2">
+          <p>
             {t(
-              "home.Are you tired of the typical tourist destinations and looking to step out of your comfort zone? Adventure travel may be the perfect solution for you! Here are four."
+              "home.Are you tired of the typical tourist destinatio and looking step out of your comfort."
             )}
           </p>
-          <div className="flex mt-4">
-            <img
-              src={img1}
-              alt=""
-              className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"
-            />
-            <div className="flex flex-col pl-4">
-              <p className="font-bold text-[22px]">
-                {t("home.Best Travel Agency")}
-              </p>
-              <p>
-                {t(
-                  "home.Are you tired of the typical tourist destinatio and looking step out of your comfort."
-                )}
-              </p>
-            </div>
-          </div>
-          <div className="flex mt-4">
-            <img
-              src={img2}
-              alt=""
-              className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"
-            />
-            <div className="flex flex-col pl-4">
-              <p className="font-bold text-[22px]">
-                {t("home.Secure Journey With Us")}
-              </p>
-              <p>
-                {t(
-                  "home.Are you tired of the typical tourist destinatio and looking step out of your comfort."
-                )}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Image Content */}
-        <div
-          className="flex-1 py-10 flex justify-center items-center "
-          data-aos="fade-right"
-        >
-          <div className="relative flex justify-center items-center">
-            {/* Main Image */}
-            <div className="relative w-[100%] left-[10%] lg:left-[5] lg:w-[60%]">
-              <img
-                src={car}
-                alt="Main"
-                className="lg:w-[500px] w-[240px] h-auto rounded-lg shadow-lg"
-              />
-            </div>
-
-            {/* Sub Image (Overlayed) */}
-            <div className="absolute top-[50%] lg:left-[30%] left-[25%] w-3/5 lg:w-[60%] transform -translate-x-1/2 -translate-y-1/2">
-              <img
-                src={car5}
-                alt="Sub"
-                className="w-[250px] h-auto rounded-lg shadow-xl border-4 border-white object-cover"
-              />
-            </div>
-          </div>
         </div>
       </div>
+
+      <div className="flex mt-4">
+        <img
+          src={img2}
+          alt="Secure"
+          className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"
+        />
+        <div className="flex flex-col pl-4">
+          <p className="font-bold text-[22px]">
+            {t("home.Secure Journey With Us")}
+          </p>
+          <p>
+            {t(
+              "home.Are you tired of the typical tourist destinatio and looking step out of your comfort."
+            )}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* RIGHT SIDE IMAGE */}
+    <div
+      className="flex-1 py-10 flex justify-center items-center"
+      data-aos="fade-left"
+    >
+      <div className="relative flex justify-center items-center">
+        {/* Main Image */}
+        <div className="relative w-[100%] left-[10%] lg:left-[5%] lg:w-[70%]">
+          <img
+            src={car}
+            alt="Main"
+            className="lg:w-[500px] w-[240px] h-auto rounded-lg shadow-lg"
+          />
+        </div>
+
+        {/* Sub Image (Overlay) */}
+        <div className="absolute top-[50%] lg:left-[30%] left-[25%] w-3/5 lg:w-[60%] transform -translate-x-1/2 -translate-y-1/2">
+          <img
+            src={car5}
+            alt="Sub"
+            className="w-[250px] h-auto rounded-lg shadow-xl border-4 border-white object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
       {/* <div className="bannerImage001">
         <div className="h-[100vh] flex flex-column items-center justify-center">

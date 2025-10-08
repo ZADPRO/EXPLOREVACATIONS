@@ -36,15 +36,15 @@ export default function Footer() {
   };
   return (
     <div>
-      <div className="w-full ">
+      {/* <div className="w-full ">
         {" "}
-        {/* <img
+        <img
           src={footer}
           style={{ objectFit: "cover" }}
           alt="footer"
           className="w-full h-auto mb-0 border-0"
-        /> */}
-      </div>
+        />
+      </div> */}
       <div className="  bg-[#065784] -mt-2">
         {/* style={{   backgroundImage: `url(${bgimg})`,}} */}
         <div className="">
@@ -59,11 +59,11 @@ export default function Footer() {
               <p className="text-white text-[22px] font-semibold  ">
                 {t("footer.Our Services")}
               </p>
-               <p
+              <p
                 className="text-white py-2 text-[15px] font-medium cursor-pointer"
-                onClick={() => handleNavigate("/impressum")}
+                onClick={() => handleNavigate("/Cars")}
               >
-                {t("Impressum")}
+                {t("footer.Cars")}
               </p>
               <p
                 className="text-white py-2 text-[15px] font-medium cursor-pointer"
@@ -71,12 +71,7 @@ export default function Footer() {
               >
                 {t("footer.Tours")}
               </p>
-              <p
-                className="text-white py-2 text-[15px] font-medium cursor-pointer"
-                onClick={() => handleNavigate("/Cars")}
-              >
-                {t("footer.Cars")}
-              </p>
+
               <p
                 className="text-white py-2 text-[15px] font-medium cursor-pointer"
                 onClick={() => handleNavigate("/Contact")}
@@ -96,6 +91,22 @@ export default function Footer() {
                 {" "}
                 {t("footer.Privacy Policy")}
               </p>
+              <p
+                className="text-white py-2 text-[15px] font-medium cursor-pointer"
+                onClick={() => handleNavigate("/impressum")}
+              >
+                {t("Impressum")}
+                
+              </p>
+               <p
+                className="text-white py-2 text-[15px] font-medium cursor-pointer"
+                onClick={() => handleNavigate("/cookies")}
+              >
+              
+   {t("Cookies")}
+                
+              </p>
+             
             </div>
             {/* <div className="flex-1">
           <p className="text-white text-[22px] font-bold ">
@@ -114,13 +125,13 @@ export default function Footer() {
                 {t("footer.Contact Information")}
               </p>
               <p className="text-white py-2 text-[15px] font-medium">
-                 info@zuricar.ch
+                info@zuricar.ch
               </p>
               <p className="text-white py-2 text-[15px] font-medium">
                 +41 79 766 99 60
               </p>
               <p className="text-white py-2 text-[15px] font-medium">
-                ZüriCar GmbH
+                ZüriCar GO GmbH
 
               </p>
               <p className="text-white py-2 text-[15px] font-medium">

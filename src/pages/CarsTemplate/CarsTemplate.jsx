@@ -78,11 +78,22 @@ export default function CarsTemplate() {
   const navigate = useNavigate();
   const toast = useRef(null);
 
-  const [imgSrc, setImgSrc] = useState(
-    carListData?.refCarPath?.trim()
-      ? `https://zuericar.com/src/assets/cars/${carListData.refCarPath}`
-      : tourImg
-  );
+  // const [imgSrc, setImgSrc] = useState(
+  //   carListData?.refCarPath?.trim()
+  //     ? `https://zuericar.com/src/assets/cars/${carListData.refCarPath}`
+  //     : tourImg
+  // );
+  const [imgSrc, setImgSrc] = useState(() => {
+  const refCarPath =
+    typeof carListData?.refCarPath === "string"
+      ? carListData.refCarPath.trim()
+      : "";
+
+  return refCarPath
+    ? `https://zuericar.com/src/assets/cars/${refCarPath}`
+    : tourImg;
+});
+
 
   useEffect(() => {
     setShouldCalculate(extrakm.value > 0 || selectedExtra.length > 0);
@@ -403,19 +414,22 @@ export default function CarsTemplate() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  //extra
+const getIcon = (label) => {
+  if (!label || typeof label !== "string") {
+    return <MdOutlineAddShoppingCart />; // fallback icon
+  }
 
-  const getIcon = (label) => {
-    switch (label.toLowerCase()) {
-      case "booster seat":
-        return <PiSeatFill />;
-      case "child seat":
-      case "child safety seat":
-        return <FaBabyCarriage />;
-      default:
-        return <MdOutlineAddShoppingCart />;
-    }
-  };
+  switch (label.toLowerCase()) {
+    case "booster seat":
+      return <PiSeatFill />;
+    case "child seat":
+    case "child safety seat":
+      return <FaBabyCarriage />;
+    default:
+      return <MdOutlineAddShoppingCart />;
+  }
+};
+
 
   async function handlePriceCalculation() {
     console.log("extrakm.value", extrakm.value);

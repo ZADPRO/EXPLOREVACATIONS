@@ -23,7 +23,7 @@ import Signup from "../../components/09-Signup/Signup";
 import Profile from "../10-Profile/Profile";
 import Parking from "../11-Parking/Parking";
 import ParkingTemplate from "../12-ParkingTemplate/ParkingTemplate";
-import Travel from "../13-Tarvel/Travel";
+import Travel, { DestinationDetail } from "../13-Tarvel/Travel";
 import Pdf from "../Pdf/index2";
 import Success from "../14-Payment/Success";
 import Failure from "../14-Payment/Failure";
@@ -33,6 +33,8 @@ import GeneralTandC from "../../pages/General/GeneralTandC";
 import FormDetails from "../../pages/FormDetails/FormDetails";
 import Event from "../07-Booking/Event";
 import Impressum from "../../pages/Impressum/Impressum";
+import Cookies from "../../pages/Cookies/Cookies";
+// import Pages from "../13-Tarvel/pages";
 function Layout() {
   const location = useLocation();
 
@@ -57,21 +59,24 @@ function Layout() {
         <Route path="/cars" element={<Cars />} />
         <Route path="/transfer" element={<Travel />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/destination/:id" element={<DestinationDetail />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/flightform" element={<Flight/> } />
+        <Route path="/flightform" element={<Flight />} />
         <Route path="/parking" element={<Parking />} />
         <Route path="/parkingDetails" element={<ParkingTemplate />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/terms" element={<TermsCondition />} />
         <Route path="/privacy" element={<Privacy />} />
-          <Route path="/impressum" element={<Impressum />} />
+        <Route path="/impressum" element={<Impressum />} />
+        {/* <Route path="/pages" element={<Pages />} /> */}
+        <Route path="/cookies" element={<Cookies />} />
         <Route path="/pdf" element={<Pdf />} />
         <Route path="/success" element={<Success />} />
         <Route path="/failure" element={<Failure />} />
         <Route path="/event" element={<Event />} />
-        <Route path="/formdetails" element={<FormDetails/>} />
+        <Route path="/formdetails" element={<FormDetails />} />
         <Route path="/generalpdf" element={<GeneralTandC />} />
         <Route path="/caragreement" element={<Caragreement />} />
       </Routes>

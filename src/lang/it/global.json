@@ -108,6 +108,36 @@
     "a36": "Gli animali sono ammessi purché siano in gabbia o con trasportino. Il veicolo deve essere pulito dopo l'uso."
   },
 
+  "cookies": {
+    "title": "Cookies – ZüriCar GmbH",
+    "intro": "Utilizziamo i cookie per offrirti la migliore esperienza possibile sul nostro sito.",
+    "whatTitle": "Cosa sono i cookie?",
+    "whatDesc": "I cookie sono piccoli file di testo memorizzati sul tuo dispositivo quando visiti un sito web.",
+    "whyTitle": "Perché utilizziamo i cookie",
+    "why1": "Garantire il corretto funzionamento del sito (navigazione, sistema di prenotazione)",
+    "why2": "Ricordare le preferenze come lingua o regione",
+    "why3": "Analizzare le prestazioni del sito e il comportamento degli utenti",
+    "why4": "Mostrare contenuti e offerte pertinenti",
+    "why5": "Aumentare la sicurezza e prevenire frodi",
+    "typesTitle": "Tipi di cookie che utilizziamo",
+    "essentialTitle": "1. Cookie essenziali:",
+    "essentialDesc": "Necessari per il funzionamento del sito – es. login, prenotazioni, pagamenti.",
+    "performanceTitle": "2. Cookie di prestazione e analisi:",
+    "performanceDesc": "Ci aiutano a capire come gli utenti utilizzano il nostro sito.",
+    "functionalTitle": "3. Cookie funzionali:",
+    "functionalDesc": "Memorizzano le preferenze come lingua o veicoli visualizzati.",
+    "advertisingTitle": "4. Cookie pubblicitari:",
+    "advertisingDesc": "Utilizzati per mostrarti annunci pertinenti sui nostri veicoli e offerte.",
+    "manageTitle": "Gestione dei cookie",
+    "manageDesc1": "Puoi controllare o eliminare i cookie tramite le impostazioni del browser.",
+    "manage1": "Visualizzare i cookie memorizzati",
+    "manage2": "Bloccare nuovi cookie",
+    "manage3": "Eliminare cookie esistenti",
+    "manageNote": "La disattivazione dei cookie essenziali può influire su alcune funzionalità del sito.",
+    "updateTitle": "Aggiornamenti della politica sui cookie",
+    "updateDesc": "Questa politica può essere aggiornata periodicamente.",
+    "contactTitle": "Contattaci"
+  },
   
   "imprint": {
     "title": "Informazioni legali / Note legali",
