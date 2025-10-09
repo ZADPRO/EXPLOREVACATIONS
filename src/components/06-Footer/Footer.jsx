@@ -82,7 +82,7 @@ export default function Footer() {
                 className="text-white py-2 text-[15px] font-medium cursor-pointer"
                 onClick={() => handleNavigate("/generalpdf")}
               >
-                {t("footer.Terms and Condition")}
+                {t("footer.Terms and Conditions")}
               </p>
               <p
                 className="text-white py-2 text-[15px] font-medium cursor-pointer"

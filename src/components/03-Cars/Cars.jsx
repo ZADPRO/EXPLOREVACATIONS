@@ -56,10 +56,14 @@ export default function Cars() {
   const [inputs, setInputs] = useState({ refCarTypeId: "" });
   const [cartypeId, setcarTypeId] = useState("");
 
+  const [destinationData, setDestinationData] = useState([]);
+  const initialTourDestination = location.state?.tourDestination || null;
   const [listCarData, setListCarData] = useState([]);
   const [activeTab, setActiveTab] = useState("Standard");
   const [loading, setLoading] = useState(true);
-
+ const [tourDestination, setTourDestination] = useState(
+    initialTourDestination
+  );
   const getRefCarTypeId = (tab) => {
     switch (tab) {
       case "Premium":
@@ -317,6 +321,25 @@ export default function Cars() {
       <div>
         <div className="card w-10/12 mx-auto bg-white p-4 shadow-md rounded-lg">
           <div className="flex gap-3 lg:flex-row flex-column flex-wrap">
+              <div className="p-inputgroup flex-1">
+                            <span className="p-inputgroup-addon">
+                              <i className="pi pi-map-marker"></i>
+                            </span>
+                            <Dropdown
+                              value={tourDestination}
+                              onChange={(e) => setTourDestination(e.value)}
+                              options={destinationData?.map((item) => ({
+                                ...item,
+                                refDestinationName:
+                                  item.refDestinationName.charAt(0).toUpperCase() +
+                                  item.refDestinationName.slice(1).toLowerCase(),
+                              }))}
+                              optionLabel="refDestinationName"
+                              optionValue="refDestinationId"
+                              placeholder="Select Destination"
+                              className="flex-1 capitalize"
+                            />
+                          </div>
             <div className="p-inputgroup flex-1">
               <span className="p-inputgroup-addon">
                 <i className="pi pi-map-marker"></i>
@@ -434,6 +457,7 @@ export default function Cars() {
               )}
 
               <div className="px-4 pt-4 flex-grow">
+                
                 <h3 className="text-lg font-semibold text-black line-clamp-1">
                   {car.refVehicleTypeName}
                 </h3>

@@ -681,7 +681,7 @@ export default function Travel() {
   return (
     <div>
       {/* Iframe section */}
-      <div className="flex h-screen mt-10 lg:mt-20 flex-col md:flex-row justify-center items-center min-h-screen p-3 bg-gray-100">
+      {/* <div className="flex h-screen mt-10 lg:mt-20 flex-col md:flex-row justify-center items-center min-h-screen p-3 bg-gray-100">
         <iframe
           src="https://explorevacations.yelowtaxi.com/ride/add"
           width="100%"
@@ -691,10 +691,10 @@ export default function Travel() {
           loading="lazy"
           title="Car Booking"
         />
-      </div>
+      </div> */}
 
       {/* Carousel section */}
-      <div className="px-2 pb-10 w-full">
+      <div className="px-2 pb-10 pt-10 w-full">
         <h2 className="text-2xl font-semibold text-center text-black my-6">
           Explore Our Destinations
         </h2>

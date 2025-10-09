@@ -15,11 +15,11 @@ import ppt4 from "../../../assets/Home1/ppt4.png";
 import ppt5 from "../../../assets/Home1/ppt5.png";
 
 const fleetData = [
-  { image: ppt1 },
-  { image: ppt2 },
-  { image: ppt3 },
-  { image: ppt4 },
-  { image: ppt5 },
+  // { image: ppt1 },
+  // { image: ppt2 },
+  // { image: ppt3 },
+  // { image: ppt4 },
+  // { image: ppt5 },
   {
     description:
       "Our modern compact cars offer comfort, efficiency, and style for every journey. Perfect for city driving or business trips – with generous space and advanced technology.",

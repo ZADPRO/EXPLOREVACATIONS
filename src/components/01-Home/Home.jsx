@@ -51,7 +51,9 @@ import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import Popup from "../../pages/Popup/Popup";
 import BannerCarousel from "./BannerCarousel ";
-import carr1 from '../../assets/cars/carr1.jpg'
+import carr1 from '../../assets/cars/carr1.jpg';
+import exImage from '../../assets/Home1/eximage.jpeg'
+import InfoCarousel from "./FleetCarousel/infocarousel";
 export default function Home() {
   const [tabSelected, setTabSelected] = useState({
     currentTab: 1,
@@ -160,7 +162,24 @@ export default function Home() {
   // ];
 
   const navigate = useNavigate();
+;
 
+  const slides = [
+    {
+      img: img1,
+      title: t("home.Best Travel Agency"),
+      description: t(
+        "home.Are you tired of the typical tourist destinatio and looking step out of your comfort."
+      ),
+    },
+    {
+      img: img2,
+      title: t("home.Secure Journey With Us"),
+      description: t(
+        "home.Are you tired of the typical tourist destinatio and looking step out of your comfort."
+      ),
+    },
+  ];
   const handleExplore = () => {
     if (!tourDestination) {
       toast.current.show({
@@ -1027,7 +1046,7 @@ export default function Home() {
       <div className="flex lg:flex-row flex-column justify-between items-center gap-4 w-9/12 mx-auto my-20">
       <div className="flex flex-col justify-between h-full flex-1 gap-10">
   <img
-    src={car1}
+    src={car4}
     alt="Top Image"
     data-aos="fade-right"
     className="mx-auto bg-transparent w-[300px] rounded-lg"
@@ -1042,7 +1061,7 @@ export default function Home() {
 
 
         <div className="flex-1 text-center" data-aos="fade-up">
-          <p className="testingFont text-4xl font-bold ">
+          <p className="testingFont1 text-4xl font-bold text-[#2472bc]">
             {" "}
             {t("home.Most Popular Tour")}
           </p>
@@ -1064,7 +1083,7 @@ export default function Home() {
             className="mx-auto w-[300px] rounded-lg"
           />
           <img
-            src={car4}
+            src={car1}
             alt="Bottom Image"
             data-aos="fade-right"
             className="lg:self-start self-center w-[200px] rounded-lg"
@@ -1142,10 +1161,12 @@ export default function Home() {
     className="flex flex-col justify-center text-left w-full lg:w-10/12 p-6"
     data-aos="fade-right"
   >
-    <p className="testingFont text-4xl font-bold mb-6">
+    <p className="testingFont1 text-4xl ml-121 font-bold text-[#2472bc] mb-6">
       {t("home.Dream Your Next Trip")}
     </p>
-
+    <p className="testingFont text-4xl font-bold mb-[-40px] ml-141">
+      Our Fleet
+    </p>
     {/* Fleet Carousel */}
     <div className="mt-4 mb-10">
       <FleetCarousel />
@@ -1165,42 +1186,10 @@ export default function Home() {
           "home.Are you tired of the typical tourist destinations and looking to step out of your comfort zone? Adventure travel may be the perfect solution for you! Here are four."
         )}
       </p>
-
-      <div className="flex mt-6">
-        <img
-          src={img1}
-          alt="Agency"
-          className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"
-        />
-        <div className="flex flex-col pl-4">
-          <p className="font-bold text-[22px]">
-            {t("home.Best Travel Agency")}
-          </p>
-          <p>
-            {t(
-              "home.Are you tired of the typical tourist destinatio and looking step out of your comfort."
-            )}
-          </p>
-        </div>
-      </div>
-
-      <div className="flex mt-4">
-        <img
-          src={img2}
-          alt="Secure"
-          className="w-13 lg:w-20 md:w-20 h-20 lg:h-20 md:h-20"
-        />
-        <div className="flex flex-col pl-4">
-          <p className="font-bold text-[22px]">
-            {t("home.Secure Journey With Us")}
-          </p>
-          <p>
-            {t(
-              "home.Are you tired of the typical tourist destinatio and looking step out of your comfort."
-            )}
-          </p>
-        </div>
-      </div>
+<div className="mt-4 mb-10">
+      <InfoCarousel />
+    </div>
+      
     </div>
 
     {/* RIGHT SIDE IMAGE */}
@@ -1229,6 +1218,7 @@ export default function Home() {
       </div>
     </div>
   </div>
+  
 </div>
 
 
@@ -1248,10 +1238,10 @@ export default function Home() {
           </p>
         </div>
       </div> */}
-
+  
       <div className="">
         <div className="flex flex-column items-center justify-center">
-          <p className="testingFont text-black text-2xl font-bold">
+          <p className="testingFont1 text-[#2472bc] text-2xl font-bold">
             {t("home.Frequently Asked Questions")}
           </p>
           <p className="text-4xl text-center pt-3 font-bold text-black">

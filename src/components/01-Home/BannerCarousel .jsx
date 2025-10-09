@@ -163,33 +163,50 @@ import image1 from "../../assets/tours/glamour[1].jpg";
 import image2 from "../../assets/tours/glamour[2].jpg";
 import image3 from "../../assets/tours/glamour[3].jpg";
 
+import ppt1 from "../../assets/Home1/ppt1.jpg";
+import ppt3 from "../../assets/Home1/ppt3.jpg";
+import ppt4 from "../../assets/Home1/ppt4.jpg";
+import ppt2 from "../../assets/Home1/ppt2.jpg";
 const BannerCarousel = () => {
-  const images = [image1, image2, image3];
+  const images = [ ppt2 ,ppt1, ppt3 ,ppt4,];
 
   return (
-    <div className="w-full m-0 p-0 mx-auto relative overflow-hidden">
-      <Carousel
-        autoPlay
-        infiniteLoop
+  <div className="w-full mx-auto my-10 relative overflow-hidden">
+    <Carousel
+        autoPlay={true}
+        infiniteLoop={true}
         showThumbs={false}
         showStatus={false}
         showIndicators={true}
-        interval={2000}
+        interval={3000}        // time between slides (ms)
+        transitionTime={1000}  // smooth transition
+        stopOnHover={false}    // keeps autoPlay running
+        swipeable={true}
+        emulateTouch={true}
+        dynamicHeight={false}
       >
-        {images.map((src, index) => (
-          <div
-            key={index}
-            className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] flex items-center justify-center"
-          >
-            <img
-              src={src}
-              alt={`Slide ${index}`}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
-      </Carousel>
-    </div>
+    {images.map((src, index) => (
+      <div
+        key={index}
+        className="relative flex items-center justify-center w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] 
+                   mt-5 mb-5 px-4 "
+      >
+        <img
+          src={src}
+          alt={`Slide ${index}`}
+          className="w-full h-full object-contain rounded-lg"
+          style={{
+            // marginLeft: "auto",
+            // marginRight: "auto",
+            marginTop: "10px",
+            marginBottom: "10px",
+          }}
+        />
+      </div>
+    ))}
+  </Carousel>
+</div>
+
   );
 };
 
