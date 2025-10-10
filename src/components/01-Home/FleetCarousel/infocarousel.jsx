@@ -6,7 +6,7 @@ import img1 from '../../../assets/Home1/img1.png'
 import img2 from '../../../assets/Home1/img2.png'
 
 import car from '../../../assets/Home1/car8.jpg'
-import car5 from "../../../assets/Home1/car7.jpg";
+import car5 from "../../../assets/Home1/Car7.jpg";
 import { useTranslation } from "react-i18next";
 
 // import car5 from '../../assets/Home1/car5.jpeg';
