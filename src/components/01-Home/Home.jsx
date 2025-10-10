@@ -1061,7 +1061,7 @@ export default function Home() {
 
 
         <div className="flex-1 text-center" data-aos="fade-up">
-          <p className="testingFont1 text-4xl font-bold text-[#2472bc]">
+          <p className="testingFont text-4xl font-bold text-[#2472bc]">
             {" "}
             {t("home.Most Popular Tour")}
           </p>
@@ -1157,21 +1157,23 @@ export default function Home() {
 
   <div className="flex flex-col items-center w-11/12 mx-auto lg:py-20 md:py-16 py-10">
   {/* Top Title + Carousel */}
-  <div
-    className="flex flex-col justify-center text-left w-full lg:w-10/12 p-6"
-    data-aos="fade-right"
-  >
-    <p className="testingFont1 text-4xl ml-121 font-bold text-[#2472bc] mb-6">
-      {t("home.Dream Your Next Trip")}
-    </p>
-    <p className="testingFont text-4xl font-bold mb-[-40px] ml-141">
-      Our Fleet
-    </p>
-    {/* Fleet Carousel */}
-    <div className="mt-4 mb-10">
-      <FleetCarousel />
-    </div>
+ <div
+  className="flex flex-col justify-center text-left w-full lg:w-10/12 p-6"
+  data-aos="fade-right"
+>
+  {/* <p className="testingFont text-4xl ml-[121px] font-bold text-[#2472bc] mb-6">
+    {t("home.Dream Your Next Trip")}
+  </p> */}
+<p className="testingFont text-4xl font-bold mb-[-40px] text-center">
+    Our Fleet
+  </p>
+
+  {/* Fleet Carousel */}
+  <div className="mt-4 mb-10">
+    <FleetCarousel />
   </div>
+</div>
+
 
   {/* Middle Section: Text + Right Image Side-by-Side */}
   <div className="flex flex-col lg:flex-row items-center justify-between w-full lg:w-10/12">
@@ -1193,12 +1195,12 @@ export default function Home() {
     </div>
 
     {/* RIGHT SIDE IMAGE */}
-    <div
+    {/* <div
       className="flex-1 py-10 flex justify-center items-center"
       data-aos="fade-left"
     >
       <div className="relative flex justify-center items-center">
-        {/* Main Image */}
+
         <div className="relative w-[100%] left-[10%] lg:left-[5%] lg:w-[70%]">
           <img
             src={car}
@@ -1207,7 +1209,6 @@ export default function Home() {
           />
         </div>
 
-        {/* Sub Image (Overlay) */}
         <div className="absolute top-[50%] lg:left-[30%] left-[25%] w-3/5 lg:w-[60%] transform -translate-x-1/2 -translate-y-1/2">
           <img
             src={car5}
@@ -1216,7 +1217,7 @@ export default function Home() {
           />
         </div>
       </div>
-    </div>
+    </div> */}
   </div>
   
 </div>
@@ -1241,7 +1242,7 @@ export default function Home() {
   
       <div className="">
         <div className="flex flex-column items-center justify-center">
-          <p className="testingFont1 text-[#2472bc] text-2xl font-bold">
+          <p className="testingFont text-[#2472bc] text-2xl font-bold">
             {t("home.Frequently Asked Questions")}
           </p>
           <p className="text-4xl text-center pt-3 font-bold text-black">
