@@ -163,12 +163,12 @@ import image1 from "../../assets/tours/glamour[1].jpg";
 import image2 from "../../assets/tours/glamour[2].jpg";
 import image3 from "../../assets/tours/glamour[3].jpg";
 
-import ppt1 from "../../assets/Home1/p1.jpeg";
-import ppt3 from "../../assets/Home1/p3.jpeg";
-import ppt4 from "../../assets/Home1/p4.jpeg";
-import ppt2 from "../../assets/Home1/p2.jpeg";
+import ppt1 from "../../assets/Home1/pp1.jpg";
+import ppt3 from "../../assets/Home1/pp3.jpg";
+import ppt4 from "../../assets/Home1/pp4.jpg";
+import ppt2 from "../../assets/Home1/pp2.jpg";
 const BannerCarousel = () => {
-  const images = [ ppt1 ,ppt2, ppt3 ,ppt4,];
+  const images = [ ppt3 ,ppt2, ppt1 ,ppt4,];
 
   return (
   <div className="w-full mx-auto my-10 relative overflow-hidden">
