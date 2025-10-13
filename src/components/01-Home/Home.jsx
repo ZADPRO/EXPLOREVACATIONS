@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-
 import { Send, CarFront, CircleParking, Car } from "lucide-react";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";

@@ -163,12 +163,12 @@ import image1 from "../../assets/tours/glamour[1].jpg";
 import image2 from "../../assets/tours/glamour[2].jpg";
 import image3 from "../../assets/tours/glamour[3].jpg";
 
-import ppt1 from "../../assets/Home1/ppt1.jpg";
-import ppt3 from "../../assets/Home1/ppt3.jpg";
-import ppt4 from "../../assets/Home1/ppt4.jpg";
-import ppt2 from "../../assets/Home1/ppt2.jpg";
+import ppt1 from "../../assets/Home1/p1.jpeg";
+import ppt3 from "../../assets/Home1/p3.jpeg";
+import ppt4 from "../../assets/Home1/p4.jpeg";
+import ppt2 from "../../assets/Home1/p2.jpeg";
 const BannerCarousel = () => {
-  const images = [ ppt2 ,ppt1, ppt3 ,ppt4,];
+  const images = [ ppt1 ,ppt2, ppt3 ,ppt4,];
 
   return (
   <div className="w-full mx-auto my-10 relative overflow-hidden">
@@ -177,10 +177,11 @@ const BannerCarousel = () => {
         infiniteLoop={true}
         showThumbs={false}
         showStatus={false}
+         showArrows={true}
         showIndicators={true}
-        interval={3000}        // time between slides (ms)
-        transitionTime={1000}  // smooth transition
-        stopOnHover={false}    // keeps autoPlay running
+        interval={6000}        // time between slides (ms)
+        transitionTime={1500}  
+        stopOnHover={false}    
         swipeable={true}
         emulateTouch={true}
         dynamicHeight={false}
@@ -189,17 +190,17 @@ const BannerCarousel = () => {
       <div
         key={index}
         className="relative flex items-center justify-center w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[90vh] 
-                   mt-5 mb-5 px-4 "
+                   mt-2 mb-5"
       >
         <img
           src={src}
           alt={`Slide ${index}`}
-          className="w-full h-full object-contain rounded-lg"
+          className="w-full h-full object-cover rounded-lg"
           style={{
             // marginLeft: "auto",
             // marginRight: "auto",
-            marginTop: "10px",
-            marginBottom: "10px",
+            // marginTop: "10px",
+            // marginBottom: "10px",
           }}
         />
       </div>
