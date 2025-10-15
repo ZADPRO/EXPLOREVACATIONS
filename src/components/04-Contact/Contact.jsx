@@ -6,9 +6,11 @@ import { Dialog } from "primereact/dialog";
 import "primereact/resources/themes/saga-blue/theme.css"; // or your theme
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+
 import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import { useTranslation } from "react-i18next";
 import Popup from "../../pages/Popup/Popup";
+import img from '../../assets/contact/contact.jpg';
 export default function Contact() {
   const getFlag = () => {
     switch (language) {
@@ -61,9 +63,11 @@ export default function Contact() {
   return (
     <div>
       <Popup />
-      <div className="contactPage001">
-        <div className="h-[80vh]"></div>
-      </div>
+       <img
+     src={img}
+    alt="Contact Banner"
+    className="w-full h-[80vh] object-cover"
+  />
       <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 bg-gray-100">
         {/* Left Side: Contact Info */}
         <div className="flex-1 p-8 bg-white rounded-lg" data-aos="fade-right">

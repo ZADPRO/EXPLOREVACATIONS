@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import decrypt from "../../helper";
 import Popup from "../../pages/Popup/Popup";
 import { useTranslation } from "react-i18next";
-import BannerCarousel from "../01-Home/BannerCarousel ";
+import BannerCarousel from "../01-Home/BannerCarousel";
 import tourImg from "../../assets/Parking/parkingin.jpg";
 
 export default function Parking() {

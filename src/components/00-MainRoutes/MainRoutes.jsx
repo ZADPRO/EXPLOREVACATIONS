@@ -23,7 +23,7 @@ import Signup from "../../components/09-Signup/Signup";
 import Profile from "../10-Profile/Profile";
 import Parking from "../11-Parking/Parking";
 import ParkingTemplate from "../12-ParkingTemplate/ParkingTemplate";
-import Travel, { DestinationDetail } from "../13-Tarvel/Travel";
+import Travel from "../13-Tarvel/Travel";
 import Pdf from "../Pdf/index2";
 import Success from "../14-Payment/Success";
 import Failure from "../14-Payment/Failure";
@@ -34,6 +34,9 @@ import FormDetails from "../../pages/FormDetails/FormDetails";
 import Event from "../07-Booking/Event";
 import Impressum from "../../pages/Impressum/Impressum";
 import Cookies from "../../pages/Cookies/Cookies";
+import BookingFlowApp from "../13-Tarvel/BookingFlowApp";
+// import { ExtrasStep } from "../18-ExtrasStep/ExtrasStep";
+// import { PaymentStep } from "../19-PaymentStep/PaymentStep";
 // import Pages from "../13-Tarvel/pages";
 function Layout() {
   const location = useLocation();
@@ -43,7 +46,6 @@ function Layout() {
 
   // Define routes where Footer should be hidden
   const hideFooterRoutes = ["/signup", "/login"];
-
   const shouldHideHeader = hideHeaderRoutes.includes(location.pathname);
   const shouldHideFooter = hideFooterRoutes.includes(location.pathname);
 
@@ -59,7 +61,8 @@ function Layout() {
         <Route path="/cars" element={<Cars />} />
         <Route path="/transfer" element={<Travel />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/destination/:id" element={<DestinationDetail />} />
+        <Route path="/bookingflowapp" element={<BookingFlowApp />} />
+        {/* <Route path="/destination/:id" element={<DestinationDetail />} /> */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/flightform" element={<Flight />} />
@@ -76,7 +79,10 @@ function Layout() {
         <Route path="/success" element={<Success />} />
         <Route path="/failure" element={<Failure />} />
         <Route path="/event" element={<Event />} />
+        {/* <Route path="/vehicle" element={< VehicleStep />} /> */}
         <Route path="/formdetails" element={<FormDetails />} />
+        {/* <Route path="/ExtrasStep" element={<ExtrasStep />} /> */}
+        {/* <Route path="/paymentstep" element={<PaymentStep />} /> */}
         <Route path="/generalpdf" element={<GeneralTandC />} />
         <Route path="/caragreement" element={<Caragreement />} />
       </Routes>

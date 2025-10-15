@@ -10,7 +10,8 @@ import Axios from "axios";
 
 import tourImg from "../../assets/tours/image.jpg";
 import Popup from "../../pages/Popup/Popup";
-import BannerCarousel from "../01-Home/BannerCarousel ";
+import BannerCarousel from "../01-Home/BannerCarousel";
+import TourCarousel from "../01-Home/tourcarousel";
 
 export default function Tours() {
   const location = useLocation();
@@ -137,7 +138,7 @@ export default function Tours() {
     <div>
       <Popup />
       <div className="mt-20">
-        <BannerCarousel moduleId={3} />
+        <TourCarousel moduleId={3} />
       </div>
 
       <div className="card w-10/12 mx-auto bg-white p-4 shadow-md rounded-lg">

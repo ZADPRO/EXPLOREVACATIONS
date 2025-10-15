@@ -11,7 +11,7 @@ import {
 } from "@react-pdf/renderer";
 
 import Html from "react-pdf-html";
-import logo from "../../assets/logo/logoPng.png";
+import logo from "../../assets/logo/ZURICAR.png";
 import car from "../../assets/cars/image.png";
 
 export default function PdfVieTour({

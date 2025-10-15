@@ -49,7 +49,7 @@ import FleetCarousel from "./FleetCarousel/FleetCarousel";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import Popup from "../../pages/Popup/Popup";
-import BannerCarousel from "./BannerCarousel ";
+import BannerCarousel from "./BannerCarousel";
 import carr1 from '../../assets/cars/carr1.jpg';
 import exImage from '../../assets/Home1/eximage.jpeg'
 import InfoCarousel from "./FleetCarousel/infocarousel";
@@ -517,6 +517,7 @@ export default function Home() {
       <div className="mt-20">
         <BannerCarousel moduleId={4} />
       </div>
+     
       <div className="relative">
         <section
           className="w-11/12 md:w-9/12 mx-auto mt-[-40px] shadow-xl bg-white rounded-md"

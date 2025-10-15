@@ -23,9 +23,10 @@ import bags from "../../assets/cars/bags.svg";
 import decrypt from "../../helper";
 import axios from "axios";
 
+import SecondCarousel from "../01-Home/SecondBanner";
 import tourImg from "../../assets/cars/luxury.jpg";
 import Popup from "../../pages/Popup/Popup";
-import BannerCarousel from "../01-Home/BannerCarousel ";
+import BannerCarousel from "../01-Home/BannerCarousel";
 import { useTranslation } from "react-i18next";
 
 export default function Cars() {
@@ -314,8 +315,8 @@ export default function Cars() {
       <Popup />
 
       <div className="mt-20">
-        <BannerCarousel moduleId={2} />
-      </div>
+             <SecondCarousel moduleId={4} />
+           </div>
 
       {/* Input Finder */}
       <div>

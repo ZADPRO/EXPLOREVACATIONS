@@ -13,6 +13,7 @@ import Axios from "axios";
 import decrypt from "../../helper";
 import "./Flight.css";
 
+import img from '../../assets/Travel/13.jpg';
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
 
@@ -125,9 +126,11 @@ export default function Flight() {
     <div>
       <Popup />
       <Toast ref={toast} />
-      <div className="flightPage001">
-        <div className="h-[80vh] "></div>
-      </div>
+      <img
+          src={img}
+         alt="Contact Banner"
+         className="w-[400vh]  mt-10 h-[80vh] object-cover"
+       />
       <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 ">
         {/* Left Side: Contact Info */}
         <div className="flex-1 p-8 bg-white rounded-lg" data-aos="fade-right">

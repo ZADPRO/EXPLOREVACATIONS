@@ -28,7 +28,7 @@ import carmodel from "../../assets/cars/carmodel.svg";
 import geartype from "../../assets/cars/geartype.svg";
 import person from "../../assets/cars/person.svg";
 import bags from "../../assets/cars/bags.svg";
-import logo from "../../assets/logo/logoPng.png";
+import logo from "../../assets/logo/ZURICAR.png";
 import tourImg from "../../assets/cars/image.png";
 import { PiSeatFill } from "react-icons/pi";
 // import { FaBabyCarriage } from "react-icons/fa";

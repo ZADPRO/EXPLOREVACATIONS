@@ -4,11 +4,11 @@
   background-color: #009ad7;
   color: white;
 }
-/* 
+
 .p-tabview-nav li a[aria-selected="false"] {
   background-color: lightgray;
   color: gray;
-} */
+}
 
 /* Apply Onest first, fallback to Century Gothic, then sans-serif */
 .testingFont {
