@@ -8,7 +8,7 @@ import image3 from "../../assets/tours/glamour[3].jpg";
 
 import ppt1 from "../../assets/carousel/T1.jpg";
 import ppt2 from "../../assets/carousel/T2.jpg";
-import ppt3 from "../../assets/carousel/T3.JPg";
+import ppt3 from "../../assets/carousel/T3.jpg";
 import ppt4 from "../../assets/carousel/T4.jpg";
 
 const TourCarousel = () => {
