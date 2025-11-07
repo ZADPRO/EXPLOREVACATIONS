@@ -46,6 +46,7 @@ export default function Cars() {
   const handleChangeLang = (lang) => {
     i18n.changeLanguage(lang);
   };
+  
   const toast = useRef(null);
   const navigate = useNavigate();
 
@@ -56,15 +57,14 @@ export default function Cars() {
   const [carDropDateTime, setCarDropDateTime] = useState(null);
   const [inputs, setInputs] = useState({ refCarTypeId: "" });
   const [cartypeId, setcarTypeId] = useState("");
-
+  const [carListData, setCarLIstData] = useState({});
   const [destinationData, setDestinationData] = useState([]);
   const initialTourDestination = location.state?.tourDestination || null;
   const [listCarData, setListCarData] = useState([]);
   const [activeTab, setActiveTab] = useState("Standard");
   const [loading, setLoading] = useState(true);
- const [tourDestination, setTourDestination] = useState(
-    initialTourDestination
-  );
+  const [tourDestination, setTourDestination] = useState(initialTourDestination);
+  
   const getRefCarTypeId = (tab) => {
     switch (tab) {
       case "Premium":
@@ -109,6 +109,17 @@ export default function Cars() {
 
   const handleCheckboxChange = (e) => {
     setExtras({ ...extras, [e.target.name]: e.target.checked });
+  };
+
+  // Helper function to get the correct image source - SAME AS CarsTemplate
+  const getCarImageSrc = (car) => {
+    const refCarPath = typeof car?.refCarPath === "string" 
+      ? car.refCarPath.trim() 
+      : "";
+    
+    return refCarPath
+      ? `https://zuericar.com/src/assets/cars/${refCarPath}`
+      : tourImg;
   };
 
   useEffect(() => {
@@ -206,30 +217,6 @@ export default function Cars() {
         setCarData(destinationData.VehicleType);
         setCarTypeData(destinationData.carType);
       }
-
-      const listTourResponse = await axios.post(
-        import.meta.env.VITE_API_URL + "/userRoutes/getAllTour",
-        {
-          refPackageId: tour.refPackageId,
-        },
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = decrypt(
-        listTourResponse.data[1],
-        listTourResponse.data[0],
-        import.meta.env.VITE_ENCRYPTION_KEY
-      );
-      console.log("data list tour data ======= ?", data);
-      if (data.success) {
-        // localStorage.setItem("token", "Bearer " + data.token);
-        // setIsModelOpen(false);
-        // setTourDetailsBackend(data.tourDetails);
-      }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -315,32 +302,32 @@ export default function Cars() {
       <Popup />
 
       <div className="mt-20">
-             <SecondCarousel moduleId={4} />
-           </div>
+        <SecondCarousel moduleId={4} />
+      </div>
 
       {/* Input Finder */}
       <div>
         <div className="card w-10/12 mx-auto bg-white p-4 shadow-md rounded-lg">
           <div className="flex gap-3 lg:flex-row flex-column flex-wrap">
-              <div className="p-inputgroup flex-1">
-                            <span className="p-inputgroup-addon">
-                              <i className="pi pi-map-marker"></i>
-                            </span>
-                            <Dropdown
-                              value={tourDestination}
-                              onChange={(e) => setTourDestination(e.value)}
-                              options={destinationData?.map((item) => ({
-                                ...item,
-                                refDestinationName:
-                                  item.refDestinationName.charAt(0).toUpperCase() +
-                                  item.refDestinationName.slice(1).toLowerCase(),
-                              }))}
-                              optionLabel="refDestinationName"
-                              optionValue="refDestinationId"
-                              placeholder="Select Destination"
-                              className="flex-1 capitalize"
-                            />
-                          </div>
+            <div className="p-inputgroup flex-1">
+              <span className="p-inputgroup-addon">
+                <i className="pi pi-map-marker"></i>
+              </span>
+              <Dropdown
+                value={tourDestination}
+                onChange={(e) => setTourDestination(e.value)}
+                options={destinationData?.map((item) => ({
+                  ...item,
+                  refDestinationName:
+                    item.refDestinationName.charAt(0).toUpperCase() +
+                    item.refDestinationName.slice(1).toLowerCase(),
+                }))}
+                optionLabel="refDestinationName"
+                optionValue="refDestinationId"
+                placeholder="Select Destination"
+                className="flex-1 capitalize"
+              />
+            </div>
             <div className="p-inputgroup flex-1">
               <span className="p-inputgroup-addon">
                 <i className="pi pi-map-marker"></i>
@@ -423,7 +410,7 @@ export default function Cars() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-6 py-2  text-sm font-medium transition-all duration-200 
+              className={`px-6 py-2 text-sm font-medium transition-all duration-200 
           ${activeTab === tab
                   ? "bg-[#014986] text-white shadow-md"
                   : "text-gray-600 hover:bg-white"
@@ -447,18 +434,18 @@ export default function Cars() {
               key={car.refCarsId}
               className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
             >
-              {car.refCarPath === null ? (
-                <img src={tourImg} alt="Alt Image for Tours" />
-              ) : (
-                <img
-                  src={`https://zuericar.com/src/assets/cars/${car.refCarPath}`}
-                  alt={car.refVehicleTypeName}
-                  className="w-full object-cover aspect-[4/3]"
-                />
-              )}
+              {/* UPDATED IMAGE SECTION - SAME AS CarsTemplate */}
+              <img
+                src={getCarImageSrc(car)}
+                alt={car.refVehicleTypeName || "Car"}
+                className="w-full object-cover aspect-[4/3]"
+                onError={(e) => {
+                  e.target.onerror = null; // Prevent infinite loop
+                  e.target.src = tourImg;
+                }}
+              />
 
               <div className="px-4 pt-4 flex-grow">
-                
                 <h3 className="text-lg font-semibold text-black line-clamp-1">
                   {car.refVehicleTypeName}
                 </h3>
@@ -493,7 +480,7 @@ export default function Cars() {
                   </p>
                 </div>
               </div>
-              <div className="px-4 pb-3  flex flex-col lg:flex-row items-center">
+              <div className="px-4 pb-3 flex flex-col lg:flex-row items-center">
                 <div className="w-[100%] lg:w-[60%] pb-[10px] lg:pb-0 flex gap-1">
                   <div className="text-[1rem] font-bold">{car.refCarPrice}</div>
                   <div className="text-[0.7rem] mt-[0.3rem]">/ Day</div>
@@ -502,7 +489,6 @@ export default function Cars() {
                   <div className="w-[100%] bg-[#0166b3] hover:bg-[#fff] text-center h-[2rem] flex justify-center items-center rounded-sm font-bold text-[#fff] border-2 border-[#0166b3] hover:text-[#0166b3] transition-colors duration-300 ease-in-out">
                     Book Now
                   </div>
-                  
                 </div>
               </div>
             </div>

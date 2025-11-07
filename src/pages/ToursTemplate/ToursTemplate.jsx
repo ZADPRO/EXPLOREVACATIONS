@@ -872,19 +872,19 @@ export default function ToursTemplate() {
             </div>
           </TabPanel>
 
-          <TabPanel header="Itinerary Map" key="tab3">
+          {/* <TabPanel header="Itinerary Map" key="tab3">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
-              {/* <img
+              <img
                 src={`data:${tour.refItinaryMapPath.contentType};base64,${tour.refItinaryMapPath.content}`}
                 alt=""
-              /> */}
+              />
               <img
                 src={`https://zuericar.com/src/assets/map/${tour.refItinaryMapPath}`}
                 alt="Itinerary Map"
                 className="w-full object-contain"
               />
             </div>
-          </TabPanel>
+          </TabPanel> */}
           <TabPanel header="Gallery Image" key="tab3">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               {galleryImg?.map((img) => (

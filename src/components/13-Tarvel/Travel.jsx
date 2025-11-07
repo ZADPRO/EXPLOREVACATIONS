@@ -566,6 +566,10 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useNavigate, useParams } from "react-router-dom";
+import { Dropdown } from "primereact/dropdown";
+import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
+import tt1 from '../../assets/Travel/Transfer[1].jpg'
+
 
 import img1 from "../../assets/Banner/card1.jpg";
 import img2 from "../../assets/Banner/card2.jpg";
@@ -579,7 +583,8 @@ import img9 from "../../assets/Banner/card9.jpg";
 import img10 from "../../assets/Banner/card10.jpg";
 import img11 from "../../assets/Banner/card11.jpg";
 import img12 from "../../assets/Banner/card12.jpg";
-
+import { ChevronDown, Clock, MapPin, Calendar, Users } from 'lucide-react';
+import './TravelBooking.css'
 import TourrCarousel from "../01-Home/tourrcarousel";
 import { FaMapMarkerAlt, FaCalendarAlt, FaClock, FaUser, FaSearch } from "react-icons/fa";
 import DatePicker from "react-datepicker";
@@ -588,7 +593,7 @@ import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import TimePicker from "react-time-picker";
 import driverImg from "../../assets/Home1/2.png"
-
+import BookingFlow from "../BookingFlow/BookingFlow";
 const IMGS = [
   {
     id: "st-moritz",
@@ -848,7 +853,7 @@ const Carousel = ({ images = IMGS }) => {
       </button>
 
       {/* Dots */}
-      <div className="flex justify-center mt-6 space-x-2">
+      <div className="flex justify-center mb-5 mt-5 space-x-2">
         {Array.from({ length: Math.ceil(images.length / itemsPerView) }).map(
           (_, index) => (
             <button
@@ -947,616 +952,11 @@ export function DestinationDetail() {
     </div>
   );
 }
-//  function BookingSection() {
-//   const [bookingType, setBookingType] = useState("transfer");
-//   const [formData, setFormData] = useState({
-//     from: "",
-//     to: "",
-//     pickupDate: null,
-//     pickupTime: "01:45 PM",
-//     returnDate: null,
-//     returnTime: "01:45 PM",
-//     passengers: 2,
-//     duration: "2",
-//   });
-//   const [showReturn, setShowReturn] = useState(false);
-//   const [errors, setErrors] = useState({});
-//   const [showTimePicker, setShowTimePicker] = useState(false);
-//   const [activeTimeField, setActiveTimeField] = useState(null);
-//   const [selectedHour, setSelectedHour] = useState("01");
-//   const [selectedMinute, setSelectedMinute] = useState("45");
-//   const [selectedPeriod, setSelectedPeriod] = useState("PM");
 
-//   const durations = ["2", "4", "6", "8", "10", "12", "24"];
-//   const hours = Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, "0"));
-//   const minutes = ["00", "15", "30", "45"];
-
-//   const handleChange = (field, value) => {
-//     setFormData((prev) => ({ ...prev, [field]: value }));
-//     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
-//   };
-
-//   const openTimePicker = (field) => {
-//     setActiveTimeField(field);
-//     const currentTime = formData[field];
-//     if (currentTime) {
-//       const [time, period] = currentTime.split(" ");
-//       const [hour, minute] = time.split(":");
-//       setSelectedHour(hour);
-//       setSelectedMinute(minute);
-//       setSelectedPeriod(period || "PM");
-//     }
-//     setShowTimePicker(true);
-//   };
-
-//   const saveTime = () => {
-//     const timeString = `${selectedHour}:${selectedMinute} ${selectedPeriod}`;
-//     handleChange(activeTimeField, timeString);
-//     setShowTimePicker(false);
-//   };
-
-//   const validateForm = () => {
-//     const newErrors = {};
-//     if (!formData.from) newErrors.from = "Pickup location is required";
-//     if (bookingType === "transfer" && !formData.to)
-//       newErrors.to = "Drop-off location is required";
-//     if (!formData.pickupDate) newErrors.pickupDate = "Pickup date is required";
-//     if (showReturn && !formData.returnDate)
-//       newErrors.returnDate = "Return date is required";
-//     setErrors(newErrors);
-//     return Object.keys(newErrors).length === 0;
-//   };
-
-//    const navigate = useNavigate(); // ✅ hooks must be at the top level
-
-//   const handleSeePrices = () => {
-//     if (validateForm()) {
-//       console.log("Form data:", formData);
-//       alert("Form is valid! Proceeding to prices...");
-//       navigate("/bookingflowapp"); // ✅ navigate after validation
-//     }
-//   };
-
-//   return (
-//     <>
-//       <style>
-//         {`
-//           .custom-datepicker input {
-//             width: 100%;
-//             padding: 12px 12px 12px 40px;
-//             background: white;
-//             border: 1px solid #e5e7eb;
-//             border-radius: 8px;
-//             font-size: 14px;
-//             outline: none;
-//             cursor: pointer;
-//           }
-          
-//           .custom-datepicker input:focus {
-//             outline: none;
-//             border-color: #d1d5db;
-//             box-shadow: 0 0 0 1px #d1d5db;
-//           }
-
-//           .react-datepicker {
-//             font-family: inherit;
-//             border: 1px solid #e5e7eb;
-//             border-radius: 12px;
-//             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-//           }
-
-//           .react-datepicker__header {
-//             background-color: white;
-//             border-bottom: 1px solid #e5e7eb;
-//             border-radius: 12px 12px 0 0;
-//             padding-top: 12px;
-//           }
-
-//           .react-datepicker__current-month {
-//             font-weight: 600;
-//             color: #111827;
-//             font-size: 14px;
-//           }
-
-//           .react-datepicker__day-name {
-//             color: #6b7280;
-//             font-size: 13px;
-//           }
-
-//           .react-datepicker__day {
-//             color: #374151;
-//             font-size: 13px;
-//           }
-
-//           .react-datepicker__day:hover {
-//             background-color: #f3f4f6;
-//             border-radius: 6px;
-//           }
-
-//           .react-datepicker__day--selected,
-//           .react-datepicker__day--keyboard-selected {
-//             background-color: #f97316;
-//             color: white;
-//             border-radius: 6px;
-//             font-weight: 500;
-//           }
-
-//           .react-datepicker__day--today {
-//             font-weight: 600;
-//             color: #f97316;
-//           }
-
-//           .react-datepicker__navigation-icon::before {
-//             border-color: #6b7280;
-//           }
-
-//           .react-datepicker__navigation:hover *::before {
-//             border-color: #111827;
-//           }
-//         `}
-//       </style>
-
-//       <section className="max-w-7xl mx-auto px-4 py-12">
-//         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center">
-//           Your Reliable Worldwide<br />Airport Transfers
-//         </h1>
-
-//         <div className="grid lg:grid-cols-2 gap-10 items-start">
-//           {/* LEFT FORM */}
-//           <div className="bg-white rounded-2xl shadow-lg p-8">
-//             {/* Toggle buttons */}
-//             <div className="flex gap-3 mb-8">
-//               <button
-//                 className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all text-sm ${
-//                   bookingType === "transfer"
-//                     ? "bg-white text-gray-900 shadow-md border border-gray-200"
-//                     : "bg-transparent text-gray-600 hover:bg-gray-50"
-//                 }`}
-//                 onClick={() => setBookingType("transfer")}
-//               >
-//                 Transfer
-//               </button>
-//               <button
-//                 className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all text-sm flex items-center justify-center gap-2 ${
-//                   bookingType === "hourly"
-//                     ? "bg-white text-gray-900 shadow-md border border-gray-200"
-//                     : "bg-transparent text-gray-600 hover:bg-gray-50"
-//                 }`}
-//                 onClick={() => setBookingType("hourly")}
-//               >
-//                 <FaClock className="w-4 h-4" />
-//                 By the Hour
-//               </button>
-//             </div>
-
-//             {/* Form Fields */}
-//             <div className="space-y-4">
-//               {/* From */}
-//               <div>
-//                 <label className="block text-xs font-medium text-gray-700 mb-2">From</label>
-//                 <div className="relative">
-//                   <FaMapMarkerAlt className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 z-10" />
-//                   <input
-//                     type="text"
-//                     placeholder="Address, airport, hotel, ..."
-//                     value={formData.from}
-//                     onChange={(e) => handleChange("from", e.target.value)}
-//                     className={`w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 ${
-//                       errors.from ? "border-red-500" : ""
-//                     }`}
-//                   />
-//                 </div>
-//                 {errors.from && <p className="text-red-500 text-xs mt-1">{errors.from}</p>}
-//               </div>
-
-//               {/* To - Only for transfer */}
-//               {bookingType === "transfer" && (
-//                 <div>
-//                   <label className="block text-xs font-medium text-gray-700 mb-2">To</label>
-//                   <div className="relative">
-//                     <FaMapMarkerAlt className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 z-10" />
-//                     <input
-//                       type="text"
-//                       placeholder="Address, airport, hotel, ..."
-//                       value={formData.to}
-//                       onChange={(e) => handleChange("to", e.target.value)}
-//                       className={`w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 ${
-//                         errors.to ? "border-red-500" : ""
-//                       }`}
-//                     />
-//                   </div>
-//                   {errors.to && <p className="text-red-500 text-xs mt-1">{errors.to}</p>}
-//                 </div>
-//               )}
-
-//               {/* Pickup Date & Time */}
-//               <div className="grid grid-cols-2 gap-4">
-//                 <div>
-//                   <label className="block text-xs font-medium text-gray-700 mb-2">
-//                     Pickup date
-//                   </label>
-//                   <div className="relative custom-datepicker">
-//                     <FaCalendarAlt className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 z-20 pointer-events-none" />
-//                     <DatePicker
-//                       selected={formData.pickupDate}
-//                       onChange={(date) => handleChange("pickupDate", date)}
-//                       dateFormat="dd/MM/yyyy"
-//                       placeholderText="dd-mm-yyyy"
-//                       minDate={new Date()}
-//                       className={errors.pickupDate ? "border-red-500" : ""}
-//                     />
-//                   </div>
-//                   {errors.pickupDate && (
-//                     <p className="text-red-500 text-xs mt-1">{errors.pickupDate}</p>
-//                   )}
-//                 </div>
-//                 <div>
-//                   <label className="block text-xs font-medium text-gray-700 mb-2">
-//                     Pickup time
-//                   </label>
-//                   <div className="relative">
-//                     <FaClock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 z-10 pointer-events-none" />
-//                     <input
-//                       type="text"
-//                       value={formData.pickupTime}
-//                       onClick={() => openTimePicker("pickupTime")}
-//                       readOnly
-//                       className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-lg text-sm cursor-pointer focus:outline-none focus:ring-1 focus:ring-gray-300"
-//                     />
-//                   </div>
-//                 </div>
-//               </div>
-
-//               {/* Duration - Only for hourly */}
-//               {bookingType === "hourly" && (
-//                 <div>
-//                   <label className="block text-xs font-medium text-gray-700 mb-2 flex items-center gap-2">
-//                     <FaClock className="w-4 h-4" />
-//                     Duration
-//                   </label>
-//                   <div className="relative">
-//                     <select
-//                       value={formData.duration}
-//                       onChange={(e) => handleChange("duration", e.target.value)}
-//                       className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm appearance-none cursor-pointer focus:outline-none focus:ring-1 focus:ring-gray-300"
-//                     >
-//                       {durations.map((duration) => (
-//                         <option key={duration} value={duration}>
-//                           {duration} Hours
-//                         </option>
-//                       ))}
-//                     </select>
-//                     <svg
-//                       className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none"
-//                       fill="none"
-//                       stroke="currentColor"
-//                       viewBox="0 0 24 24"
-//                     >
-//                       <path
-//                         strokeLinecap="round"
-//                         strokeLinejoin="round"
-//                         strokeWidth={2}
-//                         d="M19 9l-7 7-7-7"
-//                       />
-//                     </svg>
-//                   </div>
-//                 </div>
-//               )}
-
-//               {/* Add Return Button */}
-//               {!showReturn && bookingType === "transfer" && (
-//                 <button
-//                   onClick={() => setShowReturn(true)}
-//                   className="w-full py-3 text-center text-gray-700 text-sm font-medium border-2 border-dashed border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-//                 >
-//                   ADD RETURN
-//                 </button>
-//               )}
-
-//               {/* Return Date & Time */}
-//               {showReturn && (
-//                 <div className="space-y-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-//                   <div className="flex justify-between items-center">
-//                     <h3 className="text-sm font-medium text-gray-700">Return Trip</h3>
-//                     <button
-//                       onClick={() => {
-//                         setShowReturn(false);
-//                         handleChange("returnDate", null);
-//                         handleChange("returnTime", "01:45 PM");
-//                       }}
-//                       className="text-red-500 hover:text-red-700 text-xs font-medium"
-//                     >
-//                       Remove
-//                     </button>
-//                   </div>
-//                   <div className="grid grid-cols-2 gap-4">
-//                     <div>
-//                       <label className="block text-xs font-medium text-gray-700 mb-2">
-//                         Return date
-//                       </label>
-//                       <div className="relative custom-datepicker">
-//                         <FaCalendarAlt className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 z-20 pointer-events-none" />
-//                         <DatePicker
-//                           selected={formData.returnDate}
-//                           onChange={(date) => handleChange("returnDate", date)}
-//                           dateFormat="dd/MM/yyyy"
-//                           placeholderText="dd-mm-yyyy"
-//                           minDate={formData.pickupDate || new Date()}
-//                           className={errors.returnDate ? "border-red-500" : ""}
-//                         />
-//                       </div>
-//                       {errors.returnDate && (
-//                         <p className="text-red-500 text-xs mt-1">{errors.returnDate}</p>
-//                       )}
-//                     </div>
-//                     <div>
-//                       <label className="block text-xs font-medium text-gray-700 mb-2">
-//                         Return time
-//                       </label>
-//                       <div className="relative">
-//                         <FaClock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 z-10 pointer-events-none" />
-//                         <input
-//                           type="text"
-//                           value={formData.returnTime}
-//                           onClick={() => openTimePicker("returnTime")}
-//                           readOnly
-//                           className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-lg text-sm cursor-pointer focus:outline-none focus:ring-1 focus:ring-gray-300"
-//                         />
-//                       </div>
-//                     </div>
-//                   </div>
-//                 </div>
-//               )}
-
-//               {/* Passengers */}
-//               <div>
-//                 <label className="block text-xs font-medium text-gray-700 mb-2 flex items-center gap-2">
-//                   <FaUser className="w-4 h-4" />
-//                   Passengers
-//                 </label>
-//                 <div className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-3">
-//                   <span className="text-base font-medium">{formData.passengers}</span>
-//                   <div className="flex gap-3">
-//                     <button
-//                       onClick={() =>
-//                         handleChange("passengers", Math.max(1, formData.passengers - 1))
-//                       }
-//                       className="w-8 h-8 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors flex items-center justify-center text-lg"
-//                     >
-//                       −
-//                     </button>
-//                     <button
-//                       onClick={() => handleChange("passengers", formData.passengers + 1)}
-//                       className="w-8 h-8 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors flex items-center justify-center text-lg"
-//                     >
-//                       +
-//                     </button>
-//                   </div>
-//                 </div>
-//               </div>
-
-//               {/* See Prices Button */}
-//               <button
-//                 onClick={handleSeePrices}
-//                 className="w-full mt-6 py-4 bg-black text-white rounded-lg font-semibold hover:bg-gray-900 transition-colors flex items-center justify-center gap-2 text-sm"
-//               >
-//                 <FaSearch className="w-4 h-4" />
-//                 See prices
-//               </button>
-
-//               {/* Trustpilot */}
-//               <div className="mt-6 flex items-center justify-center gap-2 text-sm">
-//                 <span className="font-bold">EXCELLENT</span>
-//                 <div className="flex gap-0.5">
-//                   {[...Array(5)].map((_, i) => (
-//                     <svg
-//                       key={i}
-//                       className="w-5 h-5 text-green-600"
-//                       fill="currentColor"
-//                       viewBox="0 0 20 20"
-//                     >
-//                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-//                     </svg>
-//                   ))}
-//                 </div>
-//                 <span className="font-semibold">Trustpilot</span>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* RIGHT IMAGE */}
-//           <motion.div
-//             initial={{ opacity: 0, x: 60 }}
-//             animate={{ opacity: 1, x: 0 }}
-//             transition={{ duration: 0.8 }}
-//             className="rounded-2xl overflow-hidden shadow-lg h-[600px] lg:sticky lg:top-8"
-//           >
-//             <img
-//               src={driverImg}
-//               alt="Premium Transfer Service"
-//               className="w-full h-full object-cover"
-//             />
-//           </motion.div>
-//         </div>
-
-//         {/* Time Picker Modal */}
-//         {showTimePicker && (
-//           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-//             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm">
-//               <div className="p-6">
-//                 <div className="flex gap-2 mb-4">
-//                   <button className="flex-1 py-2 rounded-lg font-medium bg-gray-50 text-gray-600">
-//                     24h
-//                   </button>
-//                   <button className="flex-1 py-2 rounded-lg font-medium bg-gray-200">
-//                     12h
-//                   </button>
-//                 </div>
-
-//                 <div className="flex items-start justify-center gap-4 mb-6">
-//                   {/* Hour Picker */}
-//                   <div className="flex flex-col items-center">
-//                     <button
-//                       onClick={() => {
-//                         const currentIndex = hours.indexOf(selectedHour);
-//                         setSelectedHour(
-//                           hours[currentIndex > 0 ? currentIndex - 1 : hours.length - 1]
-//                         );
-//                       }}
-//                       className="p-2"
-//                     >
-//                       <svg
-//                         className="w-5 h-5 rotate-180"
-//                         fill="none"
-//                         stroke="currentColor"
-//                         viewBox="0 0 24 24"
-//                       >
-//                         <path
-//                           strokeLinecap="round"
-//                           strokeLinejoin="round"
-//                           strokeWidth={2}
-//                           d="M19 9l-7 7-7-7"
-//                         />
-//                       </svg>
-//                     </button>
-//                     <div className="bg-orange-400 text-white rounded-lg px-4 py-3 text-2xl font-bold min-w-[60px] text-center">
-//                       {selectedHour}
-//                     </div>
-//                     <button
-//                       onClick={() => {
-//                         const currentIndex = hours.indexOf(selectedHour);
-//                         setSelectedHour(
-//                           hours[currentIndex < hours.length - 1 ? currentIndex + 1 : 0]
-//                         );
-//                       }}
-//                       className="p-2"
-//                     >
-//                       <svg
-//                         className="w-5 h-5"
-//                         fill="none"
-//                         stroke="currentColor"
-//                         viewBox="0 0 24 24"
-//                       >
-//                         <path
-//                           strokeLinecap="round"
-//                           strokeLinejoin="round"
-//                           strokeWidth={2}
-//                           d="M19 9l-7 7-7-7"
-//                         />
-//                       </svg>
-//                     </button>
-//                   </div>
-
-//                   <span className="text-2xl font-bold mt-12">:</span>
-
-//                   {/* Minute Picker */}
-//                   <div className="flex flex-col items-center">
-//                     <button
-//                       onClick={() => {
-//                         const currentIndex = minutes.indexOf(selectedMinute);
-//                         setSelectedMinute(
-//                           minutes[currentIndex > 0 ? currentIndex - 1 : minutes.length - 1]
-//                         );
-//                       }}
-//                       className="p-2"
-//                     >
-//                       <svg
-//                         className="w-5 h-5 rotate-180"
-//                         fill="none"
-//                         stroke="currentColor"
-//                         viewBox="0 0 24 24"
-//                       >
-//                         <path
-//                           strokeLinecap="round"
-//                           strokeLinejoin="round"
-//                           strokeWidth={2}
-//                           d="M19 9l-7 7-7-7"
-//                         />
-//                       </svg>
-//                     </button>
-//                     <div className="bg-orange-400 text-white rounded-lg px-4 py-3 text-2xl font-bold min-w-[60px] text-center">
-//                       {selectedMinute}
-//                     </div>
-//                     <button
-//                       onClick={() => {
-//                         const currentIndex = minutes.indexOf(selectedMinute);
-//                         setSelectedMinute(
-//                           minutes[currentIndex < minutes.length - 1 ? currentIndex + 1 : 0]
-//                         );
-//                       }}
-//                       className="p-2"
-//                     >
-//                       <svg
-//                         className="w-5 h-5"
-//                         fill="none"
-//                         stroke="currentColor"
-//                         viewBox="0 0 24 24"
-//                       >
-//                         <path
-//                           strokeLinecap="round"
-//                           strokeLinejoin="round"
-//                           strokeWidth={2}
-//                           d="M19 9l-7 7-7-7"
-//                         />
-//                       </svg>
-//                     </button>
-//                   </div>
-
-//                   {/* AM/PM Picker */}
-//                   <div className="flex flex-col items-center">
-//                     <button onClick={() => setSelectedPeriod("AM")} className="p-2">
-//                       <svg
-//                         className="w-5 h-5 rotate-180"
-//                         fill="none"
-//                         stroke="currentColor"
-//                         viewBox="0 0 24 24"
-//                       >
-//                         <path
-//                           strokeLinecap="round"
-//                           strokeLinejoin="round"
-//                           strokeWidth={2}
-//                           d="M19 9l-7 7-7-7"
-//                         />
-//                       </svg>
-//                     </button>
-//                     <div className="bg-orange-400 text-white rounded-lg px-4 py-3 text-xl font-bold min-w-[60px] text-center">
-//                       {selectedPeriod}
-//                     </div>
-//                     <button onClick={() => setSelectedPeriod("PM")} className="p-2">
-//                       <svg
-//                         className="w-5 h-5"
-//                         fill="none"
-//                         stroke="currentColor"
-//                         viewBox="0 0 24 24"
-//                       >
-//                         <path
-//                           strokeLinecap="round"
-//                           strokeLinejoin="round"
-//                           strokeWidth={2}
-//                           d="M19 9l-7 7-7-7"
-//                         />
-//                       </svg>
-//                     </button>
-//                   </div>
-//                 </div>
-
-//                 <button
-//                   onClick={saveTime}
-//                   className="w-full py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors"
-//                 >
-//                   Save
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-//         )}
-//       </section>
-//     </>
-//   );
-// }
-// Main Travel Component
-export default function Travel() {
-   const [bookingType, setBookingType] = useState('transfer'); // 'transfer' or 'hourly'
+export function BookingForm() {
+  // State declarations
+  const [bookingType, setBookingType] = useState('transfer');
+  const [showReturn, setShowReturn] = useState(false);
   const [formData, setFormData] = useState({
     from: '',
     to: '',
@@ -1567,37 +967,681 @@ export default function Travel() {
     passengers: 2,
     duration: '2'
   });
-
+  
   const [showTimePicker, setShowTimePicker] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
   const [activeTimeField, setActiveTimeField] = useState(null);
+  const [activeDateField, setActiveDateField] = useState(null);
   const [errors, setErrors] = useState({});
-
-  // Time picker state
   const [selectedHour, setSelectedHour] = useState('01');
   const [selectedMinute, setSelectedMinute] = useState('45');
   const [selectedPeriod, setSelectedPeriod] = useState('PM');
   const [timeFormat, setTimeFormat] = useState('12h');
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  
+  const navigate = useNavigate();
 
-  const hours12 = Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, '0'));
-  const hours24 = Array.from({ length: 24 }, (_, i) => String(i).padStart(2, '0'));
+  // Constants
+  const hours12 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  const hours24 = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
   const minutes = ['00', '15', '30', '45'];
   const durations = ['2', '4', '6', '8', '10', '12', '24'];
 
+  // Handler functions
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: '' }));
-    }
+    if (errors[field]) setErrors(prev => ({ ...prev, [field]: '' }));
   };
 
   const openTimePicker = (field) => {
     setActiveTimeField(field);
     const currentTime = formData[field];
-    const [time, period] = currentTime.split(' ');
-    const [hour, minute] = time.split(':');
+    if (currentTime) {
+      const parts = currentTime.split(' ');
+      const [hour, minute] = parts[0].split(':');
+      setSelectedHour(hour);
+      setSelectedMinute(minute);
+      setSelectedPeriod(parts[1] || 'PM');
+    }
+    setShowTimePicker(true);
+  };
+
+  const openCalendar = (field) => {
+    setActiveDateField(field);
+    setShowCalendar(true);
+  };
+
+  const saveTime = () => {
+    const timeString = timeFormat === '12h' 
+      ? `${selectedHour}:${selectedMinute} ${selectedPeriod}`
+      : `${selectedHour}:${selectedMinute}`;
+    handleInputChange(activeTimeField, timeString);
+    setShowTimePicker(false);
+  };
+
+  const selectDate = (date) => {
+    const localDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const formattedDate = `${localDate.getFullYear()}-${String(localDate.getMonth() + 1).padStart(2, '0')}-${String(localDate.getDate()).padStart(2, '0')}`;
+    handleInputChange(activeDateField, formattedDate);
+    setShowCalendar(false);
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (bookingType === 'transfer') {
+      if (!formData.from) newErrors.from = 'Pickup location is required';
+      if (!formData.to) newErrors.to = 'Drop-off location is required';
+      if (!formData.pickupDate) newErrors.pickupDate = 'Pickup date is required';
+      if (showReturn && !formData.returnDate) newErrors.returnDate = 'Return date is required';
+    } else {
+      if (!formData.from) newErrors.from = 'Pickup location is required';
+      if (!formData.pickupDate) newErrors.pickupDate = 'Pickup date is required';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSeePrices = () => {
+    if (validateForm()) {
+      const bookingFormData = {
+        outbound: {
+          from: formData.from,
+          to: formData.to,
+          date: formatDate(formData.pickupDate),
+          time: formData.pickupTime,
+          passengers: formData.passengers,
+          estimatedArrival: '08:32 pm (6h 47m)',
+          distance: '1328 km / 825 Miles'
+        },
+        return: showReturn && formData.returnDate ? {
+          from: formData.to,
+          to: formData.from,
+          date: formatDate(formData.returnDate),
+          time: formData.returnTime,
+          passengers: formData.passengers,
+          estimatedArrival: '08:32 pm (6h 47m)',
+          distance: '1328 km / 825 Miles'
+        } : null
+      };
+      navigate("/BookingFlow", { state: { bookingFormData } });
+    }
+  };
+
+  const incrementValue = (type) => {
+    if (type === 'hour') {
+      const hours = timeFormat === '12h' ? hours12 : hours24;
+      const idx = hours.indexOf(selectedHour);
+      setSelectedHour(hours[idx < hours.length - 1 ? idx + 1 : 0]);
+    } else if (type === 'minute') {
+      const idx = minutes.indexOf(selectedMinute);
+      setSelectedMinute(minutes[idx < minutes.length - 1 ? idx + 1 : 0]);
+    }
+  };
+
+  const decrementValue = (type) => {
+    if (type === 'hour') {
+      const hours = timeFormat === '12h' ? hours12 : hours24;
+      const idx = hours.indexOf(selectedHour);
+      setSelectedHour(hours[idx > 0 ? idx - 1 : hours.length - 1]);
+    } else if (type === 'minute') {
+      const idx = minutes.indexOf(selectedMinute);
+      setSelectedMinute(minutes[idx > 0 ? idx - 1 : minutes.length - 1]);
+    }
+  };
+
+  const togglePeriod = () => {
+    setSelectedPeriod(prev => prev === 'AM' ? 'PM' : 'AM');
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-GB', { 
+      weekday: 'short', 
+      day: 'numeric', 
+      month: 'short', 
+      year: 'numeric' 
+    });
+  };
+
+  const getDaysInMonth = (date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const startingDayOfWeek = firstDay.getDay();
+    return { daysInMonth, startingDayOfWeek, year, month };
+  };
+
+  const renderCalendar = () => {
+    const { daysInMonth, startingDayOfWeek, year, month } = getDaysInMonth(currentMonth);
+    const days = [];
+    const today = new Date();
+    const pickupDateObj = formData.pickupDate ? new Date(formData.pickupDate) : null;
+
+    for (let i = 0; i < startingDayOfWeek; i++) {
+      days.push(<div key={`empty-${i}`} className="calendar-day disabled"></div>);
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(year, month, day);
+      const isPickupCalendar = activeDateField === 'pickupDate';
+      const isReturnCalendar = activeDateField === 'returnDate';
+      const isToday = date.toDateString() === today.toDateString();
+      const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      const isSelected = formData[activeDateField] === formattedDate;
+
+      let isDisabled = false;
+      if (isPickupCalendar && date < new Date(today.setHours(0, 0, 0, 0))) {
+        isDisabled = true;
+      }
+      if (isReturnCalendar && pickupDateObj) {
+        const pickupCopy = new Date(pickupDateObj);
+        pickupCopy.setHours(0, 0, 0, 0);
+        if (date < pickupCopy) {
+          isDisabled = true;
+        }
+      }
+
+      days.push(
+        <div
+          key={day}
+          className={`calendar-day ${isToday ? 'today' : ''} ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`}
+          onClick={() => !isDisabled && selectDate(date)}
+        >
+          {day}
+        </div>
+      );
+    }
+    return days;
+  };
+
+  const navigateMonth = (direction) => {
+    setCurrentMonth(prev => {
+      const newDate = new Date(prev);
+      newDate.setMonth(newDate.getMonth() + direction);
+      return newDate;
+    });
+  };
+
+  // Main render
+  return (
+    <div className="booking-container">
+      <h1 style={{ fontSize: '48px', fontWeight: 'bold', textAlign: 'center', marginBottom: '32px' }}>
+        Your Reliable Worldwide<br />Airport Transfers
+      </h1>
+
+      <div className="booking-grid">
+        <div className="booking-form-wrapper">
+ <div className="booking-tabs">
+  <div className="booking-text">Transfer</div>
+</div>
+ {/* <button
+              className={`booking-tab ${bookingType === 'hourly' ? 'active' : ''}`}
+              onClick={() => setBookingType('hourly')}
+            >
+              <Clock style={{ width: '18px', height: '18px' }} />
+              By the Hour
+            </button> */}
+  
+
+          {bookingType === 'transfer' && (
+            <div>
+              {/* Pickup Field */}
+              <div className="form-group">
+                <label className="form-label">From</label>
+                <div className="input-wrapper">
+                  <MapPin className="input-icon" />
+                  <input
+                    type="text"
+                    placeholder="Enter pickup location in Switzerland"
+                    value={formData.from}
+                    onChange={(e) => handleInputChange("from", e.target.value)}
+                    className={`form-input ${errors.from ? 'error' : ''}`}
+                  />
+                </div>
+                {errors.from && <p className="error-message">{errors.from}</p>}
+              </div>
+
+              {/* Drop-off Field */}
+              <div className="form-group">
+                <label className="form-label">To</label>
+                <div className="input-wrapper">
+                  <MapPin className="input-icon" />
+                  <input
+                    type="text"
+                    placeholder="Enter drop-off location in Switzerland"
+                    value={formData.to}
+                    onChange={(e) => handleInputChange("to", e.target.value)}
+                    className={`form-input ${errors.to ? 'error' : ''}`}
+                  />
+                </div>
+                {errors.to && <p className="error-message">{errors.to}</p>}
+              </div>
+
+              {/* Date and Time fields */}
+              <div className="date-time-grid">
+                <div className="form-group">
+                  <label className="form-label">Pickup date</label>
+                  <div className="input-wrapper">
+                    <Calendar className="input-icon" />
+                    <input
+                      type="text"
+                      value={formatDate(formData.pickupDate)}
+                      onClick={() => openCalendar('pickupDate')}
+                      readOnly
+                      placeholder="Select date"
+                      className={`form-input ${errors.pickupDate ? 'error' : ''}`}
+                      style={{ cursor: 'pointer' }}
+                    />
+                    {showCalendar && activeDateField === 'pickupDate' && (
+                      <div className="calendar-picker">
+                        <div className="calendar-header">
+                          <button className="calendar-nav-btn" onClick={() => navigateMonth(-1)}>
+                            <ChevronDown style={{ transform: 'rotate(90deg)', width: '20px', height: '20px' }} />
+                          </button>
+                          <div className="calendar-month">
+                            {currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}
+                          </div>
+                          <button className="calendar-nav-btn" onClick={() => navigateMonth(1)}>
+                            <ChevronDown style={{ transform: 'rotate(-90deg)', width: '20px', height: '20px' }} />
+                          </button>
+                        </div>
+                        <div className="calendar-grid">
+                          {['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map(day => (
+                            <div key={day} className="calendar-day-header">{day}</div>
+                          ))}
+                          {renderCalendar()}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  {errors.pickupDate && <p className="error-message">{errors.pickupDate}</p>}
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Pickup time</label>
+                  <div className="input-wrapper">
+                    <Clock className="input-icon" />
+                    <input
+                      type="text"
+                      value={formData.pickupTime}
+                      onClick={() => openTimePicker('pickupTime')}
+                      readOnly
+                      className="form-input"
+                      style={{ cursor: 'pointer' }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Add Return Button */}
+              {!showReturn && (
+                <button 
+                  className="add-return-btn"
+                  onClick={() => setShowReturn(true)}
+                >
+                  ADD RETURN
+                </button>
+              )}
+
+              {/* Return Trip Section */}
+              {showReturn && (
+                <div className="return-section">
+                  <div className="return-header">
+                    <h3 className="return-title">Return Trip</h3>
+                    <button
+                      className="remove-return-btn"
+                      onClick={() => { 
+                        setShowReturn(false); 
+                        handleInputChange('returnDate', ''); 
+                        handleInputChange('returnTime', '01:45 PM'); 
+                      }}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                  <div className="date-time-grid">
+                    <div className="form-group">
+                      <label className="form-label">Return date</label>
+                      <div className="input-wrapper">
+                        <Calendar className="input-icon" />
+                        <input
+                          type="text"
+                          value={formatDate(formData.returnDate)}
+                          onClick={() => openCalendar('returnDate')}
+                          readOnly
+                          placeholder="Select date"
+                          className={`form-input ${errors.returnDate ? 'error' : ''}`}
+                          style={{ cursor: 'pointer', background: 'white' }}
+                        />
+                        {showCalendar && activeDateField === 'returnDate' && (
+                          <div className="calendar-picker">
+                            <div className="calendar-header">
+                              <button className="calendar-nav-btn" onClick={() => navigateMonth(-1)}>
+                                <ChevronDown style={{ transform: 'rotate(90deg)', width: '20px', height: '20px' }} />
+                              </button>
+                              <div className="calendar-month">
+                                {currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}
+                              </div>
+                              <button className="calendar-nav-btn" onClick={() => navigateMonth(1)}>
+                                <ChevronDown style={{ transform: 'rotate(-90deg)', width: '20px', height: '20px' }} />
+                              </button>
+                            </div>
+                            <div className="calendar-grid">
+                              {['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map(day => (
+                                <div key={day} className="calendar-day-header">{day}</div>
+                              ))}
+                              {renderCalendar()}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      {errors.returnDate && <p className="error-message">{errors.returnDate}</p>}
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Return time</label>
+                      <div className="input-wrapper">
+                        <Clock className="input-icon" />
+                        <input
+                          type="text"
+                          value={formData.returnTime}
+                          onClick={() => openTimePicker('returnTime')}
+                          readOnly
+                          className="form-input"
+                          style={{ cursor: 'pointer', background: 'white' }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Passengers */}
+              <div className="form-group">
+                <label className="form-label">
+                  <Users style={{ marginTop: '10px', marginBottom: '10px', width: '18px', height: '18px', display: 'inline-block', marginRight: '6px', verticalAlign: 'middle' }} />
+                  Passengers
+                </label>
+                <div className="passengers-control">
+                  <span className="passengers-count">{formData.passengers}</span>
+                  <div className="passengers-buttons">
+                    <button
+                      className="passenger-btn"
+                      onClick={() => handleInputChange('passengers', Math.max(1, formData.passengers - 1))}
+                    >
+                      −
+                    </button>
+                    <button
+                      className="passenger-btn"
+                      onClick={() => handleInputChange('passengers', formData.passengers + 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* {bookingType === 'hourly' && (
+            <div>
+              <div className="form-group">
+                <label className="form-label">From</label>
+                <div className="input-wrapper">
+                  <MapPin className="input-icon" />
+                  <input
+                    type="text"
+                    placeholder="Address, airport, hotel in Switzerland..."
+                    value={formData.from}
+                    onChange={(e) => handleInputChange('from', e.target.value)}
+                    className={`form-input ${errors.from ? 'error' : ''}`}
+                  />
+                </div>
+                {errors.from && <p className="error-message">{errors.from}</p>}
+              </div>
+
+              <div className="date-time-grid">
+                <div className="form-group">
+                  <label className="form-label">Pickup date</label>
+                  <div className="input-wrapper">
+                    <Calendar className="input-icon" />
+                    <input
+                      type="text"
+                      value={formatDate(formData.pickupDate)}
+                      onClick={() => openCalendar('pickupDate')}
+                      readOnly
+                      placeholder="Select date"
+                      className={`form-input ${errors.pickupDate ? 'error' : ''}`}
+                      style={{ cursor: 'pointer' }}
+                    />
+                    {showCalendar && activeDateField === 'pickupDate' && (
+                      <div className="calendar-picker">
+                        <div className="calendar-header">
+                          <button className="calendar-nav-btn" onClick={() => navigateMonth(-1)}>
+                            <ChevronDown style={{ transform: 'rotate(90deg)', width: '20px', height: '20px' }} />
+                          </button>
+                          <div className="calendar-month">
+                            {currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}
+                          </div>
+                          <button className="calendar-nav-btn" onClick={() => navigateMonth(1)}>
+                            <ChevronDown style={{ transform: 'rotate(-90deg)', width: '20px', height: '20px' }} />
+                          </button>
+                        </div>
+                        <div className="calendar-grid">
+                          {['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map(day => (
+                            <div key={day} className="calendar-day-header">{day}</div>
+                          ))}
+                          {renderCalendar()}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  {errors.pickupDate && <p className="error-message">{errors.pickupDate}</p>}
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Pickup time</label>
+                  <div className="input-wrapper">
+                    <Clock className="input-icon" />
+                    <input
+                      type="text"
+                      value={formData.pickupTime}
+                      onClick={() => openTimePicker('pickupTime')}
+                      readOnly
+                      className="form-input"
+                      style={{ cursor: 'pointer' }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">
+                  <Clock style={{ width: '18px', height: '18px', display: 'inline-block', marginRight: '6px', verticalAlign: 'middle' }} />
+                  Duration
+                </label>
+                <div className="select-wrapper">
+                  <select
+                    value={formData.duration}
+                    onChange={(e) => handleInputChange('duration', e.target.value)}
+                    className="duration-select"
+                  >
+                    {durations.map(duration => (
+                      <option key={duration} value={duration}>{duration} Hours</option>
+                    ))}
+                  </select>
+                  <ChevronDown className="select-icon" />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">
+                  <Users style={{ width: '18px', height: '18px', display: 'inline-block', marginRight: '6px', verticalAlign: 'middle' }} />
+                  Passengers
+                </label>
+                <div className="passengers-control">
+                  <span className="passengers-count">{formData.passengers}</span>
+                  <div className="passengers-buttons">
+                    <button
+                      className="passenger-btn"
+                      onClick={() => handleInputChange('passengers', Math.max(1, formData.passengers - 1))}
+                    >
+                      −
+                    </button>
+                    <button
+                      className="passenger-btn"
+                      onClick={() => handleInputChange('passengers', formData.passengers + 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )} */}
+
+          <button className="see-prices-btn" onClick={handleSeePrices}>
+            <svg style={{ width: '20px', height: '20px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            See prices
+          </button>
+
+          <div className="trustpilot-section">
+            <span className="trustpilot-rating">EXCELLENT</span>
+            <div className="stars">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <svg key={i} className="star" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <span className="trustpilot-logo">Trustpilot</span>
+          </div>
+        </div>
+
+        <div className="booking-image">
+          <img
+            src={tt1}
+               alt="Premium Transfer Service"
+          />
+        </div>
+      </div>
+
+      {/* Time Picker Modal */}
+      {showTimePicker && (
+        <div className="time-picker-overlay" onClick={() => setShowTimePicker(false)}>
+          <div className="time-picker-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="time-format-tabs">
+              <button
+                className={`time-format-tab ${timeFormat === '24h' ? 'active' : ''}`}
+                onClick={() => setTimeFormat('24h')}
+              >
+                24h
+              </button>
+              <button
+                className={`time-format-tab ${timeFormat === '12h' ? 'active' : ''}`}
+                onClick={() => setTimeFormat('12h')}
+              >
+                12h
+              </button>
+            </div>
+
+            <div className="time-selectors">
+              <div className="time-column">
+                <button className="time-arrow" onClick={() => decrementValue('hour')}>
+                  <ChevronDown style={{ transform: 'rotate(180deg)', width: '20px', height: '20px' }} />
+                </button>
+                <div className="time-value">{selectedHour}</div>
+                <button className="time-arrow" onClick={() => incrementValue('hour')}>
+                  <ChevronDown style={{ width: '20px', height: '20px' }} />
+                </button>
+              </div>
+
+              <span className="time-separator">:</span>
+
+              <div className="time-column">
+                <button className="time-arrow" onClick={() => decrementValue('minute')}>
+                  <ChevronDown style={{ transform: 'rotate(180deg)', width: '20px', height: '20px' }} />
+                </button>
+                <div className="time-value">{selectedMinute}</div>
+                <button className="time-arrow" onClick={() => incrementValue('minute')}>
+                  <ChevronDown style={{ width: '20px', height: '20px' }} />
+                </button>
+              </div>
+
+              {timeFormat === '12h' && (
+                <div className="time-column">
+                  <button className="time-arrow" onClick={togglePeriod}>
+                    <ChevronDown style={{ transform: 'rotate(180deg)', width: '20px', height: '20px' }} />
+                  </button>
+                  <div className="time-value">{selectedPeriod}</div>
+                  <button className="time-arrow" onClick={togglePeriod}>
+                    <ChevronDown style={{ width: '20px', height: '20px' }} />
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <button className="save-time-btn" onClick={saveTime}>
+              Save
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showCalendar && (
+        <div 
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'transparent',
+            zIndex: 50
+          }}
+          onClick={() => setShowCalendar(false)}
+        />
+      )}
+    </div>
+  );
+}
+
+
+export default function Travel() {
+   const [bookingType, setBookingType] = useState('transfer');
+  const [showReturn, setShowReturn] = useState(false);
+  const [formData, setFormData] = useState({
+    from: '', to: '', pickupDate: '', pickupTime: '',
+    returnDate: '', returnTime: '', passengers: 2, duration: '2'
+  });
+  const [showTimePicker, setShowTimePicker] = useState(false);
+  const [activeTimeField, setActiveTimeField] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [selectedHour, setSelectedHour] = useState('01');
+  const [selectedMinute, setSelectedMinute] = useState('45');
+  const [selectedPeriod, setSelectedPeriod] = useState('PM');
+  const [timeFormat, setTimeFormat] = useState('12h');
+
+  const hours12 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  const hours24 = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
+  const minutes = ['00', '15', '30', '45'];
+  const durations = ['2', '4', '6', '8', '10', '12', '24'];
+
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) setErrors(prev => ({ ...prev, [field]: '' }));
+  };
+
+  const openTimePicker = (field) => {
+    setActiveTimeField(field);
+    const currentTime = formData[field];
+    const parts = currentTime.split(' ');
+    const [hour, minute] = parts[0].split(':');
     setSelectedHour(hour);
     setSelectedMinute(minute);
-    setSelectedPeriod(period || 'PM');
+    setSelectedPeriod(parts[1] || 'PM');
     setShowTimePicker(true);
   };
 
@@ -1611,38 +1655,31 @@ export default function Travel() {
 
   const validateForm = () => {
     const newErrors = {};
-    
     if (bookingType === 'transfer') {
       if (!formData.from) newErrors.from = 'Pickup location is required';
       if (!formData.to) newErrors.to = 'Drop-off location is required';
       if (!formData.pickupDate) newErrors.pickupDate = 'Pickup date is required';
+      if (showReturn && !formData.returnDate) newErrors.returnDate = 'Return date is required';
     } else {
       if (!formData.from) newErrors.from = 'Pickup location is required';
       if (!formData.pickupDate) newErrors.pickupDate = 'Pickup date is required';
     }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
   const handleSeePrices = () => {
-    if (validateForm()) {
-      alert('Form is valid! Proceeding to prices...');
-      // Here you would navigate to prices or submit the form
-    }
+    if (validateForm()) alert('Form is valid! Proceeding to prices...');
   };
-
   return (
     <div>
-     
  {/* <BookingSection />  */}
       {/* Carousel section */}
     <div className="px-2 w-full mt-[70px]">
-   
-  <h2 className="text-2xl font-semibold text-center text-black my-6">
     <div className="mt-5">
         <TourrCarousel moduleId={4} />
       </div>
+     <> <BookingForm/></>
+     <h2 className="text-2xl font-semibold text-center text-black my-6">
     Explore Our Destination
   </h2>
   <Carousel images={IMGS} />

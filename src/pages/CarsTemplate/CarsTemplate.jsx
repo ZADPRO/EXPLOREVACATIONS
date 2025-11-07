@@ -83,16 +83,21 @@ export default function CarsTemplate() {
   //     ? `https://zuericar.com/src/assets/cars/${carListData.refCarPath}`
   //     : tourImg
   // );
-  const [imgSrc, setImgSrc] = useState(() => {
+ const [imgSrc, setImgSrc] = useState(tourImg);
+
+// Add this useEffect to update image when carListData changes
+useEffect(() => {
   const refCarPath =
     typeof carListData?.refCarPath === "string"
       ? carListData.refCarPath.trim()
       : "";
 
-  return refCarPath
+  const newImgSrc = refCarPath
     ? `https://zuericar.com/src/assets/cars/${refCarPath}`
     : tourImg;
-});
+  
+  setImgSrc(newImgSrc);
+}, [carListData]); // Updates whenever carListData changes
 
 
   useEffect(() => {
@@ -493,7 +498,7 @@ const getIcon = (label) => {
     <div>
       <Toast ref={toast} />
 
-      <div className="relative mt-10 min-h-[60vh] w-[100%] bg-[#dbeefa] flex lg:flex-row md:flex-row flex-col items-center justify-center text-2xl sm:text-3xl font-bold ">
+      <div className="relative mt-10 min-h-[60vh] w-[100%]  flex lg:flex-row md:flex-row flex-col items-center justify-center text-2xl sm:text-3xl font-bold ">
         {loading ? (
           <div className="h-[10vh] w-[100%] flex justify-center items-center">
             <i
@@ -969,7 +974,7 @@ const getIcon = (label) => {
 
       <div className="card flex w-11/12 mx-auto overflow-hidden py-8">
         <TabView className="w-full overflow-x-auto">
-          <TabPanel header="Travel Include" key="tab1">
+          <TabPanel header="Travel Include" key="include">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <ul className="list-disc pl-5">
                 {carListData?.refIncludeName?.map((item, index) => (
@@ -980,7 +985,7 @@ const getIcon = (label) => {
               </ul>
             </div>
           </TabPanel>
-          <TabPanel header="Travel Exclude" key="tab1">
+          <TabPanel header="Travel Exclude" key="exclude">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <ul className="list-disc pl-5">
                 {carListData?.refExcludeName?.map((item, index) => (

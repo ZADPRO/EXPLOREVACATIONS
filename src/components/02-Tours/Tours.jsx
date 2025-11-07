@@ -8,6 +8,7 @@ import { Toast } from "primereact/toast";
 import decrypt from "../../helper";
 import Axios from "axios";
 
+import arch from "../../assets/homeCards/card4.jpg"
 import tourImg from "../../assets/tours/image.jpg";
 import Popup from "../../pages/Popup/Popup";
 import BannerCarousel from "../01-Home/BannerCarousel";
@@ -196,10 +197,10 @@ export default function Tours() {
               minDate={
                 tourFromDate
                   ? new Date(
-                      new Date(tourFromDate).setDate(
-                        new Date(tourFromDate).getDate() + 1
-                      )
+                    new Date(tourFromDate).setDate(
+                      new Date(tourFromDate).getDate() + 1
                     )
+                  )
                   : new Date()
               }
             />
@@ -255,9 +256,13 @@ export default function Tours() {
                     <img src={tourImg} alt="Alt Image for Tours" />
                   ) : (
                     <img
-                      src={`https://zuericar.com/src/assets/coverImage/${tour.refCoverImage}`}
-                      alt={tour.refPackageName}
-                      className="w-full object-cover aspect-[4/3]"
+                      src={
+                        tour?.refCoverImage
+                          ? `https://zuericar.com/src/assets/coverImage/${tour.refCoverImage}`
+                          : arch
+                      }
+                      alt="Tour Image"
+                      className="w-full h-full object-cover rounded-lg"
                     />
                   )}
                   <div className="px-4 pt-4 flex-grow">

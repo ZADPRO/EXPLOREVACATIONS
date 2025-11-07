@@ -1,0 +1,1140 @@
+import React, { useState } from 'react';
+import { Pencil, Calendar, Clock, MapPin, Users, Check, Briefcase, ChevronUp, ChevronDown, RefreshCw } from 'lucide-react';
+import './BookingFlow.css';
+
+const BookingSummary = ({ bookingData, totalPrice, onEditJourney, updateBookingData }) => {
+  const [showReturnSection, setShowReturnSection] = useState(false);
+  const [showOutboundEditSection, setShowOutboundEditSection] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
+  const [showOutboundCalendar, setShowOutboundCalendar] = useState(false);
+  const [showOutboundTimePicker, setShowOutboundTimePicker] = useState(false);
+  
+  const [returnDate, setReturnDate] = useState(new Date());
+  const [returnTime, setReturnTime] = useState({ hour: '01', minute: '45', period: 'PM' });
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  
+  // New state for outbound editing
+  const [outboundDate, setOutboundDate] = useState(new Date());
+  const [outboundTime, setOutboundTime] = useState({ hour: '01', minute: '45', period: 'PM' });
+  const [outboundMonth, setOutboundMonth] = useState(new Date());
+  const [outboundFrom, setOutboundFrom] = useState('');
+  const [outboundFromCity, setOutboundFromCity] = useState('');
+  const [outboundTo, setOutboundTo] = useState('');
+  const [outboundToCity, setOutboundToCity] = useState('');
+  const [outboundPassengers, setOutboundPassengers] = useState(2);
+
+  const hours12 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  const minutes = ['00', '15', '30', '45'];
+
+  // Initialize outbound edit values when opening edit section
+  const handleEditOutbound = () => {
+    // Parse the existing date
+    const dateString = bookingData.outbound.date;
+    const parsedDate = new Date(dateString);
+    setOutboundDate(parsedDate);
+    setOutboundMonth(parsedDate);
+    useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (showCalendar && !event.target.closest('.calendar-popup') && !event.target.closest('.form-input')) {
+      setShowCalendar(false);
+    }
+    if (showTimePicker && !event.target.closest('.time-popup') && !event.target.closest('.form-input')) {
+      setShowTimePicker(false);
+    }
+  };
+
+  document.addEventListener('mousedown', handleClickOutside);
+  return () => document.removeEventListener('mousedown', handleClickOutside);
+}, [showCalendar, showTimePicker]);
+    // Parse the existing time
+    const timeString = bookingData.outbound.time;
+    const timeMatch = timeString.match(/(\d+):(\d+)\s*(am|pm)/i);
+    if (timeMatch) {
+      setOutboundTime({
+        hour: timeMatch[1].padStart(2, '0'),
+        minute: timeMatch[2],
+        period: timeMatch[3].toUpperCase()
+      });
+    }
+    
+    // Set locations
+    setOutboundFrom(bookingData.outbound.from);
+    setOutboundFromCity(bookingData.outbound.fromCity);
+    setOutboundTo(bookingData.outbound.to);
+    setOutboundToCity(bookingData.outbound.toCity);
+    setOutboundPassengers(bookingData.outbound.passengers);
+    
+    setShowOutboundEditSection(true);
+  };
+
+  const handleSaveOutbound = () => {
+    const formattedDate = `${outboundDate.getDate()} ${outboundDate.toLocaleString('en-US', { month: 'short' })} ${outboundDate.getFullYear()}`;
+    const formattedTime = `${outboundTime.hour}:${outboundTime.minute} ${outboundTime.period}`;
+    
+    updateBookingData('outbound', {
+      from: outboundFrom,
+      fromCity: outboundFromCity,
+      to: outboundTo,
+      toCity: outboundToCity,
+      date: formattedDate,
+      time: formattedTime,
+      estimatedArrival: '08:32 pm (6h 47m)',
+      distance: '1328 km / 825 Miles',
+      passengers: outboundPassengers
+    });
+    
+    setShowOutboundEditSection(false);
+    setShowOutboundCalendar(false);
+    setShowOutboundTimePicker(false);
+  };
+const handleAddReturn = () => {
+  try {
+    const formattedDate = `${returnDate.getDate()} ${returnDate.toLocaleString('en-US', { month: 'short' })} ${returnDate.getFullYear()}`;
+    const formattedTime = `${returnTime.hour}:${returnTime.minute} ${returnTime.period}`;
+    
+    updateBookingData('return', {
+      from: bookingData.outbound.to,
+      fromCity: bookingData.outbound.toCity,
+      to: bookingData.outbound.from,
+      toCity: bookingData.outbound.fromCity,
+      date: formattedDate,
+      time: formattedTime,
+      estimatedArrival: '08:32 pm (6h 47m)',
+      distance: '1328 km / 825 Miles',
+      passengers: bookingData.outbound.passengers
+    });
+    
+    // Close all pickers
+    setShowReturnSection(false);
+    setShowCalendar(false);
+    setShowTimePicker(false);
+  } catch (error) {
+    console.error('Error adding return:', error);
+  }
+};
+  // const handleAddReturn = () => {
+  //   const formattedDate = `${returnDate.getDate()} ${returnDate.toLocaleString('en-US', { month: 'short' })} ${returnDate.getFullYear()}`;
+  //   const formattedTime = `${returnTime.hour}:${returnTime.minute} ${returnTime.period}`;
+    
+  //   updateBookingData('return', {
+  //     from: bookingData.outbound.to,
+  //     fromCity: bookingData.outbound.toCity,
+  //     to: bookingData.outbound.from,
+  //     toCity: bookingData.outbound.fromCity,
+  //     date: formattedDate,
+  //     time: formattedTime,
+  //     estimatedArrival: '08:32 pm (6h 47m)',
+  //     distance: '1328 km / 825 Miles',
+  //     passengers: bookingData.outbound.passengers
+  //   });
+    
+  //   setShowReturnSection(false);
+  //   setShowCalendar(false);
+  //   setShowTimePicker(false);
+  // };
+
+  const handleEditReturn = () => {
+    setShowReturnSection(true);
+  };
+
+  const handleRemoveReturn = () => {
+    if (window.confirm('Are you sure you want to remove the return journey?')) {
+      updateBookingData('return', null);
+      setShowReturnSection(false);
+    }
+  };
+
+  const getDaysInMonth = (date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const startingDayOfWeek = firstDay.getDay();
+    return { daysInMonth, startingDayOfWeek, year, month };
+  };
+
+  const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
+    const monthToUse = isOutbound ? outboundMonth : currentMonth;
+    const { daysInMonth, startingDayOfWeek, year, month } = getDaysInMonth(monthToUse);
+    const days = [];
+    const today = new Date();
+    
+    for (let i = 0; i < startingDayOfWeek; i++) {
+      days.push(<div key={`empty-${i}`} style={{ padding: '8px' }}></div>);
+    }
+    
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(year, month, day);
+      const isToday = date.toDateString() === today.toDateString();
+      const isSelected = date.toDateString() === selectedDate.toDateString();
+      const isPast = date < today && !isToday;
+      
+      days.push(
+        <div
+          key={day}
+          onClick={() => !isPast && setDate(date)}
+          style={{
+            padding: '8px',
+            textAlign: 'center',
+            cursor: isPast ? 'not-allowed' : 'pointer',
+            borderRadius: '8px',
+            backgroundColor: isSelected ? '#fbbf24' : 'transparent',
+            color: isPast ? '#d1d5db' : isSelected ? '#000' : '#000',
+            fontWeight: isSelected ? '600' : '400',
+            border: isToday ? '2px solid #fbbf24' : 'none'
+          }}
+        >
+          {day}
+        </div>
+      );
+    }
+    return days;
+  };
+
+  const navigateMonth = (direction, isOutbound = false) => {
+    if (isOutbound) {
+      setOutboundMonth(prev => {
+        const newDate = new Date(prev);
+        newDate.setMonth(newDate.getMonth() + direction);
+        return newDate;
+      });
+    } else {
+      setCurrentMonth(prev => {
+        const newDate = new Date(prev);
+        newDate.setMonth(newDate.getMonth() + direction);
+        return newDate;
+      });
+    }
+  };
+
+  const incrementValue = (type, isOutbound = false) => {
+    const timeState = isOutbound ? outboundTime : returnTime;
+    const setTime = isOutbound ? setOutboundTime : setReturnTime;
+    
+    if (type === 'hour') {
+      const idx = hours12.indexOf(timeState.hour);
+      setTime({ ...timeState, hour: hours12[idx < hours12.length - 1 ? idx + 1 : 0] });
+    } else if (type === 'minute') {
+      const idx = minutes.indexOf(timeState.minute);
+      setTime({ ...timeState, minute: minutes[idx < minutes.length - 1 ? idx + 1 : 0] });
+    }
+  };
+
+  const decrementValue = (type, isOutbound = false) => {
+    const timeState = isOutbound ? outboundTime : returnTime;
+    const setTime = isOutbound ? setOutboundTime : setReturnTime;
+    
+    if (type === 'hour') {
+      const idx = hours12.indexOf(timeState.hour);
+      setTime({ ...timeState, hour: hours12[idx > 0 ? idx - 1 : hours12.length - 1] });
+    } else if (type === 'minute') {
+      const idx = minutes.indexOf(timeState.minute);
+      setTime({ ...timeState, minute: minutes[idx > 0 ? idx - 1 : minutes.length - 1] });
+    }
+  };
+
+  const togglePeriod = (isOutbound = false) => {
+    if (isOutbound) {
+      setOutboundTime(prev => ({ ...prev, period: prev.period === 'AM' ? 'PM' : 'AM' }));
+    } else {
+      setReturnTime(prev => ({ ...prev, period: prev.period === 'AM' ? 'PM' : 'AM' }));
+    }
+  };
+
+  const swapLocations = () => {
+    const tempFrom = outboundFrom;
+    const tempFromCity = outboundFromCity;
+    setOutboundFrom(outboundTo);
+    setOutboundFromCity(outboundToCity);
+    setOutboundTo(tempFrom);
+    setOutboundToCity(tempFromCity);
+  };
+
+  return (
+    <div className="booking-summary summary-sticky">
+      <h2 className="summary-title">Your Booking</h2>
+      
+      {/* Outbound Journey */}
+      <div className="journey-section">
+        {!showOutboundEditSection ? (
+          <>
+            <div className="journey-header">
+              <span className="journey-label">Outward journey</span>
+              <button onClick={handleEditOutbound} className="edit-button" title="Edit outbound">
+                <Pencil size={16} />
+              </button>
+            </div>
+            
+            <JourneyDetails journey={bookingData.outbound} />
+          </>
+        ) : (
+          <>
+            <div className="journey-header">
+              <span className="journey-label">Edit Outward journey</span>
+              <button 
+                onClick={() => {
+                  setShowOutboundEditSection(false);
+                  setShowOutboundCalendar(false);
+                  setShowOutboundTimePicker(false);
+                }} 
+                className="edit-button"
+                title="Cancel editing"
+              >
+                ✕
+              </button>
+            </div>
+            
+            <div style={{ 
+              marginTop: '16px',
+              padding: '16px',
+              backgroundColor: '#fef9f3',
+              border: '2px solid #fed7aa',
+              borderRadius: '12px'
+            }}>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>Edit Outbound Trip</h3>
+
+              {/* From/To Location Edit */}
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
+                  From Location
+                </label>
+                <input
+                  type="text"
+                  value={outboundFrom}
+                  onChange={(e) => setOutboundFrom(e.target.value)}
+                  placeholder="Airport or address"
+                  style={{
+                    width: '100%',
+                    padding: '10px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    marginBottom: '8px'
+                  }}
+                />
+                <input
+                  type="text"
+                  value={outboundFromCity}
+                  onChange={(e) => setOutboundFromCity(e.target.value)}
+                  placeholder="City, Country"
+                  style={{
+                    width: '100%',
+                    padding: '10px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    fontSize: '14px'
+                  }}
+                />
+              </div>
+
+              {/* Swap Button */}
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+                <button
+                  onClick={swapLocations}
+                  style={{
+                    padding: '8px 16px',
+                    backgroundColor: '#f3f4f6',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}
+                >
+                  ⇅ Swap
+                </button>
+              </div>
+
+              <div style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
+                  To Location
+                </label>
+                <input
+                  type="text"
+                  value={outboundTo}
+                  onChange={(e) => setOutboundTo(e.target.value)}
+                  placeholder="Airport or address"
+                  style={{
+                    width: '100%',
+                    padding: '10px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    marginBottom: '8px'
+                  }}
+                />
+                <input
+                  type="text"
+                  value={outboundToCity}
+                  onChange={(e) => setOutboundToCity(e.target.value)}
+                  placeholder="City, Country"
+                  style={{
+                    width: '100%',
+                    padding: '10px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    fontSize: '14px'
+                  }}
+                />
+              </div>
+
+              {/* Date and Time Selection */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '12px', marginBottom: '16px' }}>
+                <div style={{ position: 'relative' }}>
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
+                    Pickup date
+                  </label>
+                  <div
+                    onClick={() => {
+                      setShowOutboundCalendar(!showOutboundCalendar);
+                      setShowOutboundTimePicker(false);
+                    }}
+                    style={{
+                      padding: '10px',
+                      border: '1px solid #d1d5db',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      backgroundColor: '#f9fafb',
+                      fontSize: '14px'
+                    }}
+                  >
+                    <Calendar size={14} />
+                    <span>
+                      {outboundDate.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })}
+                    </span>
+                  </div>
+
+                  {showOutboundCalendar && (
+                    <div style={{
+                      marginTop: '8px',
+                      padding: '12px',
+                      border: '1px solid #d1d5db',
+                      borderRadius: '8px',
+                      backgroundColor: '#fff',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                      position: 'absolute',
+                      zIndex: 100,
+                      width: '280px'
+                    }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                        <button 
+                          onClick={() => navigateMonth(-1, true)}
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', fontSize: '16px' }}
+                        >
+                          ←
+                        </button>
+                        <div style={{ fontWeight: '600', fontSize: '14px' }}>
+                          {outboundMonth.toLocaleString('en-US', { month: 'long', year: 'numeric' })}
+                        </div>
+                        <button 
+                          onClick={() => navigateMonth(1, true)}
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', fontSize: '16px' }}
+                        >
+                          →
+                        </button>
+                      </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '2px' }}>
+                        {['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map(day => (
+                          <div key={day} style={{ textAlign: 'center', fontSize: '11px', fontWeight: '600', color: '#6b7280', padding: '6px' }}>
+                            {day}
+                          </div>
+                        ))}
+                        {renderCalendar(outboundDate, setOutboundDate, true)}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div style={{ position: 'relative' }}>
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
+                    Pickup time
+                  </label>
+                  <div
+                    onClick={() => {
+                      setShowOutboundTimePicker(!showOutboundTimePicker);
+                      setShowOutboundCalendar(false);
+                    }}
+                    style={{
+                      padding: '10px',
+                      border: '1px solid #d1d5db',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      backgroundColor: '#f9fafb',
+                      fontSize: '14px'
+                    }}
+                  >
+                    <Clock size={14} />
+                    <span>
+                      {outboundTime.hour}:{outboundTime.minute} {outboundTime.period}
+                    </span>
+                  </div>
+
+                  {showOutboundTimePicker && (
+                    <div style={{
+                      marginTop: '8px',
+                      padding: '16px',
+                      border: '1px solid #d1d5db',
+                      borderRadius: '8px',
+                      backgroundColor: '#fff',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                      position: 'absolute',
+                      zIndex: 100,
+                      width: '240px'
+                    }}>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                        <div style={{ textAlign: 'center' }}>
+                          <button
+                            onClick={() => incrementValue('hour', true)}
+                            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px' }}
+                          >
+                            <ChevronUp size={16} />
+                          </button>
+                          <div style={{ 
+                            fontSize: '24px', 
+                            fontWeight: '700', 
+                            padding: '8px 12px',
+                            backgroundColor: '#ff9447',
+                            color: '#fff',
+                            borderRadius: '8px',
+                            minWidth: '50px'
+                          }}>
+                            {outboundTime.hour}
+                          </div>
+                          <button
+                            onClick={() => decrementValue('hour', true)}
+                            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px' }}
+                          >
+                            <ChevronDown size={16} />
+                          </button>
+                        </div>
+
+                        <div style={{ fontSize: '24px', fontWeight: '700' }}>:</div>
+
+                        <div style={{ textAlign: 'center' }}>
+                          <button
+                            onClick={() => incrementValue('minute', true)}
+                            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px' }}
+                          >
+                            <ChevronUp size={16} />
+                          </button>
+                          <div style={{ 
+                            fontSize: '24px', 
+                            fontWeight: '700', 
+                            padding: '8px 12px',
+                            backgroundColor: '#ff9447',
+                            color: '#fff',
+                            borderRadius: '8px',
+                            minWidth: '50px'
+                          }}>
+                            {outboundTime.minute}
+                          </div>
+                          <button
+                            onClick={() => decrementValue('minute', true)}
+                            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px' }}
+                          >
+                            <ChevronDown size={16} />
+                          </button>
+                        </div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                          <button
+                            onClick={() => togglePeriod(true)}
+                            style={{
+                              padding: '6px 10px',
+                              backgroundColor: outboundTime.period === 'AM' ? '#ff9447' : '#f3f4f6',
+                              color: outboundTime.period === 'AM' ? '#fff' : '#000',
+                              border: 'none',
+                              borderRadius: '6px',
+                              cursor: 'pointer',
+                              fontSize: '12px',
+                              fontWeight: '600'
+                            }}
+                          >
+                            AM
+                          </button>
+                          <button
+                            onClick={() => togglePeriod(true)}
+                            style={{
+                              padding: '6px 10px',
+                              backgroundColor: outboundTime.period === 'PM' ? '#ff9447' : '#f3f4f6',
+                              color: outboundTime.period === 'PM' ? '#fff' : '#000',
+                              border: 'none',
+                              borderRadius: '6px',
+                              cursor: 'pointer',
+                              fontSize: '12px',
+                              fontWeight: '600'
+                            }}
+                          >
+                            PM
+                          </button>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => setShowOutboundTimePicker(false)}
+                        style={{
+                          width: '100%',
+                          padding: '8px',
+                          backgroundColor: '#000',
+                          color: '#fff',
+                          border: 'none',
+                          borderRadius: '6px',
+                          cursor: 'pointer',
+                          fontSize: '14px',
+                          fontWeight: '500'
+                        }}
+                      >
+                        Close
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Passengers */}
+              <div style={{ marginBottom: '12px' }}>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
+                  <Users size={14} style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }} />
+                  Passengers
+                </label>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <button
+                    onClick={() => outboundPassengers > 1 && setOutboundPassengers(outboundPassengers - 1)}
+                    style={{
+                      padding: '8px 12px',
+                      backgroundColor: '#f3f4f6',
+                      border: '1px solid #d1d5db',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      fontSize: '18px',
+                      fontWeight: '600'
+                    }}
+                  >
+                    -
+                  </button>
+                  <div style={{ 
+                    padding: '10px 20px',
+                    backgroundColor: '#f9fafb',
+                    borderRadius: '8px',
+                    fontSize: '18px',
+                    fontWeight: '600',
+                    minWidth: '60px',
+                    textAlign: 'center'
+                  }}>
+                    {outboundPassengers}
+                  </div>
+                  <button
+                    onClick={() => outboundPassengers < 10 && setOutboundPassengers(outboundPassengers + 1)}
+                    style={{
+                      padding: '8px 12px',
+                      backgroundColor: '#f3f4f6',
+                      border: '1px solid #d1d5db',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      fontSize: '18px',
+                      fontWeight: '600'
+                    }}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              {/* Save Button */}
+              <button
+                onClick={handleSaveOutbound}
+                style={{
+                  width: '100%',
+                  padding: '12px',
+                  backgroundColor: '#fbbf24',
+                  color: '#000',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '15px',
+                  fontWeight: '600',
+                  cursor: 'pointer'
+                }}
+              >
+                SAVE CHANGES
+              </button>
+            </div>
+          </>
+        )}
+
+        {/* Add Return Button (only show when not editing outbound) */}
+        {!showOutboundEditSection && !bookingData.return && !showReturnSection && (
+          <div style={{ marginTop: '16px' }}>
+            <div style={{ 
+              textAlign: 'center', 
+              fontSize: '13px', 
+              color: '#6b7280', 
+              marginBottom: '8px' 
+            }}>
+              Book smart! Add a return trip
+            </div>
+            <button 
+              onClick={() => setShowReturnSection(true)}
+              style={{
+                width: '100%',
+                padding: '12px',
+                background: 'white',
+                border: '2px solid #fbbf24',
+                borderRadius: '8px',
+                fontSize: '15px',
+                fontWeight: '500',
+                color: '#000',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseOver={(e) => e.currentTarget.style.background = '#fef3c7'}
+              onMouseOut={(e) => e.currentTarget.style.background = 'white'}
+            >
+              <RefreshCw size={18} />
+              Add return
+            </button>
+          </div>
+        )}
+
+        {/* Inline Return Form (existing code) */}
+        {showReturnSection && (
+          <div style={{ 
+            marginTop: '16px',
+            padding: '16px',
+            backgroundColor: '#fff',
+            border: '1px solid #e5e7eb',
+            borderRadius: '12px'
+          }}>
+            <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>Add Return Trip</h3>
+
+            <div style={{ marginBottom: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#000' }}></div>
+                <div>
+                  <div style={{ fontSize: '14px', fontWeight: '600' }}>{bookingData.outbound.to}</div>
+                  <div style={{ fontSize: '12px', color: '#6b7280' }}>{bookingData.outbound.toCity}</div>
+                </div>
+              </div>
+              <div style={{ width: '2px', height: '16px', backgroundColor: '#fbbf24', marginLeft: '4px' }}></div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#fbbf24' }}></div>
+                <div>
+                  <div style={{ fontSize: '14px', fontWeight: '600' }}>{bookingData.outbound.from}</div>
+                  <div style={{ fontSize: '12px', color: '#6b7280' }}>{bookingData.outbound.fromCity}</div>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '12px', marginBottom: '16px' }}>
+              <div style={{ position: 'relative' }}>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
+                  Return date
+                </label>
+                <div
+                  onClick={() => {
+                    setShowCalendar(!showCalendar);
+                    setShowTimePicker(false);
+                  }}
+                  style={{
+                    padding: '10px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    backgroundColor: '#f9fafb',
+                    fontSize: '14px'
+                  }}
+                >
+                  <Calendar size={14} />
+                  <span>
+                    {returnDate.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })}
+                  </span>
+                </div>
+
+                {showCalendar && (
+                  <div style={{
+                    marginTop: '8px',
+                    padding: '12px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    backgroundColor: '#fff',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                    position: 'absolute',
+                    zIndex: 100,
+                    width: '280px'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                      <button 
+                        onClick={() => navigateMonth(-1)}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', fontSize: '16px' }}
+                      >
+                        ←
+                      </button>
+                      <div style={{ fontWeight: '600', fontSize: '14px' }}>
+                        {currentMonth.toLocaleString('en-US', { month: 'long', year: 'numeric' })}
+                      </div>
+                      <button 
+                        onClick={() => navigateMonth(1)}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', fontSize: '16px' }}
+                      >
+                        →
+                      </button>
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '2px' }}>
+                      {['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map(day => (
+                        <div key={day} style={{ textAlign: 'center', fontSize: '11px', fontWeight: '600', color: '#6b7280', padding: '6px' }}>
+                          {day}
+                        </div>
+                      ))}
+                      {renderCalendar()}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div style={{ position: 'relative' }}>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
+                  Return time
+                </label>
+                <div
+                  onClick={() => {
+                    setShowTimePicker(!showTimePicker);
+                    setShowCalendar(false);
+                  }}
+                  style={{
+                    padding: '10px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    backgroundColor: '#f9fafb',
+                    fontSize: '14px'
+                  }}
+                >
+                  <Clock size={14} />
+                  <span>
+                    {returnTime.hour}:{returnTime.minute} {returnTime.period}
+                  </span>
+                </div>
+
+                {showTimePicker && (
+                  <div style={{
+                    marginTop: '8px',
+                    padding: '16px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    backgroundColor: '#fff',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                    position: 'absolute',
+                    zIndex: 100,
+                    width: '240px'
+                  }}>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                      <div style={{ textAlign: 'center' }}>
+                        <button
+                          onClick={() => incrementValue('hour')}
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px' }}
+                        >
+                          <ChevronUp size={16} />
+                        </button>
+                        <div style={{ 
+                          fontSize: '24px', 
+                          fontWeight: '700', 
+                          padding: '8px 12px',
+                          backgroundColor: '#ff9447',
+                          color: '#fff',
+                          borderRadius: '8px',
+                          minWidth: '50px'
+                        }}>
+                          {returnTime.hour}
+                        </div>
+                        <button
+                          onClick={() => decrementValue('hour')}
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px' }}
+                        >
+                          <ChevronDown size={16} />
+                        </button>
+                      </div>
+
+                      <div style={{ fontSize: '24px', fontWeight: '700' }}>:</div>
+
+                      <div style={{ textAlign: 'center' }}>
+                        <button
+                          onClick={() => incrementValue('minute')}
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px' }}
+                        >
+                          <ChevronUp size={16} />
+                        </button>
+                        <div style={{ 
+                          fontSize: '24px', 
+                          fontWeight: '700', 
+                          padding: '8px 12px',
+                          backgroundColor: '#ff9447',
+                          color: '#fff',
+                          borderRadius: '8px',
+                          minWidth: '50px'
+                        }}>
+                          {returnTime.minute}
+                        </div>
+                        <button
+                          onClick={() => decrementValue('minute')}
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px' }}
+                        >
+                          <ChevronDown size={16} />
+                        </button>
+                      </div>
+
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        <button
+                          onClick={togglePeriod}
+                          style={{
+                            padding: '6px 10px',
+                            backgroundColor: returnTime.period === 'AM' ? '#ff9447' : '#f3f4f6',
+                            color: returnTime.period === 'AM' ? '#fff' : '#000',
+                            border: 'none',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            fontSize: '12px',
+                            fontWeight: '600'
+                          }}
+                        >
+                          AM
+                        </button>
+                        <button
+                          onClick={togglePeriod}
+                          style={{
+                            padding: '6px 10px',
+                            backgroundColor: returnTime.period === 'PM' ? '#ff9447' : '#f3f4f6',
+                            color: returnTime.period === 'PM' ? '#fff' : '#000',
+                            border: 'none',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            fontSize: '12px',
+                            fontWeight: '600'
+                          }}
+                        >
+                          PM
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* This button now just closes the time picker */}
+                    <button
+                      onClick={() => setShowTimePicker(false)}
+                      style={{
+                        width: '100%',
+                        padding: '8px',
+                        backgroundColor: '#000',
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        fontSize: '14px',
+                        fontWeight: '500'
+                      }}
+                    >
+                      Done
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '12px' }}>
+              <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
+                <Users size={14} style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }} />
+                Passengers
+              </label>
+              <div style={{ 
+                padding: '10px',
+                backgroundColor: '#f9fafb',
+                borderRadius: '8px',
+                fontSize: '16px',
+                fontWeight: '600'
+              }}>
+                {bookingData.outbound.passengers}
+              </div>
+            </div>
+
+            {/* This is the actual SAVE button for the return trip */}
+            <button
+              onClick={handleAddReturn}
+              style={{
+                width: '100%',
+                padding: '12px',
+                backgroundColor: '#fbbf24',
+                color: '#000',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '15px',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
+            >
+              ADD RETURN
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Return Journey Display (existing code) */}
+   {bookingData.return && !showReturnSection && (
+        <div className="journey-section section-divider">
+          <div className="journey-header">
+            <span className="journey-label">Return journey</span>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button 
+                onClick={handleEditReturn} 
+                className="edit-button"
+                title="Edit return"
+              >
+                <Pencil size={16} />
+              </button>
+              <button 
+                onClick={handleRemoveReturn}
+                className="edit-button"
+                title="Remove return"
+                style={{ color: '#ef4444' }}
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+          
+          <JourneyDetails journey={bookingData.return} />
+        </div>
+      )}
+
+      {/* Vehicle Info */}
+      <div className="section-divider">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <img 
+              src={bookingData.selectedVehicle.image} 
+              alt={bookingData.selectedVehicle.type}
+              style={{ 
+                width: '70px', 
+                height: '52px', 
+                objectFit: 'cover', 
+                borderRadius: '8px' 
+              }}
+            />
+            <div>
+              <div className="vehicle-type">{bookingData.selectedVehicle.type}</div>
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '8px', 
+                fontSize: '13px', 
+                color: '#6b7280',
+                marginTop: '4px'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                  <Users size={12} />
+                  <span>{bookingData.selectedVehicle.passengers}</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                  <Briefcase size={12} />
+                  <span>{bookingData.selectedVehicle.luggage}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="vehicle-price">
+            <div className="price-total">EUR {totalPrice}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* What's Included */}
+      <div className="whats-included">
+        <h3 className="included-title">What's included</h3>
+        <div className="included-list">
+          <div className="included-item">
+            <Check size={16} className="check-icon" />
+            Free waiting time
+          </div>
+          <div className="included-item">
+            <Check size={16} className="check-icon" />
+            Door-to-door service
+          </div>
+          <div className="included-item">
+            <Check size={16} className="check-icon" />
+            Meet & Greet
+          </div>
+          <div className="included-item">
+            <Check size={16} className="check-icon" />
+            Private transfer
+          </div>
+          <div className="included-item">
+            <Check size={16} className="check-icon" />
+            Flight tracking
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+// JourneyDetails component remains the same
+const JourneyDetails = ({ journey }) => {
+  return (
+    <div>
+      <div className="journey-details">
+        <div className="journey-indicator">
+          <div className="indicator-dot start"></div>
+          <div className="indicator-line"></div>
+          <div className="indicator-dot end"></div>
+        </div>
+        <div className="journey-info">
+          <div style={{ marginBottom: '24px' }}>
+            <div className="location-name">{journey.from}</div>
+            <div className="location-city">{journey.fromCity}</div>
+          </div>
+          <div>
+            <div className="location-name">{journey.to}</div>
+            <div className="location-city">{journey.toCity}</div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="journey-meta">
+        <div className="meta-item">
+          <Calendar size={14} />
+          {journey.date} {journey.time}
+        </div>
+        <div className="meta-item">
+          <Clock size={14} />
+          Estimated arrival {journey.estimatedArrival}
+        </div>
+        <div className="meta-item">
+          <MapPin size={14} />
+          Distance {journey.distance}
+        </div>
+        <div className="meta-item">
+          <Users size={14} />
+          {journey.passengers} Passengers
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default BookingSummary;

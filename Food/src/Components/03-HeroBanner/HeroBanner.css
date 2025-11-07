@@ -1,0 +1,127 @@
+.hero-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0d0d0d;
+  padding: 60px 40px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  
+}
+.food-label1 {
+  position: absolute;
+  top: 290px;
+  right: 433px;
+  font-size: 26px;
+  color: #ffb000;
+  font-family: 'Pacifico', cursive;
+  transform: rotate(-15deg); 
+}
+
+.hero-content {
+  flex: 1;
+  z-index: 2;
+  right: -50px;
+  position: relative;
+  font-size: 2.2rem;
+}
+
+.tagline {
+  color: red;
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.headline {
+  font-size: 3.2rem;
+  line-height: 1.2;
+  font-weight: 900;
+  color: white;
+}
+
+.bubble {
+  margin-top: 20px;
+  background-color: green;
+  color: #111;
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  animation: scalePop 2s infinite ease-in-out;
+}
+
+.bubble strong {
+  font-size: 1.5rem;
+  color: orange;
+  margin-left: 5px;
+}
+
+.hero-image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  max-width: none;
+  max-height: none;
+}
+.hero1{
+     position: relative;
+  left: 50px;
+}
+.hero-chicken {
+  width: 570px; 
+  height: auto;
+  bottom: 2px;
+  right: 150px;
+  position: absolute;
+  animation: bounce 4s infinite ease-in-out;
+}
+.her{
+ position: relative;
+  left: 30px;
+  top: 150px;
+}
+.hero{
+     position: absolute;
+    right: 90px;
+    top: 102px;
+    transform: rotate(-10deg);
+}
+@keyframes scalePop {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+@media screen and (max-width: 768px) {
+  .hero-chicken {
+    width: 90%;
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-image-wrapper {
+    justify-content: center;
+    margin-top: 20px;
+  }
+}

@@ -5,7 +5,14 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-
+import PassengerStep from '../../components/20-PassengerStep/PassengerStep';
+import VehicleStep from "../17-vehicle/vehicle";
+import ExtrasStep from "../18-ExtrasStep/ExtrasStep";
+import BookingFlow from "../BookingFlow/BookingFlow";
+import BookingSummary from "../BookingFlow/BookingSummary";
+import PaymentStep from "../19-PaymentStep/PaymentStep";
+import EditJourneyModal from "../BookingFlow/EditJourneyModal";
+import BookingForm from "../BookingFom/BookingForm";
 import Header from "../05-Header/Header";
 import Footer from "../06-Footer/Footer";
 import Home from "../01-Home/Home";
@@ -17,6 +24,7 @@ import CarsTemplate from "../../pages/CarsTemplate/CarsTemplate";
 import CarRental from "../03-Cars/CarRental";
 import Booking from "../07-Booking/Booking";
 import TermsCondition from "../../pages/Terms&Condition/TermsCondition";
+import TermsTransfer from "../../pages/Terms&ConditionsTransfer/terms-transfer";
 import Privacy from "../../pages/Privacy/Privacy";
 import Login from "../../components/08-Login/Login";
 import Signup from "../../components/09-Signup/Signup";
@@ -34,7 +42,7 @@ import FormDetails from "../../pages/FormDetails/FormDetails";
 import Event from "../07-Booking/Event";
 import Impressum from "../../pages/Impressum/Impressum";
 import Cookies from "../../pages/Cookies/Cookies";
-import BookingFlowApp from "../13-Tarvel/BookingFlowApp";
+// import BookingFlowApp from "../13-Tarvel/BookingFlowApp";
 // import { ExtrasStep } from "../18-ExtrasStep/ExtrasStep";
 // import { PaymentStep } from "../19-PaymentStep/PaymentStep";
 // import Pages from "../13-Tarvel/pages";
@@ -61,7 +69,7 @@ function Layout() {
         <Route path="/cars" element={<Cars />} />
         <Route path="/transfer" element={<Travel />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/bookingflowapp" element={<BookingFlowApp />} />
+        {/* <Route path="/bookingflowapp" element={<BookingFlowApp />} /> */}
         {/* <Route path="/destination/:id" element={<DestinationDetail />} /> */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
@@ -71,18 +79,25 @@ function Layout() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/terms" element={<TermsCondition />} />
+        <Route path="/terms-transfer" element={<TermsTransfer />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route path="/PassengerStep" element={<PassengerStep />} />
+        
+        <Route path="/BookingFlow" element={<BookingFlow />} />
+        <Route path="/BookingSummary" element={<BookingSummary />} />
+        <Route path="/BookingForm" element={<BookingForm />} />
         <Route path="/impressum" element={<Impressum />} />
+        <Route path="/EditJourneyModal" element={<EditJourneyModal />} />
         {/* <Route path="/pages" element={<Pages />} /> */}
         <Route path="/cookies" element={<Cookies />} />
         <Route path="/pdf" element={<Pdf />} />
         <Route path="/success" element={<Success />} />
         <Route path="/failure" element={<Failure />} />
         <Route path="/event" element={<Event />} />
-        {/* <Route path="/vehicle" element={< VehicleStep />} /> */}
+        <Route path="/vehicle" element={< VehicleStep />} />
         <Route path="/formdetails" element={<FormDetails />} />
-        {/* <Route path="/ExtrasStep" element={<ExtrasStep />} /> */}
-        {/* <Route path="/paymentstep" element={<PaymentStep />} /> */}
+        <Route path="/ExtrasStep" element={<ExtrasStep />} />
+        <Route path="/paymentstep" element={<PaymentStep />} />
         <Route path="/generalpdf" element={<GeneralTandC />} />
         <Route path="/caragreement" element={<Caragreement />} />
       </Routes>
