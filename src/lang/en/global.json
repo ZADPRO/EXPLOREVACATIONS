@@ -18,7 +18,120 @@
     "event": "Event",
     "flightbooking": "Flight Form Booking"
   },
+  "tour": {
+    "travelExcludes": "Travel Excludes",
+    "travelIncludes": "Travel Includes",
+    "galleryImage": "Gallery Image",
+    "itinerary": "Itinerary",
+    "travelOverview": "Travel Overview",
+    "enterCouponCode": "Enter Coupon Code",
+    "specialNotes": "Special Notes",
+    "downloads": "Downloads",
+    "viewTour": "View Tour",
+    "noToursAvailable": "No tours available for the selected filters",
+    "bag": "Bag",
+    "day": "Day",
+    "bookNow": "Book Now",
+    "categories": "Categories",
+    "duration": "Duration",
+    "price": "Price",
+    "tourCode": "Tour Code",
+    "groupSize": "Group Size",
+    "applyCoupon": "Apply Coupon",
+    "loading": "Loading",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
+    "backToTours": "Back to Tours",
+    "privacyNotice": "By continuing to use our services, you acknowledge that your personal data will be processed in accordance with",
+    "termsNotice": "By creating an account, you agree to",
+    "noTourData": "No Tour Data Found",
+    "days": "Days",
+    "nights": "Nights",
+    "person": "Person",
+    "downloadTour": "Download the Tour Package Here",
+    "personalDetails": "Personal Details",
+    "firstName": "Your First Name",
+    "lastName": "Your Last Name",
+    "email": "Your Email",
+    "mobileNumber": "Your Mobile Number",
+    "pickupDate": "Pick Up Date & Time",
+    "arrivalDate": "Arrival Up Date & Time",
+    "numPassengers": "Number of passengers traveling",
+    "adults": "Adults",
+    "children": "Children",
+    "infants": "Infants",
+    "enterPersonCount": "Enter the person count to calculate the amount",
+    "totalAmount": "Total Amount",
+    "numRooms": "Number of Rooms",
+    "singleRoom": "Single Room",
+    "twinRoom": "Twin Room",
+    "tripleRoom": "Triple Room",
+    "requirements": "Your other requirements",
+    "uploadNote": "Your uploaded document will be stored securely and kept confidential",
+    "uploadAgreement": "Upload Agreement",
+    "dragPdf": "Drag and drop your PDF here to upload",
+    "uploadPassport": "Upload Passport",
+    "uploadVaccine": "Upload Vaccination Certificate"
+  },
+  "carousel": {
+    "title1": "MIRISSA",
+    "subtitle1": "The Tropical Paradise on Sri Lanka’s Coast",
+    "title2": "ELLA",
+    "subtitle2": "The Heart of Sri Lanka’s Hill Country",
+    "title3": "SRI LANKA",
+    "subtitle3": "",
+    "title4": "SIGIRIYA",
+    "subtitle4": "The Lion Rock in the Heart of Sri Lanka",
+     "rent_a_car": "Rent a Car",
+      "holiday_packages": "Holiday Packages",
+      "airport_parking": "Airport Parking",
+      "airport_transfer": "Airport Transfer",
+      "title5": "Experience premium comfort at an economy price",
+    "title6": "Rental Let's Go",
+    "title7": "Drive anywhere with our SUV & 4x4 Rentals",
+    "title8": "Stress-Free, reliable, with no hidden costs"
+      
+  },
+  "home1": {
+    "description1": "Our modern compact cars offer comfort, efficiency, and style for every journey. Perfect for city driving or business trips – with generous space and advanced technology.",
+    "highlights1": [
+      "Air-conditioned & fuel-efficient",
+      "Seats up to 4 passengers",
+      "Ideal for city rides and short trips"
+    ],
+    "description2": "Our SUVs combine performance and luxury. With elevated seating, modern design, and spacious interiors, they’re perfect for families or long-distance travel – whether in the city, mountains, or countryside.",
+    "highlights2": [
+      "Seats up to 5 passengers",
+      "Large luggage capacity & optional 4WD",
+      "Smooth driving experience on any terrain"
+    ],
+    "description3": "Our minivans are ideal for families or groups. With up to 8 seats, flexible interior layouts, and plenty of luggage space, they ensure a comfortable and relaxed journey for all passengers.",
+    "highlights3": [
+      "Seats up to 8 passengers",
+      "Comfortable seating & sliding doors",
+      "Perfect for airport transfers and group travel"
+    ],
+    "description4": "For business trips or special occasions, our premium vehicles stand for comfort, class, and quality. Experience refined driving pleasure with elegance and sophistication.",
+    "highlights4": [
+      "Seats up to 3 passengers",
+      "Luxurious design with leather interiors",
+      "Ideal for VIP or executive transfers"
+    ],
+    "description5": "Elegance meets space and comfort. This business-class van is the perfect choice for chauffeur services, corporate travel, and stylish group transfers.",
+    "highlights5": [
+      "Seats up to 7 passengers",
+      "Leather seats & spacious cabin",
+      "Perfect for airport and VIP transfers"
+    ],
+    "description6": "Experience the thrill of driving! Our sports cars combine stunning design with powerful performance – offering an unforgettable driving experience full of adrenaline and excitement.",
+    "highlights6": [
+      "Seats 1–2 passengers",
+      "Sporty design & high-performance engine",
+      "Perfect for weekend drives and events"
+    ]
+  },
   "home": {
+    "title": "Our Fleet",
     "General": "General",
     "q1": "Is there a minimum or maximum rental period for an ZüriCar GmbH van?",
     "a1": "The minimum rental period is half a day. The maximum rental period is generally 30 days. If you need a vehicle for longer than 30 days, please contact our Sales Team. We will gladly prepare an offer for you.",
@@ -45,7 +158,6 @@
     "a11": "All prices are listed in Swiss Francs (CHF) and include VAT.",
     "q12": "Are there additional costs for driving abroad?",
     "a12": "Yes, a Cross Border Fee (CBF) of up to CHF 185.00 (incl. VAT) applies. Please refer to the travel restrictions for each country and vehicle category in your rental agreement.",
-
     "Insurance": "Insurance",
     "q13": "Is there a liability reduction included?",
     "a13": "Yes, liability reduction is included in all rates (a deductible remains).",
@@ -55,7 +167,6 @@
     "a15": "Yes, all drivers under the age of 25 must pay a young driver surcharge. Prices vary by category, with a maximum fee of CHF 199 per rental month.",
     "q16": "What is the SuperCover Insurance?",
     "a16": "With Premium Insurance (liability waiver), you can reduce your deductible to CHF 350 per damage case, protecting you from high costs in case of loss or damage.",
-
     "Reservation": "Reservation",
     "q17": "How can I reserve a van from ZüriCar GmbH?",
     "a17": "You can reserve a van online at explorevacations.ch, by phone, or directly at an ZüriCar GmbH station.",
@@ -67,7 +178,6 @@
     "a20": "We recommend booking as early as possible to accommodate your preferences for vehicle models, etc. Reservations are generally possible anytime up to shortly before the desired rental start.",
     "q21": "Can I reserve a specific vehicle model?",
     "a21": "You can reserve vehicle categories, but not specific models.",
-
     "Before the Trip": "Before the Trip",
     "q22": "Can I park my private car at the ZüriCar GmbH station during the rental period?",
     "a22": "Yes, this is generally possible at all our locations. However, please check availability with your specific station in advance. ZüriCar GmbH assumes no liability for any damage to your private vehicle.",
@@ -77,13 +187,11 @@
     "a24": "For your own safety, please inspect the vehicle for any existing damage, adjust seat and mirrors, buckle up, switch on headlights, and ensure visibility through all windows.",
     "q25": "Can I request a test drive with assistance?",
     "a25": "Yes! With prior notice, an ZüriCar GmbH staff member will gladly accompany you on a short drive to help you get familiar with the van. Please contact your station in advance.",
-
     "During the Trip": "During the Trip",
     "q26": "Can I smoke in the van?",
     "a26": "No, all ZüriCar GmbH vehicles are non-smoking. Cleaning fees may apply in case of violation.",
     "q27": "What should I do if I’m involved in an accident?",
     "a27": "You’ll find a detailed checklist and documents in the glove compartment. Stay calm, secure the site, help the injured, and call the police (117).",
-
     "End of Trip / Vehicle Return": "End of Trip / Vehicle Return",
     "q28": "What if I can’t return the vehicle on time?",
     "a28": "Please plan enough time and extend your reservation in advance by contacting your station or calling+41 79 766 99 60. Late returns may incur fees.",
@@ -97,16 +205,12 @@
     "a32": "Yes, please return the van with the same fuel level or charge as at pick-up. If not, additional refueling or charging fees may apply.",
     "Transfers": "Transfers",
     "d1": "Enjoy a comfortable and safe journey with our professional drivers. Whether it’s an airport transfer, a city tour, or a long-distance trip, we ensure a premium travel experience tailored to your needs.",
-
     "Business": "Business",
     "d2": "Travel in style and comfort with our premium business class services. We understand your need for professionalism and luxury, making every journey seamless and sophisticated.",
-
     "Tourist": "Tourist",
     "d3": "Embark on an unforgettable journey with our well-planned vacation packages. Explore breathtaking destinations with ease and comfort, ensuring a memorable experience.",
-
     "Car Rental": "Car Rental",
     "d4": "Choose from a wide range of well-maintained vehicles for your travel needs. Whether it's a short trip or an extended rental, we offer top-quality cars for a smooth ride.",
-
     "Tour": "Tour",
     "Car": "Car",
     "Parking": "Parking",
@@ -127,7 +231,6 @@
     "See Those Lovely Words From Clients": "See Those Lovely Words From Clients",
     "Select a topic": "Select a topic"
   },
-  
   "cookies": {
     "title": "Cookies – ZüriCar GmbH",
     "intro": "We use cookies to ensure the best experience on our website.",
@@ -183,7 +286,6 @@
     "copyrightText1": "The copyright and all other rights to content, images, photos, or other files on this website are the exclusive property of ZüriCar GO GmbH or of specifically named rights holders.",
     "copyrightText2": "Any reproduction, modification, distribution, or other use of elements from this website requires the prior written consent of the respective rights holder."
   },
-
   "footer": {
     "footer": "We are a premium car rental and full-service travel company based in Switzerland. With a modern fleet and reliable transfer solutions, we ensure maximum flexibility and comfort for every journey. Beyond car rentals, we specialize in tailor-made FIT and group tours, beach holidays, safaris, and exclusive expeditions to Sri Lanka – creating unforgettable travel experiences from Switzerland to the world.",
     "Tours": "Tours",
@@ -198,7 +300,35 @@
   "car": {
     "Available Cars": "Available Cars",
     "Standard": "Standard",
-    "Premium": "Premium"
+    "Premium": "Premium",
+    "dropDate": "Drop Date",
+    "pickUpDate": "Pick Up Date",
+    "enterAddress": "Enter your Address",
+    "paymentTerms": "Payment Terms",
+    "rentalAgreement": "Rental Agreement",
+    "continue": "Continue",
+    "calculateNewPrice": "Calculate New Price",
+    "includedInPrice": "Included in Price",
+    "carHireFees": "Car hire company fees",
+    "theftProtection": "Theft Protection",
+    "thirdPartyProtection": "Third-Party Protection",
+    "vehicleProtection": "Vehicle Protection",
+    "planFlex": "Plan Flex",
+    "vehicleValue": "Vehicle Value",
+    "numberOfDays": "Number of Days",
+    "dailyRate": "Daily Rate",
+    "yourBooking": "Your Booking",
+    "bookNowWarning": "Don't wait — book now before rates increase",
+    "extra": "Extra",
+    "addExtras": "Add extras to your booking",
+    "manufacturingYear": "Manufacturing Year",
+    "transmissionType": "Transmission Type",
+    "maxCount": "Max Count",
+    "fuelLimit": "Fuel Limit",
+    "fuelType": "Fuel Type",
+    "count": "Count",
+    "charges": "Charges",
+    "noCarsAvailable": "No cars available"
   },
   "contact": {
     "Get In Touch": "Get In Touch",
@@ -304,7 +434,6 @@
     "Kids (Below 12 yrs)": "Kids (Below 12 yrs)",
     "Babies (Below 2 yrs)": "Babies (Below 2 yrs)"
   },
-  
   "termsTransfer": {
     "title": "ZüriCar GO – Transfers – Terms and Conditions",
     "h1": "1. Introduction",
@@ -385,20 +514,16 @@
     "p5": "You can object to the processing of your personal data on the basis of legitimate interests",
     "l6": "You can object to the processing of your personal data on the basis of legitimate interests",
     "p6": "If you do not agree to processing based on a legitimate interest, you may object on grounds relating to your individual situation. In this case, please inform us in detail about the corresponding processing and the reasons for your objection. We will stop processing your personal data unless there are compelling legitimate grounds or the processing serves to assert, exercise or defend legal claims.",
-
     "l7": "You can object to the processing of your personal data for direct marketing purposes",
     "p7": "You have the right to object to the processing of your personal data for direct marketing purposes at any time. This also applies to profiling, insofar as it is related to such direct advertising.",
-
     "l8": "You can request the restriction of the processing of your personal data",
     "p8": "If you contest the accuracy of the personal data we use or object to the processing of your personal data, we will review or revise your request. You can request that we restrict the processing of your personal data while we consider your request.",
     "l9": "You have rights against an automated individual decision",
     "p9": "In principle, you have the right not to be subject to a decision based solely on automated processing — including profiling — which produces legal effects concerning you or similarly significantly affects you. However, we may automate such a decision if it is necessary for the conclusion or performance of a contract with us, is permitted by law or if you have given your consent. In any case, you have the right to challenge the decision, to express your point of view and to request the intervention of a competent person with the review of the decision.",
     "l10": "You can withdraw your consent",
     "p10": "In those cases where processing is based on consent you have given, you can withdraw this consent at any time.",
-
     "l11": "You can request portability of part of your personal data",
     "p11": "You may request a copy of the personal data provided by you in a structured, commonly used and machine-readable format. If technically feasible, you may request that we transmit this copy to a third party.",
-
     "l12": "Complaint to the Federal Data Protection and Information Commissioner",
     "p12": "In addition to the above rights, you can file a complaint with the relevant supervisory authority. In Switzerland, this is the Federal Data Protection and Information Commissioner (FDPIC), Feldeggweg 1, 3003 Bern.",
     "p12.1": "In this section, we explain the purpose for which we process your personal data and the legal basis for doing so. First and foremost, we use your personal data to execute a contract to which you are a party or to take pre-contractual measures at your request. However, we may also process your personal data in order to fulfil our legitimate interest or those of a third party.",
@@ -448,7 +573,6 @@
     "l20.8": "Your connection and tracking data (e.g. collected via cookies for non-advertising or analytical purposes on our websites), online services, other applications;",
     "l20.9": "Data about your devices (mobile phone, computer, tablet, etc.), such as IP address, technical data and unique identification data;",
     "l20.10": "Personalized login details or security features used to connect you to our website and apps.",
-
     "h21": "FROM WHOM DO WE COLLECT PERSONAL DATA?",
     "l21.1": "We usually collect personal data directly from you. But we can also collect it from other sources. Sometimes we collect data from public sources:",
     "l21.2": "Publications/databases provided by official authorities or third parties (e.g., the Swiss Official Gazette of Commerce or the Commercial Register);",
@@ -527,7 +651,6 @@
     "l3.1": "Changes/cancellations must be submitted in writing or via email to:",
     "l3.2": "Email:",
     "l3.3": "Changes are subject to vehicle availability.",
-
     "stg4": "With Early Booking Tariffs (Prepaid)",
     "l4": "Booking changes are allowed before Rental Start with a CHF 30.00 fee.",
     "l4.1": "Transnational changes under prepaid tariffs are not allowed.",
@@ -641,7 +764,6 @@
     "l24.7": "In the event of roof damage and other damage resulting from failure to observe the maximum height and width of the vehicle when driving through passages, entrances, tunnels, bridges, etc.",
     "l24.8": "Damage (e.g. to clutch, gearbox, suspension) due to obvious incorrect operation of the vehicle (e.g. incorrect operation of the automatic gearbox and incorrect handling of 4×4 vehicles).",
     "l24.9": "In the event of transporting prohibited or dangerous goods; in the event of non-compliance by the Hirer with the obligations set out in the Rental Contract and the General Rental Terms and Conditions (usage regulations in accordance with Clause 10 above, duties of care and disclosure in accordance with Clause 12 above, in particular driving a vehicle without a valid driving licence) as well as the transfer of the vehicle to an unauthorised third party or a third party not in possession of a valid driver’s licence; in the event of non-compliance with legal regulations regarding the duty of disclosure at border crossings as well as customs and import regulations; in the event of prevention of a measure ordered by the police to determine incapacity to drive (Art. 91a (1) SVG (Act on Road Transport))",
-
     "l24.10": "for service and/or repair costs arising from the following self-inflicted events: loss of keys, locking keys inside the vehicle, immobilization due to lack of fuel, jump-starting a flat battery, getting stuck; unless the renter has taken out a special mobility service with the lessor beyond the general limitation of liability. The respective mobility services can only be used with EVAG's 24-hour breakdown service. This service also determines the type and scope of services with the aim of ensuring the renter’s mobility. If the renter engages other persons for the mobility service, ZüriCar GmbH assumes no responsibility, and the renter is fully liable for damages caused to the rental vehicle by such persons.",
     "l24.11": "Gross negligence The parties define grossly negligent behavior which, in accordance with clause 15.6 – even if liability limitation or insurance has been concluded – results in full and unlimited liability of the renter to the lessor or third parties, in particular, but not limited to:",
     "l24.12": "any serious violation of traffic regulations as defined in Art. 90 (2) SVG; any driving behavior where the driver is aware of the general danger of their actions or negligently disregards it; any behavior violating basic safety principles while ignoring obvious risks to prevent foreseeable damage or injury; driving under the influence of alcohol, drugs or medications impairing driving ability; driving while fatigued, microsleep or falling asleep; the following traffic violations if they caused or contributed to an accident: excessive speed or inappropriate speed, loss of control of the vehicle, insufficient distance, disregard of no-overtaking zones and stop signs as well as road signs, ignoring driving direction, inattention and distraction e.g. by mobile phones, radios or navigation systems, deactivating safety-relevant systems such as ABS and ESP and other driving stability aids, driving an unsafe vehicle (e.g. insufficient load securing, dirty windows), inadequate vehicle securing (e.g. handbrake not applied, vehicle unlocked, keys left inside); leaving valuables in the vehicle.",
@@ -663,27 +785,17 @@
     "l26.1": "ZüriCar GmbH is expressly authorized by the customer to process, in addition to their general personal data, all other data contained in their driving license or identification document (passport/ID) (including photos), communication data (especially email address), financial data (e.g. credit card information), and all other categories of personal data in accordance with our Privacy Policy (https://zuericar.com/) for the purposes stated therein. The Hirer has the right to withdraw the above-mentioned consent at any time. The withdrawal of consent does not affect the lawfulness of the processing carried out based on consent before the withdrawal.",
     "l26.2": "The email address will only be used by EVAG to offer similar goods or services to the Hirer. The Hirer can object to this use of their email address at any time without incurring any costs other than the basic transmission charges.",
     "l26.3": "By providing the data, the Hirer consents to ZüriCar GmbH passing on the data within the EXPLORE Holding group for the purpose of processing the transaction that is the subject of the contract, for marketing purposes, to maintain existing or future customer relationships, and for purposes expressly stated when the data is collected or that are obviously related to the provision of the data.",
-
     "l26.4": "The Hirer may withdraw this consent for the disclosure of their data to ZüriCar GmbH at any time with effect for the future.",
-
     "l26.5": "The name, address, rental data, and all other information known to the Rental Firm about the Hirer will be disclosed to the relevant authorities upon legitimate request (e.g., in cases of traffic violations), and to third parties in cases of alleged infringement of third-party rights (e.g., interference with possession).",
-
     "h27": "Digital Renting",
     "l27": "In deviation from Clause 2.2, in the case of a digital rental (e.g. via the ZüriCar GmbH App, Mobile Check-In, etc.), the content of the concluded contract together with the displayed General Rental Terms and Conditions is confirmed by the Hirer by clicking on the corresponding buttons in the digital services of ZüriCar GmbH; the Hirer hereby declares that he/she has taken note of and understood the content of the contract and expressly agrees to it. The content of the concluded contract can be retrieved within the framework of the digital services of ZüriCar GmbH or is provided to the Hirer by email and therefore confirmed to both parties with binding effect.",
-
     "l27.1": "The Hirer may not disclose the access data (e.g. login, PIN, username, password, etc.) for the services provided by ZüriCar GmbH to third parties and must ensure that these are not accessible to third parties. To prevent third-party access to the services provided by ZüriCar GmbH, it is forbidden to make written records of access data. The loss of access data must be reported to ZüriCar GmbH immediately by email (info@züricar.ch). The access data is not transferable.",
-
     "l27.2": "In addition to Clause 12.2, the use of ZüriCar GmbH’s digital services for the rental of vehicles is prohibited if the Hirer’s driving licence is revoked or if other circumstances restricting the driving licence occur (e.g. restriction of the driving licence, temporary seizure or confiscation of the driving licence or a driving ban imposed by a court or the authorities).",
-
     "l27.3": "For specific services, ZüriCar GmbH requests the Hirer at regular intervals to verify that he/she holds a valid driving licence. If the Hirer wishes to use services such as digital renting (e.g. Mobile Check-In), he/she has an obligation to present his/her driving licence to ZüriCar GmbH prior to starting the rental, corresponding to the processes specified by ZüriCar GmbH.",
-
     "h28": "Applicable Law and Place of Jurisdiction",
     "l28": "The rental contract is governed exclusively by Swiss law, to the exclusion of private international law.",
-
     "l28.1": "The exclusive place of jurisdiction for all disputes in connection with the rental agreement between the Hirer and additional driver and the Rental Firm is Opfikon. The Rental Firm, however, remains entitled to bring an action before any other competent court.",
-
     "l28.2": "Invalidity or Partial Invalidity, Language",
-
     "l28.3": "Partial or complete invalidity or ineffectiveness of one or more provisions of the rental contract, including these General Rental Terms and Conditions (Ts & Cs), shall not affect the validity of the remaining provisions. Any provisions that are or have become invalid shall, in the application of the contract, be replaced by such provisions that come closest to the purpose intended by the invalid provisions. In case of contradictions, the German text of the contract is authoritative."
   },
   "general": {
@@ -805,3 +917,8 @@
     "line22": "Our bespoke Concierge Service ensures a seamless Davos stay, handling your daily agenda including:"
   }
 }
+
+
+
+
+

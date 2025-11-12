@@ -515,7 +515,7 @@ export default function Home() {
       <Popup />
 
       <div className="mt-20">
-        <BannerCarousel moduleId={4} />
+        <BannerCarousel  />
       </div>
      
       <div className="relative">
@@ -1165,7 +1165,7 @@ export default function Home() {
     {t("home.Dream Your Next Trip")}
   </p> */}
 <p className="testingFont text-4xl font-bold mb-[-40px] text-center">
-    Our Fleet
+     {t("home.title")}
   </p>
 
   {/* Fleet Carousel */}

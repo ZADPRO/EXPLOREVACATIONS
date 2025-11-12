@@ -11,7 +11,6 @@ import { Carousel } from "primereact/carousel";
 import { FaBabyCarriage } from "react-icons/fa";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
-// import { Dropdown } from "primereact/dropdown";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
@@ -20,25 +19,16 @@ import { Toast } from "primereact/toast";
 import { InputTextarea } from "primereact/inputtextarea";
 import defaultCarImage from "../../assets/cars/minivan.jpg";
 import { useLocation } from "react-router-dom";
-
 import { TabView, TabPanel } from "primereact/tabview";
-import speed from "../../assets/cars/speed.svg";
-import fueltype from "../../assets/cars/fueltype.svg";
-import carmodel from "../../assets/cars/carmodel.svg";
-import geartype from "../../assets/cars/geartype.svg";
-import person from "../../assets/cars/person.svg";
-import bags from "../../assets/cars/bags.svg";
 import logo from "../../assets/logo/ZURICAR.png";
 import tourImg from "../../assets/cars/image.png";
 import { PiSeatFill } from "react-icons/pi";
-// import { FaBabyCarriage } from "react-icons/fa";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import axios from "axios";
-
 import decrypt from "../../helper";
 import { Checkbox } from "primereact/checkbox";
 import { FileUpload } from "primereact/fileupload";
-
+import { useTranslation } from "react-i18next";
 export default function CarsTemplate() {
   const location = useLocation();
   const [carState, setCarState] = useState();
@@ -48,19 +38,17 @@ export default function CarsTemplate() {
   const [driverName, setdriverName] = useState("");
   const [driverAge, setdriverAge] = useState("");
   const [driverMail, setdriverMail] = useState("");
+   const { t } = useTranslation("global");
+
   const [driverMobile, setdriverMobile] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
-  // const [pickupAddress, setPickupAddress] = useState("");
   const [submissionAddress, setSubmissionAddress] = useState("");
   const [pickupDateTime, setPickupDateTime] = useState("");
   const [dropDate, setDropDate] = useState("");
-  const [adults, setAdults] = useState(0);
-  const [children, setChildren] = useState(0);
-  const [infants, setInfants] = useState(0);
   const [extras, setExtras] = useState([]);
   const [otherRequirements, setOtherRequirements] = useState("");
   const [ismodelOpen, setIsModelOpen] = useState(false);
-  const [carListData, setCarLIstData] = useState({});
+  const [carListData, setCarListData] = useState({});
   const [refCarsId, setRefCarsId] = useState("");
   const [carAgreement, setCarAgreement] = useState("");
   const [listCarData, setListCarData] = useState([]);
@@ -69,60 +57,78 @@ export default function CarsTemplate() {
   const [shouldCalculate, setShouldCalculate] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isExtraKMneeded, setIsExtraKMneeded] = useState(false);
-
   const [selectedExtra, setSelectedExtra] = useState([]);
-  const selectedExtrasData = extras.filter(extra => selectedExtra.includes(extra.refFormDetailsId));
-
-  const selectedExtrasArray = Object.keys(extras).filter((key) => extras[key]);
+  
+  // Days calculation state
+  const [numberOfDays, setNumberOfDays] = useState(1);
+  const [baseDailyRate, setBaseDailyRate] = useState(0);
+  
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const toast = useRef(null);
 
-  // const [imgSrc, setImgSrc] = useState(
-  //   carListData?.refCarPath?.trim()
-  //     ? `https://zuericar.com/src/assets/cars/${carListData.refCarPath}`
-  //     : tourImg
-  // );
- const [imgSrc, setImgSrc] = useState(tourImg);
+   const [imgSrc, setImgSrc] = useState("");
+   useEffect(() => {
+    if (carListData?.refCarPath) {
+      // Check if refCarPath is an object with content (base64)
+      if (typeof carListData.refCarPath === 'object' && carListData.refCarPath.content) {
+        const contentType = carListData.refCarPath.contentType || 'image/jpeg';
+        setImgSrc(`data:${contentType};base64,${carListData.refCarPath.content}`);
+      } 
+      // Check if it's a string path
+      else if (typeof carListData.refCarPath === "string" && carListData.refCarPath.trim()) {
+        setImgSrc(`https://zuericar.com/src/assets/cars/${carListData.refCarPath.trim()}`);
+      } else {
+        setImgSrc(defaultCarImage);
+      }
+    } else {
+      setImgSrc(defaultCarImage);
+    }
+  }, [carListData]); // Updates whenever carListData changes
 
-// Add this useEffect to update image when carListData changes
-useEffect(() => {
-  const refCarPath =
-    typeof carListData?.refCarPath === "string"
-      ? carListData.refCarPath.trim()
-      : "";
 
-  const newImgSrc = refCarPath
-    ? `https://zuericar.com/src/assets/cars/${refCarPath}`
-    : tourImg;
-  
-  setImgSrc(newImgSrc);
-}, [carListData]); // Updates whenever carListData changes
+  // Calculate number of days between pickup and drop dates
+  useEffect(() => {
+    if (pickupDateTime && dropDate) {
+      const pickup = new Date(pickupDateTime);
+      const drop = new Date(dropDate);
+      
+      const diffTime = Math.abs(drop - pickup);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      
+      setNumberOfDays(diffDays > 0 ? diffDays : 1);
+    } else {
+      setNumberOfDays(1);
+    }
+  }, [pickupDateTime, dropDate]);
+
+  // Update total price when days change
+  useEffect(() => {
+    if (baseDailyRate > 0) {
+      const newTotal = baseDailyRate * numberOfDays;
+      setTotalPrice(newTotal);
+    }
+  }, [numberOfDays, baseDailyRate]);
 
 
   useEffect(() => {
     setShouldCalculate(extrakm.value > 0 || selectedExtra.length > 0);
     if (extrakm.value === 0 && selectedExtra.length === 0) {
-      setTotalPrice(parseInt(carListData.refCarPrice));
+      setTotalPrice(parseInt(carListData.refCarPrice) * numberOfDays);
     }
-  }, [selectedExtra, extrakm]);
+  }, [selectedExtra, extrakm, numberOfDays, carListData.refCarPrice]);
 
   useEffect(() => {
-    console.log("routing cary");
-
     const car = location.state?.car;
     setCarState(car);
-    setRefCarsId(car.refCarsId);
+    setRefCarsId(car?.refCarsId);
 
     const fetchData = async () => {
       try {
-        console.log("Verify Token Running --- ");
-        console.log("car.refCarsId", car.refCarsId);
-
         const listDestinations = await axios.post(
           import.meta.env.VITE_API_URL + "/userRoutes/getCarById",
           {
-            refCarsId: car.refCarsId,
+            refCarsId: car?.refCarsId,
           },
           {
             headers: {
@@ -140,90 +146,23 @@ useEffect(() => {
           destinationData.tourDetails[0].refFormDetails || [];
 
         const carDetails = destinationData.tourDetails[0];
-        console.log("carDetails----------------------", carDetails);
-        setCarLIstData(carDetails);
+        setCarListData(carDetails);
         setExtras(formDetailsArray);
-        console.log("formDetailsArray--------------------->", formDetailsArray);
-
-        setCarLIstData(destinationData.tourDetails[0]);
-        setTotalPrice(parseInt(destinationData.tourDetails[0].refCarPrice));
-
-        console.log("getCarById ========== line 118 >", destinationData);
-        // setCarLIstData(destinationData.tourDetails[0]);
-        // setExtras(destinationData.tourDetails[0].refFormDetails);
+        
+        const dailyRate = parseInt(carDetails.refCarPrice) || 0;
+        setBaseDailyRate(dailyRate);
+        setTotalPrice(dailyRate);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchData();
-  }, []);
-
-  // const handleSubmit = async () => {
-  //   if (!name || !email || !mobileNumber || !pickupDateTime) {
-  //     toast.current.show({
-  //       severity: "error",
-  //       summary: "Validation Error",
-  //       detail: "Please fill in all required fields.",
-  //       life: 3000,
-  //     });
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await axios.post(
-  //       import.meta.env.VITE_API_URL + "/userRoutes/userCarBooking",
-  //       {
-  //         refCarsId: refCarsId,
-  //         refUserName: name,
-  //         refUserMail: email,
-  //         refUserMobile: mobileNumber + "",
-  //         refPickupAddress: pickupAddress,
-  //         refSubmissionAddress: submissionAddress,
-  //         refPickupDate: pickupDateTime,
-  //         refAdultCount: adults + "",
-  //         refChildrenCount: children + "",
-  //         refInfants: infants + "",
-  //         refOtherRequirements: otherRequirements,
-  //         refFormDetails: selectedExtrasArray,
-  //         refCarAgreement: carAgreement,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: localStorage.getItem("token"),
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     const data = decrypt(
-  //       response.data[1],
-  //       response.data[0],
-  //       import.meta.env.VITE_ENCRYPTION_KEY
-  //     );
-
-  //     console.log(data);
-
-  //     if (data.success) {
-  //       localStorage.setItem("token", "Bearer " + data.token);
-  //       setIsModelOpen(false);
-  //     }
-  //   } catch (error) {
-  //     toast.current.show({
-  //       severity: "error",
-  //       summary: "Submission Failed",
-  //       detail: "Something went wrong. Please try again.",
-  //       life: 3000,
-  //     });
-  //     console.error("API Error:", error);
-  //   }
-  // };
+    if (car?.refCarsId) {
+      fetchData();
+    }
+  }, [location.state]);
 
   const agreementUploader = async (event) => {
-    console.table("event", event);
-
-    // Create a FormData object
-
-    // Loop through the selected files and append each one to the FormData
     for (let i = 0; i < event.files.length; i++) {
       const formData = new FormData();
       const file = event.files[i];
@@ -232,9 +171,7 @@ useEffect(() => {
       try {
         const response = await axios.post(
           import.meta.env.VITE_API_URL + "/bookingRoutes/uploadCarAgreement",
-
           formData,
-
           {
             headers: {
               Authorization: localStorage.getItem("token"),
@@ -250,37 +187,22 @@ useEffect(() => {
 
         if (data.success) {
           localStorage.setItem("token", "Bearer " + data.token);
-          handleAgreementUploadSuccess(data);
+          setCarAgreement(data.filePath);
           toast.current?.show({
             severity: "success",
             summary: "Success",
             detail: "Added Successfully!",
             life: 3000,
           });
-        } else {
-          handleAgreemtUploadFailure(data);
         }
       } catch (error) {
-        handleAgreemtUploadFailure(error);
+        console.error("Upload Failed:", error);
       }
     }
   };
-  const handleAgreementUploadSuccess = (response) => {
-    // let temp = [...carAgreement]; // Create a new array to avoid mutation
-    // temp.push(response.filePath); // Add the new file path
-    // console.log("Upload Successful:", response);
-    setCarAgreement(response.filePath); // Update the state with the new array
-  };
 
-  const handleAgreemtUploadFailure = (error) => {
-    console.error("Upload Failed:", error);
-    // Add your failure handling logic here
-  };
-
-  // payment
   const checkingApi = async () => {
     try {
-      console.log("checkingApi running--->", totalPrice);
       const response = await axios.post(
         import.meta.env.VITE_API_URL + "/paymentRoutes/payment",
         {
@@ -299,29 +221,20 @@ useEffect(() => {
         }
       );
 
-      // Decrypt the response
       const decryptedData = decrypt(
         response.data[1],
         response.data[0],
         import.meta.env.VITE_ENCRYPTION_KEY
       );
 
-      console.log("decryptedData:", decryptedData);
-
       if (decryptedData?.success) {
         const paymentLink = decryptedData?.data?.[0]?.link;
         if (paymentLink) {
-          console.log("Redirecting to paymentLink:", paymentLink);
           window.location.href = paymentLink;
         } else {
-          console.warn("Payment link not found in success response.");
           alert("Payment link not found. Please try again later.");
         }
       } else {
-        console.error(
-          "Payment creation failed:",
-          decryptedData?.message || "Unknown error"
-        );
         alert(
           "Payment creation failed: " +
           (decryptedData?.message || "Unknown error")
@@ -333,21 +246,14 @@ useEffect(() => {
     }
   };
 
-  // const handleCheckboxChange = (e) => {
-  //   setExtras({ ...extras, [e.target.name]: e.target.checked });
-
-  // };
-
-
   const handleCheckboxChange = (e, item) => {
-    const id = String(item.refFormDetailsId); // convert to string
+    const id = String(item.refFormDetailsId);
     if (e.checked) {
       setSelectedExtra((prev) => [...prev, id]);
     } else {
       setSelectedExtra((prev) => prev.filter((existingId) => existingId !== id));
     }
   };
-
 
   const getRefCarTypeId = (tab) => {
     switch (tab) {
@@ -360,28 +266,10 @@ useEffect(() => {
     }
   };
 
-  //filter data
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        console.log("Verify Token Running --- ");
-
-        const listDestinations = await axios.get(
-          import.meta.env.VITE_API_URL + "/userRoutes/listDestination",
-          {
-            headers: {
-              Authorization: localStorage.getItem("token"),
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const destinationData = decrypt(
-          listDestinations.data[1],
-          listDestinations.data[0],
-          import.meta.env.VITE_ENCRYPTION_KEY
-        );
-        console.log("Tour Data ======= line 738", destinationData);
         const refCarTypeId = getRefCarTypeId(activeTab);
         const listCarResponse = await axios.post(
           import.meta.env.VITE_API_URL + "/userRoutes/getAllCar",
@@ -399,15 +287,13 @@ useEffect(() => {
           listCarResponse.data[0],
           import.meta.env.VITE_ENCRYPTION_KEY
         );
-        console.log("Car Data ======= line 738", data);
         if (data.success) {
-          // localStorage.setItem("token", "Bearer " + data.token);
           setListCarData(data.Details);
         }
       } catch (error) {
         console.error("Error fetching car data:", error);
       } finally {
-        setLoading(false); // End loading
+        setLoading(false);
       }
     };
 
@@ -419,25 +305,23 @@ useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-const getIcon = (label) => {
-  if (!label || typeof label !== "string") {
-    return <MdOutlineAddShoppingCart />; // fallback icon
-  }
-
-  switch (label.toLowerCase()) {
-    case "booster seat":
-      return <PiSeatFill />;
-    case "child seat":
-    case "child safety seat":
-      return <FaBabyCarriage />;
-    default:
+  const getIcon = (label) => {
+    if (!label || typeof label !== "string") {
       return <MdOutlineAddShoppingCart />;
-  }
-};
+    }
 
+    switch (label.toLowerCase()) {
+      case "booster seat":
+        return <PiSeatFill />;
+      case "child seat":
+      case "child safety seat":
+        return <FaBabyCarriage />;
+      default:
+        return <MdOutlineAddShoppingCart />;
+    }
+  };
 
   async function handlePriceCalculation() {
-    console.log("extrakm.value", extrakm.value);
     const basePayload = {
       refCarsId: refCarsId,
     };
@@ -468,16 +352,12 @@ const getIcon = (label) => {
         response.data[0],
         import.meta.env.VITE_ENCRYPTION_KEY
       );
-      console.log("data ======= ?", data);
       if (data.success) {
-        // setTotalPrice(
-        //   parseInt(carListData.refCarPrice) + data.result.totalAmount
-        // );
-        setTotalPrice(data.result.totalAmount);
+        setTotalPrice(data.result.totalAmount * numberOfDays);
         toast.current?.show({
           severity: "success",
           summary: "Success",
-          detail: "Added successfully!",
+          detail: "Price calculated successfully!",
           life: 3000,
         });
         localStorage.setItem("token", "Bearer " + data.token);
@@ -498,7 +378,7 @@ const getIcon = (label) => {
     <div>
       <Toast ref={toast} />
 
-      <div className="relative mt-10 min-h-[60vh] w-[100%]  flex lg:flex-row md:flex-row flex-col items-center justify-center text-2xl sm:text-3xl font-bold ">
+      <div className="relative mt-10 min-h-[60vh] w-[100%] flex lg:flex-row md:flex-row flex-col items-center justify-center text-2xl sm:text-3xl font-bold">
         {loading ? (
           <div className="h-[10vh] w-[100%] flex justify-center items-center">
             <i
@@ -508,16 +388,17 @@ const getIcon = (label) => {
           </div>
         ) : (
           <>
-            <div className="w-[50%] md:w-[30%] lg:w-[20%]  mb-4">
-              <div className="flex lg:flex-col flex-row   justify-center gap-2 sm:gap-4 bg-gray-100 p-2 rounded-xl">
+            <div className="w-[50%] md:w-[30%] lg:w-[20%] mb-4">
+              <div className="flex lg:flex-col flex-row justify-center gap-2 sm:gap-4 bg-gray-100 p-2 rounded-xl">
                 {["Standard", "Premium"].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`px-2 py-2 text-sm sm:text-base font-medium rounded-2xl transition-all duration-200 ${activeTab === tab
-                      ? "bg-[#014986] text-white shadow-md"
-                      : "text-gray-600 hover:bg-white"
-                      }`}
+                    className={`px-2 py-2 text-sm sm:text-base font-medium rounded-2xl transition-all duration-200 ${
+                      activeTab === tab
+                        ? "bg-[#014986] text-white shadow-md"
+                        : "text-gray-600 hover:bg-white"
+                    }`}
                   >
                     {tab}
                   </button>
@@ -536,9 +417,9 @@ const getIcon = (label) => {
                         onClick={async () => {
                           try {
                             setRefCarsId(car.refCarsId);
+
                             const response = await axios.post(
-                              import.meta.env.VITE_API_URL +
-                              "/userRoutes/getCarById",
+                              import.meta.env.VITE_API_URL + "/userRoutes/getCarById",
                               { refCarsId: car.refCarsId },
                               {
                                 headers: {
@@ -555,29 +436,37 @@ const getIcon = (label) => {
                             );
 
                             const carDetails = decrypted.tourDetails[0];
-                            const formDetailsArray =
-                              carDetails.refFormDetails || [];
+                            const formDetailsArray = carDetails.refFormDetails || [];
 
-                            setCarLIstData(carDetails);
+                            setCarListData(carDetails);
                             setExtras(formDetailsArray);
-                            window.scrollTo(0, 500); // Optional: scroll to details section
+                            
+                            const dailyRate = parseInt(carDetails.refCarPrice) || 0;
+                            setBaseDailyRate(dailyRate);
+                            setTotalPrice(dailyRate * numberOfDays);
+                            
+                            setSelectedExtra([]);
+                            setExtrakm({ isChecked: false, value: 0 });
+                            
+                            window.scrollTo(0, 500);
                           } catch (error) {
-                            console.error(
-                              "Error fetching car details on click:",
-                              error
-                            );
+                            console.error("Error fetching car details on click:", error);
                           }
                         }}
                         className="bg-white cursor-pointer p-1 shadow-md rounded-lg overflow-hidden flex flex-col transition-transform duration-200 hover:scale-[1.02] w-[100%] sm:w-[90%] mx-auto"
                       >
                         <img
                           src={
-                            car.refCarPath === null
-                              ? tourImg
-                              : `https://zuericar.com/src/assets/cars/${car.refCarPath}`
+                            typeof car?.refCarPath === "string" && car.refCarPath.trim()
+                              ? `https://zuericar.com/src/assets/cars/${car.refCarPath.trim()}`
+                              : tourImg
                           }
                           alt={car.refVehicleTypeName}
                           className="w-full h-40 sm:h-48 object-cover"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = tourImg;
+                          }}
                         />
                         <div className="px-3 py-2">
                           <h3 className="text-sm sm:text-base font-semibold text-black line-clamp-1 text-center">
@@ -589,16 +478,8 @@ const getIcon = (label) => {
                     numVisible={3}
                     numScroll={1}
                     responsiveOptions={[
-                      {
-                        breakpoint: "1024px",
-                        numVisible: 2,
-                        numScroll: 1,
-                      },
-                      {
-                        breakpoint: "768px",
-                        numVisible: 1,
-                        numScroll: 1,
-                      },
+                      { breakpoint: "1024px", numVisible: 2, numScroll: 1 },
+                      { breakpoint: "768px", numVisible: 1, numScroll: 1 },
                     ]}
                     circular
                     autoplayInterval={4000}
@@ -607,7 +488,7 @@ const getIcon = (label) => {
                   />
                 ) : (
                   <div className="text-center text-gray-600 text-lg py-12">
-                    No cars available
+                    {t("car.noCarsAvailable")}
                   </div>
                 )}
               </div>
@@ -622,14 +503,16 @@ const getIcon = (label) => {
           <div className="flex flex-col lg:flex-row border rounded-xl shadow p-4 gap-4">
             {/* Images */}
             <div className="flex flex-col gap-4 lg:w-1/2 w-full">
-              {carListData?.refCarPath && (
-                <img
-                  src={imgSrc}
-                  alt="Car"
-                  onError={() => setImgSrc(tourImg)} // fallback when image fails to load
-                  className="w-full h-[200px] object-cover rounded-lg"
-                />
-              )}
+              <img
+                src={imgSrc}
+                alt={carListData?.refVehicleTypeName || "Car"}
+                className="w-full h-[200px] object-cover rounded-lg"
+                onError={(e) => {
+                  console.error("Image failed to load:", e.target.src);
+                  e.target.onerror = null;
+                  e.target.src = tourImg;
+                }}
+              />
               <div className="w-full">
                 <img src={logo} alt="logo" className="w-1/2" />
               </div>
@@ -641,161 +524,50 @@ const getIcon = (label) => {
                 {carListData.refVehicleTypeName}
               </p>
               <p className="text-sm">
-                Extra KM Charges:{" "}
+                 {t("car.extra")} KM  {t("car.charges")}:{" "}
                 {carListData.refExtraKMcharges &&
-                  carListData.refExtraKMcharges !== 0
+                carListData.refExtraKMcharges !== 0
                   ? carListData.refExtraKMcharges
                   : "No Extra KM Charges"}
               </p>
               <p className="flex gap-2 items-center text-sm">
                 <History className="bg-[#009ad7] p-1 w-[20px] h-[20px] rounded-xl text-white" />
-                <span className="font-semibold">Bags:</span>{" "}
-                {carListData.refBagCount} (Count)
+                <span className="font-semibold"> {t("tour.bag")}s:</span>{" "}
+                {carListData.refBagCount} ( {t("car.count")})
               </p>
               <p className="flex gap-2 items-center text-sm">
                 <BadgeSwissFranc className="bg-[#009ad7] p-1 w-[20px] h-[20px] rounded-xl text-white" />
-                <span className="font-semibold">Fuel Type:</span>{" "}
+                <span className="font-semibold"> {t("car.fuelType")}:</span>{" "}
                 {carListData.refFuelType}
               </p>
               <p className="flex gap-2 items-center text-sm">
                 <Binoculars className="bg-[#009ad7] p-1 w-[20px] h-[20px] rounded-xl text-white" />
-                <span className="font-semibold">Fuel Limit:</span>{" "}
+                <span className="font-semibold"> {t("car.fuelLimit")}:</span>{" "}
                 {carListData.refFuleLimit}
               </p>
               <p className="flex gap-2 items-center text-sm">
                 <UsersRound className="bg-[#009ad7] p-1 w-[20px] h-[20px] rounded-xl text-white" />
-                <span className="font-semibold">Max Count:</span>{" "}
+                <span className="font-semibold"> {t("car.maxCount")}:</span>{" "}
                 {carListData.refPersonCount === "0"
                   ? "Not Specified"
                   : carListData.refPersonCount}
               </p>
               <p className="flex gap-2 items-center text-sm">
                 <LayoutPanelLeft className="bg-[#009ad7] p-1 w-[20px] h-[20px] rounded-xl text-white" />
-                <span className="font-semibold">Transmission Type:</span>{" "}
+                <span className="font-semibold"> {t("car.transmissionType")}:</span>{" "}
                 {carListData.refTrasmissionType}
               </p>
               <p className="flex gap-2 items-center text-sm">
                 <LayoutPanelLeft className="bg-[#009ad7] p-1 w-[20px] h-[20px] rounded-xl text-white" />
-                <span className="font-semibold">Manufacturing Year:</span>{" "}
+                <span className="font-semibold"> {t("car.manufacturingYear")}:</span>{" "}
                 {carListData.refcarManufactureYear}
               </p>
-              {/* <div>
-                <button
-                  className="px-3 py-1 rounded bg-[#009ad7] text-white text-sm font-semibold"
-                  // onClick={() => setIsModelOpen(true)}
-                >
-                  Book Now
-                </button>
-              </div> */}
             </div>
           </div>
-          {/* <div className="mt-6 border rounded-xl p-4 shadow-sm">
-            <h2 className="text-lg font-semibold mb-4">
-              Add in extras to your booking
-            </h2>
-            <div className="flex flex-col gap-3">
-              {[
-                {
-                  label: "Booster Seat",
-
-                  icon: <PiSeatFill />,
-                  price: 6.0,
-                },
-                {
-                  label: "Child Safety Seat",
-                  icon: <FaBabyCarriage />,
-                  price: 6.0,
-                },
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between border rounded-lg px-4 py-3"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{item.icon}</span>
-                    <div>
-                      <p className="font-medium">{item.label}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-[#119705] font-semibold text-sm">
-                      + CHF{item.price.toFixed(2)} / day
-                    </span>
-                    <div className="flex items-center border rounded-md px-2">
-                      <button className="text-gray-600 font-bold px-1">
-                        −
-                      </button>
-                      <span className="mx-2 text-sm">0</span>
-                      <button className="text-gray-600 font-bold px-1">
-                        +
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div> */}
-
-          {/* <div className="mt-6 border rounded-xl p-4 shadow-sm">
-      <h2 className="text-lg font-semibold mb-4">
-        Add in extras to your booking
-      </h2>
-
-      <div className="flex flex-col gap-3">
-        {extra?.map((item) => (
-          <div
-            key={item.refFormDetailsId}
-            className="flex items-center justify-between border rounded-lg px-4 py-3"
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-2xl">
-                {getIcon(item.refFormDetails)}
-              </span>
-              <div>
-                <p className="font-medium">{item.refFormDetails}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <span className="text-[#119705] font-semibold text-sm">
-                + CHF {Number(item.refPrice).toFixed(2)} / day
-              </span>
-              <div className="flex items-center border rounded-md px-2">
-                <button
-                  className="text-gray-600 font-bold px-1 cursor-pointer"
-                  onClick={() => decrementCount(item.refFormDetailsId)}
-                >
-                  −
-                </button>
-                <span className="mx-2 text-sm ">
-                  {extraCounts[item.refFormDetailsId] || 0}
-                </span>
-                <button
-                  className="text-gray-600 font-bold px-1 cursor-pointer"
-                  onClick={() => incrementCount(item.refFormDetailsId)}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-
-       
-        {extra?.[0]?.refCarPath && (
-          <img
-            src={imgSrc || extra[0].refCarPath}
-            alt="Car"
-            onError={() => setImgSrc(tourImg)}
-            className="w-full h-[200px] object-cover rounded-lg"
-          />
-        )}
-      </div>
-    </div> */}
 
           <div className="mt-6 border rounded-xl p-4 shadow-sm">
             <h2 className="text-lg font-semibold mb-4">
-              Add in extras to your booking
+               {t("car.addExtras")}
             </h2>
 
             <div className="flex flex-col gap-3">
@@ -841,7 +613,7 @@ const getIcon = (label) => {
 
                   <div className="flex items-center gap-3">
                     <span className="text-[#119705] font-semibold text-sm">
-                      + CHF {Number(item.refPrice).toFixed(2)} / day
+                      + CHF {Number(item.refPrice).toFixed(2)} /  {t("tour.day")}
                     </span>
                   </div>
                 </div>
@@ -849,10 +621,8 @@ const getIcon = (label) => {
             </div>
 
             {carListData.refExtraKMcharges > 0 && (
-              <>
-                <div className=" flex flex-col lg:flex-row md:flex-row lg:items-center md:items-center  gap-3 items-start  mt-4"></div>
+              <div className="flex flex-col lg:flex-row md:flex-row lg:items-center md:items-center gap-3 items-start mt-4">
                 <div>
-                  {" "}
                   <Checkbox
                     onChange={(e) =>
                       setExtrakm((prev) => ({
@@ -864,9 +634,8 @@ const getIcon = (label) => {
                   ></Checkbox>
                 </div>
                 <div>
-                  <h3 className="">Extra Km</h3>
+                  <h3 className=""> {t("car.extra")} Km</h3>
                 </div>
-
                 <div className="">
                   <InputNumber
                     placeholder="Enter Km"
@@ -880,7 +649,7 @@ const getIcon = (label) => {
                     }
                   />
                 </div>
-              </>
+              </div>
             )}
           </div>
         </div>
@@ -888,46 +657,74 @@ const getIcon = (label) => {
         {/* Right Section - Booking Summary */}
         <div className="w-full lg:w-[50%] md:w-1/3 border rounded-xl shadow p-5 space-y-4">
           <div className="text-center text-3xl text-[#f73e3e] testingFont lg:p-3 md:p-3 mb-4 font-medium">
-            <span className="text-4xl">🎉</span> Don’t wait — book now before
-            rates increase!
+            <span className="text-4xl">🎉</span>  {t("car.bookNowWarning")}!
           </div>
           <div className="flex justify-between items-center">
-            <h2 className="text-lg font-semibold">Your booking</h2>
+            <h2 className="text-lg font-semibold"> {t("car.yourBooking")}</h2>
             <span className="text-xs bg-[#d4cdcd] text-[#000] px-2 py-1 rounded-full">
-              1 daily rate
+              {numberOfDays} {numberOfDays === 1 ? 'day' : 'days'}
             </span>
           </div>
 
+          <div className="flex justify-between text-sm border-b pb-2">
+            <span> {t("car.dailyRate")}</span>
+            <span>{baseDailyRate} CHF</span>
+          </div>
+
+          <div className="flex justify-between items-center text-sm border-b pb-2">
+            <span> {t("car.numberOfDays")}</span>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => {
+                  if (numberOfDays > 1) {
+                    setNumberOfDays(numberOfDays - 1);
+                  }
+                }}
+                className="w-7 h-7 flex items-center justify-center bg-gray-200 hover:bg-gray-300 rounded-md font-bold text-gray-700"
+                disabled={numberOfDays <= 1}
+              >
+                −
+              </button>
+              <span className="font-semibold w-8 text-center">{numberOfDays}</span>
+              <button
+                onClick={() => setNumberOfDays(numberOfDays + 1)}
+                className="w-7 h-7 flex items-center justify-center bg-gray-200 hover:bg-gray-300 rounded-md font-bold text-gray-700"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
           <div className="flex justify-between text-sm font-medium border-b pb-2">
-            <span>Vehicle Value</span>
-            <span>{totalPrice}CHF</span>
+            <span> {t("car.vehicleValue")}</span>
+            <span>{totalPrice} CHF</span>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold mb-2">Plan Flex</h3>
+            <h3 className="text-sm font-semibold mb-2"> {t("car.planFlex")}</h3>
             <ul className="text-sm space-y-1">
               <li className="flex items-center gap-2">
-                <span className="text-[#0ca42a]">✔</span> Vehicle Protection
+                <span className="text-[#0ca42a]">✔</span> {t("car.vehicleProtection")}
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-[#0ca42a]">✔</span> Third-Party Protection
+                <span className="text-[#0ca42a]">✔</span> {t("car.thirdPartyProtection")}
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-[#0ca42a]">✔</span> Theft Protection
+                <span className="text-[#0ca42a]">✔</span> {t("car.theftProtection")}
               </li>
             </ul>
           </div>
 
           <div className="flex justify-between text-sm border-t border-b py-2">
-            <span>Car hire company fees</span>
+            <span>{t("car.carHireFees")}</span>
             <span className="text-[#0ca42a] font-medium">
-              Included in Price
+              {t("car.includedInPrice")}
             </span>
           </div>
 
           <div className="flex justify-between items-center font-semibold text-base border-b pb-2">
-            <span>Total amount</span>
-            <span>{totalPrice}CHF</span>
+            <span> {t("tour.totalAmount")}</span>
+            <span>{totalPrice} CHF</span>
           </div>
 
           <div className="flex justify-center">
@@ -936,37 +733,36 @@ const getIcon = (label) => {
                 className="w-[50%] bg-[#eda917] hover:bg-[#e0a473] text-white text-base py-2 rounded-md font-semibold"
                 onClick={handlePriceCalculation}
               >
-                Calculate New Price
+                {t("car.calculateNewPrice")}
               </button>
             ) : (
               <button
                 className="w-[30%] bg-[#0ca42a] hover:bg-[#35683f] text-white text-base py-2 rounded-md font-semibold"
                 onClick={() => setIsModelOpen(true)}
               >
-                Continue
+                {t("car.continue")}
               </button>
             )}
           </div>
         </div>
       </div>
 
-      <div className=" py-3 sm:px-8 max-w-1xl body mx-auto text-sm sm:text-base text-gray-600 leading-relaxed text-center ">
+      <div className="py-3 sm:px-8 max-w-1xl body mx-auto text-sm sm:text-base text-gray-600 leading-relaxed text-center">
         <p>
-          By continuing to use our services, you acknowledge that your personal
-          data will be processed in accordance with{" "}
+           {t("tour.privacyNotice")}{" "}
           <span
             onClick={() => handleNavigate("/privacy")}
             className="text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
           >
-            Privacy Policy
+             {t("tour.privacyPolicy")}
           </span>
           . <br className="hidden sm:block" />
-          By creating an account, you agree to{" "}
+         {t("tour.termsNotice")}{" "}
           <span
             onClick={() => handleNavigate("/terms")}
             className="text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
           >
-            Terms of Use
+           {t("tour.termsOfUse")}
           </span>
           .
         </p>
@@ -981,7 +777,7 @@ const getIcon = (label) => {
                   <li key={index} className="mb-2">
                     {item}
                   </li>
-                )) || <p>Loading...</p>}
+                )) || <p>{t("tour.loading")}...</p>}
               </ul>
             </div>
           </TabPanel>
@@ -992,20 +788,20 @@ const getIcon = (label) => {
                   <li key={index} className="mb-2">
                     {item}
                   </li>
-                )) || <p>Loading...</p>}
+                )) || <p>{t("tour.loading")}...</p>}
               </ul>
             </div>
           </TabPanel>
           <TabPanel header="Others" key="tab1">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <p>
-                <b>Payment Terms:</b> {carListData.refPaymentTerms}
+                <b>{t("car.paymentTerms")}:</b> {carListData.refPaymentTerms}
               </p>
               <p>
-                <b>Rental Agreement:</b> {carListData.refRentalAgreement}
+                <b>:</b> {carListData.refRentalAgreement}
               </p>
               <p>
-                <b>Other Requirements:</b> {carListData.refOtherRequirements}
+                <b>{t("tour.requirements")} :</b> {carListData.refOtherRequirements}
               </p>
             </div>
           </TabPanel>
@@ -1031,7 +827,7 @@ const getIcon = (label) => {
                 required
                 onChange={(e) => setName(e.target.value)}
               />
-              <label htmlFor="username">User First Name</label>
+              <label htmlFor="username">{t("tour.firstName")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1043,7 +839,7 @@ const getIcon = (label) => {
                 required
                 onChange={(e) => setLastName(e.target.value)}
               />
-              <label htmlFor="lastname">User Last Name</label>
+              <label htmlFor="lastname">{t("tour.lastName")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1055,7 +851,7 @@ const getIcon = (label) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <label htmlFor="email">Your Email</label>
+              <label htmlFor="email">{t("tour.email")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1068,7 +864,7 @@ const getIcon = (label) => {
                 value={mobileNumber}
                 onValueChange={(e) => setMobileNumber(e.value)}
               />
-              <label htmlFor="mobileNumber">Your Mobile Number</label>
+              <label htmlFor="mobileNumber">{t("tour.mobileNumber")}</label>
             </FloatLabel>
           </div>
         </div>
@@ -1098,7 +894,7 @@ const getIcon = (label) => {
                 value={submissionAddress}
                 onChange={(e) => setSubmissionAddress(e.target.value)}
               />
-              <label htmlFor="submissionAddress">Enter your Address</label>
+              <label htmlFor="submissionAddress">{t("car.enterAddress")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1118,7 +914,7 @@ const getIcon = (label) => {
                 placeholder="Pickup Date"
               />
 
-              <label htmlFor="calendar-12h">Pick Up Date </label>
+              <label htmlFor="calendar-12h">{t("car.pickUpDate")} </label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1138,7 +934,7 @@ const getIcon = (label) => {
                 placeholder="Drop Date"
               />
 
-              <label htmlFor="calendar-12h">Drop Date </label>
+              <label htmlFor="calendar-12h">{t("car.dropDate")} </label>
             </FloatLabel>
           </div>
           {/* <div className="w-[100%]">
@@ -1201,7 +997,7 @@ const getIcon = (label) => {
           </div>
         </div> */}
 
-        <h6 className="pt-[1.5rem]">Extras (chargeable)</h6>
+        <h6 className="pt-[1.5rem]">{t("car.extra")} ({t("car.chargeable")})</h6>
         <div className="flex flex-wrap justify-start pt-[1rem] gap-3">
           {extras.map((item) => (
             <div key={item.refFormDetailsId}>
@@ -1228,12 +1024,12 @@ const getIcon = (label) => {
                 rows={5}
                 cols={30}
               />
-              <label htmlFor="otherRequirements">Your other requirements</label>
+              <label htmlFor="otherRequirements">{t("car.requirements")}</label>
             </FloatLabel>
           </div>
         </div>
 
-        <h6 className="pt-[1.5rem]">Driver Details</h6>
+        <h6 className="pt-[1.5rem]">{t("car.driverDetails")}</h6>
 
         <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">
@@ -1245,7 +1041,7 @@ const getIcon = (label) => {
                 value={driverName}
                 onChange={(e) => setdriverName(e.target.value)}
               />
-              <label htmlFor="dname">Driver name</label>
+              <label htmlFor="dname">{t("car.driverName")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1257,7 +1053,7 @@ const getIcon = (label) => {
                 value={driverAge}
                 onChange={(e) => setdriverAge(e.value)}
               />
-              <label htmlFor="dAge">Driver Age</label>
+              <label htmlFor="dAge">{t("car.driverAge")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1269,7 +1065,7 @@ const getIcon = (label) => {
                 value={driverMobile}
                 onChange={(e) => setdriverMobile(e.value)}
               />
-              <label htmlFor="infants">Driver Mobile</label>
+              <label htmlFor="infants">{t("car.driverMobile")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1281,13 +1077,13 @@ const getIcon = (label) => {
                 value={driverMail}
                 onChange={(e) => setdriverMail(e.value)}
               />
-              <label htmlFor="infants">Driver Mail</label>
+              <label htmlFor="infants">{t("car.driverMail")}</label>
             </FloatLabel>
           </div>
         </div>
 
         <div className="w-[100%] mt-3">
-          <h2 className="">Upload Agreement</h2>
+          <h2 className="">{t("car.uploadAgreement")}</h2>
           <FileUpload
             name="logo"
             customUpload
@@ -1296,13 +1092,13 @@ const getIcon = (label) => {
             accept="application/pdf"
             maxFileSize={10000000}
             emptyTemplate={
-              <p className="m-0">Drag and drop your Pdf here to upload.</p>
+              <p className="m-0">{t("car.requirements")}.</p>
             }
             multiple
           />
         </div>
         <p className="text-sm text-gray-600 mt-2 italic">
-          Your uploaded document will be stored securely and kept confidential.
+          {t("car.uploadNote")}.
         </p>
 
         <div className="pt-[1rem] flex justify-center">
@@ -1349,3 +1145,4 @@ const getIcon = (label) => {
     </div>
   );
 }
+

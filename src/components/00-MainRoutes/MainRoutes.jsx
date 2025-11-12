@@ -81,11 +81,11 @@ function Layout() {
         <Route path="/terms" element={<TermsCondition />} />
         <Route path="/terms-transfer" element={<TermsTransfer />} />
         <Route path="/privacy" element={<Privacy />} />
-        <Route path="/PassengerStep" element={<PassengerStep />} />
+        {/* <Route path="/PassengerStep" element={<PassengerStep />} /> */}
         
-        <Route path="/BookingFlow" element={<BookingFlow />} />
-        <Route path="/BookingSummary" element={<BookingSummary />} />
-        <Route path="/BookingForm" element={<BookingForm />} />
+        {/* <Route path="/BookingFlow" element={<BookingFlow />} /> */}
+        {/* <Route path="/BookingSummary" element={<BookingSummary />} /> */}
+        {/* <Route path="/BookingForm" element={<BookingForm />} /> */}
         <Route path="/impressum" element={<Impressum />} />
         <Route path="/EditJourneyModal" element={<EditJourneyModal />} />
         {/* <Route path="/pages" element={<Pages />} /> */}
@@ -94,10 +94,10 @@ function Layout() {
         <Route path="/success" element={<Success />} />
         <Route path="/failure" element={<Failure />} />
         <Route path="/event" element={<Event />} />
-        <Route path="/vehicle" element={< VehicleStep />} />
+        {/* <Route path="/vehicle" element={< VehicleStep />} /> */}
         <Route path="/formdetails" element={<FormDetails />} />
-        <Route path="/ExtrasStep" element={<ExtrasStep />} />
-        <Route path="/paymentstep" element={<PaymentStep />} />
+        {/* <Route path="/ExtrasStep" element={<ExtrasStep />} /> */}
+        {/* <Route path="/paymentstep" element={<PaymentStep />} /> */}
         <Route path="/generalpdf" element={<GeneralTandC />} />
         <Route path="/caragreement" element={<Caragreement />} />
       </Routes>

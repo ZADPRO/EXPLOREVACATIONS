@@ -18,7 +18,119 @@
     "event": "Event",
     "flightbooking": "Flugbuchungsformular"
   },
+  "tour": {
+    "bookNow": "Jetzt buchen",
+    "categories": "Kategorien",
+    "duration": "Dauer",
+    "price": "Preis",
+    "tourCode": "Reisecode",
+    "groupSize": "Gruppengröße",
+    "travelExcludes": "Reise schließt aus",
+    "travelIncludes": "Reise beinhaltet",
+    "galleryImage": "Galeriebild",
+    "itinerary": "Reiseverlauf",
+    "travelOverview": "Reiseübersicht",
+    "enterCouponCode": "Gutscheincode eingeben",
+    "specialNotes": "Besondere Hinweise",
+    "downloads": "Downloads",
+    "viewTour": "Tour ansehen",
+    "noToursAvailable": "Keine Touren für die ausgewählten Filter verfügbar",
+    "bag": "Tasche",
+    "day": "Tag",
+    "loading": "Wird geladen",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsOfUse": "Nutzungsbedingungen",
+    "backToTours": "Zurück zu den Touren",
+    "applyCoupon": "Gutschein anwenden",
+    "privacyNotice": "Durch die Nutzung unserer Dienste erkennen Sie an, dass Ihre persönlichen Daten gemäß unserer Datenschutzrichtlinie verarbeitet werden.",
+    "termsNotice": "Durch das Erstellen eines Kontos stimmen Sie unseren Nutzungsbedingungen zu.",
+    "noTourData": "Keine Tourdaten gefunden",
+    "days": "Tage",
+    "nights": "Nächte",
+    "person": "Person",
+    "downloadTour": "Laden Sie das Tourpaket hier herunter",
+    "personalDetails": "Persönliche Angaben",
+    "firstName": "Ihr Vorname",
+    "lastName": "Ihr Nachname",
+    "email": "Ihre E-Mail",
+    "mobileNumber": "Ihre Handynummer",
+    "pickupDate": "Abholdatum & Uhrzeit",
+    "arrivalDate": "Ankunftsdatum & Uhrzeit",
+    "numPassengers": "Anzahl der reisenden Passagiere",
+    "adults": "Erwachsene",
+    "children": "Kinder",
+    "infants": "Kleinkinder",
+    "enterPersonCount": "Geben Sie die Personenanzahl ein, um den Betrag zu berechnen",
+    "totalAmount": "Gesamtbetrag",
+    "numRooms": "Anzahl der Zimmer",
+    "singleRoom": "Einzelzimmer",
+    "twinRoom": "Zweibettzimmer",
+    "tripleRoom": "Dreibettzimmer",
+    "requirements": "Ihre weiteren Anforderungen",
+    "uploadNote": "Ihr hochgeladenes Dokument wird sicher gespeichert und vertraulich behandelt",
+    "uploadAgreement": "Vereinbarung hochladen",
+    "dragPdf": "Ziehen Sie Ihre PDF hierher, um sie hochzuladen",
+    "uploadPassport": "Reisepass hochladen",
+    "uploadVaccine": "Impfnachweis hochladen"
+  },
+  "carousel": {
+    "title1": "MIRISSA",
+    "subtitle1": "Das tropische Paradies an der Küste Sri Lankas",
+    "title2": "ELLA",
+    "subtitle2": "Das Herz des Hochlands von Sri Lanka",
+    "title3": "SRI LANKA",
+    "subtitle3": "",
+    "title4": "SIGIRIYA",
+    "subtitle4": "Der Löwenfelsen im Herzen Sri Lankas",
+     "rent_a_car": "Auto mieten",
+      "holiday_packages": "Urlaubspakete",
+      "airport_parking": "Flughafenparkplatz",
+      "airport_transfer": "Flughafentransfer",
+        "title5": "Erleben Sie Premium-Komfort zum Economy-Preis",
+    "title6": "Mietwagen – Los geht’s",
+    "title7": "Fahren Sie überall mit unseren SUV- und 4x4-Mietwagen",
+    "title8": "Stressfrei, zuverlässig, ohne versteckte Kosten"
+  },
+  "home1": {
+    "description1": "Unsere modernen Kompaktwagen bieten Komfort, Effizienz und Stil für jede Fahrt. Perfekt für Stadtfahrten oder Geschäftsreisen – mit viel Platz und moderner Technologie.",
+    "highlights1": [
+      "Klimatisiert & kraftstoffsparend",
+      "Platz für bis zu 4 Passagiere",
+      "Ideal für Stadtfahrten und Kurzstrecken"
+    ],
+    "description2": "Unsere SUVs vereinen Leistung und Luxus. Mit erhöhter Sitzposition, modernem Design und geräumigem Innenraum sind sie perfekt für Familien oder Langstreckenreisen – ob in der Stadt, in den Bergen oder auf dem Land.",
+    "highlights2": [
+      "Platz für bis zu 5 Passagiere",
+      "Großer Kofferraum & optionaler Allradantrieb",
+      "Komfortables Fahrerlebnis auf jedem Terrain"
+    ],
+    "description3": "Unsere Minivans sind ideal für Familien oder Gruppen. Mit bis zu 8 Sitzen, flexiblem Innenraum und viel Stauraum sorgen sie für eine komfortable und entspannte Reise.",
+    "highlights3": [
+      "Platz für bis zu 8 Passagiere",
+      "Bequeme Sitze & Schiebetüren",
+      "Perfekt für Flughafentransfers und Gruppenreisen"
+    ],
+    "description4": "Für Geschäftsreisen oder besondere Anlässe stehen unsere Premiumfahrzeuge für Komfort, Klasse und Qualität. Erleben Sie stilvollen Fahrspaß mit Eleganz und Raffinesse.",
+    "highlights4": [
+      "Platz für bis zu 3 Passagiere",
+      "Luxuriöses Design mit Ledersitzen",
+      "Ideal für VIP- oder Geschäftstransfers"
+    ],
+    "description5": "Eleganz trifft auf Raum und Komfort. Dieser Business-Van ist die perfekte Wahl für Chauffeurdienste, Geschäftsreisen und stilvolle Gruppenfahrten.",
+    "highlights5": [
+      "Platz für bis zu 7 Passagiere",
+      "Ledersitze & geräumige Kabine",
+      "Perfekt für Flughafentransfers und VIP-Fahrten"
+    ],
+    "description6": "Erleben Sie den Nervenkitzel des Fahrens! Unsere Sportwagen vereinen beeindruckendes Design und starke Leistung – für ein unvergessliches Fahrerlebnis voller Adrenalin.",
+    "highlights6": [
+      "1–2 Passagiere",
+      "Sportliches Design & Hochleistungsmotor",
+      "Perfekt für Wochenendfahrten und Events"
+    ]
+  },
   "home": {
+    "title": "Unsere Flotte",
     "General": "Allgemein",
     "q1": "Gibt es eine Mindest- oder Höchstmietdauer für ein Fahrzeug von ZüriCar GmbH?",
     "a1": "Die Mindestmietdauer beträgt einen halben Tag. Die maximale Mietdauer beträgt in der Regel 30 Tage. Wenn Sie ein Fahrzeug länger als 30 Tage benötigen, kontaktieren Sie bitte unser Verkaufsteam. Wir erstellen Ihnen gerne ein Angebot.",
@@ -45,7 +157,6 @@
     "a11": "Alle Preise sind in Schweizer Franken (CHF) angegeben und beinhalten die MwSt.",
     "q12": "Gibt es zusätzliche Kosten für Fahrten ins Ausland?",
     "a12": "Ja, es fällt eine Grenzübertrittsgebühr (CBF) von bis zu CHF 185.00 (inkl. MwSt.) an. Bitte beachten Sie die länderspezifischen Einschränkungen in Ihrem Mietvertrag.",
-
     "Insurance": "Versicherung",
     "q13": "Ist eine Haftungsreduzierung enthalten?",
     "a13": "Ja, eine Haftungsreduzierung ist in allen Tarifen enthalten (ein Selbstbehalt bleibt bestehen).",
@@ -55,7 +166,6 @@
     "a15": "Ja, alle Fahrer unter 25 Jahren müssen einen Jungfahrerzuschlag zahlen. Die Preise variieren je nach Kategorie, mit einer maximalen Gebühr von CHF 199 pro Mietmonat.",
     "q16": "Was ist die SuperCover-Versicherung?",
     "a16": "Mit der Premium-Versicherung (Haftungsverzicht) können Sie Ihren Selbstbehalt auf CHF 350 pro Schadensfall reduzieren und sich vor hohen Kosten bei Verlust oder Schaden schützen.",
-
     "Reservation": "Reservierung",
     "q17": "Wie kann ich einen Van bei ZüriCar GmbH reservieren?",
     "a17": "Sie können online unter züricar.ch, telefonisch oder direkt an einer ZüriCar GmbH Station reservieren.",
@@ -67,7 +177,6 @@
     "a20": "Wir empfehlen eine möglichst frühzeitige Buchung, um Ihre Wünsche bezüglich Fahrzeugmodellen usw. berücksichtigen zu können. Reservierungen sind im Allgemeinen bis kurz vor Mietbeginn möglich.",
     "q21": "Kann ich ein bestimmtes Fahrzeugmodell reservieren?",
     "a21": "Sie können Fahrzeugkategorien, aber keine spezifischen Modelle reservieren.",
-
     "Before the Trip": "Vor der Reise",
     "q22": "Kann ich mein Privatfahrzeug während der Mietdauer an der ZüriCar GmbH Station parken?",
     "a22": "Ja, das ist grundsätzlich an allen unseren Standorten möglich. Bitte klären Sie die Verfügbarkeit im Voraus mit Ihrer Station. ZüriCar GmbH übernimmt keine Haftung für Schäden an Ihrem Privatfahrzeug.",
@@ -77,13 +186,11 @@
     "a24": "Zu Ihrer eigenen Sicherheit: Prüfen Sie das Fahrzeug auf bestehende Schäden, stellen Sie Sitz und Spiegel ein, schnallen Sie sich an, schalten Sie das Licht ein und sorgen Sie für freie Sicht durch alle Fenster.",
     "q25": "Kann ich eine Einweisung oder Probefahrt mit Begleitung erhalten?",
     "a25": "Ja! Mit vorheriger Ankündigung begleitet Sie ein Mitarbeiter von ZüriCar GmbH gerne auf eine kurze Fahrt, um Ihnen das Fahrzeug vertraut zu machen. Bitte kontaktieren Sie Ihre Station im Voraus.",
-
     "During the Trip": "Während der Reise",
     "q26": "Darf ich im Van rauchen?",
     "a26": "Nein, alle Fahrzeuge von ZüriCar GmbH sind Nichtraucherfahrzeuge. Bei Verstößen können Reinigungskosten anfallen.",
     "q27": "Was soll ich tun, wenn ich in einen Unfall verwickelt bin?",
     "a27": "Eine detaillierte Checkliste und notwendige Unterlagen finden Sie im Handschuhfach. Bleiben Sie ruhig, sichern Sie die Unfallstelle, leisten Sie Erste Hilfe und rufen Sie die Polizei (117).",
-
     "End of Trip / Vehicle Return": "Ende der Reise / Fahrzeugrückgabe",
     "q28": "Was, wenn ich das Fahrzeug nicht rechtzeitig zurückgeben kann?",
     "a28": "Planen Sie ausreichend Zeit ein und verlängern Sie Ihre Reservierung rechtzeitig, indem Sie Ihre Station kontaktieren oder unter +41 79 766 99 60 anrufen. Verspätete Rückgaben können Gebühren nach sich ziehen.",
@@ -97,23 +204,19 @@
     "a32": "Ja, bitte geben Sie den Van mit dem gleichen Tankfüllstand oder Ladezustand zurück, wie Sie ihn übernommen haben. Andernfalls fallen zusätzliche Tank- oder Ladekosten an.",
     "Transfers": "Transfers",
     "d1": "Genießen Sie eine komfortable und sichere Reise mit unseren professionellen Fahrern. Ob es sich um einen Flughafentransfer, eine Stadtrundfahrt oder eine Langstreckenreise handelt, wir garantieren ein erstklassiges Reiseerlebnis, das auf Ihre Bedürfnisse zugeschnitten ist.",
-
     "Business": "Business",
     "d2": "Reisen Sie stilvoll und komfortabel mit unseren Premium-Business-Class-Diensten. Wir verstehen Ihren Bedarf an Professionalität und Luxus, sodass jede Reise nahtlos und anspruchsvoll verläuft.",
-
     "Tourist": "Tourist",
     "d3": "Beginnen Sie eine unvergessliche Reise mit unseren gut geplanten Urlaubspaketen. Entdecken Sie atemberaubende Reiseziele mit Leichtigkeit und Komfort und genießen Sie ein unvergessliches Erlebnis.",
-
     "Car Rental": "Autovermietung",
     "d4": "Wählen Sie aus einer großen Auswahl an gut gewarteten Fahrzeugen für Ihre Reisebedürfnisse. Ob es sich um eine Kurzreise oder eine längere Miete handelt, wir bieten hochwertige Autos für eine angenehme Fahrt.",
     "Tour": "Touren",
     "Car": "Auto",
     "Parking": "Parken",
     "Travel": "Reise",
-
     "Most Popular Tour": "Beliebteste Tour",
     "Let’s Discover The World With Our Excellent Eyes": "Entdecken wir die Welt mit unseren ausgezeichneten Augen",
-    "Whether you are planning a romantic escape, a family holiday, or a solo adventure, our travel agency designs bespoke itineraries tailored to your needs. Alongside carefully crafted tours and exclusive holiday packages, we also offer flexible car rental solutions to ensure your journey is seamless, comfortable, and unforgettable." : "Ob Sie einen romantischen Ausflug, einen Familienurlaub oder ein Solo-Abenteuer planen – unser Reisebüro erstellt maßgeschneiderte Reisepläne, die auf Ihre Bedürfnisse zugeschnitten sind. Neben sorgfältig zusammengestellten Touren und exklusiven Urlaubspaketen bieten wir auch flexible Mietwagenlösungen an, um sicherzustellen, dass Ihre Reise nahtlos, komfortabel und unvergesslich wird.",
+    "Whether you are planning a romantic escape, a family holiday, or a solo adventure, our travel agency designs bespoke itineraries tailored to your needs. Alongside carefully crafted tours and exclusive holiday packages, we also offer flexible car rental solutions to ensure your journey is seamless, comfortable, and unforgettable.": "Ob Sie einen romantischen Ausflug, einen Familienurlaub oder ein Solo-Abenteuer planen – unser Reisebüro erstellt maßgeschneiderte Reisepläne, die auf Ihre Bedürfnisse zugeschnitten sind. Neben sorgfältig zusammengestellten Touren und exklusiven Urlaubspaketen bieten wir auch flexible Mietwagenlösungen an, um sicherzustellen, dass Ihre Reise nahtlos, komfortabel und unvergesslich wird.",
     "Our Services": "Unsere Dienstleistungen",
     "Dream Your Next Trip": "Träumen Sie von Ihrer nächsten Reise",
     "Discover whenever you want to go": "Entdecken Sie, wohin Sie auch immer reisen möchten",
@@ -127,7 +230,6 @@
     "See Those Lovely Words From Clients": "Sehen Sie sich diese lieben Worte von Kunden an",
     "Select a topic": "Wählen Sie ein Thema"
   },
-
   "cookies": {
     "title": "Cookies – ZüriCar GmbH",
     "intro": "Wir verwenden Cookies, um Ihnen die beste Erfahrung auf unserer Website zu bieten.",
@@ -183,10 +285,9 @@
     "copyrightText1": "Das Urheberrecht und alle anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien auf dieser Website gehören ausschließlich der ZüriCar GO GmbH oder den ausdrücklich genannten Rechteinhabern.",
     "copyrightText2": "Für die Reproduktion, Bearbeitung, Verbreitung oder sonstige Verwendung von Elementen dieser Website ist die vorherige schriftliche Zustimmung des jeweiligen Rechteinhabers erforderlich."
   },
-
   "footer": {
     "footer": "Wir sind ein Premium-Autovermietungs- und Full-Service-Reiseunternehmen mit Sitz in der Schweiz. Mit einer modernen Fahrzeugflotte und zuverlässigen Transferlösungen gewährleisten wir maximale Flexibilität und Komfort auf jeder Reise. Neben der Autovermietung sind wir auf maßgeschneiderte FIT- und Gruppenreisen, Strandurlaube, Safaris und exklusive Expeditionen nach Sri Lanka spezialisiert – und schaffen unvergessliche Reiseerlebnisse von der Schweiz in die ganze Welt.",
-     "Our Services": "Unsere Dienstleistungen",
+    "Our Services": "Unsere Dienstleistungen",
     "Tours": "Touren",
     "Cars": "Autos",
     "Contact Us": "Kontaktieren Sie uns",
@@ -198,7 +299,35 @@
   "car": {
     "Available Cars": "Verfügbare Autos",
     "Standard": "Standard",
-    "Premium": "Premium"
+    "Premium": "Premium",
+    "dropDate": "Rückgabedatum",
+    "pickUpDate": "Abholdatum",
+    "enterAddress": "Geben Sie Ihre Adresse ein",
+    "paymentTerms": "Zahlungsbedingungen",
+    "rentalAgreement": "Mietvertrag",
+    "continue": "Fortsetzen",
+    "calculateNewPrice": "Neuen Preis berechnen",
+    "includedInPrice": "Im Preis inbegriffen",
+    "carHireFees": "Gebühren des Autovermieters",
+    "theftProtection": "Diebstahlschutz",
+    "thirdPartyProtection": "Haftpflichtschutz",
+    "vehicleProtection": "Fahrzeugschutz",
+    "planFlex": "Flex-Plan",
+    "vehicleValue": "Fahrzeugwert",
+    "numberOfDays": "Anzahl der Tage",
+    "dailyRate": "Tagesrate",
+    "yourBooking": "Ihre Buchung",
+    "bookNowWarning": "Warten Sie nicht – buchen Sie jetzt, bevor die Preise steigen",
+    "extra": "Extra",
+    "addExtras": "Fügen Sie Ihrer Buchung Extras hinzu",
+    "manufacturingYear": "Baujahr",
+    "transmissionType": "Getriebeart",
+    "maxCount": "Maximale Anzahl",
+    "fuelLimit": "Kraftstoffgrenze",
+    "fuelType": "Kraftstoffart",
+    "count": "Anzahl",
+    "charges": "Gebühren",
+    "noCarsAvailable": "Keine Autos verfügbar"
   },
   "contact": {
     "Get In Touch": "Kontaktieren Sie uns",
@@ -277,7 +406,6 @@
     "voyage": "Reise",
     "Please check your email for your password.": "Bitte überprüfen Sie Ihre E-Mails auf Ihr Passwort."
   },
-
   "signin": {
     "Sign Up": "Registrieren",
     "First Name": "Vorname",
@@ -324,20 +452,16 @@
     "p5": "Sie können der Verarbeitung Ihrer personenbezogenen Daten aufgrund berechtigter Interessen widersprechen",
     "l6": "Sie können der Verarbeitung Ihrer personenbezogenen Daten aufgrund berechtigter Interessen widersprechen",
     "p6": "Wenn Sie mit einer Verarbeitung aufgrund eines berechtigten Interesses nicht einverstanden sind, können Sie aus Gründen, die sich aus Ihrer besonderen Situation ergeben, Widerspruch einlegen. Bitte informieren Sie uns in diesem Fall ausführlich über die entsprechende Verarbeitung und die Gründe für Ihren Widerspruch. Wir werden die Verarbeitung Ihrer personenbezogenen Daten einstellen, es sei denn, es liegen zwingende schutzwürdige Gründe vor oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen.",
-
     "l7": "Sie können der Verarbeitung Ihrer personenbezogenen Daten für Direktmarketingzwecke widersprechen",
     "p7": "Sie haben das Recht, der Verarbeitung Ihrer personenbezogenen Daten für Direktmarketingzwecke jederzeit zu widersprechen. Dies gilt auch für das Profiling, soweit es mit solcher Direktwerbung in Verbindung steht.",
-
     "l8": "Sie können die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten verlangen",
     "p8": "Wenn Sie die Richtigkeit der von uns verwendeten personenbezogenen Daten bestreiten oder der Verarbeitung widersprechen, werden wir Ihre Anfrage überprüfen oder überarbeiten. Sie können verlangen, dass wir die Verarbeitung Ihrer personenbezogenen Daten während der Prüfung Ihrer Anfrage einschränken.",
     "l9": "Sie haben Rechte in Bezug auf automatisierte Einzelentscheidungen",
     "p9": "Grundsätzlich haben Sie das Recht, nicht einer ausschließlich auf einer automatisierten Verarbeitung — einschließlich Profiling — beruhenden Entscheidung unterworfen zu werden, die rechtliche Auswirkungen auf Sie hat oder Sie in ähnlicher Weise erheblich beeinträchtigt. Eine solche Entscheidung darf automatisiert erfolgen, wenn sie für den Abschluss oder die Erfüllung eines Vertrags mit uns erforderlich ist, gesetzlich zulässig ist oder Sie Ihre ausdrückliche Einwilligung erteilt haben. In jedem Fall haben Sie das Recht, die Entscheidung anzufechten, Ihren Standpunkt darzulegen und die Überprüfung der Entscheidung durch eine zuständige Person zu verlangen.",
     "l10": "Sie können Ihre Einwilligung widerrufen",
     "p10": "In den Fällen, in denen die Verarbeitung auf Ihrer erteilten Einwilligung beruht, können Sie diese Einwilligung jederzeit widerrufen.",
-
     "l11": "Sie können die Übertragbarkeit eines Teils Ihrer personenbezogenen Daten verlangen",
     "p11": "Sie können eine Kopie der von Ihnen bereitgestellten personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format anfordern. Sofern technisch möglich, können Sie verlangen, dass wir diese Kopie an einen Dritten übermitteln.",
-
     "l12": "Beschwerde beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten",
     "p12": "Zusätzlich zu den oben genannten Rechten können Sie bei der zuständigen Aufsichtsbehörde eine Beschwerde einreichen. In der Schweiz ist dies der Eidgenössische Datenschutz- und Öffentlichkeitsbeauftragte (EDÖB), Feldeggweg 1, 3003 Bern.",
     "p12.1": "In diesem Abschnitt erklären wir den Zweck, für den wir Ihre personenbezogenen Daten verarbeiten, und die rechtliche Grundlage dafür. Zunächst und vor allem verwenden wir Ihre personenbezogenen Daten, um einen Vertrag auszuführen, an dem Sie beteiligt sind, oder um auf Ihre Anfrage hin vorvertragliche Maßnahmen zu ergreifen. Wir können Ihre personenbezogenen Daten jedoch auch verarbeiten, um unser berechtigtes Interesse oder das eines Dritten zu erfüllen.",
@@ -397,7 +521,6 @@
     "l21.6": "Von unseren Geschäftspartnern (z. B. Reiseveranstalter, Dienstleister im Ausland);",
     "l21.7": "Von Dritten wie Wirtschaftsauskunfteien und Betrugsbekämpfungsstellen;",
     "l21.8": "Von Adressrecherche-Dienstleistern, die die entsprechenden Informationen auf rechtmäßige Weise erheben.",
-
     "h23": "AN WEN GEBEN WIR IHRE PERSONENBEZOGENEN DATEN WEITER UND WARUM?",
     "p23": "Um einige der in dieser Datenschutzerklärung beschriebenen Zwecke zu erfüllen – insbesondere zur Durchführung einer Reise – können wir Ihre personenbezogenen Daten an Dritte weitergeben. Dabei kann es sich um folgende handeln:",
     "l23.1": "Unsere Dienstleister im Zielland (z. B. Agenturen, Reiseleiter, Hotelbuchungen, Transfer- und Ausflugsdienste), Transportunternehmen (Fluggesellschaft, Bahn, Autovermietung usw.) und Unterkunftsanbieter (Hotel, Hostels usw.);",
@@ -476,20 +599,16 @@
     "a5": ", per Post oder schriftlich an:",
     "l5": "ZüriCar GmbH, Wallisellerstrasse 147, 8152 Opfikon",
     "l5.5": "Wenn das reservierte Fahrzeug nicht zur vereinbarten Zeit abgeholt wird, wird der bereits bezahlte volle Mietbetrag einbehalten.",
-
     "h6": "Nichtabholung des Fahrzeugs",
     "l6.1": "Für Buchungen mit dem Flexi-Tarif gilt: Wenn der Mieter das Fahrzeug aus welchem Grund auch immer nicht spätestens eine Stunde nach der vereinbarten Zeit abholt, ist ZüriCar GmbH nicht mehr an die Buchung gebunden. Es gelten die allgemeinen Mietbedingungen.",
     "l6.2": "Für Buchungen mit dem Frühbuchertarif (Prepaid) gilt: Die bereits bezahlten Mietgebühren werden bei Nichtabholung oder verspäteter Abholung des reservierten Fahrzeugs nicht zurückerstattet. Das Recht auf weitergehenden Schadenersatz bleibt ausdrücklich vorbehalten.",
-
     "h7": "Voraussetzungen für den Mieter/zur Mitfahrerlaubnis",
     "l7.1": "Der Mieter verpflichtet sich, die in der Schweiz geltenden Vorschriften bezüglich Alter und Führerschein einzuhalten und sich vor der Buchung auf der Website von ZüriCar GmbH oder im Depot darüber zu informieren bzw. telefonisch nachzufragen.",
-
     "l7.2": "Zur Überprüfung der Gültigkeit muss der Originalführerschein vorgelegt werden.",
     "l7.3": "Gültige Führerscheine aus Nicht-EU-Ländern werden einem Schweizer Führerschein gleichgestellt, wenn",
     "l7.4": "kein gültiges Visum für die Schweiz oder ein EU-Land im Reisepass des Mieters vorhanden ist;",
     "l7.5": "ein gültiges Visum für die Schweiz oder ein EU-Land vorhanden ist und sich der Mieter zum Zeitpunkt der Fahrzeugabholung nicht länger als 6 Monate in Europa aufhält.",
     "l7.6": "Führerscheine, die nicht in lateinischer Schrift verfasst sind, erfordern zusätzlich einen internationalen Führerschein.",
-
     "l7.7": "Wenn der Mieter oder ein zusätzlicher Fahrer zum Mietzeitpunkt die Anforderungen nicht erfüllt, kann die Vermietfirma vom Vertrag zurücktreten und die Fahrzeugübergabe verweigern. Dies gilt auch bei falschen Angaben (z. B. falsches Alter) bei der Buchung.",
     "l7.8": "Die Vermietfirma behält sich das Recht vor, Schadensersatz und Kosten aus bereits bezahlten Mietgebühren geltend zu machen.",
     "l7.9": "Das Fahrzeug darf nur vom Mieter gefahren werden. Wenn zusätzliche Fahrer angegeben sind, müssen auch sie die Voraussetzungen erfüllen. Andernfalls dürfen sie das Fahrzeug nicht fahren. Dies berechtigt den Mieter nicht zur Stornierung oder zur Rückerstattung der Zusatzfahrergebühr.",
@@ -529,20 +648,16 @@
     "l13": "Der Mieter ist verpflichtet, (i) das Fahrzeug sorgfältig zu fahren und zu behandeln sowie die vom Hersteller oder Vermieter vorgeschriebenen Bedienungsanleitungen zu beachten; (ii) das Fahrzeug bei Nichtbenutzung abzuschließen, insbesondere Fenster, Dachöffnungen sowie Motorhaube; (iii) das Fahrzeug nur in den erlaubten Ländern und unter Beachtung der dort geltenden gesetzlichen Bestimmungen zu verwenden; (iv) das Fahrzeug nur zu gesetzlich zulässigen Zwecken zu nutzen und (v) die Fahrt bei Auftreten eines Mangels am Fahrzeug zu unterbrechen, sobald dies gefahrlos möglich ist, und den Vermieter unverzüglich zu benachrichtigen.",
     "h14": "Nutzungsbeschränkungen",
     "l14": "Es ist verboten, das Fahrzeug (i) für Rennen, Schleuderkurse, Fahrtrainings oder Ähnliches sowie als Fahrschulfahrzeug zu verwenden; (ii) als Abschlepp-, Schlepp- oder Rangierfahrzeug zu nutzen; (iii) unter Angabe falscher persönlicher Angaben wie Alter, Name, Adresse usw.; (iv) unter Einfluss von Alkohol, Drogen, Medikamenten oder Aufputschmitteln; (v) in überladenem oder nicht verkehrstauglichem Zustand; (vi) für Fahrten außerhalb befestigter Straßen oder Wege sowie für das Durchqueren von Flussbetten oder Ähnlichem (insbesondere auch bei Fahrzeugen mit Allradantrieb); (vii) zum Transport von brennbaren, giftigen oder gefährlichen Stoffen zu verwenden.",
-
     "h15": "Wartung",
     "l15.1": "Der Mieter verpflichtet sich, regelmäßig den Öl-, AdBlue- und Wasserstand sowie den Reifendruck zu überprüfen und entsprechend zu handeln. Der Mieter muss die Handbücher für das Laden von Elektro- oder Hybridfahrzeugen sowie für jegliches Zubehör (z. B. Ladekabel) strikt einhalten, ebenso wie die Anweisungen an der Ladestation. Die Nutzung von nicht zertifiziertem, nicht freigegebenem oder beschädigtem Zubehör ist strengstens untersagt. Bei Schäden an der Ladestation durch unsachgemäße Nutzung haftet der Mieter. Nach Beendigung des Ladevorgangs oder Ablauf der maximal erlaubten Parkdauer ist der Parkplatz umgehend freizugeben. Kosten für überzogene Lade- und/oder Parkzeiten sowie Bußgelder oder Abschleppkosten werden dem Mieter weiterverrechnet.",
-
     "h16": "Reparaturen",
     "l16": "Reparaturen während der Mietzeit sollen möglichst bei der nächstgelegenen Vertragswerkstatt erfolgen.",
     "l16.1": "Übersteigen die Reparaturkosten CHF 200.00, ist vorab eine Zustimmung des Vermieters einzuholen.",
     "l16.2": "Der Vermieter erstattet die Reparaturkosten gegen Nachweis und Zustimmung.",
     "l16.3": "Ausgenommen sind Fälle, in denen der Mieter gemäß Ziffer 15.6 der AGB haftet.",
     "l16.4": "Ausgewechselte Teile sind dem Vermieter auszuhändigen.",
-
     "h17": "Haftungsbeschränkung des Vermieters",
     "l17.1": "Jegliche Haftung des Vermieters und seiner Erfüllungsgehilfen gegenüber dem Mieter und weiteren Fahrern für Personen- oder Sachschäden ist, soweit gesetzlich zulässig, ausgeschlossen – einschließlich indirekter Schäden, entgangenen Gewinns, Nutzungsausfall, Terminverlust etc.",
-
     "h18": "Sorgfalts- und Mitteilungspflichten des Mieters",
     "l18": "Bei Unfall, Diebstahl, Brand, Wildschäden oder sonstigen Schäden ist der Vermieter umgehend zu benachrichtigen und zur Schadensminderung beizutragen.",
     "l18.1": "Unfälle sind sofort der Polizei zu melden – auch bei geringfügigen oder selbstverschuldeten Schäden.",
@@ -552,20 +667,17 @@
     "l18.5": "In solchen Fällen darf das Fahrzeug nicht weiter gemietet bzw. gefahren werden.",
     "l18.6": "Bei Verstoß gegen die Pflichten gemäß Ziffer 12.1 und/oder 12.2 haftet der Mieter vollumfänglich – eventuelle Haftungsbegrenzungen oder Versicherungen entfallen.",
     "l18.7": "Der Mieter ermächtigt den Vermieter zur Einsicht in Polizei- oder Behördenakten im Schadensfall.",
-
     "h19": "Verstöße gegen Verkehrsregeln",
     "l19.1": "Der Mieter muss alle Verkehrsregeln einhalten und sich über nationale Besonderheiten informieren.",
     "l19.2": "Der Mieter haftet allein für alle Rechtsverstöße mit dem Mietfahrzeug – auch durch Zusatzfahrer – bis zur Rückgabe.",
     "l19.3": "Wird der Vermieter aus Halterhaftung oder anderen Gründen belangt, trägt der Mieter sämtliche Kosten.",
     "l19.4": "Der Vermieter ist verpflichtet, bei Verkehrsverstößen die Daten des Mieters/ Fahrers an die Behörden zu melden.",
     "l19.5": "Für diesen Verwaltungsaufwand wird eine Gebühr von CHF 40.00 erhoben.",
-
     "h20": "Auslandsfahrten und Einreisebeschränkungen",
     "l20.1": "Besondere Anweisungen des Vermieters zu Zoll, Grenzübertritten oder Rückgabeort sind strikt einzuhalten.",
     "l20.2": "Kann der Mieter diesen Anweisungen nicht nachkommen, muss er den Vermieter unverzüglich informieren.",
     "l20.3": "Verstöße führen zu Schadensersatzpflicht – z. B. für Zollgebühren oder Bußgelder.",
     "l20.4": "Je nach Fahrzeugkategorie und Buchung sind bestimmte Länder für Fahrten ausgeschlossen. Details siehe Mietvertrag.",
-
     "h21": "Haftung, Haftungsbeschränkung, Schutzoptionen",
     "l21.1": "<strong>Haftung des Mieters gegenüber dem Vermieter:</strong> Der Mieter haftet – unabhängig von einem Verschulden – für Schäden, Verlust oder Zerstörung des Fahrzeugs (z. B. Diebstahl). Dies gilt auch für Handlungen durch Zusatzfahrer oder Helfer. Mehrere Mieter haften solidarisch. Eine Haftungsbeschränkung kann vereinbart werden (siehe Ziffer 15.5).",
     "stg22": "Haftungsumfang",
@@ -608,27 +720,17 @@
     "l26.1": "ZüriCar GmbH ist vom Kunden ausdrücklich dazu bevollmächtigt, neben seinen allgemeinen personenbezogenen Daten auch alle weiteren Daten aus seinem Führerschein oder Ausweisdokument (Reisepass/ID) (einschließlich Bilder), Kommunikationsdaten (insbesondere E-Mail-Adresse), Finanzdaten (z. B. Kreditkartendaten) sowie alle weiteren Kategorien personenbezogener Daten gemäß unserer Datenschutzerklärung (https://zuericar.com/) für die in der Datenschutzerklärung genannten Zwecke zu verarbeiten. Der Mieter hat das Recht, die vorgenannte Einwilligung jederzeit zu widerrufen. Der Widerruf der Einwilligung berührt nicht die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung.",
     "l26.2": "Die E-Mail-Adresse wird von EVAG nur zum Zweck des Angebots ähnlicher Waren oder Dienstleistungen an den Mieter verwendet. Der Mieter kann dieser Verwendung seiner E-Mail-Adresse jederzeit widersprechen, ohne dass ihm andere als die Übermittlungskosten nach den Basistarifen entstehen.",
     "l26.3": "Durch die Bereitstellung der Daten willigt der Mieter ein, dass ZüriCar GmbH die Daten innerhalb der EXPLORE Holding zum Zweck der Abwicklung des der Vereinbarung zugrunde liegenden Geschäfts, zu Marketingzwecken, zur Pflege bestehender oder zukünftiger Kundenbeziehungen sowie zu Zwecken, die bei der Datenerhebung ausdrücklich angegeben wurden oder offensichtlich mit der Bereitstellung der Daten in Zusammenhang stehen, weitergibt.",
-
     "l26.4": "Der Mieter kann diese Einwilligung zur Weitergabe seiner Daten gegenüber ZüriCar GmbH jederzeit mit Wirkung für die Zukunft widerrufen.",
-
     "l26.5": "Name, Adresse und Mietdaten sowie alle weiteren dem Vermieter bekannten Informationen über den Mieter werden bei berechtigten Anfragen der Behörden (z. B. im Zusammenhang mit Verkehrsverstößen) an die jeweilige Behörde sowie bei behaupteten Verletzungen von Rechten Dritter (z. B. Besitzstörungen) an die entsprechenden Dritten übermittelt.",
-
     "h27": "Digitale Anmietung",
     "l27": "Abweichend von Ziffer 2.2 wird bei einer digitalen Anmietung (z. B. über die ZüriCar GmbH App, Mobile Check-In usw.) der Inhalt des geschlossenen Vertrags zusammen mit den angezeigten Allgemeinen Mietbedingungen vom Mieter durch Klicken auf die entsprechenden Schaltflächen in den digitalen Diensten von ZüriCar GmbH bestätigt; der Mieter erklärt hiermit, dass er den Vertragsinhalt zur Kenntnis genommen und verstanden hat und diesem ausdrücklich zustimmt. Der Inhalt des geschlossenen Vertrags kann im Rahmen der digitalen Dienste von ZüriCar GmbH abgerufen werden oder wird dem Mieter per E-Mail zur Verfügung gestellt und somit für beide Parteien verbindlich bestätigt.",
-
     "l27.1": "Der Mieter darf die Zugangsdaten (z. B. Login, PIN, Benutzername, Passwort usw.) zu den von ZüriCar GmbH bereitgestellten Diensten nicht an Dritte weitergeben und muss sicherstellen, dass diese für Dritte nicht zugänglich sind. Um einen Zugriff Dritter auf die Dienste von ZüriCar GmbH zu verhindern, ist es untersagt, Zugangsdaten schriftlich festzuhalten. Der Verlust von Zugangsdaten ist umgehend per E-Mail an ZüriCar GmbH (info@züricar.ch) zu melden. Die Zugangsdaten sind nicht übertragbar.",
-
     "l27.2": "Zusätzlich zu Ziffer 12.2 ist die Nutzung der digitalen Dienste von ZüriCar GmbH zur Anmietung von Fahrzeugen untersagt, wenn dem Mieter der Führerschein entzogen wurde oder andere Einschränkungen des Führerscheins bestehen (z. B. Einschränkung des Führerscheins, vorübergehende Einziehung oder Beschlagnahmung des Führerscheins oder ein gerichtlich oder behördlich verhängtes Fahrverbot).",
-
     "l27.3": "Für bestimmte Dienste fordert ZüriCar GmbH den Mieter regelmäßig auf, den Besitz eines gültigen Führerscheins zu bestätigen. Möchte der Mieter Dienste wie die digitale Anmietung (z. B. Mobile Check-In) nutzen, ist er verpflichtet, seinen Führerschein vor Beginn der Anmietung entsprechend den von ZüriCar GmbH vorgegebenen Prozessen vorzulegen.",
-
     "h28": "Anwendbares Recht und Gerichtsstand",
     "l28": "Der Mietvertrag unterliegt ausschließlich dem schweizerischen Recht unter Ausschluss des internationalen Privatrechts.",
-
     "l28.1": "Gerichtsstand für alle Streitigkeiten im Zusammenhang mit dem Mietvertrag zwischen dem Mieter und dem zusätzlichen Fahrer sowie der Vermietfirma ist ausschließlich Opfikon. Die Vermietfirma ist jedoch berechtigt, Klage bei jedem anderen zuständigen Gericht zu erheben.",
-
     "l28.2": "Unwirksamkeit oder Teilunwirksamkeit, Sprache",
-
     "l28.3": "Die teilweise oder vollständige Unwirksamkeit oder Undurchsetzbarkeit einer oder mehrerer Bestimmungen des Mietvertrags, einschließlich dieser Allgemeinen Mietbedingungen (AGB), berührt nicht die Wirksamkeit der übrigen Bestimmungen. Unwirksame Bestimmungen werden im Rahmen der Vertragsauslegung durch solche ersetzt, die dem angestrebten Zweck der unwirksamen Bestimmungen am nächsten kommen. Im Falle von Widersprüchen ist der deutsche Vertragstext maßgeblich.",
     "p1.2": "Die folgenden Vermittlungsbedingungen gelten für die Vermittlungsleistungen von  ZüriCar GmbH für Pauschalreisen, Kreuzfahrten, (nur) Flüge, (nur) Hotels, Mietwagen, Städtetrips, sonstige Reisedienstleistungen, damit verbundene Reisedienstleistungen sowie Reiseversicherungen auf dem Internetportal.",
     "p1.3": "Bitte beachten Sie auch die jeweils geltenden allgemeinen Geschäftsbedingungen (Reise- und Zahlungsbedingungen) sowie die vorvertraglichen Informationen des jeweiligen verantwortlichen Anbieters, die Sie in der Leistungsbeschreibung einsehen können.",
@@ -713,7 +815,6 @@
     "p19.1": "Für alle Streitigkeiten, die sich aus oder im Zusammenhang mit dem Vermittlungsverhältnis zwischen dem Kunden und der ZüriCar GmbH ergeben, wird, soweit gesetzlich zulässig, der ausschließliche Gerichtsstand Kloten (ZH), Schweiz, vereinbart. Obligatorische Gerichtsstände für Verbraucher gemäß den Artikeln 32 und 35 der Schweizerischen Zivilprozessordnung bleiben unberührt.",
     "p19.2": "ZüriCar GmbH Geschäftsleitung: Diestale Ambros Oberfeldstrasse 10 CH-8302 Kloten Telefon: +41 79 766 99 60 E-Mail: info@züricar.ch Website:  info@züricar.ch  Registergericht: Handelsregisteramt des Kantons Zürich"
   },
-  
   "termsTransfer": {
     "title": "ZüriCar GO – Transfers – Allgemeine Geschäftsbedingungen",
     "h1": "1. Einführung",

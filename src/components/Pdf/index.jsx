@@ -11,7 +11,7 @@ import {
 } from "@react-pdf/renderer";
 
 import page1 from "../../assets/Pdf/page1.jpg";
-import page2 from "../../assets/Pdf/Page2.jpg";
+import page2 from "../../assets/Pdf/Page3.jpg";
 import page3 from "../../assets/Pdf/Page3.jpg";
 import page4 from "../../assets/Pdf/Page4.jpg";
 
@@ -32,213 +32,97 @@ export default function PdfVieTour({
 }) {
   return (
     <Document>
-      <Page size="A4">
-        <View style={{ width: "100%", height: "100%", padding: "40px" }}>
-          <View style={{ position: "relative", height: "100%", width: "100%" }}>
-         
-            <Image
-              src={page1}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                height: "100%",
-                width: "100%",
-                zIndex: -1,
-              }}
-            />
+   <Page size="A4">
+  <View style={{ width: "100%", height: "100%", position: "relative" }}>
+    {/* Background Image */}
+    <Image
+      src={page1}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        height: "100%",
+        width: "100%",
+        zIndex: -1,
+      }}
+    />
 
-            {/* Foreground Content */}
-            <Text
-              style={{
-                position: "absolute",
-                bottom: 70,
-                left: 0,
-                right: 0,
-                textAlign: "center",
-                color: "white",
-                fontWeight: "900",
-                textTransform: "uppercase",
-                fontSize: 30,
-              }}
-            >
-              {tourName}
-            </Text>
-          </View>
-        </View>
-      </Page>
-      <Page size="A4">
-        <View style={{ width: "100%", height: "100%", padding: "40px" }}>
-          <View style={{ position: "relative", height: "100%", width: "100%" }}>
-            {/* Background Image */}
-            <Image
-              src={page2}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                height: "100%",
-                width: "100%",
-                zIndex: -1,
-              }}
-            />
+    {/* Foreground Content */}
+    <View
+      style={{
+        position: "absolute",
+        top: 550, 
+        left: 60,
+        right: 60,
+        color: "white",
+      }}
+    >
+      {/* Tour Name */}
+      <Text
+        style={{
+          textAlign: "center",
+          color: "#2272bd",
+          fontWeight: "900",
+          textTransform: "uppercase",
+          fontSize: 30,
+          marginBottom: 60, // added more space below the title
+          textShadow: "1px 1px 3px rgba(0,0,0,0.6)", // makes text readable on any background
+        }}
+      >
+        {tourName}
+      </Text>
 
-            {/* Foreground Content */}
-            <Text
-              style={{
-                fontSize: "20px",
-                color: "#0d90d1",
-                width: "50%",
-                marginLeft: "45%",
-                fontWeight: "900",
-              }}
-            >
-              Package Details
-            </Text>
-            <Text
-              style={{
-                fontSize: "26px",
-                width: "40%",
-                padding: "3px",
-                textAlign: "center",
-                fontWeight: "400px",
-                marginLeft: "55%",
-                border: "1px solid #73c4e9",
-                borderRadius: "50px",
-                backgroundColor: "#e1f3ff",
-                marginTop: "10%",
-              }}
-            >
-              Duration :
-            </Text>
+      {/* Details List */}
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 10,
+          fontSize: 14,
+          color: "black",
+          lineHeight: 1.5,
+        }}
+      >
+        <Text>
+          <Text style={{ fontWeight: "bold" }}>Duration : </Text>
+          {tourDay} Days & {tourNight} Nights
+        </Text>
 
-            <Text
-              style={{
-                fontSize: "26px",
-                width: "50%",
-                fontWeight: "400px",
-                marginLeft: "50%",
-                textAlign: "center",
-                marginTop: "2%",
-              }}
-            >
-              {tourDay} Days & {tourNight} Nights
-            </Text>
-            <Text
-              style={{
-                fontSize: "26px",
-                width: "40%",
-                padding: "3px",
-                textAlign: "center",
-                fontWeight: "400px",
-                marginLeft: "55%",
-                border: "1px solid #73c4e9",
-                borderRadius: "50px",
-                backgroundColor: "#e1f3ff",
-                marginTop: "10%",
-              }}
-            >
-              Price :
-            </Text>
-            <Text
-              style={{
-                fontSize: "26px",
-                width: "50%",
-                fontWeight: "400px",
-                marginLeft: "50%",
-                textAlign: "center",
-                marginTop: "2%",
-              }}
-            >
-              CHF {tourPrice}
-            </Text>
-            <Text
-              style={{
-                fontSize: "26px",
-                width: "40%",
-                padding: "3px",
-                textAlign: "center",
-                fontWeight: "400px",
-                marginLeft: "55%",
-                border: "1px solid #73c4e9",
-                borderRadius: "50px",
-                backgroundColor: "#e1f3ff",
-                marginTop: "10%",
-              }}
-            >
-              Tour Code :
-            </Text>
-            <Text
-              style={{
-                fontSize: "26px",
-                width: "50%",
-                fontWeight: "400px",
-                marginLeft: "50%",
-                textAlign: "center",
-                marginTop: "2%",
-              }}
-            >
-              {tourCode}
-            </Text>
-            <Text
-              style={{
-                fontSize: "26px",
-                width: "40%",
-                padding: "3px",
-                textAlign: "center",
-                fontWeight: "400px",
-                marginLeft: "55%",
-                border: "1px solid #73c4e9",
-                borderRadius: "50px",
-                backgroundColor: "#e1f3ff",
-                marginTop: "10%",
-              }}
-            >
-              Group Size :
-            </Text>
-            <Text
-              style={{
-                fontSize: "26px",
-                width: "50%",
-                fontWeight: "400px",
-                marginLeft: "50%",
-                textAlign: "center",
-                marginTop: "2%",
-              }}
-            >
-              {tourGroupSize}
-            </Text>
-            <Text
-              style={{
-                fontSize: "26px",
-                width: "40%",
-                padding: "3px",
-                textAlign: "center",
-                fontWeight: "400px",
-                marginLeft: "55%",
-                border: "1px solid #73c4e9",
-                borderRadius: "50px",
-                backgroundColor: "#e1f3ff",
-                marginTop: "10%",
-              }}
-            >
-              Category :
-            </Text>
-            <Text
-              style={{
-                fontSize: "26px",
-                width: "50%",
-                fontWeight: "400px",
-                marginLeft: "50%",
-                textAlign: "center",
-                marginTop: "2%",
-              }}
-            >
-              {tourCategory}
-            </Text>
-          </View>
-        </View>
-      </Page>
+        <Text>
+          <Text style={{ fontWeight: "bold" }}>Price : </Text>
+          CHF {tourPrice}
+        </Text>
+
+        <Text>
+          <Text style={{ fontWeight: "bold" }}>Tour Code : </Text>
+          {tourCode}
+        </Text>
+
+        <Text>
+          <Text style={{ fontWeight: "bold" }}>Group Size : </Text>
+          {tourGroupSize}
+        </Text>
+
+        <Text>
+          <Text style={{ fontWeight: "bold" }}>Category : </Text>
+          {tourCategory}
+        </Text>
+      </View>
+    </View>
+
+    {/* Leave 20px empty space at bottom */}
+    <View
+      style={{
+        position: "absolute",
+        bottom: 20,
+        left: 0,
+        right: 0,
+        height: 20,
+      }}
+    />
+  </View>
+</Page>
+
       <Page size="A4" wrap={true}>
         <View wrap={true}>
           <Text
@@ -265,14 +149,34 @@ export default function PdfVieTour({
             }}
           />
 
-          <Html
-            style={{
-              fontSize: 10,
-              padding: "3%",
-            }}
-          >
-            {tourItenary}
-          </Html>
+      {/* <Html
+  style={{
+    fontSize: 10,
+    padding: "3%",
+    lineHeight: 1.2, 
+  }}
+>
+  {tourItenary}
+</Html> */}
+<Html
+  style={{
+    fontSize: 10,
+    padding: "3%",
+    lineHeight: 1.2, // tighter overall line spacing
+  }}
+>
+  {tourItenary
+    ?.replaceAll(
+      "<p>",
+      '<p style="margin:2px 0; line-height:1.2;">' // reduce space between paragraphs
+    )
+    .replaceAll(
+      "<br>",
+      "<br style='line-height:1.2;' />" // reduce spacing for line breaks too
+    )}
+</Html>
+
+
         </View>
       </Page>
       <Page size="A4">

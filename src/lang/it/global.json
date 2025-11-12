@@ -18,7 +18,123 @@
     "event": "Evento",
     "flightbooking": "Prenotazione Volo"
   },
+  "tour": {
+    "bookNow": "Prenota ora",
+    "categories": "Categorie",
+    "duration": "Durata",
+    "price": "Prezzo",
+    "tourCode": "Codice tour",
+    "groupSize": "Dimensione del gruppo",
+    "travelExcludes": "Il viaggio esclude",
+    "travelIncludes": "Il viaggio include",
+    "galleryImage": "Immagine della galleria",
+    "itinerary": "Itinerario",
+    "travelOverview": "Panoramica del viaggio",
+    "enterCouponCode": "Inserisci il codice coupon",
+    "specialNotes": "Note speciali",
+    "downloads": "Download",
+    "viewTour": "Visualizza tour",
+    "noToursAvailable": "Nessun tour disponibile per i filtri selezionati",
+    "bag": "Borsa",
+    "day": "Giorno",
+    "loading": "Caricamento",
+    "privacyPolicy": "Informativa sulla privacy",
+    "termsOfUse": "Termini di utilizzo",
+    "backToTours": "Torna ai tour",
+    "applyCoupon": "Applica coupon",
+    "privacyNotice": "Continuando a utilizzare i nostri servizi, riconosci che i tuoi dati personali saranno trattati in conformità con la nostra Informativa sulla privacy.",
+    "termsNotice": "Creando un account, accetti i nostri Termini di utilizzo.",
+    "noTourData": "Nessun dato del tour trovato",
+    "days": "Giorni",
+    "nights": "Notti",
+    "person": "Persona",
+    "downloadTour": "Scarica qui il pacchetto turistico",
+    "personalDetails": "Dettagli personali",
+    "firstName": "Il tuo nome",
+    "lastName": "Il tuo cognome",
+    "email": "La tua email",
+    "mobileNumber": "Il tuo numero di cellulare",
+    "pickupDate": "Data e ora del ritiro",
+    "arrivalDate": "Data e ora di arrivo",
+    "numPassengers": "Numero di passeggeri in viaggio",
+    "adults": "Adulti",
+    "children": "Bambini",
+    "infants": "Neonati",
+    "enterPersonCount": "Inserisci il numero di persone per calcolare l'importo",
+    "totalAmount": "Importo totale",
+    "numRooms": "Numero di camere",
+    "singleRoom": "Camera singola",
+    "twinRoom": "Camera doppia",
+    "tripleRoom": "Camera tripla",
+    "requirements": "Altri requisiti",
+    "uploadNote": "Il tuo documento caricato sarà archiviato in modo sicuro e mantenuto riservato",
+    "uploadAgreement": "Carica accordo",
+    "dragPdf": "Trascina e rilascia qui il tuo PDF per caricarlo",
+    "uploadPassport": "Carica passaporto",
+    "uploadVaccine": "Carica certificato di vaccinazione"
+  },
+  "home1":{
+    "description1": "Le nostre auto compatte moderne offrono comfort, efficienza e stile per ogni viaggio. Perfette per la guida in città o per viaggi di lavoro – con ampio spazio e tecnologia avanzata.",
+    "highlights1": [
+      "Climatizzate ed efficienti nei consumi",
+      "Fino a 4 passeggeri",
+      "Ideali per spostamenti urbani e brevi tragitti"
+    ],
+    "description2": "I nostri SUV combinano prestazioni e lusso. Con sedili rialzati, design moderno e interni spaziosi, sono perfetti per famiglie o viaggi lunghi – in città, in montagna o in campagna.",
+    "highlights2": [
+      "Fino a 5 passeggeri",
+      "Ampio bagagliaio e trazione 4WD opzionale",
+      "Guida fluida su qualsiasi terreno"
+    ],
+    "description3": "I nostri minivan sono ideali per famiglie o gruppi. Con fino a 8 posti, interni flessibili e molto spazio per i bagagli, garantiscono un viaggio confortevole per tutti.",
+    "highlights3": [
+      "Fino a 8 passeggeri",
+      "Sedili comodi e porte scorrevoli",
+      "Perfetti per trasferimenti aeroportuali e viaggi di gruppo"
+    ],
+    "description4": "Per viaggi di lavoro o occasioni speciali, i nostri veicoli premium rappresentano comfort, classe e qualità.",
+    "highlights4": [
+      "Fino a 3 passeggeri",
+      "Design lussuoso con interni in pelle",
+      "Ideale per trasferimenti VIP o aziendali"
+    ],
+    "description5": "L’eleganza incontra lo spazio e il comfort. Questo van business-class è la scelta ideale per servizi con autista, viaggi aziendali e trasferimenti di gruppo eleganti.",
+    "highlights5": [
+      "Fino a 7 passeggeri",
+      "Sedili in pelle e cabina spaziosa",
+      "Perfetto per trasferimenti aeroportuali e VIP"
+    ],
+    "description6": "Prova l’emozione di guidare! Le nostre auto sportive combinano design eccezionale e alte prestazioni – per un’esperienza di guida indimenticabile.",
+    "highlights6": [
+      "1–2 passeggeri",
+      "Design sportivo & motore ad alte prestazioni",
+      "Perfetto per weekend ed eventi"
+    ]
+  },
+  
+  "carousel": {
+      
+        "title1": "MIRISSA",
+        "subtitle1": "Il paradiso tropicale sulla costa dello Sri Lanka",
+        "title2": "ELLA",
+        "subtitle2": "Il cuore delle montagne dello Sri Lanka",
+        "title3": "SRI LANKA",
+        "subtitle3": "",
+        "title4": "SIGIRIYA",
+        "subtitle4": "La Roccia del Leone nel cuore dello Sri Lanka",
+         "rent_a_car": "Noleggia un'auto",
+      "holiday_packages": "Pacchetti vacanza",
+      "airport_parking": "Parcheggio aeroporto",
+      "airport_transfer": "Trasferimento aeroportuale",
+       "title5": "Vivi il comfort premium a un prezzo economico",
+    "title6": "Noleggio, Andiamo!",
+    "title7": "Guida ovunque con i nostri SUV e 4x4 a noleggio",
+    "title8": "Senza stress, affidabile, senza costi nascosti"
+      
+  },
   "home": {
+    "title": "La nostra flotta",
+    
     "General": "Generale",
     "q1": "Esiste un periodo minimo o massimo di noleggio per un furgone ZüriCar GmbH?",
     "a1": "Il periodo minimo di noleggio è di mezza giornata. Il periodo massimo è generalmente di 30 giorni. Se hai bisogno di un veicolo per più di 30 giorni, contatta il nostro team commerciale. Saremo lieti di prepararti un'offerta.",
@@ -32,7 +148,6 @@
     "a5": "Sì, nessun problema. Se restituisci il veicolo fuori dagli orari di apertura, parcheggialo in uno degli spazi disponibili presso la stazione ZüriCar GmbH e deposita la chiave nella cassetta per le chiavi. Restituire la chiave non termina il contratto di noleggio. Consulta i termini del contratto per maggiori dettagli.",
     "q6": "Posso guidare un furgone ZüriCar GmbH con la patente di categoria B?",
     "a6": "Sì, tutti i veicoli sono consentiti per titolari di patente categoria B, a condizione che la patente sia stata conseguita da almeno un anno.",
-
     "Rates & Fees": "Tariffe e Costi",
     "q7": "Ho ricevuto una multa. Cosa succede adesso?",
     "a7": "La multa viene inviata a ZüriCar GmbH. Identifichiamo il conducente responsabile e inoltriamo i suoi dati alla polizia o all'autorità competente. Riceverai la multa direttamente da loro. Inoltre, addebitiamo una tassa amministrativa di CHF 80.00 (IVA inclusa).",
@@ -46,7 +161,6 @@
     "a11": "Tutti i prezzi sono in franchi svizzeri (CHF) e includono l’IVA.",
     "q12": "Ci sono costi aggiuntivi per guidare all’estero?",
     "a12": "Sì, si applica una tassa di confine (CBF) fino a CHF 185.00 (IVA inclusa). Consulta le restrizioni di viaggio per ogni paese e categoria veicolo nel contratto di noleggio.",
-
     "Insurance": "Assicurazione",
     "q13": "È inclusa una riduzione di responsabilità?",
     "a13": "Sì, la riduzione di responsabilità è inclusa in tutte le tariffe (rimane una franchigia).",
@@ -56,7 +170,6 @@
     "a15": "Sì, tutti i conducenti sotto i 25 anni devono pagare un sovrapprezzo. I prezzi variano per categoria, con un massimo di CHF 199 al mese di noleggio.",
     "q16": "Cos’è l’assicurazione SuperCover?",
     "a16": "Con l’assicurazione Premium (esclusione responsabilità), puoi ridurre la franchigia a CHF 350 per sinistro, proteggendoti da costi elevati in caso di danni o perdite.",
-
     "Reservation": "Prenotazione",
     "q17": "Come posso prenotare un furgone ZüriCar GmbH?",
     "a17": "Puoi prenotare online su explorevacations.ch, telefonicamente o direttamente presso una stazione ZüriCar GmbH.",
@@ -68,7 +181,6 @@
     "a20": "Consigliamo di prenotare il prima possibile per garantirti il modello preferito. Le prenotazioni sono generalmente possibili fino a poco prima dell'inizio del noleggio.",
     "q21": "Posso prenotare un modello specifico di veicolo?",
     "a21": "Puoi prenotare categorie di veicoli, non modelli specifici.",
-
     "Before the Trip": "Prima del Viaggio",
     "q22": "Posso parcheggiare la mia auto privata presso la stazione ZüriCar GmbH durante il noleggio?",
     "a22": "Sì, in generale è possibile in tutte le nostre sedi, ma verifica la disponibilità con la tua stazione. ZüriCar GmbH non si assume responsabilità per danni alla tua auto privata.",
@@ -78,13 +190,11 @@
     "a24": "Per la tua sicurezza, verifica eventuali danni, regola sedile e specchietti, allaccia le cinture, accendi i fari e assicurati della buona visibilità dai finestrini.",
     "q25": "Posso richiedere una prova su strada con assistenza?",
     "a25": "Sì! Con preavviso, un nostro collaboratore ti accompagnerà in una breve prova per familiarizzare col veicolo. Contatta la tua stazione in anticipo.",
-
     "During the Trip": "Durante il Viaggio",
     "q26": "Posso fumare nel furgone?",
     "a26": "No, tutti i veicoli ZüriCar GmbH sono non fumatori. In caso di violazione potrebbero essere applicate spese di pulizia.",
     "q27": "Cosa devo fare se sono coinvolto in un incidente?",
     "a27": "Nel vano portaoggetti trovi un checklist dettagliata e i moduli. Mantieni la calma, metti in sicurezza il luogo, aiuta i feriti e chiama la polizia (117).",
-
     "End of Trip / Vehicle Return": "Fine Viaggio / Restituzione Veicolo",
     "q28": "Cosa succede se non posso restituire il veicolo in tempo?",
     "a28": "Pianifica con anticipo e prolunga la prenotazione contattando la tua stazione o chiamando +41 79 766 99 60. Potrebbero essere applicate penali per ritardi.",
@@ -98,7 +208,6 @@
     "a32": "Parcheggia nel luogo indicato e lascia la chiave nella cassetta dedicata. La restituzione fuori orario non termina il contratto: leggi i termini per i dettagli.",
     "q33": "Cosa succede se riconsegno il veicolo con danni non segnalati?",
     "a33": "Potresti dover pagare costi per danni non segnalati, incluso il costo della franchigia e tasse amministrative.",
-
     "Others": "Altro",
     "q34": "Quali documenti devo portare con me per il noleggio?",
     "a34": "Patente valida da almeno un anno, carta di credito intestata al conducente, documento d’identità e documento di conferma prenotazione.",
@@ -107,7 +216,6 @@
     "q36": "Posso trasportare animali domestici nel veicolo?",
     "a36": "Gli animali sono ammessi purché siano in gabbia o con trasportino. Il veicolo deve essere pulito dopo l'uso."
   },
-
   "cookies": {
     "title": "Cookies – ZüriCar GmbH",
     "intro": "Utilizziamo i cookie per offrirti la migliore esperienza possibile sul nostro sito.",
@@ -138,7 +246,6 @@
     "updateDesc": "Questa politica può essere aggiornata periodicamente.",
     "contactTitle": "Contattaci"
   },
-  
   "imprint": {
     "title": "Informazioni legali / Note legali",
     "address1": "Kirchrainstrasse 3",
@@ -164,8 +271,6 @@
     "copyrightText1": "Il diritto d’autore e tutti gli altri diritti sui contenuti, immagini, foto o altri file di questo sito web sono di esclusiva proprietà di ZüriCar GO GmbH o dei titolari dei diritti espressamente nominati.",
     "copyrightText2": "Qualsiasi riproduzione, modifica, distribuzione o altro utilizzo degli elementi di questo sito richiede il consenso scritto preventivo del titolare dei diritti interessato."
   },
-
-
   "footer": {
     "footer": "Siamo una società premium di noleggio auto e un’agenzia di viaggi a servizio completo con sede in Svizzera. Con una flotta moderna e soluzioni di transfer affidabili, garantiamo la massima flessibilità e comfort per ogni viaggio. Oltre al noleggio auto, siamo specializzati in viaggi su misura FIT e di gruppo, vacanze al mare, safari ed esclusive spedizioni in Sri Lanka – creando esperienze di viaggio indimenticabili dalla Svizzera verso il mondo.",
     "Tours": "Tour",
@@ -180,7 +285,46 @@
   "car": {
     "Available Cars": "Auto Disponibili",
     "Standard": "Standard",
-    "Premium": "Premium"
+    "Premium": "Premium",
+
+    "dropDate": "Data di consegna",
+    "pickUpDate": "Data di ritiro",
+    "enterAddress": "Inserisci il tuo indirizzo",
+    "paymentTerms": "Termini di pagamento",
+    "rentalAgreement": "Contratto di noleggio",
+    "continue": "Continua",
+    "calculateNewPrice": "Calcola nuovo prezzo",
+    "includedInPrice": "Incluso nel prezzo",
+    "carHireFees": "Tasse della società di noleggio auto",
+    "theftProtection": "Protezione contro il furto",
+    "thirdPartyProtection": "Protezione contro terzi",
+    "vehicleProtection": "Protezione del veicolo",
+    "planFlex": "Piano Flex",
+    "vehicleValue": "Valore del veicolo",
+    "numberOfDays": "Numero di giorni",
+    "dailyRate": "Tariffa giornaliera",
+    "yourBooking": "La tua prenotazione",
+    "bookNowWarning": "Non aspettare — prenota ora prima che i prezzi aumentino",
+    "extra": "Extra",
+    "addExtras": "Aggiungi extra alla tua prenotazione",
+    "manufacturingYear": "Anno di fabbricazione",
+    "transmissionType": "Tipo di trasmissione",
+    "maxCount": "Conteggio massimo",
+    "fuelLimit": "Limite di carburante",
+    "fuelType": "Tipo di carburante",
+    "count": "Conteggio",
+    "charges": "Costi",
+    "noCarsAvailable": "Nessuna auto disponibile",
+
+    "driverDetails": "Driver Details",
+    "driverName": "Driver Name",
+    "driverAge": "Driver Age",
+    "driverMobile": "Driver Mobile",
+    "driverMail": "Driver Mail",
+    "uploadAgreement": "Upload Agreement",
+    "dragDropPdf": "Drag and drop your PDF here to upload",
+    "uploadNote": "Your uploaded document will be stored securely and kept confidential",
+    "chargeable": "Chargeable"
   },
   "contact": {
     "Get In Touch": "Mettiti in Contatto",
@@ -364,7 +508,6 @@
     "l20.8": "Dati di connessione e di tracciamento (es. raccolti tramite cookie per scopi non pubblicitari o analitici sui nostri siti web), servizi online, altre applicazioni;",
     "l20.9": "Dati sui tuoi dispositivi (telefono cellulare, computer, tablet, ecc.), come indirizzo IP, dati tecnici e dati di identificazione univoci;",
     "l20.10": "Dati di accesso personalizzati o funzionalità di sicurezza utilizzate per collegarti ai nostri siti web e app.",
-
     "h21": "DA CHI RACCOGLIAMO I DATI PERSONALI?",
     "l21.1": "Di solito raccogliamo i dati personali direttamente da te. Ma possiamo anche raccoglierli da altre fonti. A volte raccogliamo dati da fonti pubbliche:",
     "l21.2": "Pubblicazioni/banche dati fornite da autorità ufficiali o da terze parti (es. la Gazzetta Ufficiale Svizzera del Commercio o il Registro delle Imprese);",
@@ -375,7 +518,6 @@
     "l21.6": "Dai nostri partner commerciali (es. tour operator, fornitori di servizi all’estero);",
     "l21.7": "Da terze parti come agenzie di referenza creditizia e agenzie antifrode;",
     "l21.8": "Da fornitori di servizi di ricerca di indirizzi responsabili della raccolta delle informazioni in modo legale.",
-
     "h23": "CON CHI CONDIVIDIAMO I TUOI DATI PERSONALI E PERCHÉ?",
     "p23": "Per adempiere ad alcuni degli scopi descritti nella presente Informativa sulla privacy, in particolare per effettuare un viaggio, potremmo condividere i tuoi dati personali con altri. Questi possono includere:",
     "l23.1": "I nostri fornitori di servizi nel paese di destinazione (es. agenzie, guide turistiche, prenotazioni alberghiere, servizi di trasferimento ed escursioni), fornitori di servizi di trasporto (compagnie aeree, treni, noleggio auto, ecc.) e strutture ricettive (hotel, ostelli, ecc.);",
@@ -383,7 +525,6 @@
     "l23.3": "Professioni regolamentate come avvocati, notai o contabili, laddove necessario in determinate circostanze (contenzioso, revisione contabile, ecc.), e ai nostri assicuratori;",
     "l23.4": "Partner per l’esecuzione di attività pubblicitarie, ricerche di mercato e sondaggi d’opinione;",
     "l23.5": "Partner per aiutare nell’indagine di reati (es. frode), per la rivendicazione, l’esercizio o la difesa di diritti legali.",
-
     "h24": "TRASFERIMENTI INTERNAZIONALI DI DATI PERSONALI",
     "p24": "I trasferimenti internazionali dalla Svizzera e dallo Spazio Economico Europeo (SEE) verso un paese non SEE (paese terzo) possono comportare trasferimenti transfrontalieri dei tuoi dati personali. In particolare, devi aspettarti che i tuoi dati vengano trasferiti nei paesi di viaggio. Ma anche in paesi europei, negli Stati Uniti e in tutto il mondo, dove si trovano i fornitori di servizi e i venditori da noi utilizzati.",
     "p24.1": "Se il PFPDT o la Commissione Europea ha riconosciuto che un paese terzo fornisce un livello adeguato di protezione dei dati, i tuoi dati personali possono essere trasferiti su tale base.",
@@ -391,31 +532,24 @@
     "l24": "clausole contrattuali standard approvate dal PFPDT e dalla Commissione Europea;",
     "l24.1": "norme vincolanti d'impresa.",
     "p24.3": "Per ottenere una copia di queste garanzie o informazioni su dove siano disponibili, è possibile presentare una richiesta scritta ai sensi della Sezione 2.",
-
     "h25": "PER QUANTO TEMPO CONSERVIAMO I TUOI DATI PERSONALI?",
     "p25.1": "Conserviamo i tuoi dati personali per tutto il tempo necessario a soddisfare i nostri obblighi contrattuali e a rispettare le leggi e i regolamenti applicabili, o per qualsiasi altro periodo in considerazione dei nostri legittimi interessi aziendali, come una corretta contabilità e la risposta a richieste legali o normative.",
-
     "h26": "SICUREZZA DEI DATI",
     "p26": "Utilizziamo misure di sicurezza tecniche e organizzative adeguate per proteggere i tuoi dati personali da noi memorizzati contro manipolazioni, perdite parziali o complete e accessi non autorizzati da parte di terzi (es. crittografia dei dati, controlli di accesso, ecc.). Le nostre misure di sicurezza vengono costantemente migliorate in base agli sviluppi tecnologici.",
     "p26.1": "Adottiamo precauzioni ragionevoli per proteggere le tue informazioni. Tuttavia, la trasmissione di informazioni tramite Internet e altri mezzi elettronici comporta sempre rischi di sicurezza e non possiamo garantire la sicurezza delle informazioni trasmesse in questo modo.",
-
     "h27": "COME PUOI SEGUIRE GLI AGGIORNAMENTI DI QUESTA INFORMATIVA SULLA PRIVACY",
     "h27.1": "In un mondo in cui le tecnologie sono in costante evoluzione, rivediamo regolarmente questa Informativa sulla privacy e la aggiorniamo, se necessario.",
     "h27.2": "Si applica la versione attuale pubblicata sul nostro sito web. Ti consigliamo di consultare la versione più recente di questo documento online. Ti informeremo di eventuali modifiche tramite il nostro sito web o attraverso i nostri consueti canali di comunicazione.",
-
     "h28": "La nostra app è per i tassisti. In base alla loro posizione attuale, il nostro sistema trova l'autista più vicino e gli invia la richiesta di corsa. Per questo motivo, dobbiamo monitorare continuamente la posizione del conducente e aggiornare l'ultima posizione nel nostro sistema.",
     "h28.1": "Anche se il conducente chiude l'app, dobbiamo comunque ricevere la sua ultima posizione nel nostro sistema. Per aggiornare queste informazioni, inviamo la posizione del conducente al nostro sistema tramite un servizio in background anche quando l'app è in esecuzione in background.",
-
     "h29": "Raccolta e utilizzo delle informazioni",
     "p30": "Utilizzando l'app, accetti la raccolta e l'utilizzo delle informazioni secondo la presente politica.",
     "h31": "Raccolta e utilizzo delle informazioni",
-
     "l31.1": "Nome",
     "l31.2": "Indirizzo Email",
     "l31.3": "Numero di Telefono",
     "l31.4": "Genere",
     "l31.5": "Immagine del Profilo",
-
     "h32": "Come Utilizziamo le Tue Informazioni",
     "l32.1": "Numero di Telefono: Per accedere o registrarsi è richiesto il numero di telefono.",
     "l32.2": "Numero di Telefono: Usiamo il numero di telefono per inviarti l'OTP.",
@@ -426,10 +560,8 @@
     "l32.7": "Email: Per raccogliere analisi o informazioni utili per migliorare i nostri servizi.",
     "l32.8": "Genere: Per monitorare l’utilizzo dei nostri servizi.",
     "l32.9": "Per rilevare, prevenire e risolvere problemi tecnici.",
-
     "l40": "Immagine del Profilo: Per mostrare agli utenti un'immagine sul profilo che altri utenti possano identificare.",
     "l40.1": "Nome: Per mostrare il nome sul profilo e permettere all'utente di identificare altri utenti.",
-
     "l41": "Informazioni di Contatto",
     "l41.1": "Per richieste relative alla privacy, contattaci a:",
     "l41.2": "Nome dell’Azienda",
@@ -517,17 +649,14 @@
     "l14": "È vietato usare il veicolo (i) per gare, corsi di derapata, corsi di guida o simili, e come veicolo scuola guida; (ii) come veicolo di soccorso, traino o per manovre; (iii) fornendo dati personali falsi come età, nome, indirizzo ecc.; (iv) sotto l’influenza di alcol, droghe, farmaci e stimolanti; (v) in condizioni di sovraccarico o non idonee alla guida...",
     "h15": "Manutenzione",
     "l15.1": "Il Locatario si impegna a controllare regolarmente i livelli di olio, AdBlue e acqua, nonché la pressione degli pneumatici, e a prendere le misure necessarie. Il locatario deve rispettare rigorosamente i manuali per il veicolo elettrico o ibrido da ricaricare e per qualsiasi attrezzatura o accessorio utilizzato (ad esempio il cavo di ricarica), così come le istruzioni riguardanti l’uso delle stazioni di ricarica esposte presso le stazioni stesse. L’uso di cavi di ricarica o altri equipaggiamenti o accessori che (i) non sono certificati secondo le leggi e regolamenti applicabili (es. certificazione CE), (ii) non sono approvati per il rispettivo veicolo o la stazione di ricarica secondo le istruzioni esposte, o (iii) sono danneggiati è severamente vietato. Qualora vengano avanzate richieste di risarcimento contro di noi da parte del gestore della stazione di ricarica a causa di uso improprio o danni alla stazione stessa, queste verranno addebitate al locatario di conseguenza. Un parcheggio pubblico deve essere liberato non appena il processo di ricarica è completato o è stato raggiunto il tempo massimo di parcheggio consentito. I costi sostenuti da EVAG a causa del superamento del tempo massimo di ricarica e/o parcheggio, così come qualsiasi costo sostenuto da EVAG per multe o per l’uso di servizi di traino, ad esempio per parcheggio illegale, saranno addebitati al locatario.",
-
     "h16": "Riparazioni",
     "l16": "Le riparazioni durante il periodo di noleggio dovrebbero, ove possibile, essere effettuate dalla rappresentanza del marchio più vicina.",
     "l16.1": "Qualora i costi di riparazione superino CHF 200.00, la Società di noleggio deve essere consultata in anticipo per l’approvazione dei costi.",
     "l16.2": "La Società di noleggio rimborserà i costi di riparazione previa approvazione dei costi e presentazione della ricevuta.",
     "l16.3": "Sono escluse tutte le situazioni in cui il Locatario è responsabile dei costi, ad esempio in base alla Clausola 15.6 delle presenti Condizioni generali.",
     "l16.4": "I pezzi sostituiti devono essere consegnati dal Locatario alla Società di noleggio.",
-
     "h17": "Responsabilità Limitata della Società di Noleggio",
     "l17.1": "Qualsiasi responsabilità della Società di noleggio per sé stessa e per gli agenti da essa impiegati nei confronti del Locatario e di eventuali conducenti aggiuntivi per qualsiasi tipo di danno personale contrattuale e/o extracontrattuale e/o danno a cose è espressamente esclusa nella misura consentita dalla legge, inclusa la responsabilità per danni indiretti e/o consequenziali, perdita di profitto, danni conseguenti causati da difetti, danni causati da ritardi, impossibilità di utilizzo del veicolo, mancate connessioni e opportunità di effettuare operazioni commerciali, ecc.",
-
     "h18": "Doveri di Cura e Obbligo di Informazione del Locatario",
     "l18": "In caso di incidente, furto, incendio, danni causati da animali selvatici o altri danni al veicolo, il Locatario deve notificare senza indugio la Società di noleggio e fare tutto il necessario e utile per chiarire i fatti e ridurre i danni.",
     "l18.1": "In particolare, il Locatario deve segnalare immediatamente ogni incidente alla polizia e coinvolgere la polizia stessa. Ciò vale anche per danni minori e incidenti imputabili al Locatario senza coinvolgimento di terzi.",
@@ -537,16 +666,13 @@
     "l18.5": "Se si verifica una di queste circostanze, il Locatario è vietato continuare il noleggio del veicolo, oppure il diritto a guidare un veicolo noleggiato termina o viene sospeso con effetto immediato.",
     "l18.6": "In caso di violazione degli obblighi del Locatario ai sensi delle Clausole 12.1 e/o 12.2, il Locatario diventerà pienamente responsabile senza ulteriore avviso per qualsiasi danno connesso alle circostanze sopra indicate, per cui qualsiasi limitazione di responsabilità o assicurazione sottoscritta cesserà di applicarsi (vedere Clausola 15.6 qui di seguito).",
     "l18.7": "Il Locatario autorizza la Società di Noleggio a consultare fascicoli della polizia e/o ufficiali in caso di reclamo.",
-
     "h19": "Violazione del Codice della Strada",
     "l19.1": "Il Locatario ha l’obbligo di rispettare tutte le norme del codice della strada e di informarsi circa eventuali normative particolari vigenti nel paese di noleggio o nei paesi attraversati durante il viaggio.",
     "l19.2": "Il Locatario è l’unico responsabile di tutte le violazioni di legge commesse con il veicolo noleggiato, ad esempio ai sensi del Codice della Strada, fino alla restituzione del veicolo (anche se commesse da un conducente aggiuntivo).",
     "l19.3": "Qualora la Società di Noleggio fosse ritenuta responsabile in base alla responsabilità del proprietario o per altri motivi, ZüriCar GmbH ha il diritto di addebitare al Locatario eventuali multe, tasse, costi, ecc. sostenuti in modo appropriato.",
     "l19.4": "In qualità di detentore del veicolo noleggiato, la Società di Noleggio ha l’obbligo legale di comunicare i dati personali del conducente o del locatario alle autorità in caso di infrazioni al codice della strada.",
     "l19.5": "In tal caso il Locatario si impegna a corrispondere alla Società di Noleggio una somma di CHF 40.00 per le spese amministrative.",
-
     "h20": "Viaggi all’Estero e Restrizioni di Entrata",
-
     "l20.1": "Se al momento della consegna del veicolo il Locatario riceve istruzioni o condizioni speciali dalla Società di Noleggio riguardo a dogane, obblighi di dichiarazione doganale e/o comportamento al momento del valico delle frontiere o riguardo al luogo di restituzione, il Locatario dovrà attenersi rigorosamente a tali indicazioni.",
     "l20.2": "Se per qualsiasi motivo il Locatario non fosse in grado di rispettare le istruzioni ricevute, dovrà comunicarlo immediatamente alla Società di Noleggio.",
     "l20.3": "In caso di violazione di tali disposizioni, il Locatario sarà tenuto a risarcire la Società di Noleggio per ogni danno conseguente, in particolare dazi doganali, imposte di importazione e multe.",
@@ -597,7 +723,6 @@
     "l26.4": "Il Locatario può revocare tale consenso alla divulgazione dei dati a ZüriCar GmbH in qualsiasi momento con effetto futuro.",
     "l26.5": "Nome, indirizzo, dati di noleggio e tutte le altre informazioni conosciute dalla Società di Noleggio sul Locatario saranno comunicati alle autorità competenti su richiesta legittima (es. in..."
   },
-
   "general": {
     "h1": "Termini e Condizioni Generali",
     "stg": "Premessa",
@@ -628,7 +753,6 @@
     "p5": "Queste informazioni saranno messe a disposizione del cliente nella misura prevista dalla legge, purché siano rilevanti per il pacchetto in questione.",
     "p5.1": "In caso di fornitura di informazioni e dati che vanno oltre gli obblighi informativi previsti per legge,  ZüriCar GmbH sarà responsabile nei limiti delle disposizioni di legge solo per la scelta attenta delle fonti di informazione e per la corretta e completa divulgazione delle informazioni al cliente.",
     "h6": "IV. Pagamento",
-
     "p6": "Le seguenti disposizioni si applicano generalmente al pagamento del prezzo del viaggio. Per le transazioni di pagamento rateale tramite fornitori terzi (es. Payrexx AG), si applicano inoltre le condizioni contrattuali speciali di questo fornitore. Se queste contraddicono le Condizioni Generali di Pagamento, prevalgono le condizioni speciali del rispettivo fornitore nel caso di pagamenti rateali. Le condizioni sono consultabili presso",
     "p6.1": "L'opzione è disponibile solo su portali di prenotazione online partecipanti.",
     "p6.2": "I pagamenti sul prezzo del viaggio possono essere effettuati dopo la conclusione del contratto secondo i termini di pagamento concordati. Alla conclusione del contratto è dovuto immediatamente un deposito sul prezzo del viaggio. Di norma è il seguente:",
@@ -657,7 +781,6 @@
     "p9.2": "Il cliente sarà informato tempestivamente di eventuali modifiche. In caso di modifiche significative, il cliente avrà il diritto di cambiare prenotazione o recedere gratuitamente.",
     "p9.3": "In caso di modifiche significative, il cliente può recedere gratuitamente o richiedere un viaggio equivalente.",
     "h10": "V. Documenti di viaggio",
-
     "l10": "I documenti di viaggio che ZüriCar GmbH (di seguito denominata  ZüriCar GmbH) riceve dai tour operator o da altri fornitori di servizi per l’inoltro al cliente saranno inviati al cliente via e-mail o posta. In casi particolari, i documenti possono essere depositati al banco dell’aeroporto; le informazioni rilevanti saranno comunicate al cliente in tempo utile.",
     "l10.1": "In caso di prenotazioni di noleggio auto, i voucher corrispondenti saranno inviati al cliente tramite e-mail, fax o posta. In alternativa, al cliente può essere fornito solo il numero di prenotazione, che dovrà mostrare alla società di noleggio auto al momento del ritiro del veicolo.",
     "l10.2": "Se è stato espressamente concordato con il cliente che la consegna dei documenti di viaggio avvenga tramite corriere, il cliente dovrà sostenere integralmente i costi sostenuti a tal fine.",
@@ -694,7 +817,6 @@
     "p19.1": "Per tutte le controversie derivanti o connesse al rapporto di mediazione tra cliente e ZüriCar GmbH è convenuto il foro esclusivo di Kloten (ZH), Svizzera, nei limiti consentiti dalla legge. Rimangono fatti salvi i fori obbligatori per i consumatori ai sensi degli articoli 32 e 35 del Codice di procedura civile.",
     "p19.2": "Amministratore delegato di ZüriCar GmbH: Diestale Ambros Oberfeldstrasse 10 CH-8302 Kloten Telefono: +41 79 766 99 60 E-mail: info@züricar.ch Sito web:  info@züricar.ch Partita  Numero di  Tribunale di registrazione: Ufficio del registro commerciale del Cantone di Zurigo"
   },
-
   "termsTransfer": {
     "title": "ZüriCar GO – Trasferimenti – Termini e Condizioni",
     "h1": "1. Introduzione",

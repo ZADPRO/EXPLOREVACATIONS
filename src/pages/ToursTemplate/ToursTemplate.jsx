@@ -21,6 +21,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { FileUpload } from "primereact/fileupload";
 import arch from "../../assets/homeCards/card4.jpg"
 
+import { useTranslation } from "react-i18next";
 import PdfVieTour from "../../components/Pdf/index";
 
 import { Toast } from "primereact/toast";
@@ -98,6 +99,24 @@ export default function ToursTemplate() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  
+    const getFlag = () => {
+      switch (language) {
+        case "en":
+          return flagEN;
+        case "de":
+          return flagDE;
+        default:
+          return flagEN;
+      }
+    };
+  
+    const { t, i18n } = useTranslation("global");
+  
+    const handleChangeLang = (lang) => {
+      i18n.changeLanguage(lang);
+    };
+  
   // const transactionId = location.state?.transactionId;
 
   // const handleSubmit = async (transactionId) => {
@@ -681,7 +700,7 @@ export default function ToursTemplate() {
   return (
     <div>
       <Toast ref={toast} />
-      <div className="tourBannerBg01 relative h-[60vh] flex items-center justify-center text-white text-3xl font-bold">
+      <div className="tourBannerBg01 relative h-[80vh] top-[4vh] flex items-center justify-center text-white text-3xl font-bold">
         {/* Centered Text Here */}
       </div>
 
@@ -721,23 +740,23 @@ export default function ToursTemplate() {
                 className="bg-[#009ad7] p-1 rounded-lg text-white"
                 size={30}
               />
-              <span className="font-semibold">Duration:</span>{" "}
-              {tour.refDurationIday} Days & {tour.refDurationINight} Nights
+              <span className="font-semibold"> {t("tour.duration")}:</span>{" "}
+              {tour.refDurationIday} {t("tour.days")} & {tour.refDurationINight} {t("tour.nights")}
             </p>
             <p className="flex gap-2 items-center">
               <BadgeSwissFranc
                 className="bg-[#009ad7] p-1 rounded-lg text-white"
                 size={30}
               />
-              <span className="font-semibold">Price:</span> CHF{" "}
-              {tour.refTourPrice} <span>/ Person</span>
+              <span className="font-semibold">{t("tour.price")}:</span> CHF{" "}
+              {tour.refTourPrice} <span>/ {t("tour.person")}</span>
             </p>
             <p className="flex gap-2 items-center">
               <Binoculars
                 className="bg-[#009ad7] p-1 rounded-lg text-white"
                 size={30}
               />
-              <span className="font-semibold">Tour Code:</span>{" "}
+              <span className="font-semibold">{t("tour.tourCode")}:</span>{" "}
               {tour.refTourCode}
             </p>
             <p className="flex gap-2 items-center">
@@ -745,7 +764,7 @@ export default function ToursTemplate() {
                 className="bg-[#009ad7] p-1 rounded-lg text-white"
                 size={30}
               />
-              <span className="font-semibold">Group Size:</span>{" "}
+              <span className="font-semibold">{t("tour.groupSize")}:</span>{" "}
               <p>
                 {tour.refGroupSize === "0"
                   ? "Not Specified"
@@ -757,7 +776,7 @@ export default function ToursTemplate() {
                 className="bg-[#009ad7] p-1 rounded-lg text-white"
                 size={30}
               />
-              <span className="font-semibold">Categories:</span>{" "}
+              <span className="font-semibold">{t("tour.categories")}:</span>{" "}
               {tour.refCategoryName}
             </p>
 
@@ -772,7 +791,7 @@ export default function ToursTemplate() {
                   }
                 }}
               >
-                <span className="font-semibold">Book Now</span>
+                <span className="font-semibold">{t("tour.bookNow")}</span>
 
 
               </button>
@@ -812,13 +831,13 @@ export default function ToursTemplate() {
                 className="flex items-center w-[250px]  cursor-pointer testingFont font-semibold text-2xl md:text-base lg:text-2xl px-5 mt-3 hover:underline hover:text-[#009ad7] transition-all duration-300"
               >
                 {/* <FaRegCircleLeft /> */}
-                Back to Tours
+                {t("tour.backToTours")}
               </button>
             </div>
             <div className="flex items-center gap-3">
               <input
                 type="text"
-                placeholder="Enter Coupon Code"
+                placeholder= {t("tour.enterCouponCode")}
                 value={tourcode}
                 onChange={(e) => setTourCode(e.target.value)}
                 className="border rounded px-4 py-2 w-60"
@@ -827,7 +846,7 @@ export default function ToursTemplate() {
                 className="bg-[#1e811f] text-white px-4 py-2 rounded"
                 onClick={Tourcode}
               >
-                Apply Coupon
+               {t("tour.applyCoupon")}
               </button>
             </div>
           </div>
@@ -837,7 +856,7 @@ export default function ToursTemplate() {
 
       <div className="card flex w-10/12 mx-auto overflow-hidden py-8">
         <TabView className="w-full overflow-x-auto">
-          <TabPanel header="Travel Overview" key="tab1">
+          <TabPanel header= {t("tour.travelOverview")} key="tab1">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <div
                 dangerouslySetInnerHTML={{ __html: tour?.refTravalOverView }}
@@ -845,27 +864,25 @@ export default function ToursTemplate() {
             </div>
           </TabPanel>
 
-          <TabPanel header="Itinerary" key="tab2">
+          <TabPanel header={t("tour.itinerary")} key="tab2">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <div dangerouslySetInnerHTML={{ __html: tour?.refItinary }} />
             </div>
             <div className=" py-3 sm:px-8 max-w-1xl body mx-auto text-sm sm:text-base text-gray-600 leading-relaxed text-center ">
-              <p>
-                By continuing to use our services, you acknowledge that your
-                personal data will be processed in accordance with{" "}
+              <p>{t("tour.privacyNotice")}{" "}
                 <span
                   onClick={() => handleNavigate("/privacy")}
                   className="text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
                 >
-                  Privacy Policy
+                  {t("tour.privacyPolicy")}
                 </span>
                 . <br className="hidden sm:block" />
-                By creating an account, you agree to{" "}
+               {t("tour.termsNotice")}{" "}
                 <span
                   onClick={() => handleNavigate("/generalpdf")}
                   className="text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
                 >
-                  Terms of Use
+                  {t("tour.termsOfUse")}
                 </span>
                 .
               </p>
@@ -885,7 +902,7 @@ export default function ToursTemplate() {
               />
             </div>
           </TabPanel> */}
-          <TabPanel header="Gallery Image" key="tab3">
+          <TabPanel header={t("tour.galleryImage")} key="tab3">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               {galleryImg?.map((img) => (
                 <img
@@ -901,26 +918,26 @@ export default function ToursTemplate() {
             </div>
           </TabPanel>
 
-          <TabPanel header="Travel Includes" key="tab4">
+          <TabPanel header= {t("tour.travelIncludes")} key="tab4">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <ul className="list-disc pl-5">
                 {tour?.travalInclude?.map((item, index) => (
                   <li key={index} className="mb-2">
                     {item}
                   </li>
-                )) || <p>Loading...</p>}
+                )) || <p>{t("tour.loading")}...</p>}
               </ul>
             </div>
           </TabPanel>
 
-          <TabPanel header="Travel Excludes" key="tab6">
+          <TabPanel header= {t("tour.travelExcludes")} key="tab6">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <ul className="list-disc pl-5">
                 {tour?.travalExclude?.map((item, index) => (
                   <li key={index} className="mb-2">
                     {item}
                   </li>
-                )) || <p>Loading...</p>}
+                )) || <p>{t("tour.loading")}...</p>}
               </ul>
             </div>
           </TabPanel>
@@ -929,22 +946,22 @@ export default function ToursTemplate() {
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full"></div>
           </TabPanel> */}
 
-          <TabPanel header="Special Notes" key="tab8">
+          <TabPanel header= {t("tour.specialNotes")} key="tab8">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               {tour?.refSpecialNotes ? (
                 <ul className="list-none pl-0">
                   <li className="mb-2">{tour.refSpecialNotes}</li>
                 </ul>
               ) : (
-                <p>Loading...</p>
+                <p>{t("tour.loading")}...</p>
               )}
             </div>
           </TabPanel>
-          <TabPanel header="Downloads" key="tab8">
+          <TabPanel header={t("tour.downloads")} key="tab8">
             <div className="max-h-[300px] flex flex-col w-[100%] gap-3 justify-center overflow-y-auto p-2 md:max-h-full">
               <p className="text-xl text-[#065784] ">
                 {" "}
-                Download the Tour Package Here......!
+                {t("tour.downloadTour")}......!
               </p>
               <button
                 onClick={() => {
@@ -967,7 +984,7 @@ export default function ToursTemplate() {
           setIsModelOpen(false);
         }}
       >
-        <h6 className="pt-[1.5rem]">Personal Details</h6>
+        <h6 className="pt-[1.5rem]">{t("tour.personalDetails")}</h6>
 
         <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">
@@ -981,7 +998,7 @@ export default function ToursTemplate() {
                   setFromDate({ ...formData, refUserName: e.target.value });
                 }}
               />
-              <label htmlFor="username">Your First Name</label>
+              <label htmlFor="username">{t("tour.firstName")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -995,7 +1012,7 @@ export default function ToursTemplate() {
                   setFromDate({ ...formData, refUserLname: e.target.value });
                 }}
               />
-              <label htmlFor="lastname">Your Last Name</label>
+              <label htmlFor="lastname">{t("tour.lastName")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1009,7 +1026,7 @@ export default function ToursTemplate() {
                   setFromDate({ ...formData, refUserMail: e.target.value });
                 }}
               />
-              <label htmlFor="email">Your Email</label>
+              <label htmlFor="email">{t("tour.email")}</label>
             </FloatLabel>
           </div>
         </div>
@@ -1026,7 +1043,7 @@ export default function ToursTemplate() {
                   setFromDate({ ...formData, refUserMobile: e.target.value });
                 }}
               />
-              <label htmlFor="mobileNumber">Your Mobile Number</label>
+              <label htmlFor="mobileNumber">{t("tour.mobileNumber")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1045,7 +1062,7 @@ export default function ToursTemplate() {
                 minDate={new Date()} // Restrict selection to today and onwards
               />
 
-              <label htmlFor="calendar-12h">Pick Up Date & Time</label>
+              <label htmlFor="calendar-12h">{t("tour.pickupDate")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1064,12 +1081,12 @@ export default function ToursTemplate() {
                 minDate={new Date()} // Restrict selection to today and onwards
               />
 
-              <label htmlFor="calendar-12h">Arrival Up Date & Time</label>
+              <label htmlFor="calendar-12h">{t("tour.arrivalDate")}</label>
             </FloatLabel>
           </div>
         </div>
 
-        <h6 className="pt-[1.5rem]">Number of passengers traveling</h6>
+        <h6 className="pt-[1.5rem]">{t("tour.numPassengers")}</h6>
 
         <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">
@@ -1084,7 +1101,7 @@ export default function ToursTemplate() {
                   setFromDate({ ...formData, refAdultCount: e.target.value });
                 }}
               />
-              <label htmlFor="adults">Adults</label>
+              <label htmlFor="adults">{t("tour.adults")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1102,7 +1119,7 @@ export default function ToursTemplate() {
                   });
                 }}
               />
-              <label htmlFor="children">Children</label>
+              <label htmlFor="children">{t("tour.children")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1117,12 +1134,12 @@ export default function ToursTemplate() {
                   setFromDate({ ...formData, refInfants: e.target.value });
                 }}
               />
-              <label htmlFor="infants">Infants</label>
+              <label htmlFor="infants">{t("tour.infants")}</label>
             </FloatLabel>
           </div>
         </div>
 
-        <h6 className="pt-[1.5rem] text-[#ba0707]">Enter the person count to calculate the amount *</h6>
+        <h6 className="pt-[1.5rem] text-[#ba0707]">{t("tour.enterPersonCount")} *</h6>
         <div className="flex flex-row gap-4">
           <Button
             label="Check Price"
@@ -1132,10 +1149,10 @@ export default function ToursTemplate() {
               Tourprice();
             }}
           />
-          <div className="mt-6"> Total Amount : {discountedAmount}</div>
+          <div className="mt-6"> {t("tour.totalAmount")}: {discountedAmount}</div>
         </div>
 
-        <h6 className="pt-[1.5rem]">Number of Rooms</h6>
+        <h6 className="pt-[1.5rem]">{t("tour.numRooms")}</h6>
 
         <div className="pt-[1.5rem] flex flex-col lg:flex-row gap-[1rem]">
           <div className="w-[100%]">
@@ -1148,7 +1165,7 @@ export default function ToursTemplate() {
                   setFromDate({ ...formData, refSingleRoom: e.value });
                 }}
               />
-              <label htmlFor="refSingleRoom">Single Room</label>
+              <label htmlFor="refSingleRoom">{t("tour.singleRoom")}</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1161,7 +1178,7 @@ export default function ToursTemplate() {
                   setFromDate({ ...formData, refTwinRoom: e.value });
                 }}
               />
-              <label htmlFor="refTwinRoom">Twin Room</label>
+              <label htmlFor="refTwinRoom">{t("tour.twinRoom")}:</label>
             </FloatLabel>
           </div>
           <div className="w-[100%]">
@@ -1175,7 +1192,7 @@ export default function ToursTemplate() {
                   console.log("refTripleRoom", e.target.value);
                 }}
               />
-              <label htmlFor="refTripleRoom">Triple Room</label>
+              <label htmlFor="refTripleRoom">{t("tour.tripleRoom")}:</label>
             </FloatLabel>
           </div>
         </div>
@@ -1197,16 +1214,16 @@ export default function ToursTemplate() {
                 cols={30}
               />
 
-              <label htmlFor="otherRequirements">Your other requirements</label>
+              <label htmlFor="otherRequirements">{t("tour.requirements")}</label>
             </FloatLabel>
           </div>
         </div>
 
         <p className="text-sm text-gray-600 mt-2 italic">
-          Your uploaded document will be stored securely and kept confidential.*
+         {t("tour.uploadNote")} *
         </p>
         <div className="w-[100%]">
-          <h2 className="">Upload Agreement</h2>
+          <h2 className="">{t("tour.uploadAgreement")}</h2>
           <FileUpload
             name="logo"
             customUpload
@@ -1215,14 +1232,14 @@ export default function ToursTemplate() {
             accept="application/pdf"
             maxFileSize={10000000}
             emptyTemplate={
-              <p className="m-0">Drag and drop your pdf here to upload.</p>
+              <p className="m-0">{t("tour.dragPdf")}</p>
             }
             multiple
           />
         </div>
 
         <div className="w-[100%]">
-          <h2 className="">Upload PassPort</h2>
+          <h2 className="">{t("tour.uploadPassport")}</h2>
           <FileUpload
             name="logo"
             customUpload
@@ -1231,13 +1248,13 @@ export default function ToursTemplate() {
             accept="application/pdf"
             maxFileSize={10000000}
             emptyTemplate={
-              <p className="m-0">Drag and drop your pdf here to upload.</p>
+              <p className="m-0">{t("tour.dragPdf")}.</p>
             }
             multiple
           />
         </div>
         <div className="w-[100%]">
-          <h2 className="">Upload Vaccination Certificate</h2>
+          <h2 className="">{t("tour.uploadVaccine")}</h2>
           <FileUpload
             name="logo"
             customUpload
@@ -1246,7 +1263,7 @@ export default function ToursTemplate() {
             accept="application/pdf"
             maxFileSize={10000000}
             emptyTemplate={
-              <p className="m-0">Drag and drop your pdf here to upload.</p>
+              <p className="m-0">{t("tour.dragPdf")}.</p>
             }
             multiple
           />
@@ -1264,7 +1281,7 @@ export default function ToursTemplate() {
             className="bg-[#1e811f] text-white lg:px-4 lg:py-2 p-1 rounded"
             onClick={Tourcode}
           >
-            Apply Coupon
+             {t("tour.applyCoupon")}
           </button>
         </div>
 

@@ -379,7 +379,7 @@ export default function Cars() {
             </div>
 
             <Button
-              label="Explore"
+              label={t("header.Explore")}
               onClick={handleApplyFilters}
               className="bg-[#014986] text-white"
             />
@@ -434,13 +434,12 @@ export default function Cars() {
               key={car.refCarsId}
               className="bg-white cursor-pointer shadow-md rounded-lg overflow-hidden flex flex-col w-70 my-3 mx-auto"
             >
-              {/* UPDATED IMAGE SECTION - SAME AS CarsTemplate */}
-              <img
+                <img
                 src={getCarImageSrc(car)}
                 alt={car.refVehicleTypeName || "Car"}
                 className="w-full object-cover aspect-[4/3]"
                 onError={(e) => {
-                  e.target.onerror = null; // Prevent infinite loop
+                  e.target.onerror = null; 
                   e.target.src = tourImg;
                 }}
               />
@@ -472,22 +471,22 @@ export default function Cars() {
                 <div className="flex w-[100%] pb-[1rem] text-[0.8rem]">
                   <p className="text-gray-600 m-0 w-[50%] flex gap-1">
                     <img src={person} alt="person" />
-                    {car.refPersonCount} Person
+                    {car.refPersonCount} {t("tour.person")}
                   </p>
                   <p className="text-gray-700 m-0 w-[50%] flex gap-1">
                     <img src={bags} alt="bags" />
-                    {car.refBagCount} Bag
+                    {car.refBagCount} {t("tour.bag")}
                   </p>
                 </div>
               </div>
               <div className="px-4 pb-3 flex flex-col lg:flex-row items-center">
                 <div className="w-[100%] lg:w-[60%] pb-[10px] lg:pb-0 flex gap-1">
                   <div className="text-[1rem] font-bold">{car.refCarPrice}</div>
-                  <div className="text-[0.7rem] mt-[0.3rem]">/ Day</div>
+                  <div className="text-[0.7rem] mt-[0.3rem]">/ {t("tour.day")}</div>
                 </div>
                 <div className="w-[100%] lg:w-[40%]">
                   <div className="w-[100%] bg-[#0166b3] hover:bg-[#fff] text-center h-[2rem] flex justify-center items-center rounded-sm font-bold text-[#fff] border-2 border-[#0166b3] hover:text-[#0166b3] transition-colors duration-300 ease-in-out">
-                    Book Now
+                   {t("tour.bookNow")}
                   </div>
                 </div>
               </div>

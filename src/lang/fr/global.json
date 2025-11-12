@@ -18,7 +18,126 @@
     "event": "Événement",
     "flightbooking": "Réservation de vol"
   },
+  "tour":{
+  "bookNow": "Réserver maintenant",
+    "categories": "Catégories",
+    "duration": "Durée",
+    "price": "Prix",
+    "tourCode": "Code du circuit",
+    "groupSize": "Taille du groupe",
+    
+    "travelExcludes": "Voyage exclut",
+    "travelIncludes": "Voyage inclut",
+    "galleryImage": "Image de la galerie",
+    "itinerary": "Itinéraire",
+    "travelOverview": "Aperçu du voyage",
+    "enterCouponCode": "Entrez le code du coupon",
+    "specialNotes": "Notes spéciales",
+    "downloads": "Téléchargements",
+     "viewTour": "Voir le circuit",
+    "noToursAvailable": "Aucun circuit disponible pour les filtres sélectionnés",
+    "bag": "Sac",
+    "day": "Jour",
+    
+    "loading": "Chargement",
+    "privacyPolicy": "Politique de confidentialité",
+    "termsOfUse": "Conditions d'utilisation",
+
+     "backToTours": "Retour aux circuits",
+    "applyCoupon": "Appliquer le coupon",
+    "privacyNotice": "En continuant à utiliser nos services, vous reconnaissez que vos données personnelles seront traitées conformément à notre politique de confidentialité.",
+    "termsNotice": "En créant un compte, vous acceptez nos conditions d'utilisation.",
+    "noTourData": "Aucune donnée de circuit trouvée",
+    "days": "Jours",
+    "nights": "Nuits",
+    "person": "Personne",
+    "downloadTour": "Téléchargez le forfait touristique ici",
+    "personalDetails": "Détails personnels",
+    "firstName": "Votre prénom",
+    "lastName": "Votre nom de famille",
+    "email": "Votre e-mail",
+    "mobileNumber": "Votre numéro de mobile",
+    "pickupDate": "Date et heure de prise en charge",
+    "arrivalDate": "Date et heure d'arrivée",
+    "numPassengers": "Nombre de passagers voyageant",
+    "adults": "Adultes",
+    "children": "Enfants",
+    "infants": "Nourrissons",
+    "enterPersonCount": "Entrez le nombre de personnes pour calculer le montant",
+    "totalAmount": "Montant total",
+    "numRooms": "Nombre de chambres",
+    "singleRoom": "Chambre simple",
+    "twinRoom": "Chambre double",
+    "tripleRoom": "Chambre triple",
+    "requirements": "Vos autres exigences",
+    "uploadNote": "Votre document téléchargé sera stocké en toute sécurité et restera confidentiel",
+    "uploadAgreement": "Télécharger l'accord",
+    "dragPdf": "Glissez et déposez votre PDF ici pour le télécharger",
+    "uploadPassport": "Télécharger le passeport",
+    "uploadVaccine": "Télécharger le certificat de vaccination"
+  },
+  
+  "carousel": {
+        "title1": "MIRISSA",
+        "subtitle1": "Le paradis tropical sur la côte du Sri Lanka",
+        "title2": "ELLA",
+        "subtitle2": "Le cœur des montagnes du Sri Lanka",
+        "title3": "SRI LANKA",
+        "subtitle3": "",
+        "title4": "SIGIRIYA",
+        "subtitle4": "Le Rocher du Lion au cœur du Sri Lanka",
+        "rent_a_car": "Louer une voiture",
+      "holiday_packages": "Forfaits vacances",
+      "airport_parking": "Parking aéroport",
+      "airport_transfer": "Transfert aéroport",
+       "title5": "Découvrez le confort haut de gamme à prix économique",
+    "title6": "Location, allons-y",
+    "title7": "Conduisez partout avec nos SUV et 4x4 de location",
+    "title8": "Sans stress, fiable, sans frais cachés"
+  },
+  "home1":{
+     "description1": "Nos voitures compactes modernes offrent confort, efficacité et style pour chaque trajet. Parfaites pour la conduite en ville ou les voyages d'affaires – avec un espace généreux et une technologie avancée.",
+    "highlights1": [
+      "Climatisées et économes en carburant",
+      "Jusqu’à 4 passagers",
+      "Idéales pour les trajets urbains et courts"
+    ],
+    "description2": "Nos SUV allient performance et luxe. Avec une position de conduite élevée, un design moderne et des intérieurs spacieux, ils sont parfaits pour les familles ou les longs trajets.",
+    "highlights2": [
+      "Jusqu’à 5 passagers",
+      "Grande capacité de bagages & 4x4 en option",
+      "Conduite fluide sur tous les terrains"
+    ],
+    "description3": "Nos minivans sont parfaits pour les familles ou les groupes. Avec jusqu’à 8 sièges et un espace intérieur flexible, ils garantissent un voyage confortable pour tous.",
+    "highlights3": [
+      "Jusqu’à 8 passagers",
+      "Sièges confortables & portes coulissantes",
+      "Parfait pour les transferts d’aéroport et les voyages de groupe"
+    ],
+    "description4": "Pour les voyages d’affaires ou les occasions spéciales, nos véhicules haut de gamme incarnent confort, classe et qualité.",
+    "highlights4": [
+      "Jusqu’à 3 passagers",
+      "Design luxueux avec intérieur en cuir",
+      "Idéal pour les transferts VIP ou exécutifs"
+    ],
+    "description5": "L’élégance rencontre l’espace et le confort. Ce van de classe affaires est parfait pour les services de chauffeur, les voyages d’entreprise et les transferts de groupe élégants.",
+    "highlights5": [
+      "Jusqu’à 7 passagers",
+      "Sièges en cuir & cabine spacieuse",
+      "Parfait pour les transferts aéroport et VIP"
+    ],
+    "description6": "Ressentez la passion de la conduite ! Nos voitures de sport combinent design spectaculaire et performance – pour une expérience de conduite inoubliable.",
+    "highlights6": [
+      "1–2 passagers",
+      "Design sportif & moteur haute performance",
+      "Parfait pour les week-ends et événements"
+    ]
+
+  },
   "home": {
+
+      "title": "Notre flotte",
+   
     "General": "Général",
     "q1": "Y a-t-il une durée minimale ou maximale de location pour un van ZüriCar GmbH ?",
     "a1": "La durée minimale de location est d'une demi-journée. La durée maximale est généralement de 30 jours. Si vous avez besoin d’un véhicule pour plus de 30 jours, veuillez contacter notre équipe commerciale. Nous vous ferons une offre avec plaisir.",
@@ -198,7 +317,36 @@
   "car": {
     "Available Cars": "Voitures disponibles",
     "Standard": "Standard",
-    "Premium": "Premium"
+    "Premium": "Premium",
+
+     "dropDate": "Date de dépôt",
+    "pickUpDate": "Date de prise en charge",
+    "enterAddress": "Entrez votre adresse",
+    "paymentTerms": "Conditions de paiement",
+    "rentalAgreement": "Contrat de location",
+    "continue": "Continuer",
+    "calculateNewPrice": "Calculer le nouveau prix",
+    "includedInPrice": "Inclus dans le prix",
+    "carHireFees": "Frais de société de location",
+    "theftProtection": "Protection contre le vol",
+    "thirdPartyProtection": "Protection contre les tiers",
+    "vehicleProtection": "Protection du véhicule",
+    "planFlex": "Plan Flex",
+    "vehicleValue": "Valeur du véhicule",
+    "numberOfDays": "Nombre de jours",
+    "dailyRate": "Tarif journalier",
+    "yourBooking": "Votre réservation",
+    "bookNowWarning": "N'attendez pas — réservez maintenant avant que les tarifs augmentent",
+    "extra": "Supplément",
+    "addExtras": "Ajoutez des suppléments à votre réservation",
+    "manufacturingYear": "Année de fabrication",
+    "transmissionType": "Type de transmission",
+    "maxCount": "Nombre maximum",
+    "fuelLimit": "Limite de carburant",
+    "fuelType": "Type de carburant",
+    "count": "Nombre",
+    "charges": "Frais",
+    "noCarsAvailable": "Aucune voiture disponible"
   },
 
   "contact": {

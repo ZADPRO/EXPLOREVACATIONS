@@ -8,6 +8,7 @@ import { Toast } from "primereact/toast";
 import decrypt from "../../helper";
 import Axios from "axios";
 
+import { useTranslation } from "react-i18next";
 import arch from "../../assets/homeCards/card4.jpg"
 import tourImg from "../../assets/tours/image.jpg";
 import Popup from "../../pages/Popup/Popup";
@@ -31,6 +32,8 @@ export default function Tours() {
   const initialTourFromDate = formatDate(location.state?.tourFromDate || null);
   const initialTourToDate = formatDate(location.state?.tourToDate || null);
   const initialTourGuest = location.state?.tourGuest || 0;
+
+  const { t, i18n } = useTranslation("global");
 
   const [tourDestination, setTourDestination] = useState(
     initialTourDestination
@@ -139,7 +142,7 @@ export default function Tours() {
     <div>
       <Popup />
       <div className="mt-20">
-        <TourCarousel moduleId={3} />
+        <TourCarousel/>
       </div>
 
       <div className="card w-10/12 mx-auto bg-white p-4 shadow-md rounded-lg">
@@ -219,7 +222,7 @@ export default function Tours() {
           </div>
 
           <Button
-            label="Explore"
+            label={t("header.Explore")}
             className="px-4"
             onClick={() => {
               console.log("Explore clicked");
@@ -280,16 +283,16 @@ export default function Tours() {
                   </div>
                   <div className="flex justify-between items-center bg-gray-100">
                     <span className="text-md font-bold px-3 bg-[#ffcb27] mt-2 py-3 rounded-tr-xl">
-                      CHF {tour.refTourPrice} / Person
+                      CHF {tour.refTourPrice} / {t("tour.person")}
                     </span>
                     <span className="text-md font-bold pe-3 py-3 mt-2">
-                      View Tour
+                     {t("tour.viewTour")}
                     </span>
                   </div>
                 </div>
               ))
             ) : (
-              <p>No tours available for the selected filters.</p>
+              <p>{t("tour.noToursAvailable")}.</p>
             )}
           </div>
         </div>
