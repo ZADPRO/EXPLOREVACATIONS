@@ -111,9 +111,32 @@
       "Perfetto per weekend ed eventi"
     ]
   },
-  
+  "Transfer":{
+          "explore_destination": "Esplora la nostra destinazione",
+      "destination_not_found": "Destinazione non trovata",
+      "back_home": "Torna alla Home",
+      "back_destinations": "Torna alle destinazioni",
+      "overview": "Panoramica",
+      "detailed_info": "Informazioni dettagliate",
+      "reliable_worldwide": "Il tuo affidabile servizio mondiale",
+      "airport_transfers": "Trasferimenti aeroportuali",
+      "transfer": "Trasferimento",
+      "from": "Da",
+      "to": "A",
+      "pickup_date": "Data di ritiro",
+      "pickup_time": "Ora di ritiro",
+      "add_return": "AGGIUNGI RITORNO",
+      "return_trip": "Viaggio di ritorno",
+      "remove": "Rimuovi",
+      "return_date": "Data di ritorno",
+      "return_time": "Ora di ritorno",
+      "passengers": "Passeggeri",
+      "see_prices": "Vedi i prezzi",
+      "excellent": "ECCELLENTE",
+      "trustpilot": "Trustpilot",
+      "save": "Salva"
+  },
   "carousel": {
-      
         "title1": "MIRISSA",
         "subtitle1": "Il paradiso tropicale sulla costa dello Sri Lanka",
         "title2": "ELLA",
@@ -280,7 +303,12 @@
     "Terms and Conditions": "Termini e Condizioni",
     "Privacy Policy": "Privacy Policy",
     "Contact Information": "Informazioni di Contatto",
-    "Social Media Links": "Link ai Social Media"
+    "Social Media Links": "Link ai Social Media",
+     "about_us": "Chi siamo",
+      "grow_with_zuricar": "Cresci con ZüriCar GO",
+      "become_partner": "Diventa un partner",
+      "become_transfer_partner": "Diventa un partner di trasferimento",
+      "travel_agency_partnership": "Collaborazione con agenzia di viaggi"
   },
   "car": {
     "Available Cars": "Auto Disponibili",
@@ -441,7 +469,7 @@
     "content1": "Se ci fornisci informazioni personali di altre persone, ti preghiamo di assicurarci che siano informate sulla condivisione dei loro dati personali e di invitarle a leggere questa Informativa sulla Privacy. Faremo lo stesso ogni volta che possibile (es. se abbiamo i dati di contatto della persona interessata).",
     "title2": "COME PUOI CONTROLLARE IL TRATTAMENTO DEI TUOI DATI PERSONALI?",
     "sub2.1": "Hai dei diritti che ti permettono di controllare efficacemente i tuoi dati personali e il modo in cui li trattiamo. Di seguito spieghiamo i tuoi diritti in relazione ai tuoi dati personali.",
-    "sub2.2": "Se desideri esercitare i diritti elencati qui sotto, ti preghiamo di inviare una richiesta via email a info@züricar.ch o per posta all'indirizzo seguente: Wallisellerstrasse 147, 8152 Glattbrugg, Zurigo, Svizzera.",
+    "sub2.2": "Se desideri esercitare i diritti elencati qui sotto, ti preghiamo di inviare una richiesta via email a info@züricar.ch o per posta all'indirizzo seguente: Europa-Strasse 19 ,8152 Glattbrugg (ZH), Zurigo, Svizzera.",
     "sub2.3": "Se hai domande sull’uso dei tuoi dati personali secondo questa Informativa sulla Privacy, ti preghiamo di indirizzarle al seguente indirizzo: https://zuericar.com/",
     "l4": "Puoi richiedere l'accesso ai tuoi dati personali",
     "p4": "Se ritieni che i tuoi dati personali siano inesatti o incompleti, puoi chiedere che siano corretti o completati. In alcuni casi, potrebbe essere necessaria la presentazione di documenti giustificativi.",
@@ -596,7 +624,7 @@
     "l4.6": "Se il locatario dimostra l'assenza o la minore entità del costo/perdita, la tassa può essere adeguata.",
     "l4.7": "Le cancellazioni e le modifiche devono essere effettuate online",
     "a5": "per posta o per iscritto a:, (grouptravel-italy.com)",
-    "l5": "ZüriCar GmbH, Wallisellerstrasse 147, 8152 Opfikon",
+    "l5": "ZüriCar GmbH, Europa-Strasse 19 ,8152 Glattbrugg (ZH) Switzerland, Zürich, Schweiz.",
     "l5.5": "Se il veicolo prenotato non viene ritirato all'orario concordato, l'intero importo del noleggio già pagato sarà trattenuto per intero.",
     "h6": "Mancato Ritiro del Veicolo",
     "l6.1": "Per le prenotazioni con tariffa Flexi, si applica quanto segue: Se il locatario non ritira il veicolo entro un'ora dall'orario concordato, per qualsiasi motivo, ZüriCar GmbH non sarà più vincolata dalla prenotazione.",
@@ -815,8 +843,8 @@
     "h19": "XIII. Disposizioni finali",
     "p19": "È esclusivamente applicabile la legge svizzera. L’applicazione della Convenzione di Vienna sui contratti di vendita internazionale di merci (legge UN Sales) è esclusa.",
     "p19.1": "Per tutte le controversie derivanti o connesse al rapporto di mediazione tra cliente e ZüriCar GmbH è convenuto il foro esclusivo di Kloten (ZH), Svizzera, nei limiti consentiti dalla legge. Rimangono fatti salvi i fori obbligatori per i consumatori ai sensi degli articoli 32 e 35 del Codice di procedura civile.",
-    "p19.2": "Amministratore delegato di ZüriCar GmbH: Diestale Ambros Oberfeldstrasse 10 CH-8302 Kloten Telefono: +41 79 766 99 60 E-mail: info@züricar.ch Sito web:  info@züricar.ch Partita  Numero di  Tribunale di registrazione: Ufficio del registro commerciale del Cantone di Zurigo"
-  },
+    "p19.2":"ZüriCar GmbH ZüriCar GmbH Europa-Strasse 19 8152 Glattbrugg (ZH) Switzerland Telefon: +41 79 766 99 60  E-Mail: info@züricar.ch Website:  info@züricar.ch" 
+   },
   "termsTransfer": {
     "title": "ZüriCar GO – Trasferimenti – Termini e Condizioni",
     "h1": "1. Introduzione",
@@ -875,7 +903,7 @@
     "l15": "ZüriCar GO si riserva il diritto di modificare questi termini in qualsiasi momento.",
     "l15.1": "Gli aggiornamenti saranno pubblicati sul nostro sito ufficiale.",
     "h16": "16. Informazioni di Contatto",
-    "l16": "ZüriCar GmbH, Wallisellerstrasse 147, 8152 Glattbrugg, Zurigo, Svizzera",
+    "l16": "ZüriCar GmbH, Europa-Strasse 19 ,8152 Glattbrugg (ZH), Zurigo, Svizzera",
     "l16.1": "Email: info@zuericar.ch | Telefono: +41 76 495 90 10"
   },
   "event": {

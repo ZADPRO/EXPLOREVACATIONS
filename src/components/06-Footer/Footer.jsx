@@ -12,8 +12,7 @@ export default function Footer() {
     navigate(path);
     window.scrollTo(0, 0);
   };
-
-  const getFlag = () => {
+ const getFlag = () => {
     switch (language) {
       case "en":
         return flagEN;
@@ -27,148 +26,121 @@ export default function Footer() {
         return flagEN;
     }
   };
-
-
-  const { t, i18n } = useTranslation("global");
-
+ const { t, i18n } = useTranslation("global");
   const handleChangeLang = (lang) => {
     i18n.changeLanguage(lang);
   };
   return (
-    <div>
-      {/* <div className="w-full ">
-        {" "}
-        <img
-          src={footer}
-          style={{ objectFit: "cover" }}
-          alt="footer"
-          className="w-full h-auto mb-0 border-0"
-        />
-      </div> */}
-      <div className="  bg-[#065784] -mt-2">
-        {/* style={{   backgroundImage: `url(${bgimg})`,}} */}
-        <div className="">
-          <div className="flex  w-10/12 mx-auto gap-5 py-10 px-4 h-[full]   lg:flex-row md:flex-row  flex-col ">
-            <div className="flex-1">
-              <img src={logoImg} alt="" className="w-[180px] rounded-xl" />
-              <p className="text-white mt-3 text-[15px] font-medium text-left tracking-[-0.015em]">
-                {t("footer.footer")}
-              </p>
-            </div>
-            <div className="flex-1 lg:pl-5">
-              <p className="text-white text-[22px] font-semibold  ">
-                {t("footer.Our Services")}
-              </p>
-              <p
-                className="text-white py-2 text-[15px] font-medium cursor-pointer"
-                onClick={() => handleNavigate("/Cars")}
-              >
-                {t("footer.Cars")}
-              </p>
-              <p
-                className="text-white py-2 text-[15px] font-medium cursor-pointer"
-                onClick={() => handleNavigate("/Tours")}
-              >
-                {t("footer.Tours")}
-              </p>
+    <div className="w-full">
+  {/* 🔹 Top 20% Yellow Section with Logo */}
+  <div className="bg-[#065784] py-2 px-6 flex flex-col items-center text-center">
+    <img src={logoImg} alt="ZuriCar Logo" className="w-[150px] mb-4" />
+    <p className="text-white text-[15px] max-w-[130vh] font-medium tracking-[-0.015em]">
+      {t("footer.footer")}
+    </p>
+  </div>
 
-              <p
-                className="text-white py-2 text-[15px] font-medium cursor-pointer"
-                onClick={() => handleNavigate("/Contact")}
-              >
-                {t("footer.Contact Us")}
-              </p>
-              <p
-                className="text-white py-2 text-[15px] font-medium cursor-pointer"
-                onClick={() => handleNavigate("/generalpdf")}
-              >
-                {t("footer.Terms and Conditions")}
-              </p>
-              <p
-                className="text-white py-2 text-[15px] font-medium cursor-pointer"
-                onClick={() => handleNavigate("/privacy")}
-              >
-                {" "}
-                {t("footer.Privacy Policy")}
-              </p>
-              <p
-                className="text-white py-2 text-[15px] font-medium cursor-pointer"
-                onClick={() => handleNavigate("/impressum")}
-              >
-                {t("Impressum")}
-                
-              </p>
-               <p
-                className="text-white py-2 text-[15px] font-medium cursor-pointer"
-                onClick={() => handleNavigate("/cookies")}
-              >
-              
-   {t("Cookies")}
-                
-              </p>
-             
-            </div>
-            {/* <div className="flex-1">
-          <p className="text-white text-[22px] font-bold ">
-            Quick Links
-          </p>
-          <p className="text-white py-2 text-[15px] font-medium">
-           Terms and Condition
-          </p>
-          <p className="text-white py-2 text-[15px] font-medium">
-           Privacy Policy
-          </p>
-     
-        </div> */}
-            <div className="flex-1">
-              <p className="text-white text-[22px] font-bold ">
-                {t("footer.Contact Information")}
-              </p>
-              <p className="text-white py-2 text-[15px] font-medium">
-                info@zuricar.ch
-              </p>
-              <p className="text-white py-2 text-[15px] font-medium">
-                +41 79 766 99 60
-              </p>
-              <p className="text-white py-2 text-[15px] font-medium">
-                ZüriCar GO GmbH
-
-              </p>
-              <p className="text-white py-2 text-[15px] font-medium">
-                Oberfeldstrasse 6
-                CH-8306 Kloten
-                Switzerland
-              </p>
-            </div>
-            {/* <div className="flex-1">
-              <p className="text-white text-[22px] font-bold ">
-                {t("footer.Social Media Links")}
-              </p>
-              <a
-                href="https://www.facebook.com/share/1BeRaztYie/?mibextid=wwXIfr"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <p className="text-white py-2 text-[15px] font-medium">
-                  Facebook
-                </p>
-              </a>
-
-              <a
-                href="https://www.instagram.com/evag.001111111/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <p className="text-white py-2 text-[15px] font-medium">
-                  Instagram
-                </p>
-              </a>
-
-              <p className="text-white py-2 text-[15px] font-medium">Twitter</p>
-            </div> */}
-          </div>
-        </div>
+  {/* 🔹 Bottom Menus Section */}
+  <div className="bg-[#065784]">
+    <div className="w-11/12 mx-auto py-10 flex flex-wrap lg:flex-nowrap gap-8 justify-between text-white">
+      {/* Grow with ZuriCar */}
+      <div className="flex-1 min-w-[200px]">
+        <h3 className="text-[22px] font-semibold mb-3">
+          {t("footer.grow_with_zuricar")}
+        </h3>
+        <p
+          className="cursor-pointer py-1 hover:text-yellow-300"
+          onClick={() => handleNavigate("/becomePartner")}
+        >
+          {t("footer.become_partner")}
+        </p>
+        <p
+          className="cursor-pointer py-1 hover:text-yellow-300"
+          onClick={() => handleNavigate("/becometransfer")}
+        >
+          {t("footer.become_transfer_partner")}
+        </p>
+        <p
+          className="cursor-pointer py-1 hover:text-yellow-300"
+          onClick={() => handleNavigate("/becometravelagency")}
+        >
+          {t("footer.travel_agency_partnership")}
+        </p>
+      </div>
+      {/* Our Services */}
+      <div className="flex-1 min-w-[200px]">
+        <h3 className="text-[22px] font-semibold mb-3">
+          {t("footer.Our Services")}
+        </h3>
+        <p
+          className="cursor-pointer py-1 hover:text-yellow-300"
+          onClick={() => handleNavigate("/Cars")}
+        >
+          {t("footer.Cars")}
+        </p>
+        <p
+          className="cursor-pointer py-1 hover:text-yellow-300"
+          onClick={() => handleNavigate("/Tours")}
+        >
+          {t("footer.Tours")}
+        </p>
+        <p
+          className="cursor-pointer py-1 hover:text-yellow-300"
+          onClick={() => handleNavigate("/Contact")}
+        >
+          {t("footer.Contact Us")}
+        </p>
+      </div>
+      {/* About Us */}
+      <div className="flex-1 min-w-[200px]">
+        <h3 className="text-[22px] font-semibold mb-3">
+          {t("footer.about_us")}
+        </h3>
+        <p
+          className="cursor-pointer py-1 hover:text-yellow-300"
+          onClick={() => handleNavigate("/generalpdf")}
+        >
+          {t("footer.Terms and Conditions")}
+        </p>
+        <p
+          className="cursor-pointer py-1 hover:text-yellow-300"
+          onClick={() => handleNavigate("/privacy")}
+        >
+          {t("footer.Privacy Policy")}
+        </p>
+        <p
+          className="cursor-pointer py-1 hover:text-yellow-300"
+          onClick={() => handleNavigate("/impressum")}
+        >
+          {t("Impressum")}
+        </p>
+        <p
+          className="cursor-pointer py-1 hover:text-yellow-300"
+          onClick={() => handleNavigate("/cookies")}
+        >
+          {t("Cookies")}
+        </p>
+      </div>
+      {/* Contact Info */}
+      <div className="flex-1 min-w-[200px]">
+        <h3 className="text-[22px] font-semibold mb-3">
+          {t("footer.Contact Information")}
+        </h3>
+        <p className="text-[15px] py-1">info@zuricar.ch</p>
+        <p className="text-[15px] py-1">+41 79 766 99 60</p>
+        <p className="text-[15px] py-1">ZüriCar GO GmbH</p>
+        <p className="text-[15px] py-1 leading-tight">
+          Europa-Strasse 19
+          <br />
+          8152 Glattbrugg (ZH), Switzerland
+        </p>
       </div>
     </div>
+    {/* 🔹 Bottom Small Line */}
+    <div className="border-t border-white/20 py-4 text-center text-sm text-white">
+      © {new Date().getFullYear()} ZüriCar GO GmbH. All rights reserved.
+    </div>
+  </div>
+</div>
   );
 }

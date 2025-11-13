@@ -311,7 +311,12 @@
     "Terms and Conditions": "Conditions générales",
     "Privacy Policy": "Politique de confidentialité",
     "Contact Information": "Informations de contact",
-    "Social Media Links": "Liens vers les réseaux sociaux"
+    "Social Media Links": "Liens vers les réseaux sociaux",
+    "about_us": "À propos de nous",
+      "grow_with_zuricar": "Développez-vous avec ZüriCar GO",
+      "become_partner": "Devenir partenaire",
+      "become_transfer_partner": "Devenir partenaire de transfert",
+      "travel_agency_partnership": "Partenariat avec une agence de voyage"
   },
 
   "car": {
@@ -470,7 +475,7 @@
     "content1": "Si vous nous transmettez des informations personnelles concernant d'autres personnes, veuillez vous assurer de les informer du partage de leurs données et leur demander de lire cette politique de confidentialité. Nous nous efforcerons de faire de même dans la mesure du possible (par exemple, si les coordonnées de la personne concernée sont disponibles).",
     "title2": "COMMENT POUVEZ-VOUS CONTRÔLER LE TRAITEMENT DE VOS DONNÉES PERSONNELLES ?",
     "sub2.1": "Vous disposez de droits vous permettant de contrôler efficacement vos données personnelles et la manière dont nous les traitons. Nous vous expliquons ci-dessous vos droits concernant vos données personnelles.",
-    "sub2.2": "Si vous souhaitez exercer les droits ci-dessous, veuillez envoyer une demande par e-mail à info@züricar.ch ou par courrier postal à l’adresse suivante : Wallisellerstrasse 147, 8152 Glattbrugg, Zurich, Suisse.",
+    "sub2.2": "Si vous souhaitez exercer les droits ci-dessous, veuillez envoyer une demande par e-mail à info@züricar.ch ou par courrier postal à l’adresse suivante : Europa-Strasse 19 ,8152 Glattbrugg (ZH), Zurich, Suisse.",
     "sub2.3": "Si vous avez des questions concernant l’utilisation de vos données personnelles dans le cadre de cette politique de confidentialité, veuillez les adresser à l’adresse suivante : https://zuericar.com/",
     "l4": "Vous pouvez demander l'accès à vos données personnelles",
     "p4": "Si vous estimez que vos données personnelles sont inexactes ou incomplètes, vous pouvez demander leur rectification ou leur complétion. Dans certains cas, des justificatifs peuvent être demandés.",
@@ -533,6 +538,31 @@
     "l20.4": "Données de santé : besoins spécifiques, maladies, accidents survenus durant un voyage ;",
     "l20.5": "Informations financières : données de paiement, numéro de carte bancaire, ..."
   },
+  "Transfer":{
+"explore_destination": "Explorez notre destination",
+      "destination_not_found": "Destination introuvable",
+      "back_home": "Retour à l'accueil",
+      "back_destinations": "Retour aux destinations",
+      "overview": "Aperçu",
+      "detailed_info": "Informations détaillées",
+      "reliable_worldwide": "Votre partenaire mondial fiable",
+      "airport_transfers": "Transferts aéroport",
+      "transfer": "Transfert",
+      "from": "De",
+      "to": "À",
+      "pickup_date": "Date de prise en charge",
+      "pickup_time": "Heure de prise en charge",
+      "add_return": "AJOUTER RETOUR",
+      "return_trip": "Trajet retour",
+      "remove": "Supprimer",
+      "return_date": "Date de retour",
+      "return_time": "Heure de retour",
+      "passengers": "Passagers",
+      "see_prices": "Voir les prix",
+      "excellent": "EXCELLENT",
+      "trustpilot": "Trustpilot",
+      "save": "Enregistrer"
+  },
   "terms": {
     "rent": "Louer une voiture",
     "Parties": "Parties",
@@ -562,7 +592,7 @@
     "l4.6": "Si le Locataire prouve qu’aucun coût ou un coût moindre a été engendré, les frais peuvent être ajustés.",
     "l4.7": "Les annulations et modifications doivent être effectuées en ligne",
     "a5": "par courrier postal ou par écrit à :",
-    "l5": "ZüriCar GmbH, Wallisellerstrasse 147, 8152 Opfikon",
+    "l5": "ZüriCar GmbH, Europa-Strasse 19 ,8152 Glattbrugg (ZH) Switzerland, Zürich, Schweiz.",
     "l5.5": "Si le véhicule réservé n’est pas récupéré à l’heure convenue, l’intégralité du montant déjà payé pour la location sera conservée.",
 
     "h6": "Non-retrait du véhicule",
@@ -806,8 +836,8 @@
     "h19": "XIII. Schlussbestimmungen",
     "p19": "Es gilt ausschließlich schweizerisches Recht. Die Anwendung des Wiener Kaufrechts (UN-Kaufrecht) ist ausgeschlossen.",
     "p19.1": "Für alle Streitigkeiten aus oder im Zusammenhang mit dem Vermittlungsverhältnis zwischen dem Kunden und der ZüriCar GmbH ist – soweit gesetzlich zulässig – ausschließlicher Gerichtsstand Kloten (ZH), Schweiz. Zwingende Gerichtsstände für Verbraucher gemäß Art. 32 und 35 der Zivilprozessordnung bleiben unberührt.",
-    "p19.2": "ZüriCar GmbH Geschäftsführer: Diestale Ambros, Oberfeldstrasse 10, CH-8302 Kloten, Telefon: +41 79 766 99 60, E-Mail: info@züricar.ch, Website:  info@züricar.ch,  Handelsregisteramt des Kantons Zürich"
-  },
+    "p19.2": "ZüriCar GmbH ZüriCar GmbH Europa-Strasse 19 8152 Glattbrugg (ZH) Switzerland Telefon: +41 79 766 99 60  E-Mail: info@züricar.ch Website:  info@züricar.ch"
+     },
   
   "termsTransfer": {
     "title": "ZüriCar GO – Transferts – Termes et Conditions",
@@ -867,7 +897,7 @@
     "l15": "ZüriCar GO se réserve le droit de modifier ces termes à tout moment.",
     "l15.1": "Les mises à jour seront publiées sur notre site officiel.",
     "h16": "16. Coordonnées",
-    "l16": "ZüriCar GmbH, Wallisellerstrasse 147, 8152 Glattbrugg, Zurich, Suisse",
+    "l16": "ZüriCar GmbH,Europa-Strasse 19 ,8152 Glattbrugg (ZH) Switzerland, Zürich",
     "l16.1": "Email : info@zuericar.ch | Téléphone : +41 76 495 90 10"
   },
   "event": {

@@ -570,7 +570,7 @@ import { Dropdown } from "primereact/dropdown";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 import tt1 from '../../assets/Travel/Transfer[1].jpg'
 
-
+import { useTranslation } from "react-i18next";
 import img1 from "../../assets/Banner/card1.jpg";
 import img2 from "../../assets/Banner/card2.jpg";
 import img3 from "../../assets/Banner/card3.jpg";
@@ -744,6 +744,7 @@ const Carousel = ({ images = IMGS }) => {
     }
   };
 
+   const { t } = useTranslation("global");
   const nextSlide = () => {
     setCurrentIndex((prev) =>
       prev >= images.length - itemsPerView ? 0 : prev + 1
@@ -883,13 +884,13 @@ export function DestinationDetail() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Destination not found
+           {t("Transfer.destination_not_found")}
           </h2>
           <button
             onClick={() => navigate("/")}
             className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800"
           >
-            Back to Home
+            {t("Transfer.back_home")}
           </button>
         </div>
       </div>
@@ -925,7 +926,7 @@ export function DestinationDetail() {
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
-              Back to Destinations
+               {t("Transfer.back_destinations")}
             </button>
             <h1 className="text-5xl font-bold mb-4">{destination.title}</h1>
           </div>
@@ -935,13 +936,13 @@ export function DestinationDetail() {
       {/* Content Section */}
       <div className="max-w-6xl mx-auto px-8 py-12">
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Overview</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6"> t{("Transfer.overview")}</h2>
           <p className="text-gray-700 text-lg leading-relaxed mb-6">
             {destination.description}
           </p>
           <div className="border-t pt-6">
             <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-              Detailed Information
+              {t("Transfer.detailed_info")}
             </h3>
             <p className="text-gray-600 leading-relaxed">
               {destination.fullDescription}
@@ -979,6 +980,7 @@ export function BookingForm() {
   const [timeFormat, setTimeFormat] = useState('12h');
   const [currentMonth, setCurrentMonth] = useState(new Date());
   
+    const { t} = useTranslation("global");
   const navigate = useNavigate();
 
   // Constants
@@ -1169,13 +1171,13 @@ export function BookingForm() {
   return (
     <div className="booking-container">
       <h1 style={{ fontSize: '48px', fontWeight: 'bold', textAlign: 'center', marginBottom: '32px' }}>
-        Your Reliable Worldwide<br />Airport Transfers
+        {t("Transfer.reliable_worldwide")}<br />{t("Transfer.airport_transfers")}
       </h1>
 
       <div className="booking-grid">
         <div className="booking-form-wrapper">
  <div className="booking-tabs">
-  <div className="booking-text">Transfer</div>
+  <div className="booking-text">{t("Transfer.transfer")}</div>
 </div>
  {/* <button
               className={`booking-tab ${bookingType === 'hourly' ? 'active' : ''}`}
@@ -1190,7 +1192,7 @@ export function BookingForm() {
             <div>
               {/* Pickup Field */}
               <div className="form-group">
-                <label className="form-label">From</label>
+                <label className="form-label">{t("Transfer.from")}</label>
                 <div className="input-wrapper">
                   <MapPin className="input-icon" />
                   <input
@@ -1206,7 +1208,7 @@ export function BookingForm() {
 
               {/* Drop-off Field */}
               <div className="form-group">
-                <label className="form-label">To</label>
+                <label className="form-label">{t("Transfer.to")}</label>
                 <div className="input-wrapper">
                   <MapPin className="input-icon" />
                   <input
@@ -1223,7 +1225,7 @@ export function BookingForm() {
               {/* Date and Time fields */}
               <div className="date-time-grid">
                 <div className="form-group">
-                  <label className="form-label">Pickup date</label>
+                  <label className="form-label">{t("Transfer.pickup_date")}</label>
                   <div className="input-wrapper">
                     <Calendar className="input-icon" />
                     <input
@@ -1261,7 +1263,7 @@ export function BookingForm() {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Pickup time</label>
+                  <label className="form-label">{t("Transfer.pickup_time")}</label>
                   <div className="input-wrapper">
                     <Clock className="input-icon" />
                     <input
@@ -1282,7 +1284,7 @@ export function BookingForm() {
                   className="add-return-btn"
                   onClick={() => setShowReturn(true)}
                 >
-                  ADD RETURN
+                 {t("Transfer.add_return")}
                 </button>
               )}
 
@@ -1290,7 +1292,7 @@ export function BookingForm() {
               {showReturn && (
                 <div className="return-section">
                   <div className="return-header">
-                    <h3 className="return-title">Return Trip</h3>
+                    <h3 className="return-title">{t("Transfer.return_trip")}</h3>
                     <button
                       className="remove-return-btn"
                       onClick={() => { 
@@ -1304,7 +1306,7 @@ export function BookingForm() {
                   </div>
                   <div className="date-time-grid">
                     <div className="form-group">
-                      <label className="form-label">Return date</label>
+                      <label className="form-label">{t("Transfer.return_date")}</label>
                       <div className="input-wrapper">
                         <Calendar className="input-icon" />
                         <input
@@ -1342,7 +1344,7 @@ export function BookingForm() {
                     </div>
 
                     <div className="form-group">
-                      <label className="form-label">Return time</label>
+                      <label className="form-label">{t("Transfer.return_time")}</label>
                       <div className="input-wrapper">
                         <Clock className="input-icon" />
                         <input
@@ -1363,7 +1365,7 @@ export function BookingForm() {
               <div className="form-group">
                 <label className="form-label">
                   <Users style={{ marginTop: '10px', marginBottom: '10px', width: '18px', height: '18px', display: 'inline-block', marginRight: '6px', verticalAlign: 'middle' }} />
-                  Passengers
+                 {t("Transfer.passengers")}
                 </label>
                 <div className="passengers-control">
                   <span className="passengers-count">{formData.passengers}</span>
@@ -1507,11 +1509,11 @@ export function BookingForm() {
             <svg style={{ width: '20px', height: '20px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            See prices
+            {t("Transfer.see_prices")}
           </button>
 
           <div className="trustpilot-section">
-            <span className="trustpilot-rating">EXCELLENT</span>
+            <span className="trustpilot-rating"> {t("Transfer.excellent")}</span>
             <div className="stars">
               {[1, 2, 3, 4, 5].map((i) => (
                 <svg key={i} className="star" fill="currentColor" viewBox="0 0 20 20">
@@ -1519,7 +1521,7 @@ export function BookingForm() {
                 </svg>
               ))}
             </div>
-            <span className="trustpilot-logo">Trustpilot</span>
+            <span className="trustpilot-logo"> {t("Transfer.trustpilot")}</span>
           </div>
         </div>
 
@@ -1587,7 +1589,7 @@ export function BookingForm() {
             </div>
 
             <button className="save-time-btn" onClick={saveTime}>
-              Save
+               {t("Transfer.save")}
             </button>
           </div>
         </div>
@@ -1610,6 +1612,8 @@ export function BookingForm() {
 
 
 export default function Travel() {
+  
+    const { t, i18n } = useTranslation("global");
    const [bookingType, setBookingType] = useState('transfer');
   const [showReturn, setShowReturn] = useState(false);
   const [formData, setFormData] = useState({
@@ -1680,7 +1684,7 @@ export default function Travel() {
       </div>
      {/* <> <BookingForm/></> */}
      <h2 className="text-2xl font-semibold text-center text-black my-6">
-    Explore Our Destination
+     {t("Transfer.explore_destination")}
   </h2>
   <Carousel images={IMGS} />
 </div>

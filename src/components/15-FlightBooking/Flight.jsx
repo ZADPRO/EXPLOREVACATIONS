@@ -127,10 +127,10 @@ export default function Flight() {
       <Popup />
       <Toast ref={toast} />
       <img
-          src={img}
-         alt="Contact Banner"
-         className="w-[400vh]  mt-10 h-[80vh] object-cover"
-       />
+        src={img}
+        alt="Contact Banner"
+        className="w-[400vh]  mt-10 h-[80vh] object-cover"
+      />
       <div className="flex flex-col md:flex-row justify-center items-center min-h-screen p-6 ">
         {/* Left Side: Contact Info */}
         <div className="flex-1 p-8 bg-white rounded-lg" data-aos="fade-right">
@@ -141,16 +141,16 @@ export default function Flight() {
           <div className="mt-6 space-y-3">
             <p className="text-lg">
               📧 <span className="font-semibold">{t("contact.Email")}:</span>{" "}
-             info@zuricar.ch
+              info@zuricar.ch
             </p>
             <p className="text-lg">
               📞 <span className="font-semibold">{t("contact.Phone")}:</span> +41 79 766 99 60
             </p>
             <p className="text-lg">
               📍 <span className="font-semibold">{t("contact.Address")}:</span>{" "}
-             Oberfeldstrasse 6
-CH-8306 Kloten
-Switzerland
+              Europa-Strasse 19
+              8152 Glattbrugg (ZH)
+              Switzerland
             </p>
           </div>
         </div>

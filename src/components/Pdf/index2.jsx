@@ -61,10 +61,10 @@ export default function Pdf({
         <View>
           <Text style={styles.header}>ZüriCar GmbH </Text>
           <Text style={styles.paragraph}>
-          Oberfeldstrasse 6
-CH-8306 Kloten
-Switzerland{"\n"}
-          +41 79 766 99 60 | ✉️ info@züricar.ch{"\n"}
+            Europa-Strasse 19
+            8152 Glattbrugg (ZH)
+            Switzerland{"\n"}
+            +41 79 766 99 60 | ✉️ info@züricar.ch{"\n"}
             www.züricar.ch
           </Text>
 

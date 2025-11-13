@@ -54,7 +54,7 @@ export default function TermsCondition() {
                 <li>{t("terms.l3")}</li>
                 <li>
                   {t("terms.l3.1")} email to: <br />
-                  ZüriCar GmbH, Wallisellerstrasse 147, 8152 Glattbrugg,
+                  ZüriCar GmbH,Europa-Strasse 19 ,8152 Glattbrugg (ZH),
                   Zürich, Schweiz
                   <br />
                   Call: +41 76 495 90 10

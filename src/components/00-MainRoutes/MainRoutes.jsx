@@ -42,6 +42,9 @@ import FormDetails from "../../pages/FormDetails/FormDetails";
 import Event from "../07-Booking/Event";
 import Impressum from "../../pages/Impressum/Impressum";
 import Cookies from "../../pages/Cookies/Cookies";
+import BecomePartner from "../21-BecomeParnter/BecomePartner";
+import BecomeTransfer from "../22-BecomeTransfer/becometransfer";
+import Becometravelagency from "../23-BecomeTavelagency/Becometravelagency";
 // import BookingFlowApp from "../13-Tarvel/BookingFlowApp";
 // import { ExtrasStep } from "../18-ExtrasStep/ExtrasStep";
 // import { PaymentStep } from "../19-PaymentStep/PaymentStep";
@@ -81,11 +84,11 @@ function Layout() {
         <Route path="/terms" element={<TermsCondition />} />
         <Route path="/terms-transfer" element={<TermsTransfer />} />
         <Route path="/privacy" element={<Privacy />} />
-        {/* <Route path="/PassengerStep" element={<PassengerStep />} /> */}
+        <Route path="/PassengerStep" element={<PassengerStep />} />
         
-        {/* <Route path="/BookingFlow" element={<BookingFlow />} /> */}
-        {/* <Route path="/BookingSummary" element={<BookingSummary />} /> */}
-        {/* <Route path="/BookingForm" element={<BookingForm />} /> */}
+        <Route path="/BookingFlow" element={<BookingFlow />} />
+        <Route path="/BookingSummary" element={<BookingSummary />} />
+        <Route path="/BookingForm" element={<BookingForm />} />
         <Route path="/impressum" element={<Impressum />} />
         <Route path="/EditJourneyModal" element={<EditJourneyModal />} />
         {/* <Route path="/pages" element={<Pages />} /> */}
@@ -94,12 +97,17 @@ function Layout() {
         <Route path="/success" element={<Success />} />
         <Route path="/failure" element={<Failure />} />
         <Route path="/event" element={<Event />} />
-        {/* <Route path="/vehicle" element={< VehicleStep />} /> */}
+        <Route path="/vehicle" element={< VehicleStep />} />
         <Route path="/formdetails" element={<FormDetails />} />
-        {/* <Route path="/ExtrasStep" element={<ExtrasStep />} /> */}
-        {/* <Route path="/paymentstep" element={<PaymentStep />} /> */}
+        <Route path="/ExtrasStep" element={<ExtrasStep />} />
+        <Route path="/paymentstep" element={<PaymentStep />} />
         <Route path="/generalpdf" element={<GeneralTandC />} />
         <Route path="/caragreement" element={<Caragreement />} />
+        <Route path="/privacy" element={<Privacy />}/>
+        <Route path="/becomePartner" element={<BecomePartner />}/>
+        <Route path="/becometransfer" element={<BecomeTransfer />}/>
+        <Route path="/becometravelagency" element={<Becometravelagency />}/>
+
       </Routes>
       {!shouldHideFooter && <Footer />}
     </>

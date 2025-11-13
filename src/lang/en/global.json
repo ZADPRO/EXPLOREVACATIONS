@@ -18,6 +18,7 @@
     "event": "Event",
     "flightbooking": "Flight Form Booking"
   },
+
   "tour": {
     "travelExcludes": "Travel Excludes",
     "travelIncludes": "Travel Includes",
@@ -295,7 +296,12 @@
     "Terms and Conditions": "Terms and Conditions",
     "Privacy Policy": "Privacy Policy",
     "Contact Information": "Contact Information",
-    "Social Media Links": "Social Media Links"
+    "Social Media Links": "Social Media Links",
+     "about_us": "About Us",
+      "grow_with_zuricar": "Grow with ZüriCar GO",
+      "become_partner": "Become a Partner",
+      "become_transfer_partner": "Become a Transfer Partner",
+      "travel_agency_partnership": "Travel Agency Partnership"
   },
   "car": {
     "Available Cars": "Available Cars",
@@ -434,6 +440,31 @@
     "Kids (Below 12 yrs)": "Kids (Below 12 yrs)",
     "Babies (Below 2 yrs)": "Babies (Below 2 yrs)"
   },
+  "Transfer":{
+    "explore_destination": "Explore Our Destination",
+      "destination_not_found": "Destination not found",
+      "back_home": "Back to Home",
+      "back_destinations": "Back to Destinations",
+      "overview": "Overview",
+      "detailed_info": "Detailed Information",
+      "reliable_worldwide": "Your Reliable Worldwide",
+      "airport_transfers": "Airport Transfers",
+      "transfer": "Transfer",
+      "from": "From",
+      "to": "To",
+      "pickup_date": "Pickup date",
+      "pickup_time": "Pickup time",
+      "add_return": "ADD RETURN",
+      "return_trip": "Return Trip",
+      "remove": "Remove",
+      "return_date": "Return date",
+      "return_time": "Return time",
+      "passengers": "Passengers",
+      "see_prices": "See prices",
+      "excellent": "EXCELLENT",
+      "trustpilot": "Trustpilot",
+      "save": "Save"
+  },
   "termsTransfer": {
     "title": "ZüriCar GO – Transfers – Terms and Conditions",
     "h1": "1. Introduction",
@@ -492,7 +523,7 @@
     "l15": "ZüriCar GO reserves the right to amend these terms at any time.",
     "l15.1": "Updates will be published on our official website.",
     "h16": "16. Contact Information",
-    "l16": "ZüriCar GmbH, Wallisellerstrasse 147, 8152 Glattbrugg, Zurich, Switzerland",
+    "l16": "ZüriCar GmbH, Europa-Strasse 19 ,8152 Glattbrugg (ZH) Switzerland, Zürich, .",
     "l16.1": "Email: info@zuericar.ch | Phone: +41 76 495 90 10"
   },
   "privacy": {
@@ -506,7 +537,7 @@
     "content1": "If you provide us with other people's personal information, please ensure that you inform them about the sharing of their personal information and request that they read this Privacy Policy. We will ensure that we do the same whenever possible (e.g. where the contact details of the person concerned are available).",
     "title2": "HOW CAN YOU CONTROL OUR PROCESSING OF YOUR PERSONAL DATA?",
     "sub2.1": "You have rights that allow you to effectively control your personal data and the way we process it. Below we explain your rights in connection with your personal data.",
-    "sub2.2": "If you wish to exercise the rights listed below, please submit a request by email to info@züricar.ch or by post to the following address: Wallisellerstrasse 147, 8152 Glattbrugg, Zurich, Switzerland.",
+    "sub2.2": "If you wish to exercise the rights listed below, please submit a request by email to info@züricar.ch or by post to the following address: Europa-Strasse 19 ,8152 Glattbrugg (ZH) Switzerland, Zurich, Switzerland.",
     "sub2.3": "If you have any questions about the use of your personal data under this Privacy Policy, please address them to the following address: https://zuericar.com/",
     "l4": "You can request access to your personal data",
     "p4": "If you believe that your personal data is inaccurate or incomplete, you may request that such personal data be amended or completed accordingly. In some cases, the submission of supporting documents may be required.",
@@ -661,7 +692,7 @@
     "l4.6": "If the Hirer proves no or less cost/loss, the fee may be adjusted.",
     "l4.7": "Cancellations and changes must be done online",
     "a5": "by post, or in writing to:",
-    "l5": "ZüriCar GmbH, Wallisellerstrasse 147, 8152 Opfikon",
+    "l5": "ZüriCar GmbH, Europa-Strasse 19 ,8152 Glattbrugg (ZH) Switzerland",
     "l5.5": "If the reserved vehicle is not picked up at the agreed time, the full rental charge already paid will be retained in full.",
     "h6": "Failure to Collect the Vehicle",
     "l6.1": "For bookings using the Flexi-tariff, the following applies: If the Hirer does not, for whatever reason, collect the vehicle no later than one hour after the agreed time, ZüriCar GmbH shall no longer be bound by the booking. General Rental Terms and Conditions.",
@@ -890,7 +921,7 @@
     "h19": "    XIII. Final Provisions",
     "p19": "Swiss law shall apply exclusively. The application of the Vienna Convention on Contracts for the International Sale of Goods (UN Sales Law) is excluded.",
     "p19.1": "For all disputes arising from or in connection with the mediation relationship between the customer and ZüriCar GmbH, the exclusive place of jurisdiction Kloten (ZH), Switzerland, is agreed, to the extent permitted by law. Mandatory places of jurisdiction for consumers pursuant to Articles 32 and 35 of the Code of Civil Procedure remain unaffected.",
-    "p19.2": "ZüriCar GmbH Managing Director: Diestale Ambros Oberfeldstrasse 10 CH-8302 Kloten Phone:+41 79 766 99 60 E-mail: info@züricar.ch Website:  info@züricar.ch  Registration Court: Commercial Registry Office of the Canton of Zurich"
+    "p19.2": "ZüriCar GmbH ZüriCar GmbH Europa-Strasse 19 8152 Glattbrugg (ZH) Switzerland Telefon: +41 79 766 99 60  E-Mail: info@züricar.ch Website:  info@züricar.ch"
   },
   "event": {
     "line1": "Exclusive Chauffeur Services for the  in Davos World Economic Forum 2026 – January 19 to 23",
