@@ -272,7 +272,7 @@
     "email": "E-Mail: info@zuricar.ch",
     "registerTitle": "Commercial Register Entry",
     "registeredName": "Registered Company Name: ZüriCar GO GmbH",
-    "companyId": "Company Identification Number (UID): CHE-[insert number]",
+    "companyId": "Company Identification Number (UID): CHE-[461.094.162]",
     "vat": "VAT Number: CHE-[insert number] MWST",
     "authorizedTitle": "Authorized Representatives",
     "authorized1": " Veemarajan Pragash, Managing Director",
@@ -537,7 +537,7 @@
     "content1": "If you provide us with other people's personal information, please ensure that you inform them about the sharing of their personal information and request that they read this Privacy Policy. We will ensure that we do the same whenever possible (e.g. where the contact details of the person concerned are available).",
     "title2": "HOW CAN YOU CONTROL OUR PROCESSING OF YOUR PERSONAL DATA?",
     "sub2.1": "You have rights that allow you to effectively control your personal data and the way we process it. Below we explain your rights in connection with your personal data.",
-    "sub2.2": "If you wish to exercise the rights listed below, please submit a request by email to info@züricar.ch or by post to the following address: Europa-Strasse 19 ,8152 Glattbrugg (ZH) Switzerland, Zurich, Switzerland.",
+    "sub2.2": "If you wish to exercise the rights listed below, please submit a request by email to info@zuricar.ch or by post to the following address: Europa-Strasse 19 ,8152 Glattbrugg (ZH) Switzerland, Zurich, Switzerland.",
     "sub2.3": "If you have any questions about the use of your personal data under this Privacy Policy, please address them to the following address: https://zuericar.com/",
     "l4": "You can request access to your personal data",
     "p4": "If you believe that your personal data is inaccurate or incomplete, you may request that such personal data be amended or completed accordingly. In some cases, the submission of supporting documents may be required.",
@@ -820,7 +820,7 @@
     "l26.5": "The name, address, rental data, and all other information known to the Rental Firm about the Hirer will be disclosed to the relevant authorities upon legitimate request (e.g., in cases of traffic violations), and to third parties in cases of alleged infringement of third-party rights (e.g., interference with possession).",
     "h27": "Digital Renting",
     "l27": "In deviation from Clause 2.2, in the case of a digital rental (e.g. via the ZüriCar GmbH App, Mobile Check-In, etc.), the content of the concluded contract together with the displayed General Rental Terms and Conditions is confirmed by the Hirer by clicking on the corresponding buttons in the digital services of ZüriCar GmbH; the Hirer hereby declares that he/she has taken note of and understood the content of the contract and expressly agrees to it. The content of the concluded contract can be retrieved within the framework of the digital services of ZüriCar GmbH or is provided to the Hirer by email and therefore confirmed to both parties with binding effect.",
-    "l27.1": "The Hirer may not disclose the access data (e.g. login, PIN, username, password, etc.) for the services provided by ZüriCar GmbH to third parties and must ensure that these are not accessible to third parties. To prevent third-party access to the services provided by ZüriCar GmbH, it is forbidden to make written records of access data. The loss of access data must be reported to ZüriCar GmbH immediately by email (info@züricar.ch). The access data is not transferable.",
+    "l27.1": "The Hirer may not disclose the access data (e.g. login, PIN, username, password, etc.) for the services provided by ZüriCar GmbH to third parties and must ensure that these are not accessible to third parties. To prevent third-party access to the services provided by ZüriCar GmbH, it is forbidden to make written records of access data. The loss of access data must be reported to ZüriCar GmbH immediately by email (info@zuricar.ch). The access data is not transferable.",
     "l27.2": "In addition to Clause 12.2, the use of ZüriCar GmbH’s digital services for the rental of vehicles is prohibited if the Hirer’s driving licence is revoked or if other circumstances restricting the driving licence occur (e.g. restriction of the driving licence, temporary seizure or confiscation of the driving licence or a driving ban imposed by a court or the authorities).",
     "l27.3": "For specific services, ZüriCar GmbH requests the Hirer at regular intervals to verify that he/she holds a valid driving licence. If the Hirer wishes to use services such as digital renting (e.g. Mobile Check-In), he/she has an obligation to present his/her driving licence to ZüriCar GmbH prior to starting the rental, corresponding to the processes specified by ZüriCar GmbH.",
     "h28": "Applicable Law and Place of Jurisdiction",
@@ -832,7 +832,7 @@
   "general": {
     "h1": "General Terms and Conditions",
     "stg": "Preamble",
-    "p1.1": "Preamble ZüriCar GmbH (hereinafter referred to as  ZüriCar GmbH) arranges travel services on the  info@züricar.ch website. On this Internet portal, various travel services are offered by tour operators, airlines or other service providers named by name.",
+    "p1.1": "Preamble ZüriCar GmbH (hereinafter referred to as  ZüriCar GmbH) arranges travel services on the  info@zuricar.ch website. On this Internet portal, various travel services are offered by tour operators, airlines or other service providers named by name.",
     "p1.2": "The following terms and conditions of mediation apply to the brokerage services of  ZüriCar GmbH for package tours, cruises, flights (only), hotels (only), rental cars, city trips, other travel services, related travel services, and travel insurance on the internet portal.",
     "p1.3": "Please also note the applicable general terms and conditions (travel and payment conditions) as well as the pre-contractual information of the respective responsible provider, which you can view in the service description.",
     "h2": "I. Content of the Contract, Conclusion of the Contract",
@@ -876,7 +876,7 @@
     "p7.10": "Incorrect age information for children's discounts: In the event of incorrect age information, the tour operator is entitled to claim the difference to the correct travel price. A flat-rate processing fee of CHF 50 may be charged for the additional processing effort. The customer can prove that no or less damage has occurred. Service providers such as airlines or hotels can also make a price adjustment.",
     "p7.11": "Reminder in the event of late payment: If the customer fails to make a payment due on time, ZüriCar GmbH may charge a reminder fee of CHF 40 per reminder. Further legal steps, in particular the assertion of default interest in accordance with Art. 104 CO (currently 5% p.a.), are reserved. The customer has the option of proving that no or less damage has occurred.",
     "h8": "Services and prices",
-    "p8": "The services listed in the booking confirmation are decisive as described on info@züricar.ch. We reserve the right to make changes before the conclusion of the contract.",
+    "p8": "The services listed in the booking confirmation are decisive as described on info@zuricar.ch. We reserve the right to make changes before the conclusion of the contract.",
     "p8.1": "Flight times, routing or aircraft may be changed. The regulations according to section 4 apply.",
     "p8.2": "Direct flights may include stopovers.",
     "p8.3": "Processing of empty weeks possible on request, processing fee: CHF 50 per person/week.",
@@ -921,7 +921,7 @@
     "h19": "    XIII. Final Provisions",
     "p19": "Swiss law shall apply exclusively. The application of the Vienna Convention on Contracts for the International Sale of Goods (UN Sales Law) is excluded.",
     "p19.1": "For all disputes arising from or in connection with the mediation relationship between the customer and ZüriCar GmbH, the exclusive place of jurisdiction Kloten (ZH), Switzerland, is agreed, to the extent permitted by law. Mandatory places of jurisdiction for consumers pursuant to Articles 32 and 35 of the Code of Civil Procedure remain unaffected.",
-    "p19.2": "ZüriCar GmbH ZüriCar GmbH Europa-Strasse 19 8152 Glattbrugg (ZH) Switzerland Telefon: +41 79 766 99 60  E-Mail: info@züricar.ch Website:  info@züricar.ch"
+    "p19.2": "ZüriCar GmbH ZüriCar GmbH Europa-Strasse 19 8152 Glattbrugg (ZH) Switzerland Telefon: +41 79 766 99 60  E-Mail: info@zuricar.ch Website:  info@zuricar.ch"
   },
   "event": {
     "line1": "Exclusive Chauffeur Services for the  in Davos World Economic Forum 2026 – January 19 to 23",

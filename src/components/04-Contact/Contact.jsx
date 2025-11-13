@@ -39,7 +39,7 @@ export default function Contact() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    const to = "info@züricar.ch";
+    const to = "info@zuricar.ch";
     const subject = encodeURIComponent("Tour Booking Feedback");
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nSelected Type: ${messageType}\nMessage:\n${description}\n\nBest regards,\n${name}`

@@ -74,7 +74,7 @@ export default function BecomePartner() {
         ></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Become a Travel Partner with <span className="text-red-500">Züri</span>Car GO
+            License Partner Model with <span className="text-red-500">Züri</span>Car GO
           </h1>
           <p className="text-xl md:text-2xl mb-4">Join ZüriCar GO Travel Partner Network</p>
           <p className="text-lg md:text-xl opacity-90">
@@ -154,7 +154,7 @@ export default function BecomePartner() {
               Join the <span className="text-red-500">Züri</span><span className="font-semibold">Car GO Travel Partner Network</span> today!
             </p>
             <p className="text-gray-700">
-              Send your details to <a href="mailto:info@zuercar.ch" className="text-blue-600 font-semibold hover:underline">info@zuercar.ch</a> or complete the registration form below.
+              Send your details to <a href="mailto:info@zuircar.ch" className="text-blue-600 font-semibold hover:underline">info@zuercar.ch</a> or complete the registration form below.
             </p>
           </div>
         </div>

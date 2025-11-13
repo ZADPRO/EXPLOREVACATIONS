@@ -61,10 +61,10 @@ export default function TermsCondition() {
                   <br />
                   {t("terms.l3.2")}:{" "}
                   <a
-                    href="mailto:info@züricar.ch"
+                    href="mailto:info@zuricar.ch"
                     className="text-[#0062c4] underline"
                   >
-                    info@züricar.ch
+                    info@zuricar.ch
                   </a>
                 </li>
                 <li> {t("terms.l3.3")}.</li>
@@ -104,10 +104,10 @@ export default function TermsCondition() {
                 <li>
                   Email:{" "}
                   <a
-                    href="mailto:info@züricar.ch"
+                    href="mailto:info@zuricar.ch"
                     className="text-blue-600 underline"
                   >
-                    info@züricar.ch
+                    info@zuricar.ch
                   </a>
                 </li>
               </ul>

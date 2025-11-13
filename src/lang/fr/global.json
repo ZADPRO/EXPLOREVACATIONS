@@ -286,7 +286,7 @@
     "email": "E-mail : info@zuricar.ch",
     "registerTitle": "Inscription au registre du commerce",
     "registeredName": "Raison sociale enregistrée : ZüriCar GO GmbH",
-    "companyId": "Numéro d'identification de l’entreprise (UID) : CHE-[insérer le numéro]",
+    "companyId": "Numéro d'identification de l’entreprise (UID) : CHE-[461.094.162]",
     "vat": "Numéro de TVA : CHE-[insérer le numéro] MWST",
     "authorizedTitle": "Représentants autorisés",
     "authorized1": "• Veemarajan Pragash, Directeur général",
@@ -475,7 +475,7 @@
     "content1": "Si vous nous transmettez des informations personnelles concernant d'autres personnes, veuillez vous assurer de les informer du partage de leurs données et leur demander de lire cette politique de confidentialité. Nous nous efforcerons de faire de même dans la mesure du possible (par exemple, si les coordonnées de la personne concernée sont disponibles).",
     "title2": "COMMENT POUVEZ-VOUS CONTRÔLER LE TRAITEMENT DE VOS DONNÉES PERSONNELLES ?",
     "sub2.1": "Vous disposez de droits vous permettant de contrôler efficacement vos données personnelles et la manière dont nous les traitons. Nous vous expliquons ci-dessous vos droits concernant vos données personnelles.",
-    "sub2.2": "Si vous souhaitez exercer les droits ci-dessous, veuillez envoyer une demande par e-mail à info@züricar.ch ou par courrier postal à l’adresse suivante : Europa-Strasse 19 ,8152 Glattbrugg (ZH), Zurich, Suisse.",
+    "sub2.2": "Si vous souhaitez exercer les droits ci-dessous, veuillez envoyer une demande par e-mail à info@zuricar.ch ou par courrier postal à l’adresse suivante : Europa-Strasse 19 ,8152 Glattbrugg (ZH), Zurich, Suisse.",
     "sub2.3": "Si vous avez des questions concernant l’utilisation de vos données personnelles dans le cadre de cette politique de confidentialité, veuillez les adresser à l’adresse suivante : https://zuericar.com/",
     "l4": "Vous pouvez demander l'accès à vos données personnelles",
     "p4": "Si vous estimez que vos données personnelles sont inexactes ou incomplètes, vous pouvez demander leur rectification ou leur complétion. Dans certains cas, des justificatifs peuvent être demandés.",
@@ -734,7 +734,7 @@
     "l26.5": "Nom, adresse, données de location et toutes informations détenues par l’entreprise seront communiqués aux autorités compétentes sur demande légitime (ex. infractions routières) et à des tiers en cas de violation alléguée de droits de tiers (ex. troubles de possession).",
     "h27": "Location digitale",
     "l27": "Par dérogation à la clause 2.2, en cas de location digitale (ex. via l’application ZüriCar GmbH, Mobile Check-In, etc.), le contenu du contrat conclu avec les CGV affichées est confirmé par le locataire en cliquant sur les boutons correspondants dans les services digitaux d’ZüriCar GmbH ; le locataire déclare avoir pris connaissance et compris le contenu du contrat et y consent expressément. Le contenu du contrat peut être consulté dans les services digitaux ou est envoyé par e-mail, valant confirmation engageante pour les deux parties.",
-    "l27.1": "Le locataire ne doit pas communiquer ses identifiants d’accès (login, PIN, nom d’utilisateur, mot de passe, etc.) à des tiers et doit veiller à ce qu’ils ne soient pas accessibles à des tiers. Il est interdit de noter ces accès par écrit. Toute perte doit être immédiatement signalée par e-mail (info@züricar.ch). Ces accès ne sont pas transférables.",
+    "l27.1": "Le locataire ne doit pas communiquer ses identifiants d’accès (login, PIN, nom d’utilisateur, mot de passe, etc.) à des tiers et doit veiller à ce qu’ils ne soient pas accessibles à des tiers. Il est interdit de noter ces accès par écrit. Toute perte doit être immédiatement signalée par e-mail (info@zuricar.ch). Ces accès ne sont pas transférables.",
     "l27.2": "En plus de la clause 12.2, l’utilisation des services digitaux pour louer un véhicule est interdite si le permis du locataire est révoqué ou limité (ex. saisie temporaire, interdiction de conduire judiciaire ou administrative).",
     "l27.3": "Pour certains services, ZüriCar GmbH demande régulièrement au locataire de vérifier qu’il possède un permis valide. Pour utiliser des services comme la location digitale, le locataire doit présenter son permis avant le début de la location, selon les procédures définies par ZüriCar GmbH.",
     "h28": "Droit applicable et lieu de juridiction",
@@ -746,7 +746,7 @@
   "general": {
     "h1": "Conditions Générales",
     "stg": "Préambule",
-    "p1.1": "Préambule ZüriCar GmbH (ci-après dénommée  ZüriCar GmbH) organise des prestations de voyage sur le site  info@züricar.ch. Sur ce portail Internet, divers services de voyage sont proposés par des voyagistes, compagnies aériennes ou autres prestataires de services nommément désignés.",
+    "p1.1": "Préambule ZüriCar GmbH (ci-après dénommée  ZüriCar GmbH) organise des prestations de voyage sur le site  info@zuricar.ch. Sur ce portail Internet, divers services de voyage sont proposés par des voyagistes, compagnies aériennes ou autres prestataires de services nommément désignés.",
     "p1.2": "Les conditions générales suivantes s'appliquent aux services d'intermédiation fournis par  ZüriCar GmbH pour les voyages à forfait, les croisières, les vols (seulement), les hôtels (seulement), les voitures de location, les escapades urbaines, les autres services touristiques, les services liés au voyage et les assurances voyage sur le portail Internet.",
     "p1.3": "Veuillez également prendre connaissance des conditions générales applicables (conditions de voyage et de paiement) ainsi que des informations précontractuelles du prestataire concerné, que vous pouvez consulter dans la description du service.",
     "h2": "I. Contenu et conclusion du contrat",
@@ -790,7 +790,7 @@
     "p7.10": "Erreurs d’âge pour les réductions enfants : En cas d’indication erronée de l’âge, le voyagiste est en droit de réclamer la différence. Des frais de traitement de 50 CHF peuvent être appliqués. Le client peut prouver qu’aucun ou moins de dommages a été causé. Les prestataires (compagnies aériennes, hôtels, etc.) peuvent également ajuster les prix.",
     "p7.11": "Rappel en cas de retard de paiement : Si le client ne règle pas un paiement dû à temps, ZüriCar GmbH peut facturer des frais de rappel de 40 CHF par rappel. D’autres recours légaux, notamment les intérêts de retard conformément à l’art. 104 CO (actuellement 5 % par an), sont réservés. Le client peut prouver qu’aucun ou un dommage inférieur a été subi.",
     "h8": "Prestations et prix",
-    "p8": "Les prestations figurant dans la confirmation de réservation font foi, telles que décrites sur  info@züricar.ch. Des modifications peuvent être apportées avant la conclusion du contrat.",
+    "p8": "Les prestations figurant dans la confirmation de réservation font foi, telles que décrites sur  info@zuricar.ch. Des modifications peuvent être apportées avant la conclusion du contrat.",
     "p8.1": "Les horaires, itinéraires ou types d’avions peuvent être modifiés. Les dispositions de la section 4 s’appliquent.",
     "p8.2": "Les vols directs peuvent inclure des escales.",
     "p8.3": "Traitement des semaines vides possible sur demande, frais de traitement : 50 CHF par personne/semaine.",
@@ -836,7 +836,7 @@
     "h19": "XIII. Schlussbestimmungen",
     "p19": "Es gilt ausschließlich schweizerisches Recht. Die Anwendung des Wiener Kaufrechts (UN-Kaufrecht) ist ausgeschlossen.",
     "p19.1": "Für alle Streitigkeiten aus oder im Zusammenhang mit dem Vermittlungsverhältnis zwischen dem Kunden und der ZüriCar GmbH ist – soweit gesetzlich zulässig – ausschließlicher Gerichtsstand Kloten (ZH), Schweiz. Zwingende Gerichtsstände für Verbraucher gemäß Art. 32 und 35 der Zivilprozessordnung bleiben unberührt.",
-    "p19.2": "ZüriCar GmbH ZüriCar GmbH Europa-Strasse 19 8152 Glattbrugg (ZH) Switzerland Telefon: +41 79 766 99 60  E-Mail: info@züricar.ch Website:  info@züricar.ch"
+    "p19.2": "ZüriCar GmbH ZüriCar GmbH Europa-Strasse 19 8152 Glattbrugg (ZH) Switzerland Telefon: +41 79 766 99 60  E-Mail: info@zuricar.ch Website:  info@zuricar.ch"
      },
   
   "termsTransfer": {

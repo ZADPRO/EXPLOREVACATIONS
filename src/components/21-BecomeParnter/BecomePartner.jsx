@@ -36,7 +36,7 @@ export default function BecomePartner() {
   };
 
   const handleSubmit = () => {
-    const to = "info@züricar.ch";
+    const to = "info@zuricar.ch";
     const subject = encodeURIComponent("New Partner Driver Registration");
     const body = encodeURIComponent(
       `=== DRIVER REGISTRATION APPLICATION ===\n\n` +
@@ -77,7 +77,7 @@ export default function BecomePartner() {
           }}
         ></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">Become a Partner</h1>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">License Partner Model</h1>
           <p className="text-xl md:text-2xl mb-4">Join ZüriCar GO Driver Network</p>
           <p className="text-lg md:text-xl opacity-90">
             Professional drivers wanted across Switzerland
@@ -213,7 +213,7 @@ export default function BecomePartner() {
         {/* Form Section */}
         <div className="bg-white border-t-4 border-blue-600 shadow-xl rounded-lg p-8 md:p-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-8">
-            Become a Partner
+           License Partner Model
           </h2>
 
           <div className="space-y-6">

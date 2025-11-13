@@ -64,7 +64,7 @@ export default function Pdf({
             Europa-Strasse 19
             8152 Glattbrugg (ZH)
             Switzerland{"\n"}
-            +41 79 766 99 60 | ✉️ info@züricar.ch{"\n"}
+            +41 79 766 99 60 | ✉️ info@zuricar.ch{"\n"}
             www.züricar.ch
           </Text>
 
@@ -128,7 +128,7 @@ export default function Pdf({
           </View>
           <Text style={styles.paragraph}>
             If you have any questions or need to make changes, please contact us
-            at +41 79 766 99 60 or info@züricar.ch.
+            at +41 79 766 99 60 or info@zuricar.ch.
           </Text>
 
           <Text style={styles.paragraph}>
