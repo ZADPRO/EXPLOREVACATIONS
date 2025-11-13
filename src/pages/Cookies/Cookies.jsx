@@ -80,7 +80,7 @@ export default function Cookies() {
 
         <h3 className="text-lg font-semibold mt-6">{t("cookies.contactTitle")}</h3>
         <ul className="list-disc pl-6 space-y-2 mt-2">
-          <li>📍 ZüriCar GmbH, Oberfeldstrasse 14, Kloten, Switzerland</li>
+          <li>📍 ZüriCar GmbH, Europa-Strasse 19 ,8152 Glattbrugg (ZH),Switzerland</li>
           <li>📧 info@zuricar.ch</li>
           <li>🌐 https://zuericar.com/</li>
         </ul>

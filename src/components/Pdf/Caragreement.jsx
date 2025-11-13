@@ -877,7 +877,7 @@ export default function PdfVieTour({
                 Pickup Location Details
               </Text>
               <Text style={{ fontSize: 9, marginBottom: 4 }}>
-                Oberfeldstrasse 10 Kloten 8302 41444423035
+                Europa-Strasse 19 ,8152 Glattbrugg (ZH) Switzerland
               </Text>
               <Text style={{ fontSize: 9, marginBottom: 4 }}>
                 Pickup instructionsThe Shuttle runs every 20 minutes. The

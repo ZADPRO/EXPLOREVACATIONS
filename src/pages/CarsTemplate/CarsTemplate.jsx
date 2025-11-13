@@ -868,7 +868,7 @@ export default function CarsTemplate() {
             </FloatLabel>
           </div>
         </div>
-        <h6 className="pt-[1.5rem] text-[#295bac]">Your pickup & Drop Address -371/5, Negombo Road, Seeduwa Sri Lanka Office,Oberfeldstrasse 10, 8302 Kloten, Switzerland
+        <h6 className="pt-[1.5rem] text-[#295bac]">Your pickup & Drop Address -371/5, Negombo Road, Seeduwa Sri Lanka Office,Europa-Strasse 19 ,8152 Glattbrugg (ZH) Switzerland
         </h6>
         <div className="pt-[2rem] flex flex-col lg:flex-row gap-[1rem]">
           {/* <div className="w-[100%]">
