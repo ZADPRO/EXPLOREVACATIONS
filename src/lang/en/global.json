@@ -93,6 +93,50 @@
     "title8": "Stress-Free, reliable, with no hidden costs"
       
   },
+  "vehicle":{
+      "route_map_visualization": "Route map visualization",
+      "all_prices_include": "All prices include VAT and tolls",
+      "choose_vehicle": "Choose your vehicle",
+      "selected_passengers_": "Selected Passengers",
+      "add_return":"ADD RETURN",
+      "add_return_trip": "Add Return Trip",
+      "selected_passengers": "Selected Passengers",
+      "showing": "Showing",
+      "vehicle": "vehicle",
+      "accommodate": "that can accommodate",
+      "or_more_passengers": "or more passengers",
+      "no_vehicles_available": "No vehicles available",
+        "selected": "Selected",
+      "free_cancellation": "FREE CANCELLATION",
+       "en2": "Unfortunately, no vehicles can accommodate",
+       "en3": "Please reduce the number of passengers or contact us for custom arrangements.",
+      "en": "Book today, lock the price. You can cancel for free within the",
+      "en1": "and get a full refund",
+      "your_choice": "Your choice",
+      "continue": "Continue"
+  },
+  "pay": {
+    "payment": "Payment",
+    "book": "Complete Booking",
+    "select_payment_method": "Select payment method",
+    "credit_debit_card": "Credit / Debit Card",
+    "apple_pay": "Apple Pay",
+    "google_pay": "Google Pay",
+    "card_number": "Card number",
+    "name_on_card": "Name on card",
+    "expiry_date": "Expiry date",
+    "agree_to": "I agree to the",
+    "terms_conditions": "Terms and Conditions"
+  },
+  "extras": {
+    "extras_notes": "Extras & notes",
+    "flight_train_number": "Flight/train number",
+    "provide_flight_number": "Please provide your flight number (driver will track your flight)",
+    "need_child_seat": "Need a child or booster seat?",
+    "driver_notes_outward": "Driver notes (Outward)",
+    "driver_notes_return": "Driver notes (Return)",
+    "back": "Back"
+  },
   "home1": {
     "description1": "Our modern compact cars offer comfort, efficiency, and style for every journey. Perfect for city driving or business trips – with generous space and advanced technology.",
     "highlights1": [
@@ -300,7 +344,7 @@
      "about_us": "About Us",
       "grow_with_zuricar": "Grow with ZüriCar GO",
       "become_partner": "Become a Partner",
-      "become_transfer_partner": "Become a Transfer Partner",
+      "become_transfer_partner": "Become a Driver",
       "travel_agency_partnership": "Travel Agency Partnership"
   },
   "car": {

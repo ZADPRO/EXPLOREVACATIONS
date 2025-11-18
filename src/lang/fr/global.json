@@ -76,7 +76,52 @@
     "uploadPassport": "Télécharger le passeport",
     "uploadVaccine": "Télécharger le certificat de vaccination"
   },
-  
+   "pay": {
+    "payment": "Paiement",
+    "book": "Finaliser la réservation",
+
+    "select_payment_method": "Sélectionnez le mode de paiement",
+    "credit_debit_card": "Carte de crédit / débit",
+    "apple_pay": "Apple Pay",
+    "google_pay": "Google Pay",
+    "card_number": "Numéro de carte",
+    "name_on_card": "Nom sur la carte",
+    "expiry_date": "Date d’expiration",
+    "agree_to": "J’accepte les",
+    "terms_conditions": "Termes et conditions"
+  },
+  "extras": {
+    "extras_notes": "Suppléments et notes",
+    "flight_train_number": "Numéro de vol/train",
+    "provide_flight_number": "Veuillez fournir votre numéro de vol (le chauffeur suivra votre vol)",
+    "need_child_seat": "Besoin d’un siège enfant ou d’un rehausseur ?",
+    "driver_notes_outward": "Notes du chauffeur (Aller)",
+    "driver_notes_return": "Notes du chauffeur (Retour)",
+    "back":"Retour"
+  },
+   "vehicle": {
+      "route_map_visualization": "Visualisation de la carte de l’itinéraire",
+      "all_prices_include": "Tous les prix incluent la TVA et les péages",
+      "choose_vehicle": "Choisissez votre véhicule",
+      "selected_passengers_add_return": "Passagers sélectionnés AJOUTER RETOUR",
+      "add_return_trip": "Ajouter un trajet retour",
+      "selected_passengers": "Passagers sélectionnés",
+      "showing": "Affichage de",
+      "vehicle": "véhicule",
+      "accommodate": "qui peut accueillir",
+      "or_more_passengers": "ou plus de passagers",
+      "no_vehicles_available": "Aucun véhicule disponible",
+       "en2": "Malheureusement, aucun véhicule ne peut accueillir les passagers.",
+       "en3": "Veuillez réduire le nombre de passagers ou nous contacter pour des arrangements personnalisés.",
+
+ "en": "Réservez aujourd'hui, bloquez le prix. Vous pouvez annuler gratuitement dans le",
+"en1": "et obtenir un remboursement complet",
+
+      "selected": "Sélectionné",
+      "free_cancellation": "ANNULATION GRATUITE",
+      "your_choice": "Votre choix",
+      "continue": "Continuer"
+    },
   "carousel": {
         "title1": "MIRISSA",
         "subtitle1": "Le paradis tropical sur la côte du Sri Lanka",
@@ -315,7 +360,7 @@
     "about_us": "À propos de nous",
       "grow_with_zuricar": "Développez-vous avec ZüriCar GO",
       "become_partner": "Devenir partenaire",
-      "become_transfer_partner": "Devenir partenaire de transfert",
+      "become_transfer_partner": "Devenir Chauffeur",
       "travel_agency_partnership": "Partenariat avec une agence de voyage"
   },
 

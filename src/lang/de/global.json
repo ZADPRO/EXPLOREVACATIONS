@@ -260,6 +260,28 @@
     "updateDesc": "Wir können diese Richtlinie bei Bedarf aktualisieren.",
     "contactTitle": "Kontaktieren Sie uns"
   },
+  "vehicle":{
+   "route_map_visualization": "Routenkarte Visualisierung",
+      "all_prices_include": "Alle Preise beinhalten MwSt. und Mautgebühren",
+      "choose_vehicle": "Wählen Sie Ihr Fahrzeug",
+      "selected_passengers_add_return": "Ausgewählte Passagiere RÜCKFAHRT HINZUFÜGEN",
+      "add_return_trip": "Rückfahrt hinzufügen",
+      "selected_passengers": "Ausgewählte Passagiere",
+      "showing": "Anzeigen von",
+      "vehicle": "Fahrzeug",
+      "accommodate": "das Platz bietet für",
+       "en2": "Leider können keine Fahrzeuge die Passagiere aufnehmen.",
+        "en3": "Bitte reduzieren Sie die Anzahl der Passagiere oder kontaktieren Sie uns für individuelle Vereinbarungen.",
+        "en1": "und eine vollständige Rückerstattung erhalten",
+        "en": "Buchen Sie heute und sichern Sie sich den Preis. Sie können innerhalb der",
+        "or_more_passengers": "oder mehr Passagiere",
+      "no_vehicles_available": "Keine Fahrzeuge verfügbar",
+      "no_vehicle_message": "Leider können keine Fahrzeuge diese Anzahl von Passagieren aufnehmen. Bitte reduzieren Sie die Passagierzahl oder kontaktieren Sie uns für individuelle Arrangements.",
+      "selected": "Ausgewählt",
+      "free_cancellation": "KOSTENLOSE STORNIERUNG",
+      "your_choice": "Ihre Wahl",
+      "continue": "Weiter"
+    },
   "imprint": {
     "title": "Impressum / Rechtliche Hinweise",
     "address1": "Kirchrainstrasse 3",
@@ -298,7 +320,7 @@
     "about_us": "Über uns",
       "grow_with_zuricar": "Wachse mit ZüriCar GO",
       "become_partner": "Partner werden",
-      "become_transfer_partner": "Transferpartner werden",
+      "become_transfer_partner": "Fahrer werden",
       "travel_agency_partnership": "Reisebüro-Partnerschaft"
   },
   "car": {
@@ -362,6 +384,28 @@
     "Flexible Parking Choices for Your Trip": "Flexible Parkmöglichkeiten für Ihre Reise",
     "Secure and convenient parking options designed to fit your travel needs.": "Sichere und bequeme Parkmöglichkeiten, die auf Ihre Reisebedürfnisse zugeschnitten sind."
   },
+   "pay": {
+    "payment": "Zahlung",
+    "select_payment_method": "Zahlungsmethode auswählen",
+    "credit_debit_card": "Kredit- / Debitkarte",
+    "apple_pay": "Apple Pay",
+    "google_pay": "Google Pay",
+    "card_number": "Kartennummer",
+    "name_on_card": "Name auf der Karte",
+    "expiry_date": "Ablaufdatum",
+    "agree_to": "Ich stimme den",
+    "book": "Buchung abschließen",
+    "terms_conditions": "Geschäftsbedingungen zu"
+  },
+  "extras":{
+  "extras_notes": "Extras & Notizen",
+    "flight_train_number": "Flug-/Zugnummer",
+    "provide_flight_number": "Bitte geben Sie Ihre Flugnummer an (der Fahrer wird Ihren Flug verfolgen)",
+    "need_child_seat": "Benötigen Sie einen Kinder- oder Sitzerhöher?",
+    "driver_notes_outward": "Fahrernotizen (Hinfahrt)",
+    "driver_notes_return": "Fahrernotizen (Rückfahrt)",
+    "back":"Zurück"
+},
   "profile": {
     "Tour Bookings": "Tourbuchungen",
     "Car Booking": "Autobuchung",

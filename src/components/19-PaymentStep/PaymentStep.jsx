@@ -104,10 +104,10 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
 
       
 
-      <h2>Payment</h2>
+      <h2>{t("pay.payment")}</h2>
       
       <div style={{ marginBottom: '24px' }}>
-        <h3 style={{ fontWeight: '500', marginBottom: '16px' }}>Select payment method</h3>
+        <h3 style={{ fontWeight: '500', marginBottom: '16px' }}>{t("pay.select_payment_method")}</h3>
         
         <div className="payment-methods">
           <label className="payment-method">
@@ -119,7 +119,7 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
             <span className="payment-icon">💳</span>
-            <span className="payment-name">Credit / Debit Card</span>
+            <span className="payment-name">{t("pay.credit_debit_card")}</span>
             <div className="payment-badges">
               <span className="payment-badge">VISA</span>
               <span className="payment-badge">MC</span>
@@ -136,7 +136,7 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
             <span className="payment-icon"></span>
-            <span className="payment-name">Apple Pay</span>
+            <span className="payment-name">{t("pay.apple_pay")}</span>
           </label>
 
           <label className="payment-method">
@@ -148,7 +148,7 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
             <span className="payment-icon">G</span>
-            <span className="payment-name">Google Pay</span>
+            <span className="payment-name">{t("pay.google_pay")}</span>
           </label>
         </div>
       </div>
@@ -156,7 +156,7 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
       {paymentMethod === 'card' && (
         <div style={{ marginBottom: '24px' }}>
           <div className="form-group">
-            <label className="form-label">Card number *</label>
+            <label className="form-label">{t("pay.card_number")} *</label>
             <input
               type="text"
               placeholder="1234 5678 9012 3456"
@@ -166,7 +166,7 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
             />
           </div>
           <div className="form-group">
-            <label className="form-label">Name on card *</label>
+            <label className="form-label">{t("pay.name_on_card")} *</label>
             <input
               type="text"
               placeholder="John Doe"
@@ -177,7 +177,7 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
           </div>
           <div className="form-row">
             <div className="form-group">
-              <label className="form-label">Expiry date *</label>
+              <label className="form-label">{t("pay.expiry_date")} *</label>
               <input
                 type="text"
                 placeholder="MM/YY"
@@ -216,7 +216,7 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
       onChange={(e) => setAgreedToTerms(e.target.checked)}
     />
     <span style={{ fontSize: "14px", color: "#6b7280" }}>
-      I agree to the{" "}
+      {t("pay.agree_to")}{" "}
       <Link
         to="/terms-transfer"
         style={{
@@ -225,7 +225,7 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
           cursor: "pointer",
         }}
       >
-        Terms and Conditions
+       {t("pay.terms_conditions")}
       </Link>{" "}
       {/* and{" "}
       <Link
@@ -244,13 +244,13 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
 
       <div className="button-group">
         <button onClick={onBack} className="btn btn-back">
-          ← Back
+          ← {t("extras.back")}
         </button>
         <button 
           onClick={handleCompleteBooking} 
           className="btn btn-primary"
         >
-          Complete Booking
+          {t("pay.book")}
         </button>
       </div>
     </div>

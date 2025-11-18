@@ -269,6 +269,49 @@
     "updateDesc": "Questa politica può essere aggiornata periodicamente.",
     "contactTitle": "Contattaci"
   },
+   "pay": {
+    "payment": "Pagamento",
+    "select_payment_method": "Seleziona il metodo di pagamento",
+    "credit_debit_card": "Carta di credito / debito",
+    "apple_pay": "Apple Pay",
+    "google_pay": "Google Pay",
+    "card_number": "Numero della carta",
+    "name_on_card": "Nome sulla carta",
+    "expiry_date": "Data di scadenza",
+    "agree_to": "Accetto i",
+     "book": "Completa la prenotazione",
+    "terms_conditions": "Termini e condizioni"
+  },
+  "extras": {
+    "extras_notes": "Extra e note",
+    "flight_train_number": "Numero del volo/treno",
+    "provide_flight_number": "Per favore indica il numero del tuo volo (l’autista seguirà il tuo volo)",
+    "need_child_seat": "Hai bisogno di un seggiolino per bambini o di un rialzo?",
+    "driver_notes_outward": "Note dell’autista (Andata)",
+    "driver_notes_return": "Note dell’autista (Ritorno)",
+    "back":"Indietro"
+  },
+     "vehicle": {
+      "route_map_visualization": "Visualizzazione della mappa del percorso",
+      "all_prices_include": "Tutti i prezzi includono IVA e pedaggi",
+      "choose_vehicle": "Scegli il tuo veicolo",
+      "selected_passengers_add_return": "Passeggeri selezionati AGGIUNGI RITORNO",
+      "add_return_trip": "Aggiungi viaggio di ritorno",
+      "selected_passengers": "Passeggeri selezionati",
+      "showing": "Mostrando",
+      "vehicle": "veicolo",
+      "accommodate": "che può ospitare",
+      "or_more_passengers": "o più passeggeri",
+      "no_vehicles_available": "Nessun veicolo disponibile",
+      "selected": "Selezionato",
+      "free_cancellation": "CANCELLAZIONE GRATUITA",
+      "your_choice": "La tua scelta",
+      "continue": "Continua",
+       "en2": "Sfortunatamente, nessun veicolo può ospitare i passeggeri.",
+       "en3": "Riduci il numero di passeggeri o contattaci per soluzioni personalizzate.",
+  "en": "Prenota oggi e blocca il prezzo. Puoi cancellare gratuitamente entro il",
+   "en1": "e ottenere un rimborso completo"
+    },
   "imprint": {
     "title": "Informazioni legali / Note legali",
     "address1": "Kirchrainstrasse 3",
@@ -307,7 +350,7 @@
      "about_us": "Chi siamo",
       "grow_with_zuricar": "Cresci con ZüriCar GO",
       "become_partner": "Diventa un partner",
-      "become_transfer_partner": "Diventa un partner di trasferimento",
+      "become_transfer_partner": "Diventa un Autista",
       "travel_agency_partnership": "Collaborazione con agenzia di viaggi"
   },
   "car": {

@@ -162,12 +162,12 @@ const ExtrasStep = ({ bookingData, updateBookingData, onBack, onContinue }) => {
     <>
       <style>{extrasStepStyles}</style>
       <div className="content-card">
-        <h2>Extras & notes</h2>
+        <h2>{t("extras.extras_notes")}</h2>
 
         {/* Flight Number */}
         <div className="form-group">
           <label className="form-label">
-            Flight/train number <span>ⓘ</span>
+            {t("extras.flight_train_number")} <span>ⓘ</span>
           </label>
           <div className="form-input-icon">
             <Plane className="input-icon" size={18} />
@@ -180,7 +180,7 @@ const ExtrasStep = ({ bookingData, updateBookingData, onBack, onContinue }) => {
             />
           </div>
           <p className="form-hint">
-            Please provide your flight number (driver will track your flight)
+            {t("extras.provide_flight_number")}
           </p>
         </div>
 
@@ -192,14 +192,14 @@ const ExtrasStep = ({ bookingData, updateBookingData, onBack, onContinue }) => {
               checked={childSeat}
               onChange={(e) => setChildSeat(e.target.checked)}
             />
-            Need a child or booster seat?
+           {t("extras.need_child_seat")}
           </label>
         </div>
 
         {/* Outward Notes */}
         <div className="form-group">
           <label className="form-label">
-            Driver notes (Outward) <span>ⓘ</span>
+            {t("extras.driver_notes_outward")} <span>ⓘ</span>
           </label>
           <textarea
             value={driverNotesOutward}
@@ -213,7 +213,7 @@ const ExtrasStep = ({ bookingData, updateBookingData, onBack, onContinue }) => {
         {bookingData.return && (
           <div className="form-group">
             <label className="form-label">
-              Driver notes (Return) <span>ⓘ</span>
+              {t("extras.driver_notes_return")}<span>ⓘ</span>
             </label>
             <textarea
               value={driverNotesReturn}
@@ -227,10 +227,10 @@ const ExtrasStep = ({ bookingData, updateBookingData, onBack, onContinue }) => {
         {/* Buttons */}
         <div className="button-group">
           <button onClick={onBack} className="btn btn-back">
-            ← Back
+            ←  {t("extras.back")}
           </button>
           <button onClick={handleContinue} className="btn btn-primary">
-            Continue 
+            {t("vehicle.continue")}
           </button>
         </div>
       </div>

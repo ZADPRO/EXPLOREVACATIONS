@@ -345,7 +345,7 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
           </div>
         </div>
 
-        <div className="notification-card yellow">
+        {/* <div className="notification-card yellow">
           <div className="notification-content">
             <input
               type="checkbox"
@@ -368,7 +368,7 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="info-banner">
           <span className="banner-icon">⚠</span>
