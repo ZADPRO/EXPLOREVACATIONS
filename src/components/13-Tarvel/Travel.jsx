@@ -1551,7 +1551,6 @@ export function BookingForm() {
                 12h
               </button>
             </div>
-
             <div className="time-selectors">
               <div className="time-column">
                 <button className="time-arrow" onClick={() => decrementValue('hour')}>
@@ -1682,7 +1681,7 @@ export default function Travel() {
     <div className="mt-5">
         <TourrCarousel moduleId={4} />
       </div>
-     {/* <> <BookingForm/></> */}
+     <> <BookingForm/></>
      <h2 className="text-2xl font-semibold text-center text-black my-6">
      {t("Transfer.explore_destination")}
   </h2>

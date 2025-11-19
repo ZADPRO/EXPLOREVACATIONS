@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Plane } from "lucide-react";
-
+import { useTranslation } from "react-i18next";
 const extrasStepStyles = `
 .content-card {
   background: white;
@@ -133,8 +133,9 @@ h2 {
   background: #111827;
 }
 `;
+  const ExtrasStep = ({ bookingData, updateBookingData, onBack, onContinue }) => {
+  const { t } = useTranslation("global");   // ✅ correct place
 
-const ExtrasStep = ({ bookingData, updateBookingData, onBack, onContinue }) => {
   const [flightNumber, setFlightNumber] = useState(
     bookingData.extras?.flightNumber || ""
   );

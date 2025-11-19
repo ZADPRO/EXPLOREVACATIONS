@@ -30,6 +30,16 @@ export default function PdfVieTour({
   specialNotes,
   tourCategory,
 }) {
+ 
+let twoCols = ["", ""];
+if (tourItenary) {
+  const parts = tourItenary.split("</p>");
+  const mid = Math.ceil(parts.length / 2);
+
+  twoCols[0] = parts.slice(0, mid).map(p => p + "</p>").join("");
+  twoCols[1] = parts.slice(mid).map(p => p + "</p>").join("");
+}
+
   return (
     <Document>
    <Page size="A4">
@@ -123,61 +133,53 @@ export default function PdfVieTour({
   </View>
 </Page>
 
-      <Page size="A4" wrap={true}>
-        <View wrap={true}>
-          <Text
-            style={{
-              marginTop: "5%",
-              fontSize: "20px",
-              color: "#0d90d1",
-              fontWeight: "900",
-              paddingLeft: "3%",
-            }}
-          >
-            Accomentation & Tour Plan
-          </Text>
-          <Image
-            fixed={true}
-            src={page3}
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              height: "100vh",
-              width: "100%",
-              zIndex: -1,
-            }}
-          />
-
-      {/* <Html
+      <Page size="A4"  style={{
+    flexDirection: "row",
+    paddingTop: 40,      
+    paddingBottom: 40,   
+  
+                
+  }} wrap={true}>
+   <View
   style={{
-    fontSize: 10,
-    padding: "3%",
-    lineHeight: 1.2, 
+    flexDirection: "row",
+     
+    paddingLeft: 35,     
+    paddingRight: 35,   
+    gap: 20,             
   }}
 >
-  {tourItenary}
-</Html> */}
-<Html
-  style={{
-    fontSize: 10,
-    padding: "3%",
-    lineHeight: 1.2, // tighter overall line spacing
-  }}
->
-  {tourItenary
-    ?.replaceAll(
-      "<p>",
-      '<p style="margin:2px 0; line-height:1.2;">' // reduce space between paragraphs
-    )
-    .replaceAll(
-      "<br>",
-      "<br style='line-height:1.2;' />" // reduce spacing for line breaks too
-    )}
-</Html>
+
+  {/* LEFT COLUMN */}
+  <View style={{ width: "50%" }}>
+    <Html
+      style={{
+        fontSize: 10,
+        lineHeight: 1.4,
+        textAlign: "justify", // JUSTIFY TEXT
+      }}
+    >
+      {twoCols[0]}
+    </Html>
+  </View>
+
+  {/* RIGHT COLUMN */}
+  <View style={{ width: "50%" }}>
+    <Html
+      style={{
+        fontSize: 10,
+        lineHeight: 1.4,
+        textAlign: "justify", // JUSTIFY TEXT
+      }}
+    >
+      {twoCols[1]}
+    </Html>
+  </View>
+
+</View>
 
 
-        </View>
+
       </Page>
       <Page size="A4">
         <View style={{ width: "100%", height: "100%", padding: "40px" }}>

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { CheckCircle, XCircle, X } from 'lucide-react';
 import './PassengerStep.css';
-
+import { useTranslation } from "react-i18next";
 // Sample countries list
 const countries = [
   { code: '+44', name: 'United Kingdom', flag: '🇬🇧' },
@@ -15,7 +15,7 @@ const countries = [
   { code: '+49', name: 'Germany', flag: '🇩🇪' },
   { code: '+33', name: 'France', flag: '🇫🇷' }
 ];
-
+ const { t } = useTranslation("global"); 
 const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) => {
   const [firstName, setFirstName] = useState(bookingData.passenger.firstName || '');
   const [lastName, setLastName] = useState(bookingData.passenger.lastName || '');
@@ -333,13 +333,13 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
                   <svg className="notification-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ width: '20px', height: '20px' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  Email & App notifications
+                  Email
                 </span>
                 <span className="notification-badge free">✓ Free</span>
               </div>
               <p className="notification-text">
                 Driver details sent 6 hours before pickup via email and App push notification. 
-                <span className="info-icon" style={{ display: 'inline-flex', marginLeft: '4px', width: '14px', height: '14px', fontSize: '10px' }}>i</span>
+                {/* <span className="info-icon" style={{ display: 'inline-flex', marginLeft: '4px', width: '14px', height: '14px', fontSize: '10px' }}>i</span> */}
               </p>
             </div>
           </div>

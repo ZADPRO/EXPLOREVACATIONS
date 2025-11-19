@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CheckCircle, XCircle, X } from 'lucide-react';
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
@@ -16,7 +17,7 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
     setToast({ message, type });
     setTimeout(() => setToast(null), 3000);
   };
-
+ const { t } = useTranslation("global"); 
   const handleCardDetailsChange = (field, value) => {
     setCardDetails(prev => ({
       ...prev,
