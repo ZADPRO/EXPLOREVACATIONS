@@ -1,0 +1,15 @@
+/* Disable AOS animations on mobile */
+@media (max-width: 768px) {
+  .mobile-aos-fix {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* AOS attributes on mobile should not animate */
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}

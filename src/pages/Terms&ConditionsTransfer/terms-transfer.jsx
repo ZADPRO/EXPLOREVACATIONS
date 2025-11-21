@@ -20,7 +20,12 @@ export default function TermsTransfer() {
         <h1 className="text-3xl font-bold mb-4 text-center">
           {t("termsTransfer.title")}
         </h1>
-
+  <button
+  onClick={() => navigate("/booking", { state: { goToStep: 4 } })}
+  className="btn btn-back flex items-center gap-2 mb-6 text-blue-600 font-semibold"
+>
+  ← {t("extras.back")}
+</button>
         <div className="space-y-4 text-justify">
           {/* 1 */}
           <h2 className="text-xl font-semibold mt-6">

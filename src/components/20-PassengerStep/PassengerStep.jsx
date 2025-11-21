@@ -15,7 +15,6 @@ const countries = [
   { code: '+49', name: 'Germany', flag: '🇩🇪' },
   { code: '+33', name: 'France', flag: '🇫🇷' }
 ];
- const { t } = useTranslation("global"); 
 const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) => {
   const [firstName, setFirstName] = useState(bookingData.passenger.firstName || '');
   const [lastName, setLastName] = useState(bookingData.passenger.lastName || '');
@@ -31,6 +30,7 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
   const [toast, setToast] = useState(null);
   const dropdownRef = useRef(null);
 
+ const { t } = useTranslation("global"); 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -150,11 +150,11 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
           </div>
         )}
 
-        <h2>Lead passenger</h2>
+        <h2>{t("passenger.lead_passenger")}</h2>
         
         <div className="form-row">
           <div className="form-group">
-            <h3>First name</h3>
+            <h3>{t("passenger.first_name")}</h3>
             <input
               type="text"
               value={firstName}
@@ -176,12 +176,12 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
                 marginTop: '4px',
                 display: 'block'
               }}>
-                This field is required
+               {t("passenger.last_name_field_required")}
               </span>
             )}
           </div>
           <div className="form-group">
-            <h3>Last name</h3>
+            <h3>{t("passenger.last_name")}</h3>
             <input
               type="text"
               value={lastName}
@@ -203,14 +203,14 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
                 marginTop: '4px',
                 display: 'block'
               }}>
-                This field is required
+               {t("passenger.last_name_field_required")}
               </span>
             )}
           </div>
         </div>
 
         <div className="form-group">
-          <h3>Email address</h3>
+          <h3>{t("passenger.email_address")}</h3>
           <input
             type="email"
             value={email}
@@ -233,17 +233,17 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
               marginTop: '4px',
               display: 'block'
             }}>
-              Please enter a valid email address
+             {t("passenger.email_valid_message")}
             </span>
           )}
           <p className="form-hint">
             <span className="form-hint-icon">i</span>
-            We'll send your booking voucher here.
+           {t("passenger.email_note")}
           </p>
         </div>
 
         <div className="form-group">
-          <h3>Mobile number</h3>
+          <h3>{t("passenger.mobile_number")}</h3>
           <div className="phone-input-wrapper">
             <div className="phone-input-group">
               <div className="country-select-container" ref={dropdownRef}>
@@ -310,12 +310,12 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
               marginTop: '4px',
               display: 'block'
             }}>
-              Please enter a valid mobile number
+             {t("passenger.mobile_number_required")}
             </span>
           )}
           <p className="form-hint">
             <span className="form-hint-icon">i</span>
-            Please provide a contact number so our driver can reach the passenger if needed
+            {t("passenger.mobile_contact_note")}
           </p>
         </div>
 
@@ -333,12 +333,12 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
                   <svg className="notification-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ width: '20px', height: '20px' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  Email
+                {t("passenger.email")}
                 </span>
                 <span className="notification-badge free">✓ Free</span>
               </div>
               <p className="notification-text">
-                Driver details sent 6 hours before pickup via email and App push notification. 
+               {t("passenger.driver_details_message")}
                 {/* <span className="info-icon" style={{ display: 'inline-flex', marginLeft: '4px', width: '14px', height: '14px', fontSize: '10px' }}>i</span> */}
               </p>
             </div>
@@ -373,12 +373,12 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
         <div className="info-banner">
           <span className="banner-icon">⚠</span>
           <div className="banner-text">
-            Please note that <strong>Meet & Greet service is not guaranteed at this location</strong> and may be unavailable due to logistical reasons or force majeure. If unavailable, pickup will take place curbside outside the terminal. <strong>The local provider will send clear instructions to ensure a smooth experience.</strong>
+           {t("passenger.please_note")} <strong>{t("passenger.meet_greet_not_guaranteed")}</strong> {t("passenger.meet_greet_unavailable_reason")} <strong>{t("passenger.local_provider_instructions")}</strong>
           </div>
         </div>
 
         <div className="meetgreet-section">
-          <h3>Meet & Greet</h3>
+          <h3>{t("passenger.meet_greet")}</h3>
           <div className="meetgreet-content">
             <input
               type="text"
@@ -389,17 +389,17 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
             />
             <p className="meetgreet-hint">
               <span className="form-hint-icon">i</span>
-              Meet & Greet with a sign–enter the name to display.
+             {t("passenger.meet_greet_with_sign")}.
             </p>
           </div>
         </div>
 
         <div className="button-group">
           <button onClick={onBack} className="btn-back">
-            ← Back
+            ← {t("extras.back")}
           </button>
           <button onClick={handleContinue} className="btn btn-primary">
-            Continue
+             {t("car.continue")}
           </button>
         </div>
       </div>

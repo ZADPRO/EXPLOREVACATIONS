@@ -387,12 +387,14 @@ export default function Header() {
                 </div>
                 {showMobileTransfer && (
                   <div className="ml-4 mt-2 flex flex-col gap-2">
-                    {["airport", "event"].map((type) => (
+                    {["transfers", "event"].map((type) => (
                       <div
                         key={type}
                         className="text-md cursor-pointer text-[#0067b6]"
                         onClick={() =>
-                          handleNavigation(`/transfer?type=${type}`)
+      type === "event"
+        ? handleNavigation("/event")
+        : handleNavigation(`/transfer?type=${type}`)
                         }
                       >
                         {type.charAt(0).toUpperCase() + type.slice(1)}{" "}

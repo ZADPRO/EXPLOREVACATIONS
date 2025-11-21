@@ -563,13 +563,16 @@
 // }
 
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useNavigate, useParams } from "react-router-dom";
 import { Dropdown } from "primereact/dropdown";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 import tt1 from '../../assets/Travel/Transfer[1].jpg'
 
+import decrypt from "../../helper";
+import debounce from "lodash.debounce";
+import { AutoComplete } from 'primereact/autocomplete';
 import { useTranslation } from "react-i18next";
 import img1 from "../../assets/Banner/card1.jpg";
 import img2 from "../../assets/Banner/card2.jpg";
@@ -594,6 +597,7 @@ import "react-clock/dist/Clock.css";
 import TimePicker from "react-time-picker";
 import driverImg from "../../assets/Home1/2.png"
 import BookingFlow from "../BookingFlow/BookingFlow";
+import axios from "axios";
 const IMGS = [
   {
     id: "st-moritz",
@@ -744,7 +748,7 @@ const Carousel = ({ images = IMGS }) => {
     }
   };
 
-   const { t } = useTranslation("global");
+  const { t } = useTranslation("global");
   const nextSlide = () => {
     setCurrentIndex((prev) =>
       prev >= images.length - itemsPerView ? 0 : prev + 1
@@ -860,11 +864,10 @@ const Carousel = ({ images = IMGS }) => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-[10px] h-[10px] rounded-full transition-all duration-200 ${
-                Math.floor(currentIndex / itemsPerView) === index
+              className={`w-[10px] h-[10px] rounded-full transition-all duration-200 ${Math.floor(currentIndex / itemsPerView) === index
                   ? "bg-black w-[20px]"
                   : "bg-[#858484] hover:bg-[#858484]"
-              }`}
+                }`}
             />
           )
         )}
@@ -879,12 +882,13 @@ export function DestinationDetail() {
   const navigate = useNavigate();
   const destination = IMGS.find((img) => img.id === id);
 
+  const { t } = useTranslation("global");
   if (!destination) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
-           {t("Transfer.destination_not_found")}
+            {t("Transfer.destination_not_found")}
           </h2>
           <button
             onClick={() => navigate("/")}
@@ -926,7 +930,7 @@ export function DestinationDetail() {
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
-               {t("Transfer.back_destinations")}
+              {t("Transfer.back_destinations")}
             </button>
             <h1 className="text-5xl font-bold mb-4">{destination.title}</h1>
           </div>
@@ -953,7 +957,6 @@ export function DestinationDetail() {
     </div>
   );
 }
-
 export function BookingForm() {
   // State declarations
   const [bookingType, setBookingType] = useState('transfer');
@@ -968,7 +971,10 @@ export function BookingForm() {
     passengers: 2,
     duration: '2'
   });
-  
+  const [zoneStatus, setZoneStatus] = useState({
+    from: null,
+    to: null,
+  });
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [activeTimeField, setActiveTimeField] = useState(null);
@@ -979,9 +985,146 @@ export function BookingForm() {
   const [selectedPeriod, setSelectedPeriod] = useState('PM');
   const [timeFormat, setTimeFormat] = useState('12h');
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  
-    const { t} = useTranslation("global");
+
+  // AutoComplete states
+  const [filteredLocations, setFilteredLocations] = useState([]);
+
+  const { t } = useTranslation("global");
   const navigate = useNavigate();
+  const fetchAddressSuggestions = async (fieldName, value) => {
+    if (!value || value.trim().length < 2) {
+      setAddressSuggestions((prev) => ({ ...prev, [fieldName]: [] }));
+      setZoneStatus((prev) => ({ ...prev, [fieldName]: null }));
+      setErrors((prev) => ({ ...prev, [fieldName]: "" }));
+      return;
+    }
+
+    try {
+      setLoading((prev) => ({ ...prev, [fieldName]: true }));
+      const token = localStorage.getItem("token");
+
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/validateAddress`,
+        { address: value },
+        { headers: { Authorization: token ? token : "" } }
+      );
+
+      const decrypted = response.data;
+      console.log("njdcndnc", decrypted)
+      const suggestions = decrypted?.suggestions ?? [];
+      setAddressSuggestions((prev) => ({
+        ...prev,
+        [fieldName]: suggestions.map((s) => s.name),
+      }));
+
+      // 🔍 Zone Validation only if the field exists
+      if (decrypted.hasOwnProperty("insideZurich")) {
+        const isInside = decrypted.insideZurich;
+
+        setZoneStatus((prev) => ({
+          ...prev,
+          [fieldName]: isInside ? "inside" : "outside",
+        }));
+
+        if (!isInside) {
+          setErrors((prev) => ({
+            ...prev,
+            [fieldName]: "This address is outside the Zürich zone",
+          }));
+        }
+      } else {
+        // Hide zone indicator & error
+        setZoneStatus((prev) => ({ ...prev, [fieldName]: null }));
+        setErrors((prev) => ({ ...prev, [fieldName]: "" }));
+      }
+
+    } catch (error) {
+      console.error("Validation error:", error);
+      setErrors((prev) => ({
+        ...prev,
+        [fieldName]: "Unable to validate this address.",
+      }));
+      setZoneStatus((prev) => ({ ...prev, [fieldName]: null }));
+    } finally {
+      setLoading((prev) => ({ ...prev, [fieldName]: false }));
+    }
+  };
+
+  // Location suggestions
+  const locations = [
+    // Andhra Pradesh
+    'Visakhapatnam, Andhra Pradesh',
+    'Vijayawada, Andhra Pradesh',
+    'Guntur, Andhra Pradesh',
+    'Nellore, Andhra Pradesh',
+    'Kurnool, Andhra Pradesh',
+    'Tirupati, Andhra Pradesh',
+    'Rajahmundry, Andhra Pradesh',
+    'Kadapa, Andhra Pradesh',
+    'Anantapur, Andhra Pradesh',
+    'Eluru, Andhra Pradesh',
+
+    // Tamil Nadu
+    'Chennai, Tamil Nadu',
+    'Coimbatore, Tamil Nadu',
+    'Madurai, Tamil Nadu',
+    'Tiruchirappalli, Tamil Nadu',
+    'Salem, Tamil Nadu',
+    'Tirunelveli, Tamil Nadu',
+    'Tiruppur, Tamil Nadu',
+    'Erode, Tamil Nadu',
+    'Vellore, Tamil Nadu',
+    'Thoothukudi, Tamil Nadu',
+    'Thanjavur, Tamil Nadu',
+    'Dindigul, Tamil Nadu',
+    'Kanchipuram, Tamil Nadu',
+    'Karur, Tamil Nadu',
+    'Ooty, Tamil Nadu',
+    'Kodaikanal, Tamil Nadu',
+
+    // Karnataka (Vijayapura)
+    'Vijayapura, Karnataka',
+    'Bengaluru, Karnataka',
+    'Mysuru, Karnataka',
+    'Hubballi, Karnataka',
+    'Mangaluru, Karnataka',
+    'Belagavi, Karnataka',
+    'Davanagere, Karnataka',
+    'Ballari, Karnataka',
+    'Shivamogga, Karnataka',
+    'Tumakuru, Karnataka',
+
+    // Major airports
+    'Chennai International Airport',
+    'Coimbatore International Airport',
+    'Visakhapatnam Airport',
+    'Vijayawada Airport',
+    'Tirupati Airport',
+    'Kempegowda International Airport, Bengaluru',
+    'Mangalore International Airport',
+    'Mysore Airport',
+
+    // Popular destinations
+    'Pondicherry',
+    'Mahabalipuram, Tamil Nadu',
+    'Rameswaram, Tamil Nadu',
+    'Kanyakumari, Tamil Nadu',
+    'Yercaud, Tamil Nadu',
+    'Yelagiri, Tamil Nadu',
+    'Chikmagalur, Karnataka',
+    'Coorg, Karnataka',
+    'Hampi, Karnataka',
+    'Araku Valley, Andhra Pradesh',
+    'Horsley Hills, Andhra Pradesh'
+  ];
+
+  const searchLocation = (event) => {
+    const query = event.query.toLowerCase();
+    const filtered = locations.filter(location =>
+      location.toLowerCase().includes(query)
+    );
+    setFilteredLocations(filtered);
+  };
 
   // Constants
   const hours12 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
@@ -1014,7 +1157,7 @@ export function BookingForm() {
   };
 
   const saveTime = () => {
-    const timeString = timeFormat === '12h' 
+    const timeString = timeFormat === '12h'
       ? `${selectedHour}:${selectedMinute} ${selectedPeriod}`
       : `${selectedHour}:${selectedMinute}`;
     handleInputChange(activeTimeField, timeString);
@@ -1068,6 +1211,137 @@ export function BookingForm() {
       navigate("/BookingFlow", { state: { bookingFormData } });
     }
   };
+  const [loading, setLoading] = useState({
+    from: false,
+    to: false,
+  });
+
+  const [addressSuggestions, setAddressSuggestions] = useState({
+    from: [],
+    to: []
+  });
+
+  // const fetchAddressSuggestions = async (fieldName, value) => {
+  //   if (!value || value.trim().length < 2) {
+  //     setAddressSuggestions((prev) => ({ ...prev, [fieldName]: [] }));
+  //     setZoneStatus((prev) => ({ ...prev, [fieldName]: null }));
+  //     setErrors((prev) => ({ ...prev, [fieldName]: "" }));
+  //     return;
+  //   }
+
+  //   try {
+  //     setLoading((prev) => ({ ...prev, [fieldName]: true }));
+  //     setErrors((prev) => ({ ...prev, [fieldName]: "" }));
+
+  //     const token = localStorage.getItem("token");
+
+  //     const response = await axios.post(
+  //       `${import.meta.env.VITE_API_URL}/validateAddress`,
+  //       { address: value },
+  //       {
+  //         headers: {
+  //           Authorization: token ? `Bearer ${token}` : "",
+  //         },
+  //       }
+  //     );
+
+  //     // Get suggestions from API or fallback to filtered locations
+  //     const suggestions = response.data?.suggestions || [];
+  //     const isInside = response.data?.insideZurich;
+
+  //     // If API returns suggestions, use them
+  //     if (suggestions.length > 0) {
+  //       setAddressSuggestions((prev) => ({
+  //         ...prev,
+  //         [fieldName]: suggestions
+  //       }));
+
+  //       setZoneStatus((prev) => ({
+  //         ...prev,
+  //         [fieldName]: isInside ? "inside" : "outside",
+  //       }));
+
+  //       if (!isInside) {
+  //         setErrors((prev) => ({
+  //           ...prev,
+  //           [fieldName]: "This address is outside the Zürich zone.",
+  //         }));
+  //       }
+  //     } else {
+  //       // Fallback: filter from local locations array
+  //       const filteredLocal = locations.filter(location => 
+  //         location.toLowerCase().includes(value.toLowerCase())
+  //       );
+
+  //       setAddressSuggestions((prev) => ({
+  //         ...prev,
+  //         [fieldName]: filteredLocal.length > 0 ? filteredLocal : ["No results found"]
+  //       }));
+
+  //       // For local fallback, don't show zone status
+  //       setZoneStatus((prev) => ({ ...prev, [fieldName]: null }));
+  //     }
+  //   } catch (error) {
+  //     console.error("Validation error:", error);
+
+  //     // On error, fallback to local search
+  //     const filteredLocal = locations.filter(location => 
+  //       location.toLowerCase().includes(value.toLowerCase())
+  //     );
+
+  //     setAddressSuggestions((prev) => ({
+  //       ...prev,
+  //       [fieldName]: filteredLocal.length > 0 ? filteredLocal : ["No results found"]
+  //     }));
+
+  //     // Show error only if it's a network error
+  //     if (error.response) {
+  //       setErrors((prev) => ({
+  //         ...prev,
+  //         [fieldName]: "Unable to validate this address.",
+  //       }));
+  //     }
+
+  //     setZoneStatus((prev) => ({ ...prev, [fieldName]: null }));
+  //   } finally {
+  //     setLoading((prev) => ({ ...prev, [fieldName]: false }));
+  //   }
+  // };
+  // Debounced search function
+  const debouncedAddressSearch = useCallback(
+    debounce((fieldName, value) => {
+      fetchAddressSuggestions(fieldName, value);
+    }, 500),
+    []
+  );
+
+  const handleAddressChange = (fieldName, value) => {
+    handleInputChange(fieldName, value);
+    setZoneStatus((prev) => ({ ...prev, [fieldName]: null }));
+    debouncedAddressSearch(fieldName, value);
+  };
+
+  const handleAddressSelect = (fieldName, value) => {
+    handleInputChange(fieldName, value);
+    fetchAddressSuggestions(fieldName, value);
+  };
+
+  // Render status indicator
+  // const renderStatus = (field) => {
+  //   if (loading[field])
+  //     return <span className="status loading">Checking...</span>;
+  //   if (zoneStatus[field] === "inside")
+  //     return <span className="status inside">Inside Zürich zone ✓</span>;
+  //   if (zoneStatus[field] === "outside")
+  //     return <span className="status outside">Outside Zürich zone ✕</span>;
+  //   return null;
+  // };
+  const renderStatus = (field) => {
+    if (loading[field]) return <span className="status loading">Checking…</span>;
+    if (zoneStatus[field] === "inside") return <span className="status inside">Inside Zürich zone ✓</span>;
+    if (zoneStatus[field] === "outside") return <span className="status outside">Outside Zürich zone ✕</span>;
+    return null;
+  };
 
   const incrementValue = (type) => {
     if (type === 'hour') {
@@ -1098,11 +1372,11 @@ export function BookingForm() {
   const formatDate = (dateString) => {
     if (!dateString) return '';
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB', { 
-      weekday: 'short', 
-      day: 'numeric', 
-      month: 'short', 
-      year: 'numeric' 
+    return date.toLocaleDateString('en-GB', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
     });
   };
 
@@ -1176,51 +1450,109 @@ export function BookingForm() {
 
       <div className="booking-grid">
         <div className="booking-form-wrapper">
- <div className="booking-tabs">
-  <div className="booking-text">{t("Transfer.transfer")}</div>
-</div>
- {/* <button
-              className={`booking-tab ${bookingType === 'hourly' ? 'active' : ''}`}
-              onClick={() => setBookingType('hourly')}
-            >
-              <Clock style={{ width: '18px', height: '18px' }} />
-              By the Hour
-            </button> */}
-  
+          <div className="booking-tabs">
+            <div className="booking-text">{t("Transfer.transfer")}</div>
+          </div>
 
           {bookingType === 'transfer' && (
             <div>
-              {/* Pickup Field */}
-              <div className="form-group">
-                <label className="form-label">{t("Transfer.from")}</label>
-                <div className="input-wrapper">
-                  <MapPin className="input-icon" />
-                  <input
-                    type="text"
-                    placeholder="Enter pickup location in Switzerland"
-                    value={formData.from}
-                    onChange={(e) => handleInputChange("from", e.target.value)}
-                    className={`form-input ${errors.from ? 'error' : ''}`}
-                  />
-                </div>
-                {errors.from && <p className="error-message">{errors.from}</p>}
-              </div>
+            <div className="form-group w-full">
+  <label className="form-label text-sm font-medium text-gray-700">
+    {t("Transfer.from")}
+  </label>
 
-              {/* Drop-off Field */}
-              <div className="form-group">
-                <label className="form-label">{t("Transfer.to")}</label>
-                <div className="input-wrapper">
-                  <MapPin className="input-icon" />
-                  <input
-                    type="text"
-                    placeholder="Enter drop-off location in Switzerland"
-                    value={formData.to}
-                    onChange={(e) => handleInputChange("to", e.target.value)}
-                    className={`form-input ${errors.to ? 'error' : ''}`}
-                  />
-                </div>
-                {errors.to && <p className="error-message">{errors.to}</p>}
-              </div>
+  <div className="relative w-full">
+    <MapPin
+      className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"
+      size={18}
+    />
+
+    <AutoComplete
+      value={formData.from}
+      suggestions={addressSuggestions.from}
+      completeMethod={(e) => handleAddressChange("from", e.query)}
+      onChange={(e) => handleInputChange("from", e.value)}
+      onSelect={(e) => handleAddressSelect("from", e.value)}
+      placeholder={t("Enter pickup location in Switzerland")}
+      dropdown
+      forceSelection={false}
+      className={`w-full ${errors.from ? "p-invalid" : ""}`}
+      inputStyle={{
+        width: "100%",
+        paddingLeft: "40px",
+        background: "#f3f4f6",
+        height: "48px",
+        borderRadius: "8px",
+        border: errors.from ? "1px solid red" : "1px solid #e5e7eb",
+      }}
+      panelStyle={{ maxHeight: "200px" }}
+      itemTemplate={(item) => (
+        <div
+          style={{
+            padding: "8px",
+            color: item === "No results found" ? "#999" : "#111827",
+            fontStyle: item === "No results found" ? "italic" : "normal",
+          }}
+        >
+          {item}
+        </div>
+      )}
+    />
+  </div>
+
+  {renderStatus("from")}
+  {errors.from && <p className="error-message text-red-500 text-sm">{errors.from}</p>}
+</div>
+
+
+<div className="form-group w-full mt-4">
+  <label className="form-label text-sm font-medium text-gray-700">
+    {t("Transfer.to")}
+  </label>
+
+  <div className="relative w-full">
+    <MapPin
+      className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"
+      size={18}
+    />
+
+    <AutoComplete
+      value={formData.to}
+      suggestions={addressSuggestions.to}
+      completeMethod={(e) => handleAddressChange("to", e.query)}
+      onChange={(e) => handleInputChange("to", e.value)}
+      onSelect={(e) => handleAddressSelect("to", e.value)}
+      placeholder={t("Enter drop-off location in Switzerland")}
+      dropdown
+      forceSelection={false}
+      className={`w-full ${errors.to ? "p-invalid" : ""}`}
+      inputStyle={{
+        width: "100%",
+        paddingLeft: "40px",
+        background: "#f3f4f6",
+        height: "48px",
+        borderRadius: "8px",
+        border: errors.to ? "1px solid red" : "1px solid #e5e7eb",
+      }}
+      panelStyle={{ maxHeight: "200px" }}
+      itemTemplate={(item) => (
+        <div
+          style={{
+            padding: "8px",
+            color: item === "No results found" ? "#999" : "#111827",
+            fontStyle: item === "No results found" ? "italic" : "normal",
+          }}
+        >
+          {item}
+        </div>
+      )}
+    />
+  </div>
+
+  {renderStatus("to")}
+  {errors.to && <p className="error-message text-red-500 text-sm">{errors.to}</p>}
+</div>
+
 
               {/* Date and Time fields */}
               <div className="date-time-grid">
@@ -1280,11 +1612,11 @@ export function BookingForm() {
 
               {/* Add Return Button */}
               {!showReturn && (
-                <button 
+                <button
                   className="add-return-btn"
                   onClick={() => setShowReturn(true)}
                 >
-                 {t("Transfer.add_return")}
+                  {t("Transfer.add_return")}
                 </button>
               )}
 
@@ -1295,10 +1627,10 @@ export function BookingForm() {
                     <h3 className="return-title">{t("Transfer.return_trip")}</h3>
                     <button
                       className="remove-return-btn"
-                      onClick={() => { 
-                        setShowReturn(false); 
-                        handleInputChange('returnDate', ''); 
-                        handleInputChange('returnTime', '01:45 PM'); 
+                      onClick={() => {
+                        setShowReturn(false);
+                        handleInputChange('returnDate', '');
+                        handleInputChange('returnTime', '01:45 PM');
                       }}
                     >
                       Remove
@@ -1365,7 +1697,7 @@ export function BookingForm() {
               <div className="form-group">
                 <label className="form-label">
                   <Users style={{ marginTop: '10px', marginBottom: '10px', width: '18px', height: '18px', display: 'inline-block', marginRight: '6px', verticalAlign: 'middle' }} />
-                 {t("Transfer.passengers")}
+                  {t("Transfer.passengers")}
                 </label>
                 <div className="passengers-control">
                   <span className="passengers-count">{formData.passengers}</span>
@@ -1388,123 +1720,6 @@ export function BookingForm() {
             </div>
           )}
 
-          {/* {bookingType === 'hourly' && (
-            <div>
-              <div className="form-group">
-                <label className="form-label">From</label>
-                <div className="input-wrapper">
-                  <MapPin className="input-icon" />
-                  <input
-                    type="text"
-                    placeholder="Address, airport, hotel in Switzerland..."
-                    value={formData.from}
-                    onChange={(e) => handleInputChange('from', e.target.value)}
-                    className={`form-input ${errors.from ? 'error' : ''}`}
-                  />
-                </div>
-                {errors.from && <p className="error-message">{errors.from}</p>}
-              </div>
-
-              <div className="date-time-grid">
-                <div className="form-group">
-                  <label className="form-label">Pickup date</label>
-                  <div className="input-wrapper">
-                    <Calendar className="input-icon" />
-                    <input
-                      type="text"
-                      value={formatDate(formData.pickupDate)}
-                      onClick={() => openCalendar('pickupDate')}
-                      readOnly
-                      placeholder="Select date"
-                      className={`form-input ${errors.pickupDate ? 'error' : ''}`}
-                      style={{ cursor: 'pointer' }}
-                    />
-                    {showCalendar && activeDateField === 'pickupDate' && (
-                      <div className="calendar-picker">
-                        <div className="calendar-header">
-                          <button className="calendar-nav-btn" onClick={() => navigateMonth(-1)}>
-                            <ChevronDown style={{ transform: 'rotate(90deg)', width: '20px', height: '20px' }} />
-                          </button>
-                          <div className="calendar-month">
-                            {currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}
-                          </div>
-                          <button className="calendar-nav-btn" onClick={() => navigateMonth(1)}>
-                            <ChevronDown style={{ transform: 'rotate(-90deg)', width: '20px', height: '20px' }} />
-                          </button>
-                        </div>
-                        <div className="calendar-grid">
-                          {['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map(day => (
-                            <div key={day} className="calendar-day-header">{day}</div>
-                          ))}
-                          {renderCalendar()}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  {errors.pickupDate && <p className="error-message">{errors.pickupDate}</p>}
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Pickup time</label>
-                  <div className="input-wrapper">
-                    <Clock className="input-icon" />
-                    <input
-                      type="text"
-                      value={formData.pickupTime}
-                      onClick={() => openTimePicker('pickupTime')}
-                      readOnly
-                      className="form-input"
-                      style={{ cursor: 'pointer' }}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">
-                  <Clock style={{ width: '18px', height: '18px', display: 'inline-block', marginRight: '6px', verticalAlign: 'middle' }} />
-                  Duration
-                </label>
-                <div className="select-wrapper">
-                  <select
-                    value={formData.duration}
-                    onChange={(e) => handleInputChange('duration', e.target.value)}
-                    className="duration-select"
-                  >
-                    {durations.map(duration => (
-                      <option key={duration} value={duration}>{duration} Hours</option>
-                    ))}
-                  </select>
-                  <ChevronDown className="select-icon" />
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">
-                  <Users style={{ width: '18px', height: '18px', display: 'inline-block', marginRight: '6px', verticalAlign: 'middle' }} />
-                  Passengers
-                </label>
-                <div className="passengers-control">
-                  <span className="passengers-count">{formData.passengers}</span>
-                  <div className="passengers-buttons">
-                    <button
-                      className="passenger-btn"
-                      onClick={() => handleInputChange('passengers', Math.max(1, formData.passengers - 1))}
-                    >
-                      −
-                    </button>
-                    <button
-                      className="passenger-btn"
-                      onClick={() => handleInputChange('passengers', formData.passengers + 1)}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )} */}
-
           <button className="see-prices-btn" onClick={handleSeePrices}>
             <svg style={{ width: '20px', height: '20px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -1513,7 +1728,7 @@ export function BookingForm() {
           </button>
 
           <div className="trustpilot-section">
-            <span className="trustpilot-rating"> {t("Transfer.excellent")}</span>
+            <span className="trustpilot-rating">{t("Transfer.excellent")}</span>
             <div className="stars">
               {[1, 2, 3, 4, 5].map((i) => (
                 <svg key={i} className="star" fill="currentColor" viewBox="0 0 20 20">
@@ -1521,14 +1736,14 @@ export function BookingForm() {
                 </svg>
               ))}
             </div>
-            <span className="trustpilot-logo"> {t("Transfer.trustpilot")}</span>
+            <span className="trustpilot-logo">{t("Transfer.trustpilot")}</span>
           </div>
         </div>
 
         <div className="booking-image">
           <img
             src={tt1}
-               alt="Premium Transfer Service"
+            alt="Premium Transfer Service"
           />
         </div>
       </div>
@@ -1588,14 +1803,14 @@ export function BookingForm() {
             </div>
 
             <button className="save-time-btn" onClick={saveTime}>
-               {t("Transfer.save")}
+              {t("Transfer.save")}
             </button>
           </div>
         </div>
       )}
 
       {showCalendar && (
-        <div 
+        <div
           style={{
             position: 'fixed',
             inset: 0,
@@ -1611,9 +1826,9 @@ export function BookingForm() {
 
 
 export default function Travel() {
-  
-    const { t, i18n } = useTranslation("global");
-   const [bookingType, setBookingType] = useState('transfer');
+
+  const { t, i18n } = useTranslation("global");
+  const [bookingType, setBookingType] = useState('transfer');
   const [showReturn, setShowReturn] = useState(false);
   const [formData, setFormData] = useState({
     from: '', to: '', pickupDate: '', pickupTime: '',
@@ -1649,7 +1864,7 @@ export default function Travel() {
   };
 
   const saveTime = () => {
-    const timeString = timeFormat === '12h' 
+    const timeString = timeFormat === '12h'
       ? `${selectedHour}:${selectedMinute} ${selectedPeriod}`
       : `${selectedHour}:${selectedMinute}`;
     handleInputChange(activeTimeField, timeString);
@@ -1675,19 +1890,19 @@ export default function Travel() {
   };
   return (
     <div>
- {/* <BookingSection />  */}
+      {/* <BookingSection />  */}
       {/* Carousel section */}
-    <div className="px-2 w-full mt-[70px]">
-    <div className="mt-5">
-        <TourrCarousel moduleId={4} />
+      <div className="px-2 w-full mt-[70px]">
+        <div className="mt-5">
+          <TourrCarousel moduleId={4} />
+        </div>
+        <> <BookingForm /></>
+        <h2 className="text-2xl font-semibold text-center text-black my-6">
+          {t("Transfer.explore_destination")}
+        </h2>
+        <Carousel images={IMGS} />
       </div>
-     <> <BookingForm/></>
-     <h2 className="text-2xl font-semibold text-center text-black my-6">
-     {t("Transfer.explore_destination")}
-  </h2>
-  <Carousel images={IMGS} />
-</div>
-</div>
+    </div>
   );
 }
 

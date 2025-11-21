@@ -157,7 +157,8 @@
   },
   "home": {
     "title": "La nostra flotta",
-    
+     "desc1": "Sei stanco delle solite destinazioni turistiche e vuoi uscire dalla tua zona di comfort?",
+  "desc2": "Il viaggio avventura potrebbe essere la soluzione perfetta per te! Eccone quattro.",
     "General": "Generale",
     "q1": "Esiste un periodo minimo o massimo di noleggio per un furgone ZüriCar GmbH?",
     "a1": "Il periodo minimo di noleggio è di mezza giornata. Il periodo massimo è generalmente di 30 giorni. Se hai bisogno di un veicolo per più di 30 giorni, contatta il nostro team commerciale. Saremo lieti di prepararti un'offerta.",
@@ -353,6 +354,40 @@
       "become_transfer_partner": "Diventa un Autista",
       "travel_agency_partnership": "Collaborazione con agenzia di viaggi"
   },
+  "passenger":{
+    "first_name_required": "Il nome è obbligatorio",
+    "last_name_required": "Il cognome è obbligatorio",
+    "email_required": "L'indirizzo email è obbligatorio",
+    "email_invalid": "Inserisci un indirizzo email valido (es. nome@example.com)",
+    "mobile_required": "Il numero di cellulare è obbligatorio",
+    "mobile_invalid": "Inserisci un numero di cellulare valido",
+    "passenger_details_saved": "Dettagli del passeggero salvati con successo!",
+    "success": "successo",
+
+    "lead_passenger": "Passeggero principale",
+    "first_name": "Nome",
+    "first_name_field_required": "Questo campo è obbligatorio",
+    "last_name": "Cognome",
+    "last_name_field_required": "Questo campo è obbligatorio",
+    "email_address": "Indirizzo email",
+    "email_valid_message": "Inserisci un indirizzo email valido",
+    "email_note": "Invieremo qui il voucher della prenotazione.",
+    "mobile_number": "Numero di cellulare",
+    "mobile_number_required": "Inserisci un numero di cellulare valido",
+    "mobile_contact_note": "Fornisci un numero di contatto affinché il nostro autista possa raggiungere il passeggero se necessario.",
+
+    "email": "Email",
+    "free": "Gratuito",
+    "driver_details_message": "Dettagli dell'autista inviati 6 ore prima del ritiro via email e notifica push dell’app.",
+    "please_note": "Si prega di notare che",
+    "meet_greet_not_guaranteed": "Il servizio Meet & Greet non è garantito in questa località",
+    "meet_greet_unavailable_reason": "e potrebbe non essere disponibile per motivi logistici o di forza maggiore. In tal caso, il ritiro avverrà all'esterno del terminal.",
+    "local_provider_instructions": "Il fornitore locale invierà istruzioni chiare per garantire un'esperienza senza problemi.",
+    "meet_greet": "Meet & Greet",
+    "meet_greet_with_sign": "Meet & Greet con cartello – inserisci il nome da visualizzare.",
+    "add_return_trip": "Aggiungi viaggio di ritorno"
+  },
+
   "car": {
     "Available Cars": "Auto Disponibili",
     "Standard": "Standard",

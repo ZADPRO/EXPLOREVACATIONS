@@ -1,4 +1,4 @@
-.fleet-carousel-container {
+/* .fleet-carousel-container {
   background: #fff;
   border-radius: 20px;
   padding: 3rem 1rem;
@@ -48,4 +48,91 @@
 
 .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
   background-color: #0d6efd;
+} */
+
+
+.fleet-carousel-container .p-carousel-indicators .p-carousel-indicator button {
+  background-color: #065784 !important;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.fleet-carousel-container .p-carousel-indicator.p-highlight button {
+  background-color: #00aaff !important;
+}
+
+/* Smooth scaling for images */
+.fleet-image img {
+  transition: transform 0.3s ease;
+}
+
+.fleet-image img:hover {
+  transform: scale(1.05);
+}
+/* FIX mobile carousel inner width */
+.p-carousel-items .p-carousel-item {
+  display: flex;
+  justify-content: center;
+  width: 100% !important;
+}
+
+/* Prevent arrows from overlapping text */
+.fleet-carousel-container .p-carousel .p-carousel-content {
+  align-items: stretch !important;
+}
+
+/* Keep arrows at bottom */
+.fleet-carousel-container .p-carousel-prev,
+.fleet-carousel-container .p-carousel-next {
+  top: 50% !important;
+}
+
+@media (max-width: 768px) {
+  /* Move arrows lower on mobile */
+  .fleet-carousel-container .p-carousel-prev,
+  .fleet-carousel-container .p-carousel-next {
+    top: 70% !important;
+  }
+}
+.slide-animate {
+    animation: slideRight 0.9s ease-out;
+    opacity: 0;
+}
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(-40px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+/* ---- DESKTOP / TABLET ANIMATION ---- */
+.slide-inner {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ---- MOBILE: DISABLE ANIMATION COMPLETELY ---- */
+@media (max-width: 640px) {
+  .slide-inner {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
 }

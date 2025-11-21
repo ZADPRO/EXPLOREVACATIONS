@@ -166,6 +166,7 @@ const BookingFlow = () => {
               <VehicleStep
                 bookingData={bookingData}
                 updateBookingData={updateBookingData}
+                onBack={handleBack}
                 onContinue={handleContinue}
               />
             )}
@@ -219,3 +220,8 @@ const BookingFlow = () => {
 };
 
 export default BookingFlow;
+
+
+
+
+

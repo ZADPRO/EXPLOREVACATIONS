@@ -48,6 +48,7 @@ import Becometravelagency from "../23-BecomeTavelagency/Becometravelagency";
 // import BookingFlowApp from "../13-Tarvel/BookingFlowApp";
 // import { ExtrasStep } from "../18-ExtrasStep/ExtrasStep";
 // import { PaymentStep } from "../19-PaymentStep/PaymentStep";
+import { DestinationDetail } from "../13-Tarvel/Travel";
 // import Pages from "../13-Tarvel/pages";
 function Layout() {
   const location = useLocation();
@@ -73,7 +74,7 @@ function Layout() {
         <Route path="/transfer" element={<Travel />} />
         <Route path="/login" element={<Login />} />
         {/* <Route path="/bookingflowapp" element={<BookingFlowApp />} /> */}
-        {/* <Route path="/destination/:id" element={<DestinationDetail />} /> */}
+        <Route path="/destination/:id" element={<DestinationDetail />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/flightform" element={<Flight />} />
@@ -121,3 +122,6 @@ export default function MainRoutes() {
     </Router>
   );
 }
+
+
+

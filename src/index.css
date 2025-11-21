@@ -20,3 +20,17 @@ body {
   font-family: "Century Gothic", "Onest", sans-serif;
 }
 
+/* Reduce AutoComplete dropdown width on mobile */
+@media (max-width: 480px) {
+  .p-autocomplete-panel {
+    width: 260px !important; 
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto !important;
+    border-radius: 8px !important;
+  }
+
+  .p-autocomplete-panel .p-autocomplete-items {
+    max-width: 260px !important;
+  }
+}

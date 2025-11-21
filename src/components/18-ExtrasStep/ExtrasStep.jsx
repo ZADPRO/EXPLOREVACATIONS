@@ -168,7 +168,8 @@ h2 {
         {/* Flight Number */}
         <div className="form-group">
           <label className="form-label">
-            {t("extras.flight_train_number")} <span>ⓘ</span>
+            {t("extras.flight_train_number")}
+             {/* <span>ⓘ</span> */}
           </label>
           <div className="form-input-icon">
             <Plane className="input-icon" size={18} />
@@ -181,12 +182,13 @@ h2 {
             />
           </div>
           <p className="form-hint">
-            {t("extras.provide_flight_number")}
+             Please provide your flight number and also which airport your landing(driver will track your flight)
+            {/* {t("extras.provide_flight_number")} */}
           </p>
         </div>
 
         {/* Child Seat */}
-        <div className="form-group">
+        {/* <div className="form-group">
           <label className="form-checkbox">
             <input
               type="checkbox"
@@ -195,17 +197,18 @@ h2 {
             />
            {t("extras.need_child_seat")}
           </label>
-        </div>
+        </div> */}
 
         {/* Outward Notes */}
         <div className="form-group">
           <label className="form-label">
-            {t("extras.driver_notes_outward")} <span>ⓘ</span>
+            {t("extras.driver_notes_outward")} 
+            {/* <span>ⓘ</span> */}
           </label>
           <textarea
             value={driverNotesOutward}
             onChange={(e) => setDriverNotesOutward(e.target.value)}
-            placeholder="Luggage info, special requests... No sensitive data—add phone in next step."
+            placeholder="which airport or which station Luggage info, special requests...."
             className="form-textarea"
           />
         </div>
@@ -214,12 +217,12 @@ h2 {
         {bookingData.return && (
           <div className="form-group">
             <label className="form-label">
-              {t("extras.driver_notes_return")}<span>ⓘ</span>
+              {t("extras.driver_notes_return")}
             </label>
             <textarea
               value={driverNotesReturn}
               onChange={(e) => setDriverNotesReturn(e.target.value)}
-              placeholder="Luggage info, special requests... No sensitive data—add phone in next step."
+              placeholder="which airport or which station Luggage info, special requests..."
               className="form-textarea"
             />
           </div>
@@ -240,3 +243,38 @@ h2 {
 };
 
 export default ExtrasStep;
+
+
+
+ const handleSeePrices = () => {
+  if (validateForm()) {
+
+    const selectedFrom = addressSuggestions.from.find(
+      (x) => x.name === formData.from
+    );
+
+    const selectedTo = addressSuggestions.to.find(
+      (x) => x.name === formData.to
+    );
+
+    const bookingFormData = {
+      outbound: {
+        from: formData.from,
+        to: formData.to,
+        fromLocation: {
+          lat: selectedFrom?.lat,
+          lng: selectedFrom?.lng,
+        },
+        toLocation: {
+          lat: selectedTo?.lat,
+          lng: selectedTo?.lng,
+        },
+        date: formatDate(formData.pickupDate),
+        time: formData.pickupTime,
+        passengers: formData.passengers,
+      }
+    };
+
+    navigate("/BookingFlow", { state: { bookingFormData } });
+  }
+};

@@ -25,17 +25,6 @@
   animation: slideIn 0.3s ease;
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateX(400px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
 .toast.error {
   border-left: 4px solid #ef4444;
 }
@@ -621,4 +610,47 @@
   font-weight: 600;
   font-size: 18px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.status {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.status.loading {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status.inside {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status.outside {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+
+
+
+/* //////////////////////////////////mobile */
+@media (max-width: 480px) {
+  .booking-text {
+    padding: 8px 20px !important;
+    font-size: 15px;
+  }
+}
+.p-autocomplete-panel {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+.p-autocomplete-item:hover {
+  background-color: #eef6ff !important;
 }

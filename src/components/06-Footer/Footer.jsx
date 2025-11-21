@@ -44,7 +44,7 @@ export default function Footer() {
   <div className="bg-[#065784]">
     <div className="w-11/12 mx-auto py-10 flex flex-wrap lg:flex-nowrap gap-8 justify-between text-white">
       {/* Grow with ZuriCar */}
-      <div className="flex-1 min-w-[200px]">
+      <div className="flex-1 min-w-[200px] ml-26 mb-5">
         <h3 className="text-[22px] font-semibold mb-3">
           {t("footer.grow_with_zuricar")}
         </h3>
@@ -68,7 +68,7 @@ export default function Footer() {
         </p>
       </div>
       {/* Our Services */}
-      <div className="flex-1 min-w-[200px]">
+      <div className="flex-1 min-w-[100px] ml-26 mt-[-71px]">
         <h3 className="text-[22px] font-semibold mb-3">
           {t("footer.Our Services")}
         </h3>
@@ -92,7 +92,7 @@ export default function Footer() {
         </p>
       </div>
       {/* About Us */}
-      <div className="flex-1 min-w-[200px]">
+      <div className="flex-1 min-w-[200px] ml-26 mt-[-51px] ">
         <h3 className="text-[22px] font-semibold mb-3">
           {t("footer.about_us")}
         </h3>
@@ -122,7 +122,7 @@ export default function Footer() {
         </p>
       </div>
       {/* Contact Info */}
-      <div className="flex-1 min-w-[200px]">
+      <div className="flex-1 min-w-[200px] ml-26 mt-[-51px]">
         <h3 className="text-[22px] font-semibold mb-3">
           {t("footer.Contact Information")}
         </h3>

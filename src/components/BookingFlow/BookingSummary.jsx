@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { Pencil, Calendar, Clock, MapPin, Users, Check, Briefcase, ChevronUp, ChevronDown, RefreshCw } from 'lucide-react';
 import './BookingFlow.css';
-
+import { useTranslation } from "react-i18next";
 const BookingSummary = ({ bookingData, totalPrice, onEditJourney, updateBookingData }) => {
   const [showReturnSection, setShowReturnSection] = useState(false);
   const [showOutboundEditSection, setShowOutboundEditSection] = useState(false);
@@ -13,7 +13,7 @@ const BookingSummary = ({ bookingData, totalPrice, onEditJourney, updateBookingD
   const [returnDate, setReturnDate] = useState(new Date());
   const [returnTime, setReturnTime] = useState({ hour: '01', minute: '45', period: 'PM' });
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  
+   
   // New state for outbound editing
   const [outboundDate, setOutboundDate] = useState(new Date());
   const [outboundTime, setOutboundTime] = useState({ hour: '01', minute: '45', period: 'PM' });
@@ -24,30 +24,47 @@ const BookingSummary = ({ bookingData, totalPrice, onEditJourney, updateBookingD
   const [outboundToCity, setOutboundToCity] = useState('');
   const [outboundPassengers, setOutboundPassengers] = useState(2);
 
+  // What's Included State - will be populated from backend
+  const [includedFeatures, setIncludedFeatures] = useState([
+    { id: 1, name: 'Free waiting time', enabled: true },
+    { id: 2, name: 'Door-to-door service', enabled: true },
+    { id: 3, name: 'Meet & Greet', enabled: true },
+    { id: 4, name: 'Private transfer', enabled: true },
+    { id: 5, name: 'Flight tracking', enabled: true }
+  ]);
+const [selectedDate, setSelectedDate] = useState(null);
+const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
+
   const hours12 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
   const minutes = ['00', '15', '30', '45'];
 
+  // Fetch included features from backend
+  useEffect(() => {
+    // TODO: Replace with actual API call
+    // fetchIncludedFeatures();
+  }, []);
+
+  // Function to fetch included features from backend
+  const fetchIncludedFeatures = async () => {
+    try {
+      // const response = await fetch('/api/included-features');
+      // const data = await response.json();
+      // setIncludedFeatures(data);
+      
+      // For now using dummy data
+      console.log('Features will be fetched from backend');
+    } catch (error) {
+      console.error('Error fetching included features:', error);
+    }
+  };
+
   // Initialize outbound edit values when opening edit section
   const handleEditOutbound = () => {
-    // Parse the existing date
     const dateString = bookingData.outbound.date;
     const parsedDate = new Date(dateString);
     setOutboundDate(parsedDate);
     setOutboundMonth(parsedDate);
-    useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (showCalendar && !event.target.closest('.calendar-popup') && !event.target.closest('.form-input')) {
-      setShowCalendar(false);
-    }
-    if (showTimePicker && !event.target.closest('.time-popup') && !event.target.closest('.form-input')) {
-      setShowTimePicker(false);
-    }
-  };
 
-  document.addEventListener('mousedown', handleClickOutside);
-  return () => document.removeEventListener('mousedown', handleClickOutside);
-}, [showCalendar, showTimePicker]);
-    // Parse the existing time
     const timeString = bookingData.outbound.time;
     const timeMatch = timeString.match(/(\d+):(\d+)\s*(am|pm)/i);
     if (timeMatch) {
@@ -58,7 +75,6 @@ const BookingSummary = ({ bookingData, totalPrice, onEditJourney, updateBookingD
       });
     }
     
-    // Set locations
     setOutboundFrom(bookingData.outbound.from);
     setOutboundFromCity(bookingData.outbound.fromCity);
     setOutboundTo(bookingData.outbound.to);
@@ -88,55 +104,47 @@ const BookingSummary = ({ bookingData, totalPrice, onEditJourney, updateBookingD
     setShowOutboundCalendar(false);
     setShowOutboundTimePicker(false);
   };
-const handleAddReturn = () => {
-  try {
-    const formattedDate = `${returnDate.getDate()} ${returnDate.toLocaleString('en-US', { month: 'short' })} ${returnDate.getFullYear()}`;
-    const formattedTime = `${returnTime.hour}:${returnTime.minute} ${returnTime.period}`;
-    
-    updateBookingData('return', {
-      from: bookingData.outbound.to,
-      fromCity: bookingData.outbound.toCity,
-      to: bookingData.outbound.from,
-      toCity: bookingData.outbound.fromCity,
-      date: formattedDate,
-      time: formattedTime,
-      estimatedArrival: '08:32 pm (6h 47m)',
-      distance: '1328 km / 825 Miles',
-      passengers: bookingData.outbound.passengers
-    });
-    
-    // Close all pickers
-    setShowReturnSection(false);
-    setShowCalendar(false);
-    setShowTimePicker(false);
-  } catch (error) {
-    console.error('Error adding return:', error);
+
+  const handleAddReturn = () => {
+    try {
+      const formattedDate = `${returnDate.getDate()} ${returnDate.toLocaleString('en-US', { month: 'short' })} ${returnDate.getFullYear()}`;
+      const formattedTime = `${returnTime.hour}:${returnTime.minute} ${returnTime.period}`;
+      
+      updateBookingData('return', {
+        from: bookingData.outbound.to,
+        fromCity: bookingData.outbound.toCity,
+        to: bookingData.outbound.from,
+        toCity: bookingData.outbound.fromCity,
+        date: formattedDate,
+        time: formattedTime,
+        estimatedArrival: '08:32 pm (6h 47m)',
+        distance: '1328 km / 825 Miles',
+        passengers: bookingData.outbound.passengers
+      });
+      
+      setShowReturnSection(false);
+      setShowCalendar(false);
+      setShowTimePicker(false);
+    } catch (error) {
+      console.error('Error adding return:', error);
+    }
+  };
+
+const handleEditReturn = () => {
+  setShowReturnSection(true);
+
+  if (bookingData.return) {
+    const oldDate = new Date(bookingData.return.date);
+    setReturnDate(oldDate);
+
+    // extract saved time formatted as "8:30 PM"
+    const [time, period] = bookingData.return.time.split(' ');
+    const [hour, minute] = time.split(':');
+
+    setReturnTime({ hour, minute, period });
   }
 };
-  // const handleAddReturn = () => {
-  //   const formattedDate = `${returnDate.getDate()} ${returnDate.toLocaleString('en-US', { month: 'short' })} ${returnDate.getFullYear()}`;
-  //   const formattedTime = `${returnTime.hour}:${returnTime.minute} ${returnTime.period}`;
-    
-  //   updateBookingData('return', {
-  //     from: bookingData.outbound.to,
-  //     fromCity: bookingData.outbound.toCity,
-  //     to: bookingData.outbound.from,
-  //     toCity: bookingData.outbound.fromCity,
-  //     date: formattedDate,
-  //     time: formattedTime,
-  //     estimatedArrival: '08:32 pm (6h 47m)',
-  //     distance: '1328 km / 825 Miles',
-  //     passengers: bookingData.outbound.passengers
-  //   });
-    
-  //   setShowReturnSection(false);
-  //   setShowCalendar(false);
-  //   setShowTimePicker(false);
-  // };
 
-  const handleEditReturn = () => {
-    setShowReturnSection(true);
-  };
 
   const handleRemoveReturn = () => {
     if (window.confirm('Are you sure you want to remove the return journey?')) {
@@ -154,44 +162,46 @@ const handleAddReturn = () => {
     const startingDayOfWeek = firstDay.getDay();
     return { daysInMonth, startingDayOfWeek, year, month };
   };
+ const { t } = useTranslation("global");
+const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
+  const monthToUse = isOutbound ? outboundMonth : currentMonth;
+  const { daysInMonth, startingDayOfWeek, year, month } = getDaysInMonth(monthToUse);
+  const days = [];
+  const today = new Date();
 
-  const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
-    const monthToUse = isOutbound ? outboundMonth : currentMonth;
-    const { daysInMonth, startingDayOfWeek, year, month } = getDaysInMonth(monthToUse);
-    const days = [];
-    const today = new Date();
-    
-    for (let i = 0; i < startingDayOfWeek; i++) {
-      days.push(<div key={`empty-${i}`} style={{ padding: '8px' }}></div>);
-    }
-    
-    for (let day = 1; day <= daysInMonth; day++) {
-      const date = new Date(year, month, day);
-      const isToday = date.toDateString() === today.toDateString();
-      const isSelected = date.toDateString() === selectedDate.toDateString();
-      const isPast = date < today && !isToday;
-      
-      days.push(
-        <div
-          key={day}
-          onClick={() => !isPast && setDate(date)}
-          style={{
-            padding: '8px',
-            textAlign: 'center',
-            cursor: isPast ? 'not-allowed' : 'pointer',
-            borderRadius: '8px',
-            backgroundColor: isSelected ? '#fbbf24' : 'transparent',
-            color: isPast ? '#d1d5db' : isSelected ? '#000' : '#000',
-            fontWeight: isSelected ? '600' : '400',
-            border: isToday ? '2px solid #fbbf24' : 'none'
-          }}
-        >
-          {day}
-        </div>
-      );
-    }
-    return days;
-  };
+  for (let i = 0; i < startingDayOfWeek; i++) {
+    days.push(<div key={`empty-${i}`} style={{ padding: '8px' }}></div>);
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(year, month, day);
+    const isToday = date.toDateString() === today.toDateString();
+    const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
+    const isPast = date < today && !isToday;
+
+    days.push(
+      <div
+        key={day}
+        onClick={() => !isPast && setDate(date)}
+        style={{
+          padding: '8px',
+          textAlign: 'center',
+          cursor: isPast ? 'not-allowed' : 'pointer',
+          borderRadius: '8px',
+          backgroundColor: isSelected ? '#fbbf24' : 'transparent',
+          color: isPast ? '#d1d5db' : '#000',
+          fontWeight: isSelected ? '600' : '400',
+          border: isToday ? '2px solid #fbbf24' : 'none'
+        }}
+      >
+        {day}
+      </div>
+    );
+  }
+
+  return days;
+};
+
 
   const navigateMonth = (direction, isOutbound = false) => {
     if (isOutbound) {
@@ -252,6 +262,20 @@ const handleAddReturn = () => {
     setOutboundToCity(tempFromCity);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showCalendar && !event.target.closest('.calendar-popup') && !event.target.closest('.form-input')) {
+        setShowCalendar(false);
+      }
+      if (showTimePicker && !event.target.closest('.time-popup') && !event.target.closest('.form-input')) {
+        setShowTimePicker(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showCalendar, showTimePicker]);
+
   return (
     <div className="booking-summary summary-sticky">
       <h2 className="summary-title">Your Booking</h2>
@@ -271,6 +295,7 @@ const handleAddReturn = () => {
           </>
         ) : (
           <>
+            
             <div className="journey-header">
               <span className="journey-label">Edit Outward journey</span>
               <button 
@@ -387,7 +412,7 @@ const handleAddReturn = () => {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '12px', marginBottom: '16px' }}>
                 <div style={{ position: 'relative' }}>
                   <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
-                    Pickup date
+                   {t("Transfer.pickup_date")}
                   </label>
                   <div
                     onClick={() => {
@@ -455,7 +480,7 @@ const handleAddReturn = () => {
 
                 <div style={{ position: 'relative' }}>
                   <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
-                    Pickup time
+                  {t("Transfer.pickup_time")}
                   </label>
                   <div
                     onClick={() => {
@@ -606,7 +631,7 @@ const handleAddReturn = () => {
               <div style={{ marginBottom: '12px' }}>
                 <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
                   <Users size={14} style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }} />
-                  Passengers
+                  {t("Transfer.passengers")}
                 </label>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <button
@@ -672,7 +697,7 @@ const handleAddReturn = () => {
           </>
         )}
 
-        {/* Add Return Button (only show when not editing outbound) */}
+        {/* Add Return Button */}
         {!showOutboundEditSection && !bookingData.return && !showReturnSection && (
           <div style={{ marginTop: '16px' }}>
             <div style={{ 
@@ -705,20 +730,21 @@ const handleAddReturn = () => {
               onMouseOut={(e) => e.currentTarget.style.background = 'white'}
             >
               <RefreshCw size={18} />
-              Add return
+              Add Return
             </button>
           </div>
         )}
 
+
         {/* Inline Return Form (existing code) */}
         {showReturnSection && (
-          <div style={{ 
-            marginTop: '16px',
-            padding: '16px',
-            backgroundColor: '#fff',
-            border: '1px solid #e5e7eb',
-            borderRadius: '12px'
-          }}>
+         <div style={{ 
+    marginTop: '16px',
+    padding: '16px',
+    backgroundColor: '#fef9f3',      // Changed from '#fff'
+    border: '2px solid #fed7aa',      // Changed from '1px solid #e5e7eb'
+    borderRadius: '12px'
+  }}>
             <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>Add Return Trip</h3>
 
             <div style={{ marginBottom: '16px' }}>
@@ -742,7 +768,7 @@ const handleAddReturn = () => {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '12px', marginBottom: '16px' }}>
               <div style={{ position: 'relative' }}>
                 <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
-                  Return date
+                  {t("Transfer.return_date")}
                 </label>
                 <div
                   onClick={() => {
@@ -810,7 +836,7 @@ const handleAddReturn = () => {
 
               <div style={{ position: 'relative' }}>
                 <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
-                  Return time
+                   {t("Transfer.return_time")}
                 </label>
                 <div
                   onClick={() => {
@@ -961,7 +987,7 @@ const handleAddReturn = () => {
             <div style={{ marginBottom: '12px' }}>
               <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
                 <Users size={14} style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }} />
-                Passengers
+                {t("Transfer.passengers")}
               </label>
               <div style={{ 
                 padding: '10px',
@@ -975,28 +1001,31 @@ const handleAddReturn = () => {
             </div>
 
             {/* This is the actual SAVE button for the return trip */}
-            <button
-              onClick={handleAddReturn}
-              style={{
-                width: '100%',
-                padding: '12px',
-                backgroundColor: '#fbbf24',
-                color: '#000',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '15px',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}
-            >
-              ADD RETURN
-            </button>
+          <button
+  onClick={bookingData.return ? handleEditReturn : handleAddReturn}
+  style={{
+    width: '100%',
+    padding: '12px',
+    backgroundColor: '#fbbf24',
+    color: '#000',
+    border: 'none',
+    borderRadius: '8px',
+    fontSize: '15px',
+    fontWeight: '600',
+    cursor: 'pointer'
+  }}
+>
+  {bookingData.return ? "SAVE CHANGES" : t("vehicle.add_return")}
+</button>
+
           </div>
         )}
       </div>
+        
+      
 
-      {/* Return Journey Display (existing code) */}
-   {bookingData.return && !showReturnSection && (
+      {/* Return Journey Display */}
+      {bookingData.return && !showReturnSection && (
         <div className="journey-section section-divider">
           <div className="journey-header">
             <span className="journey-label">Return journey</span>
@@ -1059,42 +1088,32 @@ const handleAddReturn = () => {
             </div>
           </div>
           <div className="vehicle-price">
-            <div className="price-total">EUR {totalPrice}</div>
+            <div className="price-total">CHF {totalPrice}</div>
           </div>
         </div>
       </div>
 
-      {/* What's Included */}
+      {/* What's Included - Now using state */}
       <div className="whats-included">
         <h3 className="included-title">What's included</h3>
         <div className="included-list">
-          <div className="included-item">
-            <Check size={16} className="check-icon" />
-            Free waiting time
-          </div>
-          <div className="included-item">
-            <Check size={16} className="check-icon" />
-            Door-to-door service
-          </div>
-          <div className="included-item">
-            <Check size={16} className="check-icon" />
-            Meet & Greet
-          </div>
-          <div className="included-item">
-            <Check size={16} className="check-icon" />
-            Private transfer
-          </div>
-          <div className="included-item">
-            <Check size={16} className="check-icon" />
-            Flight tracking
-          </div>
+          {includedFeatures
+            .filter(feature => feature.enabled)
+            .map((feature) => (
+              <div key={feature.id} className="included-item">
+                <Check size={16} className="check-icon" />
+                {feature.name}
+              </div>
+            ))}
         </div>
       </div>
-    </div>
+  </div>
   );
 };
+
 // JourneyDetails component remains the same
 const JourneyDetails = ({ journey }) => {
+  const { t } = useTranslation("global");
   return (
     <div>
       <div className="journey-details">
@@ -1130,7 +1149,7 @@ const JourneyDetails = ({ journey }) => {
         </div>
         <div className="meta-item">
           <Users size={14} />
-          {journey.passengers} Passengers
+          {journey.passengers} {t("Transfer.passengers")}
         </div>
       </div>
     </div>
@@ -1138,3 +1157,6 @@ const JourneyDetails = ({ journey }) => {
 };
 
 export default BookingSummary;
+
+
+

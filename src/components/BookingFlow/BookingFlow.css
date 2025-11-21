@@ -1383,3 +1383,30 @@
     width: 100%;
   }
 }
+
+
+/* /////////////////////// */
+.stepper-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px; /* default */
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .stepper-container {
+    margin-top: 40px;   /* move it down */
+    flex-direction: row;
+    transform: scale(0.9);  /* optional to shrink if needed */
+  }
+
+  .step-item {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .step-label {
+    font-size: 12px;
+  }
+}

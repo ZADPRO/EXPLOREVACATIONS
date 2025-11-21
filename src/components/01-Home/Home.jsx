@@ -161,7 +161,7 @@ export default function Home() {
   // ];
 
   const navigate = useNavigate();
-;
+  ;
 
   const slides = [
     {
@@ -515,9 +515,9 @@ export default function Home() {
       <Popup />
 
       <div className="mt-20">
-        <BannerCarousel  />
+        <BannerCarousel />
       </div>
-     
+
       <div className="relative">
         <section
           className="w-11/12 md:w-9/12 mx-auto mt-[-40px] shadow-xl bg-white rounded-md"
@@ -534,20 +534,18 @@ export default function Home() {
               onClick={() => setTabSelected({ ...tabSelected, currentTab: 1 })}
             >
               <button
-                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-[#c6f0d5] hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
-                  tabSelected.currentTab === 1
+                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-[#c6f0d5] hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${tabSelected.currentTab === 1
                     ? "border-[#02569c] stroke-[#02569c] text-[#02569c] hover:border-[#02569c]  hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:border-slate-500"
                     : "justify-self-center border-transparent stroke-slate-700 text-slate-700 hover:border-[#02569c] hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:text-slate-500"
-                }`}
+                  }`}
                 id="tab-label-1ai"
                 role="tab"
                 aria-setsize="3"
                 aria-posinset="1"
                 tabindex={`${tabSelected.currentTab === 1 ? "0" : "-1"}`}
                 aria-controls="tab-panel-1ai"
-                aria-selected={`${
-                  tabSelected.currentTab === 1 ? "true" : "false"
-                }`}
+                aria-selected={`${tabSelected.currentTab === 1 ? "true" : "false"
+                  }`}
                 onClick={() =>
                   setTabSelected({ ...tabSelected, currentTab: 1 })
                 }
@@ -576,20 +574,18 @@ export default function Home() {
               onClick={() => setTabSelected({ ...tabSelected, currentTab: 2 })}
             >
               <button
-                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-[#c6f0d5] hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
-                  tabSelected.currentTab === 2
+                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-[#c6f0d5] hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${tabSelected.currentTab === 2
                     ? "border-[#02569c] stroke-[#02569c] text-[#02569c] hover:border-[#02569c]  hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:border-slate-500"
                     : "justify-self-center border-transparent stroke-slate-700 text-slate-700 hover:border-[#02569c] hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:text-slate-500"
-                }`}
+                  }`}
                 id="tab-label-2ai"
                 role="tab"
                 aria-setsize="3"
                 aria-posinset="2"
                 tabindex={`${tabSelected.currentTab === 2 ? "0" : "-1"}`}
                 aria-controls="tab-panel-2ai"
-                aria-selected={`${
-                  tabSelected.currentTab === 2 ? "true" : "false"
-                }`}
+                aria-selected={`${tabSelected.currentTab === 2 ? "true" : "false"
+                  }`}
                 onClick={() =>
                   setTabSelected({ ...tabSelected, currentTab: 2 })
                 }
@@ -615,20 +611,18 @@ export default function Home() {
               onClick={() => setTabSelected({ ...tabSelected, currentTab: 3 })}
             >
               <button
-                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-[#c6f0d5] hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
-                  tabSelected.currentTab === 3
+                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-[#c6f0d5] hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${tabSelected.currentTab === 3
                     ? "border-[#02569c] stroke-[#02569c] text-[#02569c] hover:border-[#02569c]  hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:border-slate-500"
                     : "justify-self-center border-transparent stroke-slate-700 text-slate-700 hover:border-[#02569c] hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:text-slate-500"
-                }`}
+                  }`}
                 id="tab-label-3ai"
                 role="tab"
                 aria-setsize="3"
                 aria-posinset="3"
                 tabindex={`${tabSelected.currentTab === 3 ? "0" : "-1"}`}
                 aria-controls="tab-panel-3ai"
-                aria-selected={`${
-                  tabSelected.currentTab === 3 ? "true" : "false"
-                }`}
+                aria-selected={`${tabSelected.currentTab === 3 ? "true" : "false"
+                  }`}
                 onClick={() =>
                   setTabSelected({ ...tabSelected, currentTab: 3 })
                 }
@@ -656,20 +650,18 @@ export default function Home() {
               onClick={() => setTabSelected({ ...tabSelected, currentTab: 4 })}
             >
               <button
-                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-[#c6f0d5] hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${
-                  tabSelected.currentTab === 4
+                className={`-mb-px inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-t border-b-2 px-3 text-sm font-medium tracking-wide transition duration-300 hover:bg-[#c6f0d5] hover:stroke-[#02569c] focus:bg-emerald-50 focus-visible:outline-none disabled:cursor-not-allowed ${tabSelected.currentTab === 4
                     ? "border-[#02569c] stroke-[#02569c] text-[#02569c] hover:border-[#02569c]  hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:border-slate-500"
                     : "justify-self-center border-transparent stroke-slate-700 text-slate-700 hover:border-[#02569c] hover:text-[#02569c] focus:border-[#02569c] focus:stroke-[#02569c] focus:text-[#02569c] disabled:text-slate-500"
-                }`}
+                  }`}
                 id="tab-label-1ai"
                 role="tab"
                 aria-setsize="3"
                 aria-posinset="1"
                 tabindex={`${tabSelected.currentTab === 4 ? "0" : "-1"}`}
                 aria-controls="tab-panel-1ai"
-                aria-selected={`${
-                  tabSelected.currentTab === 4 ? "true" : "false"
-                }`}
+                aria-selected={`${tabSelected.currentTab === 4 ? "true" : "false"
+                  }`}
                 onClick={() =>
                   setTabSelected({ ...tabSelected, currentTab: 4 })
                 }
@@ -699,13 +691,11 @@ export default function Home() {
           </ul>
           <div className="">
             <div
-              className={`px-6 py-4 ${
-                tabSelected.currentTab === 1 ? "" : "hidden"
-              }`}
+              className={`px-6 py-4 ${tabSelected.currentTab === 1 ? "" : "hidden"
+                }`}
               id="tab-panel-1ai"
-              aria-selected={`${
-                tabSelected.currentTab === 1 ? "true" : "false"
-              }`}
+              aria-selected={`${tabSelected.currentTab === 1 ? "true" : "false"
+                }`}
               role="tabpanel"
               aria-labelledby="tab-label-1ai"
               tabIndex="-1"
@@ -843,9 +833,8 @@ export default function Home() {
             {/* Car Filter */}
 
             <div
-              className={`px-6 py-4 overflow-x-auto ${
-                tabSelected.currentTab === 2 ? "" : "hidden"
-              }`}
+              className={`px-6 py-4 overflow-x-auto ${tabSelected.currentTab === 2 ? "" : "hidden"
+                }`}
               id="tab-panel-2ai"
               aria-selected={tabSelected.currentTab === 2 ? "true" : "false"}
               role="tabpanel"
@@ -916,13 +905,11 @@ export default function Home() {
             </div>
 
             <div
-              className={`px-6 py-4 ${
-                tabSelected.currentTab === 3 ? "" : "hidden"
-              }`}
+              className={`px-6 py-4 ${tabSelected.currentTab === 3 ? "" : "hidden"
+                }`}
               id="tab-panel-3ai"
-              aria-selected={`${
-                tabSelected.currentTab === 3 ? "true" : "false"
-              }`}
+              aria-selected={`${tabSelected.currentTab === 3 ? "true" : "false"
+                }`}
               role="tabpanel"
               aria-labelledby="tab-label-3ai"
               tabindex="-1"
@@ -980,13 +967,11 @@ export default function Home() {
             </div>
 
             <div
-              className={`px-6 py-4 ${
-                tabSelected.currentTab === 4 ? "" : "hidden"
-              }`}
+              className={`px-6 py-4 ${tabSelected.currentTab === 4 ? "" : "hidden"
+                }`}
               id="tab-panel-3ai"
-              aria-selected={`${
-                tabSelected.currentTab === 4 ? "true" : "false"
-              }`}
+              aria-selected={`${tabSelected.currentTab === 4 ? "true" : "false"
+                }`}
               role="tabpanel"
               aria-labelledby="tab-label-3ai"
               tabindex="-1"
@@ -1044,20 +1029,20 @@ export default function Home() {
       </div>
 
       <div className="flex lg:flex-row flex-column justify-between items-center gap-4 w-9/12 mx-auto my-20">
-      <div className="flex flex-col justify-between h-full flex-1 gap-10">
-  <img
-    src={car4}
-    alt="Top Image"
-    data-aos="fade-right"
-    className="mx-auto bg-transparent w-[300px] rounded-lg"
-  />
-  <img
-    src={car2}
-    data-aos="fade-right"
-    alt="Bottom Image"
-    className="lg:self-end self-center bg-transparent w-[200px] rounded-lg"
-  />
-</div>
+        <div className="flex flex-col justify-between h-full flex-1 gap-10">
+          <img
+            src={car4}
+            alt="Top Image"
+            data-aos="fade-right"
+            className="mx-auto bg-transparent w-[300px] rounded-lg"
+          />
+          <img
+            src={car2}
+            data-aos="fade-right"
+            alt="Bottom Image"
+            className="lg:self-end self-center bg-transparent w-[200px] rounded-lg"
+          />
+        </div>
 
 
         <div className="flex-1 text-center" data-aos="fade-up">
@@ -1155,91 +1140,48 @@ export default function Home() {
         </div>
       </div> */}
 
-  <div className="flex flex-col items-center w-11/12 mx-auto lg:py-20 md:py-16 py-10">
-  {/* Top Title + Carousel */}
- <div
-  className="flex flex-col justify-center text-left w-full lg:w-10/12 p-6"
-  data-aos="fade-right"
->
-  {/* <p className="testingFont text-4xl ml-[121px] font-bold text-[#2472bc] mb-6">
+      <div className="flex flex-col items-center w-11/12 mx-auto lg:py-20 md:py-16 py-10">
+        {/* Top Title + Carousel */}
+        <div
+          className="flex flex-col justify-center text-left w-full lg:w-10/12 p-6"
+          data-aos="fade-right"
+        >
+          {/* <p className="testingFont text-4xl ml-[121px] font-bold text-[#2472bc] mb-6">
     {t("home.Dream Your Next Trip")}
   </p> */}
-<p className="testingFont text-4xl font-bold mb-[-40px] text-center">
-     {t("home.title")}
-  </p>
+          <p className="testingFont text-4xl font-bold mb-[-40px] text-center">
+            {t("home.title")}
+          </p>
 
-  {/* Fleet Carousel */}
-  <div className="mt-4 mb-10">
-    <FleetCarousel />
-  </div>
-</div>
+          {/* Fleet Carousel */}
+          <div className="mt-4 mb-10">
+            <FleetCarousel />
+          </div>
+        </div>
 
 
-  {/* Middle Section: Text + Right Image Side-by-Side */}
-  <div className="flex flex-col lg:flex-row items-center justify-between w-full lg:w-10/12">
-    {/* LEFT SIDE TEXT */}
-    <div className="flex-1 flex flex-col text-left p-6" data-aos="fade-right">
-      <p className="text-3xl font-medium text-gray-700">
-        {t("home.Discover whenever you want to go")}
-      </p>
+        {/* Middle Section: Text + Right Image Side-by-Side */}
+       <div className="flex flex-col lg:flex-row items-center justify-between w-full lg:w-10/12 mx-auto gap-6">
 
-      <p className="text-[15px] pt-3 text-gray-600 mt-2">
-        {t(
-          "home.Are you tired of the typical tourist destinations and looking to step out of your comfort zone? Adventure travel may be the perfect solution for you! Here are four."
-        )}
-      </p>
-<div className="mt-4 mb-10">
+  <div
+    className="flex-1 flex flex-col text-center lg:text-left p-4 sm:p-6"
+    data-aos="fade-right"  
+  >
+    <p className="text-2xl sm:text-3xl font-bold text-gray-700 leading-snug">
+      {t("home.Discover whenever you want to go")}
+    </p>
+    <p className="text-[14px] sm:text-[15px] text-gray-600 mt-3 leading-relaxed">
+      {t("home.desc1")}<br />{t("home.desc2")}
+    </p>
+    <div className="mt-4 sm:mt-6 mb-8 sm:mb-12">
       <InfoCarousel />
     </div>
-      
-    </div>
-
-    {/* RIGHT SIDE IMAGE */}
-    {/* <div
-      className="flex-1 py-10 flex justify-center items-center"
-      data-aos="fade-left"
-    >
-      <div className="relative flex justify-center items-center">
-
-        <div className="relative w-[100%] left-[10%] lg:left-[5%] lg:w-[70%]">
-          <img
-            src={car}
-            alt="Main"
-            className="lg:w-[500px] w-[240px] h-auto rounded-lg shadow-lg"
-          />
-        </div>
-
-        <div className="absolute top-[50%] lg:left-[30%] left-[25%] w-3/5 lg:w-[60%] transform -translate-x-1/2 -translate-y-1/2">
-          <img
-            src={car5}
-            alt="Sub"
-            className="w-[250px] h-auto rounded-lg shadow-xl border-4 border-white object-cover"
-          />
-        </div>
-      </div>
-    </div> */}
   </div>
-  
 </div>
 
 
-      {/* <div className="bannerImage001">
-        <div className="h-[100vh] flex flex-column items-center justify-center">
-          <p
-            className="testingFont text-white text-4xl font-bold"
-            data-aos="fade-down"
-          >
-            {t("home.Next Adventure Destination")}
-          </p>
-          <p
-            className="text-6xl text-center pt-3 font-bold text-white"
-            data-aos="fade-up"
-          >
-            {t("home.Popular Travel Destinations Available Worldwide")}
-          </p>
-        </div>
-      </div> */}
-  
+      </div>
+
       <div className="">
         <div className="flex flex-column items-center justify-center">
           <p className="testingFont text-[#2472bc] text-2xl font-bold">

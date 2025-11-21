@@ -23,38 +23,47 @@ const FleetCarousel = () => {
   const { t } = useTranslation("global");
 
   const fleetTemplate = (item) => {
-    const i = item.id; // stable numeric key
-    const isReversed = i % 2 === 0;
+    const i = item.id;
 
-    // Safely get highlights as an array
-    const highlights = Array.isArray(t(`home1.highlights${i}`, { returnObjects: true }))
+    // Get description + highlights safely
+    const highlights = Array.isArray(
+      t(`home1.highlights${i}`, { returnObjects: true })
+    )
       ? t(`home1.highlights${i}`, { returnObjects: true })
       : [];
-console.log("desc", t(`home1.description${i}`));
+
     return (
-      <div
-        key={i}
-        className={`fleet flex flex-col lg:flex-row items-center justify-between gap-6 p-4 sm:p-6 ${
-          isReversed ? "lg:flex-row-reverse" : ""
-        }`}
-      >
+    <div key={i} className="fleet w-full sm:max-w-full max-w-[95%] mx-auto">
+  <div className="slide-inner
+        flex flex-col 
+        lg:flex-row 
+        items-center justify-between
+        gap-6
+        p-4 sm:p-6 
+        text-center lg:text-left
+        w-full">
+
         {/* Image Section */}
         <div className="fleet-image w-full lg:w-1/2 flex justify-center">
           <img
             src={item.image}
             alt={`Fleet ${i}`}
-            className="w-full sm:w-[400px] md:w-[450px] lg:w-[480px] h-auto object-contain"
+            className="w-full max-w-[260px] sm:max-w-[350px] md:max-w-[420px] lg:max-w-[480px] h-auto object-contain"
           />
         </div>
 
+        {/* Text Section */}
         <div className="fleet-text w-full lg:w-1/2 text-center lg:text-left mt-4 lg:mt-0">
           {/* Description */}
-          <p className="fleet-description text-gray-800 text-sm sm:text-base md:text-lg leading-relaxed">
+          <p className="fleet-description text-gray-800 
+              text-sm sm:text-base md:text-lg 
+              leading-relaxed px-2 sm:px-0">
             {t(`home1.description${i}`)}
           </p>
 
           {/* Highlights */}
-          <ul className="list-disc mt-4 ml-6 text-gray-700 text-sm sm:text-base md:text-base">
+          <ul className="list-disc mt-4 ml-6 
+              text-gray-700 text-sm sm:text-base md:text-base text-left">
             {highlights.map((point, idx) => (
               <li key={idx} className="mb-1">
                 {point}
@@ -62,13 +71,13 @@ console.log("desc", t(`home1.description${i}`));
             ))}
           </ul>
         </div>
+        </div>
       </div>
     );
   };
 
   return (
-    <div className="fleet-carousel-container mt-4 py-4">
-
+    <div className="fleet-carousel-container mt-4 py-4 w-full px-2">
       <Carousel
         value={fleetData}
         numVisible={1}
@@ -76,6 +85,7 @@ console.log("desc", t(`home1.description${i}`));
         circular
         itemTemplate={fleetTemplate}
         showIndicators
+        autoplayInterval={3500}
       />
     </div>
   );
