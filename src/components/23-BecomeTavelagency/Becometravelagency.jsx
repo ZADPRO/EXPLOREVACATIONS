@@ -7,7 +7,7 @@ import { Checkbox } from "primereact/checkbox";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-
+import { useTranslation } from "react-i18next";
 export default function BecomePartner() {
   const [formData, setFormData] = useState({
     name: "",
@@ -26,6 +26,7 @@ export default function BecomePartner() {
 
   const [dialogVisible, setDialogVisible] = useState(false);
 
+ const { t, i18n } = useTranslation("global");
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -74,11 +75,11 @@ export default function BecomePartner() {
         ></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            License Partner Model with <span className="text-red-500">Züri</span>Car GO
+             {t("travelag.Travel Partner Model with")} <span className="text-red-500">Züri</span>Car GO
           </h1>
-          <p className="text-xl md:text-2xl mb-4">Join ZüriCar GO Travel Partner Network</p>
+          <p className="text-xl md:text-2xl mb-4">{t("travelag.Join ZüriCar GO Travel Partner Network")}</p>
           <p className="text-lg md:text-xl opacity-90">
-            Expanding global travel partner network across Switzerland and Sri Lanka
+            {t("travelag.Expanding global travel partner network across Switzerland and Sri Lanka")}
           </p>
         </div>
       </div>
@@ -88,61 +89,61 @@ export default function BecomePartner() {
         {/* Information Section */}
         <div className="mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-8">
-            Become a Travel Partner with <span className="text-red-500">Züri</span>Car GO
+            {t("travelag.Become a Travel Partner with")} <span className="text-red-500">Züri</span>Car GO
           </h2>
           
           <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-            <span className="font-semibold text-red-500">Züri</span><span className="font-semibold">Car GO</span> is expanding its <span className="font-semibold">global travel partner network</span> with a special focus on <span className="font-semibold">inbound and outbound travel agencies in Switzerland and Sri Lanka</span>.
+            <span className="font-semibold text-red-500">Züri</span><span className="font-semibold">Car GO</span>{t("travelag.is expanding its")}  <span className="font-semibold">{t("travelag.global travel partner network")}</span>  {t("travelag.with a special focus on")}<span className="font-semibold">{t("travelag.inbound and outbound travel agencies in Switzerland and Sri Lanka")}</span>.
           </p>
           
           <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-            We invite travel agencies, tour operators, and independent travel consultants to collaborate with us to offer <span className="font-semibold">airport transfers, car rentals, and complete travel solutions</span> for customers traveling to and from <span className="font-semibold">Switzerland and Sri Lanka</span>.
+            {t("travelag.We invite travel agencies, tour operators, and independent travel consultants to collaborate with us to offer")} <span className="font-semibold">{t("travelag.airport transfers, car rentals, and complete travel solutions")}</span> {t("travelag.for customers traveling to and from")} <span className="font-semibold">{t("travelag.Switzerland and Sri Lanka")}</span>.
           </p>
 
           <p className="text-lg text-gray-700 mb-12 leading-relaxed">
-            You can work <span className="font-semibold">under your own company name</span> or use the <span className="font-semibold text-red-500">Züri</span><span className="font-semibold">Car GO brand</span>, depending on our partnership agreement.
+             {t("travelag.You can work")} <span className="font-semibold"> {t("travelag.under your own company name")}</span>  {t("travelag.or use the")} <span className="font-semibold text-red-500">Züri</span><span className="font-semibold">{t("travelag.Car GO brand")}</span>, {t("travelag.depending on our partnership agreement.")}
           </p>
 
           {/* Who Can Join and We Offer in Two Columns */}
           <div className="grid md:grid-cols-2 gap-12 mb-12">
             {/* Who Can Join */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Who can join:</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("travelag.Who can join")}:</h3>
               <ul className="space-y-4">
                 <li className="flex items-start">
                   <span className="text-green-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Inbound or outbound travel agencies in Switzerland and Sri Lanka</span>
+                  <span className="text-gray-700 text-base">{t("travelag.Inbound or outbound travel agencies in Switzerland and Sri Lanka")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">International travel partners looking to cooperate with our network</span>
+                  <span className="text-gray-700 text-base">{t("travelag.International travel partners looking to cooperate with our network")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Tour operators and independent consultants</span>
+                  <span className="text-gray-700 text-base">{t("travelag.Tour operators and independent consultants")}</span>
                 </li>
               </ul>
             </div>
 
             {/* We Offer */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">We offer:</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("travelag.We offer")}:</h3>
               <ul className="space-y-4">
                 <li className="flex items-start">
                   <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Reliable airport and city transfers in both countries</span>
+                  <span className="text-gray-700 text-base">{t("travelag.Reliable airport and city transfers in both countries")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Competitive commission structure</span>
+                  <span className="text-gray-700 text-base">{t("travelag.Competitive commission structure")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Partnership flexibility (B2B or referral)</span>
+                  <span className="text-gray-700 text-base">{t("travelag.Partnership flexibility (B2B or referral)")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Multilingual customer support (English, German, Tamil, Sinhala)</span>
+                  <span className="text-gray-700 text-base">{t("travelag.Multilingual customer support")}</span>
                 </li>
               </ul>
             </div>
@@ -151,10 +152,10 @@ export default function BecomePartner() {
           {/* Call to Action */}
           <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-lg">
             <p className="text-gray-900 text-lg font-semibold mb-2">
-              Join the <span className="text-red-500">Züri</span><span className="font-semibold">Car GO Travel Partner Network</span> today!
+              {t("travelag.join the")} <span className="text-red-500">Züri</span><span className="font-semibold">Car GO Travel Partner Network</span> {t("travelag.today")}!
             </p>
             <p className="text-gray-700">
-              Send your details to <a href="mailto:info@zuircar.ch" className="text-blue-600 font-semibold hover:underline">info@zuercar.ch</a> or complete the registration form below.
+              {t("travelag.Send your details to")} <a href="mailto:info@zuircar.ch" className="text-blue-600 font-semibold hover:underline">info@zuercar.ch</a> {t("travelag.or complete the registration form below.")}
             </p>
           </div>
         </div>
@@ -162,7 +163,7 @@ export default function BecomePartner() {
         {/* Form Section */}
         <div className="bg-white border-t-4 border-blue-600 shadow-xl rounded-lg p-8 md:p-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-8">
-            Become a Partner
+            {t("travelag.Become a Partner")}
           </h2>
 
           <div className="space-y-6">
@@ -170,7 +171,7 @@ export default function BecomePartner() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Name
+                  {t("travelag.Name")}
                 </label>
                 <InputText
                   id="name"
@@ -184,7 +185,7 @@ export default function BecomePartner() {
               </div>
               <div>
                 <label htmlFor="companyName" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Company name
+                 {t("travelag.Company name")}
                 </label>
                 <InputText
                   id="companyName"
@@ -201,7 +202,7 @@ export default function BecomePartner() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="surname" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Surname
+                  {t("travelag.Surname")}
                 </label>
                 <InputText
                   id="surname"
@@ -215,7 +216,7 @@ export default function BecomePartner() {
               </div>
               <div>
                 <label htmlFor="companyCity" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Company City
+                  {t("travelag.Company City")}
                 </label>
                 <InputText
                   id="companyCity"
@@ -232,7 +233,7 @@ export default function BecomePartner() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                  E-mail address
+                  {t("travelag.E-mail address")}
                 </label>
                 <InputText
                   id="email"
@@ -247,7 +248,7 @@ export default function BecomePartner() {
               </div>
               <div>
                 <label htmlFor="companyAddress" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Company Address
+                  {t("travelag.Company Address")}
                 </label>
                 <InputText
                   id="companyAddress"
@@ -264,7 +265,7 @@ export default function BecomePartner() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Phone Number
+                  {t("travelag.Phone Number")}
                 </label>
                 <InputText
                   id="phone"
@@ -279,7 +280,7 @@ export default function BecomePartner() {
               </div>
               <div>
                 <label htmlFor="website" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Web site
+                  {t("travelag.Web site")}
                 </label>
                 <InputText
                   id="website"
@@ -295,7 +296,7 @@ export default function BecomePartner() {
             {/* Message Field */}
             <div>
               <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                Your message
+                {t("travelag.Your message")}
               </label>
               <InputTextarea
                 id="message"
@@ -343,10 +344,10 @@ export default function BecomePartner() {
         <div className="text-center p-6">
           <i className="pi pi-check-circle text-green-500 text-6xl mb-4"></i>
           <p className="text-xl text-gray-900 font-semibold mb-3">
-            Thank you for your interest!
+            {t("travelag.Thank you for your interest!")}"
           </p>
           <p className="text-gray-600">
-            Your application has been sent to ZüriCar GO. We will contact you soon.
+            {t("travelag.Your application has been sent to ZüriCar GO. We will contact you soon.")}
           </p>
         </div>
       </Dialog>

@@ -30,10 +30,10 @@ export default function Impressum() {
   };
 return (
   <div className="p-6 bg-gray-100 min-h-screen">
-    <div className="max-w-5xl mx-auto mt-5 bg-white p-6 rounded shadow-md">
-      {/* <h2 className="text-xl font-semibold mb-5 flex justify-center">
+    {/* <div className="max-w-5xl mx-auto mt-5 bg-white p-6 rounded shadow-md"> */}
+      <h2 className="text-xl font-semibold mb-1 mt-6 md:mt-0 flex justify-center">
         {t("imprint.title")}
-      </h2> */}
+      </h2>
 
       <p className="mt-3">
         <strong>ZüriCar GO GmbH</strong>
@@ -80,7 +80,7 @@ return (
       <h3 className="text-lg font-semibold mt-4">{t("imprint.copyrightTitle")}</h3>
       <p className="mt-3">{t("imprint.copyrightText1")}</p>
       <p className="mt-3">{t("imprint.copyrightText2")}</p>
-    </div>
+    {/* </div> */}
   </div>
 );
 }

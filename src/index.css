@@ -34,3 +34,17 @@ body {
     max-width: 260px !important;
   }
 }
+/* same width as select input */
+.dropdown-fix {
+  width: 100%;
+}
+
+/* fixes width of dropdown menu */
+.dropdown-fix option {
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px; /* reduce text size */
+}

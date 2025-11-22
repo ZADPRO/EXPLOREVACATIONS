@@ -30,8 +30,8 @@ export default function Privacy() {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="max-w-5xl mx-auto mt-5 bg-white p-6 rounded shadow-md">
-        <h2 className="text-xl font-semibold mt-2 mb-5 flex justify-center">
+      {/* <div className="max-w-5xl mx-auto mt-5 bg-white p-6 rounded shadow-md"> */}
+        <h2 className="text-xl font-semibold mt-5 md:mt-0 mb-5 flex justify-center">
           {t("privacy.privacy")}
         </h2>
         <p>{t("privacy.p1")}</p>
@@ -264,7 +264,7 @@ export default function Privacy() {
           <li>Phone Number: +41 79 766 99 60</li>
           <li>Developed By: https://zuericar.com/</li>
         </ul>
-      </div>
+      {/* </div> */}
     </div>
   );
 }

@@ -231,7 +231,7 @@ export default function Tours() {
           />
 
           <Button
-            label="Clear"
+            label={t("car.clear")}
             className="px-4 p-button-secondary"
             onClick={handleClearFilters}
           />

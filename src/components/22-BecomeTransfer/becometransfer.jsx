@@ -7,7 +7,7 @@ import { Checkbox } from "primereact/checkbox";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-
+import { useTranslation } from "react-i18next";
 export default function BecomeTransfer() {
   const [formData, setFormData] = useState({
     name: "",
@@ -23,9 +23,8 @@ export default function BecomeTransfer() {
     licenseType: "",
     experience: ""
   });
-
+ const { t, i18n } = useTranslation("global");
   const [dialogVisible, setDialogVisible] = useState(false);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -78,9 +77,9 @@ export default function BecomeTransfer() {
         ></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">License Partner Model</h1>
-          <p className="text-xl md:text-2xl mb-4">Join ZüriCar GO Driver Network</p>
+          <p className="text-xl md:text-2xl mb-4">Join ZüriCar GO License Partner</p>
           <p className="text-lg md:text-xl opacity-90">
-            Professional drivers wanted across Switzerland
+            {t("transfer.ideal candidates for becoming ZüriCar GO License Partners.")}
           </p>
         </div>
       </div>
@@ -90,63 +89,63 @@ export default function BecomeTransfer() {
         {/* Information Section */}
         <div className="mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-5">
-            Join Our Transfer Driver Network
+            {t("transfer.Join Our Transfer Driver Network")}
           </h2>
           
           <p className="text-lg text-gray-700 mb-3 leading-relaxed">
-            Are you a professional driver looking for transfer opportunities across Switzerland? 
-            <span className="font-semibold text-blue-600"> ZüriCar GO</span> is expanding its nationwide driver network for airport and city transfers.
+            {t("transfer.Are you a professional driver looking for transfer opportunities across Switzerland?")} 
+            <span className="font-semibold text-blue-600"> ZüriCar GO</span> {t("transfer.is expanding its nationwide driver network for airport and city transfers.")}
           </p>
           
           <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-            Whether you are an independent driver or operate your own small team, you can now work 
-            with <span className="font-semibold text-blue-600">ZüriCar GO</span> and receive regular transfer bookings from all over Switzerland.
+            {t("transfer.Whether you are an independent driver or operate your own small team, you can now work ")}
+            {t("transfer.with")} <span className="font-semibold text-blue-600">ZüriCar GO</span> {t("transfer.and receive regular transfer bookings from all over Switzerland.")}
           </p>
 
           {/* Requirements and Offers in Two Columns */}
           <div className="grid md:grid-cols-2 gap-12 mb-12">
             {/* Requirements */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Requirements:</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("transfer.Requirements:")}</h3>
               <ul className="space-y-4">
                 <li className="flex items-start">
                   <span className="text-green-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Valid Swiss driving license (Category B / B121 or higher)</span>
+                  <span className="text-gray-700 text-base">{t("transfer.Valid Swiss driving license (Category B / B121 or higher)")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Clean driving record</span>
+                  <span className="text-gray-700 text-base">{t("transfer.Clean driving record")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Excellent knowledge of Swiss roads and customer service attitude</span>
+                  <span className="text-gray-700 text-base">{t("transfer.Excellent knowledge of Swiss roads and customer service attitude")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Own vehicle (optional – we also provide fleet options)</span>
+                  <span className="text-gray-700 text-base">{t("transfer.Own vehicle (optional – we also provide fleet options)")}</span>
                 </li>
               </ul>
             </div>
 
             {/* We Offer */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">We offer:</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("travelag.We offer:")}</h3>
               <ul className="space-y-4">
                 <li className="flex items-start">
                   <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Regular transfer bookings through our system</span>
+                  <span className="text-gray-700 text-base">{t("transfer.Regular transfer bookings through our system")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Competitive earnings</span>
+                  <span className="text-gray-700 text-base">{t("transfer.Competitive earnings")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Flexible working hours</span>
+                  <span className="text-gray-700 text-base">{t("transfer.Flexible working hours")}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                  <span className="text-gray-700 text-base">Cooperation possibilities in all Swiss regions</span>
+                  <span className="text-gray-700 text-base">{t("transfer.Cooperation possibilities in all Swiss regions")}</span>
                 </li>
               </ul>
             </div>
@@ -155,10 +154,10 @@ export default function BecomeTransfer() {
           {/* Call to Action */}
           <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-lg">
             <p className="text-gray-900 text-lg font-semibold mb-2">
-              Register now and become part of the <span className="text-blue-600">ZüriCar GO</span> Transfer Driver Network!
+              {t("transfer.Register now and become part of the")} <span className="text-blue-600">ZüriCar GO</span> {t("transfer.Transfer Driver Network!")}
             </p>
             <p className="text-gray-700">
-              Send your application to <a href="mailto:info@zuricar.ch" className="text-blue-600 font-semibold hover:underline">info@zuricar.ch</a> or fill out the registration form below.
+              {t("transfer.Send your application to")} <a href="mailto:info@zuricar.ch" className="text-blue-600 font-semibold hover:underline">info@zuricar.ch</a> {t("transfer.or fill out the registration form below.")}
             </p>
           </div>
         </div>
@@ -166,7 +165,7 @@ export default function BecomeTransfer() {
         {/* Form Section */}
         <div className="bg-white border-t-4 border-blue-600 shadow-xl rounded-lg p-8 md:p-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-8">
-            Become a Partner
+            {t("travelag.Become a Partner")}
           </h2>
 
           <div className="space-y-6">
@@ -174,7 +173,7 @@ export default function BecomeTransfer() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Name
+                  {t("travelag.Name")}
                 </label>
                 <InputText
                   id="name"
@@ -188,7 +187,7 @@ export default function BecomeTransfer() {
               </div>
               <div>
                 <label htmlFor="companyName" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Company name
+                  {t("travelag.Company name")}
                 </label>
                 <InputText
                   id="companyName"
@@ -205,7 +204,7 @@ export default function BecomeTransfer() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="surname" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Surname
+                  {t("travelag.Surname")}
                 </label>
                 <InputText
                   id="surname"
@@ -219,7 +218,7 @@ export default function BecomeTransfer() {
               </div>
               <div>
                 <label htmlFor="companyCity" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Company City
+                  {t("travelag.Company City")}
                 </label>
                 <InputText
                   id="companyCity"
@@ -236,7 +235,7 @@ export default function BecomeTransfer() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                  E-mail address
+                  {t("travelag.E-mail address")}
                 </label>
                 <InputText
                   id="email"
@@ -251,7 +250,7 @@ export default function BecomeTransfer() {
               </div>
               <div>
                 <label htmlFor="companyAddress" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Company Address
+                  {t("travelag.Company Address")}
                 </label>
                 <InputText
                   id="companyAddress"
@@ -268,7 +267,7 @@ export default function BecomeTransfer() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Phone Number
+                  {t("travelag.Phone Number")}
                 </label>
                 <InputText
                   id="phone"
@@ -283,7 +282,7 @@ export default function BecomeTransfer() {
               </div>
               <div>
                 <label htmlFor="website" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Web site
+                  {t("travelag.Web site")}
                 </label>
                 <InputText
                   id="website"
@@ -299,7 +298,7 @@ export default function BecomeTransfer() {
             {/* Message Field */}
             <div>
               <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                Your message
+                {t("travelag.Your message")}
               </label>
               <InputTextarea
                 id="message"
@@ -366,10 +365,10 @@ export default function BecomeTransfer() {
         <div className="text-center p-6">
           <i className="pi pi-check-circle text-green-500 text-6xl mb-4"></i>
           <p className="text-xl text-gray-900 font-semibold mb-3">
-            Thank you for your interest!
+            {t("travelag.Thank you for your interest!")}
           </p>
           <p className="text-gray-600">
-            Your application has been sent to ZüriCar GO. We will contact you soon.
+            {t("travelag.Your application has been sent to ZüriCar GO. We will contact you soon.")}
           </p>
         </div>
       </Dialog>

@@ -31,8 +31,8 @@ export default function Cookies() {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="max-w-5xl mx-auto mt-5 bg-white p-6 rounded shadow-md">
-        <h2 className="text-xl font-semibold mb-5 flex justify-center">
+      {/* <div className="max-w-5xl mx-auto mt-5 bg-white p-6 rounded shadow-md"> */}
+        <h2 className="text-xl font-semibold mb-5 mt-5 md:mt-0 flex justify-center">
           {t("cookies.title")}
         </h2>
 
@@ -84,7 +84,7 @@ export default function Cookies() {
           <li>📧 info@zuricar.ch</li>
           <li>🌐 https://zuericar.com/</li>
         </ul>
-      </div>
+      {/* </div> */}
     </div>
   );
 }

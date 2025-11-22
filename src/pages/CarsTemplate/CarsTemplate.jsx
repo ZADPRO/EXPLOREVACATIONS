@@ -770,7 +770,7 @@ export default function CarsTemplate() {
 
       <div className="card flex w-11/12 mx-auto overflow-hidden py-8">
         <TabView className="w-full overflow-x-auto">
-          <TabPanel header="Travel Include" key="include">
+          <TabPanel header={t("car.Travel Include")} key="include">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <ul className="list-disc pl-5">
                 {carListData?.refIncludeName?.map((item, index) => (
@@ -781,7 +781,7 @@ export default function CarsTemplate() {
               </ul>
             </div>
           </TabPanel>
-          <TabPanel header="Travel Exclude" key="exclude">
+          <TabPanel header={t("car.Travel Exclude")} key="exclude">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <ul className="list-disc pl-5">
                 {carListData?.refExcludeName?.map((item, index) => (
@@ -792,7 +792,7 @@ export default function CarsTemplate() {
               </ul>
             </div>
           </TabPanel>
-          <TabPanel header="Others" key="tab1">
+          <TabPanel header={t("car.Others")} key="tab1">
             <div className="max-h-[300px] overflow-y-auto p-2 md:max-h-full">
               <p>
                 <b>{t("car.paymentTerms")}:</b> {carListData.refPaymentTerms}
@@ -809,7 +809,7 @@ export default function CarsTemplate() {
       </div>
 
       <Dialog
-        header="Book your Car"
+        header={t("car.Book your Car")}
         visible={ismodelOpen}
         className="w-[90%] lg:w-[85%] h-[80vh] overflow-auto"
         onHide={() => {

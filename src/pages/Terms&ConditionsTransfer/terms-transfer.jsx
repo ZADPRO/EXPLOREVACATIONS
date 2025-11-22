@@ -16,7 +16,7 @@ export default function TermsTransfer() {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="max-w-5xl mx-auto mt-5 bg-white p-6 rounded shadow-md">
+      {/* <div className="max-w-5xl mx-auto mt-5 bg-white p-6 rounded shadow-md"> */}
         <h1 className="text-3xl font-bold mb-4 text-center">
           {t("termsTransfer.title")}
         </h1>
@@ -186,6 +186,6 @@ export default function TermsTransfer() {
           </p>
         </div>
       </div>
-    </div>
+    // </div>
   );
 }

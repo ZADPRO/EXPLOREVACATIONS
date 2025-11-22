@@ -940,7 +940,7 @@ export function DestinationDetail() {
       {/* Content Section */}
       <div className="max-w-6xl mx-auto px-8 py-12">
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6"> t{("Transfer.overview")}</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6"> {t("Transfer.overview")}</h2>
           <p className="text-gray-700 text-lg leading-relaxed mb-6">
             {destination.description}
           </p>

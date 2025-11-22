@@ -384,7 +384,7 @@ export default function Cars() {
               className="bg-[#014986] text-white"
             />
             <Button
-              label="Clear"
+              label={t("car.clear")}
               className="px-4 p-button-secondary"
               onClick={handleClearFilters}
             />
@@ -406,7 +406,7 @@ export default function Cars() {
 
       <div className="w-full max-w-4xl mx-auto mt-12">
         <div className="flex justify-center gap-4 bg-gray-100 p-2">
-          {["Standard", "Premium"].map((tab) => (
+          {[t("car.Standard"), t("car.Premium")].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}

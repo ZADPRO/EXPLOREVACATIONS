@@ -30,7 +30,7 @@ export default function TermsCondition() {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="max-w-5xl mx-auto mt-5 bg-white p-6 rounded shadow-md">
+      {/* <div className="max-w-5xl mx-auto mt-5 bg-white p-6 rounded shadow-md"> */}
         <h1 className="text-3xl font-bold mb-4">{t("terms.rent")}</h1>
 
         <div className="space-y-4 text-justify">
@@ -362,7 +362,7 @@ export default function TermsCondition() {
             <li>{t("terms.l28.3")}</li>
           </ul>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 }

@@ -25,22 +25,18 @@ const useIsMobile = () => {
 };
 
 const InfoCarousel = () => {
-  const { t } = useTranslation();
-const isMobile = useIsMobile();
+  const { t } = useTranslation("global");
+const isMobile = useIsMobile("global");
   const slides = [
     {
       img: img1,
-      title: t("Best Travel Agency"),
-      description: t(
-        "Are you tired of the typical tourist destinations and looking to step out of your comfort zone? Discover the best travel spots with us for an unforgettable experience."
-      ),
+      title: t("home.Best Travel Agency"),
+      description: t("home.desc1")
     },
     {
       img: img2,
-      title: t("Secure Journey With Us"),
-      description: t(
-        "Your safety and comfort are our top priorities. Travel with confidence knowing every detail is handled with care and professionalism."
-      ),
+      title: t("home.Secure Journey With Us"),
+      description: t( "home.desc2"),
     },
   ];
 

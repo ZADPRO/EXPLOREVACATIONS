@@ -7,7 +7,7 @@ import { Checkbox } from "primereact/checkbox";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-
+import { useTranslation } from "react-i18next";
 export default function BecomePartner() {
   const [formData, setFormData] = useState({
     name: "",
@@ -23,9 +23,8 @@ export default function BecomePartner() {
     licenseType: "",
     experience: ""
   });
-
+ const { t, i18n } = useTranslation("global");
   const [dialogVisible, setDialogVisible] = useState(false);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -77,78 +76,78 @@ export default function BecomePartner() {
           }}
         ></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">License Partner Model</h1>
-          <p className="text-xl md:text-2xl mb-4">Join ZüriCar GO Driver Network</p>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">Transfers Partner Model</h1>
+          <p className="text-xl md:text-2xl mb-4">Join ZüriCar GO License Partner</p>
           <p className="text-lg md:text-xl opacity-90">
-            Professional drivers wanted across Switzerland
+            {t("transfer.ideal candidates for becoming ZüriCar GO License Partners.")}
           </p>
         </div>
       </div>
 
       {/* Content Section */}
       <div className="max-w-6xl mx-auto px-4 py-16">
-
+  <div className="mb-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">ZüriCar GO License Partner Model</h3>
+            <p className="text-gray-700 text-base mb-3 leading-relaxed">
+              {t("parnter.You use our booking platform, marketing tools, and network while continuing to operate under your own company name.")}
+            </p>
+            <p className="text-gray-700 text-base mb-3 leading-relaxed">
+              {t("parnter.Depending on the")} <span className="font-semibold">{t("parnter.contractual agreement")}</span>, {t("parnter.you can use")} <span className="font-semibold">{t("parnter.your own brand name")}</span>, the <span className="font-semibold text-blue-600">ZüriCar GO brand</span>,{t("parnter.or both together.")}
+            </p>
+            <p className="text-gray-700 text-base mb-3 leading-relaxed">
+              {t("parnter.We provide you with systems, know-how, and professional guidance to ensure sustainable success.")}
+            </p>
+          </div>
 
           {/* Your Benefits Section */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">Your Benefits</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">{t("parnter.Your Benefits")}</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span className="text-gray-700 text-base">Collaboration with an established Swiss brand</span>
+                <span className="text-gray-700 text-base">{t("parnter.Collaboration with an established Swiss brand")}</span>
               </li>
               <li className="flex items-start">
                 <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span className="text-gray-700 text-base">Dedicated partner page on our platform</span>
+                <span className="text-gray-700 text-base">{t("parnter.Dedicated partner page on our platform")}</span>
               </li>
               <li className="flex items-start">
                 <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span className="text-gray-700 text-base">Access to central booking and payment systems</span>
+                <span className="text-gray-700 text-base">{t("parnter.Access to central booking and payment systems")}</span>
               </li>
               <li className="flex items-start">
                 <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span className="text-gray-700 text-base">Joint marketing campaigns</span>
+                <span className="text-gray-700 text-base">{t("parnter.Joint marketing campaigns")}</span>
               </li>
               <li className="flex items-start">
                 <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span className="text-gray-700 text-base">Training, support, and continuous assistance from our team</span>
+                <span className="text-gray-700 text-base">{t("parnter.Training, support, and continuous assistance from our team")}</span>
               </li>
             </ul>
           </div>
 
           {/* License Partner Model Section */}
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">ZüriCar GO License Partner Model</h3>
-            <p className="text-gray-700 text-base mb-3 leading-relaxed">
-              You use our booking platform, marketing tools, and network while continuing to operate under your own company name.
-            </p>
-            <p className="text-gray-700 text-base mb-3 leading-relaxed">
-              Depending on the <span className="font-semibold">contractual agreement</span>, you can use <span className="font-semibold">your own brand name</span>, the <span className="font-semibold text-blue-600">ZüriCar GO brand</span>, or both together.
-            </p>
-            <p className="text-gray-700 text-base mb-3 leading-relaxed">
-              We provide you with systems, know-how, and professional guidance to ensure sustainable success.
-            </p>
-          </div>
+        
 
           {/* How It Works Section */}
           <div className="mb-5">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">How It Works</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">{t("parnter.How It Works")}</h3>
             <ol className="space-y-4">
               <li className="flex items-start">
                 <span className="text-blue-600 mr-3 text-lg font-bold">1.</span>
-                <span className="text-gray-700 text-base">Fill out the partnership request form</span>
+                <span className="text-gray-700 text-base">{t("parnter.Fill out the partnership request form")}</span>
               </li>
               <li className="flex items-start">
                 <span className="text-blue-600 mr-3 text-lg font-bold">2.</span>
-                <span className="text-gray-700 text-base">We review your profile and potential</span>
+                <span className="text-gray-700 text-base">{t("parnter.We review your profile and potential")}</span>
               </li>
               <li className="flex items-start">
                 <span className="text-blue-600 mr-3 text-lg font-bold">3.</span>
-                <span className="text-gray-700 text-base">If suitable, we schedule a personal meeting</span>
+                <span className="text-gray-700 text-base">{t("parnter.If suitable, we schedule a personal meeting")}</span>
               </li>
               <li className="flex items-start">
                 <span className="text-blue-600 mr-3 text-lg font-bold">4.</span>
-                <span className="text-gray-700 text-base">Sign the agreement and start as an official partner</span>
+                <span className="text-gray-700 text-base">{t("parnter.Sign the agreement and start as an official partner")}</span>
               </li>
             </ol>
           </div>
@@ -171,7 +170,7 @@ export default function BecomePartner() {
       lineHeight: "1.6",
     }}
   >
-    Apply Now{" "}
+    {t("parnter.Apply Now")}{" "}
     <a
       href="mailto:info@zuricar.ch"
       style={{
@@ -183,7 +182,7 @@ export default function BecomePartner() {
       onMouseOut={(e) => (e.currentTarget.style.textDecoration = "none")}
     >
       <br />
-      Interested?
+      {t("parnter.Interested?")}
     </a>
   </p>
 
@@ -195,7 +194,7 @@ export default function BecomePartner() {
       lineHeight: "1.6",
     }}
   >
-    Apply now to become a licensed partner and join the growing{" "}
+    {t("parnter.Apply now to become a licensed partner and join the growing")}{" "}
     <span
       style={{
         color: "#2563EB",
@@ -205,7 +204,7 @@ export default function BecomePartner() {
     >
       ZüriCar GO
     </span>{" "}
-    network across Switzerland.
+    {t("parnter.network across Switzerland.")}
   </p>
 </div>
 
@@ -221,7 +220,7 @@ export default function BecomePartner() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Name
+                  {t("travelag.Name")}
                 </label>
                 <InputText
                   id="name"
@@ -235,7 +234,7 @@ export default function BecomePartner() {
               </div>
               <div>
                 <label htmlFor="companyName" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Company name
+                  {t("travelag.Company name")}
                 </label>
                 <InputText
                   id="companyName"
@@ -252,7 +251,7 @@ export default function BecomePartner() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="surname" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Surname
+                  {t("travelag.Surname")}
                 </label>
                 <InputText
                   id="surname"
@@ -266,7 +265,7 @@ export default function BecomePartner() {
               </div>
               <div>
                 <label htmlFor="companyCity" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Company City
+                  {t("travelag.Company City")}
                 </label>
                 <InputText
                   id="companyCity"
@@ -283,7 +282,7 @@ export default function BecomePartner() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                  E-mail address
+                  {t("travelag.E-mail address")}
                 </label>
                 <InputText
                   id="email"
@@ -298,7 +297,7 @@ export default function BecomePartner() {
               </div>
               <div>
                 <label htmlFor="companyAddress" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Company Address
+                  {t("travelag.Company Address")}
                 </label>
                 <InputText
                   id="companyAddress"
@@ -315,7 +314,7 @@ export default function BecomePartner() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Phone Number
+                  {t("travelag.Phone Number")}
                 </label>
                 <InputText
                   id="phone"
@@ -330,7 +329,7 @@ export default function BecomePartner() {
               </div>
               <div>
                 <label htmlFor="website" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Web site
+                  {t("travelag.Web site")}
                 </label>
                 <InputText
                   id="website"
@@ -346,7 +345,7 @@ export default function BecomePartner() {
             {/* Message Field */}
             <div>
               <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                Your message
+                {t("travelag.Your message")}
               </label>
               <InputTextarea
                 id="message"
@@ -413,10 +412,10 @@ export default function BecomePartner() {
         <div className="text-center p-6">
           <i className="pi pi-check-circle text-green-500 text-6xl mb-4"></i>
           <p className="text-xl text-gray-900 font-semibold mb-3">
-            Thank you for your interest!
+            {t("travelag.Thank you for your interest!")}
           </p>
           <p className="text-gray-600">
-            Your application has been sent to ZüriCar GO. We will contact you soon.
+            {t("travelag.Your application has been sent to ZüriCar GO. We will contact you soon.")}
           </p>
         </div>
       </Dialog>
