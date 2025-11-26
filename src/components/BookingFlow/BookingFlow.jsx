@@ -4,7 +4,7 @@ import { Pencil, MapPin, Calendar, Clock, Users, Check } from 'lucide-react';
 import './BookingFlow.css';
 
 // Import step components
-import VehicleStep from '../17-vehicle/vehicle';
+import VehicleStep from '../17-VehicleStep/VehicleStep';
 import ExtrasStep from '../18-ExtrasStep/ExtrasStep';
 import PassengerStep from '../20-PassengerStep/PassengerStep';
 import PaymentStep from '../19-PaymentStep/PaymentStep';
@@ -220,6 +220,9 @@ const BookingFlow = () => {
 };
 
 export default BookingFlow;
+
+
+
 
 
 

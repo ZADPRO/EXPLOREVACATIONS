@@ -38,7 +38,7 @@ export default function CarsTemplate() {
   const [driverName, setdriverName] = useState("");
   const [driverAge, setdriverAge] = useState("");
   const [driverMail, setdriverMail] = useState("");
-   const { t } = useTranslation("global");
+  const { t } = useTranslation("global");
 
   const [driverMobile, setdriverMobile] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -58,23 +58,24 @@ export default function CarsTemplate() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [isExtraKMneeded, setIsExtraKMneeded] = useState(false);
   const [selectedExtra, setSelectedExtra] = useState([]);
-  
+
   // Days calculation state
   const [numberOfDays, setNumberOfDays] = useState(1);
   const [baseDailyRate, setBaseDailyRate] = useState(0);
-  
+
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const toast = useRef(null);
 
-   const [imgSrc, setImgSrc] = useState("");
-   useEffect(() => {
+  const roleId = localStorage.getItem("roleId");
+  const [imgSrc, setImgSrc] = useState("");
+  useEffect(() => {
     if (carListData?.refCarPath) {
       // Check if refCarPath is an object with content (base64)
       if (typeof carListData.refCarPath === 'object' && carListData.refCarPath.content) {
         const contentType = carListData.refCarPath.contentType || 'image/jpeg';
         setImgSrc(`data:${contentType};base64,${carListData.refCarPath.content}`);
-      } 
+      }
       // Check if it's a string path
       else if (typeof carListData.refCarPath === "string" && carListData.refCarPath.trim()) {
         setImgSrc(`https://zuericar.com/src/assets/cars/${carListData.refCarPath.trim()}`);
@@ -92,10 +93,10 @@ export default function CarsTemplate() {
     if (pickupDateTime && dropDate) {
       const pickup = new Date(pickupDateTime);
       const drop = new Date(dropDate);
-      
+
       const diffTime = Math.abs(drop - pickup);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      
+
       setNumberOfDays(diffDays > 0 ? diffDays : 1);
     } else {
       setNumberOfDays(1);
@@ -148,7 +149,7 @@ export default function CarsTemplate() {
         const carDetails = destinationData.tourDetails[0];
         setCarListData(carDetails);
         setExtras(formDetailsArray);
-        
+
         const dailyRate = parseInt(carDetails.refCarPrice) || 0;
         setBaseDailyRate(dailyRate);
         setTotalPrice(dailyRate);
@@ -394,11 +395,10 @@ export default function CarsTemplate() {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`px-2 py-2 text-sm sm:text-base font-medium rounded-2xl transition-all duration-200 ${
-                      activeTab === tab
+                    className={`px-2 py-2 text-sm sm:text-base font-medium rounded-2xl transition-all duration-200 ${activeTab === tab
                         ? "bg-[#014986] text-white shadow-md"
                         : "text-gray-600 hover:bg-white"
-                    }`}
+                      }`}
                   >
                     {tab}
                   </button>
@@ -440,14 +440,14 @@ export default function CarsTemplate() {
 
                             setCarListData(carDetails);
                             setExtras(formDetailsArray);
-                            
+
                             const dailyRate = parseInt(carDetails.refCarPrice) || 0;
                             setBaseDailyRate(dailyRate);
                             setTotalPrice(dailyRate * numberOfDays);
-                            
+
                             setSelectedExtra([]);
                             setExtrakm({ isChecked: false, value: 0 });
-                            
+
                             window.scrollTo(0, 500);
                           } catch (error) {
                             console.error("Error fetching car details on click:", error);
@@ -524,9 +524,9 @@ export default function CarsTemplate() {
                 {carListData.refVehicleTypeName}
               </p>
               <p className="text-sm">
-                 {t("car.extra")} KM  {t("car.charges")}:{" "}
+                {t("car.extra")} KM  {t("car.charges")}:{" "}
                 {carListData.refExtraKMcharges &&
-                carListData.refExtraKMcharges !== 0
+                  carListData.refExtraKMcharges !== 0
                   ? carListData.refExtraKMcharges
                   : "No Extra KM Charges"}
               </p>
@@ -567,7 +567,7 @@ export default function CarsTemplate() {
 
           <div className="mt-6 border rounded-xl p-4 shadow-sm">
             <h2 className="text-lg font-semibold mb-4">
-               {t("car.addExtras")}
+              {t("car.addExtras")}
             </h2>
 
             <div className="flex flex-col gap-3">
@@ -738,10 +738,22 @@ export default function CarsTemplate() {
             ) : (
               <button
                 className="w-[30%] bg-[#0ca42a] hover:bg-[#35683f] text-white text-base py-2 rounded-md font-semibold"
-                onClick={() => setIsModelOpen(true)}
+                onClick={() => {
+                  if (roleId === "3" || roleId === "6") {
+                    setIsModelOpen(true);
+                  } else {
+                    navigate("/login", {
+                      state: {
+                        returnTo: window.location.pathname,
+                        openModal: true
+                      }
+                    });
+                  }
+                }}
               >
                 {t("car.continue")}
               </button>
+
             )}
           </div>
         </div>
@@ -749,20 +761,20 @@ export default function CarsTemplate() {
 
       <div className="py-3 sm:px-8 max-w-1xl body mx-auto text-sm sm:text-base text-gray-600 leading-relaxed text-center">
         <p>
-           {t("tour.privacyNotice")}{" "}
+          {t("tour.privacyNotice")}{" "}
           <span
             onClick={() => handleNavigate("/privacy")}
             className="text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
           >
-             {t("tour.privacyPolicy")}
+            {t("tour.privacyPolicy")}
           </span>
           . <br className="hidden sm:block" />
-         {t("tour.termsNotice")}{" "}
+          {t("tour.termsNotice")}{" "}
           <span
             onClick={() => handleNavigate("/terms")}
             className="text-[#014986] font-medium underline cursor-pointer hover:text-[#009ad7] transition"
           >
-           {t("tour.termsOfUse")}
+            {t("tour.termsOfUse")}
           </span>
           .
         </p>

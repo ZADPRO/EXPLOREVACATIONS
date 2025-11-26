@@ -12,7 +12,7 @@ import { BiWorld } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { MdOutlineLocalParking } from "react-icons/md";
-
+import img1 from '../../assets/Home1/2.png';
 export default function Profile() {
   // const getFlag = () => {
   //   switch (language) {
@@ -66,6 +66,7 @@ export default function Profile() {
   const [history, setHistory] = useState("");
   const [carHistory, setCarHistory] = useState("");
   const [parkingHistory, setParkingHistory] = useState("");
+  const [transferHistory, settransferHistory] = useState("")
   const [setProfile] = useState("");
 
   // const [profileData, setProfileData] = useState(initialData);
@@ -100,6 +101,7 @@ export default function Profile() {
     fetchProfileData();
     fetchCarHistory();
     fetchParkingHistory();
+    // fetchTransferHistory();
   }, []);
 
   useEffect(() => {
@@ -331,93 +333,95 @@ export default function Profile() {
         {/* Navigation Items */}
         <div className="flex flex-col mt-10">
           <div
-            className={`p-3 text-xl font-bold ${
-              selectedTab === "Personal Info"
+            className={`p-3 text-xl font-bold ${selectedTab === "Personal Info"
                 ? "bg-[#daf1ff] text-[#065784]"
                 : ""
-            }`}
+              }`}
             onClick={() => setSelectedTab("Personal Info")}
           >
             {t("profile.Personal Information")}
           </div>
           <div
-            className={`p-3 text-xl font-bold ${
-              selectedTab === "Tour Bookings"
+            className={`p-3 text-xl font-bold ${selectedTab === "Tour Bookings"
                 ? "bg-[#daf1ff] text-[#065784]"
                 : ""
-            }`}
+              }`}
             onClick={() => setSelectedTab("Tour Bookings")}
           >
             {t("profile.Tour Bookings")}
           </div>
           <div
-            className={`p-3 text-xl  font-bold ${
-              selectedTab === "Car Booking" ? "bg-[#daf1ff] text-[#065784]" : ""
-            }`}
+            className={`p-3 text-xl  font-bold ${selectedTab === "Car Booking" ? "bg-[#daf1ff] text-[#065784]" : ""
+              }`}
             onClick={() => setSelectedTab("Car Booking")}
           >
             {t("profile.Car Booking")}
           </div>
           <div
-            className={`p-3 text-xl  font-bold ${
-              selectedTab === "Parking Booking"
+            className={`p-3 text-xl  font-bold ${selectedTab === "Parking Booking"
                 ? "bg-[#daf1ff] text-[#065784]"
                 : ""
-            }`}
+              }`}
             onClick={() => setSelectedTab("Parking Booking")}
           >
             {t("profile.Parking Booking")}
+          </div>
+          {/* transfrre */}
+          <div
+            className={`p-3 text-xl  font-bold ${selectedTab === "Transfer Booking"
+                ? "bg-[#daf1ff] text-[#065784]"
+                : ""
+              }`}
+            onClick={() => setSelectedTab("Transfer Booking")}
+          >
+            {t("profile.Transfer Booking")}
           </div>
         </div>
       </div>
 
       <div className="  lg:w-[20%] md:w-[0%]   text-white lg:hidden flex flex-col lg:flex-col md:flex-col">
-        
+
         <div className="fixed bottom-0 left-0 right-0 bg-[#065784] p-3 border-t shadow-md flex justify-around items-center md:hidden z-50">
           <div
-            className={`flex flex-col items-center p-2 ${
-              selectedTab === "Personal Info"
+            className={`flex flex-col items-center p-2 ${selectedTab === "Personal Info"
                 ? "text-[#ffff]"
-                :"text-[#000000]"
-            }`}
+                : "text-[#000000]"
+              }`}
             onClick={() => setSelectedTab("Personal Info")}
           >
             <FaUser size={24} />
             {/* <span className="text-xs">{t("profile.Personal Information")}</span> */}
           </div>
           <div
-            className={`flex flex-col items-center p-2 ${
-              selectedTab === "Tour Bookings"
+            className={`flex flex-col items-center p-2 ${selectedTab === "Tour Bookings"
                 ? "text-[#ffff]"
-                :  "text-[#000000]"
-            }`}
+                : "text-[#000000]"
+              }`}
             onClick={() => setSelectedTab("Tour Bookings")}
           >
             <BiWorld size={24} />
             {/* <span className="text-xs">{t("profile.Tour Bookings")}</span> */}
           </div>
           <div
-            className={`flex flex-col items-center p-2 ${
-              selectedTab === "Car Booking" ? "text-[#ffff]" : "text-[#000000]"
-            }`}
+            className={`flex flex-col items-center p-2 ${selectedTab === "Car Booking" ? "text-[#ffff]" : "text-[#000000]"
+              }`}
             onClick={() => setSelectedTab("Car Booking")}
           >
-            <FaCar  size={24} />
+            <FaCar size={24} />
             {/* <span className="text-xs">{t("profile.Car Booking")}</span> */}
           </div>
           <div
-            className={`flex flex-col items-center p-2 ${
-              selectedTab === "Parking Booking"
+            className={`flex flex-col items-center p-2 ${selectedTab === "Parking Booking"
                 ? "text-[#ffff]"
-                :  "text-[#000000]"
-            }`}
+                : "text-[#000000]"
+              }`}
             onClick={() => setSelectedTab("Parking Booking")}
           >
-            <MdOutlineLocalParking  size={24} />
+            <MdOutlineLocalParking size={24} />
             {/* <span className="text-xs">{t("profile.Parking Booking")}</span> */}
           </div>
         </div>
-      {/* </div> */}
+        {/* </div> */}
 
       </div>
 
@@ -425,7 +429,7 @@ export default function Profile() {
       <div className="flex-1">
         <Toast ref={toast} />
         <div className="lg:p-8 md:p-8 mt-6">
-       
+
           {selectedTab === "Personal Info" && (
             <div className="bg-white p-10 lg:p-10 md:p-20 rounded-lg shadow-sm">
               <div className="flex justify-between items-center mb-6">
@@ -490,84 +494,81 @@ export default function Profile() {
                       value={field.value}
                       onChange={handleInput}
                       disabled={!isEditable}
-                      className={`border rounded-md p-3 w-[130%] lg:w-full ${
-                        !isEditable ? "bg-gray-100 cursor-not-allowed" : ""
-                      }`}
+                      className={`border rounded-md p-3 w-[130%] lg:w-full ${!isEditable ? "bg-gray-100 cursor-not-allowed" : ""
+                        }`}
                     />
                   </div>
                 ))}
 
-           
-              </div>
-                   {/* Address Form */}
-                   <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    Addaddress();
-                  }}
-                  method="post"
-                  className="col-span-2"
-                >
-                  <div className="grid grid-cols-2 gap-5 px-3">
-                    {[
-                      {
-                        label: t("profile.Address"),
-                        name: "refUserAddress",
-                        value: address.refUserAddress,
-                      },
-                      {
-                        label: t("profile.City"),
-                        name: "refUserCity",
-                        value: address.refUserCity,
-                      },
-                      {
-                        label: t("profile.State"),
-                        name: "refUserState",
-                        value: address.refUserState,
-                      },
-                      {
-                        label: t("profile.Country"),
-                        name: "refUserCountry",
-                        value: address.refUserCountry,
-                      },
-                      {
-                        label: t("profile.Zip code"),
-                        name: "refUserZipCode",
-                        value: address.refUserZipCode,
-                      },
-                    ].map((field, idx) => (
-                      <div key={idx}>
-                        <label className="block text-xl text-[#065784] mb-1">
-                          {field.label}
-                        </label>
-                        <input
-                          type="text"
-                          name={field.name}
-                          value={field.value}
-                          onChange={handleInput}
-                          disabled={!isEditable}
-                          className={`border rounded-md p-3 lg:w-full w-[130%] ${
-                            !isEditable ? "bg-gray-100 cursor-not-allowed" : ""
-                          }`}
-                        />
-                      </div>
-                    ))}
 
-                    <div className="col-span-2 flex justify-end">
-                      <button
+              </div>
+              {/* Address Form */}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  Addaddress();
+                }}
+                method="post"
+                className="col-span-2"
+              >
+                <div className="grid grid-cols-2 gap-5 px-3">
+                  {[
+                    {
+                      label: t("profile.Address"),
+                      name: "refUserAddress",
+                      value: address.refUserAddress,
+                    },
+                    {
+                      label: t("profile.City"),
+                      name: "refUserCity",
+                      value: address.refUserCity,
+                    },
+                    {
+                      label: t("profile.State"),
+                      name: "refUserState",
+                      value: address.refUserState,
+                    },
+                    {
+                      label: t("profile.Country"),
+                      name: "refUserCountry",
+                      value: address.refUserCountry,
+                    },
+                    {
+                      label: t("profile.Zip code"),
+                      name: "refUserZipCode",
+                      value: address.refUserZipCode,
+                    },
+                  ].map((field, idx) => (
+                    <div key={idx}>
+                      <label className="block text-xl text-[#065784] mb-1">
+                        {field.label}
+                      </label>
+                      <input
+                        type="text"
+                        name={field.name}
+                        value={field.value}
+                        onChange={handleInput}
                         disabled={!isEditable}
-                        className={`${
-                          !isEditable
-                            ? "opacity-50 cursor-not-allowed"
-                            : "hover:bg-[#565656]"
-                        } bg-[#000000] text-white px-8 py-3 mt-4 rounded-md`}
-                        type="submit"
-                      >
-                        {t("profile.Add Address")}
-                      </button>
+                        className={`border rounded-md p-3 lg:w-full w-[130%] ${!isEditable ? "bg-gray-100 cursor-not-allowed" : ""
+                          }`}
+                      />
                     </div>
+                  ))}
+
+                  <div className="col-span-2 flex justify-end">
+                    <button
+                      disabled={!isEditable}
+                      className={`${!isEditable
+                          ? "opacity-50 cursor-not-allowed"
+                          : "hover:bg-[#565656]"
+                        } bg-[#000000] text-white px-8 py-3 mt-4 rounded-md`}
+                      type="submit"
+                    >
+                      {t("profile.Add Address")}
+                    </button>
                   </div>
-                </form>
+                </div>
+              </form>
 
               {isEditable && (
                 <div className="mt-6 flex justify-end gap-4">
@@ -679,8 +680,6 @@ export default function Profile() {
               )}
             </div>
           )}
-
-          {/* Car Parking */}
           {/* Car Parking */}
 
           {selectedTab === "Car Booking" && (
@@ -701,13 +700,6 @@ export default function Profile() {
                       alt="Car"
                       className="w-40 h-32 object-cover rounded-lg"
                     />
-
-                    {/* <img
-                      src={`data:${car.refCarPath.contentType};base64,${car.refCarPath.content}`}
-                      src={`https://explorevacations.max-idigital.ch/src/assets/cars/${car.refCarPath}`}
-                      alt={car.refVehicleTypeName}
-                      className="w-full object-cover aspect-[4/3]"
-                    /> */}
                     <div className="flex flex-col  lg:flex-col md:flex-col gap-2 justify-between w-full">
                       <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">
                         {item.refVehicleTypeName}
@@ -780,7 +772,7 @@ export default function Profile() {
           {selectedTab === "Parking Booking" && (
             <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-20 rounded-lg shadow-sm">
               {parkingHistory?.length > 0 ? (
-                
+
                 parkingHistory.map((item, index) => (
                   <div
                     key={index}
@@ -796,13 +788,6 @@ export default function Profile() {
                       alt="Car"
                       className="w-40 h-32 object-cover rounded-lg"
                     />
-
-                    {/* <img
-                      src={`data:${car.refCarPath.contentType};base64,${car.refCarPath.content}`}
-                      src={`https://explorevacations.max-idigital.ch/src/assets/cars/${car.refCarPath}`}
-                      alt={car.refVehicleTypeName}
-                      className="w-full object-cover aspect-[4/3]"
-                    /> */}
                     <div className="flex flex-col  lg:flex-col md:flex-col gap-2 justify-between w-full">
                       <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">
                         {item.refParkingName}
@@ -879,6 +864,66 @@ export default function Profile() {
               )}
             </div>
           )}
+
+          {/* Transfer Booking */}
+
+          {selectedTab === "Transfer Booking" && (
+            <div className="bg-white p-4 flex  flex-col lg:flex-col md:flex-col gap-10 mt-20 rounded-lg shadow-sm">
+              {transferHistory?.length > 0 ? (
+                transferHistory.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-4 p-4 rounded-xl shadow-md"
+                    style={{
+                      backgroundImage: `url(${box})`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                    }}
+                  >
+                    <img
+                      src={img1}
+                      alt="Transfer"
+                      className="w-40 h-32 object-cover rounded-lg"
+                    />
+                    <div className="flex flex-col gap-2 justify-between w-full">
+                      <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">
+                        {item.refTransferType}
+                      </h2>
+                      <div className="flex flex-col lg:flex-row md:flex-row">
+                        <div className="flex flex-col w-[100%] gap-2 text-sm font-bold text-[#1a1a1a]">
+                          <p className="font-medium">{t("profile.From")} :</p>
+                          <p className="text-[#327ada]">{item.refFromLocation}</p>
+
+                          <p className="font-medium">{t("profile.To")} :</p>
+                          <p className="text-[#327ada]">{item.refToLocation}</p>
+                        </div>
+
+                        <div className="flex flex-col w-[100%] gap-2 text-sm font-bold text-[#1a1a1a]">
+                          <p className="font-medium">{t("profile.Price")} :</p>
+                          <p className="text-[#327ada]">CHF {item.refPrice}</p>
+
+                          <p className="font-medium">{t("profile.Pickup")} :</p>
+                          <p className="text-[#327ada]">
+                            {new Date(item.refPickupDate).toLocaleString("en-GB", {
+                              day: "2-digit",
+                              month: "2-digit",
+                              year: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: false,
+                            })}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-600 text-center">{t("profile.No bookings found")}.</p>
+              )}
+            </div>
+          )}
+
         </div>
       </div>
     </div>

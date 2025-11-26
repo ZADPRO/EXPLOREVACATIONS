@@ -3,7 +3,6 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-import { Checkbox } from "primereact/checkbox";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -23,16 +22,13 @@ export default function BecomePartner() {
     licenseType: "",
     experience: ""
   });
- const { t, i18n } = useTranslation("global");
+  const { t } = useTranslation("global");
   const [dialogVisible, setDialogVisible] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleCheckbox = (e) => {
-    setFormData({ ...formData, hasVehicle: e.checked });
-  };
 
   const handleSubmit = () => {
     const to = "info@zuricar.ch";
@@ -67,7 +63,7 @@ export default function BecomePartner() {
       {/* Hero Banner */}
       <div className="relative mt-20 h-[70vh] bg-gradient-to-r from-blue-900 to-indigo-900 flex items-center justify-center overflow-hidden">
         <div className="absolute  inset-0 bg-black opacity-50"></div>
-        <div 
+        <div
           className="absolute inset-0 opacity-20 "
           style={{
             backgroundImage: 'url("https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600")',
@@ -86,133 +82,125 @@ export default function BecomePartner() {
 
       {/* Content Section */}
       <div className="max-w-6xl mx-auto px-4 py-16">
-  <div className="mb-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">ZüriCar GO License Partner Model</h3>
-            <p className="text-gray-700 text-base mb-3 leading-relaxed">
-              {t("parnter.You use our booking platform, marketing tools, and network while continuing to operate under your own company name.")}
-            </p>
-            <p className="text-gray-700 text-base mb-3 leading-relaxed">
-              {t("parnter.Depending on the")} <span className="font-semibold">{t("parnter.contractual agreement")}</span>, {t("parnter.you can use")} <span className="font-semibold">{t("parnter.your own brand name")}</span>, the <span className="font-semibold text-blue-600">ZüriCar GO brand</span>,{t("parnter.or both together.")}
-            </p>
-            <p className="text-gray-700 text-base mb-3 leading-relaxed">
-              {t("parnter.We provide you with systems, know-how, and professional guidance to ensure sustainable success.")}
-            </p>
-          </div>
+        <div className="mb-8">
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">ZüriCar GO License Partner Model</h3>
+          <p className="text-gray-700 text-base mb-3 leading-relaxed">
+            {t("parnter.You use our booking platform, marketing tools, and network while continuing to operate under your own company name.")}
+          </p>
+          <p className="text-gray-700 text-base mb-3 leading-relaxed">
+            {t("parnter.Depending on the")} <span className="font-semibold">{t("parnter.contractual agreement")}</span>, {t("parnter.you can use")} <span className="font-semibold">{t("parnter.your own brand name")}</span>, the <span className="font-semibold text-blue-600">ZüriCar GO brand</span>,{t("parnter.or both together.")}
+          </p>
+          <p className="text-gray-700 text-base mb-3 leading-relaxed">
+            {t("parnter.We provide you with systems, know-how, and professional guidance to ensure sustainable success.")}
+          </p>
+        </div>
 
-          {/* Your Benefits Section */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">{t("parnter.Your Benefits")}</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span className="text-gray-700 text-base">{t("parnter.Collaboration with an established Swiss brand")}</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span className="text-gray-700 text-base">{t("parnter.Dedicated partner page on our platform")}</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span className="text-gray-700 text-base">{t("parnter.Access to central booking and payment systems")}</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span className="text-gray-700 text-base">{t("parnter.Joint marketing campaigns")}</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span className="text-gray-700 text-base">{t("parnter.Training, support, and continuous assistance from our team")}</span>
-              </li>
-            </ul>
-          </div>
+        {/* Your Benefits Section */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">{t("parnter.Your Benefits")}</h3>
+          <ul className="space-y-4">
+            <li className="flex items-start">
+              <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
+              <span className="text-gray-700 text-base">{t("parnter.Collaboration with an established Swiss brand")}</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
+              <span className="text-gray-700 text-base">{t("parnter.Dedicated partner page on our platform")}</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
+              <span className="text-gray-700 text-base">{t("parnter.Access to central booking and payment systems")}</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
+              <span className="text-gray-700 text-base">{t("parnter.Joint marketing campaigns")}</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
+              <span className="text-gray-700 text-base">{t("parnter.Training, support, and continuous assistance from our team")}</span>
+            </li>
+          </ul>
+        </div>
+        <div className="mb-5">
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">{t("parnter.How It Works")}</h3>
+          <ol className="space-y-4">
+            <li className="flex items-start">
+              <span className="text-blue-600 mr-3 text-lg font-bold">1.</span>
+              <span className="text-gray-700 text-base">{t("parnter.Fill out the partnership request form")}</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-blue-600 mr-3 text-lg font-bold">2.</span>
+              <span className="text-gray-700 text-base">{t("parnter.We review your profile and potential")}</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-blue-600 mr-3 text-lg font-bold">3.</span>
+              <span className="text-gray-700 text-base">{t("parnter.If suitable, we schedule a personal meeting")}</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-blue-600 mr-3 text-lg font-bold">4.</span>
+              <span className="text-gray-700 text-base">{t("parnter.Sign the agreement and start as an official partner")}</span>
+            </li>
+          </ol>
+        </div>
+        <div
+          style={{
+            backgroundColor: "#EFF6FF", 
+            borderLeft: "4px solid #2563EB", 
+            padding: "24px",
+            borderRadius: "10px",
+            marginBottom: "30px",
+          }}
+        >
+          <p
+            style={{
+              color: "#374151", // gray-700
+              marginBottom: "12px",
+              lineHeight: "1.6",
+            }}
+          >
+            {t("parnter.Apply Now")}{" "}
+            <a
+              href="mailto:info@zuricar.ch"
+              style={{
+                color: "#2563EB",
+                fontWeight: "600",
+                textDecoration: "none",
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.textDecoration = "underline")}
+              onMouseOut={(e) => (e.currentTarget.style.textDecoration = "none")}
+            >
+              <br />
+              {t("parnter.Interested?")}
+            </a>
+          </p>
 
-          {/* License Partner Model Section */}
-        
-
-          {/* How It Works Section */}
-          <div className="mb-5">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">{t("parnter.How It Works")}</h3>
-            <ol className="space-y-4">
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-3 text-lg font-bold">1.</span>
-                <span className="text-gray-700 text-base">{t("parnter.Fill out the partnership request form")}</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-3 text-lg font-bold">2.</span>
-                <span className="text-gray-700 text-base">{t("parnter.We review your profile and potential")}</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-3 text-lg font-bold">3.</span>
-                <span className="text-gray-700 text-base">{t("parnter.If suitable, we schedule a personal meeting")}</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-3 text-lg font-bold">4.</span>
-                <span className="text-gray-700 text-base">{t("parnter.Sign the agreement and start as an official partner")}</span>
-              </li>
-            </ol>
-          </div>
-
-          {/* Apply Now Section */}
-          {/* Call to Action */}
-         <div
-  style={{
-    backgroundColor: "#EFF6FF", // light blue background
-    borderLeft: "4px solid #2563EB", // blue accent line
-    padding: "24px",
-    borderRadius: "10px",
-    marginBottom: "30px",
-  }}
->
-  <p
-    style={{
-      color: "#374151", // gray-700
-      marginBottom: "12px",
-      lineHeight: "1.6",
-    }}
-  >
-    {t("parnter.Apply Now")}{" "}
-    <a
-      href="mailto:info@zuricar.ch"
-      style={{
-        color: "#2563EB",
-        fontWeight: "600",
-        textDecoration: "none",
-      }}
-      onMouseOver={(e) => (e.currentTarget.style.textDecoration = "underline")}
-      onMouseOut={(e) => (e.currentTarget.style.textDecoration = "none")}
-    >
-      <br />
-      {t("parnter.Interested?")}
-    </a>
-  </p>
-
-  <p
-    style={{
-      color: "#111827", // dark gray
-      fontSize: "18px",
-      margin: 0,
-      lineHeight: "1.6",
-    }}
-  >
-    {t("parnter.Apply now to become a licensed partner and join the growing")}{" "}
-    <span
-      style={{
-        color: "#2563EB",
-        fontSize: "20px",
-        fontWeight: "bold",
-      }}
-    >
-      ZüriCar GO
-    </span>{" "}
-    {t("parnter.network across Switzerland.")}
-  </p>
-</div>
+          <p
+            style={{
+              color: "#111827", // dark gray
+              fontSize: "18px",
+              margin: 0,
+              lineHeight: "1.6",
+            }}
+          >
+            {t("parnter.Apply now to become a licensed partner and join the growing")}{" "}
+            <span
+              style={{
+                color: "#2563EB",
+                fontSize: "20px",
+                fontWeight: "bold",
+              }}
+            >
+              ZüriCar GO
+            </span>{" "}
+            {t("parnter.network across Switzerland.")}
+          </p>
+        </div>
 
 
         {/* Form Section */}
         <div className="bg-white border-t-4 border-blue-600 shadow-xl rounded-lg p-8 md:p-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-8">
-           License Partner Model
+            License Partner Model
           </h2>
 
           <div className="space-y-6">
@@ -359,49 +347,28 @@ export default function BecomePartner() {
             </div>
 
             {/* Submit Button */}
-           <div className="flex justify-end">
-  <Button
-    label="Get Started"
-    icon="pi pi-send"
-    style={{
-      backgroundColor: "#2563eb", // blue
-      color: "#fff",              // white text
-      padding: "12px 32px",
-      fontWeight: "bold",
-      borderRadius: "8px",
-      border: "none",
-      cursor: "pointer",
-      transition: "background-color 0.3s ease",
-    }}   
-     onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#1e40af")} // darker blue on hover
-    onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2563eb")}  // revert on mouse out
-    onClick={handleSubmit}/>
-</div>
-
+            <div className="flex justify-end">
+              <Button
+                label="Get Started"
+                icon="pi pi-send"
+                style={{
+                  backgroundColor: "#2563eb", // blue
+                  color: "#fff",              // white text
+                  padding: "12px 32px",
+                  fontWeight: "bold",
+                  borderRadius: "8px",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "background-color 0.3s ease",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#1e40af")} // darker blue on hover
+                onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2563eb")}  // revert on mouse out
+                onClick={handleSubmit} />
             </div>
+
           </div>
         </div>
-
-
-      {/* Floating Action Buttons */}
-      {/* <div className="fixed bottom-6 right-6 z-50 space-y-3">
-        <Button
-          icon="pi pi-whatsapp"
-          className="p-button-rounded p-button-success p-button-lg block shadow-lg"
-          onClick={() => window.open("https://wa.me/+41764959010", "_blank")}
-          tooltip="WhatsApp"
-          tooltipOptions={{ position: 'left' }}
-        />
-        <Button
-          icon="pi pi-phone"
-          className="p-button-rounded p-button-warning p-button-lg text-white block shadow-lg"
-          onClick={() => window.open("tel:+41797669960")}
-          tooltip="Call Us"
-          tooltipOptions={{ position: 'left' }}
-        />
-      </div> */}
-
-      {/* Success Dialog */}
+      </div>
       <Dialog
         visible={dialogVisible}
         onHide={() => setDialogVisible(false)}

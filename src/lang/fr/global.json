@@ -18,14 +18,13 @@
     "event": "Événement",
     "flightbooking": "Réservation de vol"
   },
-  "tour":{
-  "bookNow": "Réserver maintenant",
+  "tour": {
+    "bookNow": "Réserver maintenant",
     "categories": "Catégories",
     "duration": "Durée",
     "price": "Prix",
     "tourCode": "Code du circuit",
     "groupSize": "Taille du groupe",
-    
     "travelExcludes": "Voyage exclut",
     "travelIncludes": "Voyage inclut",
     "galleryImage": "Image de la galerie",
@@ -34,16 +33,14 @@
     "enterCouponCode": "Entrez le code du coupon",
     "specialNotes": "Notes spéciales",
     "downloads": "Téléchargements",
-     "viewTour": "Voir le circuit",
+    "viewTour": "Voir le circuit",
     "noToursAvailable": "Aucun circuit disponible pour les filtres sélectionnés",
     "bag": "Sac",
     "day": "Jour",
-    
     "loading": "Chargement",
     "privacyPolicy": "Politique de confidentialité",
     "termsOfUse": "Conditions d'utilisation",
-
-     "backToTours": "Retour aux circuits",
+    "backToTours": "Retour aux circuits",
     "applyCoupon": "Appliquer le coupon",
     "privacyNotice": "En continuant à utiliser nos services, vous reconnaissez que vos données personnelles seront traitées conformément à notre politique de confidentialité.",
     "termsNotice": "En créant un compte, vous acceptez nos conditions d'utilisation.",
@@ -76,10 +73,9 @@
     "uploadPassport": "Télécharger le passeport",
     "uploadVaccine": "Télécharger le certificat de vaccination"
   },
-   "pay": {
+  "pay": {
     "payment": "Paiement",
     "book": "Finaliser la réservation",
-
     "select_payment_method": "Sélectionnez le mode de paiement",
     "credit_debit_card": "Carte de crédit / débit",
     "apple_pay": "Apple Pay",
@@ -97,51 +93,49 @@
     "need_child_seat": "Besoin d’un siège enfant ou d’un rehausseur ?",
     "driver_notes_outward": "Notes du chauffeur (Aller)",
     "driver_notes_return": "Notes du chauffeur (Retour)",
-    "back":"Retour"
+    "back": "Retour"
   },
-   "vehicle": {
-      "route_map_visualization": "Visualisation de la carte de l’itinéraire",
-      "all_prices_include": "Tous les prix incluent la TVA et les péages",
-      "choose_vehicle": "Choisissez votre véhicule",
-      "selected_passengers_add_return": "Passagers sélectionnés AJOUTER RETOUR",
-      "add_return_trip": "Ajouter un trajet retour",
-      "selected_passengers": "Passagers sélectionnés",
-      "showing": "Affichage de",
-      "vehicle": "véhicule",
-      "accommodate": "qui peut accueillir",
-      "or_more_passengers": "ou plus de passagers",
-      "no_vehicles_available": "Aucun véhicule disponible",
-       "en2": "Malheureusement, aucun véhicule ne peut accueillir les passagers.",
-       "en3": "Veuillez réduire le nombre de passagers ou nous contacter pour des arrangements personnalisés.",
-
- "en": "Réservez aujourd'hui, bloquez le prix. Vous pouvez annuler gratuitement dans le",
-"en1": "et obtenir un remboursement complet",
-
-      "selected": "Sélectionné",
-      "free_cancellation": "ANNULATION GRATUITE",
-      "your_choice": "Votre choix",
-      "continue": "Continuer"
-    },
+  "vehicle": {
+    "route_map_visualization": "Visualisation de la carte de l’itinéraire",
+    "all_prices_include": "Tous les prix incluent la TVA et les péages",
+    "choose_vehicle": "Choisissez votre véhicule",
+    "selected_passengers_add_return": "Passagers sélectionnés AJOUTER RETOUR",
+    "add_return_trip": "Ajouter un trajet retour",
+    "selected_passengers": "Passagers sélectionnés",
+    "showing": "Affichage de",
+    "vehicle": "véhicule",
+    "accommodate": "qui peut accueillir",
+    "or_more_passengers": "ou plus de passagers",
+    "no_vehicles_available": "Aucun véhicule disponible",
+    "en2": "Malheureusement, aucun véhicule ne peut accueillir les passagers.",
+    "en3": "Veuillez réduire le nombre de passagers ou nous contacter pour des arrangements personnalisés.",
+    "en": "Réservez aujourd'hui, bloquez le prix. Vous pouvez annuler gratuitement dans le",
+    "en1": "et obtenir un remboursement complet",
+    "selected": "Sélectionné",
+    "free_cancellation": "ANNULATION GRATUITE",
+    "your_choice": "Votre choix",
+    "continue": "Continuer"
+  },
   "carousel": {
-        "title1": "MIRISSA",
-        "subtitle1": "Le paradis tropical sur la côte du Sri Lanka",
-        "title2": "ELLA",
-        "subtitle2": "Le cœur des montagnes du Sri Lanka",
-        "title3": "SRI LANKA",
-        "subtitle3": "",
-        "title4": "SIGIRIYA",
-        "subtitle4": "Le Rocher du Lion au cœur du Sri Lanka",
-        "rent_a_car": "Louer une voiture",
-      "holiday_packages": "Forfaits vacances",
-      "airport_parking": "Parking aéroport",
-      "airport_transfer": "Transfert aéroport",
-       "title5": "Découvrez le confort haut de gamme à prix économique",
+    "title1": "MIRISSA",
+    "subtitle1": "Le paradis tropical sur la côte du Sri Lanka",
+    "title2": "ELLA",
+    "subtitle2": "Le cœur des montagnes du Sri Lanka",
+    "title3": "SRI LANKA",
+    "subtitle3": "",
+    "title4": "SIGIRIYA",
+    "subtitle4": "Le Rocher du Lion au cœur du Sri Lanka",
+    "rent_a_car": "Louer une voiture",
+    "holiday_packages": "Forfaits vacances",
+    "airport_parking": "Parking aéroport",
+    "airport_transfer": "Transfert aéroport",
+    "title5": "Découvrez le confort haut de gamme à prix économique",
     "title6": "Location, allons-y",
     "title7": "Conduisez partout avec nos SUV et 4x4 de location",
     "title8": "Sans stress, fiable, sans frais cachés"
   },
-  "home1":{
-     "description1": "Nos voitures compactes modernes offrent confort, efficacité et style pour chaque trajet. Parfaites pour la conduite en ville ou les voyages d'affaires – avec un espace généreux et une technologie avancée.",
+  "home1": {
+    "description1": "Nos voitures compactes modernes offrent confort, efficacité et style pour chaque trajet. Parfaites pour la conduite en ville ou les voyages d'affaires – avec un espace généreux et une technologie avancée.",
     "highlights1": [
       "Climatisées et économes en carburant",
       "Jusqu’à 4 passagers",
@@ -177,12 +171,11 @@
       "Design sportif & moteur haute performance",
       "Parfait pour les week-ends et événements"
     ]
-
   },
   "home": {
-
-      "title": "Notre flotte",
-   
+    "title": "Notre flotte",
+    "Select Car Category": "Sélectionnez la catégorie de voiture",
+    "Select Car Type": "Sélectionnez le type de voiture",
     "General": "Général",
     "q1": "Y a-t-il une durée minimale ou maximale de location pour un van ZüriCar GmbH ?",
     "a1": "La durée minimale de location est d'une demi-journée. La durée maximale est généralement de 30 jours. Si vous avez besoin d’un véhicule pour plus de 30 jours, veuillez contacter notre équipe commerciale. Nous vous ferons une offre avec plaisir.",
@@ -196,7 +189,10 @@
     "a5": "Oui, aucun problème. Si vous rendez le véhicule en dehors des heures d’ouverture, veuillez le garer sur une place disponible à la station ZüriCar GmbH et déposer la clé dans la boîte prévue à cet effet. Veuillez noter que le dépôt de la clé ne met pas fin à votre contrat de location. Consultez vos conditions de location pour plus de détails.",
     "q6": "Puis-je conduire un van ZüriCar GmbH avec un permis de conduire de catégorie B ?",
     "a6": "Oui, tous les véhicules peuvent être conduits avec un permis de catégorie B. La seule exigence est d’avoir ce permis depuis au moins un an.",
-
+    "No parking available for the selected criteria": "Aucun parking disponible selon les critères sélectionnés",
+    "Choose Parking Type": "Choisissez le type de parking",
+    "Choose Vehicle Type": "Choisissez le type de véhicule",
+    "Choose Airport Associative": "Choisissez l'aéroport associé",
     "Rates & Fees": "Tarifs et frais",
     "q7": "J’ai reçu une amende. Que se passe-t-il ensuite ?",
     "a7": "L’amende est envoyée à ZüriCar GmbH. Nous identifions le conducteur responsable et transmettons ses coordonnées à la police ou à l’autorité compétente. Vous recevrez ensuite l’amende directement. De plus, nous facturons des frais administratifs de 80 CHF (TVA incluse).",
@@ -210,7 +206,6 @@
     "a11": "Tous les prix sont indiqués en francs suisses (CHF) et incluent la TVA.",
     "q12": "Y a-t-il des frais supplémentaires pour conduire à l’étranger ?",
     "a12": "Oui, des frais transfrontaliers (CBF) allant jusqu’à 185 CHF (TVA incluse) s’appliquent. Veuillez consulter les restrictions de voyage pour chaque pays et catégorie de véhicule dans votre contrat de location.",
-
     "Insurance": "Assurance",
     "q13": "Une réduction de responsabilité est-elle incluse ?",
     "a13": "Oui, une réduction de responsabilité est incluse dans tous les tarifs (une franchise reste à votre charge).",
@@ -220,7 +215,6 @@
     "a15": "Oui, tous les conducteurs de moins de 25 ans doivent payer un supplément. Les prix varient selon la catégorie, avec un maximum de 199 CHF par mois de location.",
     "q16": "Qu’est-ce que l’assurance SuperCover ?",
     "a16": "Avec l’assurance Premium (rachat de franchise), vous pouvez réduire la franchise à 350 CHF par sinistre, vous protégeant ainsi contre les coûts élevés en cas de perte ou de dommage.",
-
     "Reservation": "Réservation",
     "q17": "Comment puis-je réserver un van chez ZüriCar GmbH ?",
     "a17": "Vous pouvez réserver un van en ligne sur explorevacations.ch, par téléphone ou directement dans une station ZüriCar GmbH.",
@@ -232,7 +226,6 @@
     "a20": "Nous recommandons de réserver le plus tôt possible afin de garantir vos préférences (modèle de véhicule, etc.). Les réservations sont généralement possibles jusqu’à peu de temps avant le départ souhaité.",
     "q21": "Puis-je réserver un modèle de véhicule spécifique ?",
     "a21": "Vous pouvez réserver une catégorie de véhicule, mais pas un modèle spécifique.",
-
     "Before the Trip": "Avant le voyage",
     "q22": "Puis-je garer ma voiture privée à la station ZüriCar GmbH pendant la période de location ?",
     "a22": "Oui, c’est généralement possible dans toutes nos stations. Cependant, veuillez vérifier la disponibilité auprès de votre station. ZüriCar GmbH décline toute responsabilité en cas de dommage à votre véhicule privé.",
@@ -242,13 +235,11 @@
     "a24": "Pour votre sécurité, veuillez inspecter le véhicule pour tout dommage existant, ajuster votre siège et les rétroviseurs, attacher votre ceinture, allumer les phares et vérifier la visibilité à travers toutes les vitres.",
     "q25": "Puis-je demander un essai routier avec assistance ?",
     "a25": "Oui ! Sur demande préalable, un membre de l’équipe ZüriCar GmbH vous accompagnera volontiers pour un court essai afin de vous familiariser avec le van. Veuillez contacter votre station à l’avance.",
-
     "During the Trip": "Pendant le voyage",
     "q26": "Puis-je fumer dans le van ?",
     "a26": "Non, tous les véhicules ZüriCar GmbH sont non-fumeurs. Des frais de nettoyage peuvent s’appliquer en cas de non-respect.",
     "q27": "Que dois-je faire en cas d’accident ?",
     "a27": "Vous trouverez une liste de vérification détaillée et les documents nécessaires dans la boîte à gants. Restez calme, sécurisez le site, aidez les blessés et appelez la police (117).",
-
     "End of Trip / Vehicle Return": "Fin du voyage / Retour du véhicule",
     "q28": "Et si je ne peux pas rendre le véhicule à temps ?",
     "a28": "Veuillez prévoir suffisamment de temps et prolonger votre réservation à l’avance en contactant votre station ou en appelant le +41 79 766 99 60. Des frais peuvent s’appliquer pour les retours tardifs.",
@@ -260,29 +251,30 @@
     "a31": "Nous nous occupons du nettoyage, mais merci de jeter vos déchets et de laisser la zone de chargement propre. Des frais supplémentaires peuvent s’appliquer en cas de saleté excessive.",
     "q32": "Dois-je faire le plein ou recharger le van ?",
     "a32": "Oui, merci de le rendre avec le même niveau de carburant ou de charge qu’au moment du départ. Sinon, des frais supplémentaires peuvent s’appliquer.",
-
     "Transfers": "Transferts",
     "d1": "Profitez d’un voyage confortable et sûr avec nos chauffeurs professionnels. Que ce soit un transfert aéroport, une visite de la ville ou un long trajet, nous vous offrons une expérience de voyage premium sur mesure.",
-
     "Business": "Affaires",
     "d2": "Voyagez avec style et confort grâce à nos services haut de gamme pour professionnels. Nous comprenons vos besoins de luxe et de professionnalisme pour un voyage fluide et sophistiqué.",
-
     "Tourist": "Touristique",
     "d3": "Partez pour un voyage inoubliable avec nos forfaits vacances bien planifiés. Explorez des destinations à couper le souffle en toute simplicité et confort pour une expérience mémorable.",
-
     "Car Rental": "Location de voiture",
     "d4": "Choisissez parmi une large gamme de véhicules bien entretenus pour vos besoins de déplacement. Que ce soit pour un court trajet ou une longue durée, nous vous proposons des voitures de qualité pour un trajet en douceur.",
-
+    "See Those Lovely Words From Clients": "Voyez ces jolis mots des clients",
     "Tour": "Tour",
     "Car": "Voiture",
     "Parking": "Parking",
     "Travel": "Voyage",
+    "Select a topic": "Sélectionnez un sujet",
+    "Select Destination": "Choisir la destination",
+    "From": "De",
+    "To": "À",
+    "Guest": "Invité",
     "Most Popular Tour": "Tour le plus populaire",
     "Let’s Discover The World With Our Excellent Eyes": "Découvrons le monde avec notre regard d’exception",
     "Whether you are planning a romantic escape, a family holiday, or a solo adventure, our travel agency designs bespoke itineraries tailored to your needs. Alongside carefully crafted tours and exclusive holiday packages, we also offer flexible car rental solutions to ensure your journey is seamless, comfortable, and unforgettable.": "Que vous planifiiez une escapade romantique, des vacances en famille ou une aventure en solo, notre agence de voyages conçoit des itinéraires sur mesure adaptés à vos besoins. En plus de circuits soigneusement élaborés et de forfaits exclusifs, nous proposons également des solutions de location de voiture flexibles afin de rendre votre voyage fluide, confortable et inoubliable.",
     "Our Services": "Nos services",
-     "desc1": "Vous en avez assez des destinations touristiques classiques et souhaitez sortir de votre zone de confort ?",
-  "desc2": "Le voyage d'aventure pourrait être la solution parfaite pour vous ! En voici quatre.",
+    "desc1": "Vous en avez assez des destinations touristiques classiques et souhaitez sortir de votre zone de confort ?",
+    "desc2": "Le voyage d'aventure pourrait être la solution parfaite pour vous ! En voici quatre.",
     "Dream Your Next Trip": "Rêvez votre prochain voyage",
     "Discover whenever you want to go": "Découvrez où vous voulez aller, quand vous le souhaitez",
     "Are you tired of the typical tourist destinations and looking to step out of your comfort zone? Adventure travel may be the perfect solution for you! Here are four.": "Vous en avez assez des destinations touristiques classiques et souhaitez sortir de votre zone de confort ? Le voyage d’aventure est peut-être la solution idéale pour vous ! En voici quatre.",
@@ -293,7 +285,6 @@
     "Popular Travel Destinations Available Worldwide": "Destinations populaires disponibles dans le monde entier",
     "Frequently Asked Questions": "Questions fréquemment posées"
   },
-
   "cookies": {
     "title": "Cookies – ZüriCar GmbH",
     "intro": "Nous utilisons des cookies pour vous offrir la meilleure expérience possible.",
@@ -348,10 +339,9 @@
     "copyrightText1": "Les droits d’auteur et tous les autres droits sur le contenu, les images, les photos ou autres fichiers de ce site Web appartiennent exclusivement à ZüriCar GO GmbH ou aux titulaires de droits spécifiquement nommés.",
     "copyrightText2": "Toute reproduction, modification, distribution ou autre utilisation des éléments de ce site Web nécessite l’accord écrit préalable du titulaire des droits concerné."
   },
-
-
   "footer": {
-    "footer": "Nous sommes une société haut de gamme de location de voitures et de services de voyages complets basée en Suisse. Avec une flotte moderne et des solutions de transfert fiables, nous garantissons une flexibilité et un confort maximum pour chaque voyage. Au-delà de la location de voitures, nous sommes spécialisés dans les voyages FIT et de groupe sur mesure, les vacances balnéaires, les safaris et les expéditions exclusives au Sri Lanka – créant ainsi des expériences de voyage inoubliables de la Suisse vers le monde entier.",   "Tours": "Circuits",
+    "footer": "Nous sommes une société haut de gamme de location de voitures et de services de voyages complets basée en Suisse. Avec une flotte moderne et des solutions de transfert fiables, nous garantissons une flexibilité et un confort maximum pour chaque voyage. Au-delà de la location de voitures, nous sommes spécialisés dans les voyages FIT et de groupe sur mesure, les vacances balnéaires, les safaris et les expéditions exclusives au Sri Lanka – créant ainsi des expériences de voyage inoubliables de la Suisse vers le monde entier.",
+    "Tours": "Circuits",
     "Our Services": "Nos Services",
     "Cars": "Voitures",
     "Contact Us": "Contactez-nous",
@@ -360,12 +350,12 @@
     "Contact Information": "Informations de contact",
     "Social Media Links": "Liens vers les réseaux sociaux",
     "about_us": "À propos de nous",
-      "grow_with_zuricar": "Développez-vous avec ZüriCar GO",
-      "become_partner": "Devenir partenaire",
-      "become_transfer_partner": "Devenir Chauffeur",
-      "travel_agency_partnership": "Partenariat avec une agence de voyage"
+    "grow_with_zuricar": "Développez-vous avec ZüriCar GO",
+    "become_partner": "Devenir partenaire",
+    "become_transfer_partner": "Devenir Chauffeur",
+    "travel_agency_partnership": "Partenariat avec une agence de voyage"
   },
-"passenger":{
+  "passenger": {
     "first_name_required": "Le prénom est requis",
     "last_name_required": "Le nom de famille est requis",
     "email_required": "L'adresse e-mail est requise",
@@ -374,7 +364,6 @@
     "mobile_invalid": "Veuillez entrer un numéro de téléphone valide",
     "passenger_details_saved": "Détails du passager enregistrés avec succès !",
     "success": "succès",
-
     "lead_passenger": "Passager principal",
     "first_name": "Prénom",
     "first_name_field_required": "Ce champ est requis",
@@ -386,7 +375,6 @@
     "mobile_number": "Numéro de portable",
     "mobile_number_required": "Veuillez entrer un numéro de portable valide",
     "mobile_contact_note": "Veuillez fournir un numéro afin que notre chauffeur puisse joindre le passager si nécessaire.",
-
     "email": "Email",
     "free": "Gratuit",
     "driver_details_message": "Les détails du chauffeur seront envoyés 6 heures avant la prise en charge par e-mail et notification push.",
@@ -405,7 +393,6 @@
     "Züri": "Züri",
     "Car GO brand": "marque Car GO",
     "depending on our partnership agreement.": "selon notre accord de partenariat.",
-     
     "Travel Partner Model with": "Modèle de partenaire de voyage avec",
     "Join ZüriCar GO Travel Partner Network": "Rejoignez le réseau de partenaires de voyage ZüriCar GO",
     "Expanding global travel partner network across Switzerland and Sri Lanka": "Expansion du réseau mondial de partenaires de voyage en Suisse et au Sri Lanka",
@@ -429,7 +416,7 @@
     "Multilingual customer support": "Support client multilingue",
     "Send your details to": "Envoyez vos informations à",
     "Become a Partner": "Devenir Partenaire",
-       "today": "aujourd'hui",
+    "today": "aujourd'hui",
     "or complete the registration form below.": "ou complétez le formulaire d'inscription ci-dessous.",
     "join the": "rejoignez le",
     "Name": "Nom",
@@ -443,12 +430,11 @@
     "Thank you for your interest!": "Merci pour votre intérêt !",
     "Your application has been sent to ZüriCar GO. We will contact you soon.": "Votre demande a été envoyée à ZüriCar GO. Nous vous contacterons bientôt."
   },
-  "parnter":{
-     "network across Switzerland.": "réseau à travers toute la Suisse.",
+  "parnter": {
+    "network across Switzerland.": "réseau à travers toute la Suisse.",
     "Apply now to become a licensed partner and join the growing,": "Postulez maintenant pour devenir partenaire agréé et rejoindre le réseau croissant,",
     "Interested?,": "Intéressé ?,",
     "Apply Now": "Postuler maintenant",
-
     "Depending on the": "Selon",
     "contractual agreement": "l'accord contractuel",
     "you can use": "vous pouvez utiliser",
@@ -456,7 +442,7 @@
     "ZüriCar GO brand": "la marque ZüriCar GO",
     "or both together.": "ou les deux ensemble.",
     "Company Address": "Adresse de l'entreprise",
-     "Collaboration with an established Swiss brand,": "Collaboration avec une marque suisse établie,",
+    "Collaboration with an established Swiss brand,": "Collaboration avec une marque suisse établie,",
     "Your Benefits,": "Vos avantages,",
     "Dedicated partner page on our platform,": "Page partenaire dédiée sur notre plateforme,",
     "Access to central booking and payment systems,": "Accès aux systèmes centraux de réservation et de paiement,",
@@ -471,43 +457,40 @@
     "We provide you with systems, know-how, and professional guidance to ensure sustainable success.,": "Nous vous fournissons des systèmes, du savoir-faire et un accompagnement professionnel pour garantir un succès durable.,",
     "Depending on the contractual agreement, you can use your own brand name, the ZüriCar GO brand, or both together.,": "Selon l'accord contractuel, vous pouvez utiliser votre propre marque, la marque ZüriCar GO, ou les deux ensemble.,"
   },
-  "transfer":{
-  "Send your application to": "Envoyez votre candidature à",
-  "info@zuricar.ch": "info@zuricar.ch",
-  "or fill out the registration form below.": "ou remplissez le formulaire d'inscription ci-dessous.",
-  "Register now and become part of the": "Inscrivez-vous maintenant et devenez membre du",
-  "ZüriCar GO": "ZüriCar GO",
-  "Transfer Driver Network!": "Réseau de Chauffeurs de Transfert !",
-
-  "Requirements:": "Exigences :",
-  "Valid Swiss driving license (Category B / B121 or higher)": "Permis de conduire suisse valide (catégorie B / B121 ou supérieur)",
-  "Clean driving record": "Casier de conduite vierge",
-  "Excellent knowledge of Swiss roads and customer service attitude": "Excellente connaissance des routes suisses et esprit du service client",
-  "Own vehicle (optional – we also provide fleet options)": "Véhicule personnel (optionnel – nous proposons aussi des solutions de flotte)",
-  "Cooperation possibilities in all Swiss regions": "Possibilités de coopération dans toutes les régions suisses",
-  "Regular transfer bookings through our system": "Réservations de transferts régulières via notre système",
-  "Competitive earnings": "Revenus compétitifs",
-  "Flexible working hours": "Horaires de travail flexibles",
-
-  "ideal candidates for becoming ZüriCar GO License Partners.": "candidats idéaux pour devenir partenaires licenciés ZüriCar GO.",
-  "Whether you are an independent driver or operate your own small team, you can now work": "Que vous soyez chauffeur indépendant ou que vous dirigiez une petite équipe, vous pouvez maintenant travailler",
-  "Are you a professional driver looking for transfer opportunities across Switzerland?": "Êtes-vous un chauffeur professionnel recherchant des opportunités de transfert à travers la Suisse ?",
-  "Join Our Transfer Driver Network": "Rejoignez notre réseau de chauffeurs de transfert",
-  "is expanding its nationwide driver network for airport and city transfers.": "élargit son réseau national de chauffeurs pour les transferts aéroportuaires et urbains.",
-  "with": "avec",
-  "and receive regular transfer bookings from all over Switzerland.": "et recevez des réservations de transferts régulières de toute la Suisse."
-},
-
+  "transfer": {
+    "Send your application to": "Envoyez votre candidature à",
+    "info@zuricar.ch": "info@zuricar.ch",
+    "or fill out the registration form below.": "ou remplissez le formulaire d'inscription ci-dessous.",
+    "Register now and become part of the": "Inscrivez-vous maintenant et devenez membre du",
+    "ZüriCar GO": "ZüriCar GO",
+    "Transfer Driver Network!": "Réseau de Chauffeurs de Transfert !",
+    "Requirements:": "Exigences :",
+    "Valid Swiss driving license (Category B / B121 or higher)": "Permis de conduire suisse valide (catégorie B / B121 ou supérieur)",
+    "Clean driving record": "Casier de conduite vierge",
+    "Excellent knowledge of Swiss roads and customer service attitude": "Excellente connaissance des routes suisses et esprit du service client",
+    "Own vehicle (optional – we also provide fleet options)": "Véhicule personnel (optionnel – nous proposons aussi des solutions de flotte)",
+    "Cooperation possibilities in all Swiss regions": "Possibilités de coopération dans toutes les régions suisses",
+    "Regular transfer bookings through our system": "Réservations de transferts régulières via notre système",
+    "Competitive earnings": "Revenus compétitifs",
+    "Flexible working hours": "Horaires de travail flexibles",
+    "ideal candidates for becoming ZüriCar GO License Partners.": "candidats idéaux pour devenir partenaires licenciés ZüriCar GO.",
+    "Whether you are an independent driver or operate your own small team, you can now work": "Que vous soyez chauffeur indépendant ou que vous dirigiez une petite équipe, vous pouvez maintenant travailler",
+    "Are you a professional driver looking for transfer opportunities across Switzerland?": "Êtes-vous un chauffeur professionnel recherchant des opportunités de transfert à travers la Suisse ?",
+    "Join Our Transfer Driver Network": "Rejoignez notre réseau de chauffeurs de transfert",
+    "is expanding its nationwide driver network for airport and city transfers.": "élargit son réseau national de chauffeurs pour les transferts aéroportuaires et urbains.",
+    "with": "avec",
+    "and receive regular transfer bookings from all over Switzerland.": "et recevez des réservations de transferts régulières de toute la Suisse."
+  },
   "car": {
     "Available Cars": "Voitures disponibles",
     "Standard": "Standard",
     "Premium": "Premium",
-"clear": "Effacer",
+    "clear": "Effacer",
     "Travel Include": "Voyage Inclus",
     "Travel Exclude": "Voyage Exclus",
     "Others": "Autres",
     "Book your Car": "Réservez votre Voiture",
-     "dropDate": "Date de dépôt",
+    "dropDate": "Date de dépôt",
     "pickUpDate": "Date de prise en charge",
     "enterAddress": "Entrez votre adresse",
     "paymentTerms": "Conditions de paiement",
@@ -536,7 +519,6 @@
     "charges": "Frais",
     "noCarsAvailable": "Aucune voiture disponible"
   },
-
   "contact": {
     "Get In Touch": "Contactez-nous",
     "We’d love to hear from you! Contact us today.": "Nous serions ravis d'avoir de vos nouvelles ! Contactez-nous dès aujourd'hui.",
@@ -556,9 +538,7 @@
     "Form submitted successfully!": "Formulaire soumis avec succès !",
     "Submit": "Soumettre",
     "quotes": "Vos questions sont importantes. Votre voyage l’est aussi. Nous sommes là pour vous écouter."
-
   },
-
   "parking": {
     "Reserve": "Réservez votre place, puis votre destination de rêve.",
     "Find the Best Parking Options for You": "Trouvez les meilleures options de stationnement pour vous",
@@ -567,10 +547,10 @@
     "Flexible Parking Choices for Your Trip": "Choix de stationnement flexibles pour votre voyage",
     "Secure and convenient parking options designed to fit your travel needs.": "Options de stationnement sûres et pratiques, adaptées à vos besoins de voyage."
   },
-
   "profile": {
     "Tour Bookings": "Réservations de circuits",
     "Car Booking": "Réservation de voiture",
+    "Transfer Booking": "Réservation de transfert",
     "Parking Booking": "Réservation de parking",
     "Personal Information": "Informations personnelles",
     "First Name": "Prénom",
@@ -604,7 +584,6 @@
     "Location": "Emplacement",
     "travel EndDate": "Date de fin du voyage"
   },
-
   "login": {
     "Back to Home": "Retour à l'accueil",
     "Start your perfect trip": "Commencez votre voyage parfait",
@@ -618,7 +597,6 @@
     "voyage": "voyage",
     "Please check your email for your password.": "Veuillez vérifier votre email pour votre mot de passe."
   },
-
   "signin": {
     "Sign Up": "Inscription",
     "First Name": "Prénom",
@@ -630,7 +608,6 @@
     "Already have an account Just": "Vous avez déjà un compte ? Il suffit de",
     "Signin": "Se connecter"
   },
-
   "flight": {
     "Details": "Détails du formulaire",
     "quotes": "Un ciel serein vous attend — commencez par entrer les informations de votre vol.",
@@ -721,30 +698,30 @@
     "l20.4": "Données de santé : besoins spécifiques, maladies, accidents survenus durant un voyage ;",
     "l20.5": "Informations financières : données de paiement, numéro de carte bancaire, ..."
   },
-  "Transfer":{
-"explore_destination": "Explorez notre destination",
-      "destination_not_found": "Destination introuvable",
-      "back_home": "Retour à l'accueil",
-      "back_destinations": "Retour aux destinations",
-      "overview": "Aperçu",
-      "detailed_info": "Informations détaillées",
-      "reliable_worldwide": "Votre partenaire mondial fiable",
-      "airport_transfers": "Transferts aéroport",
-      "transfer": "Transfert",
-      "from": "De",
-      "to": "À",
-      "pickup_date": "Date de prise en charge",
-      "pickup_time": "Heure de prise en charge",
-      "add_return": "AJOUTER RETOUR",
-      "return_trip": "Trajet retour",
-      "remove": "Supprimer",
-      "return_date": "Date de retour",
-      "return_time": "Heure de retour",
-      "passengers": "Passagers",
-      "see_prices": "Voir les prix",
-      "excellent": "EXCELLENT",
-      "trustpilot": "Trustpilot",
-      "save": "Enregistrer"
+  "Transfer": {
+    "explore_destination": "Explorez notre destination",
+    "destination_not_found": "Destination introuvable",
+    "back_home": "Retour à l'accueil",
+    "back_destinations": "Retour aux destinations",
+    "overview": "Aperçu",
+    "detailed_info": "Informations détaillées",
+    "reliable_worldwide": "Votre partenaire mondial fiable",
+    "airport_transfers": "Transferts aéroport",
+    "transfer": "Transfert",
+    "from": "De",
+    "to": "À",
+    "pickup_date": "Date de prise en charge",
+    "pickup_time": "Heure de prise en charge",
+    "add_return": "AJOUTER RETOUR",
+    "return_trip": "Trajet retour",
+    "remove": "Supprimer",
+    "return_date": "Date de retour",
+    "return_time": "Heure de retour",
+    "passengers": "Passagers",
+    "see_prices": "Voir les prix",
+    "excellent": "EXCELLENT",
+    "trustpilot": "Trustpilot",
+    "save": "Enregistrer"
   },
   "terms": {
     "rent": "Louer une voiture",
@@ -761,10 +738,8 @@
     "stg": "avec tarifs Flexi",
     "l3": "Les réservations peuvent être annulées ou modifiées gratuitement à tout moment avant le début de la location.",
     "l3.1": "Les modifications/annulations doivent être soumises par écrit ou par email à :",
-
     "l3.2": "Email :",
     "l3.3": "Les modifications sont soumises à la disponibilité des véhicules.",
-
     "stg4": "Avec les tarifs Réservation Anticipée (Prépayés)",
     "l4": "Les modifications de réservation sont autorisées avant le début de la location moyennant des frais de CHF 30.00.",
     "l4.1": "Les modifications transnationales avec des tarifs prépayés ne sont pas autorisées.",
@@ -777,11 +752,9 @@
     "a5": "par courrier postal ou par écrit à :",
     "l5": "ZüriCar GmbH, Europa-Strasse 19 ,8152 Glattbrugg (ZH) Switzerland, Zürich, Schweiz.",
     "l5.5": "Si le véhicule réservé n’est pas récupéré à l’heure convenue, l’intégralité du montant déjà payé pour la location sera conservée.",
-
     "h6": "Non-retrait du véhicule",
     "l6.1": "Pour les réservations avec le tarif Flexi, il est convenu que si le Locataire ne récupère pas le véhicule au plus tard une heure après l’heure convenue, pour quelque raison que ce soit, ZüriCar GmbH ne sera plus tenue par la réservation. Les Conditions Générales de Location s’appliquent.",
     "l6.2": "Pour les réservations avec les tarifs réservation anticipée (prépayés), les frais de location déjà payés ne seront pas remboursés si le véhicule réservé n’est pas récupéré ou ne l’est pas à l’heure convenue. Le droit de réclamer d’autres dommages-intérêts est expressément réservé.",
-
     "h7": "Exigences à l’égard du Locataire/conducteur supplémentaire",
     "l7.1": "Le Locataire s’engage à respecter les dispositions relatives à l’âge et au permis de conduire en vigueur en Suisse, et à consulter les informations correspondantes avant la réservation sur le site internet d’ZüriCar GmbH ou à l’agence, ou à se renseigner par téléphone.",
     "l7.2": "Pour vérifier la validité du permis de conduire, l’original doit être présenté.",
@@ -792,7 +765,6 @@
     "l7.7": "Si le Locataire ou un conducteur additionnel ne remplit pas les conditions au moment de la location, la Société de location peut se retirer du contrat et refuser la remise du véhicule. Cela inclut les fausses déclarations (par ex. âge incorrect) faites au moment de la réservation.",
     "l7.8": "La Société de location se réserve le droit de réclamer des dommages-intérêts et de couvrir ses frais à l’aide des montants déjà payés.",
     "l7.9": "Le véhicule ne peut être conduit que par le Locataire. Si des conducteurs supplémentaires sont désignés, ils doivent également satisfaire aux mêmes exigences. Dans le cas contraire, ils n’ont pas le droit de conduire. Cela ne donne pas droit au Locataire d’annuler ou de demander le remboursement des frais pour conducteur supplémentaire.",
-
     "h8": "Remise du véhicule / Début de la location",
     "l8.1": "La remise du véhicule / le début de la location ne peut avoir lieu que pendant les heures d’ouverture de l’agence de location concernée, sauf si une « location hors horaires » ou une livraison du véhicule à l’adresse du Locataire a été convenue.",
     "l8.2": "Le Locataire est tenu de présenter les documents suivants lors de la location :",
@@ -803,29 +775,24 @@
     "l8.7": "Si un de ces documents est manquant, la Société de location a le droit de refuser la remise du véhicule et de se retirer du contrat. Elle se réserve dans ce cas le droit de réclamer des dommages-intérêts pour les frais engagés sur les montants déjà payés.",
     "l8.8": "Si le Locataire récupère le véhicule après l’heure convenue, la part du loyer correspondant à la période non utilisée reste due.",
     "l8.9": "Les véhicules sont remis au Locataire en bon état de fonctionnement, avec le plein de carburant ou, dans le cas d’un véhicule électrique, avec un niveau de charge d’au moins 80 %. Au moment de la remise, le Locataire doit vérifier l’exactitude du kilométrage et du niveau de carburant indiqués par la Société de location, ainsi que la bonne prise en compte des éventuels accidents et dommages préexistants, et signaler immédiatement toute divergence. À défaut, le véhicule est réputé avoir été remis en bon état.",
-
     "h9": "Dépôt de garantie",
     "h9.1": "Le Locataire est tenu de verser un dépôt de garantie au début de la période de location afin de couvrir d’éventuelles réclamations d’ZüriCar GmbH résultant du contrat de location ou en lien avec celui-ci. Le montant dépend du groupe de véhicule loué et figure dans le contrat de location. Il est possible de s’informer à tout moment en ligne.",
     "h9.2": "par téléphone ou à tout comptoir EVAG. Toutefois, seul le groupe de véhicule convenu dans le contrat de location et le dépôt de garantie qui y est indiqué sont juridiquement contraignants.",
     "l9": "ZüriCar GmbH est autorisée à utiliser le dépôt de garantie pour compenser toute créance contre le Locataire découlant du contrat de location. Si aucune compensation n’a lieu, le dépôt est remboursé ou crédité au Locataire après le retour du véhicule.",
     "l9.1": "ZüriCar GmbH n’est pas tenue de conserver le dépôt séparément de ses actifs. Le dépôt ne produit pas d’intérêts. ZüriCar GmbH est en droit de demander le versement du dépôt même après le début de la location.",
-
     "h10": "Frais de location",
     "l10.1": "Les frais de location correspondent essentiellement au tarif convenu dans le contrat de location, ainsi qu’aux autres frais et dépenses. Par la conclusion du contrat, le Locataire confirme avoir pris connaissance de ces frais et les accepter expressément (y compris la limite kilométrique, les frais pour accessoires supplémentaires, conducteurs supplémentaires, limitations de responsabilité selon les Clauses 15.5 ss, frais de livraison ou de récupération, etc.).",
     "l10.2": "Tous les frais de carburant sont à la charge du Locataire. Si le véhicule n’est pas restitué avec le plein ou, dans le cas d’un véhicule électrique, avec un niveau de charge d’au moins 80 %, la recharge sera facturée au prix moyen du marché du carburant/électricité, majoré d’un supplément de ravitaillement. Les informations sur ce supplément sont disponibles à l’agence ou consultables à",
     "l10.3": "tout moment.",
     "l10.4": "Le contrat de location prévoit une agence spécifique pour le retour du véhicule. Si le véhicule est restitué dans une autre agence ou après l’heure prévue, un supplément de CHF 50.00 (TVA incluse) est dû, en plus d’éventuels frais pour location aller simple.",
-
     "l10.5": "Modalités de paiement et facturation électronique",
     "l10.6": "Moyens de paiement",
     "l10.7": "Le paiement peut être effectué avec des moyens de paiement valides tels qu’une carte de crédit (par ex. American Express, Diners Club, Eurocard/Mastercard, Visa), une carte de débit ou une carte Maestro. Les cartes prépayées comme Visa Electron ne sont pas acceptées. En cas de réservation à un tarif prépayé, il n’est pas possible d’appliquer des bons ou crédits, sauf si les conditions indiquées sur le bon le permettent explicitement et que la valeur du bon est appliquée immédiatement lors de la réservation.",
     "l10.8": "Date d’exigibilité du paiement",
     "l10.9": "Pour les tarifs flexi, sauf accord contraire, les frais de location, tous les frais convenus et le dépôt de garantie sont débités au début de la location. Pour les tarifs prépayés, le moyen de paiement est débité immédiatement après la réservation pour couvrir la location et les services réservés.",
-
     "l11": "Autorisation de débit du moyen de paiement",
     "l11.1": "Le Locataire autorise irrévocablement ZüriCar GmbH et ses agents de recouvrement, dès la conclusion du contrat, à débiter tous les frais liés à la location ainsi que toute créance liée (notamment amendes, taxes, remboursements ou frais pour infractions au code de la route – voir les Clauses 13.2 et 13.3 – ou indemnités selon la Clause 15) du moyen de paiement fourni.",
     "l11.2": "Les frais de location (hors tarifs prépayés) et le dépôt doivent être garantis au moment de la remise du véhicule. Pour les locations de longue durée, cela s’applique aussi chaque mois. En cas de refus d’autorisation, la remise du véhicule peut être refusée. Si le véhicule est déjà remis mais que l’autorisation n’est pas obtenue pour le mois suivant, le Locataire est en défaut de paiement, et le contrat peut être résilié sans préavis après mise en demeure infructueuse.",
-
     "l12": "Facturation électronique",
     "l12.1": "Le Locataire accepte de ne pas recevoir de factures papier. Une facture électronique conforme à la loi sera envoyée à l’adresse e-mail fournie.",
     "l12.2": "Il est de la responsabilité du Locataire de s’assurer qu’il est en mesure de recevoir ou consulter les factures électroniques. Le Locataire est responsable de tout dysfonctionnement empêchant la réception. Une facture est considérée comme reçue dès qu’elle atteint le domaine du Locataire. Si seule une notification est envoyée, ou si la facture est à récupérer, elle est réputée reçue dès la récupération. Le Locataire s’engage à consulter régulièrement ses factures.",
@@ -854,33 +821,27 @@
     "l18.6": "En cas de violation des articles 12.1 ou 12.2, le locataire devient pleinement responsable, sans limitation de responsabilité ni couverture d’assurance (voir article 15.6).",
     "l18.7": "Le locataire autorise l'agence de location à consulter les dossiers de police ou officiels en cas de sinistre.",
     "h19": "Violation des règles de circulation",
-
     "l19.1": "Le locataire est tenu de respecter toutes les règles de circulation et de s'informer sur les éventuelles règles particulières applicables dans le pays de location ou les pays traversés pendant le voyage.",
     "l19.2": "Le locataire est seul responsable de toute infraction à la loi commise avec le véhicule loué, notamment en violation de la loi sur la circulation routière, jusqu'à la restitution du véhicule (y compris si elle est commise, par exemple, par un conducteur additionnel).",
     "l19.3": "Si l'agence de location est tenue responsable en vertu de la responsabilité du propriétaire ou pour d'autres raisons, ZüriCar GmbH est en droit de facturer au locataire toute amende, frais ou coûts encourus de manière appropriée.",
     "l19.4": "En tant que détenteur légal du véhicule loué, l'agence de location a l'obligation légale de transmettre les données personnelles du conducteur ou du locataire aux autorités en cas d'infraction routière.",
     "l19.5": "Dans ce cas, le locataire s'engage à verser à l'agence de location des frais administratifs de CHF 40.00.",
-
     "h20": "Voyages à l'étranger et restrictions d'entrée",
     "l20.1": "Si, lors de la remise du véhicule, le locataire reçoit des instructions ou conditions particulières de l'agence de location concernant les douanes, les obligations de déclaration, la conduite à adopter lors des passages de frontières ou le lieu de restitution, il doit s'y conformer strictement.",
     "l20.2": "Si, pour une quelconque raison, le locataire ne peut se conformer à ces instructions, il doit en informer immédiatement l'agence de location.",
     "l20.3": "En cas de non-respect de ces dispositions, le locataire sera tenu de compenser tout dommage en résultant, notamment les droits de douane, taxes d'importation et amendes.",
     "l20.4": "Selon la catégorie de véhicule et les conditions de réservation, certains véhicules de location ne peuvent pas être conduits dans certains pays. Les restrictions applicables sont indiquées dans le contrat de location.",
-
     "h21": "Responsabilité, limitation de responsabilité, options de protection",
     "l21.1": "Responsabilité du locataire envers l'agence de location : Le locataire est responsable, indépendamment de toute faute, de tout dommage, destruction ou perte du véhicule (par exemple en cas de vol). Cela inclut également les comportements des conducteurs additionnels ou des assistants invités par le locataire. En cas de plusieurs locataires, la responsabilité est solidaire. Un contrat de limitation de responsabilité peut réduire la responsabilité du locataire (voir article 15.5).",
-
     "stg22": "Étendue de la responsabilité",
     "stg22.1": "La responsabilité du locataire comprend",
     "l22": "Outre les dommages directs (par exemple la dépréciation du véhicule ou les frais de réparation, en tenant compte d'une réduction raisonnable, les frais de transport, la franchise d'assurance et la perte de bonus), la responsabilité du locataire couvre également les frais d'expertise et des frais de traitement de CHF 180.00 par sinistre. En cas de perte totale, le locataire est aussi redevable d’un montant forfaitaire de CHF 320.00 pour l’immatriculation et la radiation.",
     "l22.1": "En cas de perte ou de dommage au câble de recharge d’un véhicule électrique, le locataire doit rembourser les frais de remplacement du câble ainsi que les frais de traitement mentionnés ci-dessus. L'agence de location peut réclamer des dommages supplémentaires. En cas de dommage, elle peut faire établir l'origine, l'étendue et le coût par un expert indépendant à la charge du locataire. Le locataire accepte que les conclusions de cette expertise soient utilisées comme base contraignante pour le règlement, au sens de l'article 189 du Code de procédure civile (CPC). Si le véhicule ne peut pas être utilisé à cause des dommages, l'agence peut facturer la perte d'utilisation au tarif convenu.",
     "l22.2": "En cas de perte totale, une indemnité forfaitaire correspondant à une semaine de perte d’utilisation sera facturée. ZüriCar GmbH émettra une facture au locataire pour tout dommage dont il est responsable, payable dans les 7 jours. En cas de retard de paiement, des frais de rappel de CHF 18.00 seront appliqués dès le premier rappel. Tous les autres frais de recouvrement seront à la charge du locataire.",
-
     "stg23": "Assurance responsabilité civile pour dommages à des tiers",
     "l23": "Le locataire et tout conducteur autorisé sont couverts par une assurance responsabilité civile automobile. Cette assurance couvre les dommages corporels et matériels causés à des tiers jusqu'à un montant maximum de CHF 100'000'000 et est limitée à l'Europe.",
     "l23.1": "Police d’assurance personnelle (PAP)",
     "l23.2": "La souscription d'une assurance personnelle (PAP) offre au locataire une protection en cas de blessures personnelles subies par lui-même ou les occupants du véhicule loué à la suite d’un accident. Le montant assuré est de CHF 40'000 en cas d’invalidité, CHF 20'000 en cas de décès et des frais médicaux illimités (limités à un maximum de 5 ans).",
-
     "stg24": "Limite de responsabilité pour dommages/vol du véhicule",
     "l24": "Au début de la location, le locataire peut limiter sa responsabilité envers l'agence de location pour les dommages, la destruction ou le vol du véhicule à une franchise contractuelle en souscrivant une assurance de limitation de responsabilité et de protection contre le vol. Moyennant un supplément, une réduction ou suppression complète de cette franchise peut être convenue. Le montant de la franchise est déterminé par la grille tarifaire de l'agence en vigueur lors de la conclusion du contrat et est indiqué dans le contrat. La franchise s’applique par sinistre, et plusieurs sinistres pendant la période de location entraînent plusieurs franchises.",
     "l24.1": "En payant un supplément, un pack de protection « Intérieur » peut être souscrit. Il couvre les dommages ou salissures survenus à l’intérieur de l’espace de chargement/coffre/galerie lors de l’utilisation ou du chargement/déchargement du véhicule.",
@@ -981,7 +942,6 @@
     "h9": "Modifications des prestations",
     "p9": "Des modifications mineures des prestations individuelles sont autorisées si elles sont insignifiantes et ne modifient pas la structure globale.",
     "p9.1": "Les défauts restent toutefois susceptibles de réclamation même en cas...",
-
     "p9.2": "Der Kunde wird unverzüglich über etwaige Änderungen informiert. Im Falle wesentlicher Änderungen hat der Kunde das Recht, kostenlos umzubuchen oder vom Vertrag zurückzutreten.",
     "p9.3": "Bei wesentlichen Änderungen kann der Kunde kostenlos vom Vertrag zurücktreten oder eine gleichwertige Reise verlangen.",
     "h10": "V. Reisedokumente",
@@ -1020,8 +980,7 @@
     "p19": "Es gilt ausschließlich schweizerisches Recht. Die Anwendung des Wiener Kaufrechts (UN-Kaufrecht) ist ausgeschlossen.",
     "p19.1": "Für alle Streitigkeiten aus oder im Zusammenhang mit dem Vermittlungsverhältnis zwischen dem Kunden und der ZüriCar GmbH ist – soweit gesetzlich zulässig – ausschließlicher Gerichtsstand Kloten (ZH), Schweiz. Zwingende Gerichtsstände für Verbraucher gemäß Art. 32 und 35 der Zivilprozessordnung bleiben unberührt.",
     "p19.2": "ZüriCar GmbH ZüriCar GmbH Europa-Strasse 19 8152 Glattbrugg (ZH) Switzerland Telefon: +41 79 766 99 60  E-Mail: info@zuricar.ch Website:  info@zuricar.ch"
-     },
-  
+  },
   "termsTransfer": {
     "title": "ZüriCar GO – Transferts – Termes et Conditions",
     "h1": "1. Introduction",

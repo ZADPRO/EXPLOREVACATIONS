@@ -770,7 +770,7 @@ export default function Home() {
                     }))}
                     optionLabel="refDestinationName"
                     optionValue="refDestinationId"
-                    placeholder="Select Destination"
+                    placeholder= {t("home.Select Destination")}
                     className="flex-1 capitalize"
                   />
                 </div>
@@ -782,7 +782,7 @@ export default function Home() {
                   </span>
                   <Calendar
                     value={tourFromDate}
-                    placeholder="From"
+                    placeholder={t("home.From")}
                     className="flex-1"
                     minDate={new Date()} // Prevent past date selection
                     onChange={(e) => {
@@ -801,7 +801,7 @@ export default function Home() {
                   </span>
                   <Calendar
                     className="flex-1"
-                    placeholder="To"
+                    placeholder={t("home.To")}
                     value={tourToDate}
                     onChange={(e) => setTourToDate(e.value)}
                     minDate={tourFromDate}
@@ -816,7 +816,7 @@ export default function Home() {
                   <InputNumber
                     value={tourGuest}
                     className="flex-1"
-                    placeholder="Guest"
+                    placeholder={t("home.Guest")}
                     onValueChange={(e) => setTourGuest(e.value)}
                   />
                 </div>

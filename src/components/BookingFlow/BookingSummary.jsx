@@ -1,7 +1,8 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pencil, Calendar, Clock, MapPin, Users, Check, Briefcase, ChevronUp, ChevronDown, RefreshCw } from 'lucide-react';
 import './BookingFlow.css';
 import { useTranslation } from "react-i18next";
+// import img1 from '../../assets/Home1/';
 const BookingSummary = ({ bookingData, totalPrice, onEditJourney, updateBookingData }) => {
   const [showReturnSection, setShowReturnSection] = useState(false);
   const [showOutboundEditSection, setShowOutboundEditSection] = useState(false);
@@ -9,11 +10,11 @@ const BookingSummary = ({ bookingData, totalPrice, onEditJourney, updateBookingD
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [showOutboundCalendar, setShowOutboundCalendar] = useState(false);
   const [showOutboundTimePicker, setShowOutboundTimePicker] = useState(false);
-  
+
   const [returnDate, setReturnDate] = useState(new Date());
   const [returnTime, setReturnTime] = useState({ hour: '01', minute: '45', period: 'PM' });
   const [currentMonth, setCurrentMonth] = useState(new Date());
-   
+
   // New state for outbound editing
   const [outboundDate, setOutboundDate] = useState(new Date());
   const [outboundTime, setOutboundTime] = useState({ hour: '01', minute: '45', period: 'PM' });
@@ -32,26 +33,18 @@ const BookingSummary = ({ bookingData, totalPrice, onEditJourney, updateBookingD
     { id: 4, name: 'Private transfer', enabled: true },
     { id: 5, name: 'Flight tracking', enabled: true }
   ]);
-const [selectedDate, setSelectedDate] = useState(null);
-const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
+
 
   const hours12 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
   const minutes = ['00', '15', '30', '45'];
 
   // Fetch included features from backend
   useEffect(() => {
-    // TODO: Replace with actual API call
-    // fetchIncludedFeatures();
   }, []);
 
   // Function to fetch included features from backend
   const fetchIncludedFeatures = async () => {
     try {
-      // const response = await fetch('/api/included-features');
-      // const data = await response.json();
-      // setIncludedFeatures(data);
-      
-      // For now using dummy data
       console.log('Features will be fetched from backend');
     } catch (error) {
       console.error('Error fetching included features:', error);
@@ -74,20 +67,19 @@ const isSelected = selectedDate && date.toDateString() === selectedDate.toDateSt
         period: timeMatch[3].toUpperCase()
       });
     }
-    
     setOutboundFrom(bookingData.outbound.from);
     setOutboundFromCity(bookingData.outbound.fromCity);
     setOutboundTo(bookingData.outbound.to);
     setOutboundToCity(bookingData.outbound.toCity);
     setOutboundPassengers(bookingData.outbound.passengers);
-    
+
     setShowOutboundEditSection(true);
   };
 
   const handleSaveOutbound = () => {
     const formattedDate = `${outboundDate.getDate()} ${outboundDate.toLocaleString('en-US', { month: 'short' })} ${outboundDate.getFullYear()}`;
     const formattedTime = `${outboundTime.hour}:${outboundTime.minute} ${outboundTime.period}`;
-    
+
     updateBookingData('outbound', {
       from: outboundFrom,
       fromCity: outboundFromCity,
@@ -99,7 +91,7 @@ const isSelected = selectedDate && date.toDateString() === selectedDate.toDateSt
       distance: '1328 km / 825 Miles',
       passengers: outboundPassengers
     });
-    
+
     setShowOutboundEditSection(false);
     setShowOutboundCalendar(false);
     setShowOutboundTimePicker(false);
@@ -109,7 +101,7 @@ const isSelected = selectedDate && date.toDateString() === selectedDate.toDateSt
     try {
       const formattedDate = `${returnDate.getDate()} ${returnDate.toLocaleString('en-US', { month: 'short' })} ${returnDate.getFullYear()}`;
       const formattedTime = `${returnTime.hour}:${returnTime.minute} ${returnTime.period}`;
-      
+
       updateBookingData('return', {
         from: bookingData.outbound.to,
         fromCity: bookingData.outbound.toCity,
@@ -121,7 +113,7 @@ const isSelected = selectedDate && date.toDateString() === selectedDate.toDateSt
         distance: '1328 km / 825 Miles',
         passengers: bookingData.outbound.passengers
       });
-      
+
       setShowReturnSection(false);
       setShowCalendar(false);
       setShowTimePicker(false);
@@ -130,20 +122,18 @@ const isSelected = selectedDate && date.toDateString() === selectedDate.toDateSt
     }
   };
 
-const handleEditReturn = () => {
-  setShowReturnSection(true);
+  const handleEditReturn = () => {
+    setShowReturnSection(true);
 
-  if (bookingData.return) {
-    const oldDate = new Date(bookingData.return.date);
-    setReturnDate(oldDate);
+    if (bookingData.return) {
+      const oldDate = new Date(bookingData.return.date);
+      setReturnDate(oldDate);
+      const [time, period] = bookingData.return.time.split(' ');
+      const [hour, minute] = time.split(':');
 
-    // extract saved time formatted as "8:30 PM"
-    const [time, period] = bookingData.return.time.split(' ');
-    const [hour, minute] = time.split(':');
-
-    setReturnTime({ hour, minute, period });
-  }
-};
+      setReturnTime({ hour, minute, period });
+    }
+  };
 
 
   const handleRemoveReturn = () => {
@@ -162,45 +152,45 @@ const handleEditReturn = () => {
     const startingDayOfWeek = firstDay.getDay();
     return { daysInMonth, startingDayOfWeek, year, month };
   };
- const { t } = useTranslation("global");
-const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
-  const monthToUse = isOutbound ? outboundMonth : currentMonth;
-  const { daysInMonth, startingDayOfWeek, year, month } = getDaysInMonth(monthToUse);
-  const days = [];
-  const today = new Date();
+  const { t } = useTranslation("global");
+  const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
+    const monthToUse = isOutbound ? outboundMonth : currentMonth;
+    const { daysInMonth, startingDayOfWeek, year, month } = getDaysInMonth(monthToUse);
+    const days = [];
+    const today = new Date();
 
-  for (let i = 0; i < startingDayOfWeek; i++) {
-    days.push(<div key={`empty-${i}`} style={{ padding: '8px' }}></div>);
-  }
+    for (let i = 0; i < startingDayOfWeek; i++) {
+      days.push(<div key={`empty-${i}`} style={{ padding: '8px' }}></div>);
+    }
 
-  for (let day = 1; day <= daysInMonth; day++) {
-    const date = new Date(year, month, day);
-    const isToday = date.toDateString() === today.toDateString();
-    const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
-    const isPast = date < today && !isToday;
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(year, month, day);
+      const isToday = date.toDateString() === today.toDateString();
+      const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
+      const isPast = date < today && !isToday;
 
-    days.push(
-      <div
-        key={day}
-        onClick={() => !isPast && setDate(date)}
-        style={{
-          padding: '8px',
-          textAlign: 'center',
-          cursor: isPast ? 'not-allowed' : 'pointer',
-          borderRadius: '8px',
-          backgroundColor: isSelected ? '#fbbf24' : 'transparent',
-          color: isPast ? '#d1d5db' : '#000',
-          fontWeight: isSelected ? '600' : '400',
-          border: isToday ? '2px solid #fbbf24' : 'none'
-        }}
-      >
-        {day}
-      </div>
-    );
-  }
+      days.push(
+        <div
+          key={day}
+          onClick={() => !isPast && setDate(date)}
+          style={{
+            padding: '8px',
+            textAlign: 'center',
+            cursor: isPast ? 'not-allowed' : 'pointer',
+            borderRadius: '8px',
+            backgroundColor: isSelected ? '#fbbf24' : 'transparent',
+            color: isPast ? '#d1d5db' : '#000',
+            fontWeight: isSelected ? '600' : '400',
+            border: isToday ? '2px solid #fbbf24' : 'none'
+          }}
+        >
+          {day}
+        </div>
+      );
+    }
 
-  return days;
-};
+    return days;
+  };
 
 
   const navigateMonth = (direction, isOutbound = false) => {
@@ -222,7 +212,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
   const incrementValue = (type, isOutbound = false) => {
     const timeState = isOutbound ? outboundTime : returnTime;
     const setTime = isOutbound ? setOutboundTime : setReturnTime;
-    
+
     if (type === 'hour') {
       const idx = hours12.indexOf(timeState.hour);
       setTime({ ...timeState, hour: hours12[idx < hours12.length - 1 ? idx + 1 : 0] });
@@ -235,7 +225,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
   const decrementValue = (type, isOutbound = false) => {
     const timeState = isOutbound ? outboundTime : returnTime;
     const setTime = isOutbound ? setOutboundTime : setReturnTime;
-    
+
     if (type === 'hour') {
       const idx = hours12.indexOf(timeState.hour);
       setTime({ ...timeState, hour: hours12[idx > 0 ? idx - 1 : hours12.length - 1] });
@@ -279,7 +269,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
   return (
     <div className="booking-summary summary-sticky">
       <h2 className="summary-title">Your Booking</h2>
-      
+
       {/* Outbound Journey */}
       <div className="journey-section">
         {!showOutboundEditSection ? (
@@ -290,28 +280,28 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
                 <Pencil size={16} />
               </button>
             </div>
-            
+
             <JourneyDetails journey={bookingData.outbound} />
           </>
         ) : (
           <>
-            
+
             <div className="journey-header">
               <span className="journey-label">Edit Outward journey</span>
-              <button 
+              <button
                 onClick={() => {
                   setShowOutboundEditSection(false);
                   setShowOutboundCalendar(false);
                   setShowOutboundTimePicker(false);
-                }} 
+                }}
                 className="edit-button"
                 title="Cancel editing"
               >
                 ✕
               </button>
             </div>
-            
-            <div style={{ 
+
+            <div style={{
               marginTop: '16px',
               padding: '16px',
               backgroundColor: '#fef9f3',
@@ -412,7 +402,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '12px', marginBottom: '16px' }}>
                 <div style={{ position: 'relative' }}>
                   <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
-                   {t("Transfer.pickup_date")}
+                    {t("Transfer.pickup_date")}
                   </label>
                   <div
                     onClick={() => {
@@ -450,7 +440,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
                       width: '280px'
                     }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                        <button 
+                        <button
                           onClick={() => navigateMonth(-1, true)}
                           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', fontSize: '16px' }}
                         >
@@ -459,7 +449,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
                         <div style={{ fontWeight: '600', fontSize: '14px' }}>
                           {outboundMonth.toLocaleString('en-US', { month: 'long', year: 'numeric' })}
                         </div>
-                        <button 
+                        <button
                           onClick={() => navigateMonth(1, true)}
                           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', fontSize: '16px' }}
                         >
@@ -480,7 +470,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
 
                 <div style={{ position: 'relative' }}>
                   <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
-                  {t("Transfer.pickup_time")}
+                    {t("Transfer.pickup_time")}
                   </label>
                   <div
                     onClick={() => {
@@ -525,9 +515,9 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
                           >
                             <ChevronUp size={16} />
                           </button>
-                          <div style={{ 
-                            fontSize: '24px', 
-                            fontWeight: '700', 
+                          <div style={{
+                            fontSize: '24px',
+                            fontWeight: '700',
                             padding: '8px 12px',
                             backgroundColor: '#ff9447',
                             color: '#fff',
@@ -553,9 +543,9 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
                           >
                             <ChevronUp size={16} />
                           </button>
-                          <div style={{ 
-                            fontSize: '24px', 
-                            fontWeight: '700', 
+                          <div style={{
+                            fontSize: '24px',
+                            fontWeight: '700',
                             padding: '8px 12px',
                             backgroundColor: '#ff9447',
                             color: '#fff',
@@ -648,7 +638,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
                   >
                     -
                   </button>
-                  <div style={{ 
+                  <div style={{
                     padding: '10px 20px',
                     backgroundColor: '#f9fafb',
                     borderRadius: '8px',
@@ -700,15 +690,15 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
         {/* Add Return Button */}
         {!showOutboundEditSection && !bookingData.return && !showReturnSection && (
           <div style={{ marginTop: '16px' }}>
-            <div style={{ 
-              textAlign: 'center', 
-              fontSize: '13px', 
-              color: '#6b7280', 
-              marginBottom: '8px' 
+            <div style={{
+              textAlign: 'center',
+              fontSize: '13px',
+              color: '#6b7280',
+              marginBottom: '8px'
             }}>
               Book smart! Add a return trip
             </div>
-            <button 
+            <button
               onClick={() => setShowReturnSection(true)}
               style={{
                 width: '100%',
@@ -734,17 +724,14 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
             </button>
           </div>
         )}
-
-
-        {/* Inline Return Form (existing code) */}
         {showReturnSection && (
-         <div style={{ 
-    marginTop: '16px',
-    padding: '16px',
-    backgroundColor: '#fef9f3',      // Changed from '#fff'
-    border: '2px solid #fed7aa',      // Changed from '1px solid #e5e7eb'
-    borderRadius: '12px'
-  }}>
+          <div style={{
+            marginTop: '16px',
+            padding: '16px',
+            backgroundColor: '#fef9f3',      // Changed from '#fff'
+            border: '2px solid #fed7aa',      // Changed from '1px solid #e5e7eb'
+            borderRadius: '12px'
+          }}>
             <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>Add Return Trip</h3>
 
             <div style={{ marginBottom: '16px' }}>
@@ -806,7 +793,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
                     width: '280px'
                   }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                      <button 
+                      <button
                         onClick={() => navigateMonth(-1)}
                         style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', fontSize: '16px' }}
                       >
@@ -815,7 +802,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
                       <div style={{ fontWeight: '600', fontSize: '14px' }}>
                         {currentMonth.toLocaleString('en-US', { month: 'long', year: 'numeric' })}
                       </div>
-                      <button 
+                      <button
                         onClick={() => navigateMonth(1)}
                         style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', fontSize: '16px' }}
                       >
@@ -836,7 +823,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
 
               <div style={{ position: 'relative' }}>
                 <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', marginBottom: '6px' }}>
-                   {t("Transfer.return_time")}
+                  {t("Transfer.return_time")}
                 </label>
                 <div
                   onClick={() => {
@@ -881,9 +868,9 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
                         >
                           <ChevronUp size={16} />
                         </button>
-                        <div style={{ 
-                          fontSize: '24px', 
-                          fontWeight: '700', 
+                        <div style={{
+                          fontSize: '24px',
+                          fontWeight: '700',
                           padding: '8px 12px',
                           backgroundColor: '#ff9447',
                           color: '#fff',
@@ -909,9 +896,9 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
                         >
                           <ChevronUp size={16} />
                         </button>
-                        <div style={{ 
-                          fontSize: '24px', 
-                          fontWeight: '700', 
+                        <div style={{
+                          fontSize: '24px',
+                          fontWeight: '700',
                           padding: '8px 12px',
                           backgroundColor: '#ff9447',
                           color: '#fff',
@@ -989,7 +976,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
                 <Users size={14} style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }} />
                 {t("Transfer.passengers")}
               </label>
-              <div style={{ 
+              <div style={{
                 padding: '10px',
                 backgroundColor: '#f9fafb',
                 borderRadius: '8px',
@@ -1001,28 +988,28 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
             </div>
 
             {/* This is the actual SAVE button for the return trip */}
-          <button
-  onClick={bookingData.return ? handleEditReturn : handleAddReturn}
-  style={{
-    width: '100%',
-    padding: '12px',
-    backgroundColor: '#fbbf24',
-    color: '#000',
-    border: 'none',
-    borderRadius: '8px',
-    fontSize: '15px',
-    fontWeight: '600',
-    cursor: 'pointer'
-  }}
->
-  {bookingData.return ? "SAVE CHANGES" : t("vehicle.add_return")}
-</button>
+            <button
+              onClick={bookingData.return ? handleEditReturn : handleAddReturn}
+              style={{
+                width: '100%',
+                padding: '12px',
+                backgroundColor: '#fbbf24',
+                color: '#000',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '15px',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
+            >
+              {bookingData.return ? "SAVE CHANGES" : t("vehicle.add_return")}
+            </button>
 
           </div>
         )}
       </div>
-        
-      
+
+
 
       {/* Return Journey Display */}
       {bookingData.return && !showReturnSection && (
@@ -1030,14 +1017,14 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
           <div className="journey-header">
             <span className="journey-label">Return journey</span>
             <div style={{ display: 'flex', gap: '8px' }}>
-              <button 
-                onClick={handleEditReturn} 
+              <button
+                onClick={handleEditReturn}
                 className="edit-button"
                 title="Edit return"
               >
                 <Pencil size={16} />
               </button>
-              <button 
+              <button
                 onClick={handleRemoveReturn}
                 className="edit-button"
                 title="Remove return"
@@ -1047,48 +1034,49 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
               </button>
             </div>
           </div>
-          
+
           <JourneyDetails journey={bookingData.return} />
         </div>
       )}
 
       {/* Vehicle Info */}
+      {/* Vehicle Info */}
       <div className="section-divider">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <img 
-              src={bookingData.selectedVehicle.image} 
-              alt={bookingData.selectedVehicle.type}
-              style={{ 
-                width: '70px', 
-                height: '52px', 
-                objectFit: 'cover', 
-                borderRadius: '8px' 
+            <img
+              src={bookingData.selectedVehicle?.image || img1}
+              alt={bookingData.selectedVehicle?.type || 'Vehicle'}
+              style={{
+                width: '70px',
+                height: '52px',
+                objectFit: 'cover',
+                borderRadius: '8px'
               }}
             />
             <div>
-              <div className="vehicle-type">{bookingData.selectedVehicle.type}</div>
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '8px', 
-                fontSize: '13px', 
+              <div className="vehicle-type">{bookingData.selectedVehicle?.type || 'Select Vehicle'}</div>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontSize: '13px',
                 color: '#6b7280',
                 marginTop: '4px'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
                   <Users size={12} />
-                  <span>{bookingData.selectedVehicle.passengers}</span>
+                  <span>{bookingData.selectedVehicle?.passengers || 0}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
                   <Briefcase size={12} />
-                  <span>{bookingData.selectedVehicle.luggage}</span>
+                  <span>{bookingData.selectedVehicle?.luggage || 0}</span>
                 </div>
               </div>
             </div>
           </div>
           <div className="vehicle-price">
-            <div className="price-total">CHF {totalPrice}</div>
+            <div className="price-total">CHF {totalPrice || 0}</div>
           </div>
         </div>
       </div>
@@ -1107,7 +1095,7 @@ const renderCalendar = (selectedDate, setDate, isOutbound = false) => {
             ))}
         </div>
       </div>
-  </div>
+    </div>
   );
 };
 
@@ -1133,7 +1121,7 @@ const JourneyDetails = ({ journey }) => {
           </div>
         </div>
       </div>
-      
+
       <div className="journey-meta">
         <div className="meta-item">
           <Calendar size={14} />
@@ -1157,6 +1145,3 @@ const JourneyDetails = ({ journey }) => {
 };
 
 export default BookingSummary;
-
-
-

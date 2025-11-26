@@ -3,7 +3,6 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-import { Checkbox } from "primereact/checkbox";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -23,18 +22,13 @@ export default function BecomeTransfer() {
     licenseType: "",
     experience: ""
   });
- const { t, i18n } = useTranslation("global");
+  const { t } = useTranslation("global");
   const [dialogVisible, setDialogVisible] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
-  const handleCheckbox = (e) => {
-    setFormData({ ...formData, hasVehicle: e.checked });
-  };
-
-  const handleSubmit = () => {
+   const handleSubmit = () => {
     const to = "info@zuricar.ch";
     const subject = encodeURIComponent("New Partner Driver Registration");
     const body = encodeURIComponent(
@@ -67,7 +61,7 @@ export default function BecomeTransfer() {
       {/* Hero Banner */}
       <div className="relative mt-20 h-[70vh] bg-gradient-to-r from-blue-900 to-indigo-900 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div 
+        <div
           className="absolute inset-0 opacity-20"
           style={{
             backgroundImage: 'url("https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600")',
@@ -91,12 +85,12 @@ export default function BecomeTransfer() {
           <h2 className="text-4xl font-bold text-gray-900 mb-5">
             {t("transfer.Join Our Transfer Driver Network")}
           </h2>
-          
+
           <p className="text-lg text-gray-700 mb-3 leading-relaxed">
-            {t("transfer.Are you a professional driver looking for transfer opportunities across Switzerland?")} 
+            {t("transfer.Are you a professional driver looking for transfer opportunities across Switzerland?")}
             <span className="font-semibold text-blue-600"> ZüriCar GO</span> {t("transfer.is expanding its nationwide driver network for airport and city transfers.")}
           </p>
-          
+
           <p className="text-lg text-gray-700 mb-6 leading-relaxed">
             {t("transfer.Whether you are an independent driver or operate your own small team, you can now work ")}
             {t("transfer.with")} <span className="font-semibold text-blue-600">ZüriCar GO</span> {t("transfer.and receive regular transfer bookings from all over Switzerland.")}
@@ -312,49 +306,28 @@ export default function BecomeTransfer() {
             </div>
 
             {/* Submit Button */}
-           <div className="flex justify-end">
-  <Button
-    label="Get Started"
-    icon="pi pi-send"
-    style={{
-      backgroundColor: "#2563eb", // blue
-      color: "#fff",              // white text
-      padding: "12px 32px",
-      fontWeight: "bold",
-      borderRadius: "8px",
-      border: "none",
-      cursor: "pointer",
-      transition: "background-color 0.3s ease",
-    }}   
-     onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#1e40af")} // darker blue on hover
-    onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2563eb")}  // revert on mouse out
-    onClick={handleSubmit}/>
-</div>
-
+            <div className="flex justify-end">
+              <Button
+                label="Get Started"
+                icon="pi pi-send"
+                style={{
+                  backgroundColor: "#2563eb", // blue
+                  color: "#fff",              // white text
+                  padding: "12px 32px",
+                  fontWeight: "bold",
+                  borderRadius: "8px",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "background-color 0.3s ease",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#1e40af")} // darker blue on hover
+                onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2563eb")}  // revert on mouse out
+                onClick={handleSubmit} />
             </div>
+
           </div>
         </div>
-
-
-      {/* Floating Action Buttons */}
-      {/* <div className="fixed bottom-6 right-6 z-50 space-y-3">
-        <Button
-          icon="pi pi-whatsapp"
-          className="p-button-rounded p-button-success p-button-lg block shadow-lg"
-          onClick={() => window.open("https://wa.me/+41764959010", "_blank")}
-          tooltip="WhatsApp"
-          tooltipOptions={{ position: 'left' }}
-        />
-        <Button
-          icon="pi pi-phone"
-          className="p-button-rounded p-button-warning p-button-lg text-white block shadow-lg"
-          onClick={() => window.open("tel:+41797669960")}
-          tooltip="Call Us"
-          tooltipOptions={{ position: 'left' }}
-        />
-      </div> */}
-
-      {/* Success Dialog */}
+      </div>
       <Dialog
         visible={dialogVisible}
         onHide={() => setDialogVisible(false)}

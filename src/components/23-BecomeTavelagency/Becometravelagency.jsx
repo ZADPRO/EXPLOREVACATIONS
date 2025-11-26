@@ -3,7 +3,6 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-import { Checkbox } from "primereact/checkbox";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -26,7 +25,7 @@ export default function BecomePartner() {
 
   const [dialogVisible, setDialogVisible] = useState(false);
 
- const { t, i18n } = useTranslation("global");
+ const { t } = useTranslation("global");
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });

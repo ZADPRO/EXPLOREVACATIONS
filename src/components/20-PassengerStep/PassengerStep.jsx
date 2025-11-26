@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { CheckCircle, XCircle, X } from 'lucide-react';
 import './PassengerStep.css';
+import Axios from "axios";
+import decrypt from "../../helper";
+
 import { useTranslation } from "react-i18next";
-// Sample countries list
 const countries = [
   { code: '+44', name: 'United Kingdom', flag: '🇬🇧' },
   { code: '+374', name: 'Armenia', flag: '🇦🇲' },
@@ -19,7 +21,7 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
   const [firstName, setFirstName] = useState(bookingData.passenger.firstName || '');
   const [lastName, setLastName] = useState(bookingData.passenger.lastName || '');
   const [email, setEmail] = useState(bookingData.passenger.email || '');
-  const [mobile, setMobile] = useState(bookingData.passenger.mobile || '');
+  const [mobile, setMobile] = useState('');
   const [emailNotifications, setEmailNotifications] = useState(bookingData.passenger.emailNotifications !== false);
   const [smsNotifications, setSmsNotifications] = useState(bookingData.passenger.smsNotifications || false);
   const [meetGreet, setMeetGreet] = useState(bookingData.passenger.meetGreet || '');
@@ -30,7 +32,7 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
   const [toast, setToast] = useState(null);
   const dropdownRef = useRef(null);
 
- const { t } = useTranslation("global"); 
+  const { t } = useTranslation("global");
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -41,6 +43,43 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await Axios.get(
+          import.meta.env.VITE_API_URL + "/userRoutes/profileData",
+          {
+            headers: {
+              Authorization: localStorage.getItem("token"),
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const data = decrypt(
+          response.data[1],
+          response.data[0],
+          import.meta.env.VITE_ENCRYPTION_KEY
+        );
+
+        if (data.success && data.profileData && data.profileData.length > 0) {
+          localStorage.setItem("token", "Bearer " + data.token);
+
+          const profileInfo = data.profileData[0];
+
+          setFirstName(profileInfo.refFName || "");
+          setLastName(profileInfo.refLName || "");
+          setEmail(profileInfo.refUserEmail || "");
+          setMobile(profileInfo.refMoblile || "");
+        }
+      } catch (error) {
+        console.error("Error fetching profile data in PassengerStep:", error);
+      }
+    };
+
+    fetchProfileData();
+  }, []);
+
 
   const showToast = (message, type = 'success') => {
     setToast({ message, type });
@@ -50,7 +89,7 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
   const validateForm = () => {
     const newErrors = {};
     let errorMessage = '';
-    
+
     if (!firstName.trim()) {
       newErrors.firstName = true;
       errorMessage = 'First name is required';
@@ -70,14 +109,14 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
       newErrors.mobile = true;
       errorMessage = 'Please enter a valid mobile number';
     }
-    
+
     setErrors(newErrors);
-    
+
     if (Object.keys(newErrors).length > 0) {
       showToast(errorMessage, 'error');
       return false;
     }
-    
+
     return true;
   };
 
@@ -108,7 +147,7 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
   return (
     <>
       <div className="passenger-step" style={{ position: 'relative' }}>
-        {/* Toast Notification */}
+
         {toast && (
           <div
             style={{
@@ -151,7 +190,7 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
         )}
 
         <h2>{t("passenger.lead_passenger")}</h2>
-        
+
         <div className="form-row">
           <div className="form-group">
             <h3>{t("passenger.first_name")}</h3>
@@ -163,20 +202,20 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
                 if (errors.firstName) setErrors({ ...errors, firstName: false });
               }}
               className={`form-inpu ${errors.firstName ? 'error' : ''}`}
-              style={errors.firstName ? { 
-                borderColor: '#ef4444', 
+              style={errors.firstName ? {
+                borderColor: '#ef4444',
                 borderWidth: '2px',
                 outline: 'none'
               } : {}}
             />
             {errors.firstName && (
-              <span style={{ 
-                color: '#ef4444', 
-                fontSize: '12px', 
+              <span style={{
+                color: '#ef4444',
+                fontSize: '12px',
                 marginTop: '4px',
                 display: 'block'
               }}>
-               {t("passenger.last_name_field_required")}
+                {t("passenger.last_name_field_required")}
               </span>
             )}
           </div>
@@ -190,20 +229,20 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
                 if (errors.lastName) setErrors({ ...errors, lastName: false });
               }}
               className={`form-inpu ${errors.lastName ? 'error' : ''}`}
-              style={errors.lastName ? { 
-                borderColor: '#ef4444', 
+              style={errors.lastName ? {
+                borderColor: '#ef4444',
                 borderWidth: '2px',
                 outline: 'none'
               } : {}}
             />
             {errors.lastName && (
-              <span style={{ 
-                color: '#ef4444', 
-                fontSize: '12px', 
+              <span style={{
+                color: '#ef4444',
+                fontSize: '12px',
                 marginTop: '4px',
                 display: 'block'
               }}>
-               {t("passenger.last_name_field_required")}
+                {t("passenger.last_name_field_required")}
               </span>
             )}
           </div>
@@ -220,25 +259,25 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
             }}
             className={`form-inpu ${errors.email ? 'error' : ''}`}
             placeholder="Enter email address"
-            style={errors.email ? { 
-              borderColor: '#ef4444', 
+            style={errors.email ? {
+              borderColor: '#ef4444',
               borderWidth: '2px',
               outline: 'none'
             } : {}}
           />
           {errors.email && (
-            <span style={{ 
-              color: '#ef4444', 
-              fontSize: '12px', 
+            <span style={{
+              color: '#ef4444',
+              fontSize: '12px',
               marginTop: '4px',
               display: 'block'
             }}>
-             {t("passenger.email_valid_message")}
+              {t("passenger.email_valid_message")}
             </span>
           )}
           <p className="form-hint">
             <span className="form-hint-icon">i</span>
-           {t("passenger.email_note")}
+            {t("passenger.email_note")}
           </p>
         </div>
 
@@ -255,7 +294,7 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
                   <span>• {selectedCountry.code}</span>
                   <span className="country-select-arrow">▼</span>
                 </div>
-                
+
                 {isDropdownOpen && (
                   <div className="country-dropdown">
                     <div className="country-search">
@@ -294,9 +333,9 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
                 }}
                 placeholder=""
                 className={`form-inpu ${errors.mobile ? 'error' : ''}`}
-                style={errors.mobile ? { 
+                style={errors.mobile ? {
                   flex: 1,
-                  borderColor: '#ef4444', 
+                  borderColor: '#ef4444',
                   borderWidth: '2px',
                   outline: 'none'
                 } : { flex: 1 }}
@@ -304,13 +343,13 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
             </div>
           </div>
           {errors.mobile && (
-            <span style={{ 
-              color: '#ef4444', 
-              fontSize: '12px', 
+            <span style={{
+              color: '#ef4444',
+              fontSize: '12px',
               marginTop: '4px',
               display: 'block'
             }}>
-             {t("passenger.mobile_number_required")}
+              {t("passenger.mobile_number_required")}
             </span>
           )}
           <p className="form-hint">
@@ -333,47 +372,20 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
                   <svg className="notification-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ width: '20px', height: '20px' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                {t("passenger.email")}
+                  {t("passenger.email")}
                 </span>
                 <span className="notification-badge free">✓ Free</span>
               </div>
               <p className="notification-text">
-               {t("passenger.driver_details_message")}
-                {/* <span className="info-icon" style={{ display: 'inline-flex', marginLeft: '4px', width: '14px', height: '14px', fontSize: '10px' }}>i</span> */}
+                {t("passenger.driver_details_message")}
               </p>
             </div>
           </div>
         </div>
-
-        {/* <div className="notification-card yellow">
-          <div className="notification-content">
-            <input
-              type="checkbox"
-              checked={smsNotifications}
-              onChange={(e) => setSmsNotifications(e.target.checked)}
-              className="notification-checkbox yellow"
-            />
-            <div className="notification-details">
-              <div className="notification-header">
-                <span className="notification-title">
-                  <svg className="notification-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ width: '20px', height: '20px' }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                  SMS/Whatsapp notifications
-                </span>
-                <span className="notification-badge paid">€ 1.49</span>
-              </div>
-              <p className="notification-text">
-                Get driver's details 6 hours before pickup via text message on your mobile phone and whatsapp. Price each way
-              </p>
-            </div>
-          </div>
-        </div> */}
-
         <div className="info-banner">
           <span className="banner-icon">⚠</span>
           <div className="banner-text">
-           {t("passenger.please_note")} <strong>{t("passenger.meet_greet_not_guaranteed")}</strong> {t("passenger.meet_greet_unavailable_reason")} <strong>{t("passenger.local_provider_instructions")}</strong>
+            {t("passenger.please_note")} <strong>{t("passenger.meet_greet_not_guaranteed")}</strong> {t("passenger.meet_greet_unavailable_reason")} <strong>{t("passenger.local_provider_instructions")}</strong>
           </div>
         </div>
 
@@ -389,7 +401,7 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
             />
             <p className="meetgreet-hint">
               <span className="form-hint-icon">i</span>
-             {t("passenger.meet_greet_with_sign")}.
+              {t("passenger.meet_greet_with_sign")}.
             </p>
           </div>
         </div>
@@ -399,7 +411,7 @@ const PassengerStep = ({ bookingData, updateBookingData, onBack, onContinue }) =
             ← {t("extras.back")}
           </button>
           <button onClick={handleContinue} className="btn btn-primary">
-             {t("car.continue")}
+            {t("car.continue")}
           </button>
         </div>
       </div>

@@ -201,7 +201,7 @@ export default function Parking() {
                     travelStartDate: e.value,
                   }));
                 }}
-                placeholder="From"
+                placeholder={t("home.From")}
                 className="flex-1"
                 minDate={new Date()}
                 readOnlyInput
@@ -223,7 +223,7 @@ export default function Parking() {
                     travelEndDate: e.value,
                   }));
                 }}
-                placeholder="To"
+                placeholder={t("home.To")}
                 className="flex-1"
                 readOnlyInput
                 minDate={input.travelStartDate}
@@ -244,7 +244,7 @@ export default function Parking() {
                 options={parking}
                 optionValue="refParkingTypeId"
                 optionLabel="refParkingTypeName"
-                placeholder="Choose Parking Type"
+                placeholder={t("home.Choose Parking Type")}
                 className="w-full"
                 required
               />
@@ -264,7 +264,7 @@ export default function Parking() {
                 options={vechile}
                 optionValue="refCarParkingTypeId"
                 optionLabel="refCarParkingTypeName"
-                placeholder="Choose Vehicle Type"
+                placeholder={t("home.Choose Vehicle Type")}
                 className="w-full"
                 required
               />
@@ -284,7 +284,7 @@ export default function Parking() {
                 options={airport}
                 optionValue="refAssociatedAirport"
                 optionLabel="refAssociatedAirport"
-                placeholder="Choose Airport Associative"
+                placeholder={t("home.Choose Airport Associative")}
                 className="w-full"
                 required
               />
@@ -293,7 +293,7 @@ export default function Parking() {
             {/* Button */}
             <div className="min-w-[120px] flex items-center">
               <Button
-                label="Explore"
+                label={t("header.Explore")}
                 className="w-full"
                 onClick={filterParking}
               />
@@ -315,7 +315,7 @@ export default function Parking() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-10/12 mx-auto justify-center">
               {!loading && listParking.length === 0 && (
                 <div className="text-center mt-6 text-lg text-gray-600">
-                  No parking available for the selected criteria.
+                  {t("home.No parking available for the selected criteria")}
                 </div>
               )}
 

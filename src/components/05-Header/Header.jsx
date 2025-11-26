@@ -89,17 +89,16 @@ export default function Header() {
     setShowUserDropdown(false);
     window.scrollTo(0, 0);
   };
-
   const handleLogout = () => {
+    localStorage.setItem("redirectPath", window.location.pathname);
     localStorage.removeItem("token");
-    setIsLoggedIn(false);
+    localStorage.removeItem("roleId");
     navigate("/login");
+    setIsLoggedIn(false);
     setShowUserDropdown(false);
   };
-
   const isActive = (path) =>
     location.pathname === path ? "#3b82f6" : "#0067b6";
-
   const handleLanguageChange = (lang) => {
     setLanguage(lang);
     setShowLangDropdown(false);
@@ -130,11 +129,10 @@ export default function Header() {
 
   return (
     <div
-      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#eef0eec2]"
-          : "bg-[#fff] md:bg-white/20 md:backdrop-blur-lg"
-      }`}
+      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled
+        ? "bg-[#eef0eec2]"
+        : "bg-[#fff] md:bg-white/20 md:backdrop-blur-lg"
+        }`}
     >
       <div className="w-full flex justify-center items-center h-[70px] py-10 px-6 md:px-12 lg:px-40">
         <div className="w-full flex justify-between items-center">
@@ -148,14 +146,13 @@ export default function Header() {
             />
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex flex-1 gap-10">
             {/* Normal Links */}
             {[
               { path: "/", label: t("header.home") },
-               { path: "/cars", label: t("header.Cars") },
+              { path: "/cars", label: t("header.Cars") },
               { path: "/tours", label: t("header.tours") },
-             
+
               // We remove transfer here because we'll add dropdown below
             ].map(({ path, label }) => (
               <div
@@ -228,8 +225,8 @@ export default function Header() {
                 </div>
               )}
             </div>
-              {[
-             { path: "/contact", label: t("header.Contact") },
+            {[
+              { path: "/contact", label: t("header.Contact") },
             ].map(({ path, label }) => (
               <div
                 key={path}
@@ -392,13 +389,13 @@ export default function Header() {
                         key={type}
                         className="text-md cursor-pointer text-[#0067b6]"
                         onClick={() =>
-      type === "event"
-        ? handleNavigation("/event")
-        : handleNavigation(`/transfer?type=${type}`)
+                          type === "event"
+                            ? handleNavigation("/event")
+                            : handleNavigation(`/transfer?type=${type}`)
                         }
                       >
                         {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
-                       
+
                       </div>
                     ))}
                   </div>

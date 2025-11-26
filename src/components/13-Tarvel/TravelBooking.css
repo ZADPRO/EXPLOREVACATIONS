@@ -654,3 +654,18 @@
 .p-autocomplete-item:hover {
   background-color: #eef6ff !important;
 }
+.transfer-heading {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .transfer-heading {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 32px; /* Optional but recommended for long German text */
+    line-height: 1.2;
+  }
+}

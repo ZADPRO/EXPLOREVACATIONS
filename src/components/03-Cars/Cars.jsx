@@ -324,7 +324,7 @@ export default function Cars() {
                 }))}
                 optionLabel="refDestinationName"
                 optionValue="refDestinationId"
-                placeholder="Select Destination"
+                placeholder={t("home.Select Destination")}
                 className="flex-1 capitalize"
               />
             </div>
@@ -343,7 +343,7 @@ export default function Cars() {
                 }))}
                 optionLabel="refCarTypeName"
                 optionValue="refCarTypeId"
-                placeholder="Select Car Type"
+                placeholder={t("home.Select Car Type")}
                 className="flex-1 capitalize"
               />
             </div>
@@ -362,7 +362,8 @@ export default function Cars() {
                 }))}
                 optionLabel="refVehicleTypeName"
                 optionValue="refVehicleTypeId"
-                placeholder="Select Car Category"
+                
+                placeholder={t("home.Select Car Category")}
                 className="flex-1 capitalize"
               />
             </div>
@@ -373,7 +374,7 @@ export default function Cars() {
               <InputNumber
                 value={carGuest}
                 className="flex-1"
-                placeholder="Guest"
+                placeholder={t("home.Guest")}
                 onValueChange={(e) => setCarGuest(e.value)}
               />
             </div>

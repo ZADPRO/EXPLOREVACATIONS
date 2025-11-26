@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { data, useNavigate } from "react-router-dom";
 import bgimg from "../../assets/Login/loginback.jpg";
 import frontbg from "../../assets/Login/frontbg.jpg";
 import Axios from "axios";
 import { Toast } from "primereact/toast";
 import decrypt from "../../helper";
 import { useTranslation } from "react-i18next";
-
+import { useNavigate, useLocation } from "react-router-dom";
 const Login = () => {
   const getFlag = () => {
     switch (language) {
@@ -19,19 +18,17 @@ const Login = () => {
     }
   };
 
-  const { t, i18n } = useTranslation("global");
-
-  const handleChangeLang = (lang) => {
-    i18n.changeLanguage(lang);
-  };
+  const { t } = useTranslation("global");
   const navigate = useNavigate();
+  const location = useLocation();
   const toast = useRef(null);
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [warning, setWarning] = useState("");
   const [showForgot, setShowForgot] = useState(false);
-  const [resetStage, setResetStage] = useState("email"); // email or password
+  const [resetStage, setResetStage] = useState("email");
   const [resetEmail, setResetEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
@@ -59,21 +56,23 @@ const Login = () => {
       console.log("data", data);
 
       if (data.success) {
-        const roleIdno = data.roleId;
-        console.log("roleIdno", roleIdno);
-
         toast.current?.show({
           severity: "success",
           summary: "Success",
           detail: "Successfully logged in!",
           life: 3000,
         });
+
         setWarning("");
-        navigate("/");
         localStorage.setItem("token", "Bearer " + data.token);
         localStorage.setItem("roleId", data.roleId);
-      } else {
-        setWarning("Invalid email or password. Please try again.");
+        const returnTo = location.state?.returnTo || "/";
+        const car = location.state?.car;
+        const tour = location.state?.tour;
+        const openModal = location.state?.openModal;
+        const runSeePrices = location.state?.runSeePrices;
+
+        navigate(returnTo, { state: { car, tour, openModal, runSeePrices } });
       }
     } catch (error) {
       console.error("API Error:", error);
@@ -179,7 +178,7 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full mb-4 px-4 py-2 border rounded-4xl"
-                 />
+                />
                 <input
                   type="password"
                   placeholder={t("signin.Password")}
@@ -239,22 +238,9 @@ const Login = () => {
                   </>
                 ) : (
                   <>
-                    {/* <input
-                      type="password"
-                      placeholder="Enter new password"
-                      required
-                      value={newPassword}
-                      onChange={(e) => setNewPassword(e.target.value)}
-                      className="w-full mb-4 px-4 py-2 border rounded-4xl"
-                    />
-                    <button
-                      onClick={handleSendResetEmail}
-                      className="w-full bg-[#065784] text-white py-2 rounded-4xl"
-                    >
-                      {t("login.Reset Password")}
-                    </button> */}
+
                     <p className="text-xl text-center  text-[#000]  ">
-                      {t("login.Please check your email for your password.")} 
+                      {t("login.Please check your email for your password.")}
                     </p>
                   </>
                 )}

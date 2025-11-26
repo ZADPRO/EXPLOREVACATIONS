@@ -14,7 +14,6 @@ const EditJourneyModal = ({ bookingData, onClose, onAddReturn }) => {
       passengers: bookingData.outbound.passengers
     }
   );
-
   const handleAddReturn = () => {
     const fullReturnData = {
       ...returnData,
@@ -23,7 +22,6 @@ const EditJourneyModal = ({ bookingData, onClose, onAddReturn }) => {
     };
     onAddReturn(fullReturnData);
   };
-
   const adjustPassengers = (delta) => {
     const newCount = Math.max(1, Math.min(10, returnData.passengers + delta));
     setReturnData({ ...returnData, passengers: newCount });
@@ -34,13 +32,13 @@ const EditJourneyModal = ({ bookingData, onClose, onAddReturn }) => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div className="modal-tabs">
-            <button 
+            <button
               className={`modal-tab ${!showReturnForm ? 'active' : ''}`}
               onClick={() => setShowReturnForm(false)}
             >
               Transfer
             </button>
-            <button 
+            <button
               className={`modal-tab ${showReturnForm ? 'active' : ''}`}
               onClick={() => setShowReturnForm(true)}
             >
@@ -172,5 +170,4 @@ const EditJourneyModal = ({ bookingData, onClose, onAddReturn }) => {
     </div>
   );
 };
-
 export default EditJourneyModal; 

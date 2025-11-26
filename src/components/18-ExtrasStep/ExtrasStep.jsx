@@ -133,7 +133,7 @@ h2 {
   background: #111827;
 }
 `;
-  const ExtrasStep = ({ bookingData, updateBookingData, onBack, onContinue }) => {
+const ExtrasStep = ({ bookingData, updateBookingData, onBack, onContinue }) => {
   const { t } = useTranslation("global");   // ✅ correct place
 
   const [flightNumber, setFlightNumber] = useState(
@@ -169,7 +169,7 @@ h2 {
         <div className="form-group">
           <label className="form-label">
             {t("extras.flight_train_number")}
-             {/* <span>ⓘ</span> */}
+            {/* <span>ⓘ</span> */}
           </label>
           <div className="form-input-icon">
             <Plane className="input-icon" size={18} />
@@ -182,27 +182,14 @@ h2 {
             />
           </div>
           <p className="form-hint">
-             Please provide your flight number and also which airport your landing(driver will track your flight)
-            {/* {t("extras.provide_flight_number")} */}
+            Please provide your flight number and also which airport your landing(driver will track your flight)
+
           </p>
         </div>
 
-        {/* Child Seat */}
-        {/* <div className="form-group">
-          <label className="form-checkbox">
-            <input
-              type="checkbox"
-              checked={childSeat}
-              onChange={(e) => setChildSeat(e.target.checked)}
-            />
-           {t("extras.need_child_seat")}
-          </label>
-        </div> */}
-
-        {/* Outward Notes */}
         <div className="form-group">
           <label className="form-label">
-            {t("extras.driver_notes_outward")} 
+            {t("extras.driver_notes_outward")}
             {/* <span>ⓘ</span> */}
           </label>
           <textarea
@@ -212,8 +199,6 @@ h2 {
             className="form-textarea"
           />
         </div>
-
-        {/* Return Notes (only show if return exists) */}
         {bookingData.return && (
           <div className="form-group">
             <label className="form-label">
@@ -227,8 +212,6 @@ h2 {
             />
           </div>
         )}
-
-        {/* Buttons */}
         <div className="button-group">
           <button onClick={onBack} className="btn btn-back">
             ←  {t("extras.back")}
@@ -243,38 +226,3 @@ h2 {
 };
 
 export default ExtrasStep;
-
-
-
- const handleSeePrices = () => {
-  if (validateForm()) {
-
-    const selectedFrom = addressSuggestions.from.find(
-      (x) => x.name === formData.from
-    );
-
-    const selectedTo = addressSuggestions.to.find(
-      (x) => x.name === formData.to
-    );
-
-    const bookingFormData = {
-      outbound: {
-        from: formData.from,
-        to: formData.to,
-        fromLocation: {
-          lat: selectedFrom?.lat,
-          lng: selectedFrom?.lng,
-        },
-        toLocation: {
-          lat: selectedTo?.lat,
-          lng: selectedTo?.lng,
-        },
-        date: formatDate(formData.pickupDate),
-        time: formData.pickupTime,
-        passengers: formData.passengers,
-      }
-    };
-
-    navigate("/BookingFlow", { state: { bookingFormData } });
-  }
-};

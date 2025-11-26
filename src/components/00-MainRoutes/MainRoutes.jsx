@@ -6,13 +6,12 @@ import {
   useLocation,
 } from "react-router-dom";
 import PassengerStep from '../../components/20-PassengerStep/PassengerStep';
-import VehicleStep from "../17-vehicle/vehicle";
+import VehicleStep from "../17-VehicleStep/VehicleStep";
 import ExtrasStep from "../18-ExtrasStep/ExtrasStep";
 import BookingFlow from "../BookingFlow/BookingFlow";
 import BookingSummary from "../BookingFlow/BookingSummary";
 import PaymentStep from "../19-PaymentStep/PaymentStep";
 import EditJourneyModal from "../BookingFlow/EditJourneyModal";
-import BookingForm from "../BookingFom/BookingForm";
 import Header from "../05-Header/Header";
 import Footer from "../06-Footer/Footer";
 import Home from "../01-Home/Home";
@@ -89,7 +88,7 @@ function Layout() {
         
         <Route path="/BookingFlow" element={<BookingFlow />} />
         <Route path="/BookingSummary" element={<BookingSummary />} />
-        <Route path="/BookingForm" element={<BookingForm />} />
+        {/* <Route path="/BookingForm" element={<BookingForm />} /> */}
         <Route path="/impressum" element={<Impressum />} />
         <Route path="/EditJourneyModal" element={<EditJourneyModal />} />
         {/* <Route path="/pages" element={<Pages />} /> */}
