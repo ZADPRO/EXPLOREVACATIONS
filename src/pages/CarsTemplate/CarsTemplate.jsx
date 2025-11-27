@@ -66,6 +66,7 @@ export default function CarsTemplate() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const toast = useRef(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   const roleId = localStorage.getItem("roleId");
   const [imgSrc, setImgSrc] = useState("");
@@ -114,39 +115,56 @@ export default function CarsTemplate() {
       setTotalPrice(parseInt(carListData.refCarPrice) * numberOfDays);
     }
   }, [selectedExtra, extrakm, numberOfDays, carListData.refCarPrice]);
+  useEffect(() => {
+    const updateToken = () => setToken(localStorage.getItem("token"));
+    window.addEventListener("storage", updateToken);
+    return () => window.removeEventListener("storage", updateToken);
+  }, []);
+
+
+
+
 
   useEffect(() => {
-    const car = location.state?.car || JSON.parse(localStorage.getItem("selectedCar"));
-    if (!car) return;
+    const savedCar = JSON.parse(localStorage.getItem("selectedCar"));
+    console.log("\n\nsavedCar", savedCar);
+    const car = location.state?.car || savedCar;
 
+
+    console.log("\n\ncar", car);
+
+    if (!car?.refCarsId) return;
+
+    setRefCarsId(car.refCarsId);
     setCarState(car);
-    setRefCarsId(car?.refCarsId);
-
+    console.log(">>>>>>car", car)
     const fetchData = async () => {
       try {
         const listDestinations = await axios.post(
           import.meta.env.VITE_API_URL + "/userRoutes/getCarById",
-          {
-            refCarsId: car?.refCarsId,
-          },
+          { refCarsId: car.refCarsId },
           {
             headers: {
               Authorization: localStorage.getItem("token"),
               "Content-Type": "application/json",
             },
+
           }
+
         );
+        console.log(">>>>decryptd231", listDestinations)
+
         const destinationData = decrypt(
           listDestinations.data[1],
           listDestinations.data[0],
           import.meta.env.VITE_ENCRYPTION_KEY
         );
-        const formDetailsArray =
-          destinationData.tourDetails[0].refFormDetails || [];
 
+
+        console.log(">>>>decryptd", destinationData)
         const carDetails = destinationData.tourDetails[0];
         setCarListData(carDetails);
-        setExtras(formDetailsArray);
+        setExtras(carDetails.refFormDetails || []);
 
         const dailyRate = parseInt(carDetails.refCarPrice) || 0;
         setBaseDailyRate(dailyRate);
@@ -156,10 +174,10 @@ export default function CarsTemplate() {
       }
     };
 
-    if (car?.refCarsId) {
-      fetchData();
-    }
-  }, [location.state]);
+    fetchData();
+  }, [token]);
+
+
 
   const agreementUploader = async (event) => {
     for (let i = 0; i < event.files.length; i++) {
@@ -266,10 +284,14 @@ export default function CarsTemplate() {
   };
 
   useEffect(() => {
+    console.log("..........................................");
     const fetchData = async () => {
       setLoading(true);
       try {
+        console.log("Verify Token Running (Car) --- ");
+
         const refCarTypeId = getRefCarTypeId(activeTab);
+
         const listCarResponse = await axios.post(
           import.meta.env.VITE_API_URL + "/userRoutes/getAllCar",
           { refCarTypeId },
@@ -286,8 +308,14 @@ export default function CarsTemplate() {
           listCarResponse.data[0],
           import.meta.env.VITE_ENCRYPTION_KEY
         );
-        if (data.success) {
+
+        console.log("data getAllCar ======= line XX", data);
+
+        if (data?.success) {
+          console.log("Car Details: ", data.Details);
           setListCarData(data.Details);
+        } else {
+          console.warn("getAllCar failed: ", data?.message);
         }
       } catch (error) {
         console.error("Error fetching car data:", error);
@@ -298,6 +326,7 @@ export default function CarsTemplate() {
 
     fetchData();
   }, [activeTab]);
+
 
   const handleNavigate = (path) => {
     navigate(path);
@@ -740,9 +769,17 @@ export default function CarsTemplate() {
                   if (roleId === "3" || roleId === "6") {
                     setIsModelOpen(true);
                   } else {
-                    localStorage.setItem("selectedCar", JSON.stringify(carListData));
+                    // localStorage.setItem("selectedCar", JSON.stringify(carListData));
+                    localStorage.setItem("selectedCarId", carState?.refCarsId);
+
                     localStorage.setItem("redirectPath", window.location.pathname);
-                    navigate("/login");
+
+                    navigate("/login", {
+                      state: {
+                        returnTo: window.location.pathname,
+                        openModal: true
+                      }
+                    });
                   }
                 }}
               >
@@ -911,7 +948,7 @@ export default function CarsTemplate() {
                 className="flex-1 w-[100%]"
                 onChange={(e) => {
                   if (e.value) {
-                    const formatted = e.value.toISOString().split("T")[0]; // "yyyy-mm-dd"
+                    const formatted = e.value.toISOString().split("T")[0];
                     setPickupDateTime(formatted);
                   }
                 }}
@@ -1104,7 +1141,7 @@ export default function CarsTemplate() {
           />
         </div>
         <p className="text-sm text-gray-600 mt-2 italic">
-          {t("car.uploadNote")}.
+          {t("car.uploadNotee")}.
         </p>
 
         <div className="pt-[1rem] flex justify-center">

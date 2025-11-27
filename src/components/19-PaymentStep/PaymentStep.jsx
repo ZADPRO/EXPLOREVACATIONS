@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { CheckCircle, XCircle, X } from 'lucide-react';
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Dialog } from "primereact/dialog";
+
+
+
 const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
@@ -13,11 +17,12 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
   });
   const [toast, setToast] = useState(null);
 
+  const [showTerms, setShowTerms] = useState(false);
   const showToast = (message, type = 'success') => {
     setToast({ message, type });
     setTimeout(() => setToast(null), 3000);
   };
- const { t } = useTranslation("global"); 
+  const { t } = useTranslation("global");
   const handleCardDetailsChange = (field, value) => {
     setCardDetails(prev => ({
       ...prev,
@@ -103,13 +108,13 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
         </div>
       )}
 
-      
+
 
       <h2>{t("pay.payment")}</h2>
-      
+
       <div style={{ marginBottom: '24px' }}>
         <h3 style={{ fontWeight: '500', marginBottom: '16px' }}>{t("pay.select_payment_method")}</h3>
-        
+
         <div className="payment-methods">
           <label className="payment-method">
             <input
@@ -202,21 +207,28 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
         </div>
       )}
 
-<div
-  style={{
-    marginBottom: "24px",
-    padding: "16px",
-    background: "#f9fafb",
-    borderRadius: "8px",
-  }}
->
-  <label className="form-checkbox" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-    <input
-      type="checkbox"
-      checked={agreedToTerms}
-      onChange={(e) => setAgreedToTerms(e.target.checked)}
-    />
-    <span style={{ fontSize: "14px", color: "#6b7280" }}>
+      <div
+        style={{
+          marginBottom: "24px",
+          padding: "16px",
+          background: "#f9fafb",
+          borderRadius: "8px",
+        }}
+      >
+        <label className="form-checkbox" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <input
+            type="checkbox"
+            checked={agreedToTerms}
+            onChange={(e) => setAgreedToTerms(e.target.checked)}
+          />
+          <span
+            style={{ color: "#2563eb", textDecoration: "underline", cursor: "pointer" }}
+            onClick={() => setShowTerms(true)}
+          >
+            {t("pay.terms_conditions")}
+          </span>
+
+          {/* <span style={{ fontSize: "14px", color: "#6b7280" }}>
       {t("pay.agree_to")}{" "}
       <Link
         to="/terms-transfer"
@@ -228,32 +240,187 @@ const PaymentStep = ({ bookingData, onBack, totalPrice }) => {
       >
        {t("pay.terms_conditions")}
       </Link>{" "}
-      {/* and{" "}
-      <Link
-        to="/privacy"
-        style={{
-          color: "#2563eb",
-          textDecoration: "underline",
-          cursor: "pointer",
-        }}
-      >
-        Privacy Policy
-      </Link> */}
-    </span>
-  </label>
-</div>
+     
+    </span> */}
+        </label>
+      </div>
 
       <div className="button-group">
         <button onClick={onBack} className="btn btn-back">
           ← {t("extras.back")}
         </button>
-        <button 
-          onClick={handleCompleteBooking} 
+        <button
+          onClick={handleCompleteBooking}
           className="btn btn-primary"
         >
           {t("pay.book")}
         </button>
       </div>
+   <Dialog
+        header={t("termsTransfer.title")}
+        visible={showTerms}
+        style={{ width: "80vw", maxHeight: "90vh" }}
+        modal
+        onHide={() => setShowTerms(false)}
+      >
+        <div className="p-6 bg-gray-100  md:mt-[-60px] min-h-screen">
+          {/* <h1 className="text-3xl font-bold mb-4 text-center">
+        {t("termsTransfer.title")}
+      </h1> */}
+
+          <div className="space-y-4 text-justify">
+            {/* 1 */}
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h1")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l1")}</li>
+            </ul>
+
+            {/* 2 */}
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h2")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l2")}</li>
+              <li>{t("termsTransfer.l2.1")}</li>
+              <li>{t("termsTransfer.l2.2")}</li>
+            </ul>
+
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h3")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l3")}</li>
+              <li>{t("termsTransfer.l3.1")}</li>
+              <li>{t("termsTransfer.l3.2")}</li>
+            </ul>
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h4")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l4")}</li>
+              <li>{t("termsTransfer.l4.1")}</li>
+              <li>{t("termsTransfer.l4.2")}</li>
+              <li>{t("termsTransfer.l4.3")}</li>
+            </ul>
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h5")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l5")}</li>
+              <li>{t("termsTransfer.l5.1")}</li>
+            </ul>
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h6")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l6")}</li>
+              <li>{t("termsTransfer.l6.1")}</li>
+              <li>{t("termsTransfer.l6.2")}</li>
+            </ul>
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h7")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l7")}</li>
+              <li>{t("termsTransfer.l7.1")}</li>
+              <li>{t("termsTransfer.l7.2")}</li>
+            </ul>
+
+            {/* 8 */}
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h8")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l8")}</li>
+              <li>{t("termsTransfer.l8.1")}</li>
+              <li>{t("termsTransfer.l8.2")}</li>
+              <li>{t("termsTransfer.l8.3")}</li>
+            </ul>
+
+            {/* 9 */}
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h9")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l9")}</li>
+              <li>{t("termsTransfer.l9.1")}</li>
+            </ul>
+
+            {/* 10 */}
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h10")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l10")}</li>
+              <li>{t("termsTransfer.l10.1")}</li>
+              <li>{t("termsTransfer.l10.2")}</li>
+            </ul>
+
+            {/* 11 */}
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h11")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l11")}</li>
+              <li>{t("termsTransfer.l11.1")}</li>
+            </ul>
+
+            {/* 12 */}
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h12")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l12")}</li>
+              <li>{t("termsTransfer.l12.1")}</li>
+              <li>{t("termsTransfer.l12.2")}</li>
+              <li>{t("termsTransfer.l12.3")}</li>
+            </ul>
+
+            {/* 13 */}
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h13")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l13")}</li>
+              <li>{t("termsTransfer.l13.1")}</li>
+            </ul>
+
+            {/* 14 */}
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h14")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l14")}</li>
+              <li>{t("termsTransfer.l14.1")}</li>
+            </ul>
+
+            {/* 15 */}
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h15")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l15")}</li>
+              <li>{t("termsTransfer.l15.1")}</li>
+            </ul>
+
+            {/* 16 */}
+            <h2 className="text-xl font-semibold mt-6">
+              {t("termsTransfer.h16")}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>{t("termsTransfer.l16")}</li>
+              <li>{t("termsTransfer.l16.1")}</li>
+            </ul>
+
+            <p className="text-center text-gray-600 mt-10">
+              © 2025 ZüriCar GO – All rights reserved.
+            </p>
+          </div>
+        </div>
+      </Dialog>
+
     </div>
   );
 };

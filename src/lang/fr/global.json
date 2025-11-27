@@ -517,6 +517,15 @@
     "fuelType": "Type de carburant",
     "count": "Nombre",
     "charges": "Frais",
+    "driverDetails": "Détails du conducteur",
+    "driverAge": "Âge du conducteur",
+    "driverMobile": "Téléphone du conducteur",
+    "driverMail": "E-mail du conducteur",
+    "uploadAgreement": "Télécharger l'accord",
+    "requirements": "Exigences",
+    "uploadNotee": "Télécharger des notes",
+     "driverName": "Nom du conducteur",
+    "chargeable": "Payant",
     "noCarsAvailable": "Aucune voiture disponible"
   },
   "contact": {

@@ -420,7 +420,7 @@ const VehicleStep = ({ bookingData, updateBookingData, onContinue, onBack }) => 
         ))}
       </div>
 
-      <div style={{
+      {/* <div style={{
         marginTop: '16px',
         padding: '12px',
         background: '#d1fae5',
@@ -437,7 +437,7 @@ const VehicleStep = ({ bookingData, updateBookingData, onContinue, onBack }) => 
             <strong>{getFreeCancellationDate(bookingData.outbound.date)}</strong> {t("vehicle.en1")}.
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="button-group" style={{ marginTop: '24px' }}>
         <button onClick={handleBack} className="btn btn-back">

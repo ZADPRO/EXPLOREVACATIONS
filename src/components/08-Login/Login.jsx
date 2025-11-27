@@ -23,7 +23,6 @@ const Login = () => {
   const location = useLocation();
   const toast = useRef(null);
 
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [warning, setWarning] = useState("");
@@ -52,34 +51,39 @@ const Login = () => {
           },
         }
       );
-
       const data = decrypt(
         response.data[1],
         response.data[0],
         import.meta.env.VITE_ENCRYPTION_KEY
       );
+      console.log("data", data);
 
       if (data.success) {
         toast.current?.show({
           severity: "success",
           summary: "Success",
-          detail: "Logged in!",
+          detail: "Successfully logged in!",
+          life: 3000,
         });
+
+        setWarning("");
         localStorage.setItem("token", "Bearer " + data.token);
         localStorage.setItem("roleId", data.roleId);
-        const redirectPath = localStorage.getItem("redirectPath") || "/";
-        navigate(redirectPath);
-        localStorage.removeItem("redirectPath");
-      } else {
-        setWarning("Invalid email or password");
+        const returnTo = location.state?.returnTo || "/";
+        const car = location.state?.car;
+        const tour = location.state?.tour;
+        const openModal = location.state?.openModal;
+        const runSeePrices = location.state?.runSeePrices;
+
+        navigate(returnTo, { state: { car, tour, openModal, runSeePrices } });
       }
     } catch (error) {
-      setWarning("Login failed");
+      console.error("API Error:", error);
+      setWarning("Login failed. Please check your credentials.");
     }
 
     setLoading(false);
   };
-
 
   const handleSendResetEmail = async () => {
     try {
@@ -125,7 +129,6 @@ const Login = () => {
       className="min-h-screen flex items-center justify-center "
       style={{
         backgroundImage: `url(${bgimg})`,
-        // backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
@@ -154,7 +157,7 @@ const Login = () => {
       <Toast ref={toast} />
       <div className="flex flex-col lg:flex-row lg:mt-0 md:mt-0 mt-20 gap-6  md:flex-row w-full  items-center justify-center">
         <div className="flex font-sans lg:w-[full] md:w-[full] pt-5">
-          {/* Left side: Form */}
+
 
           <div className=" w-3/2 lg:w-[40%] md:w-[100%]  bg-white flex flex-col justify-center items-center  lg:p-10 md:p-10 p-5 lg:m-0 md:m-0  m-4 rounded-2xl lg:rounded-l-4xl md:rounded-l-4xl ">
             <h1 className="text-4xl font-bold mb-2 text-center">
@@ -264,7 +267,9 @@ const Login = () => {
               backgroundImage: `url(${frontbg})`,
               border: "5px solid white",
             }}
-          ></div>
+          >
+
+          </div>
         </div>
       </div>
     </div>

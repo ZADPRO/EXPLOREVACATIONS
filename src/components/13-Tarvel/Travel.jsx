@@ -724,8 +724,13 @@ export function BookingForm() {
                       suggestions={addressSuggestions.from}
                       completeMethod={(e) => handleAddressChange("from", e.query)}
                       onChange={(e) => handleInputChange("from", e.value)}
-                      onSelect={(e) => handleAddressSelect("from", e.value)}
+                      onSelect={(e) => {
+                        handleAddressSelect("from", e.value);
+                        setAddressSuggestions(prev => ({ ...prev, from: [] }));
+                      }}
+
                       placeholder={t("Enter pickup location in Switzerland")}
+                      appendTo={document.body}
                       dropdown
                       forceSelection={false}
                       className={`w-full ${errors.from ? "p-invalid" : ""}`}
@@ -773,8 +778,12 @@ export function BookingForm() {
                       suggestions={addressSuggestions.to}
                       completeMethod={(e) => handleAddressChange("to", e.query)}
                       onChange={(e) => handleInputChange("to", e.value)}
-                      onSelect={(e) => handleAddressSelect("to", e.value)}
+                      onSelect={(e) => {
+                        handleAddressSelect("to", e.value);
+                        setAddressSuggestions(prev => ({ ...prev, to: [] }));
+                      }}
                       placeholder={t("Enter drop-off location in Switzerland")}
+                      appendTo={document.body}
                       dropdown
                       forceSelection={false}
                       className={`w-full ${errors.to ? "p-invalid" : ""}`}
@@ -968,13 +977,13 @@ export function BookingForm() {
               onClick={() => {
                 if (roleId === "3" || roleId === "6") {
                   setIsModelOpen(true);
-                  handleSeePrices(); 
+                  handleSeePrices();
                 } else {
                   navigate("/login", {
                     state: {
                       returnTo: window.location.pathname,
-                      openModal: true,       
-                      runSeePrices: true    
+                      openModal: true,
+                      runSeePrices: true
                     }
                   });
                 }
@@ -995,7 +1004,7 @@ export function BookingForm() {
                   </svg>
                 ))}
               </div>
-              <span className="trustpilot-logo">{t("Transfer.trustpilot")}</span>
+              {/* <span className="trustpilot-logo">{t("Transfer.trustpilot")}</span> */}
             </div>
           </div>
 

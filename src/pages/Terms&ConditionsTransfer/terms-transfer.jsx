@@ -9,8 +9,6 @@ export default function TermsTransfer() {
 
   const { t } = useTranslation("global");
 
-
-
   return (
     <div className="p-6 bg-gray-100  md:mt-10 min-h-screen">
       {/* <div className="max-w-5xl mx-auto mt-5 bg-white p-6 rounded shadow-md"> */}
@@ -18,7 +16,14 @@ export default function TermsTransfer() {
         {t("termsTransfer.title")}
       </h1>
       <button
-        onClick={() => navigate("/BookingFlow", { state: { goToStep: 4 } })}
+        onClick={() => navigate("/BookingFlow", {
+          state: {
+            goToStep: 4,
+            bookingFormData: location.state?.bookingFormData
+          }
+        })}
+
+        // onClick={() => navigate("/BookingFlow", { state: { goToStep: 4 } })}
         className="btn btn-back flex items-center gap-2 mb-6 text-blue-600 font-semibold"
       >
         ← {t("extras.back")}
@@ -177,3 +182,4 @@ export default function TermsTransfer() {
     // </div>
   );
 }
+

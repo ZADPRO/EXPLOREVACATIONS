@@ -209,7 +209,7 @@ export default function Header() {
               {showTransferDropdown && (
                 <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-50 z-50">
                   {/* Add your transfer options here */}
-                  {["Transfer", "event"].map((type) => (
+                  {[ t("header.Transfers"),  t("header.event")].map((type) => (
                     <div
                       key={type}
                       className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
@@ -384,7 +384,7 @@ export default function Header() {
                 </div>
                 {showMobileTransfer && (
                   <div className="ml-4 mt-2 flex flex-col gap-2">
-                    {["transfers", "event"].map((type) => (
+                    {[ t("header.Transfers"),  t("header.event")].map((type) => (
                       <div
                         key={type}
                         className="text-md cursor-pointer text-[#0067b6]"

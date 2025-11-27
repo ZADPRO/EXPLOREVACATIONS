@@ -24,8 +24,10 @@ const BookingFlow = () => {
       behavior: 'smooth'
     });
   }, [currentStep]);
+const initialBookingData = location.state?.bookingFormData 
+  ? location.state.bookingFormData 
+  : {
 
-  const initialBookingData = location.state?.bookingFormData || {
     outbound: {
       from: 'London Heathrow Airport (LHR)',
       fromCity: 'London, United Kingdom',
