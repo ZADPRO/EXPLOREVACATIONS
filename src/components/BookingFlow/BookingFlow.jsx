@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import { Pencil, MapPin, Calendar, Clock, Users, Check } from 'lucide-react';
 import './BookingFlow.css';
 
-// Import step components
 import VehicleStep from '../17-VehicleStep/VehicleStep';
 import ExtrasStep from '../18-ExtrasStep/ExtrasStep';
 import PassengerStep from '../20-PassengerStep/PassengerStep';
@@ -13,18 +12,19 @@ import EditJourneyModal from '../BookingFlow/EditJourneyModal';
 
 const BookingFlow = () => {
   const location = useLocation();
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(location.state?.goToStep || 1);
   const [showEditModal, setShowEditModal] = useState(false);
-  
-  // Scroll to top whenever step changes
+
   useEffect(() => {
+    if (location.state?.goToStep) {
+      window.history.replaceState({}, document.title);
+    }
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
   }, [currentStep]);
 
-  // Initialize booking data from navigation state or use defaults
   const initialBookingData = location.state?.bookingFormData || {
     outbound: {
       from: 'London Heathrow Airport (LHR)',
@@ -96,7 +96,7 @@ const BookingFlow = () => {
     setShowEditModal(false);
   };
 
-  const totalPrice = bookingData.return 
+  const totalPrice = bookingData.return
     ? (bookingData.selectedVehicle.price * 2).toFixed(2)
     : bookingData.selectedVehicle.price.toFixed(2);
 
@@ -138,23 +138,20 @@ const BookingFlow = () => {
                 {steps.map((step, index) => (
                   <React.Fragment key={step.id}>
                     <div className="step-item">
-                      <div className={`step-circle ${
-                        step.completed ? 'completed' : 
-                        currentStep === step.id ? 'active' : 
-                        'pending'
-                      }`}>
+                      <div className={`step-circle ${step.completed ? 'completed' :
+                        currentStep === step.id ? 'active' :
+                          'pending'
+                        }`}>
                         {step.completed ? <Check size={20} /> : step.id}
                       </div>
-                      <span className={`step-label ${
-                        currentStep === step.id ? 'active' : ''
-                      }`}>
+                      <span className={`step-label ${currentStep === step.id ? 'active' : ''
+                        }`}>
                         {step.name}
                       </span>
                     </div>
                     {index < steps.length - 1 && (
-                      <div className={`step-connector ${
-                        step.completed ? 'completed' : ''
-                      }`} />
+                      <div className={`step-connector ${step.completed ? 'completed' : ''
+                        }`} />
                     )}
                   </React.Fragment>
                 ))}
@@ -171,7 +168,7 @@ const BookingFlow = () => {
               />
             )}
             {currentStep === 2 && (
-              <ExtrasStep 
+              <ExtrasStep
                 bookingData={bookingData}
                 updateBookingData={updateBookingData}
                 onBack={handleBack}
@@ -179,7 +176,7 @@ const BookingFlow = () => {
               />
             )}
             {currentStep === 3 && (
-              <PassengerStep 
+              <PassengerStep
                 bookingData={bookingData}
                 updateBookingData={updateBookingData}
                 onBack={handleBack}
@@ -187,7 +184,7 @@ const BookingFlow = () => {
               />
             )}
             {currentStep === 4 && (
-              <PaymentStep 
+              <PaymentStep
                 bookingData={bookingData}
                 onBack={handleBack}
                 totalPrice={getTotalPrice()}
@@ -209,7 +206,7 @@ const BookingFlow = () => {
 
       {/* Edit Journey Modal */}
       {showEditModal && (
-        <EditJourneyModal 
+        <EditJourneyModal
           bookingData={bookingData}
           onClose={() => setShowEditModal(false)}
           onAddReturn={addReturnTrip}

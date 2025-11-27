@@ -71,12 +71,10 @@ export default function CarsTemplate() {
   const [imgSrc, setImgSrc] = useState("");
   useEffect(() => {
     if (carListData?.refCarPath) {
-      // Check if refCarPath is an object with content (base64)
       if (typeof carListData.refCarPath === 'object' && carListData.refCarPath.content) {
         const contentType = carListData.refCarPath.contentType || 'image/jpeg';
         setImgSrc(`data:${contentType};base64,${carListData.refCarPath.content}`);
       }
-      // Check if it's a string path
       else if (typeof carListData.refCarPath === "string" && carListData.refCarPath.trim()) {
         setImgSrc(`https://zuericar.com/src/assets/cars/${carListData.refCarPath.trim()}`);
       } else {
@@ -85,10 +83,8 @@ export default function CarsTemplate() {
     } else {
       setImgSrc(defaultCarImage);
     }
-  }, [carListData]); // Updates whenever carListData changes
+  }, [carListData]);
 
-
-  // Calculate number of days between pickup and drop dates
   useEffect(() => {
     if (pickupDateTime && dropDate) {
       const pickup = new Date(pickupDateTime);
@@ -120,7 +116,9 @@ export default function CarsTemplate() {
   }, [selectedExtra, extrakm, numberOfDays, carListData.refCarPrice]);
 
   useEffect(() => {
-    const car = location.state?.car;
+    const car = location.state?.car || JSON.parse(localStorage.getItem("selectedCar"));
+    if (!car) return;
+
     setCarState(car);
     setRefCarsId(car?.refCarsId);
 
@@ -396,8 +394,8 @@ export default function CarsTemplate() {
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     className={`px-2 py-2 text-sm sm:text-base font-medium rounded-2xl transition-all duration-200 ${activeTab === tab
-                        ? "bg-[#014986] text-white shadow-md"
-                        : "text-gray-600 hover:bg-white"
+                      ? "bg-[#014986] text-white shadow-md"
+                      : "text-gray-600 hover:bg-white"
                       }`}
                   >
                     {tab}
@@ -742,18 +740,14 @@ export default function CarsTemplate() {
                   if (roleId === "3" || roleId === "6") {
                     setIsModelOpen(true);
                   } else {
-                    navigate("/login", {
-                      state: {
-                        returnTo: window.location.pathname,
-                        openModal: true
-                      }
-                    });
+                    localStorage.setItem("selectedCar", JSON.stringify(carListData));
+                    localStorage.setItem("redirectPath", window.location.pathname);
+                    navigate("/login");
                   }
                 }}
               >
                 {t("car.continue")}
               </button>
-
             )}
           </div>
         </div>

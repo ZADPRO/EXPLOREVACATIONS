@@ -31,12 +31,16 @@ const Login = () => {
   const [resetStage, setResetStage] = useState("email");
   const [resetEmail, setResetEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleNavigation = (path) => {
     navigate(path);
   };
 
   const handleSubmit = async () => {
+    if (loading) return;
+    setLoading(true);
+
     try {
       const response = await Axios.post(
         import.meta.env.VITE_API_URL + "/adminRoutes/adminLogin",
@@ -48,37 +52,34 @@ const Login = () => {
           },
         }
       );
+
       const data = decrypt(
         response.data[1],
         response.data[0],
         import.meta.env.VITE_ENCRYPTION_KEY
       );
-      console.log("data", data);
 
       if (data.success) {
         toast.current?.show({
           severity: "success",
           summary: "Success",
-          detail: "Successfully logged in!",
-          life: 3000,
+          detail: "Logged in!",
         });
-
-        setWarning("");
         localStorage.setItem("token", "Bearer " + data.token);
         localStorage.setItem("roleId", data.roleId);
-        const returnTo = location.state?.returnTo || "/";
-        const car = location.state?.car;
-        const tour = location.state?.tour;
-        const openModal = location.state?.openModal;
-        const runSeePrices = location.state?.runSeePrices;
-
-        navigate(returnTo, { state: { car, tour, openModal, runSeePrices } });
+        const redirectPath = localStorage.getItem("redirectPath") || "/";
+        navigate(redirectPath);
+        localStorage.removeItem("redirectPath");
+      } else {
+        setWarning("Invalid email or password");
       }
     } catch (error) {
-      console.error("API Error:", error);
-      setWarning("Login failed. Please check your credentials.");
+      setWarning("Login failed");
     }
+
+    setLoading(false);
   };
+
 
   const handleSendResetEmail = async () => {
     try {
@@ -189,9 +190,11 @@ const Login = () => {
                 />
                 <button
                   type="submit"
-                  className="w-full bg-[#065784] text-white py-2 rounded-4xl cursor-pointer"
+                  disabled={loading}
+                  className={`w-full bg-[#065784] text-white py-2 rounded-4xl cursor-pointer ${loading ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
                 >
-                  {t("login.Start")}
+                  {loading ? "Please wait..." : t("login.Start")}
                 </button>
                 {warning && (
                   <p className="text-center text-xl mt-3 text-[#f00]">
@@ -238,7 +241,6 @@ const Login = () => {
                   </>
                 ) : (
                   <>
-
                     <p className="text-xl text-center  text-[#000]  ">
                       {t("login.Please check your email for your password.")}
                     </p>
@@ -256,8 +258,6 @@ const Login = () => {
               </div>
             )}
           </div>
-
-          {/* Right Side Image */}
           <div
             className="hidden md:block w-1/2 lg:w-[500px] relative right-7 bg-cover bg-center rounded-[2rem]"
             style={{
