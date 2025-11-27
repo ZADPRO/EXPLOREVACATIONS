@@ -29,6 +29,7 @@ import decrypt from "../../helper";
 import { Checkbox } from "primereact/checkbox";
 import { FileUpload } from "primereact/fileupload";
 import { useTranslation } from "react-i18next";
+
 export default function CarsTemplate() {
   const location = useLocation();
   const [carState, setCarState] = useState();
@@ -59,7 +60,6 @@ export default function CarsTemplate() {
   const [isExtraKMneeded, setIsExtraKMneeded] = useState(false);
   const [selectedExtra, setSelectedExtra] = useState([]);
 
-  // Days calculation state
   const [numberOfDays, setNumberOfDays] = useState(1);
   const [baseDailyRate, setBaseDailyRate] = useState(0);
 
@@ -70,6 +70,7 @@ export default function CarsTemplate() {
 
   const roleId = localStorage.getItem("roleId");
   const [imgSrc, setImgSrc] = useState("");
+
   useEffect(() => {
     if (carListData?.refCarPath) {
       if (typeof carListData.refCarPath === 'object' && carListData.refCarPath.content) {
@@ -100,7 +101,6 @@ export default function CarsTemplate() {
     }
   }, [pickupDateTime, dropDate]);
 
-  // Update total price when days change
   useEffect(() => {
     if (baseDailyRate > 0) {
       const newTotal = baseDailyRate * numberOfDays;
@@ -115,53 +115,38 @@ export default function CarsTemplate() {
       setTotalPrice(parseInt(carListData.refCarPrice) * numberOfDays);
     }
   }, [selectedExtra, extrakm, numberOfDays, carListData.refCarPrice]);
+
   useEffect(() => {
     const updateToken = () => setToken(localStorage.getItem("token"));
     window.addEventListener("storage", updateToken);
     return () => window.removeEventListener("storage", updateToken);
   }, []);
 
-
-
-
-
+  // ===== FIXED: Main useEffect to fetch car details =====
   useEffect(() => {
-    const savedCar = JSON.parse(localStorage.getItem("selectedCar"));
-    console.log("\n\nsavedCar", savedCar);
-    const car = location.state?.car || savedCar;
-
-
-    console.log("\n\ncar", car);
-
-    if (!car?.refCarsId) return;
-
-    setRefCarsId(car.refCarsId);
-    setCarState(car);
-    console.log(">>>>>>car", car)
-    const fetchData = async () => {
+    const fetchCarDetails = async (carId) => {
       try {
-        const listDestinations = await axios.post(
+        console.log(" Fetching car details for ID:", carId);
+        
+        const response = await axios.post(
           import.meta.env.VITE_API_URL + "/userRoutes/getCarById",
-          { refCarsId: car.refCarsId },
+          { refCarsId: carId },
           {
             headers: {
               Authorization: localStorage.getItem("token"),
               "Content-Type": "application/json",
             },
-
           }
-
         );
-        console.log(">>>>decryptd231", listDestinations)
 
         const destinationData = decrypt(
-          listDestinations.data[1],
-          listDestinations.data[0],
+          response.data[1],
+          response.data[0],
           import.meta.env.VITE_ENCRYPTION_KEY
         );
 
+        console.log("Car details fetched successfully:", destinationData);
 
-        console.log(">>>>decryptd", destinationData)
         const carDetails = destinationData.tourDetails[0];
         setCarListData(carDetails);
         setExtras(carDetails.refFormDetails || []);
@@ -170,14 +155,98 @@ export default function CarsTemplate() {
         setBaseDailyRate(dailyRate);
         setTotalPrice(dailyRate);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error(" Error fetching car details:", error);
+        toast.current?.show({
+          severity: "error",
+          summary: "Error",
+          detail: "Failed to load car details. Please try again.",
+          life: 3000,
+        });
       }
     };
 
-    fetchData();
-  }, [token]);
+    if (location.state?.car?.refCarsId) {
+      console.log(" Using car from location.state");
+      const car = location.state.car;
+      setRefCarsId(car.refCarsId);
+      setCarState(car);
+      fetchCarDetails(car.refCarsId);
+      if (location.state?.openModal && (roleId === "3" || roleId === "6")) {
+        setIsModelOpen(true);
+        navigate(location.pathname, { replace: true, state: {} });
+      }
+      return;
+    }
+    const selectedCarId = localStorage.getItem("selectedCarId");
+    if (selectedCarId) {
+      console.log(" Using selectedCarId from localStorage:", selectedCarId);
+      setRefCarsId(selectedCarId);
+      fetchCarDetails(selectedCarId);
+      const shouldOpenModal = localStorage.getItem("shouldOpenModal");
+      if (shouldOpenModal === "true" && (roleId === "3" || roleId === "6")) {
+        setIsModelOpen(true);
+        localStorage.removeItem("shouldOpenModal");
+      }
+      return;
+    }
+    const savedCar = JSON.parse(localStorage.getItem("selectedCar") || "null");
+    if (savedCar?.refCarsId) {
+      console.log("Using full car object from localStorage");
+      setRefCarsId(savedCar.refCarsId);
+      setCarState(savedCar);
+      fetchCarDetails(savedCar.refCarsId);
+    }
+  }, [location.state, roleId, navigate, location.pathname]);
 
+  useEffect(() => {
+    const refetchAfterLogin = async () => {
+      const selectedCarId = localStorage.getItem("selectedCarId");
+      
+      if (!token || !selectedCarId || location.pathname !== "/cardetails") {
+        return;
+      }
 
+      console.log("Token updated, refetching car details for ID:", selectedCarId);
+
+      try {
+        const response = await axios.post(
+          import.meta.env.VITE_API_URL + "/userRoutes/getCarById",
+          { refCarsId: selectedCarId },
+          {
+            headers: {
+              Authorization: token,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const destinationData = decrypt(
+          response.data[1],
+          response.data[0],
+          import.meta.env.VITE_ENCRYPTION_KEY
+        );
+
+        console.log(" Car details refetched after login");
+
+        const carDetails = destinationData.tourDetails[0];
+        setCarListData(carDetails);
+        setExtras(carDetails.refFormDetails || []);
+
+        const dailyRate = parseInt(carDetails.refCarPrice) || 0;
+        setBaseDailyRate(dailyRate);
+        setTotalPrice(dailyRate);
+        const shouldOpenModal = localStorage.getItem("shouldOpenModal");
+        if (shouldOpenModal === "true" && (roleId === "3" || roleId === "6")) {
+          setIsModelOpen(true);
+          localStorage.removeItem("shouldOpenModal");
+        }
+      } catch (error) {
+        console.error(" Error refetching car details after login:", error);
+      }
+    };
+
+    refetchAfterLogin();
+  }, [token, location.pathname, roleId]);
 
   const agreementUploader = async (event) => {
     for (let i = 0; i < event.files.length; i++) {
@@ -402,8 +471,39 @@ export default function CarsTemplate() {
     setShouldCalculate(false);
   }
 
+  const handleContinueClick = () => {
+    if (roleId === "3" || roleId === "6") {
+      setIsModelOpen(true);
+    } else {
+      const carIdToStore = refCarsId || carState?.refCarsId || carListData?.refCarsId;
+      
+      if (carIdToStore) {
+        console.log("Storing car ID before login:", carIdToStore);
+        localStorage.setItem("selectedCarId", carIdToStore);
+        localStorage.setItem("shouldOpenModal", "true"); 
+        localStorage.setItem("redirectPath", window.location.pathname);
+
+        navigate("/login", {
+          state: {
+            returnTo: window.location.pathname,
+            openModal: true,
+            carId: carIdToStore
+          }
+        });
+      } else {
+        console.error(" No car ID available to store");
+        toast.current?.show({
+          severity: "error",
+          summary: "Error",
+          detail: "Please select a car first.",
+          life: 3000,
+        });
+      }
+    }
+  };
+
   return (
-    <div>
+     <div>
       <Toast ref={toast} />
 
       <div className="relative mt-10 min-h-[60vh] w-[100%] flex lg:flex-row md:flex-row flex-col items-center justify-center text-2xl sm:text-3xl font-bold">
@@ -1188,4 +1288,3 @@ export default function CarsTemplate() {
     </div>
   );
 }
-
