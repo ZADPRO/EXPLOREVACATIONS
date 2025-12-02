@@ -3,12 +3,12 @@ import { motion, useAnimation } from "framer-motion";
 import { useNavigate, useParams } from "react-router-dom";
 import { Dropdown } from "primereact/dropdown";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
-import tt1 from '../../assets/Travel/Transfer[1].jpg'
+import tt1 from "../../assets/Travel/Transfer[1].jpg";
 import { Dialog } from "primereact/dialog";
 
 import decrypt from "../../helper";
 import debounce from "lodash.debounce";
-import { AutoComplete } from 'primereact/autocomplete';
+import { AutoComplete } from "primereact/autocomplete";
 import { useTranslation } from "react-i18next";
 import img1 from "../../assets/Banner/card1.jpg";
 import img2 from "../../assets/Banner/card2.jpg";
@@ -22,16 +22,22 @@ import img9 from "../../assets/Banner/card9.jpg";
 import img10 from "../../assets/Banner/card10.jpg";
 import img11 from "../../assets/Banner/card11.jpg";
 import img12 from "../../assets/Banner/card12.jpg";
-import { ChevronDown, Clock, MapPin, Calendar, Users } from 'lucide-react';
-import './TravelBooking.css'
+import { ChevronDown, Clock, MapPin, Calendar, Users } from "lucide-react";
+import "./TravelBooking.css";
 import TourrCarousel from "../01-Home/tourrcarousel";
-import { FaMapMarkerAlt, FaCalendarAlt, FaClock, FaUser, FaSearch } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaClock,
+  FaUser,
+  FaSearch,
+} from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import TimePicker from "react-time-picker";
-import driverImg from "../../assets/Home1/2.png"
+import driverImg from "../../assets/Home1/2.png";
 import BookingFlow from "../BookingFlow/BookingFlow";
 import axios from "axios";
 const IMGS = [
@@ -41,7 +47,7 @@ const IMGS = [
     url: img1,
     description: `Distance: 208 km // Driving Time: ~2 hr 45 min
 Renowned for its elegance, pristine slopes, and vibrant winter culture, St. Moritz is a destination that defines alpine luxury.`,
-    fullDescription: `St. Moritz is a world-renowned alpine resort town in Switzerland's Engadin valley. Famous for hosting two Winter Olympics and numerous world championships, it's synonymous with luxury and winter sports excellence. The town offers over 350 km of ski slopes, elegant boutiques, gourmet restaurants, and stunning mountain vistas. Whether you're seeking thrilling winter sports or sophisticated après-ski experiences, St. Moritz delivers an unforgettable alpine adventure.`
+    fullDescription: `St. Moritz is a world-renowned alpine resort town in Switzerland's Engadin valley. Famous for hosting two Winter Olympics and numerous world championships, it's synonymous with luxury and winter sports excellence. The town offers over 350 km of ski slopes, elegant boutiques, gourmet restaurants, and stunning mountain vistas. Whether you're seeking thrilling winter sports or sophisticated après-ski experiences, St. Moritz delivers an unforgettable alpine adventure.`,
   },
   {
     id: "laax",
@@ -49,7 +55,7 @@ Renowned for its elegance, pristine slopes, and vibrant winter culture, St. Mori
     url: img2,
     description: `Distance: 140 km // Driving Time: ~1 hr 45 min
 A hub for freestyle skiing and snowboarding enthusiasts, Laax is famous for its state-of-the-art snow parks and thrilling terrain.`,
-    fullDescription: `Laax is Switzerland's premier freestyle destination, home to one of Europe's largest snow parks. With four state-of-the-art halfpipes and innovative terrain features, it attracts snowboarders and freestyle skiers from around the globe. The resort spans three villages - Laax, Flims, and Falera - offering 224 km of varied terrain, modern lift systems, and a vibrant après-ski scene. Perfect for those seeking adrenaline-pumping action combined with modern mountain hospitality.`
+    fullDescription: `Laax is Switzerland's premier freestyle destination, home to one of Europe's largest snow parks. With four state-of-the-art halfpipes and innovative terrain features, it attracts snowboarders and freestyle skiers from around the globe. The resort spans three villages - Laax, Flims, and Falera - offering 224 km of varied terrain, modern lift systems, and a vibrant après-ski scene. Perfect for those seeking adrenaline-pumping action combined with modern mountain hospitality.`,
   },
   {
     id: "davos-klosters",
@@ -57,7 +63,7 @@ A hub for freestyle skiing and snowboarding enthusiasts, Laax is famous for its 
     url: img3,
     description: `Distance: 154 km // Driving Time: ~2 hr
 Known for hosting the World Economic Forum, Davos Klosters also boasts over 300 km of ski slopes and a vibrant alpine atmosphere.`,
-    fullDescription: `Davos Klosters is one of Switzerland's largest ski areas, offering 300 km of slopes across six different mountains. Beyond its fame as the World Economic Forum venue, it's a paradise for winter sports enthusiasts with diverse terrain for all skill levels. The area combines traditional Swiss charm with modern facilities, featuring excellent cross-country trails, winter hiking paths, and ice sports. The twin resorts of Davos and Klosters each offer unique character while sharing an extensive lift system.`
+    fullDescription: `Davos Klosters is one of Switzerland's largest ski areas, offering 300 km of slopes across six different mountains. Beyond its fame as the World Economic Forum venue, it's a paradise for winter sports enthusiasts with diverse terrain for all skill levels. The area combines traditional Swiss charm with modern facilities, featuring excellent cross-country trails, winter hiking paths, and ice sports. The twin resorts of Davos and Klosters each offer unique character while sharing an extensive lift system.`,
   },
   {
     id: "arosa-lenzerheide",
@@ -65,7 +71,7 @@ Known for hosting the World Economic Forum, Davos Klosters also boasts over 300 
     url: img4,
     description: `Distance: 154 km // Driving Time: ~2 hr 20 min
 Perfect for families, this resort offers stunning trails, cozy lodges, and a seamless connection between Arosa and Lenzerheide via the Urdenbahn cable car.`,
-    fullDescription: `Arosa Lenzerheide is Switzerland's largest interconnected ski area in Graubünden, created by linking the traditional resorts of Arosa and Lenzerheide. With 225 km of slopes and 43 lifts, it offers incredible variety for all abilities. The area is particularly family-friendly, featuring dedicated children's areas, gentle learning slopes, and numerous mountain restaurants. The scenic Urdenbahn cable car connection provides breathtaking views while seamlessly linking the two resort areas.`
+    fullDescription: `Arosa Lenzerheide is Switzerland's largest interconnected ski area in Graubünden, created by linking the traditional resorts of Arosa and Lenzerheide. With 225 km of slopes and 43 lifts, it offers incredible variety for all abilities. The area is particularly family-friendly, featuring dedicated children's areas, gentle learning slopes, and numerous mountain restaurants. The scenic Urdenbahn cable car connection provides breathtaking views while seamlessly linking the two resort areas.`,
   },
   {
     id: "engelberg",
@@ -73,7 +79,7 @@ Perfect for families, this resort offers stunning trails, cozy lodges, and a sea
     url: img5,
     description: `Distance: 101 km // Driving Time: ~1 hr 30 min
 Famous for its glacier skiing and breathtaking vistas, Engelberg is home to the Titlis Rotair, the world's first rotating cable car.`,
-    fullDescription: `Engelberg, meaning "Mountain of Angels," is a stunning resort centered around the iconic Mount Titlis. The Titlis Rotair, the world's first rotating cable car, offers 360-degree panoramic views during the ascent to 3,020 meters. The resort provides year-round glacier skiing, dramatic off-piste terrain, and family-friendly slopes. With its charming monastery village atmosphere, extensive freeride opportunities, and the spectacular Titlis Cliff Walk suspension bridge, Engelberg combines natural beauty with thrilling alpine experiences.`
+    fullDescription: `Engelberg, meaning "Mountain of Angels," is a stunning resort centered around the iconic Mount Titlis. The Titlis Rotair, the world's first rotating cable car, offers 360-degree panoramic views during the ascent to 3,020 meters. The resort provides year-round glacier skiing, dramatic off-piste terrain, and family-friendly slopes. With its charming monastery village atmosphere, extensive freeride opportunities, and the spectacular Titlis Cliff Walk suspension bridge, Engelberg combines natural beauty with thrilling alpine experiences.`,
   },
   {
     id: "andermatt",
@@ -81,7 +87,7 @@ Famous for its glacier skiing and breathtaking vistas, Engelberg is home to the 
     url: img6,
     description: `Distance: 125 km // Driving Time: ~1 hr 30 min
 A hidden gem offering tranquil slopes and exclusivity, Andermatt is part of the largest ski area in Central Switzerland.`,
-    fullDescription: `Andermatt has transformed into one of Switzerland's most exciting ski destinations while retaining its authentic alpine charm. As part of the SkiArena Andermatt-Sedrun, it offers 120 km of slopes with reliable snow conditions and dramatic mountain scenery. The area is renowned for its extensive off-piste terrain and freeride opportunities. Recent development has brought world-class hotels and dining while preserving the village's traditional character, making it ideal for those seeking exclusivity and adventure in equal measure.`
+    fullDescription: `Andermatt has transformed into one of Switzerland's most exciting ski destinations while retaining its authentic alpine charm. As part of the SkiArena Andermatt-Sedrun, it offers 120 km of slopes with reliable snow conditions and dramatic mountain scenery. The area is renowned for its extensive off-piste terrain and freeride opportunities. Recent development has brought world-class hotels and dining while preserving the village's traditional character, making it ideal for those seeking exclusivity and adventure in equal measure.`,
   },
   {
     id: "zermatt",
@@ -89,7 +95,7 @@ A hidden gem offering tranquil slopes and exclusivity, Andermatt is part of the 
     url: img7,
     description: `Distance: 240 km // Driving Time: ~3 hr 30 min
 Reach Täsch for car-free access to Zermatt, a resort famed for its views of the Matterhorn and impeccable ski terrain.`,
-    fullDescription: `Zermatt is Switzerland's most iconic ski resort, dominated by the majestic Matterhorn peak. This car-free village offers 360 km of slopes across Swiss and Italian terrain, with the highest ski area in Europe reaching 3,883 meters. The resort provides year-round skiing on the glacier, world-class dining, luxury shopping, and charming traditional chalets. Electric taxis and horse-drawn carriages maintain the village's unique atmosphere. Park in Täsch and take the shuttle train for easy access to this alpine paradise.`
+    fullDescription: `Zermatt is Switzerland's most iconic ski resort, dominated by the majestic Matterhorn peak. This car-free village offers 360 km of slopes across Swiss and Italian terrain, with the highest ski area in Europe reaching 3,883 meters. The resort provides year-round skiing on the glacier, world-class dining, luxury shopping, and charming traditional chalets. Electric taxis and horse-drawn carriages maintain the village's unique atmosphere. Park in Täsch and take the shuttle train for easy access to this alpine paradise.`,
   },
   {
     id: "murren-wengen",
@@ -97,7 +103,7 @@ Reach Täsch for car-free access to Zermatt, a resort famed for its views of the
     url: img8,
     description: `Distance: 170 km // Driving Time: ~2 hr 45 min
 Accessed via Lauterbrunnen, these picturesque car-free villages offer unforgettable alpine experiences and world-class skiing.`,
-    fullDescription: `Mürren and Wengen are two charming car-free villages perched on opposite sides of the Lauterbrunnen Valley, offering access to the spectacular Jungfrau ski region. These traditional Swiss villages have preserved their authentic character with no through traffic, only mountain trains and cable cars. The area features 206 km of slopes with stunning views of the Eiger, Mönch, and Jungfrau peaks. Both villages offer a peaceful, family-friendly atmosphere with excellent skiing, traditional Swiss hospitality, and some of the most dramatic alpine scenery in Switzerland.`
+    fullDescription: `Mürren and Wengen are two charming car-free villages perched on opposite sides of the Lauterbrunnen Valley, offering access to the spectacular Jungfrau ski region. These traditional Swiss villages have preserved their authentic character with no through traffic, only mountain trains and cable cars. The area features 206 km of slopes with stunning views of the Eiger, Mönch, and Jungfrau peaks. Both villages offer a peaceful, family-friendly atmosphere with excellent skiing, traditional Swiss hospitality, and some of the most dramatic alpine scenery in Switzerland.`,
   },
   {
     id: "grindelwald",
@@ -105,7 +111,7 @@ Accessed via Lauterbrunnen, these picturesque car-free villages offer unforgetta
     url: img9,
     description: `Distance: 180 km // Driving Time: ~2 hr 30 min
 A picturesque village with dramatic views and thrilling ski runs, Grindelwald is a favorite for its charm and accessibility to the Jungfrau region.`,
-    fullDescription: `Grindelwald is a stunning alpine village nestled beneath the iconic north face of the Eiger. Part of the extensive Jungfrau ski region, it offers access to 206 km of slopes via modern lift systems including the new Eiger Express tricable gondola. The village combines traditional Swiss charm with modern amenities, featuring excellent skiing for all levels, spectacular mountain views, and easy access to the famous Jungfraujoch - Top of Europe. With its dramatic setting and comprehensive winter offerings, Grindelwald is perfect for both adventure seekers and those wanting scenic mountain experiences.`
+    fullDescription: `Grindelwald is a stunning alpine village nestled beneath the iconic north face of the Eiger. Part of the extensive Jungfrau ski region, it offers access to 206 km of slopes via modern lift systems including the new Eiger Express tricable gondola. The village combines traditional Swiss charm with modern amenities, featuring excellent skiing for all levels, spectacular mountain views, and easy access to the famous Jungfraujoch - Top of Europe. With its dramatic setting and comprehensive winter offerings, Grindelwald is perfect for both adventure seekers and those wanting scenic mountain experiences.`,
   },
   {
     id: "gstaad",
@@ -113,7 +119,7 @@ A picturesque village with dramatic views and thrilling ski runs, Grindelwald is
     url: img10,
     description: `Distance: 220 km // Driving Time: ~2 hr 45 min
 Synonymous with upscale sophistication, Gstaad is known for its boutique charm and a mix of luxurious experiences and scenic trails.`,
-    fullDescription: `Gstaad epitomizes Swiss alpine luxury and sophistication. This exclusive resort in the Bernese Oberland attracts celebrities and discerning travelers with its elegant chalets, Michelin-starred restaurants, designer boutiques, and world-class hotels. The ski area encompasses 200 km of slopes across multiple mountains, offering varied terrain from gentle slopes to challenging runs. Beyond skiing, Gstaad is renowned for its cultural events, including classical music festivals, and its refined après-ski scene. The car-free village center maintains a sophisticated yet welcoming atmosphere.`
+    fullDescription: `Gstaad epitomizes Swiss alpine luxury and sophistication. This exclusive resort in the Bernese Oberland attracts celebrities and discerning travelers with its elegant chalets, Michelin-starred restaurants, designer boutiques, and world-class hotels. The ski area encompasses 200 km of slopes across multiple mountains, offering varied terrain from gentle slopes to challenging runs. Beyond skiing, Gstaad is renowned for its cultural events, including classical music festivals, and its refined après-ski scene. The car-free village center maintains a sophisticated yet welcoming atmosphere.`,
   },
   {
     id: "adelboden-lenk",
@@ -121,7 +127,7 @@ Synonymous with upscale sophistication, Gstaad is known for its boutique charm a
     url: img11,
     description: `Distance: 195 km // Driving Time: ~2 hr 40 min
 Welcoming and diverse, Adelboden-Lenk offers trails suitable for all skill levels, surrounded by a warm alpine village atmosphere.`,
-    fullDescription: `Adelboden-Lenk is a family-friendly ski area in the Bernese Oberland, offering 210 km of slopes with something for everyone. The connected resorts of Adelboden and Lenk maintain their traditional Swiss village character while providing modern lift systems and excellent snow reliability. The area is famous for hosting World Cup ski races and offers superb intermediate skiing, extensive children's facilities, and welcoming mountain restaurants. With its authentic atmosphere, reasonable prices, and diverse terrain, it's ideal for families and those seeking genuine Swiss hospitality.`
+    fullDescription: `Adelboden-Lenk is a family-friendly ski area in the Bernese Oberland, offering 210 km of slopes with something for everyone. The connected resorts of Adelboden and Lenk maintain their traditional Swiss village character while providing modern lift systems and excellent snow reliability. The area is famous for hosting World Cup ski races and offers superb intermediate skiing, extensive children's facilities, and welcoming mountain restaurants. With its authentic atmosphere, reasonable prices, and diverse terrain, it's ideal for families and those seeking genuine Swiss hospitality.`,
   },
   {
     id: "bad-ragaz",
@@ -129,7 +135,7 @@ Welcoming and diverse, Adelboden-Lenk offers trails suitable for all skill level
     url: img12,
     description: `Distance: 130 km // Driving Time: ~2 hr
 A unique blend of wellness and skiing, Bad Ragaz is ideal for those seeking relaxation alongside excellent slopes.`,
-    fullDescription: `Bad Ragaz offers a unique combination of world-class thermal spa facilities and access to excellent skiing in the nearby Pizol and Flumserberg ski areas. This elegant spa town has been renowned for its healing thermal waters since the 13th century. Visitors can enjoy skiing during the day and return to luxurious spa treatments in the evening. The nearby ski areas offer 65 km of varied terrain with spectacular views of the Rhine Valley. Perfect for those who want to combine active mountain pursuits with wellness and relaxation in sophisticated surroundings.`
+    fullDescription: `Bad Ragaz offers a unique combination of world-class thermal spa facilities and access to excellent skiing in the nearby Pizol and Flumserberg ski areas. This elegant spa town has been renowned for its healing thermal waters since the 13th century. Visitors can enjoy skiing during the day and return to luxurious spa treatments in the evening. The nearby ski areas offer 65 km of varied terrain with spectacular views of the Rhine Valley. Perfect for those who want to combine active mountain pursuits with wellness and relaxation in sophisticated surroundings.`,
   },
 ];
 
@@ -300,10 +306,11 @@ const Carousel = ({ images = IMGS }) => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-[10px] h-[10px] rounded-full transition-all duration-200 ${Math.floor(currentIndex / itemsPerView) === index
-                ? "bg-black w-[20px]"
-                : "bg-[#858484] hover:bg-[#858484]"
-                }`}
+              className={`w-[10px] h-[10px] rounded-full transition-all duration-200 ${
+                Math.floor(currentIndex / itemsPerView) === index
+                  ? "bg-black w-[20px]"
+                  : "bg-[#858484] hover:bg-[#858484]"
+              }`}
             />
           )
         )}
@@ -374,7 +381,10 @@ export function DestinationDetail() {
       {/* Content Section */}
       <div className="max-w-6xl mx-auto px-8 py-12">
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6"> {t("Transfer.overview")}</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">
+            {" "}
+            {t("Transfer.overview")}
+          </h2>
           <p className="text-gray-700 text-lg leading-relaxed mb-6">
             {destination.description}
           </p>
@@ -393,17 +403,19 @@ export function DestinationDetail() {
 }
 export function BookingForm() {
   // State declarations
-  const [bookingType, setBookingType] = useState('transfer');
+  const [bookingType, setBookingType] = useState("transfer");
   const [showReturn, setShowReturn] = useState(false);
   const [formData, setFormData] = useState({
-    from: '',
-    to: '',
-    pickupDate: '',
-    pickupTime: '01:45 PM',
-    returnDate: '',
-    returnTime: '01:45 PM',
+    from: "",
+    to: "",
+    pickupDate: "",
+    pickupTime: "01:45 PM",
+    returnDate: "",
+    returnTime: "01:45 PM",
     passengers: 2,
-    duration: '2'
+    duration: "2",
+    fromDetails: null,
+    toDetails: null,
   });
   const [zoneStatus, setZoneStatus] = useState({
     from: null,
@@ -417,10 +429,10 @@ export function BookingForm() {
   const [activeTimeField, setActiveTimeField] = useState(null);
   const [activeDateField, setActiveDateField] = useState(null);
   const [errors, setErrors] = useState({});
-  const [selectedHour, setSelectedHour] = useState('01');
-  const [selectedMinute, setSelectedMinute] = useState('45');
-  const [selectedPeriod, setSelectedPeriod] = useState('PM');
-  const [timeFormat, setTimeFormat] = useState('12h');
+  const [selectedHour, setSelectedHour] = useState("01");
+  const [selectedMinute, setSelectedMinute] = useState("45");
+  const [selectedPeriod, setSelectedPeriod] = useState("PM");
+  const [timeFormat, setTimeFormat] = useState("12h");
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [ismodelOpen, setIsModelOpen] = useState(false);
   const { t } = useTranslation("global");
@@ -444,11 +456,14 @@ export function BookingForm() {
       );
 
       const decrypted = response.data;
-      console.log("njdcndnc", decrypted)
+      console.log("njdcndnc", decrypted);
       const suggestions = decrypted?.suggestions ?? [];
       setAddressSuggestions((prev) => ({
         ...prev,
-        [fieldName]: suggestions.map((s) => s.name),
+        [fieldName]: suggestions.map((s) => ({
+          label: s.name,
+          value: s,
+        })),
       }));
       if (decrypted.hasOwnProperty("insideZurich")) {
         const isInside = decrypted.insideZurich;
@@ -468,7 +483,6 @@ export function BookingForm() {
         setZoneStatus((prev) => ({ ...prev, [fieldName]: null }));
         setErrors((prev) => ({ ...prev, [fieldName]: "" }));
       }
-
     } catch (error) {
       console.error("Validation error:", error);
       setErrors((prev) => ({
@@ -481,24 +495,62 @@ export function BookingForm() {
     }
   };
 
-  const hours12 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-  const hours24 = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
-  const minutes = ['00', '15', '30', '45'];
+  const hours12 = [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+  ];
+  const hours24 = [
+    "00",
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+  ];
+  const minutes = ["00", "15", "30", "45"];
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) setErrors(prev => ({ ...prev, [field]: '' }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
   const openTimePicker = (field) => {
     setActiveTimeField(field);
     const currentTime = formData[field];
     if (currentTime) {
-      const parts = currentTime.split(' ');
-      const [hour, minute] = parts[0].split(':');
+      const parts = currentTime.split(" ");
+      const [hour, minute] = parts[0].split(":");
       setSelectedHour(hour);
       setSelectedMinute(minute);
-      setSelectedPeriod(parts[1] || 'PM');
+      setSelectedPeriod(parts[1] || "PM");
     }
     setShowTimePicker(true);
   };
@@ -509,30 +561,40 @@ export function BookingForm() {
   };
 
   const saveTime = () => {
-    const timeString = timeFormat === '12h'
-      ? `${selectedHour}:${selectedMinute} ${selectedPeriod}`
-      : `${selectedHour}:${selectedMinute}`;
+    const timeString =
+      timeFormat === "12h"
+        ? `${selectedHour}:${selectedMinute} ${selectedPeriod}`
+        : `${selectedHour}:${selectedMinute}`;
     handleInputChange(activeTimeField, timeString);
     setShowTimePicker(false);
   };
 
   const selectDate = (date) => {
-    const localDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    const formattedDate = `${localDate.getFullYear()}-${String(localDate.getMonth() + 1).padStart(2, '0')}-${String(localDate.getDate()).padStart(2, '0')}`;
+    const localDate = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
+    const formattedDate = `${localDate.getFullYear()}-${String(
+      localDate.getMonth() + 1
+    ).padStart(2, "0")}-${String(localDate.getDate()).padStart(2, "0")}`;
     handleInputChange(activeDateField, formattedDate);
     setShowCalendar(false);
   };
 
   const validateForm = () => {
     const newErrors = {};
-    if (bookingType === 'transfer') {
-      if (!formData.from) newErrors.from = 'Pickup location is required';
-      if (!formData.to) newErrors.to = 'Drop-off location is required';
-      if (!formData.pickupDate) newErrors.pickupDate = 'Pickup date is required';
-      if (showReturn && !formData.returnDate) newErrors.returnDate = 'Return date is required';
+    if (bookingType === "transfer") {
+      if (!formData.from) newErrors.from = "Pickup location is required";
+      if (!formData.to) newErrors.to = "Drop-off location is required";
+      if (!formData.pickupDate)
+        newErrors.pickupDate = "Pickup date is required";
+      if (showReturn && !formData.returnDate)
+        newErrors.returnDate = "Return date is required";
     } else {
-      if (!formData.from) newErrors.from = 'Pickup location is required';
-      if (!formData.pickupDate) newErrors.pickupDate = 'Pickup date is required';
+      if (!formData.from) newErrors.from = "Pickup location is required";
+      if (!formData.pickupDate)
+        newErrors.pickupDate = "Pickup date is required";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -542,23 +604,26 @@ export function BookingForm() {
     if (validateForm()) {
       const bookingFormData = {
         outbound: {
-          from: formData.from,
-          to: formData.to,
+          from: formData.fromDetails,
+          to: formData.toDetails,
           date: formatDate(formData.pickupDate),
           time: formData.pickupTime,
           passengers: formData.passengers,
-          estimatedArrival: '08:32 pm (6h 47m)',
-          distance: '1328 km / 825 Miles'
+          estimatedArrival: "08:32 pm (6h 47m)",
+          distance: "1328 km / 825 Miles",
         },
-        return: showReturn && formData.returnDate ? {
-          from: formData.to,
-          to: formData.from,
-          date: formatDate(formData.returnDate),
-          time: formData.returnTime,
-          passengers: formData.passengers,
-          estimatedArrival: '08:32 pm (6h 47m)',
-          distance: '1328 km / 825 Miles'
-        } : null
+        return:
+          showReturn && formData.returnDate
+            ? {
+                from: formData.toDetails,
+                to: formData.fromDetails,
+                date: formatDate(formData.returnDate),
+                time: formData.returnTime,
+                passengers: formData.passengers,
+                estimatedArrival: "08:32 pm (6h 47m)",
+                distance: "1328 km / 825 Miles",
+              }
+            : null,
       };
       navigate("/BookingFlow", { state: { bookingFormData } });
     }
@@ -570,7 +635,7 @@ export function BookingForm() {
 
   const [addressSuggestions, setAddressSuggestions] = useState({
     from: [],
-    to: []
+    to: [],
   });
   const debouncedAddressSearch = useCallback(
     debounce((fieldName, value) => {
@@ -585,51 +650,58 @@ export function BookingForm() {
     debouncedAddressSearch(fieldName, value);
   };
 
-  const handleAddressSelect = (fieldName, value) => {
-    handleInputChange(fieldName, value);
-    fetchAddressSuggestions(fieldName, value);
+  const handleAddressSelect = (fieldName, selectedObj) => {
+    setFormData((prev) => ({
+      ...prev,
+      [fieldName]: selectedObj.label,
+      [`${fieldName}Details`]: selectedObj.value,
+    }));
   };
+
   const renderStatus = (field) => {
-    if (loading[field]) return <span className="status loading">Checking…</span>;
-    if (zoneStatus[field] === "inside") return <span className="status inside">Inside Zürich zone ✓</span>;
-    if (zoneStatus[field] === "outside") return <span className="status outside">Outside Zürich zone ✕</span>;
+    if (loading[field])
+      return <span className="status loading">Checking…</span>;
+    if (zoneStatus[field] === "inside")
+      return <span className="status inside">Inside Zürich zone ✓</span>;
+    if (zoneStatus[field] === "outside")
+      return <span className="status outside">Outside Zürich zone ✕</span>;
     return null;
   };
 
   const incrementValue = (type) => {
-    if (type === 'hour') {
-      const hours = timeFormat === '12h' ? hours12 : hours24;
+    if (type === "hour") {
+      const hours = timeFormat === "12h" ? hours12 : hours24;
       const idx = hours.indexOf(selectedHour);
       setSelectedHour(hours[idx < hours.length - 1 ? idx + 1 : 0]);
-    } else if (type === 'minute') {
+    } else if (type === "minute") {
       const idx = minutes.indexOf(selectedMinute);
       setSelectedMinute(minutes[idx < minutes.length - 1 ? idx + 1 : 0]);
     }
   };
 
   const decrementValue = (type) => {
-    if (type === 'hour') {
-      const hours = timeFormat === '12h' ? hours12 : hours24;
+    if (type === "hour") {
+      const hours = timeFormat === "12h" ? hours12 : hours24;
       const idx = hours.indexOf(selectedHour);
       setSelectedHour(hours[idx > 0 ? idx - 1 : hours.length - 1]);
-    } else if (type === 'minute') {
+    } else if (type === "minute") {
       const idx = minutes.indexOf(selectedMinute);
       setSelectedMinute(minutes[idx > 0 ? idx - 1 : minutes.length - 1]);
     }
   };
 
   const togglePeriod = () => {
-    setSelectedPeriod(prev => prev === 'AM' ? 'PM' : 'AM');
+    setSelectedPeriod((prev) => (prev === "AM" ? "PM" : "AM"));
   };
 
   const formatDate = (dateString) => {
-    if (!dateString) return '';
+    if (!dateString) return "";
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB', {
-      weekday: 'short',
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
+    return date.toLocaleDateString("en-GB", {
+      weekday: "short",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
     });
   };
 
@@ -644,21 +716,29 @@ export function BookingForm() {
   };
 
   const renderCalendar = () => {
-    const { daysInMonth, startingDayOfWeek, year, month } = getDaysInMonth(currentMonth);
+    const { daysInMonth, startingDayOfWeek, year, month } =
+      getDaysInMonth(currentMonth);
     const days = [];
     const today = new Date();
-    const pickupDateObj = formData.pickupDate ? new Date(formData.pickupDate) : null;
+    const pickupDateObj = formData.pickupDate
+      ? new Date(formData.pickupDate)
+      : null;
 
     for (let i = 0; i < startingDayOfWeek; i++) {
-      days.push(<div key={`empty-${i}`} className="calendar-day disabled"></div>);
+      days.push(
+        <div key={`empty-${i}`} className="calendar-day disabled"></div>
+      );
     }
 
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(year, month, day);
-      const isPickupCalendar = activeDateField === 'pickupDate';
-      const isReturnCalendar = activeDateField === 'returnDate';
+      const isPickupCalendar = activeDateField === "pickupDate";
+      const isReturnCalendar = activeDateField === "returnDate";
       const isToday = date.toDateString() === today.toDateString();
-      const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      const formattedDate = `${year}-${String(month + 1).padStart(
+        2,
+        "0"
+      )}-${String(day).padStart(2, "0")}`;
       const isSelected = formData[activeDateField] === formattedDate;
 
       let isDisabled = false;
@@ -676,7 +756,9 @@ export function BookingForm() {
       days.push(
         <div
           key={day}
-          className={`calendar-day ${isToday ? 'today' : ''} ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`}
+          className={`calendar-day ${isToday ? "today" : ""} ${
+            isSelected ? "selected" : ""
+          } ${isDisabled ? "disabled" : ""}`}
           onClick={() => !isDisabled && selectDate(date)}
         >
           {day}
@@ -687,7 +769,7 @@ export function BookingForm() {
   };
 
   const navigateMonth = (direction) => {
-    setCurrentMonth(prev => {
+    setCurrentMonth((prev) => {
       const newDate = new Date(prev);
       newDate.setMonth(newDate.getMonth() + direction);
       return newDate;
@@ -697,7 +779,9 @@ export function BookingForm() {
     <div>
       <div className="booking-container">
         <h1 className="transfer-heading">
-          {t("Transfer.reliable_worldwide")}<br />{t("Transfer.airport_transfers")}
+          {t("Transfer.reliable_worldwide")}
+          <br />
+          {t("Transfer.airport_transfers")}
         </h1>
 
         <div className="booking-grid">
@@ -706,163 +790,180 @@ export function BookingForm() {
               <div className="booking-text">{t("Transfer.transfer")}</div>
             </div>
 
-            {bookingType === 'transfer' && (
+            {bookingType === "transfer" && (
               <div>
                 <div className="form-group w-full">
                   <label className="form-label text-sm font-medium text-gray-700">
                     {t("Transfer.from")}
                   </label>
 
-                  <div className="relative w-full">
-                    <MapPin
-                      className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"
-                      size={18}
-                    />
+                  <div className="relative w-full input-wrapper">
+                    <MapPin className="input-icon" />
 
                     <AutoComplete
                       value={formData.from}
                       suggestions={addressSuggestions.from}
-                      completeMethod={(e) => handleAddressChange("from", e.query)}
-                      onChange={(e) => handleInputChange("from", e.value)}
-                      onSelect={(e) => {
-                        handleAddressSelect("from", e.value);
-                        setAddressSuggestions(prev => ({ ...prev, from: [] }));
-                      }}
-
-                      placeholder={t("Enter pickup location in Switzerland")}
-                      appendTo={document.body}
-                      dropdown
-                      forceSelection={false}
-                      className={`w-full ${errors.from ? "p-invalid" : ""}`}
+                      field="label"
+                      completeMethod={(e) =>
+                        handleAddressChange("from", e.query)
+                      }
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          from: e.value,
+                        }))
+                      }
+                      placeholder="Enter From Address"
+                      className={`w-full ${errors.to ? "p-invalid" : ""}`}
+                      onSelect={(e) => handleAddressSelect("from", e.value)}
                       inputStyle={{
                         width: "100%",
                         paddingLeft: "40px",
                         background: "#f3f4f6",
                         height: "48px",
                         borderRadius: "8px",
-                        border: errors.from ? "1px solid red" : "1px solid #e5e7eb",
+                        border: errors.to
+                          ? "1px solid red"
+                          : "1px solid #e5e7eb",
                       }}
                       panelStyle={{ maxHeight: "200px" }}
-                      itemTemplate={(item) => (
-                        <div
-                          style={{
-                            padding: "8px",
-                            color: item === "No results found" ? "#999" : "#111827",
-                            fontStyle: item === "No results found" ? "italic" : "normal",
-                          }}
-                        >
-                          {item}
-                        </div>
-                      )}
                     />
                   </div>
 
                   {renderStatus("from")}
-                  {errors.from && <p className="error-message text-red-500 text-sm">{errors.from}</p>}
+                  {errors.from && (
+                    <p className="error-message text-red-500 text-sm">
+                      {errors.from}
+                    </p>
+                  )}
                 </div>
-
 
                 <div className="form-group w-full mt-4">
                   <label className="form-label text-sm font-medium text-gray-700">
                     {t("Transfer.to")}
                   </label>
 
-                  <div className="relative w-full">
-                    <MapPin
-                      className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"
-                      size={18}
-                    />
+                  <div className="relative w-full input-wrapper">
+                    <MapPin className="input-icon" />
 
                     <AutoComplete
                       value={formData.to}
                       suggestions={addressSuggestions.to}
+                      field="label"
                       completeMethod={(e) => handleAddressChange("to", e.query)}
-                      onChange={(e) => handleInputChange("to", e.value)}
-                      onSelect={(e) => {
-                        handleAddressSelect("to", e.value);
-                        setAddressSuggestions(prev => ({ ...prev, to: [] }));
-                      }}
-                      placeholder={t("Enter drop-off location in Switzerland")}
-                      appendTo={document.body}
-                      dropdown
-                      forceSelection={false}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          to: e.value,
+                        }))
+                      }
+                      placeholder="Enter To Address"
                       className={`w-full ${errors.to ? "p-invalid" : ""}`}
+                      onSelect={(e) => handleAddressSelect("to", e.value)}
                       inputStyle={{
                         width: "100%",
                         paddingLeft: "40px",
                         background: "#f3f4f6",
                         height: "48px",
                         borderRadius: "8px",
-                        border: errors.to ? "1px solid red" : "1px solid #e5e7eb",
+                        border: errors.to
+                          ? "1px solid red"
+                          : "1px solid #e5e7eb",
                       }}
                       panelStyle={{ maxHeight: "200px" }}
-                      itemTemplate={(item) => (
-                        <div
-                          style={{
-                            padding: "8px",
-                            color: item === "No results found" ? "#999" : "#111827",
-                            fontStyle: item === "No results found" ? "italic" : "normal",
-                          }}
-                        >
-                          {item}
-                        </div>
-                      )}
                     />
                   </div>
 
                   {renderStatus("to")}
-                  {errors.to && <p className="error-message text-red-500 text-sm">{errors.to}</p>}
+                  {errors.to && (
+                    <p className="error-message text-red-500 text-sm">
+                      {errors.to}
+                    </p>
+                  )}
                 </div>
                 <div className="date-time-grid">
                   <div className="form-group">
-                    <label className="form-label">{t("Transfer.pickup_date")}</label>
+                    <label className="form-label">
+                      {t("Transfer.pickup_date")}
+                    </label>
                     <div className="input-wrapper">
                       <Calendar className="input-icon" />
                       <input
                         type="text"
                         value={formatDate(formData.pickupDate)}
-                        onClick={() => openCalendar('pickupDate')}
+                        onClick={() => openCalendar("pickupDate")}
                         readOnly
                         placeholder="Select date"
-                        className={`form-input ${errors.pickupDate ? 'error' : ''}`}
-                        style={{ cursor: 'pointer' }}
+                        className={`form-input ${
+                          errors.pickupDate ? "error" : ""
+                        }`}
+                        style={{ cursor: "pointer" }}
                       />
-                      {showCalendar && activeDateField === 'pickupDate' && (
+                      {showCalendar && activeDateField === "pickupDate" && (
                         <div className="calendar-picker">
                           <div className="calendar-header">
-                            <button className="calendar-nav-btn" onClick={() => navigateMonth(-1)}>
-                              <ChevronDown style={{ transform: 'rotate(90deg)', width: '20px', height: '20px' }} />
+                            <button
+                              className="calendar-nav-btn"
+                              onClick={() => navigateMonth(-1)}
+                            >
+                              <ChevronDown
+                                style={{
+                                  transform: "rotate(90deg)",
+                                  width: "20px",
+                                  height: "20px",
+                                }}
+                              />
                             </button>
                             <div className="calendar-month">
-                              {currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}
+                              {currentMonth.toLocaleString("default", {
+                                month: "long",
+                                year: "numeric",
+                              })}
                             </div>
-                            <button className="calendar-nav-btn" onClick={() => navigateMonth(1)}>
-                              <ChevronDown style={{ transform: 'rotate(-90deg)', width: '20px', height: '20px' }} />
+                            <button
+                              className="calendar-nav-btn"
+                              onClick={() => navigateMonth(1)}
+                            >
+                              <ChevronDown
+                                style={{
+                                  transform: "rotate(-90deg)",
+                                  width: "20px",
+                                  height: "20px",
+                                }}
+                              />
                             </button>
                           </div>
                           <div className="calendar-grid">
-                            {['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map(day => (
-                              <div key={day} className="calendar-day-header">{day}</div>
-                            ))}
+                            {["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].map(
+                              (day) => (
+                                <div key={day} className="calendar-day-header">
+                                  {day}
+                                </div>
+                              )
+                            )}
                             {renderCalendar()}
                           </div>
                         </div>
                       )}
                     </div>
-                    {errors.pickupDate && <p className="error-message">{errors.pickupDate}</p>}
+                    {errors.pickupDate && (
+                      <p className="error-message">{errors.pickupDate}</p>
+                    )}
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">{t("Transfer.pickup_time")}</label>
+                    <label className="form-label">
+                      {t("Transfer.pickup_time")}
+                    </label>
                     <div className="input-wrapper">
                       <Clock className="input-icon" />
                       <input
                         type="text"
                         value={formData.pickupTime}
-                        onClick={() => openTimePicker('pickupTime')}
+                        onClick={() => openTimePicker("pickupTime")}
                         readOnly
                         className="form-input"
-                        style={{ cursor: 'pointer' }}
+                        style={{ cursor: "pointer" }}
                       />
                     </div>
                   </div>
@@ -878,13 +979,15 @@ export function BookingForm() {
                 {showReturn && (
                   <div className="return-section">
                     <div className="return-header">
-                      <h3 className="return-title">{t("Transfer.return_trip")}</h3>
+                      <h3 className="return-title">
+                        {t("Transfer.return_trip")}
+                      </h3>
                       <button
                         className="remove-return-btn"
                         onClick={() => {
                           setShowReturn(false);
-                          handleInputChange('returnDate', '');
-                          handleInputChange('returnTime', '01:45 PM');
+                          handleInputChange("returnDate", "");
+                          handleInputChange("returnTime", "01:45 PM");
                         }}
                       >
                         Remove
@@ -892,54 +995,90 @@ export function BookingForm() {
                     </div>
                     <div className="date-time-grid">
                       <div className="form-group">
-                        <label className="form-label">{t("Transfer.return_date")}</label>
+                        <label className="form-label">
+                          {t("Transfer.return_date")}
+                        </label>
                         <div className="input-wrapper">
                           <Calendar className="input-icon" />
                           <input
                             type="text"
                             value={formatDate(formData.returnDate)}
-                            onClick={() => openCalendar('returnDate')}
+                            onClick={() => openCalendar("returnDate")}
                             readOnly
                             placeholder="Select date"
-                            className={`form-input ${errors.returnDate ? 'error' : ''}`}
-                            style={{ cursor: 'pointer', background: 'white' }}
+                            className={`form-input ${
+                              errors.returnDate ? "error" : ""
+                            }`}
+                            style={{ cursor: "pointer", background: "white" }}
                           />
-                          {showCalendar && activeDateField === 'returnDate' && (
+                          {showCalendar && activeDateField === "returnDate" && (
                             <div className="calendar-picker">
                               <div className="calendar-header">
-                                <button className="calendar-nav-btn" onClick={() => navigateMonth(-1)}>
-                                  <ChevronDown style={{ transform: 'rotate(90deg)', width: '20px', height: '20px' }} />
+                                <button
+                                  className="calendar-nav-btn"
+                                  onClick={() => navigateMonth(-1)}
+                                >
+                                  <ChevronDown
+                                    style={{
+                                      transform: "rotate(90deg)",
+                                      width: "20px",
+                                      height: "20px",
+                                    }}
+                                  />
                                 </button>
                                 <div className="calendar-month">
-                                  {currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}
+                                  {currentMonth.toLocaleString("default", {
+                                    month: "long",
+                                    year: "numeric",
+                                  })}
                                 </div>
-                                <button className="calendar-nav-btn" onClick={() => navigateMonth(1)}>
-                                  <ChevronDown style={{ transform: 'rotate(-90deg)', width: '20px', height: '20px' }} />
+                                <button
+                                  className="calendar-nav-btn"
+                                  onClick={() => navigateMonth(1)}
+                                >
+                                  <ChevronDown
+                                    style={{
+                                      transform: "rotate(-90deg)",
+                                      width: "20px",
+                                      height: "20px",
+                                    }}
+                                  />
                                 </button>
                               </div>
                               <div className="calendar-grid">
-                                {['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map(day => (
-                                  <div key={day} className="calendar-day-header">{day}</div>
-                                ))}
+                                {["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].map(
+                                  (day) => (
+                                    <div
+                                      key={day}
+                                      className="calendar-day-header"
+                                    >
+                                      {day}
+                                    </div>
+                                  )
+                                )}
                                 {renderCalendar()}
                               </div>
                             </div>
                           )}
                         </div>
-                        {errors.returnDate && <p className="error-message">{errors.returnDate}</p>}
+                        {errors.returnDate && (
+                          <p className="error-message">{errors.returnDate}</p>
+                        )}
                       </div>
 
                       <div className="form-group">
-                        <label className="form-label">{t("Transfer.return_time")}</label>
+                        <label className="form-label">
+                          {t("Transfer.return_time")}
+                        </label>
                         <div className="input-wrapper">
                           <Clock className="input-icon" />
                           <input
                             type="text"
                             value={formData.returnTime}
-                            onClick={() => openTimePicker('returnTime')}
+                            onClick={() => openTimePicker("returnTime")}
                             readOnly
                             className="form-input"
-                            style={{ cursor: 'pointer', background: 'white' }}
+                            style={{ cursor: "pointer", background: "white" }}
                           />
                         </div>
                       </div>
@@ -948,21 +1087,43 @@ export function BookingForm() {
                 )}
                 <div className="form-group">
                   <label className="form-label">
-                    <Users style={{ marginTop: '10px', marginBottom: '10px', width: '18px', height: '18px', display: 'inline-block', marginRight: '6px', verticalAlign: 'middle' }} />
+                    <Users
+                      style={{
+                        marginTop: "10px",
+                        marginBottom: "10px",
+                        width: "18px",
+                        height: "18px",
+                        display: "inline-block",
+                        marginRight: "6px",
+                        verticalAlign: "middle",
+                      }}
+                    />
                     {t("Transfer.passengers")}
                   </label>
                   <div className="passengers-control">
-                    <span className="passengers-count">{formData.passengers}</span>
+                    <span className="passengers-count">
+                      {formData.passengers}
+                    </span>
                     <div className="passengers-buttons">
                       <button
                         className="passenger-btn"
-                        onClick={() => handleInputChange('passengers', Math.max(1, formData.passengers - 1))}
+                        onClick={() =>
+                          handleInputChange(
+                            "passengers",
+                            Math.max(1, formData.passengers - 1)
+                          )
+                        }
                       >
                         −
                       </button>
                       <button
                         className="passenger-btn"
-                        onClick={() => handleInputChange('passengers', formData.passengers + 1)}
+                        onClick={() =>
+                          handleInputChange(
+                            "passengers",
+                            formData.passengers + 1
+                          )
+                        }
                       >
                         +
                       </button>
@@ -983,23 +1144,40 @@ export function BookingForm() {
                     state: {
                       returnTo: window.location.pathname,
                       openModal: true,
-                      runSeePrices: true
-                    }
+                      runSeePrices: true,
+                    },
                   });
                 }
               }}
             >
-              <svg style={{ width: '20px', height: '20px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <svg
+                style={{ width: "20px", height: "20px" }}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
               </svg>
               {t("Transfer.see_prices")}
             </button>
 
             <div className="trustpilot-section">
-              <span className="trustpilot-rating">{t("Transfer.excellent")}</span>
+              <span className="trustpilot-rating">
+                {t("Transfer.excellent")}
+              </span>
               <div className="stars">
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <svg key={i} className="star" fill="currentColor" viewBox="0 0 20 20">
+                  <svg
+                    key={i}
+                    className="star"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 ))}
@@ -1009,62 +1187,99 @@ export function BookingForm() {
           </div>
 
           <div className="booking-image">
-            <img
-              src={tt1}
-              alt="Premium Transfer Service"
-            />
+            <img src={tt1} alt="Premium Transfer Service" />
           </div>
         </div>
 
         {/* Time Picker Modal */}
         {showTimePicker && (
-          <div className="time-picker-overlay" onClick={() => setShowTimePicker(false)}>
-            <div className="time-picker-modal" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="time-picker-overlay"
+            onClick={() => setShowTimePicker(false)}
+          >
+            <div
+              className="time-picker-modal"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="time-format-tabs">
                 <button
-                  className={`time-format-tab ${timeFormat === '24h' ? 'active' : ''}`}
-                  onClick={() => setTimeFormat('24h')}
+                  className={`time-format-tab ${
+                    timeFormat === "24h" ? "active" : ""
+                  }`}
+                  onClick={() => setTimeFormat("24h")}
                 >
                   24h
                 </button>
                 <button
-                  className={`time-format-tab ${timeFormat === '12h' ? 'active' : ''}`}
-                  onClick={() => setTimeFormat('12h')}
+                  className={`time-format-tab ${
+                    timeFormat === "12h" ? "active" : ""
+                  }`}
+                  onClick={() => setTimeFormat("12h")}
                 >
                   12h
                 </button>
               </div>
               <div className="time-selectors">
                 <div className="time-column">
-                  <button className="time-arrow" onClick={() => decrementValue('hour')}>
-                    <ChevronDown style={{ transform: 'rotate(180deg)', width: '20px', height: '20px' }} />
+                  <button
+                    className="time-arrow"
+                    onClick={() => decrementValue("hour")}
+                  >
+                    <ChevronDown
+                      style={{
+                        transform: "rotate(180deg)",
+                        width: "20px",
+                        height: "20px",
+                      }}
+                    />
                   </button>
                   <div className="time-value">{selectedHour}</div>
-                  <button className="time-arrow" onClick={() => incrementValue('hour')}>
-                    <ChevronDown style={{ width: '20px', height: '20px' }} />
+                  <button
+                    className="time-arrow"
+                    onClick={() => incrementValue("hour")}
+                  >
+                    <ChevronDown style={{ width: "20px", height: "20px" }} />
                   </button>
                 </div>
 
                 <span className="time-separator">:</span>
 
                 <div className="time-column">
-                  <button className="time-arrow" onClick={() => decrementValue('minute')}>
-                    <ChevronDown style={{ transform: 'rotate(180deg)', width: '20px', height: '20px' }} />
+                  <button
+                    className="time-arrow"
+                    onClick={() => decrementValue("minute")}
+                  >
+                    <ChevronDown
+                      style={{
+                        transform: "rotate(180deg)",
+                        width: "20px",
+                        height: "20px",
+                      }}
+                    />
                   </button>
                   <div className="time-value">{selectedMinute}</div>
-                  <button className="time-arrow" onClick={() => incrementValue('minute')}>
-                    <ChevronDown style={{ width: '20px', height: '20px' }} />
+                  <button
+                    className="time-arrow"
+                    onClick={() => incrementValue("minute")}
+                  >
+                    <ChevronDown style={{ width: "20px", height: "20px" }} />
                   </button>
                 </div>
 
-                {timeFormat === '12h' && (
+                {timeFormat === "12h" && (
                   <div className="time-column">
                     <button className="time-arrow" onClick={togglePeriod}>
-                      <ChevronDown style={{ transform: 'rotate(180deg)', width: '20px', height: '20px' }} />
+                      <ChevronDown
+                        style={{
+                          transform: "rotate(180deg)",
+                          width: "20px",
+                          height: "20px",
+                        }}
+                      />
                     </button>
                     <div className="time-value">{selectedPeriod}</div>
                     <button className="time-arrow" onClick={togglePeriod}>
-                      <ChevronDown style={{ width: '20px', height: '20px' }} />
+                      <ChevronDown style={{ width: "20px", height: "20px" }} />
                     </button>
                   </div>
                 )}
@@ -1080,10 +1295,10 @@ export function BookingForm() {
         {showCalendar && (
           <div
             style={{
-              position: 'fixed',
+              position: "fixed",
               inset: 0,
-              background: 'transparent',
-              zIndex: 50
+              background: "transparent",
+              zIndex: 50,
             }}
             onClick={() => setShowCalendar(false)}
           />
@@ -1107,9 +1322,7 @@ export function BookingForm() {
   );
 }
 
-
 export default function Travel() {
-
   const { t } = useTranslation("global");
 
   return (
@@ -1120,7 +1333,10 @@ export default function Travel() {
         <div className="mt-5">
           <TourrCarousel moduleId={4} />
         </div>
-        <> <BookingForm /></>
+        <>
+          {" "}
+          <BookingForm />
+        </>
         <h2 className="text-2xl font-semibold text-center text-black my-6">
           {t("Transfer.explore_destination")}
         </h2>
@@ -1130,24 +1346,3 @@ export default function Travel() {
   );
 }
 export { IMGS };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

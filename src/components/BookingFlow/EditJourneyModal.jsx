@@ -1,27 +1,35 @@
-import React, { useState } from 'react';
-import { MapPin, Calendar, Clock, Users } from 'lucide-react';
+import React, { useState } from "react";
+import { MapPin, Calendar, Clock, Users } from "lucide-react";
 
 const EditJourneyModal = ({ bookingData, onClose, onAddReturn }) => {
+  const outbound = bookingData.outbound;
+
   const [showReturnForm, setShowReturnForm] = useState(!!bookingData.return);
+
   const [returnData, setReturnData] = useState(
     bookingData.return || {
-      from: bookingData.outbound.to,
-      fromCity: bookingData.outbound.toCity,
-      to: bookingData.outbound.from,
-      toCity: bookingData.outbound.fromCity,
-      date: '16 Oct 2025',
-      time: '01:45 PM',
-      passengers: bookingData.outbound.passengers
+      from: {
+        name: outbound.to.name,
+        postalCode: outbound.to.postalCode,
+      },
+      to: {
+        name: outbound.from.name,
+        postalCode: outbound.from.postalCode,
+      },
+      date: "16 Oct 2025",
+      time: "01:45 PM",
+      passengers: outbound.passengers,
     }
   );
+
   const handleAddReturn = () => {
-    const fullReturnData = {
+    onAddReturn({
       ...returnData,
-      estimatedArrival: '08:32 pm (6h 47m)',
-      distance: '1328 km / 825 Miles'
-    };
-    onAddReturn(fullReturnData);
+      estimatedArrival: "08:32 pm (6h 47m)",
+      distance: "1328 km / 825 Miles",
+    });
   };
+
   const adjustPassengers = (delta) => {
     const newCount = Math.max(1, Math.min(10, returnData.passengers + delta));
     setReturnData({ ...returnData, passengers: newCount });
@@ -30,126 +38,153 @@ const EditJourneyModal = ({ bookingData, onClose, onAddReturn }) => {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        {/* Header */}
         <div className="modal-header">
           <div className="modal-tabs">
             <button
-              className={`modal-tab ${!showReturnForm ? 'active' : ''}`}
+              className={`modal-tab ${!showReturnForm ? "active" : ""}`}
               onClick={() => setShowReturnForm(false)}
             >
               Transfer
             </button>
+
             <button
-              className={`modal-tab ${showReturnForm ? 'active' : ''}`}
+              className={`modal-tab ${showReturnForm ? "active" : ""}`}
               onClick={() => setShowReturnForm(true)}
             >
               🕐 Hourly chauffeur
             </button>
           </div>
+
           <button onClick={onClose} className="modal-close">
             ✕
           </button>
         </div>
 
+        {/* BODY */}
         <div className="modal-body">
+          {/* TRANSFER SCREEN */}
           {!showReturnForm ? (
             <>
-              <div style={{ marginBottom: '24px' }}>
+              <div style={{ marginBottom: "24px" }}>
                 <div className="form-row">
                   <div className="form-group">
                     <label className="form-label">Pickup date</label>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px', background: '#f9fafb', borderRadius: '8px' }}>
+                    <div className="form-static-box">
                       <Calendar size={18} />
-                      <span style={{ fontSize: '14px' }}>{bookingData.outbound.date}</span>
+                      <span>{outbound.date}</span>
                     </div>
                   </div>
+
                   <div className="form-group">
                     <label className="form-label">Pickup time</label>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px', background: '#f9fafb', borderRadius: '8px' }}>
+                    <div className="form-static-box">
                       <Clock size={18} />
-                      <span style={{ fontSize: '14px' }}>{bookingData.outbound.time}</span>
+                      <span>{outbound.time}</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <button onClick={() => setShowReturnForm(true)} className="add-return-button">
-                <span>ADD RETURN</span>
+              <button
+                onClick={() => setShowReturnForm(true)}
+                className="add-return-button"
+              >
+                ADD RETURN
               </button>
             </>
           ) : (
             <>
-              <div style={{ marginBottom: '24px' }}>
+              {/* RETURN FORM */}
+              <div style={{ marginBottom: "24px" }}>
+                {/* From */}
                 <div className="form-group">
                   <label className="form-label">From</label>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', border: '1px solid #d1d5db', borderRadius: '8px' }}>
+                  <div className="form-box">
                     <MapPin size={20} />
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: '500' }}>{returnData.from}</div>
-                      <div style={{ fontSize: '13px', color: '#6b7280' }}>{returnData.fromCity}</div>
+                      <div style={{ fontWeight: 500 }}>
+                        {returnData.from?.name}
+                      </div>
+                      <div className="form-box-subtext">
+                        {returnData.from?.postalCode}
+                      </div>
                     </div>
-                    <button style={{ padding: '4px', background: 'none', border: 'none', borderRadius: '50%', cursor: 'pointer' }}>
-                      ✕
-                    </button>
+                    <button className="small-icon-btn">✕</button>
                   </div>
                 </div>
 
+                {/* To */}
                 <div className="form-group">
                   <label className="form-label">To</label>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', border: '1px solid #d1d5db', borderRadius: '8px' }}>
+                  <div className="form-box">
                     <MapPin size={20} />
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: '500' }}>{returnData.to}</div>
-                      <div style={{ fontSize: '13px', color: '#6b7280' }}>{returnData.toCity}</div>
+                      <div style={{ fontWeight: 500 }}>
+                        {returnData.to?.name}
+                      </div>
+                      <div className="form-box-subtext">
+                        {returnData.to?.postalCode}
+                      </div>
                     </div>
-                    <button style={{ padding: '4px', background: 'none', border: 'none', borderRadius: '50%', cursor: 'pointer' }}>
-                      ✕
-                    </button>
+                    <button className="small-icon-btn">✕</button>
                   </div>
                 </div>
 
+                {/* Date + Time */}
                 <div className="form-row">
                   <div className="form-group">
                     <label className="form-label">Pickup date</label>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px', border: '1px solid #d1d5db', borderRadius: '8px' }}>
+                    <div className="form-input-box">
                       <Calendar size={18} />
                       <input
                         type="text"
                         value={returnData.date}
-                        onChange={(e) => setReturnData({ ...returnData, date: e.target.value })}
-                        style={{ flex: 1, border: 'none', outline: 'none', fontSize: '14px' }}
+                        onChange={(e) =>
+                          setReturnData({ ...returnData, date: e.target.value })
+                        }
+                        className="input-clean"
                       />
                     </div>
                   </div>
+
                   <div className="form-group">
                     <label className="form-label">Pickup time</label>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px', border: '1px solid #d1d5db', borderRadius: '8px' }}>
+                    <div className="form-input-box">
                       <Clock size={18} />
                       <input
                         type="text"
                         value={returnData.time}
-                        onChange={(e) => setReturnData({ ...returnData, time: e.target.value })}
-                        style={{ flex: 1, border: 'none', outline: 'none', fontSize: '14px' }}
+                        onChange={(e) =>
+                          setReturnData({ ...returnData, time: e.target.value })
+                        }
+                        className="input-clean"
                       />
                     </div>
                   </div>
                 </div>
 
+                {/* Passengers */}
                 <div className="form-group">
                   <label className="form-label">
-                    <Users size={18} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+                    <Users size={18} style={{ marginRight: 6 }} />
                     Passengers
                   </label>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <span style={{ flex: 1, fontSize: '24px', fontWeight: '500' }}>{returnData.passengers}</span>
+
+                  <div className="passenger-row">
+                    <span className="passenger-count">
+                      {returnData.passengers}
+                    </span>
+
                     <button
                       onClick={() => adjustPassengers(-1)}
-                      style={{ width: '40px', height: '40px', background: '#1f2937', color: 'white', border: 'none', borderRadius: '50%', cursor: 'pointer', fontSize: '20px' }}
+                      className="circle-btn"
                     >
                       −
                     </button>
                     <button
                       onClick={() => adjustPassengers(1)}
-                      style={{ width: '40px', height: '40px', background: '#1f2937', color: 'white', border: 'none', borderRadius: '50%', cursor: 'pointer', fontSize: '20px' }}
+                      className="circle-btn"
                     >
                       +
                     </button>
@@ -157,11 +192,9 @@ const EditJourneyModal = ({ bookingData, onClose, onAddReturn }) => {
                 </div>
               </div>
 
-              <button
-                onClick={handleAddReturn}
-                style={{ width: '100%', padding: '14px', background: '#000', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '15px', fontWeight: '500' }}
-              >
-                <span>🔍 See prices</span>
+              {/* CTA */}
+              <button className="submit-btn" onClick={handleAddReturn}>
+                🔍 See prices
               </button>
             </>
           )}
@@ -170,4 +203,5 @@ const EditJourneyModal = ({ bookingData, onClose, onAddReturn }) => {
     </div>
   );
 };
-export default EditJourneyModal; 
+
+export default EditJourneyModal;
