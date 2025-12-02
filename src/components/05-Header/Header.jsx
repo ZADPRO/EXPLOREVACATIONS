@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo/logoheader.png";
+import logo from "../../assets/logo/latestLogo.png";
 import flagEN from "../../assets/flags/english.png";
 import flagDE from "../../assets/flags/german.png";
 import flagFR from "../../assets/flags/french.png";
@@ -129,10 +129,11 @@ export default function Header() {
 
   return (
     <div
-      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-[#eef0eec2]"
-        : "bg-[#fff] md:bg-white/20 md:backdrop-blur-lg"
-        }`}
+      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#eef0eec2]"
+          : "bg-[#fff] md:bg-white/20 md:backdrop-blur-lg"
+      }`}
     >
       <div className="w-full flex justify-center items-center h-[70px] py-10 px-6 md:px-12 lg:px-40">
         <div className="w-full flex justify-between items-center">
@@ -177,20 +178,16 @@ export default function Header() {
 
               {showBookingDropdown && (
                 <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-50 z-50">
-                  {["parking", "Flightform"].map(
-                    (type) => (
-                      <div
-                        key={type}
-                        className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
-                        onClick={() =>
-                          handleNavigation(`/booking?type=${type}`)
-                        }
-                      >
-                        {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
-                        {t("header.Booking")}
-                      </div>
-                    )
-                  )}
+                  {["parking", "Flightform"].map((type) => (
+                    <div
+                      key={type}
+                      className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
+                      onClick={() => handleNavigation(`/booking?type=${type}`)}
+                    >
+                      {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
+                      {t("header.Booking")}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
@@ -209,7 +206,7 @@ export default function Header() {
               {showTransferDropdown && (
                 <div className="absolute top-[100%] mt-2 bg-[#dfe6f1] shadow-lg rounded-md w-50 z-50">
                   {/* Add your transfer options here */}
-                  {[ t("header.Transfers"),  t("header.event")].map((type) => (
+                  {[t("header.Transfers"), t("header.event")].map((type) => (
                     <div
                       key={type}
                       className="px-4 py-2 hover:bg-white text-[#0067b6] cursor-pointer"
@@ -225,18 +222,18 @@ export default function Header() {
                 </div>
               )}
             </div>
-            {[
-              { path: "/contact", label: t("header.Contact") },
-            ].map(({ path, label }) => (
-              <div
-                key={path}
-                className="text-[16px] cursor-pointer font-bold underline-animation"
-                style={{ color: isActive(path) }}
-                onClick={() => handleNavigation(path)}
-              >
-                {label}
-              </div>
-            ))}
+            {[{ path: "/contact", label: t("header.Contact") }].map(
+              ({ path, label }) => (
+                <div
+                  key={path}
+                  className="text-[16px] cursor-pointer font-bold underline-animation"
+                  style={{ color: isActive(path) }}
+                  onClick={() => handleNavigation(path)}
+                >
+                  {label}
+                </div>
+              )
+            )}
           </div>
 
           {/* Language Dropdown */}
@@ -356,20 +353,18 @@ export default function Header() {
                 </div>
                 {showMobileBooking && (
                   <div className="ml-4 mt-2 flex flex-col gap-2">
-                    {["parking", "Flightform"].map(
-                      (type) => (
-                        <div
-                          key={type}
-                          className="text-md cursor-pointer text-[#0067b6]"
-                          onClick={() =>
-                            handleNavigation(`/booking?type=${type}`)
-                          }
-                        >
-                          {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
-                          {t("header.Booking")}
-                        </div>
-                      )
-                    )}
+                    {["parking", "Flightform"].map((type) => (
+                      <div
+                        key={type}
+                        className="text-md cursor-pointer text-[#0067b6]"
+                        onClick={() =>
+                          handleNavigation(`/booking?type=${type}`)
+                        }
+                      >
+                        {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
+                        {t("header.Booking")}
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
@@ -384,7 +379,7 @@ export default function Header() {
                 </div>
                 {showMobileTransfer && (
                   <div className="ml-4 mt-2 flex flex-col gap-2">
-                    {[ t("header.Transfers"),  t("header.event")].map((type) => (
+                    {[t("header.Transfers"), t("header.event")].map((type) => (
                       <div
                         key={type}
                         className="text-md cursor-pointer text-[#0067b6]"
@@ -395,7 +390,6 @@ export default function Header() {
                         }
                       >
                         {type.charAt(0).toUpperCase() + type.slice(1)}{" "}
-
                       </div>
                     ))}
                   </div>
@@ -442,4 +436,3 @@ export default function Header() {
     </div>
   );
 }
-
