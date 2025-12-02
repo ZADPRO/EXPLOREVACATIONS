@@ -1,8 +1,8 @@
 .see-prices-btn:hover {
-    background: #1f2937;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  }
+  background: #1f2937;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
 
 /* Toast Notifications */
 .toast-container {
@@ -62,7 +62,6 @@
   font-size: 13px;
   color: #6b7280;
 }
-
 
 /* Booking Form Styles */
 .booking-container {
@@ -141,6 +140,8 @@
   color: #9ca3af;
   width: 20px;
   height: 20px;
+  z-index: 20;
+  pointer-events: none;
 }
 
 .form-input {
@@ -551,7 +552,6 @@
   opacity: 0.6;
 }
 
-
 .calendar-day.disabled:hover {
   background: transparent;
 }
@@ -561,7 +561,7 @@
   .booking-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .booking-image {
     height: 500px;
     position: static;
@@ -572,23 +572,23 @@
   .booking-container {
     padding: 20px 16px;
   }
-  
+
   .booking-form-wrapper {
     padding: 24px;
   }
-  
+
   .date-time-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .booking-image {
     height: 400px;
   }
-  
+
   .time-picker-modal {
     padding: 24px;
   }
-  
+
   .time-value {
     font-size: 24px;
     padding: 12px 16px;
@@ -611,7 +611,6 @@
   font-size: 18px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 
 .status {
   display: inline-block;
@@ -636,9 +635,6 @@
   background-color: #fee2e2;
   color: #991b1b;
 }
-
-
-
 
 /* //////////////////////////////////mobile */
 @media (max-width: 480px) {
