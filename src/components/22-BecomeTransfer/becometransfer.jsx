@@ -71,7 +71,7 @@ export default function BecomeTransfer() {
         ></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">License Partner Model</h1>
-          <p className="text-xl md:text-2xl mb-4">Join ZüriCar GO License Partner</p>
+          <p className="text-xl md:text-2xl mb-4">Join ZüriCar GO Driver Partner</p>
           <p className="text-lg md:text-xl opacity-90">
             {t("transfer.ideal candidates for becoming ZüriCar GO License Partners.")}
           </p>

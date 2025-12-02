@@ -701,8 +701,7 @@ export default function CarsTemplate() {
               {(extras || []).map((item) => (
                 <div
                   key={item.refFormDetailsId}
-                  className="flex items-center justify-between border rounded-lg px-4 py-3"
-                >
+                  className="flex items-center justify-between border rounded-lg px-4 py-3">
                   <Checkbox
                     onChange={(e) => {
                       if (e.checked) {
