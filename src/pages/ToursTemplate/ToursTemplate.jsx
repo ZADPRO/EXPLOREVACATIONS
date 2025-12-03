@@ -1080,11 +1080,3 @@ export default function ToursTemplate() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
