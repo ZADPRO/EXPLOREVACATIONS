@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import bgimg from "../../assets/footer/footerbg.png";
-import logoImg from "../../assets/logo/latestLogo.png";
+import logoImg from "../../assets/logo/zuericarLogoWhite.png";
 import footer from "../../assets/footer/footer.png";
 import { useTranslation } from "react-i18next";
 
